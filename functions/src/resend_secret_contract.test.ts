@@ -37,10 +37,11 @@ describe('RESEND_API_KEY Secret Manager contract', () => {
 
   it('binds the secret to every deployed runtime that can send through Resend', () => {
     const adminEmail = source('admin_email.ts');
-    expect(exportedRuntime(adminEmail, 'adminEmailBroadcast')).toContain('secrets: [RESEND_API_KEY]');
+    // зачем: рассылка добавляет секреты отписки (EMAIL_UNSUBSCRIBE_SECRETS) — ключ Resend всё равно в рантайме
+    expect(exportedRuntime(adminEmail, 'adminEmailBroadcast')).toContain('secrets: [RESEND_API_KEY');
 
     const authRecovery = source('auth_recovery.ts');
-    expect(authRecovery).toMatch(/REQUEST_RECOVERY_CALLABLE_OPTIONS\s*=\s*\{[\s\S]*?secrets:\s*\[RESEND_API_KEY\][\s\S]*?\}/);
+    expect(authRecovery).toMatch(/REQUEST_RECOVERY_CALLABLE_OPTIONS\s*=\s*\{[\s\S]*?secrets:\s*\[RESEND_API_KEY[\s\S]*?\}/); // зачем: рядом с ключом Resend стоит секрет проверки восстановления
     expect(exportedRuntime(authRecovery, 'authCleanInstallRecoveryDeliveryWorker'))
       .toContain('secrets: CLEAN_RECOVERY_DELIVERY_SECRETS');
     expect(authRecovery).toMatch(/CLEAN_RECOVERY_DELIVERY_SECRETS\s*=\s*\[[\s\S]*?RESEND_API_KEY[\s\S]*?\]/);
@@ -49,8 +50,8 @@ describe('RESEND_API_KEY Secret Manager contract', () => {
       .toContain('secrets: [RESEND_API_KEY]');
 
     const webLeads = source('web_leads.ts');
-    expect(exportedRuntime(webLeads, 'webLeadCapture')).toContain('secrets: [RESEND_API_KEY]');
-    expect(exportedRuntime(webLeads, 'webLeadNudgeCron')).toContain('secrets: [RESEND_API_KEY]');
+    expect(exportedRuntime(webLeads, 'webLeadCapture')).toContain('secrets: [RESEND_API_KEY'); // зачем: письмо с планом несёт ссылку отписки — рядом секреты отписки
+    expect(exportedRuntime(webLeads, 'webLeadNudgeCron')).toContain('secrets: [RESEND_API_KEY');
 
     const webCheckout = source('web_checkout.ts');
     expect(exportedRuntime(webCheckout, 'stripeWebhook')).toMatch(/secrets:\s*\[[^\]]*RESEND_API_KEY[^\]]*\]/);

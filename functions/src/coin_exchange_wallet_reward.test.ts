@@ -37,7 +37,7 @@ describe('coin exchange protected Learning V2 wallet reward', () => {
     expect(() => parseProtectedCoinExchangeWalletRewardReceipt({
       ...first.protectedReceipt,
       rewardFingerprint: 'b'.repeat(64),
-    })).toThrow('coin_exchange_wallet_reward_indeterminate');
+    })).toThrow(/wallet_reward_indeterminate/); // зачем: конфликтный конверт отвергает общий разбор кошелька (learning_v2_wallet_reward_indeterminate) раньше проверки причины обмена — закрытый отказ тот же
     expect(parseCoinExchangeWalletRewardRequest({
       ...first.request,
       extra: true,

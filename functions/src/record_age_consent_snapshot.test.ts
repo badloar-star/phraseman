@@ -218,10 +218,10 @@ describe('recordAgeConsentSnapshot callable identity boundary', () => {
     const source = readFileSync(sourcePath, 'utf8');
     const index = readFileSync(path.join(__dirname, 'index.ts'), 'utf8');
 
-    expect(source).toMatch(/recordAgeConsentSnapshot\s*=\s*onCall\(\{[\s\S]*?region:\s*['"]us-central1['"][\s\S]*?enforceAppCheck:\s*true/);
+    expect(source).toMatch(/recordAgeConsentSnapshot\s*=\s*onCall\(\{[\s\S]*?region:\s*['"]us-central1['"][\s\S]*?enforceAppCheck:\s*false/); // зачем: App Check запломбирован навсегда (решение владельца 2026-08-17) — тест сторожил отменённое правило
     expect(source).toContain('resolveStableUidForAuth(db, authUid, undefined, {');
     expect(source).toContain('requireKnownIdentity: true');
     expect(source).toContain('repairLinks: false');
-    expect(index).toContain("export { recordAgeConsentSnapshot } from './record_age_consent_snapshot';");
+    expect(index).toMatch(/export \{ recordAgeConsentSnapshot \} from ['"]\.\/record_age_consent_snapshot['"];/); // зачем: кавычки в index.ts двойные
   });
 });

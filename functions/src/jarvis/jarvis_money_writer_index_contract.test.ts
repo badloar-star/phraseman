@@ -49,9 +49,10 @@ describe('Jarvis money real-writer and index contract', () => {
       && override.fieldPath === 'createdAtMs'
     ));
     expect(externalCreatedAtOverrides).toHaveLength(1);
-    expect(externalCreatedAtOverrides[0].indexes).toEqual([
-      { order: 'DESCENDING', queryScope: 'COLLECTION_GROUP' },
-    ]);
+    // зачем (05.11): у переопределения поля индексы перечислены полностью — вместе со стандартными COLLECTION-индексами, иначе их отключило бы; сторож проверяет нужный для денег DESC по группе и что лишнего группового индекса нет
+    const created = externalCreatedAtOverrides[0].indexes;
+    expect(created).toContainEqual({ order: 'DESCENDING', queryScope: 'COLLECTION_GROUP' });
+    expect(created.filter((i: { queryScope: string }) => i.queryScope === 'COLLECTION_GROUP')).toHaveLength(1);
   });
 
   test('support supersession contract binds the exact producer write and reader branch', () => {

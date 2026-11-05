@@ -50,8 +50,16 @@ describe('Legacy agent collections stay closed to clients even after the code wa
 
   test('the legacy admin catch-all still excludes every retired agent root', () => {
     expect(rules).toContain('match /{collection}/{document=**}');
+    // зачем (05.11): агентные корни исключены из общего правила не поштучным `collection != '…'`, а функцией isServerOwnedAgentRoot(collection) —
+    // защита та же, строка другая. Тест принимает оба способа и проверяет, что функция реально подключена к общему правилу.
+    const helperStart = rules.indexOf('function isServerOwnedAgentRoot(collection)');
+    const helperBody = helperStart >= 0 ? rules.slice(helperStart, rules.indexOf('}', helperStart)) : '';
+    const helperPatterns = [...helperBody.matchAll(/collection\.matches\('([^']+)'\)/g)].map((m) => new RegExp(`^(?:${m[1]})$`));
+    expect(rules).toContain('!isServerOwnedAgentRoot(collection)');
     SERVER_ONLY_COLLECTIONS.forEach((collection) => {
-      expect(rules).toContain(`collection != '${collection}'`);
+      const literal = rules.includes(`collection != '${collection}'`);
+      const viaHelper = helperPatterns.some((re) => re.test(collection));
+      expect([collection, literal || viaHelper]).toEqual([collection, true]);
     });
   });
 });

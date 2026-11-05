@@ -1,0 +1,218 @@
+diff --git a/firestore.indexes.json b/firestore.indexes.json
+index aa82f59af..f1b341f46 100644
+--- a/firestore.indexes.json
++++ b/firestore.indexes.json
+@@ -4,34 +4,64 @@
+       "collectionGroup": "spire_task_incidents",
+       "queryScope": "COLLECTION",
+       "fields": [
+-        { "fieldPath": "studyTarget", "order": "ASCENDING" },
+-        { "fieldPath": "state", "order": "ASCENDING" },
+-        { "fieldPath": "latestReportedAtMs", "order": "DESCENDING" },
+-        { "fieldPath": "__name__", "order": "ASCENDING" }
++        {
++          "fieldPath": "studyTarget",
++          "order": "ASCENDING"
++        },
++        {
++          "fieldPath": "state",
++          "order": "ASCENDING"
++        },
++        {
++          "fieldPath": "latestReportedAtMs",
++          "order": "DESCENDING"
++        },
++        {
++          "fieldPath": "__name__",
++          "order": "ASCENDING"
++        }
+       ]
+     },
+     {
+       "collectionGroup": "progress_events",
+       "queryScope": "COLLECTION_GROUP",
+       "fields": [
+-        { "fieldPath": "type", "order": "ASCENDING" },
+-        { "fieldPath": "createdAt", "order": "ASCENDING" }
++        {
++          "fieldPath": "type",
++          "order": "ASCENDING"
++        },
++        {
++          "fieldPath": "createdAt",
++          "order": "ASCENDING"
++        }
+       ]
+     },
+     {
+       "collectionGroup": "community_packs",
+       "queryScope": "COLLECTION",
+       "fields": [
+-        { "fieldPath": "packLanguage", "order": "ASCENDING" },
+-        { "fieldPath": "listingStatus", "order": "ASCENDING" }
++        {
++          "fieldPath": "packLanguage",
++          "order": "ASCENDING"
++        },
++        {
++          "fieldPath": "listingStatus",
++          "order": "ASCENDING"
++        }
+       ]
+     },
+     {
+       "collectionGroup": "community_packs",
+       "queryScope": "COLLECTION",
+       "fields": [
+-        { "fieldPath": "listingStatus", "order": "ASCENDING" },
+-        { "fieldPath": "videoId", "order": "ASCENDING" }
++        {
++          "fieldPath": "listingStatus",
++          "order": "ASCENDING"
++        },
++        {
++          "fieldPath": "videoId",
++          "order": "ASCENDING"
++        }
+       ]
+     },
+     {
+@@ -1220,6 +1250,12 @@
+     }
+   ],
+   "fieldOverrides": [
++    {
++      "collectionGroup": "admin_youtube_comments",
++      "fieldPath": "expireAt",
++      "ttl": true,
++      "indexes": []
++    },
+     {
+       "collectionGroup": "callable_rate_windows",
+       "fieldPath": "expiresAt",
+@@ -1242,8 +1278,14 @@
+       "collectionGroup": "video_favorites",
+       "fieldPath": "videoId",
+       "indexes": [
+-        { "order": "ASCENDING", "queryScope": "COLLECTION" },
+-        { "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }
++        {
++          "order": "ASCENDING",
++          "queryScope": "COLLECTION"
++        },
++        {
++          "order": "ASCENDING",
++          "queryScope": "COLLECTION_GROUP"
++        }
+       ]
+     },
+     {
+@@ -1599,46 +1641,6 @@
+         }
+       ]
+     },
+-    {
+-      "collectionGroup": "votes",
+-      "fieldPath": "userId",
+-      "indexes": [
+-        {
+-          "order": "ASCENDING",
+-          "queryScope": "COLLECTION_GROUP"
+-        }
+-      ]
+-    },
+-    {
+-      "collectionGroup": "poll_votes",
+-      "fieldPath": "userId",
+-      "indexes": [
+-        {
+-          "order": "ASCENDING",
+-          "queryScope": "COLLECTION_GROUP"
+-        }
+-      ]
+-    },
+-    {
+-      "collectionGroup": "activity_likes_received",
+-      "fieldPath": "fromUid",
+-      "indexes": [
+-        {
+-          "order": "ASCENDING",
+-          "queryScope": "COLLECTION_GROUP"
+-        }
+-      ]
+-    },
+-    {
+-      "collectionGroup": "friend_activity_like_daily_limits",
+-      "fieldPath": "targetUid",
+-      "indexes": [
+-        {
+-          "order": "ASCENDING",
+-          "queryScope": "COLLECTION_GROUP"
+-        }
+-      ]
+-    },
+     {
+       "collectionGroup": "pack_likes",
+       "fieldPath": "userId",
+@@ -1727,6 +1729,46 @@
+         }
+       ]
+     },
++    {
++      "collectionGroup": "votes",
++      "fieldPath": "userId",
++      "indexes": [
++        {
++          "order": "ASCENDING",
++          "queryScope": "COLLECTION_GROUP"
++        }
++      ]
++    },
++    {
++      "collectionGroup": "poll_votes",
++      "fieldPath": "userId",
++      "indexes": [
++        {
++          "order": "ASCENDING",
++          "queryScope": "COLLECTION_GROUP"
++        }
++      ]
++    },
++    {
++      "collectionGroup": "activity_likes_received",
++      "fieldPath": "fromUid",
++      "indexes": [
++        {
++          "order": "ASCENDING",
++          "queryScope": "COLLECTION_GROUP"
++        }
++      ]
++    },
++    {
++      "collectionGroup": "friend_activity_like_daily_limits",
++      "fieldPath": "targetUid",
++      "indexes": [
++        {
++          "order": "ASCENDING",
++          "queryScope": "COLLECTION_GROUP"
++        }
++      ]
++    },
+     {
+       "collectionGroup": "friend_activity_likes_sent",
+       "fieldPath": "targetUid",
+@@ -2130,6 +2172,12 @@
+           "queryScope": "COLLECTION"
+         }
+       ]
++    },
++    {
++      "collectionGroup": "admin_youtube_comment_settings",
++      "fieldPath": "expireAt",
++      "ttl": true,
++      "indexes": []
+     }
+   ]
+-}
++}
+\ No newline at end of file

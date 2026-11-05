@@ -23,6 +23,15 @@ const DELEGATED: Record<string, [string, string, RegExp]> = {
   adminCreateV2GenerationPlan: ['admin_v2_generation.ts', 'export async function handleAdminCreateV2GenerationPlan', /authenticateRootOwner|requireV2ConfiguredRootOwnerV1|requireAdmin|permission/],
   adminSupportDispatchReply: ['support_inbox.ts', 'async function handleSupportReplyDispatch', /requireSupportPermission\(request, 'support\.reply\.send'\)/],
   adminSupportSendReply: ['support_inbox.ts', 'async function handleSupportReplyDispatch', /requireSupportPermission\(request, 'support\.reply\.send'\)/],
+  // зачем (05.11): новые эндпоинты сотрудников и историй — права проверяет обработчик (verifiedOwner: вошёл + почта подтверждена + uid владельца; verifiedIdentity — вошёл + почта; role() — роль историй).
+  adminStaffCreateInvitation: ['admin_staff_invitation.ts', 'export async function handleAdminStaffCreateInvitation', /verifiedOwner\(request, deps\)/],
+  adminStaffListInvitations: ['admin_staff_invitation.ts', 'export async function handleAdminStaffListInvitations', /verifiedOwner\(request, deps\)/],
+  adminStaffRevokeInvitation: ['admin_staff_invitation.ts', 'export async function handleAdminStaffRevokeInvitation', /verifiedOwner\(request, deps\)/],
+  adminStaffGetSession: ['admin_staff_membership.ts', 'export async function handleAdminStaffGetSession', /verifiedIdentity\(request\)/],
+  adminStaffSetMembership: ['admin_staff_membership.ts', 'export async function handleAdminStaffSetMembership', /verifiedOwner\(request, deps\)/],
+  adminStaffResolveIdentity: ['admin_staff_membership.ts', 'export async function handleAdminStaffResolveIdentity', /verifiedOwner\(request, deps\)/],
+  adminStaffListMemberships: ['admin_staff_membership.ts', 'export async function handleAdminStaffListMemberships', /verifiedOwner\(request, deps\)/],
+  adminStoryAnnouncementsList: ['story_announcements.ts', 'export const adminStoryAnnouncementsList', /role\(request, false\)/],
 };
 
 interface Endpoint { file: string; name: string; body: string }

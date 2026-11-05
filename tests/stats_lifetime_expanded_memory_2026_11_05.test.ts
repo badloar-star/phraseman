@@ -8,8 +8,9 @@ describe('Статистика: «Все показатели» помнит р�
   it('ключ памяти есть, читается один раз при входе и пишется при переключении', () => {
     expect(src).toContain("const STATS_LIFETIME_EXPANDED_KEY = 'stats_lifetime_expanded_v1';");
     expect(src).toContain('AsyncStorage.getItem(STATS_LIFETIME_EXPANDED_KEY)');
-    expect(src).toContain('AsyncStorage.setItem(STATS_LIFETIME_EXPANDED_KEY, nextKind)');
-    expect(src).toContain('AsyncStorage.removeItem(STATS_LIFETIME_EXPANDED_KEY)');
+    // «свёрнуто» = пустая строка, не removeItem (храповик progress_preservation_owner_lock)
+    expect(src).toContain("AsyncStorage.setItem(STATS_LIFETIME_EXPANDED_KEY, nextKind ?? '')");
+    expect(src).not.toContain('AsyncStorage.removeItem(STATS_LIFETIME_EXPANDED_KEY)');
   });
   it('сбои чтения и записи не молчат (причина в журнале)', () => {
     expect(src).toContain('[STATS-LIFETIME] чтение раскрытого блока не удалось');

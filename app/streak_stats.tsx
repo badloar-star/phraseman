@@ -2718,7 +2718,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                             hapticTap();
                             const nextKind = expandedLifetimeKind === kind ? null : kind;
                             setExpandedLifetimeKind(nextKind);
-                            const persist = nextKind ? AsyncStorage.setItem(STATS_LIFETIME_EXPANDED_KEY, nextKind) : AsyncStorage.removeItem(STATS_LIFETIME_EXPANDED_KEY);
+                            // зачем (храповик владельца «не стираем данные на телефоне»; координатор 05.11): «свёрнуто» пишется пустой строкой, а не removeItem — читается как «ничего не раскрыто»
+                            const persist = AsyncStorage.setItem(STATS_LIFETIME_EXPANDED_KEY, nextKind ?? '');
                             persist.catch((error: unknown) => console.warn(`[STATS-LIFETIME] запись раскрытого блока не удалась: ${error instanceof Error ? error.message : String(error)}`)); // guard-ok: catch называет причину
                         }} chartDays={lifetimeChartDays} chartLoading={lifetimeChartLoading} chartScrollRef={lifetimeChartScrollRef} showAllPathCharts={devLifetimeAllCharts} pathChartsByKind={lifetimePathChartsByKind} isGoldTheme={isGoldTheme} themeMode={themeMode}/>
                   </StatsPremiumBlur>)}

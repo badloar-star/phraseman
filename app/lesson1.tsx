@@ -146,6 +146,7 @@ import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundar
 import { withComboPlusGate } from './combo_lesson_gate';
 import { MOTION_DURATION } from '../constants/motion';
 import { mergeLessonProgressForSave, restoreLessonProgressPreserving } from './classic_progress_preserve';
+import { ensureClassicErrorQueueMigrated } from './classic_error_queue_migration';
 import { fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { recordHomeContinueLegacy } from './home_continue_mark';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
@@ -3023,6 +3024,9 @@ function LessonScreen() {
       // зачем (мастерская фраз): медали и число проходов — старого урока N; у мастерской свой счётчик проходов (для расписки монет)
       if (workshopActive) void readPhraseWorkshopPassCount(lessonId, studyTargetRef.current).then(setPassCount).catch(noteSwallowedHandler('lesson1:workshopPassCount'));
       else loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
+      // зачем (владелец 05.11, «очистить ошибки у всех»): очередь повтора ошибок классики хранится по старым позиционным номерам фраз;
+      // одноразовая миграция гасит ТОЛЬКО её (флаг в хранилище, без сети) ДО чтения очереди ниже. Не бросает; прогресс/медали/счётчики не трогает.
+      await ensureClassicErrorQueueMigrated();
       const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw, serverAttemptRaw] = await Promise.all([
         AsyncStorage.getItem(LESSON_KEY),
         AsyncStorage.getItem(SETTINGS_KEY),

@@ -1,6 +1,11 @@
 # Ядро · классические курсы EN/ES/FR/DE/IT вшиваются в сборку (04.11)
 
 Governance-ID: TG-D0259739868D
+Governance-ID: TG-06F3F7709A67
+Governance-ID: TG-AC1AA71A48C0
+Governance-ID: TG-4CFDC3C93754
+Governance-ID: TG-D5EA4A0B532E
+Governance-ID: TG-419D574ABB4C
 Governance-ID: TG-9A992F4F0D48
 Governance-ID: TG-D9573B42F790
 Governance-ID: TG-3EB023A82AAB

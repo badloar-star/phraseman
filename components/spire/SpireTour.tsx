@@ -20,7 +20,8 @@ import V2Pressable from '../v2/V2Pressable';
 import SpireTowerDeferred from './SpireTowerDeferred'; // зачем (координатор 29.10): башня тура встаёт следующим кадром, рамка того же размера
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
-import { spireGameText } from './spire_game_strings';
+import { spireGameText, spireTextRankByNow } from './spire_game_strings';
+import { peakScreenV2On } from './peak/peak_screen_flag';
 import { useSpireScene } from './useSpireScene';
 import { spireStepsShort } from './spire_plurals';
 import { SPIRE_TW } from './spire_tower_model';
@@ -116,10 +117,12 @@ function SpireTour({ lang, visible, onDone, initialPage = 0 }: Props) {
     if (last) { onDone(); return; }
     setPage((n) => Math.min(2, n + 1));
   }, [last, onDone]);
-  const title = spireGameText(lang, page === 0 ? 'tour1Title' : page === 1 ? 'tour2Title' : 'tour3Title');
-  const text = page === 2
-    ? spireGameText(lang, 'tour3Text', { a: spireTierName(0, lang), b: spireTierName(1, lang), c: spireTierName(2, lang), z: spireTierName(11, lang) })
-    : spireGameText(lang, page === 0 ? 'tour1Text' : 'tour2Text');
+  // зачем (владелец 05.11, гнев на кадре 5562: показались прежние «Поднимайся выше всех за неделю…»): и старый тур показывает только утверждённые 04.11 тексты peakTour1..3, без заголовков
+  const textKey = page === 0 ? 'peakTour1' : page === 1 ? 'peakTour2' : 'peakTour3';
+  const text = spireGameText(lang, textKey, { a: spireTierName(0, lang), b: spireTierName(1, lang), c: spireTierName(2, lang), z: spireTierName(11, lang) });
+  useEffect(() => {
+    if (visible) console.log('[PEAK-TOUR-COPY]', JSON.stringify({ component: 'SpireTour', page: page + 1, titleKey: null, textKey, textRankBy: spireTextRankByNow(), screenV2: peakScreenV2On(), lang })); // guard-ok: трассировка текстов тура
+  }, [visible, page, textKey, lang]);
   return (
     <Modal visible={visible} animationType="fade" presentationStyle="fullScreen" onRequestClose={onDone} statusBarTranslucent>
       <View style={[s.root, { backgroundColor: p.bg, paddingTop: insets.top + 6, paddingBottom: insets.bottom + 20 }]} testID="spire-tour">
@@ -131,7 +134,6 @@ function SpireTour({ lang, visible, onDone, initialPage = 0 }: Props) {
         <View style={s.img}>
           {page === 0 ? <TourTower lang={lang} /> : page === 1 ? <TourRing /> : <TourTop lang={lang} />}
         </View>
-        <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{title}</Text>
         <Text style={[s.text, { color: p.textSecondary }]}>{text}</Text>
         <View style={s.dots} accessible accessibilityLabel={`${page + 1} / 3`}>
           {[0, 1, 2].map((i) => <View key={`dot-${i}`} style={[s.dot, i === page && s.dotOn, { backgroundColor: i === page ? p.text : p.control }]} />)}
@@ -166,7 +168,7 @@ const s = StyleSheet.create({
   steps: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
   stepsUnit: { fontSize: 13, fontWeight: '600' },
   title: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, marginTop: 34 },
-  text: { fontSize: 16, lineHeight: 23, marginTop: 12 },
+  text: { fontSize: 19, lineHeight: 27, fontWeight: '600', marginTop: 34 }, // зачем (05.11): заголовка нет — текст владельца главный, крупнее и с прежним отступом от рисунка
   // зачем (Сверка spire-001, spire.html `.dots`): активная точка — вытянутая пилюля 22×7, прочие 7×7, зазор 7, отступ 26
   dots: { flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 26 },
   dot: { width: 7, height: 7, borderRadius: 4 },

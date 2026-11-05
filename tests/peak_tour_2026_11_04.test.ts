@@ -118,9 +118,9 @@ describe('тексты', () => {
       expect(spireGameText('ru', k.text)).toBe(RU_COINS[page]);
     }
   });
-  it('режим ступеней — прежние ключи с заголовками', () => {
-    expect(peakTourKeys(0, 'steps')).toEqual({ title: 'tour1Title', text: 'tour1Text' });
-    expect(peakTourKeys(2, 'steps')).toEqual({ title: 'tour3Title', text: 'tour3Text' });
+  it('режим ступеней — те же утверждённые тексты peakTour1..3 без заголовков (владелец 05.11)', () => {
+    expect(peakTourKeys(0, 'steps')).toEqual({ title: null, text: 'peakTour1' });
+    expect(peakTourKeys(2, 'steps')).toEqual({ title: null, text: 'peakTour3' });
   });
   it('все страницы × 9 языков × 2 режима — непустые, без нераскрытых {a}{b}{c}', () => {
     for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {

@@ -14,7 +14,8 @@ import { useRuntimeActive } from '../../../hooks/use_runtime_active';
 import { useShadowGlass } from '../../v2/ShadowSurface';
 import V2Pressable from '../../v2/V2Pressable';
 import { useSpirePalette } from '../useSpirePalette';
-import { spireGameText } from '../spire_game_strings';
+import { spireGameText, spireTextRankByNow } from '../spire_game_strings';
+import { peakScreenV2On } from './peak_screen_flag';
 import { PEAK_TOUR_ARROW_SIZE, PEAK_TOUR_PAGES, peakTourArrows, peakTourArrowPage, peakTourCardPlacement, peakTourHoles, peakTourKeys, peakTourPage, type PeakTourPage, type PeakTourRects } from './peak_tour_core';
 
 type Props = Readonly<{
@@ -81,6 +82,10 @@ function PeakTour({ lang, rankBy, rects, topCount, upCount, initialPage = 0, onD
   const keys = peakTourKeys(page, rankBy);
   const title = keys.title ? spireGameText(lang, keys.title) : null; // зачем: в режиме монет заголовков нет (владелец дал только тексты)
   const text = spireGameText(lang, keys.text, { a: spireTierName(0, lang), b: spireTierName(1, lang), c: spireTierName(2, lang), z: spireTierName(11, lang) });
+  // зачем ([PEAK-TOUR-COPY], владелец 05.11): какой компонент тура, какие ключи и почему — одна строка на страницу
+  useEffect(() => {
+    console.log('[PEAK-TOUR-COPY]', JSON.stringify({ component: 'PeakTour', page: page + 1, titleKey: keys.title, textKey: keys.text, rankByProp: rankBy, textRankBy: spireTextRankByNow(), screenV2: peakScreenV2On(), lang })); // guard-ok: трассировка текстов тура
+  }, [page, keys.title, keys.text, rankBy, lang]);
   const holes = peakTourHoles(page, rects, origin, rankBy);
   const arrows = page === peakTourArrowPage(rankBy) ? peakTourArrows(rects, topCount, upCount, origin) : [];
   const measured = card !== null && card.page === page && size.height > 0;

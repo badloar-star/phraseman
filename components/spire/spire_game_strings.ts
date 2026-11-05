@@ -151,6 +151,9 @@ export function setSpireTextRankBy(rankBy: 'steps' | 'coins'): void {
   spireTextRankBy = rankBy === 'coins' ? 'coins' : 'steps';
 }
 
+/** Текущий режим текстов (для журнала [PEAK-TOUR-COPY]: какой ключ реально выбрал бы spireGameText). */
+export function spireTextRankByNow(): 'steps' | 'coins' { return spireTextRankBy; }
+
 export function spireGameText(lang: Lang, key: SpireGameStringKey, vars?: Readonly<Record<string, string | number>>): string {
   const effectiveKey: SpireGameStringKey = spireTextRankBy === 'coins' && key === 'tour3Title' ? 'tour3TitleCoins' : spireTextRankBy === 'coins' && key === 'tour3Text' ? 'tour3TextCoins' : spireTextRankBy === 'coins' && key === 'tour1Text' ? 'tour1TextCoins' : key;
   const [ru, uk, en, es, ptBR, vi, id, tr, pl] = S[effectiveKey];

@@ -70,10 +70,10 @@ export function peakTourArrows(rects: PeakTourRects, rowCount: number, upCount: 
 
 /** Ключи заголовка и текста страницы. Режим монет — утверждённые владельцем тексты БЕЗ заголовков (title: null); ступеней — прежние. */
 export function peakTourKeys(page: PeakTourPage, rankBy: 'steps' | 'coins'): Readonly<{ title: SpireGameStringKey | null; text: SpireGameStringKey }> {
-  if (rankBy === 'coins') return { title: null, text: page === 0 ? 'peakTour1' : page === 1 ? 'peakTour2' : 'peakTour3' };
-  if (page === 0) return { title: 'tour1Title', text: 'tour1Text' };
-  if (page === 1) return { title: 'tour2Title', text: 'tour2Text' };
-  return { title: 'tour3Title', text: 'tour3Text' };
+  // зачем (владелец 05.11, гнев на кадре 5562: тур показал «Поднимайся выше всех за неделю…» — прежние tour*Title/tour*Text): тур Пика показывает ТОЛЬКО утверждённые 04.11
+  // тексты peakTour1..3 без заголовков — в обоих режимах (rankBy оставлен в сигнатуре для вызывающих, на выбор ключей не влияет).
+  void rankBy;
+  return { title: null, text: page === 0 ? 'peakTour1' : page === 1 ? 'peakTour2' : 'peakTour3' };
 }
 
 /** Ключ флага «тур показан»: стираемое семейство story_events_v1: (cloud_sync WIPE_ONLY_ACCOUNT_KEY_PREFIXES), по аккаунту. */

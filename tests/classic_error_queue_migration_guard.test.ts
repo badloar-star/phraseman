@@ -44,8 +44,8 @@ const LESSONS = Array.from({ length: 32 }, (_, i) => i + 1);
 const QUEUE_KINDS = ['errorReplayQueue', 'errorReplaySince', 'errorReplayOverride'] as const;
 
 const CANDIDATES = [
+  'app/classic_error_queue_migration.ts', // контракт Ядра 05.11: runClassicErrorQueueMigration(storage), classicErrorQueueKeysIn, ensureClassicErrorQueueMigrated, флаг classic_error_queue_cleared_v1
   'app/classic_error_queue_cleanup.ts',
-  'app/classic_error_queue_migration.ts',
   'app/classic_errors_queue_cleanup.ts',
   'app/classic_error_replay_cleanup.ts',
   'app/error_replay_queue_cleanup.ts',
@@ -95,63 +95,105 @@ const modulePath = CANDIDATES.map((rel) => path.join(ROOT, rel)).find((abs) => f
 
 if (!modulePath) {
   describe('миграция очереди ошибок классики — часть B (модуль ещё не сдан Ядром)', () => {
-    it.todo('поведенческая проверка: защищённые ключи побайтно те же, очередь очищена, второй запуск ничего не меняет');
+    it.todo('поведенческая проверка: защищённые ключи побайтно те же, очередь очищена, второй запуск → already_done и ничего не меняет');
+    it.todo('сбой хранилища → status error и флаг НЕ выставлен; ensure… никогда не бросает');
     it.todo('сторож исходника: нет removeItem/multiRemove/clear, трогает только errorReplay*');
   });
 } else {
-  const store = new Map<string, string>();
-  jest.mock('@react-native-async-storage/async-storage', () => ({
-    __esModule: true,
-    default: {
-      getItem: jest.fn(async (key: string) => (store.has(key) ? store.get(key)! : null)),
-      setItem: jest.fn(async (key: string, value: string) => { store.set(key, value); }),
-      removeItem: jest.fn(async (key: string) => { store.delete(key); }),
-      multiGet: jest.fn(async (keys: string[]) => keys.map((key) => [key, store.has(key) ? store.get(key)! : null])),
-      multiSet: jest.fn(async (pairs: Array<[string, string]>) => { for (const [k, v] of pairs) store.set(k, v); }),
-      multiRemove: jest.fn(async (keys: string[]) => { for (const k of keys) store.delete(k); }),
-      getAllKeys: jest.fn(async () => [...store.keys()]),
-      clear: jest.fn(async () => { store.clear(); }),
-    },
-  }));
+  const FLAG = 'classic_error_queue_cleared_v1';
+  /** Хранилище-мок с тем же интерфейсом, что AsyncStorage (миграция принимает его параметром storage). */
+  const makeStorage = (failOnWrite = false) => {
+    const data = new Map<string, string>();
+    return {
+      data,
+      getItem: jest.fn(async (key: string) => (data.has(key) ? data.get(key)! : null)),
+      setItem: jest.fn(async (key: string, value: string) => { if (failOnWrite) throw new Error('boom'); data.set(key, value); }),
+      removeItem: jest.fn(async (key: string) => { if (failOnWrite) throw new Error('boom'); data.delete(key); }),
+      multiGet: jest.fn(async (keys: string[]) => keys.map((key) => [key, data.has(key) ? data.get(key)! : null])),
+      multiSet: jest.fn(async (pairs: Array<[string, string]>) => { if (failOnWrite) throw new Error('boom'); for (const [k, v] of pairs) data.set(k, v); }),
+      multiRemove: jest.fn(async (keys: string[]) => { if (failOnWrite) throw new Error('boom'); for (const k of keys) data.delete(k); }),
+      getAllKeys: jest.fn(async () => [...data.keys()]),
+      clear: jest.fn(async () => { data.clear(); }),
+    };
+  };
+  jest.mock('@react-native-async-storage/async-storage', () => ({ __esModule: true, default: {
+    getItem: jest.fn(async () => null), setItem: jest.fn(async () => undefined), removeItem: jest.fn(async () => undefined),
+    multiGet: jest.fn(async () => []), multiSet: jest.fn(async () => undefined), multiRemove: jest.fn(async () => undefined),
+    getAllKeys: jest.fn(async () => []), clear: jest.fn(async () => undefined),
+  } }));
+  const isEmptyQueueValue = (value: string | undefined): boolean => value === undefined || value === '' || value === '[]' || value === 'null' || value === '{}' || value === '0';
 
-  const isEmptyQueueValue = (value: string | undefined): boolean => value === undefined || value === '' || value === '[]' || value === 'null' || value === '{}';
-
-  function seedProfile(): Map<string, string> {
-    store.clear();
+  function seed(storage: ReturnType<typeof makeStorage>): Map<string, string> {
     for (const target of TARGETS) {
-      for (const key of protectedKeys(target)) store.set(key, JSON.stringify({ seed: key, n: key.length }));
-      for (const key of queueKeys(target)) store.set(key, JSON.stringify([{ id: `${key}:e1` }, { id: `${key}:e2` }]));
+      for (const key of protectedKeys(target)) storage.data.set(key, JSON.stringify({ seed: key, n: key.length }));
+      for (const key of queueKeys(target)) storage.data.set(key, JSON.stringify([{ id: `${key}:e1` }, { id: `${key}:e2` }]));
     }
-    for (const key of ['streak_count', 'user_total_xp', 'rune_balance_v1', 'first_lesson_bonus_unrelated', 'unrelated_foo']) store.set(key, `v:${key}`);
-    return new Map(store);
+    for (const key of ['streak_count', 'user_total_xp', 'rune_balance_v1', 'first_lesson_bonus_unrelated', 'unrelated_foo']) storage.data.set(key, `v:${key}`);
+    return new Map(storage.data);
   }
 
   describe(`миграция очереди ошибок классики — часть B (${path.relative(ROOT, modulePath)})`, () => {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const mod = require(modulePath) as Record<string, unknown>;
-    const run = Object.values(mod).find((value) => typeof value === 'function') as (() => Promise<unknown>) | undefined;
+    const mod = require(modulePath) as {
+      runClassicErrorQueueMigration?: (storage: unknown) => Promise<{ status: string; removed?: number; reason?: string }>;
+      classicErrorQueueKeysIn?: (keys: readonly string[]) => string[];
+      ensureClassicErrorQueueMigrated?: () => Promise<void>;
+      CLASSIC_ERROR_QUEUE_MIGRATION_FLAG_KEY?: string;
+    };
 
-    it('экспортирует функцию миграции', () => { expect(typeof run).toBe('function'); });
-
-    it('чистит только очередь: защищённые ключи и посторонние ключи побайтно те же', async () => {
-      const before = seedProfile();
-      await run!();
-      const changed: string[] = [];
-      for (const [key, value] of before) {
-        const isQueue = /errorReplay/i.test(key);
-        if (isQueue) continue;
-        if (store.get(key) !== value) changed.push(key);
-      }
-      expect(changed).toEqual([]);
-      for (const key of before.keys()) if (/errorReplay/i.test(key)) expect(isEmptyQueueValue(store.get(key))).toBe(true);
+    it('экспорты по контракту и ключ флага', () => {
+      expect(typeof mod.runClassicErrorQueueMigration).toBe('function');
+      expect(typeof mod.classicErrorQueueKeysIn).toBe('function');
+      expect(typeof mod.ensureClassicErrorQueueMigrated).toBe('function');
+      expect(mod.CLASSIC_ERROR_QUEUE_MIGRATION_FLAG_KEY).toBe(FLAG);
     });
 
-    it('идемпотентна: второй запуск не меняет ни одного ключа', async () => {
-      seedProfile();
-      await run!();
-      const afterFirst = new Map(store);
-      await run!();
-      expect([...store.entries()].sort()).toEqual([...afterFirst.entries()].sort());
+    it('classicErrorQueueKeysIn: выбирает ровно ключи очереди всех пяти языков и ничего больше', () => {
+      const storage = makeStorage();
+      const before = seed(storage);
+      const picked = new Set(mod.classicErrorQueueKeysIn!([...before.keys()]));
+      const expected = new Set(TARGETS.flatMap((t) => queueKeys(t)));
+      expect([...picked].sort()).toEqual([...expected].sort());
+    });
+
+    it('чистит только очередь: защищённые и посторонние ключи побайтно те же; флаг выставлен после очистки', async () => {
+      const storage = makeStorage();
+      const before = seed(storage);
+      const result = await mod.runClassicErrorQueueMigration!(storage);
+      expect(result.status).toBe('cleared');
+      const changed: string[] = [];
+      for (const [key, value] of before) {
+        if (/errorReplay/i.test(key)) continue;
+        if (storage.data.get(key) !== value) changed.push(key);
+      }
+      expect(changed).toEqual([]);
+      for (const key of before.keys()) if (/errorReplay/i.test(key)) expect(isEmptyQueueValue(storage.data.get(key))).toBe(true);
+      expect(storage.data.get(FLAG)).toBeDefined();
+      const newKeys = [...storage.data.keys()].filter((key) => !before.has(key));
+      expect(newKeys).toEqual([FLAG]);
+    });
+
+    it('идемпотентна: второй запуск → already_done и ни один ключ не меняется', async () => {
+      const storage = makeStorage();
+      seed(storage);
+      await mod.runClassicErrorQueueMigration!(storage);
+      const afterFirst = new Map(storage.data);
+      const second = await mod.runClassicErrorQueueMigration!(storage);
+      expect(second.status).toBe('already_done');
+      expect([...storage.data.entries()].sort()).toEqual([...afterFirst.entries()].sort());
+    });
+
+    it('сбой записи → status error, флаг НЕ выставлен, защищённые ключи целы (повтор при следующем запуске)', async () => {
+      const storage = makeStorage(true);
+      const before = seed(storage);
+      const result = await mod.runClassicErrorQueueMigration!(storage);
+      expect(result.status).toBe('error');
+      expect(storage.data.has(FLAG)).toBe(false);
+      for (const [key, value] of before) if (!/errorReplay/i.test(key)) expect(storage.data.get(key)).toBe(value);
+    });
+
+    it('ensureClassicErrorQueueMigrated никогда не бросает', async () => {
+      await expect(mod.ensureClassicErrorQueueMigrated!()).resolves.toBeUndefined();
     });
 
     it('сторож исходника: без removeItem/multiRemove/clear (храповик замка прогресса), только errorReplay*', () => {

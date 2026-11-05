@@ -1386,6 +1386,40 @@
           "de:13:49",
           "de:14:19"
         ]
+      },
+      {
+        "lemma": "anfangen",
+        "meaning": {
+          "ru": "начинать",
+          "uk": "починати",
+          "en": "to start, to begin",
+          "es": "empezar, comenzar",
+          "pt-BR": "começar",
+          "vi": "bắt đầu",
+          "id": "memulai",
+          "tr": "başlamak",
+          "pl": "zaczynać"
+        },
+        "forms": {
+          "inf": "anfangen",
+          "pres3": "fängt an",
+          "praet": "fing an",
+          "pp": "angefangen"
+        },
+        "train": {
+          "base": "anfangen",
+          "past": "fing an",
+          "pp": "angefangen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Приставка «an» отделяется: der Film fängt an.",
+          "uk": "Префікс «an» відокремлюється: der Film fängt an."
+        },
+        "examples": [
+          "de:13:50",
+          "de:29:28"
+        ]
       }
     ],
     "14": [
@@ -2864,39 +2898,6 @@
         },
         "examples": [
           "de:29:23"
-        ]
-      },
-      {
-        "lemma": "anfangen",
-        "meaning": {
-          "ru": "начинать",
-          "uk": "починати",
-          "en": "to start, to begin",
-          "es": "empezar, comenzar",
-          "pt-BR": "começar",
-          "vi": "bắt đầu",
-          "id": "memulai",
-          "tr": "başlamak",
-          "pl": "zaczynać"
-        },
-        "forms": {
-          "inf": "anfangen",
-          "pres3": "fängt an",
-          "praet": "fing an",
-          "pp": "angefangen"
-        },
-        "train": {
-          "base": "anfangen",
-          "past": "fing an",
-          "pp": "angefangen"
-        },
-        "aux": "haben",
-        "note": {
-          "ru": "Приставка «an» отделяется: der Film fängt an.",
-          "uk": "Префікс «an» відокремлюється: der Film fängt an."
-        },
-        "examples": [
-          "de:29:28"
         ]
       },
       {

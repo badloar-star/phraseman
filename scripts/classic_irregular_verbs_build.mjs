@@ -18,7 +18,7 @@ if (!['fr', 'es', 'de', 'it'].includes(lang)) {
 const dict = await import(pathToFileURL(path.join(ROOT, 'scripts', 'data', `irregular_verbs_${lang}.mjs`)).href);
 // зачем (проверка 05.11): фраза с той же формой, но другим глаголом по смыслу (de «Du ziehst dich um» — переодеваться, а не переезжать;
 // «Mir fällt auf» — auffallen) не должна ни ставить глагол в урок, ни быть его примером. Список — EXAMPLE_EXCLUDE в irregular_verbs_meaning_en.mjs.
-const { EXAMPLE_EXCLUDE = {} } = await import(pathToFileURL(path.join(ROOT, 'scripts', 'data', 'irregular_verbs_meaning_en.mjs')).href);
+const { EXAMPLE_EXCLUDE = {}, CONTEXT_FORMS = {}, SEP_FORMS = {} } = await import(pathToFileURL(path.join(ROOT, 'scripts', 'data', 'irregular_verbs_meaning_en.mjs')).href);
 const excluded = (lemma, id) => (EXAMPLE_EXCLUDE[lang]?.[lemma] ?? []).includes(id);
 const dir = path.join(ROOT, 'modules', 'classic-courses', lang);
 const files = fs.readdirSync(dir).filter((f) => /^lessons-\d+\.json$/.test(f)).sort();
@@ -64,8 +64,20 @@ function clauseTail(text, word) {
   }
   return null;
 }
-function verbsForWord(word, text) {
+// зачем (сплошная проверка Диспетчера 05.11, VERBS_CHECK §5.1): (1) форма-омоним считается глаголом только после слова-помощника
+// (fr «reçu» — «квитанция», а «j'ai reçu» — «получил»); (2) отделяемый глагол без базового в словаре (de anfangen: «fängt … an»).
+const verbByLemma = new Map(dict.VERBS.map((v) => [v.lemma, v]));
+function extraVerbs(word, text, prev) {
   const out = [];
+  const cf = CONTEXT_FORMS[lang]?.[word];
+  if (cf && cf.after.includes(prev) && verbByLemma.has(cf.lemma)) out.push(verbByLemma.get(cf.lemma));
+  for (const [lemma, rule] of Object.entries(SEP_FORMS[lang] ?? {})) {
+    if (rule.forms.includes(word) && clauseTail(text, word) === rule.particle && verbByLemma.has(lemma)) out.push(verbByLemma.get(lemma));
+  }
+  return out;
+}
+function verbsForWord(word, text, prev = '') {
+  const out = extraVerbs(word, text, prev);
   for (const verb of byForm.get(word) ?? []) {
     const sep = sepByBase.get(verb.lemma);
     const tail = sep ? clauseTail(text, word) : null;
@@ -81,8 +93,9 @@ for (const f of files) {
   const lesson = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
   for (const phrase of lesson.phrases) {
     const seen = new Set();
-    for (const word of wordsOf(phrase.target)) {
-      for (const verb of verbsForWord(word, phrase.target)) {
+    const ws = wordsOf(phrase.target);
+    for (const [wi, word] of ws.entries()) {
+      for (const verb of verbsForWord(word, phrase.target, ws[wi - 1] ?? '')) {
         if (excluded(verb.lemma, phrase.id)) continue;
         const key = `${verb.lemma}|${word}`;
         if (seen.has(key)) continue;

@@ -937,6 +937,40 @@
         ]
       },
       {
+        "lemma": "recevoir",
+        "meaning": {
+          "ru": "получать",
+          "uk": "отримувати",
+          "en": "to receive",
+          "es": "recibir",
+          "pt-BR": "receber",
+          "vi": "nhận",
+          "id": "menerima",
+          "tr": "almak, kabul etmek",
+          "pl": "otrzymywać"
+        },
+        "forms": {
+          "inf": "recevoir",
+          "present": "je reçois / il reçoit",
+          "pc": "j’ai reçu",
+          "futur": "je recevrai"
+        },
+        "train": {
+          "base": "recevoir",
+          "past": "reçois",
+          "pp": "reçu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Перед «o» и «u» у «ç» есть хвостик: reçois.",
+          "uk": "Перед «o» і «u» у «ç» є хвостик: reçois."
+        },
+        "examples": [
+          "fr:18:27",
+          "fr:27:37"
+        ]
+      },
+      {
         "lemma": "comprendre",
         "meaning": {
           "ru": "понимать",
@@ -1115,39 +1149,6 @@
       }
     ],
     "27": [
-      {
-        "lemma": "recevoir",
-        "meaning": {
-          "ru": "получать",
-          "uk": "отримувати",
-          "en": "to receive",
-          "es": "recibir",
-          "pt-BR": "receber",
-          "vi": "nhận",
-          "id": "menerima",
-          "tr": "almak, kabul etmek",
-          "pl": "otrzymywać"
-        },
-        "forms": {
-          "inf": "recevoir",
-          "present": "je reçois / il reçoit",
-          "pc": "j’ai reçu",
-          "futur": "je recevrai"
-        },
-        "train": {
-          "base": "recevoir",
-          "past": "reçois",
-          "pp": "reçu"
-        },
-        "aux": "avoir",
-        "note": {
-          "ru": "Перед «o» и «u» у «ç» есть хвостик: reçois.",
-          "uk": "Перед «o» і «u» у «ç» є хвостик: reçois."
-        },
-        "examples": [
-          "fr:27:37"
-        ]
-      },
       {
         "lemma": "revenir",
         "meaning": {

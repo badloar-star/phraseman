@@ -54,3 +54,13 @@ export const TRAIN_OVERRIDES = {
 export const EXAMPLE_EXCLUDE = {
   de: { umziehen: ['de:19:07'], fallen: ['de:22:30'] },
 };
+
+// зачем (VERBS_CHECK §5.1): fr «reçu» — и глагол, и «квитанция»; глаголом считаем только после формы avoir (j'ai reçu, tu en as reçu).
+const AVOIR = ['ai', 'as', 'a', 'avons', 'avez', 'ont', 'avais', 'avait', 'avions', 'aviez', 'avaient', 'aie', 'ayez', 'aurai', 'aurais'];
+export const CONTEXT_FORMS = {
+  fr: Object.fromEntries(['reçu', 'reçue', 'reçus', 'reçues'].map((w) => [w, { lemma: 'recevoir', after: AVOIR }])),
+};
+// зачем (VERBS_CHECK §5.1): отделяемый глагол, базового которого нет в словаре — формы основы + приставка в конце части фразы.
+export const SEP_FORMS = {
+  de: { anfangen: { particle: 'an', forms: ['fange', 'fängst', 'fängt', 'fangt', 'fangen', 'fing', 'fingst', 'fingen', 'fingt'] } },
+};

@@ -83,3 +83,15 @@ Governance-ID: TG-36D28DDC3544
 | c83_RUN_RESULT_2026_11_02 | 1 | 0 | 1 |
 | c84_spire_record_copy_languages_test | 1 | 0 | 1 |
 | c85_loud_playback_audio_mode_contract_test | 1 | 1 | 0 |
+
+## Возвращены обратно в дерево (06.11): живые зависимости
+
+После зачистки проверка типов рабочего дерева показала 3 новые ошибки — эти кластеры нужны живым файлам, поэтому их патчи применены обратно, архивы остаются как копия:
+
+- c06_SpireScene — живой `SpireHomeScreen` передаёт в сцену Пика свойства, которые есть только в этой версии `SpireScene`.
+- c05_dialogue_v2_coin_reward — `hooks/usePracticeRunes.ts` использует экспорт `readCommittedFixedDialogueReward`.
+- c04_audio_mode_outcome_diagnostics — `audio_runtime_arbiter` использует экспорт `whenAudioActivityReady`.
+
+## Не парковались (связаны с живой работой)
+
+«Рекорд этажа» Пика (`SpireFloorRecord`, `SpireRecordAttempt`, `spire_record_slot`, `spire_floor_record_flag`, `shared/spire_floor_records`, серверные `spire_floor_record_*`, поля `floorRecordsEnabled` в конфигах): на него опирается живой `SpireHomeScreen` (строка с `spireRecordSlot`). Нужно слово владельца экрана Пика.

@@ -1,0 +1,43 @@
+{
+  "lang": "en",
+  "lesson": 2,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что нужно знать"
+      },
+      "text": {
+        "ru": "Чтобы сказать «не», ставьте слово not после am, is или are. I am not ready — я не готов. She is not ready — она не готова."
+      },
+      "exampleIds": [
+        "en:02:01"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Как сказать"
+      },
+      "text": {
+        "ru": "Порядок такой: кто — am, is или are — not — признак. We are not late — мы не опаздываем. They are not here — они не здесь."
+      },
+      "exampleIds": [
+        "en:02:01",
+        "en:02:06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Типичные ошибки и примеры"
+      },
+      "text": {
+        "ru": "Ошибка: I not am ready. Верно: I am not ready — not ставится после am. Пример: They are not here — они не здесь."
+      },
+      "exampleIds": [
+        "en:02:08"
+      ]
+    }
+  ]
+}

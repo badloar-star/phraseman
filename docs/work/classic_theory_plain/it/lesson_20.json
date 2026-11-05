@@ -1,0 +1,524 @@
+{
+  "lang": "it",
+  "lesson": 20,
+  "title": {
+    "ru": "Как было раньше",
+    "uk": "Як було раніше",
+    "en": "How it used to be"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Жил раньше",
+        "uk": "Жив раніше",
+        "en": "I used to live"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я раньше здесь жил».\nAbitavo qui. — «Я раньше здесь жил.»\nЧитается: абита́во куи.\nAbitavi qui. — «Ты раньше здесь жил.»\nЧитается: абита́ви куи.\nLei viveva a Lione. — «Она жила в Лионе.»\nЧитается: ле́й виве́ва а лио́не.\nСлово abitare, «жить», вы знаете.\nСлово abitavo значит «я раньше жил», слово abitavi — «ты раньше жил».\nСлово viveva значит «она жила»: это тоже «жить».\nТак говорят о том, что было давно.\nЕщё: vivevamo — «мы жили», abitavate — «вы жили», vivevano — «они жили».",
+        "uk": "Дивіться, як сказати «Я раніше тут жив».\nAbitavo qui. — «Я раніше тут жив.»\nЧитається: абіта́во куі.\nAbitavi qui. — «Ти тут колись жив.»\nЧитається: абіта́ві куі.\nLei viveva a Lione. — «Вона жила в Ліоні.»\nЧитається: ле́й віве́ва а ліо́не.\nСлово abitare, «жити», ви знаєте.\nСлово abitavo означає «я раніше жив», слово abitavi — «ти колись жив».\nСлово viveva означає «вона жила»: це теж «жити».\nТак кажуть про те, що було давно.\nЩе: vivevamo — «ми жили», abitavate — «ви жили», vivevano — «вони жили».",
+        "en": "Look at how to say “I used to live here”.\nAbitavo qui. — “I used to live here.”\nAbitavi qui. — “You used to live here.”\nLei viveva a Lione. — “She lived in Lyon.”\nYou know the word abitare, “to live”.\nThe word abitavo means “I used to live”, the word abitavi — “you used to live”.\nThe word viveva means “she lived”: it is “to live” too.\nWe say this about what was long ago.\nMore: vivevamo — “we lived”, abitavate — “you all lived”, vivevano — “they lived”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:20:01",
+          "say": {
+            "ru": "абита́во куи",
+            "uk": "абіта́во куі"
+          }
+        },
+        {
+          "phraseId": "it:20:02",
+          "say": {
+            "ru": "абита́ви куи",
+            "uk": "абіта́ві куі"
+          }
+        },
+        {
+          "phraseId": "it:20:03",
+          "say": {
+            "ru": "ле́й виве́ва а лио́не",
+            "uk": "ле́й віве́ва а ліо́не"
+          }
+        },
+        {
+          "phraseId": "it:20:04",
+          "say": {
+            "ru": "но́й вивева́мо ин кампа́нья",
+            "uk": "но́й вівева́мо ін кампа́нья"
+          }
+        },
+        {
+          "phraseId": "it:20:05",
+          "say": {
+            "ru": "абита́вате ин читта́",
+            "uk": "абіта́вате ін чітта́"
+          }
+        },
+        {
+          "phraseId": "it:20:06",
+          "say": {
+            "ru": "виве́вано вичи́но аль по́рто",
+            "uk": "віве́вано вічі́но аль по́рто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я раньше здесь жил»",
+            "uk": "Виберіть, як сказати: «Я раніше тут жив»",
+            "en": "Choose how to say: “I used to live here”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:20:01",
+          "options": [
+            "it:20:01",
+            "it:20:02",
+            "it:20:03"
+          ],
+          "answerId": "it:20:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты раньше здесь жил»",
+            "uk": "Виберіть, як сказати: «Ти тут колись жив»",
+            "en": "Choose how to say: “You used to live here”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:20:02",
+          "options": [
+            "it:20:02",
+            "it:20:01",
+            "it:20:04"
+          ],
+          "answerId": "it:20:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она жила в Лионе»",
+            "uk": "Виберіть, як сказати: «Вона жила в Ліоні»",
+            "en": "Choose how to say: “She lived in Lyon”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:20:03",
+          "options": [
+            "it:20:03",
+            "it:20:06",
+            "it:20:05"
+          ],
+          "answerId": "it:20:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Был, была",
+        "uk": "Був, була",
+        "en": "I was"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я часто был один».\nEro spesso solo. — «Я часто был один.»\nЧитается: э́ро спе́ссо со́ло.\nLei era spesso sola. — «Она часто была одна.»\nЧитается: ле́й э́ра спе́ссо со́ла.\nIl giardino era grande. — «Сад был большим.»\nЧитается: иль джарди́но э́ра гра́нде.\nСлово ero значит «я был», слово era — «она была» или «было».\nСлово spesso значит «часто».\nСлово solo значит «один», слово sola — «одна».\nСлово giardino значит «сад», слово grande — «большой».\nЕщё: eravamo — «мы были», erano — «были».",
+        "uk": "Дивіться, як сказати «Я часто був сам».\nEro spesso solo. — «Я часто був сам.»\nЧитається: е́ро спе́ссо со́ло.\nLei era spesso sola. — «Вона часто була сама.»\nЧитається: ле́й е́ра спе́ссо со́ла.\nIl giardino era grande. — «Сад був великий.»\nЧитається: іль джарді́но е́ра гра́нде.\nСлово ero означає «я був», слово era — «вона була» або «було».\nСлово spesso означає «часто».\nСлово solo означає «сам», слово sola — «сама».\nСлово giardino означає «сад», слово grande — «великий».\nЩе: eravamo — «ми були», erano — «були».",
+        "en": "Look at how to say “I was often alone”.\nEro spesso solo. — “I was often alone.”\nLei era spesso sola. — “She was often alone.”\nIl giardino era grande. — “The garden was big.”\nThe word ero means “I was”, the word era — “she was” or “it was”.\nThe word spesso means “often”.\nThe word solo means “alone”, the word sola — “alone”, for a woman.\nThe word giardino means “garden”, the word grande — “big”.\nMore: eravamo — “we were”, erano — “were”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:20:07",
+          "say": {
+            "ru": "э́ро спе́ссо со́ло",
+            "uk": "е́ро спе́ссо со́ло"
+          }
+        },
+        {
+          "phraseId": "it:20:08",
+          "say": {
+            "ru": "ле́й э́ра спе́ссо со́ла",
+            "uk": "ле́й е́ра спе́ссо со́ла"
+          }
+        },
+        {
+          "phraseId": "it:20:10",
+          "say": {
+            "ru": "иль джарди́но э́ра гра́нде",
+            "uk": "іль джарді́но е́ра гра́нде"
+          }
+        },
+        {
+          "phraseId": "it:20:09",
+          "say": {
+            "ru": "эрава́мо вичи́ни ди ка́за",
+            "uk": "ерава́мо вічі́ні ді ка́за"
+          }
+        },
+        {
+          "phraseId": "it:20:26",
+          "say": {
+            "ru": "ле фине́стре э́рано апе́рте",
+            "uk": "ле фіне́стре е́рано апе́рте"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я часто был один»",
+            "uk": "Виберіть, як сказати: «Я часто був сам»",
+            "en": "Choose how to say: “I was often alone”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:20:07",
+          "options": [
+            "it:20:07",
+            "it:20:08",
+            "it:20:10"
+          ],
+          "answerId": "it:20:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она часто была одна»",
+            "uk": "Виберіть, як сказати: «Вона часто була сама»",
+            "en": "Choose how to say: “She was often alone”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:20:08",
+          "options": [
+            "it:20:08",
+            "it:20:07",
+            "it:20:09"
+          ],
+          "answerId": "it:20:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Окна были открыты»",
+            "uk": "Виберіть, як сказати: «Вікна були відчинені»",
+            "en": "Choose how to say: “The windows were open”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:20:26",
+          "options": [
+            "it:20:26",
+            "it:20:10",
+            "it:20:09"
+          ],
+          "answerId": "it:20:26"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Что бывало обычно",
+        "uk": "Що траплялося зазвичай",
+        "en": "What used to happen"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я раньше работал по субботам».\nLavoravo il sabato. — «Я раньше работал по субботам.»\nЧитается: лавора́во иль са́бато.\nOgni mattina comprava il pane. — «Каждое утро он покупал хлеб.»\nЧитается: о́ньи матти́на компра́ва иль па́не.\nLa sera ascoltava la radio. — «Вечером она слушала радио.»\nЧитается: ла се́ра аскольта́ва ла ра́дьо.\nСлово lavoravo значит «я работал»: раньше и не раз.\nСлово sabato значит «суббота», слова il sabato — «по субботам».\nСлово comprava значит «покупал», слово ascoltava — «слушала».\nСлова ogni mattina значат «каждое утро».\nСлова la sera значат «вечером».\nЕщё: sempre — «всегда», mangiavamo — «мы ели».",
+        "uk": "Дивіться, як сказати «Я працював по суботах».\nLavoravo il sabato. — «Я працював по суботах.»\nЧитається: лавора́во іль са́бато.\nOgni mattina comprava il pane. — «Щоранку він купував хліб.»\nЧитається: о́ньі матті́на компра́ва іль па́не.\nLa sera ascoltava la radio. — «Увечері вона слухала радіо.»\nЧитається: ла се́ра аскольта́ва ла ра́дьо.\nСлово lavoravo означає «я працював»: раніше і не раз.\nСлово sabato означає «субота», слова il sabato — «по суботах».\nСлово comprava означає «купував», слово ascoltava — «слухала».\nСлова ogni mattina означають «щоранку».\nСлова la sera означають «увечері».\nЩе: sempre — «завжди», mangiavamo — «ми їли».",
+        "en": "Look at how to say “I used to work on Saturdays”.\nLavoravo il sabato. — “I used to work on Saturdays.”\nOgni mattina comprava il pane. — “Every morning he bought bread.”\nLa sera ascoltava la radio. — “In the evening she listened to the radio.”\nThe word lavoravo means “I worked”: before, and many times.\nThe word sabato means “Saturday”, the words il sabato — “on Saturdays”.\nThe word comprava means “bought”, the word ascoltava — “listened”.\nThe words ogni mattina mean “every morning”.\nThe words la sera mean “in the evening”.\nMore: sempre — “always”, mangiavamo — “we ate”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:20:11",
+          "say": {
+            "ru": "лавора́во иль са́бато",
+            "uk": "лавора́во іль са́бато"
+          }
+        },
+        {
+          "phraseId": "it:20:13",
+          "say": {
+            "ru": "о́ньи матти́на компра́ва иль па́не",
+            "uk": "о́ньі матті́на компра́ва іль па́не"
+          }
+        },
+        {
+          "phraseId": "it:20:14",
+          "say": {
+            "ru": "ла се́ра аскольта́ва ла ра́дьо",
+            "uk": "ла се́ра аскольта́ва ла ра́дьо"
+          }
+        },
+        {
+          "phraseId": "it:20:12",
+          "say": {
+            "ru": "ла доме́ника манджава́мо инсье́ме",
+            "uk": "ла доме́ніка манджава́мо інсье́ме"
+          }
+        },
+        {
+          "phraseId": "it:20:18",
+          "say": {
+            "ru": "ми́о па́дре пренде́ва се́мпре л’а́утобус",
+            "uk": "мі́о па́дре пренде́ва се́мпре л’а́утобус"
+          }
+        },
+        {
+          "phraseId": "it:20:21",
+          "say": {
+            "ru": "ми́а но́нна талья́ва се́мпре ла чипо́лла а ма́но",
+            "uk": "мі́а но́нна талья́ва се́мпре ла чіпо́лла а ма́но"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я раньше работал по субботам»",
+            "uk": "Виберіть, як сказати: «Я працював по суботах»",
+            "en": "Choose how to say: “I used to work on Saturdays”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:20:11",
+          "options": [
+            "it:20:11",
+            "it:20:13",
+            "it:20:14"
+          ],
+          "answerId": "it:20:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Каждое утро он покупал хлеб»",
+            "uk": "Виберіть, як сказати: «Щоранку він купував хліб»",
+            "en": "Choose how to say: “Every morning he bought bread”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:20:13",
+          "options": [
+            "it:20:13",
+            "it:20:14",
+            "it:20:12"
+          ],
+          "answerId": "it:20:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой отец всегда ездил на автобусе»",
+            "uk": "Виберіть, як сказати: «Мій батько завжди їздив автобусом»",
+            "en": "Choose how to say: “My father always took the bus”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:20:18",
+          "options": [
+            "it:20:18",
+            "it:20:21",
+            "it:20:12"
+          ],
+          "answerId": "it:20:18"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Какой был день",
+        "uk": "Який був день",
+        "en": "What it was like"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Уже стемнело».\nEra già buio. — «Уже стемнело.»\nЧитается: э́ра джа бу́йо.\nTirava un forte vento. — «Сильно дул ветер.»\nЧитается: тира́ва ун фо́рте ве́нто.\nLa luce era fioca. — «Свет был тусклым.»\nЧитается: ла лу́че э́ра фьо́ка.\nСлово era значит «было», слово già — «уже».\nСлово buio вы знаете: «темно».\nСлово tirava значит «дул», слово vento — «ветер».\nСлово forte значит «сильный».\nСлово luce значит «свет», слово fioca — «тусклый».\nЕщё: pioveva — «шёл дождь», profumava — «пахло».\nСлово avevano значит «у них было»: avevano freddo — «им было холодно».",
+        "uk": "Дивіться, як сказати «Вже стемніло».\nEra già buio. — «Вже стемніло.»\nЧитається: е́ра джа бу́йо.\nTirava un forte vento. — «Вітер дув сильно.»\nЧитається: тіра́ва ун фо́рте ве́нто.\nLa luce era fioca. — «Світло було тьмяним.»\nЧитається: ла лу́че е́ра фьо́ка.\nСлово era означає «було», слово già — «вже».\nСлово buio ви знаєте: «темно».\nСлово tirava означає «дув», слово vento — «вітер».\nСлово forte означає «сильний».\nСлово luce означає «світло», слово fioca — «тьмяний».\nЩе: pioveva — «йшов дощ», profumava — «пахло».\nСлово avevano означає «у них було»: avevano freddo — «їм було холодно».",
+        "en": "Look at how to say “It was already dark”.\nEra già buio. — “It was already dark.”\nTirava un forte vento. — “A strong wind was blowing.”\nLa luce era fioca. — “The light was dim.”\nThe word era means “it was”, the word già — “already”.\nYou know the word buio: “dark”.\nThe word tirava means “blew”, the word vento — “wind”.\nThe word forte means “strong”.\nThe word luce means “light”, the word fioca — “dim”.\nMore: pioveva — “it rained”, profumava — “it smelled”.\nThe word avevano means “they had”: avevano freddo — “they were cold”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:20:22",
+          "say": {
+            "ru": "э́ра джа бу́йо",
+            "uk": "е́ра джа бу́йо"
+          }
+        },
+        {
+          "phraseId": "it:20:24",
+          "say": {
+            "ru": "тира́ва ун фо́рте ве́нто",
+            "uk": "тіра́ва ун фо́рте ве́нто"
+          }
+        },
+        {
+          "phraseId": "it:20:27",
+          "say": {
+            "ru": "ла лу́че э́ра фьо́ка",
+            "uk": "ла лу́че е́ра фьо́ка"
+          }
+        },
+        {
+          "phraseId": "it:20:23",
+          "say": {
+            "ru": "пьове́ва ин континуацьо́не",
+            "uk": "пьове́ва ін контінуацьо́не"
+          }
+        },
+        {
+          "phraseId": "it:20:28",
+          "say": {
+            "ru": "ла ста́нца профума́ва ди каффэ́",
+            "uk": "ла ста́нца профума́ва ді каффе́"
+          }
+        },
+        {
+          "phraseId": "it:20:29",
+          "say": {
+            "ru": "и бамби́ни аве́вано фре́ддо",
+            "uk": "і бамбі́ні аве́вано фре́ддо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Уже стемнело»",
+            "uk": "Виберіть, як сказати: «Вже стемніло»",
+            "en": "Choose how to say: “It was already dark”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:20:22",
+          "options": [
+            "it:20:22",
+            "it:20:24",
+            "it:20:27"
+          ],
+          "answerId": "it:20:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сильно дул ветер»",
+            "uk": "Виберіть, як сказати: «Вітер дув сильно»",
+            "en": "Choose how to say: “A strong wind was blowing”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:20:24",
+          "options": [
+            "it:20:24",
+            "it:20:22",
+            "it:20:23"
+          ],
+          "answerId": "it:20:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Детям было холодно»",
+            "uk": "Виберіть, як сказати: «Дітям було холодно»",
+            "en": "Choose how to say: “The children were cold”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:20:29",
+          "options": [
+            "it:20:29",
+            "it:20:28",
+            "it:20:23"
+          ],
+          "answerId": "it:20:29"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не было",
+        "uk": "Не було",
+        "en": "There was not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Лифта не было».\nNon conoscevo il quartiere. — «Я не знал этот район.»\nЧитается: нон коноше́во иль куартье́ре.\nNon c’era l’ascensore. — «Лифта не было.»\nЧитается: нон че́ра л’ашенсо́ре.\nNon avevamo fretta. — «Мы никуда не спешили.»\nЧитается: нон авева́мо фре́тта.\nСлово non значит «не».\nСлово conoscevo значит «я знал», слово quartiere — «район».\nСлова non c’era значат «не было».\nСлово l’ascensore значит «лифт».\nСлово avevamo значит «у нас было», слово fretta — «спешка».\nЕщё: lavorava — «работала», crostata — «пирог», canale — «канал».",
+        "uk": "Дивіться, як сказати «Ліфта не було».\nNon conoscevo il quartiere. — «Я не знав району.»\nЧитається: нон коноше́во іль куартье́ре.\nNon c’era l’ascensore. — «Ліфта не було.»\nЧитається: нон че́ра л’ашенсо́ре.\nNon avevamo fretta. — «Ми не поспішали.»\nЧитається: нон авева́мо фре́тта.\nСлово non означає «не».\nСлово conoscevo означає «я знав», слово quartiere — «район».\nСлова non c’era означають «не було».\nСлово l’ascensore означає «ліфт».\nСлово avevamo означає «у нас було», слово fretta — «поспіх».\nЩе: lavorava — «працювала», crostata — «пиріг», canale — «канал».",
+        "en": "Look at how to say “There was no lift”.\nNon conoscevo il quartiere. — “I didn’t know the neighbourhood.”\nNon c’era l’ascensore. — “There was no lift.”\nNon avevamo fretta. — “We were in no hurry.”\nThe word non means “not”.\nThe word conoscevo means “I knew”, the word quartiere — “neighbourhood”.\nThe words non c’era mean “there was not”.\nThe word l’ascensore means “lift”.\nThe word avevamo means “we had”, the word fretta — “hurry”.\nMore: lavorava — “worked”, crostata — “tart”, canale — “canal”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:20:31",
+          "say": {
+            "ru": "нон коноше́во иль куартье́ре",
+            "uk": "нон коноше́во іль куартье́ре"
+          }
+        },
+        {
+          "phraseId": "it:20:32",
+          "say": {
+            "ru": "нон че́ра л’ашенсо́ре",
+            "uk": "нон че́ра л’ашенсо́ре"
+          }
+        },
+        {
+          "phraseId": "it:20:34",
+          "say": {
+            "ru": "нон авева́мо фре́тта",
+            "uk": "нон авева́мо фре́тта"
+          }
+        },
+        {
+          "phraseId": "it:20:37",
+          "say": {
+            "ru": "до́ве лавора́ва ту́а ма́дре",
+            "uk": "до́ве лавора́ва ту́а ма́дре"
+          }
+        },
+        {
+          "phraseId": "it:20:42",
+          "say": {
+            "ru": "ми́а ци́а препара́ва у́на кроста́та о́ньи доме́ника",
+            "uk": "мі́а ці́а препара́ва у́на кроста́та о́ньі доме́ніка"
+          }
+        },
+        {
+          "phraseId": "it:20:46",
+          "say": {
+            "ru": "пасседжа́во лу́нго иль кана́ле",
+            "uk": "пасседжа́во лу́нго іль кана́ле"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не знал этот район»",
+            "uk": "Виберіть, як сказати: «Я не знав району»",
+            "en": "Choose how to say: “I didn’t know the neighbourhood”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:20:31",
+          "options": [
+            "it:20:31",
+            "it:20:32",
+            "it:20:34"
+          ],
+          "answerId": "it:20:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Лифта не было»",
+            "uk": "Виберіть, як сказати: «Ліфта не було»",
+            "en": "Choose how to say: “There was no lift”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:20:32",
+          "options": [
+            "it:20:32",
+            "it:20:31",
+            "it:20:37"
+          ],
+          "answerId": "it:20:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы никуда не спешили»",
+            "uk": "Виберіть, як сказати: «Ми не поспішали»",
+            "en": "Choose how to say: “We were in no hurry”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:20:34",
+          "options": [
+            "it:20:34",
+            "it:20:42",
+            "it:20:46"
+          ],
+          "answerId": "it:20:34"
+        }
+      ]
+    }
+  ]
+}

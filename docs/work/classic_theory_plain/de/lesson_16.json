@@ -1,0 +1,468 @@
+{
+  "lang": "de",
+  "lesson": 16,
+  "title": {
+    "ru": "Что вы уже сделали",
+    "uk": "Що ви вже зробили",
+    "en": "What you have already done"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я приготовил",
+        "uk": "Я приготував",
+        "en": "I cooked"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я сегодня готовил».\nIch habe heute gekocht. — «Я сегодня готовил.»\nЧитается: их ха́бе хо́йте геко́хт\nСлово Ich значит «я». Слово habe — «я имею». Слово heute — «сегодня».\nСлово gekocht значит «приготовил».\nСлово habe стоит на втором месте, gekocht — в конце.\nВместе они говорят: «я приготовил».\nAnna hat Kaffee gemacht. — «Анна приготовила кофе.»\nЧитается: А́нна хат ка́фе гема́хт\nСлово hat значит «имеет». Слово Kaffee — «кофе». Слово gemacht — «приготовила, сделала».\nКогда речь об Анне, вместо habe говорят hat.\nTom hat Brot gekauft. — «Том купил хлеб.»\nЧитается: Том хат брот гека́уфт\nСлово Brot значит «хлеб». Слово gekauft — «купил».\nDu hast gestern gekocht. — «Ты вчера готовил.»\nЧитается: ду хаст ге́стерн геко́хт\nСлово Du значит «ты». Слово hast — «ты имеешь». Слово gestern — «вчера».\nКогда речь о «ты», говорят hast.\nСлово действия снова стоит в конце.",
+        "uk": "Дивіться, як сказати «Я сьогодні готував».\nIch habe heute gekocht. — «Я сьогодні готував.»\nЧитається: іх ха́бе хо́йте геко́хт\nСлово Ich означає «я». Слово habe — «я маю». Слово heute — «сьогодні».\nСлово gekocht означає «приготував».\nСлово habe стоїть на другому місці, gekocht — в кінці.\nРазом вони кажуть: «я приготував».\nAnna hat Kaffee gemacht. — «Анна приготувала каву.»\nЧитається: А́нна хат ка́фе гема́хт\nСлово hat означає «має». Слово Kaffee — «кава». Слово gemacht — «приготувала, зробила».\nКоли мова про Анну, замість habe кажуть hat.\nTom hat Brot gekauft. — «Том купив хліб.»\nЧитається: Том хат брот гека́уфт\nСлово Brot означає «хліб». Слово gekauft — «купив».\nDu hast gestern gekocht. — «Ти вчора готував.»\nЧитається: ду хаст ге́стерн геко́хт\nСлово Du означає «ти». Слово hast — «ти маєш». Слово gestern — «учора».\nКоли мова про «ти», кажуть hast.\nСлово дії знову стоїть у кінці.",
+        "en": "Look at how to say “I cooked today”.\nIch habe heute gekocht. — “I cooked today.”\nSounds like: eekh khAbe khOyte gekOkht\nThe word Ich means “I”. The word habe — “I have”.\nThe word heute means “today”. The word gekocht — “cooked”.\nThe word habe goes in second place, gekocht goes at the end.\nTogether they say: “I cooked”.\nAnna hat Kaffee gemacht. — “Anna made coffee.”\nSounds like: Anna khat kAfe gemAkht\nThe word hat means “has”. The word Kaffee — “coffee”.\nThe word gemacht means “made”.\nWhen we talk about Anna, hat is used instead of habe.\nTom hat Brot gekauft. — “Tom bought bread.”\nSounds like: Tom khat brot gekAooft\nThe word Brot means “bread”. The word gekauft — “bought”.\nDu hast gestern gekocht. — “You cooked yesterday.”\nSounds like: doo khast gEstern gekOkht\nThe word Du means “you”. The word hast — “you have”.\nThe word gestern means “yesterday”.\nWhen we talk about “you”, hast is used.\nThe word for the action is again at the end."
+      },
+      "examples": [
+        {
+          "phraseId": "de:16:01",
+          "say": {
+            "ru": "их ха́бе хо́йте геко́хт",
+            "uk": "іх ха́бе хо́йте геко́хт"
+          }
+        },
+        {
+          "phraseId": "de:16:03",
+          "say": {
+            "ru": "А́нна хат ка́фе гема́хт",
+            "uk": "А́нна хат ка́фе гема́хт"
+          }
+        },
+        {
+          "phraseId": "de:16:04",
+          "say": {
+            "ru": "Том хат брот гека́уфт",
+            "uk": "Том хат брот гека́уфт"
+          }
+        },
+        {
+          "phraseId": "de:16:02",
+          "say": {
+            "ru": "ду хаст ге́стерн геко́хт",
+            "uk": "ду хаст ге́стерн геко́хт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сегодня готовил»",
+            "uk": "Виберіть, як сказати: «Я сьогодні готував»",
+            "en": "Choose how to say: “I cooked today”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:16:01",
+          "options": [
+            "de:16:01",
+            "de:16:02",
+            "de:16:04"
+          ],
+          "answerId": "de:16:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна приготовила кофе»",
+            "uk": "Виберіть, як сказати: «Анна приготувала каву»",
+            "en": "Choose how to say: “Anna made coffee”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:16:03",
+          "options": [
+            "de:16:03",
+            "de:16:04",
+            "de:16:01"
+          ],
+          "answerId": "de:16:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том купил хлеб»",
+            "uk": "Виберіть, як сказати: «Том купив хліб»",
+            "en": "Choose how to say: “Tom bought bread”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:16:04",
+          "options": [
+            "de:16:04",
+            "de:16:03",
+            "de:16:02"
+          ],
+          "answerId": "de:16:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мы, вы, дети",
+        "uk": "Ми, ви, діти",
+        "en": "We, you all, children"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы занимались вместе».\nWir haben zusammen gelernt. — «Мы занимались вместе.»\nЧитается: вир ха́бен цуза́мен геле́рнт\nСлово Wir значит «мы». Слово haben — «имеем, имеют». Слово zusammen — «вместе».\nСлово gelernt значит «занимались, учились».\nКогда речь о нас, говорят haben.\nIhr habt draußen gespielt. — «Вы играли на улице.»\nЧитается: ир хапт дра́усен гешпи́льт\nСлово Ihr значит «вы». Слово habt — «вы имеете». Слово draußen — «на улице».\nСлово gespielt значит «играли».\nКогда речь о вас всех, говорят habt.\nDie Kinder haben gelacht. — «Дети смеялись.»\nЧитается: ди ки́ндер ха́бен гела́хт\nСлово Die по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Kinder значит «дети». Слово gelacht — «смеялись».\nКогда речь о детях, снова haben.\nIch habe auf den Bus gewartet. — «Я ждал автобус.»\nЧитается: их ха́бе ауф ден бус гева́ртет\nСлово auf значит «на (по-русски слова нет)».\nСлово den по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Bus значит «автобус». Слово gewartet — «ждал».\nПо-русски «ждал на автобус» не говорят, но по-немецки слово auf нужно.\nСлово gewartet снова в конце, хотя между ними много слов.",
+        "uk": "Дивіться, як сказати «Ми займалися разом».\nWir haben zusammen gelernt. — «Ми займалися разом.»\nЧитається: вір ха́бен цуза́мен геле́рнт\nСлово Wir означає «ми». Слово haben — «маємо, мають». Слово zusammen — «разом».\nСлово gelernt означає «займалися, вчилися».\nКоли мова про нас, кажуть haben.\nIhr habt draußen gespielt. — «Ви грали на вулиці.»\nЧитається: ір хапт дра́усен гешпі́льт\nСлово Ihr означає «ви». Слово habt — «ви маєте». Слово draußen — «на вулиці».\nСлово gespielt означає «грали».\nКоли мова про вас усіх, кажуть habt.\nDie Kinder haben gelacht. — «Діти сміялися.»\nЧитається: ді кі́ндер ха́бен гела́хт\nСлово Die по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Kinder означає «діти». Слово gelacht — «сміялися».\nКоли мова про дітей, знову haben.\nIch habe auf den Bus gewartet. — «Я чекав на автобус.»\nЧитається: іх ха́бе ауф ден бус гева́ртет\nСлово auf означає «на (по-українськи слова немає)».\nСлово den по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Bus означає «автобус». Слово gewartet — «чекав».\nПо-українськи «чекав на автобус» не кажуть так, але по-німецьки слово auf потрібне.\nСлово gewartet знову в кінці, хоча між ними багато слів.",
+        "en": "Look at how to say “We studied together”.\nWir haben zusammen gelernt. — “We studied together.”\nSounds like: veer khAben tsoozAmen gelErnt\nThe word Wir means “we”. The word haben — “have”.\nThe word zusammen means “together”. The word gelernt — “studied”.\nWhen we talk about us, haben is used.\nIhr habt draußen gespielt. — “You all played outside.”\nSounds like: eer khapt drAoosen geshpEElt\nThe word Ihr means “you all”. The word habt — “you all have”.\nThe word draußen means “outside”. The word gespielt — “played”.\nWhen we talk about all of you, habt is used.\nDie Kinder haben gelacht. — “The children laughed.”\nSounds like: dee kEEnder khAben gelAkht\nThe word Die means “the”. The word Kinder — “children”.\nThe word gelacht means “laughed”.\nWhen we talk about the children, haben is used again.\nIch habe auf den Bus gewartet. — “I waited for the bus.”\nSounds like: eekh khAbe aoof den boos gevArtet\nThe word auf means “for”. The word den — “the”.\nThe word Bus means “bus”. The word gewartet — “waited”.\nThe word auf is needed here, like “for” in “waited for the bus”.\nThe word gewartet is again at the end, even with many words between."
+      },
+      "examples": [
+        {
+          "phraseId": "de:16:05",
+          "say": {
+            "ru": "вир ха́бен цуза́мен геле́рнт",
+            "uk": "вір ха́бен цуза́мен геле́рнт"
+          }
+        },
+        {
+          "phraseId": "de:16:06",
+          "say": {
+            "ru": "ир хапт дра́усен гешпи́льт",
+            "uk": "ір хапт дра́усен гешпі́льт"
+          }
+        },
+        {
+          "phraseId": "de:16:07",
+          "say": {
+            "ru": "ди ки́ндер ха́бен гела́хт",
+            "uk": "ді кі́ндер ха́бен гела́хт"
+          }
+        },
+        {
+          "phraseId": "de:16:08",
+          "say": {
+            "ru": "их ха́бе ауф ден бус гева́ртет",
+            "uk": "іх ха́бе ауф ден бус гева́ртет"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы занимались вместе»",
+            "uk": "Виберіть, як сказати: «Ми займалися разом»",
+            "en": "Choose how to say: “We studied together”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:16:05",
+          "options": [
+            "de:16:05",
+            "de:16:06",
+            "de:16:07"
+          ],
+          "answerId": "de:16:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети смеялись»",
+            "uk": "Виберіть, як сказати: «Діти сміялися»",
+            "en": "Choose how to say: “The children laughed”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:16:07",
+          "options": [
+            "de:16:07",
+            "de:16:05",
+            "de:16:08"
+          ],
+          "answerId": "de:16:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы играли на улице»",
+            "uk": "Виберіть, як сказати: «Ви грали на вулиці»",
+            "en": "Choose how to say: “You all played outside”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:16:06",
+          "options": [
+            "de:16:06",
+            "de:16:05",
+            "de:16:08"
+          ],
+          "answerId": "de:16:06"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Нашёл, написал, выпил",
+        "uk": "Знайшов, написав, випив",
+        "en": "Found, wrote, drank"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я искал ключ».\nIch habe den Schlüssel gesucht. — «Я искал ключ.»\nЧитается: их ха́бе ден шлю́сель гезу́хт\nСлово Schlüssel значит «ключ». Слово gesucht — «искал».\nDu hast die Karte gefunden. — «Ты нашёл карту.»\nЧитается: ду хаст ди ка́рте гефу́нден\nСлово Karte значит «карта». Слово gefunden — «нашёл».\nСлова gesucht и gefunden похожи, но кончаются по-разному.\nЗапоминайте каждое слово целиком.\nWir haben Tee getrunken. — «Мы пили чай.»\nЧитается: вир ха́бен те́ гетру́нкен\nСлово Tee значит «чай». Слово getrunken — «пили».\nIhr habt die Suppe gegessen. — «Вы съели суп.»\nЧитается: ир хапт ди зу́пе геге́сен\nСлово Suppe значит «суп». Слово gegessen — «съели, поел».\nAnna hat ihren Namen geschrieben. — «Анна написала своё имя.»\nЧитается: А́нна хат и́рен на́мен гешри́бен\nСлово ihren значит «свой, её». Слово Namen — «имя». Слово geschrieben — «написала».",
+        "uk": "Дивіться, як сказати «Я шукав ключ».\nIch habe den Schlüssel gesucht. — «Я шукав ключ.»\nЧитається: іх ха́бе ден шлю́сель гезу́хт\nСлово Schlüssel означає «ключ». Слово gesucht — «шукав».\nDu hast die Karte gefunden. — «Ти знайшов мапу.»\nЧитається: ду хаст ді ка́рте гефу́нден\nСлово Karte означає «мапа». Слово gefunden — «знайшов».\nСлова gesucht і gefunden схожі, але закінчуються по-різному.\nЗапам’ятовуйте кожне слово цілком.\nWir haben Tee getrunken. — «Ми пили чай.»\nЧитається: вір ха́бен те́ гетру́нкен\nСлово Tee означає «чай». Слово getrunken — «пили».\nIhr habt die Suppe gegessen. — «Ви з'їли суп.»\nЧитається: ір хапт ді зу́пе геге́сен\nСлово Suppe означає «суп». Слово gegessen — «з’їли, поїв».\nAnna hat ihren Namen geschrieben. — «Анна написала своє ім'я.»\nЧитається: А́нна хат і́рен на́мен гешрі́бен\nСлово ihren означає «свою, її». Слово Namen — «ім’я». Слово geschrieben — «написала».",
+        "en": "Look at how to say “I looked for the key”.\nIch habe den Schlüssel gesucht. — “I looked for the key.”\nSounds like: eekh khAbe den shlYOOsel gezOOkht\nThe word Schlüssel means “key”. The word gesucht — “looked for”.\nDu hast die Karte gefunden. — “You found the map.”\nSounds like: doo khast dee kArte gefOOnden\nThe word Karte means “map”. The word gefunden — “found”.\nThe words gesucht and gefunden look alike but end differently.\nRemember each word as a whole.\nWir haben Tee getrunken. — “We drank tea.”\nSounds like: veer khAben tE getrOOnken\nThe word Tee means “tea”. The word getrunken — “drank”.\nIhr habt die Suppe gegessen. — “You all ate the soup.”\nSounds like: eer khapt dee zOOpe gegEsen\nThe word Suppe means “soup”. The word gegessen — “ate”.\nAnna hat ihren Namen geschrieben. — “Anna wrote her name.”\nSounds like: Anna khat EEren nAmen geshrEEben\nThe word ihren means “her”. The word Namen — “name”.\nThe word geschrieben means “wrote”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:16:11",
+          "say": {
+            "ru": "их ха́бе ден шлю́сель гезу́хт",
+            "uk": "іх ха́бе ден шлю́сель гезу́хт"
+          }
+        },
+        {
+          "phraseId": "de:16:12",
+          "say": {
+            "ru": "ду хаст ди ка́рте гефу́нден",
+            "uk": "ду хаст ді ка́рте гефу́нден"
+          }
+        },
+        {
+          "phraseId": "de:16:15",
+          "say": {
+            "ru": "вир ха́бен те́ гетру́нкен",
+            "uk": "вір ха́бен те́ гетру́нкен"
+          }
+        },
+        {
+          "phraseId": "de:16:16",
+          "say": {
+            "ru": "ир хапт ди зу́пе геге́сен",
+            "uk": "ір хапт ді зу́пе геге́сен"
+          }
+        },
+        {
+          "phraseId": "de:16:14",
+          "say": {
+            "ru": "А́нна хат и́рен на́мен гешри́бен",
+            "uk": "А́нна хат і́рен на́мен гешрі́бен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я искал ключ»",
+            "uk": "Виберіть, як сказати: «Я шукав ключ»",
+            "en": "Choose how to say: “I looked for the key”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:16:11",
+          "options": [
+            "de:16:11",
+            "de:16:12",
+            "de:16:15"
+          ],
+          "answerId": "de:16:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты нашёл карту»",
+            "uk": "Виберіть, як сказати: «Ти знайшов мапу»",
+            "en": "Choose how to say: “You found the map”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:16:12",
+          "options": [
+            "de:16:12",
+            "de:16:11",
+            "de:16:16"
+          ],
+          "answerId": "de:16:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна написала своё имя»",
+            "uk": "Виберіть, як сказати: «Анна написала своє ім'я»",
+            "en": "Choose how to say: “Anna wrote her name”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:16:14",
+          "options": [
+            "de:16:14",
+            "de:16:15",
+            "de:16:16"
+          ],
+          "answerId": "de:16:14"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вопрос о сделанном",
+        "uk": "Питання про зроблене",
+        "en": "Asking about what was done"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ты уже поел?».\nHast du schon gegessen? — «Ты уже поел?»\nЧитается: хаст ду шон геге́сен\nСлово schon значит «уже».\nДля вопроса «да или нет» hast ставится первым.\nHabt ihr den Zug verpasst? — «Вы опоздали на поезд?»\nЧитается: хапт ир ден цук ферпа́ст\nСлово Zug значит «поезд». Слово verpasst — «опоздали».\nДля «вы» в вопросе habt тоже стоит первым.\nWas hast du bestellt? — «Что ты заказал?»\nЧитается: вас хаст ду беште́льт\nСлово Was значит «что». Слово bestellt — «заказал».\nWer hat die Rechnung bezahlt? — «Кто оплатил счёт?»\nЧитается: вер хат ди ре́хнунг беца́льт\nСлово Wer значит «кто». Слово Rechnung — «счёт». Слово bezahlt — «оплатил».",
+        "uk": "Дивіться, як сказати «Ти вже поїв?».\nHast du schon gegessen? — «Ти вже поїв?»\nЧитається: хаст ду шон геге́сен\nСлово schon означає «вже».\nДля питання «так чи ні» hast ставиться першим.\nHabt ihr den Zug verpasst? — «Ви запізнилися на поїзд?»\nЧитається: хапт ір ден цук ферпа́ст\nСлово Zug означає «поїзд». Слово verpasst — «запізнилися».\nДля «ви» у питанні habt теж стоїть першим.\nWas hast du bestellt? — «Що ти замовив?»\nЧитається: вас хаст ду беште́льт\nСлово Was означає «що». Слово bestellt — «замовив».\nWer hat die Rechnung bezahlt? — «Хто сплатив рахунок?»\nЧитається: вер хат ді ре́хнунг беца́льт\nСлово Wer означає «хто». Слово Rechnung — «рахунок». Слово bezahlt — «сплатив».",
+        "en": "Look at how to say “Have you eaten yet?”.\nHast du schon gegessen? — “Have you eaten yet?”\nSounds like: khast doo shon gegEsen\nThe word schon means “already”.\nFor a yes-or-no question, hast comes first.\nHabt ihr den Zug verpasst? — “Did you all miss the train?”\nSounds like: khapt eer den tsook ferpAst\nThe word Zug means “train”. The word verpasst — “missed”.\nFor “you all” in a question, habt also comes first.\nWas hast du bestellt? — “What did you order?”\nSounds like: vas khast doo beshtElt\nThe word Was means “what”. The word bestellt — “ordered”.\nWer hat die Rechnung bezahlt? — “Who paid the bill?”\nSounds like: ver khat dee rEkhnoong betsAlt\nThe word Wer means “who”. The word Rechnung — “bill”.\nThe word bezahlt means “paid”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:16:41",
+          "say": {
+            "ru": "хаст ду шон геге́сен",
+            "uk": "хаст ду шон геге́сен"
+          }
+        },
+        {
+          "phraseId": "de:16:43",
+          "say": {
+            "ru": "хапт ир ден цук ферпа́ст",
+            "uk": "хапт ір ден цук ферпа́ст"
+          }
+        },
+        {
+          "phraseId": "de:16:45",
+          "say": {
+            "ru": "вас хаст ду беште́льт",
+            "uk": "вас хаст ду беште́льт"
+          }
+        },
+        {
+          "phraseId": "de:16:44",
+          "say": {
+            "ru": "вер хат ди ре́хнунг беца́льт",
+            "uk": "вер хат ді ре́хнунг беца́льт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты уже поел?»",
+            "uk": "Виберіть, як сказати: «Ти вже поїв?»",
+            "en": "Choose how to say: “Have you eaten yet?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:16:41",
+          "options": [
+            "de:16:41",
+            "de:16:43",
+            "de:16:45"
+          ],
+          "answerId": "de:16:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы опоздали на поезд?»",
+            "uk": "Виберіть, як сказати: «Ви запізнилися на поїзд?»",
+            "en": "Choose how to say: “Did you all miss the train?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:16:43",
+          "options": [
+            "de:16:43",
+            "de:16:41",
+            "de:16:44"
+          ],
+          "answerId": "de:16:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто оплатил счёт?»",
+            "uk": "Виберіть, як сказати: «Хто сплатив рахунок?»",
+            "en": "Choose how to say: “Who paid the bill?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:16:44",
+          "options": [
+            "de:16:44",
+            "de:16:45",
+            "de:16:41"
+          ],
+          "answerId": "de:16:44"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Потерял, починил, не успел",
+        "uk": "Втратив, полагодила, не встиг",
+        "en": "Lost, repaired, did not hear"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Том потерял ключи».\nTom hat die Schlüssel verloren. — «Том потерял ключи.»\nЧитается: Том хат ди шлю́сель ферло́рен\nСлово Schlüssel значит «ключи». Слово verloren — «потерял».\nAnna hat das Radio repariert. — «Анна починила радио.»\nЧитается: А́нна хат дас ра́дио репари́рт\nСлово das по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Radio значит «радио». Слово repariert — «починила».\nTom hat den Wecker nicht gehört. — «Том не услышал будильник.»\nЧитается: Том хат ден ве́кер нихт гехё́рт\nСлово Wecker значит «будильник». Слово nicht — «не». Слово gehört — «услышал».\nСлово nicht стоит перед словом действия: nicht gehört — «не услышал».\nIch habe noch nicht gefrühstückt. — «Я ещё не завтракал.»\nЧитается: их ха́бе нох нихт гефрю́штюкт\nСлово noch значит «ещё». Слово gefrühstückt — «завтракал».\nВместе noch nicht значит «ещё не».",
+        "uk": "Дивіться, як сказати «Том втратив ключі».\nTom hat die Schlüssel verloren. — «Том втратив ключі.»\nЧитається: Том хат ді шлю́сель ферло́рен\nСлово Schlüssel означає «ключі». Слово verloren — «втратив».\nAnna hat das Radio repariert. — «Анна полагодила радіо.»\nЧитається: А́нна хат дас ра́діо репарі́рт\nСлово das по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Radio означає «радіо». Слово repariert — «полагодила».\nTom hat den Wecker nicht gehört. — «Том не почув будильника.»\nЧитається: Том хат ден ве́кер ніхт гехьо́рт\nСлово Wecker означає «будильник». Слово nicht — «не». Слово gehört — «почув».\nСлово nicht стоїть перед словом дії: nicht gehört — «не почув».\nIch habe noch nicht gefrühstückt. — «Я ще не снідав.»\nЧитається: іх ха́бе нох ніхт гефрю́штюкт\nСлово noch означає «ще». Слово gefrühstückt — «снідав».\nРазом noch nicht означає «ще не».",
+        "en": "Look at how to say “Tom lost the keys”.\nTom hat die Schlüssel verloren. — “Tom lost the keys.”\nSounds like: Tom khat dee shlYOOsel ferlOren\nThe word Schlüssel means “keys”. The word verloren — “lost”.\nAnna hat das Radio repariert. — “Anna repaired the radio.”\nSounds like: Anna khat das rAdeeo reparEErt\nThe word das means “the”. The word Radio — “radio”.\nThe word repariert means “repaired”.\nTom hat den Wecker nicht gehört. — “Tom did not hear the alarm clock.”\nSounds like: Tom khat den vEker neekht gekhYOrt\nThe word Wecker means “alarm clock”. The word nicht — “not”.\nThe word gehört means “heard”.\nThe word nicht goes before the action word: nicht gehört — “did not hear”.\nIch habe noch nicht gefrühstückt. — “I have not had breakfast yet.”\nSounds like: eekh khAbe nokh neekht gefrYOOshtyookt\nThe word noch means “still”. The word gefrühstückt — “had breakfast”.\nTogether noch nicht means “not yet”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:16:40",
+          "say": {
+            "ru": "Том хат ди шлю́сель ферло́рен",
+            "uk": "Том хат ді шлю́сель ферло́рен"
+          }
+        },
+        {
+          "phraseId": "de:16:37",
+          "say": {
+            "ru": "А́нна хат дас ра́дио репари́рт",
+            "uk": "А́нна хат дас ра́діо репарі́рт"
+          }
+        },
+        {
+          "phraseId": "de:16:47",
+          "say": {
+            "ru": "Том хат ден ве́кер нихт гехё́рт",
+            "uk": "Том хат ден ве́кер ніхт гехьо́рт"
+          }
+        },
+        {
+          "phraseId": "de:16:46",
+          "say": {
+            "ru": "их ха́бе нох нихт гефрю́штюкт",
+            "uk": "іх ха́бе нох ніхт гефрю́штюкт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том потерял ключи»",
+            "uk": "Виберіть, як сказати: «Том втратив ключі»",
+            "en": "Choose how to say: “Tom lost the keys”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:16:40",
+          "options": [
+            "de:16:40",
+            "de:16:37",
+            "de:16:47"
+          ],
+          "answerId": "de:16:40"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна починила радио»",
+            "uk": "Виберіть, як сказати: «Анна полагодила радіо»",
+            "en": "Choose how to say: “Anna repaired the radio”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:16:37",
+          "options": [
+            "de:16:37",
+            "de:16:40",
+            "de:16:46"
+          ],
+          "answerId": "de:16:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том не услышал будильник»",
+            "uk": "Виберіть, як сказати: «Том не почув будильника»",
+            "en": "Choose how to say: “Tom did not hear the alarm clock”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:16:47",
+          "options": [
+            "de:16:47",
+            "de:16:46",
+            "de:16:40"
+          ],
+          "answerId": "de:16:47"
+        }
+      ]
+    }
+  ]
+}

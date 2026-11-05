@@ -1,0 +1,524 @@
+{
+  "lang": "it",
+  "lesson": 18,
+  "title": {
+    "ru": "Что уже сделано",
+    "uk": "Що вже зроблено",
+    "en": "What is already done"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Закрыл",
+        "uk": "Зачинив",
+        "en": "I closed"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я закрыл дверь».\nHo chiuso la porta. — «Я закрыл дверь.»\nЧитается: о кью́зо ла по́рта.\nHai chiuso la porta. — «Ты закрыл дверь.»\nЧитается: а́й кью́зо ла по́рта.\nLei ha chiuso la finestra. — «Она закрыла окно.»\nЧитается: ле́й а кью́зо ла фине́стра.\nСлово chiuso вы знаете: «закрыт». Здесь ho chiuso — «я закрыл».\nСлово ho вы тоже знаете: «у меня есть».\nЗдесь оно помогает сказать, что дело сделано.\nСлово ho — когда речь обо мне.\nСлово hai — когда речь о собеседнике, которому говорят «ты».\nСлово ha — когда речь о нём или о ней.\nСлово chiuso не меняется.\nЕщё: abbiamo — «мы», avete — «вы», hanno — «они».",
+        "uk": "Дивіться, як сказати «Я зачинив двері».\nHo chiuso la porta. — «Я зачинив двері.»\nЧитається: о кью́зо ла по́рта.\nHai chiuso la porta. — «Ти зачинив двері.»\nЧитається: а́й кью́зо ла по́рта.\nLei ha chiuso la finestra. — «Вона зачинила вікно.»\nЧитається: ле́й а кью́зо ла фіне́стра.\nСлово chiuso ви знаєте: «зачинений». Тут ho chiuso — «я зачинив».\nСлово ho ви теж знаєте: «у мене є».\nТут воно допомагає сказати, що справу зроблено.\nСлово ho — коли мова про мене.\nСлово hai — коли мова про співрозмовника, якому кажуть «ти».\nСлово ha — коли мова про нього або про неї.\nСлово chiuso не змінюється.\nЩе: abbiamo — «ми», avete — «ви», hanno — «вони».",
+        "en": "Look at how to say “I closed the door”.\nHo chiuso la porta. — “I closed the door.”\nHai chiuso la porta. — “You closed the door.”\nLei ha chiuso la finestra. — “She closed the window.”\nYou know the word chiuso: “closed”. Here ho chiuso means “I closed”.\nYou know the word ho too: “I have”.\nHere it helps to say that the thing is done.\nThe word ho is for “I”.\nThe word hai is for “you”.\nThe word ha is for “he” or “she”.\nThe word chiuso does not change.\nMore: abbiamo — “we”, avete — “you all”, hanno — “they”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:18:01",
+          "say": {
+            "ru": "о кью́зо ла по́рта",
+            "uk": "о кью́зо ла по́рта"
+          }
+        },
+        {
+          "phraseId": "it:18:02",
+          "say": {
+            "ru": "а́й кью́зо ла по́рта",
+            "uk": "а́й кью́зо ла по́рта"
+          }
+        },
+        {
+          "phraseId": "it:18:03",
+          "say": {
+            "ru": "ле́й а кью́зо ла фине́стра",
+            "uk": "ле́й а кью́зо ла фіне́стра"
+          }
+        },
+        {
+          "phraseId": "it:18:04",
+          "say": {
+            "ru": "аббья́мо кью́зо иль него́цьо",
+            "uk": "аббья́мо кью́зо іль него́цьо"
+          }
+        },
+        {
+          "phraseId": "it:18:05",
+          "say": {
+            "ru": "аве́те кью́зо иль гара́ж",
+            "uk": "аве́те кью́зо іль гара́ж"
+          }
+        },
+        {
+          "phraseId": "it:18:06",
+          "say": {
+            "ru": "а́нно кью́зо ла са́ла",
+            "uk": "а́нно кью́зо ла са́ла"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я закрыл дверь»",
+            "uk": "Виберіть, як сказати: «Я зачинив двері»",
+            "en": "Choose how to say: “I closed the door”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:18:01",
+          "options": [
+            "it:18:01",
+            "it:18:02",
+            "it:18:03"
+          ],
+          "answerId": "it:18:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты закрыл дверь»",
+            "uk": "Виберіть, як сказати: «Ти зачинив двері»",
+            "en": "Choose how to say: “You closed the door”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:18:02",
+          "options": [
+            "it:18:02",
+            "it:18:01",
+            "it:18:04"
+          ],
+          "answerId": "it:18:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она закрыла окно»",
+            "uk": "Виберіть, як сказати: «Вона зачинила вікно»",
+            "en": "Choose how to say: “She closed the window”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:18:03",
+          "options": [
+            "it:18:03",
+            "it:18:01",
+            "it:18:06"
+          ],
+          "answerId": "it:18:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Купил, забронировал",
+        "uk": "Купив, забронював",
+        "en": "I bought, I booked"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я купил хлеб».\nHo comprato del pane. — «Я купил хлеб.»\nЧитается: о компра́то дель па́не.\nPaolo ha comprato del caffè. — «Паоло купил кофе.»\nЧитается: па́оло а компра́то дель каффэ́.\nAbbiamo comprato due biglietti. — «Мы купили два билета.»\nЧитается: аббья́мо компра́то ду́э билье́тти.\nСлово comprato значит «купил».\nСлова ho, ha, abbiamo те же, что в прошлой главе.\nСлово del стоит перед pane и caffè: по-русски его нет.\nСлово due значит «два».\nЕщё: prenotato — «забронировал», pagato — «оплатил».\nСлово conto значит «счёт».",
+        "uk": "Дивіться, як сказати «Я купив хліб».\nHo comprato del pane. — «Я купив хліб.»\nЧитається: о компра́то дель па́не.\nPaolo ha comprato del caffè. — «Паоло купив каву.»\nЧитається: па́оло а компра́то дель каффе́.\nAbbiamo comprato due biglietti. — «Ми купили два квитки.»\nЧитається: аббья́мо компра́то ду́е білье́тті.\nСлово comprato означає «купив».\nСлова ho, ha, abbiamo ті самі, що в попередньому розділі.\nСлово del стоїть перед pane і caffè: українською його нема.\nСлово due означає «два».\nЩе: prenotato — «забронював», pagato — «оплатив».\nСлово conto означає «рахунок».",
+        "en": "Look at how to say “I bought bread”.\nHo comprato del pane. — “I bought some bread.”\nPaolo ha comprato del caffè. — “Paolo bought some coffee.”\nAbbiamo comprato due biglietti. — “We bought two tickets.”\nThe word comprato means “bought”.\nThe words ho, ha, abbiamo are the same as in the last chapter.\nThe word del stands before pane and caffè. No such word in English.\nThe word due means “two”.\nMore: prenotato — “booked”, pagato — “paid”.\nThe word conto means “bill”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:18:07",
+          "say": {
+            "ru": "о компра́то дель па́не",
+            "uk": "о компра́то дель па́не"
+          }
+        },
+        {
+          "phraseId": "it:18:08",
+          "say": {
+            "ru": "па́оло а компра́то дель каффэ́",
+            "uk": "па́оло а компра́то дель каффе́"
+          }
+        },
+        {
+          "phraseId": "it:18:09",
+          "say": {
+            "ru": "аббья́мо компра́то ду́э билье́тти",
+            "uk": "аббья́мо компра́то ду́е білье́тті"
+          }
+        },
+        {
+          "phraseId": "it:18:10",
+          "say": {
+            "ru": "ле́й а компра́то у́на ша́рпа",
+            "uk": "ле́й а компра́то у́на ша́рпа"
+          }
+        },
+        {
+          "phraseId": "it:18:11",
+          "say": {
+            "ru": "о пренота́то ун та́воло",
+            "uk": "о пренота́то ун та́воло"
+          }
+        },
+        {
+          "phraseId": "it:18:13",
+          "say": {
+            "ru": "лу́й а пага́то иль ко́нто",
+            "uk": "лу́й а пага́то іль ко́нто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я купил хлеб»",
+            "uk": "Виберіть, як сказати: «Я купив хліб»",
+            "en": "Choose how to say: “I bought some bread”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:18:07",
+          "options": [
+            "it:18:07",
+            "it:18:08",
+            "it:18:09"
+          ],
+          "answerId": "it:18:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло купил кофе»",
+            "uk": "Виберіть, як сказати: «Паоло купив каву»",
+            "en": "Choose how to say: “Paolo bought some coffee”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:18:08",
+          "options": [
+            "it:18:08",
+            "it:18:07",
+            "it:18:10"
+          ],
+          "answerId": "it:18:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я забронировал столик»",
+            "uk": "Виберіть, як сказати: «Я забронював столик»",
+            "en": "Choose how to say: “I booked a table”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:18:11",
+          "options": [
+            "it:18:11",
+            "it:18:13",
+            "it:18:09"
+          ],
+          "answerId": "it:18:11"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Взял, прочитал",
+        "uk": "Взяв, прочитав",
+        "en": "I took, I read"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я поехал на поезде».\nHo preso il treno. — «Я поехал на поезде.»\nЧитается: о пре́зо иль тре́но.\nLea ha letto il messaggio. — «Леа прочитала сообщение.»\nЧитается: ле́а а ле́тто иль месса́джо.\nAbbiamo visto il film. — «Мы посмотрели фильм.»\nЧитается: аббья́мо ви́сто иль фильм.\nЗдесь слова другие: preso — «взял», letto — «прочитала», visto — «посмотрели».\nЭти слова просто запомните.\nСлова ho, ha, abbiamo те же.\nСлово treno значит «поезд», слово messaggio — «сообщение».\nСлово film значит «фильм».\nЕщё: bevuto — «выпили», ricevuto — «получил», fatto — «сделала».\nСлово copia значит «копия».",
+        "uk": "Дивіться, як сказати «Я поїхав поїздом».\nHo preso il treno. — «Я поїхав поїздом.»\nЧитається: о пре́зо іль тре́но.\nLea ha letto il messaggio. — «Леа прочитала повідомлення.»\nЧитається: ле́а а ле́тто іль месса́джо.\nAbbiamo visto il film. — «Ми подивилися фільм.»\nЧитається: аббья́мо ві́сто іль фільм.\nТут слова інші: preso — «поїхав», letto — «прочитала», visto — «подивилися».\nЦі слова просто запам’ятайте.\nСлова ho, ha, abbiamo ті самі.\nСлово treno означає «поїзд», слово messaggio — «повідомлення».\nСлово film означає «фільм».\nЩе: bevuto — «випили», ricevuto — «отримав», fatto — «зробила».\nСлово copia означає «копія».",
+        "en": "Look at how to say “I took the train”.\nHo preso il treno. — “I took the train.”\nLea ha letto il messaggio. — “Lea read the message.”\nAbbiamo visto il film. — “We watched the film.”\nHere the words are different: preso — “took”, letto — “read”, visto — “saw”.\nJust remember these words.\nThe words ho, ha, abbiamo are the same.\nThe word treno means “train”, the word messaggio — “message”.\nThe word film means “film”.\nMore: bevuto — “drank”, ricevuto — “received”, fatto — “made”.\nThe word copia means “copy”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:18:21",
+          "say": {
+            "ru": "о пре́зо иль тре́но",
+            "uk": "о пре́зо іль тре́но"
+          }
+        },
+        {
+          "phraseId": "it:18:23",
+          "say": {
+            "ru": "ле́а а ле́тто иль месса́джо",
+            "uk": "ле́а а ле́тто іль месса́джо"
+          }
+        },
+        {
+          "phraseId": "it:18:24",
+          "say": {
+            "ru": "аббья́мо ви́сто иль фильм",
+            "uk": "аббья́мо ві́сто іль фільм"
+          }
+        },
+        {
+          "phraseId": "it:18:25",
+          "say": {
+            "ru": "а́нно беву́то иль су́кко ди ме́ла",
+            "uk": "а́нно беву́то іль су́кко ді ме́ла"
+          }
+        },
+        {
+          "phraseId": "it:18:27",
+          "say": {
+            "ru": "о ричеву́то иль па́кко",
+            "uk": "о річеву́то іль па́кко"
+          }
+        },
+        {
+          "phraseId": "it:18:28",
+          "say": {
+            "ru": "ле́й а фа́тто у́на ко́пья",
+            "uk": "ле́й а фа́тто у́на ко́пья"
+          }
+        },
+        {
+          "phraseId": "it:18:22",
+          "say": {
+            "ru": "а́й пре́зо ла ми́а бо́рса",
+            "uk": "а́й пре́зо ла мі́а бо́рса"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я поехал на поезде»",
+            "uk": "Виберіть, як сказати: «Я поїхав поїздом»",
+            "en": "Choose how to say: “I took the train”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:18:21",
+          "options": [
+            "it:18:21",
+            "it:18:23",
+            "it:18:24"
+          ],
+          "answerId": "it:18:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа прочитала сообщение»",
+            "uk": "Виберіть, як сказати: «Леа прочитала повідомлення»",
+            "en": "Choose how to say: “Lea read the message”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:18:23",
+          "options": [
+            "it:18:23",
+            "it:18:21",
+            "it:18:25"
+          ],
+          "answerId": "it:18:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она сделала копию»",
+            "uk": "Виберіть, як сказати: «Вона зробила копію»",
+            "en": "Choose how to say: “She made a copy”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:18:28",
+          "options": [
+            "it:18:28",
+            "it:18:27",
+            "it:18:24"
+          ],
+          "answerId": "it:18:28"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Забыл, нашёл, оставил",
+        "uk": "Забув, знайшов, залишив",
+        "en": "I forgot, I found"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я забыл зонт».\nHo dimenticato l’ombrello. — «Я забыл зонт.»\nЧитается: о диментика́то л’омбре́лло.\nLei ha trovato le chiavi. — «Она нашла свои ключи.»\nЧитается: ле́й а трова́то ле кья́ви.\nLui ha lasciato il cappotto qui. — «Он оставил здесь своё пальто.»\nЧитается: лу́й а лаша́то иль каппо́тто куи.\nСлово dimenticato значит «забыл», слово trovato — «нашла», слово lasciato — «оставил».\nСлово l’ombrello значит «зонт», слово chiavi — «ключи».\nСлово cappotto значит «пальто».\nСлово qui значит «здесь».\nЕщё: ieri — «вчера», stamattina — «сегодня утром».\nСлово lavato значит «постирал», слово cambiato — «поменяла».",
+        "uk": "Дивіться, як сказати «Я забув парасольку».\nHo dimenticato l’ombrello. — «Я забув парасольку.»\nЧитається: о діментіка́то л’омбре́лло.\nLei ha trovato le chiavi. — «Вона знайшла свої ключі.»\nЧитається: ле́й а трова́то ле кья́ві.\nLui ha lasciato il cappotto qui. — «Він залишив тут своє пальто.»\nЧитається: лу́й а лаша́то іль каппо́тто куі.\nСлово dimenticato означає «забув», слово trovato — «знайшла», слово lasciato — «залишив».\nСлово l’ombrello означає «парасолька», слово chiavi — «ключі».\nСлово cappotto означає «пальто».\nСлово qui означає «тут».\nЩе: ieri — «вчора», stamattina — «сьогодні вранці».\nСлово lavato означає «виправ», слово cambiato — «поміняла».",
+        "en": "Look at how to say “I forgot the umbrella”.\nHo dimenticato l’ombrello. — “I forgot the umbrella.”\nLei ha trovato le chiavi. — “She found the keys.”\nLui ha lasciato il cappotto qui. — “He left the coat here.”\nThe word dimenticato means “forgot”, the word trovato — “found”, the word lasciato — “left”.\nThe word l’ombrello means “umbrella”, the word chiavi — “keys”.\nThe word cappotto means “coat”.\nThe word qui means “here”.\nMore: ieri — “yesterday”, stamattina — “this morning”.\nThe word lavato means “washed”, the word cambiato — “changed”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:18:17",
+          "say": {
+            "ru": "о диментика́то л’омбре́лло",
+            "uk": "о діментіка́то л’омбре́лло"
+          }
+        },
+        {
+          "phraseId": "it:18:18",
+          "say": {
+            "ru": "ле́й а трова́то ле кья́ви",
+            "uk": "ле́й а трова́то ле кья́ві"
+          }
+        },
+        {
+          "phraseId": "it:18:19",
+          "say": {
+            "ru": "лу́й а лаша́то иль каппо́тто куи",
+            "uk": "лу́й а лаша́то іль каппо́тто куі"
+          }
+        },
+        {
+          "phraseId": "it:18:41",
+          "say": {
+            "ru": "йе́ри о лава́то ла малье́тта",
+            "uk": "йе́рі о лава́то ла малье́тта"
+          }
+        },
+        {
+          "phraseId": "it:18:42",
+          "say": {
+            "ru": "стамматти́на а камбья́то ла пи́ла",
+            "uk": "стамматті́на а камбья́то ла пі́ла"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я забыл зонт»",
+            "uk": "Виберіть, як сказати: «Я забув парасольку»",
+            "en": "Choose how to say: “I forgot the umbrella”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:18:17",
+          "options": [
+            "it:18:17",
+            "it:18:18",
+            "it:18:19"
+          ],
+          "answerId": "it:18:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она нашла свои ключи»",
+            "uk": "Виберіть, як сказати: «Вона знайшла свої ключі»",
+            "en": "Choose how to say: “She found the keys”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:18:18",
+          "options": [
+            "it:18:18",
+            "it:18:17",
+            "it:18:19"
+          ],
+          "answerId": "it:18:18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вчера я постирал футболку»",
+            "uk": "Виберіть, як сказати: «Вчора я виправ футболку»",
+            "en": "Choose how to say: “Yesterday I washed the T-shirt”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:18:41",
+          "options": [
+            "it:18:41",
+            "it:18:42",
+            "it:18:17"
+          ],
+          "answerId": "it:18:41"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не сделал и вопросы",
+        "uk": "Не зробив і запитання",
+        "en": "I did not, and questions"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не слышал звонка».\nNon ho sentito il campanello. — «Я не слышал звонка в дверь.»\nЧитается: нон о сенти́то иль кампане́лло.\nNon hai risposto al telefono. — «Ты не ответил на звонок.»\nЧитается: нон а́й риспо́сто аль теле́фоно.\nChi ha rotto il bicchiere? — «Кто разбил стакан?»\nЧитается: ки а ро́тто иль биккье́ре.\nСлово non стоит перед ho, hai, ha.\nСлово sentito значит «слышал», слово campanello — «дверной звонок».\nСлово risposto значит «ответил».\nСлово chi значит «кто», слово rotto — «разбил».\nСлово quando значит «когда», слово inviato — «отправили».\nСлово fascicolo значит «папка с документами».\nСлово partenza значит «уход, отправление».",
+        "uk": "Дивіться, як сказати «Я не чув дзвінка».\nNon ho sentito il campanello. — «Я не чув дзвінка у двері.»\nЧитається: нон о сенті́то іль кампане́лло.\nNon hai risposto al telefono. — «Ти не відповів на дзвінок.»\nЧитається: нон а́й ріспо́сто аль теле́фоно.\nChi ha rotto il bicchiere? — «Хто розбив склянку?»\nЧитається: кі а ро́тто іль біккье́ре.\nСлово non стоїть перед ho, hai, ha.\nСлово sentito означає «чув», слово campanello — «дзвінок у двері».\nСлово risposto означає «відповів».\nСлово chi означає «хто», слово rotto — «розбив».\nСлово quando означає «коли», слово inviato — «надіслали».\nСлово fascicolo означає «папка з документами».\nСлово partenza означає «відхід, відправлення».",
+        "en": "Look at how to say “I didn’t hear the bell”.\nNon ho sentito il campanello. — “I didn’t hear the doorbell.”\nNon hai risposto al telefono. — “You didn’t answer the phone.”\nChi ha rotto il bicchiere? — “Who broke the glass?”\nThe word non stands before ho, hai, ha.\nThe word sentito means “heard”, the word campanello — “doorbell”.\nThe word risposto means “answered”.\nThe word chi means “who”, the word rotto — “broke”.\nThe word quando means “when”, the word inviato — “sent”.\nThe word fascicolo means “folder of documents”.\nThe word partenza means “leaving, departure”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:18:31",
+          "say": {
+            "ru": "нон о сенти́то иль кампане́лло",
+            "uk": "нон о сенті́то іль кампане́лло"
+          }
+        },
+        {
+          "phraseId": "it:18:32",
+          "say": {
+            "ru": "нон а́й риспо́сто аль теле́фоно",
+            "uk": "нон а́й ріспо́сто аль теле́фоно"
+          }
+        },
+        {
+          "phraseId": "it:18:39",
+          "say": {
+            "ru": "ки а ро́тто иль биккье́ре",
+            "uk": "кі а ро́тто іль біккье́ре"
+          }
+        },
+        {
+          "phraseId": "it:18:40",
+          "say": {
+            "ru": "куа́ндо а инвья́то иль фаши́коло",
+            "uk": "куа́ндо а інвья́то іль фаші́коло"
+          }
+        },
+        {
+          "phraseId": "it:18:49",
+          "say": {
+            "ru": "а риемпи́то ла ботти́лья при́ма де́лла парте́нца",
+            "uk": "а ріемпі́то ла ботті́лья прі́ма де́лла парте́нца"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не слышал звонка в дверь»",
+            "uk": "Виберіть, як сказати: «Я не чув дзвінка у двері»",
+            "en": "Choose how to say: “I didn’t hear the doorbell”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:18:31",
+          "options": [
+            "it:18:31",
+            "it:18:32",
+            "it:18:39"
+          ],
+          "answerId": "it:18:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты не ответил на звонок»",
+            "uk": "Виберіть, як сказати: «Ти не відповів на дзвінок»",
+            "en": "Choose how to say: “You didn’t answer the phone”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:18:32",
+          "options": [
+            "it:18:32",
+            "it:18:31",
+            "it:18:39"
+          ],
+          "answerId": "it:18:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто разбил стакан»",
+            "uk": "Виберіть, як сказати: «Хто розбив склянку»",
+            "en": "Choose how to say: “Who broke the glass”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:18:39",
+          "options": [
+            "it:18:39",
+            "it:18:40",
+            "it:18:32"
+          ],
+          "answerId": "it:18:39"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,482 @@
+{
+  "lang": "de",
+  "lesson": 18,
+  "title": {
+    "ru": "Каким было и что было",
+    "uk": "Яким було і що було",
+    "en": "How it was and what there was"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я был, вы были",
+        "uk": "Я був, ви були",
+        "en": "I was, you were"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я был уставшим».\nIch war müde. — «Я был уставшим.»\nЧитается: их вар мю́де\nСлово Ich значит «я». Слово war — «был, была». Слово müde — «уставший».\nСлово war значит «был». Сегодня говорят bin, а про вчера — war.\nDu warst müde. — «Ты был уставшим.»\nЧитается: ду варст мю́де\nСлово Du значит «ты». Слово warst — «ты был, ты была».\nAnna war krank. — «Анна болела.»\nЧитается: А́нна вар кранк\nСлово krank значит «больна».\nWir waren zu Hause. — «Мы были дома.»\nЧитается: вир ва́рен цу ха́узе\nСлово Wir значит «мы». Слово waren — «мы были, они были».\nСлово zu значит «в». Слово Hause — «дом».\nВместе zu Hause значит «дома».\nIhr wart pünktlich. — «Вы пришли вовремя.»\nЧитается: ир варт пю́нктлих\nСлово Ihr значит «вы». Слово wart — «вы были». Слово pünktlich — «вовремя».\nСлово меняется, смотря о ком речь.\nО «ты» — warst, о нас — waren, о вас — wart.",
+        "uk": "Дивіться, як сказати «Я був втомлений».\nIch war müde. — «Я був втомлений.»\nЧитається: іх вар мю́де\nСлово Ich означає «я». Слово war — «був, була». Слово müde — «втомлений».\nСлово war означає «був». Сьогодні кажуть bin, а про вчора — war.\nDu warst müde. — «Ти був стомленим.»\nЧитається: ду варст мю́де\nСлово Du означає «ти». Слово warst — «ти був, ти була».\nAnna war krank. — «Ганна хворіла.»\nЧитається: А́нна вар кранк\nСлово krank означає «хвора».\nWir waren zu Hause. — «Ми були вдома.»\nЧитається: вір ва́рен цу ха́узе\nСлово Wir означає «ми». Слово waren — «ми були, вони були».\nСлово zu означає «в». Слово Hause — «дім».\nРазом zu Hause означає «вдома».\nIhr wart pünktlich. — «Ви прийшли вчасно.»\nЧитається: ір варт пю́нктліх\nСлово Ihr означає «ви». Слово wart — «ви були». Слово pünktlich — «вчасно».\nСлово змінюється залежно від того, про кого мова.\nПро «ти» — warst, про нас — waren, про вас — wart.",
+        "en": "Look at how to say “I was tired”.\nIch war müde. — “I was tired.”\nSounds like: eekh var mYOOde\nThe word Ich means “I”. The word war — “was”.\nThe word müde means “tired”.\nThe word war means “was”. Today you say bin, about yesterday — war.\nDu warst müde. — “You were tired.”\nSounds like: doo varst mYOOde\nThe word Du means “you”. The word warst — “you were”.\nAnna war krank. — “Anna was ill.”\nSounds like: Anna var krank\nThe word krank means “ill”.\nWir waren zu Hause. — “We were at home.”\nSounds like: veer vAren tsoo khAooze\nThe word Wir means “we”. The word waren — “were”.\nThe word zu means “at”. The word Hause — “home”.\nTogether zu Hause means “at home”.\nIhr wart pünktlich. — “You all were on time.”\nSounds like: eer vart pYOOnktleekh\nThe word Ihr means “you all”. The word wart — “you all were”.\nThe word pünktlich means “on time”.\nThe word changes with who we talk about.\nAbout “you” — warst, about us — waren, about you all — wart."
+      },
+      "examples": [
+        {
+          "phraseId": "de:18:01",
+          "say": {
+            "ru": "их вар мю́де",
+            "uk": "іх вар мю́де"
+          }
+        },
+        {
+          "phraseId": "de:18:02",
+          "say": {
+            "ru": "ду варст мю́де",
+            "uk": "ду варст мю́де"
+          }
+        },
+        {
+          "phraseId": "de:18:03",
+          "say": {
+            "ru": "А́нна вар кранк",
+            "uk": "А́нна вар кранк"
+          }
+        },
+        {
+          "phraseId": "de:18:04",
+          "say": {
+            "ru": "вир ва́рен цу ха́узе",
+            "uk": "вір ва́рен цу ха́узе"
+          }
+        },
+        {
+          "phraseId": "de:18:05",
+          "say": {
+            "ru": "ир варт пю́нктлих",
+            "uk": "ір варт пю́нктліх"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я был уставшим»",
+            "uk": "Виберіть, як сказати: «Я був втомлений»",
+            "en": "Choose how to say: “I was tired”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:18:01",
+          "options": [
+            "de:18:01",
+            "de:18:02",
+            "de:18:04"
+          ],
+          "answerId": "de:18:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты был уставшим»",
+            "uk": "Виберіть, як сказати: «Ти був стомленим»",
+            "en": "Choose how to say: “You were tired”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:18:02",
+          "options": [
+            "de:18:02",
+            "de:18:01",
+            "de:18:05"
+          ],
+          "answerId": "de:18:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы пришли вовремя»",
+            "uk": "Виберіть, як сказати: «Ви прийшли вчасно»",
+            "en": "Choose how to say: “You all were on time”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:18:05",
+          "options": [
+            "de:18:05",
+            "de:18:04",
+            "de:18:02"
+          ],
+          "answerId": "de:18:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "У меня было",
+        "uk": "У мене було",
+        "en": "I had"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У меня было время».\nIch hatte Zeit. — «У меня было время.»\nЧитается: их ха́те цайт\nСлово hatte значит «у меня было, у него было». Слово Zeit — «время».\nСлово hatte значит «было у меня». Сегодня говорят haben, а про вчера — hatte.\nDu hattest Hunger. — «Ты хотел есть.»\nЧитается: ду ха́тест ху́нгер\nСлово hattest значит «у тебя было». Слово Hunger — «голод».\nПо-немецки говорят «имел голод», по-русски — «хотел есть».\nTom hatte Durst. — «Том хотел пить.»\nЧитается: Том ха́те дурст\nСлово Durst значит «жажда».\nWir hatten Glück. — «Нам повезло.»\nЧитается: вир ха́тен глюк\nСлово hatten значит «у нас было». Слово Glück — «удача, счастье».",
+        "uk": "Дивіться, як сказати «У мене був час».\nIch hatte Zeit. — «У мене був час.»\nЧитається: іх ха́те цайт\nСлово hatte означає «у мене було, у нього було». Слово Zeit — «час».\nСлово hatte означає «було в мене». Сьогодні кажуть haben, а про вчора — hatte.\nDu hattest Hunger. — «Ти хотів їсти.»\nЧитається: ду ха́тест ху́нгер\nСлово hattest означає «у тебе було». Слово Hunger — «голод».\nПо-німецьки кажуть «мав голод», по-українськи — «хотів їсти».\nTom hatte Durst. — «Том хотів пити.»\nЧитається: Том ха́те дурст\nСлово Durst означає «спрага».\nWir hatten Glück. — «Нам пощастило.»\nЧитається: вір ха́тен глюк\nСлово hatten означає «у нас було». Слово Glück — «удача, щастя».",
+        "en": "Look at how to say “I had time”.\nIch hatte Zeit. — “I had time.”\nSounds like: eekh khAte tsayt\nThe word hatte means “had”. The word Zeit — “time”.\nThe word hatte means “I had”. Today you say haben, about yesterday — hatte.\nDu hattest Hunger. — “You were hungry.”\nSounds like: doo khAtest khOOnger\nThe word hattest means “you had”. The word Hunger — “hunger”.\nGerman says “had hunger”, English says “was hungry”.\nTom hatte Durst. — “Tom was thirsty.”\nSounds like: Tom khAte doorst\nThe word Durst means “thirst”.\nWir hatten Glück. — “We were lucky.”\nSounds like: veer khAten glyook\nThe word hatten means “had”. The word Glück — “luck”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:18:07",
+          "say": {
+            "ru": "их ха́те цайт",
+            "uk": "іх ха́те цайт"
+          }
+        },
+        {
+          "phraseId": "de:18:08",
+          "say": {
+            "ru": "ду ха́тест ху́нгер",
+            "uk": "ду ха́тест ху́нгер"
+          }
+        },
+        {
+          "phraseId": "de:18:09",
+          "say": {
+            "ru": "Том ха́те дурст",
+            "uk": "Том ха́те дурст"
+          }
+        },
+        {
+          "phraseId": "de:18:10",
+          "say": {
+            "ru": "вир ха́тен глюк",
+            "uk": "вір ха́тен глюк"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня было время»",
+            "uk": "Виберіть, як сказати: «У мене був час»",
+            "en": "Choose how to say: “I had time”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:18:07",
+          "options": [
+            "de:18:07",
+            "de:18:08",
+            "de:18:09"
+          ],
+          "answerId": "de:18:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том хотел пить»",
+            "uk": "Виберіть, як сказати: «Том хотів пити»",
+            "en": "Choose how to say: “Tom was thirsty”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:18:09",
+          "options": [
+            "de:18:09",
+            "de:18:08",
+            "de:18:10"
+          ],
+          "answerId": "de:18:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам повезло»",
+            "uk": "Виберіть, як сказати: «Нам пощастило»",
+            "en": "Choose how to say: “We were lucky”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:18:10",
+          "options": [
+            "de:18:10",
+            "de:18:07",
+            "de:18:09"
+          ],
+          "answerId": "de:18:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Вчера всё было так",
+        "uk": "Учора все було так",
+        "en": "Yesterday it was like this"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Вчера касса была закрыта».\nGestern war die Kasse zu. — «Вчера касса была закрыта.»\nЧитается: ге́стерн вар ди ка́се цу\nСлово Gestern значит «вчера».\nСлово die по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Kasse значит «касса». Слово zu — «закрыта».\nСлово war подходит и для вещей: касса была закрыта.\nAm Morgen war die Tür offen. — «Утром дверь была открыта.»\nЧитается: ам мо́рген вар ди тюр о́фен\nСлово Am значит «в, у». Слово Morgen — «утро». Слово Tür — «дверь».\nСлово offen значит «открыта».\nDas Zimmer war sauber. — «Комната была чистой.»\nЧитается: дас ци́мер вар за́убер\nСлово Das по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Zimmer значит «комната». Слово sauber — «чистая».\nDie Dusche war kaputt. — «Душ был сломан.»\nЧитается: ди ду́ше вар капу́т\nСлово Dusche значит «душ». Слово kaputt — «сломан».\nZum Glück war der Schaden klein. — «К счастью, ущерб был небольшим.»\nЧитается: цум глюк вар дер ша́ден клайн\nСлово Zum значит «к».\nСлово der по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Schaden значит «ущерб». Слово klein — «небольшой».\nВместе zum Glück значит «к счастью».",
+        "uk": "Дивіться, як сказати «Вчора каса була закрита».\nGestern war die Kasse zu. — «Вчора каса була закрита.»\nЧитається: ге́стерн вар ді ка́се цу\nСлово Gestern означає «учора».\nСлово die по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Kasse означає «каса». Слово zu — «закрита».\nСлово war підходить і для речей: каса була закрита.\nAm Morgen war die Tür offen. — «Вранці двері були відчинені.»\nЧитається: ам мо́рген вар ді тюр о́фен\nСлово Am означає «у, біля». Слово Morgen — «ранок». Слово Tür — «двері».\nСлово offen означає «відчинені».\nDas Zimmer war sauber. — «Кімната була чистою.»\nЧитається: дас ці́мер вар за́убер\nСлово Das по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Zimmer означає «кімната». Слово sauber — «чиста».\nDie Dusche war kaputt. — «Душ був зламаний.»\nЧитається: ді ду́ше вар капу́т\nСлово Dusche означає «душ». Слово kaputt — «зламаний».\nZum Glück war der Schaden klein. — «На щастя, збитки були невеликими.»\nЧитається: цум глюк вар дер ша́ден клайн\nСлово Zum означає «на».\nСлово der по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Schaden означає «збитки». Слово klein — «невеликий».\nРазом zum Glück означає «на щастя».",
+        "en": "Look at how to say “Yesterday the checkout was closed”.\nGestern war die Kasse zu. — “Yesterday the checkout was closed.”\nSounds like: gEstern var dee kAse tsoo\nThe word Gestern means “yesterday”. The word die — “the”.\nThe word Kasse means “checkout”. The word zu — “closed”.\nThe word war fits things too: the checkout was closed.\nAm Morgen war die Tür offen. — “In the morning the door was open.”\nSounds like: am mOrgen var dee tyoor Ofen\nThe word Am means “at”. The word Morgen — “morning”.\nThe word Tür means “door”. The word offen — “open”.\nDas Zimmer war sauber. — “The room was clean.”\nSounds like: das tsEEmer var zAoober\nThe word Das means “the”. The word Zimmer — “room”.\nThe word sauber means “clean”.\nDie Dusche war kaputt. — “The shower was broken.”\nSounds like: dee dOOshe var kapOOt\nThe word Dusche means “shower”. The word kaputt — “broken”.\nZum Glück war der Schaden klein. — “Luckily the damage was small.”\nSounds like: tsoom glyook var der shAden klayn\nThe word Zum means “for”. The word der — “the”.\nThe word Schaden means “damage”. The word klein — “small”.\nTogether zum Glück means “luckily”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:18:11",
+          "say": {
+            "ru": "ге́стерн вар ди ка́се цу",
+            "uk": "ге́стерн вар ді ка́се цу"
+          }
+        },
+        {
+          "phraseId": "de:18:12",
+          "say": {
+            "ru": "ам мо́рген вар ди тюр о́фен",
+            "uk": "ам мо́рген вар ді тюр о́фен"
+          }
+        },
+        {
+          "phraseId": "de:18:15",
+          "say": {
+            "ru": "дас ци́мер вар за́убер",
+            "uk": "дас ці́мер вар за́убер"
+          }
+        },
+        {
+          "phraseId": "de:18:16",
+          "say": {
+            "ru": "ди ду́ше вар капу́т",
+            "uk": "ді ду́ше вар капу́т"
+          }
+        },
+        {
+          "phraseId": "de:18:47",
+          "say": {
+            "ru": "цум глюк вар дер ша́ден клайн",
+            "uk": "цум глюк вар дер ша́ден клайн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вчера касса была закрыта»",
+            "uk": "Виберіть, як сказати: «Вчора каса була закрита»",
+            "en": "Choose how to say: “Yesterday the checkout was closed”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:18:11",
+          "options": [
+            "de:18:11",
+            "de:18:12",
+            "de:18:15"
+          ],
+          "answerId": "de:18:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Комната была чистой»",
+            "uk": "Виберіть, як сказати: «Кімната була чистою»",
+            "en": "Choose how to say: “The room was clean”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:18:15",
+          "options": [
+            "de:18:15",
+            "de:18:16",
+            "de:18:12"
+          ],
+          "answerId": "de:18:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Душ был сломан»",
+            "uk": "Виберіть, як сказати: «Душ був зламаний»",
+            "en": "Choose how to say: “The shower was broken”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:18:16",
+          "options": [
+            "de:18:16",
+            "de:18:47",
+            "de:18:15"
+          ],
+          "answerId": "de:18:16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Что было у нас",
+        "uk": "Що було в нас",
+        "en": "What we had"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У меня была назначена встреча».\nIch hatte einen Termin. — «У меня была назначена встреча.»\nЧитается: их ха́те а́йнен терми́н\nСлово einen по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Termin значит «встреча, приём».\nСлово hatte стоит с тем, что было у человека или у вещи.\nWir hatten einen Plan. — «У нас был план.»\nЧитается: вир ха́тен а́йнен план\nСлово Plan значит «план».\nMein Handy hatte keinen Empfang. — «Мой телефон не ловил сеть.»\nЧитается: майн хе́нди ха́те ка́йнен эмпфа́нг\nСлово Mein значит «мой». Слово Handy — «телефон». Слово keinen — «никакого».\nСлово Empfang значит «сигнал, связь».\nСлово keinen значит «никакого»: никакого сигнала не было.\nDer Bus hatte Verspätung. — «Автобус опаздывал.»\nЧитается: дер бус ха́те фершпэ́тунг\nСлово Bus значит «автобус». Слово Verspätung — «опоздание».\nАвтобус «имел опоздание»: по-русски — «опаздывал».\nNach der Schicht hatte Anna frei. — «После смены Анна была свободна.»\nЧитается: нах дер шихт ха́те А́нна фрай\nСлово Nach значит «после». Слово Schicht — «смена». Слово frei — «свободна».",
+        "uk": "Дивіться, як сказати «У мене була призначена зустріч».\nIch hatte einen Termin. — «У мене була призначена зустріч.»\nЧитається: іх ха́те а́йнен термі́н\nСлово einen по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Termin означає «зустріч, прийом».\nСлово hatte стоїть з тим, що було в людини або в речі.\nWir hatten einen Plan. — «У нас був план.»\nЧитається: вір ха́тен а́йнен план\nСлово Plan означає «план».\nMein Handy hatte keinen Empfang. — «Мій телефон не ловив мережу.»\nЧитається: майн хе́нді ха́те ка́йнен емпфа́нг\nСлово Mein означає «мій». Слово Handy — «телефон». Слово keinen — «ніякого».\nСлово Empfang означає «сигнал, зв’язок».\nСлово keinen означає «ніякого»: ніякого сигналу не було.\nDer Bus hatte Verspätung. — «Автобус запізнювався.»\nЧитається: дер бус ха́те фершпе́тунг\nСлово Bus означає «автобус». Слово Verspätung — «запізнення».\nАвтобус «мав запізнення»: по-українськи — «запізнювався».\nNach der Schicht hatte Anna frei. — «Після зміни Анна була вільна.»\nЧитається: нах дер шіхт ха́те А́нна фрай\nСлово Nach означає «після». Слово Schicht — «зміна». Слово frei — «вільна».",
+        "en": "Look at how to say “I had an appointment”.\nIch hatte einen Termin. — “I had an appointment.”\nSounds like: eekh khAte Aynen termEEn\nThe word einen means “a”. The word Termin — “appointment”.\nThe word hatte goes with what a person or a thing had.\nWir hatten einen Plan. — “We had a plan.”\nSounds like: veer khAten Aynen plan\nThe word Plan means “plan”.\nMein Handy hatte keinen Empfang. — “My phone had no signal.”\nSounds like: mayn khEndee khAte kAynen empfAng\nThe word Mein means “my”. The word Handy — “phone”.\nThe word keinen means “no”. The word Empfang — “signal”.\nThe word keinen means “no”: there was no signal.\nDer Bus hatte Verspätung. — “The bus was late.”\nSounds like: der boos khAte fershpEtoong\nThe word Bus means “bus”. The word Verspätung — “delay”.\nThe bus “had a delay”: in English — “was late”.\nNach der Schicht hatte Anna frei. — “After the shift Anna was free.”\nSounds like: nakh der sheekht khAte Anna fray\nThe word Nach means “after”. The word Schicht — “shift”.\nThe word frei means “free”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:18:21",
+          "say": {
+            "ru": "их ха́те а́йнен терми́н",
+            "uk": "іх ха́те а́йнен термі́н"
+          }
+        },
+        {
+          "phraseId": "de:18:24",
+          "say": {
+            "ru": "вир ха́тен а́йнен план",
+            "uk": "вір ха́тен а́йнен план"
+          }
+        },
+        {
+          "phraseId": "de:18:28",
+          "say": {
+            "ru": "майн хе́нди ха́те ка́йнен эмпфа́нг",
+            "uk": "майн хе́нді ха́те ка́йнен емпфа́нг"
+          }
+        },
+        {
+          "phraseId": "de:18:30",
+          "say": {
+            "ru": "дер бус ха́те фершпэ́тунг",
+            "uk": "дер бус ха́те фершпе́тунг"
+          }
+        },
+        {
+          "phraseId": "de:18:45",
+          "say": {
+            "ru": "нах дер шихт ха́те А́нна фрай",
+            "uk": "нах дер шіхт ха́те А́нна фрай"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня была назначена встреча»",
+            "uk": "Виберіть, як сказати: «У мене була призначена зустріч»",
+            "en": "Choose how to say: “I had an appointment”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:18:21",
+          "options": [
+            "de:18:21",
+            "de:18:24",
+            "de:18:28"
+          ],
+          "answerId": "de:18:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У нас был план»",
+            "uk": "Виберіть, як сказати: «У нас був план»",
+            "en": "Choose how to say: “We had a plan”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:18:24",
+          "options": [
+            "de:18:24",
+            "de:18:21",
+            "de:18:30"
+          ],
+          "answerId": "de:18:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус опаздывал»",
+            "uk": "Виберіть, як сказати: «Автобус запізнювався»",
+            "en": "Choose how to say: “The bus was late”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:18:30",
+          "options": [
+            "de:18:30",
+            "de:18:28",
+            "de:18:45"
+          ],
+          "answerId": "de:18:30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Вопросы о вчерашнем",
+        "uk": "Питання про вчорашнє",
+        "en": "Questions about yesterday"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ты был вчера в офисе?».\nWarst du gestern im Büro? — «Ты был вчера в офисе?»\nЧитается: варст ду ге́стерн им бюро́\nСлово im значит «в». Слово Büro — «офис».\nДля вопроса «да или нет» warst ставится первым.\nWar die Apotheke offen? — «Аптека была открыта?»\nЧитается: вар ди апоте́ке о́фен\nСлово Apotheke значит «аптека».\nHattest du deinen Ausweis? — «У тебя было с собой удостоверение?»\nЧитается: ха́тест ду да́йнен а́усвайс\nСлово deinen значит «твой». Слово Ausweis — «удостоверение».\nЗдесь первым стоит hattest.\nWie war die Fahrt? — «Как прошла поездка?»\nЧитается: ви вар ди фарт\nСлово Wie значит «как». Слово Fahrt — «поездка».\nСлово wie значит «как»: вопрос о том, каким было.",
+        "uk": "Дивіться, як сказати «Ти був учора в офісі?».\nWarst du gestern im Büro? — «Ти був учора в офісі?»\nЧитається: варст ду ге́стерн ім бюро́\nСлово im означає «у». Слово Büro — «офіс».\nДля питання «так чи ні» warst ставиться першим.\nWar die Apotheke offen? — «Аптека була відкрита?»\nЧитається: вар ді апоте́ке о́фен\nСлово Apotheke означає «аптека».\nHattest du deinen Ausweis? — «У тебе було з собою посвідчення?»\nЧитається: ха́тест ду да́йнен а́усвайс\nСлово deinen означає «твій». Слово Ausweis — «посвідчення».\nТут першим стоїть hattest.\nWie war die Fahrt? — «Як минула поїздка?»\nЧитається: ві вар ді фарт\nСлово Wie означає «як». Слово Fahrt — «поїздка».\nСлово wie означає «як»: питання про те, яким було.",
+        "en": "Look at how to say “Were you at the office yesterday?”.\nWarst du gestern im Büro? — “Were you at the office yesterday?”\nSounds like: varst doo gEstern eem byoorO\nThe word im means “in”. The word Büro — “office”.\nFor a yes-or-no question, warst comes first.\nWar die Apotheke offen? — “Was the pharmacy open?”\nSounds like: var dee apotEke Ofen\nThe word Apotheke means “pharmacy”.\nHattest du deinen Ausweis? — “Did you have your ID?”\nSounds like: khAtest doo dAynen Aoosvays\nThe word deinen means “your”. The word Ausweis — “ID card”.\nHere hattest comes first.\nWie war die Fahrt? — “How was the trip?”\nSounds like: vee var dee fart\nThe word Wie means “how”. The word Fahrt — “trip”.\nThe word wie means “how”: a question about what it was like."
+      },
+      "examples": [
+        {
+          "phraseId": "de:18:31",
+          "say": {
+            "ru": "варст ду ге́стерн им бюро́",
+            "uk": "варст ду ге́стерн ім бюро́"
+          }
+        },
+        {
+          "phraseId": "de:18:33",
+          "say": {
+            "ru": "вар ди апоте́ке о́фен",
+            "uk": "вар ді апоте́ке о́фен"
+          }
+        },
+        {
+          "phraseId": "de:18:35",
+          "say": {
+            "ru": "ха́тест ду да́йнен а́усвайс",
+            "uk": "ха́тест ду да́йнен а́усвайс"
+          }
+        },
+        {
+          "phraseId": "de:18:39",
+          "say": {
+            "ru": "ви вар ди фарт",
+            "uk": "ві вар ді фарт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты был вчера в офисе?»",
+            "uk": "Виберіть, як сказати: «Ти був учора в офісі?»",
+            "en": "Choose how to say: “Were you at the office yesterday?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:18:31",
+          "options": [
+            "de:18:31",
+            "de:18:33",
+            "de:18:35"
+          ],
+          "answerId": "de:18:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Аптека была открыта?»",
+            "uk": "Виберіть, як сказати: «Аптека була відкрита?»",
+            "en": "Choose how to say: “Was the pharmacy open?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:18:33",
+          "options": [
+            "de:18:33",
+            "de:18:31",
+            "de:18:39"
+          ],
+          "answerId": "de:18:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У тебя было с собой удостоверение?»",
+            "uk": "Виберіть, як сказати: «У тебе було з собою посвідчення?»",
+            "en": "Choose how to say: “Did you have your ID?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:18:35",
+          "options": [
+            "de:18:35",
+            "de:18:31",
+            "de:18:39"
+          ],
+          "answerId": "de:18:35"
+        }
+      ]
+    }
+  ]
+}

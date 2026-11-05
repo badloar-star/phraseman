@@ -1,0 +1,510 @@
+{
+  "lang": "it",
+  "lesson": 16,
+  "title": {
+    "ru": "Попросить что-то сделать",
+    "uk": "Попросити щось зробити",
+    "en": "Asking someone to do something"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Заходи, заходите",
+        "uk": "Заходь, заходьте",
+        "en": "Come in"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Заходи» и «Заходите».\nEntra! — «Заходи!»\nЧитается: э́нтра.\nEntri! — «Заходите!»\nЧитается: э́нтри.\nAspetta! — «Подожди!»\nЧитается: аспе́тта.\nAspetti! — «Подождите!»\nЧитается: аспе́тти.\nСлово entra значит «заходи», слово entri — «заходите».\nСлово aspetta значит «подожди», слово aspetti — «подождите».\nПервое слово — для близкого человека, которому говорят «ты».\nВторое слово — для человека, которому говорят «вы».\nПоследняя буква разная: a или i.\nТак же: resta qui — «останься здесь», resti qui — «останьтесь здесь».",
+        "uk": "Дивіться, як сказати «Заходь» і «Заходьте».\nEntra! — «Заходь!»\nЧитається: е́нтра.\nEntri! — «Заходьте!»\nЧитається: е́нтрі.\nAspetta! — «Почекай!»\nЧитається: аспе́тта.\nAspetti! — «Зачекайте!»\nЧитається: аспе́тті.\nСлово entra означає «заходь», слово entri — «заходьте».\nСлово aspetta означає «почекай», слово aspetti — «зачекайте».\nПерше слово — для близької людини, якій кажуть «ти».\nДруге слово — для людини, якій кажуть «ви».\nОстання літера різна: a або i.\nТак само: resta qui — «залишайся тут», resti qui — «залишайтеся тут».",
+        "en": "Look at how to say “Come in!” to someone.\nEntra! — “Come in!”\nEntri! — “Come in! (polite)”\nAspetta! — “Wait!”\nAspetti! — “Wait! (polite)”\nThe word entra means “come in”, the word entri — “come in” too, but politer.\nThe word aspetta means “wait”, the word aspetti — “wait”, politer.\nThe first word is for a close person.\nThe second word is for a person you speak to formally.\nThe last letter is different: a or i.\nSame here: resta qui — “stay here”, resti qui — “stay here”, politer."
+      },
+      "examples": [
+        {
+          "phraseId": "it:16:01",
+          "say": {
+            "ru": "э́нтра",
+            "uk": "е́нтра"
+          }
+        },
+        {
+          "phraseId": "it:16:02",
+          "say": {
+            "ru": "э́нтри",
+            "uk": "е́нтрі"
+          }
+        },
+        {
+          "phraseId": "it:16:03",
+          "say": {
+            "ru": "аспе́тта",
+            "uk": "аспе́тта"
+          }
+        },
+        {
+          "phraseId": "it:16:04",
+          "say": {
+            "ru": "аспе́тти",
+            "uk": "аспе́тті"
+          }
+        },
+        {
+          "phraseId": "it:16:05",
+          "say": {
+            "ru": "ре́ста куи",
+            "uk": "ре́ста куі"
+          }
+        },
+        {
+          "phraseId": "it:16:06",
+          "say": {
+            "ru": "ре́сти куи",
+            "uk": "ре́сті куі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Заходи»",
+            "uk": "Виберіть, як сказати: «Заходь»",
+            "en": "Choose how to say: “Come in”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:16:01",
+          "options": [
+            "it:16:01",
+            "it:16:02",
+            "it:16:03"
+          ],
+          "answerId": "it:16:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Заходите»",
+            "uk": "Виберіть, як сказати: «Заходьте»",
+            "en": "Choose how to say: “Come in! (polite)”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:16:02",
+          "options": [
+            "it:16:02",
+            "it:16:01",
+            "it:16:04"
+          ],
+          "answerId": "it:16:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Подождите»",
+            "uk": "Виберіть, як сказати: «Зачекайте»",
+            "en": "Choose how to say: “Wait! (polite)”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:16:04",
+          "options": [
+            "it:16:04",
+            "it:16:03",
+            "it:16:06"
+          ],
+          "answerId": "it:16:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Сделай с вещью",
+        "uk": "Зроби з річчю",
+        "en": "Do it with a thing"
+      },
+      "text": {
+        "ru": "Смотрите, как попросить что-то сделать с вещью.\nChiudi la porta! — «Закрой дверь!»\nЧитается: кью́ди ла по́рта.\nApri la finestra! — «Открой окно!»\nЧитается: а́при ла фине́стра.\nMetti la borsa qui! — «Поставь сумку сюда!»\nЧитается: ме́тти ла бо́рса куи.\nСлово chiudi значит «закрой», слово apri — «открой», слово metti — «поставь».\nСлово porta значит «дверь», слово finestra — «окно», слово borsa — «сумка».\nСлова la стоят перед ними: по-русски их нет.\nСлово qui здесь значит «сюда».\nЭти слова — для близкого человека.\nЕщё: tieni — «сохрани», prendi — «возьми».\nСлово rubinetto значит «кран», слово cintura — «ремень».",
+        "uk": "Дивіться, як попросити щось зробити з річчю.\nChiudi la porta! — «Зачини двері!»\nЧитається: кью́ді ла по́рта.\nApri la finestra! — «Відкрий вікно!»\nЧитається: а́прі ла фіне́стра.\nMetti la borsa qui! — «Постав сумку сюди!»\nЧитається: ме́тті ла бо́рса куі.\nСлово chiudi означає «зачини», слово apri — «відкрий», слово metti — «постав».\nСлово porta означає «двері», слово finestra — «вікно», слово borsa — «сумка».\nСлово la стоїть перед ними: українською його нема.\nСлово qui тут означає «сюди».\nЦі слова — для близької людини.\nЩе: tieni — «збережи», prendi — «візьми».\nСлово rubinetto означає «кран», слово cintura — «ремінь».",
+        "en": "Look at how to ask for something to be done with a thing.\nChiudi la porta! — “Close the door!”\nApri la finestra! — “Open the window!”\nMetti la borsa qui! — “Put the bag here!”\nThe word chiudi means “close”, the word apri — “open”, the word metti — “put”.\nThe word porta means “door”, the word finestra — “window”, the word borsa — “bag”.\nThe word la stands before them. No such word in English.\nThe word qui here means “here”.\nThese words are for a close person.\nMore: tieni — “keep”, prendi — “take”.\nThe word rubinetto means “tap”, the word cintura — “belt”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:16:11",
+          "say": {
+            "ru": "кью́ди ла по́рта",
+            "uk": "кью́ді ла по́рта"
+          }
+        },
+        {
+          "phraseId": "it:16:12",
+          "say": {
+            "ru": "а́при ла фине́стра",
+            "uk": "а́прі ла фіне́стра"
+          }
+        },
+        {
+          "phraseId": "it:16:13",
+          "say": {
+            "ru": "ме́тти ла бо́рса куи",
+            "uk": "ме́тті ла бо́рса куі"
+          }
+        },
+        {
+          "phraseId": "it:16:14",
+          "say": {
+            "ru": "тье́ни иль билье́тто",
+            "uk": "тье́ні іль білье́тто"
+          }
+        },
+        {
+          "phraseId": "it:16:15",
+          "say": {
+            "ru": "пре́нди ла джа́кка",
+            "uk": "пре́нді ла джа́кка"
+          }
+        },
+        {
+          "phraseId": "it:16:48",
+          "say": {
+            "ru": "кью́ди иль рубине́тто",
+            "uk": "кью́ді іль рубіне́тто"
+          }
+        },
+        {
+          "phraseId": "it:16:46",
+          "say": {
+            "ru": "алла́чча ла чинту́ра",
+            "uk": "алла́чча ла чінту́ра"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Закрой дверь»",
+            "uk": "Виберіть, як сказати: «Зачини двері»",
+            "en": "Choose how to say: “Close the door”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:16:11",
+          "options": [
+            "it:16:11",
+            "it:16:12",
+            "it:16:13"
+          ],
+          "answerId": "it:16:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Открой окно»",
+            "uk": "Виберіть, як сказати: «Відкрий вікно»",
+            "en": "Choose how to say: “Open the window”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:16:12",
+          "options": [
+            "it:16:12",
+            "it:16:11",
+            "it:16:14"
+          ],
+          "answerId": "it:16:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Закрой кран»",
+            "uk": "Виберіть, як сказати: «Закрий кран»",
+            "en": "Choose how to say: “Turn off the tap”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:16:48",
+          "options": [
+            "it:16:48",
+            "it:16:11",
+            "it:16:15"
+          ],
+          "answerId": "it:16:48"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Куда идти",
+        "uk": "Куди йти",
+        "en": "Where to go"
+      },
+      "text": {
+        "ru": "Смотрите, как подсказать дорогу.\nGira a sinistra! — «Поверни налево!»\nЧитается: джи́ра а сини́стра.\nAttraversa al semaforo! — «Перейди дорогу у светофора!»\nЧитается: аттраве́рса аль сема́форо.\nAndiamo al mercato! — «Пойдём на рынок!»\nЧитается: андья́мо аль мерка́то.\nСлово gira значит «поверни», слово attraversa — «перейди дорогу».\nСлова a sinistra значат «налево».\nСлова al semaforo значат «у светофора».\nСлово andiamo значит «пойдём»: так зовут пойти вместе.\nСлово mercato значит «рынок».\nЕщё: segui — «следуй», percorso — «маршрут».",
+        "uk": "Дивіться, як підказати дорогу.\nGira a sinistra! — «Поверни ліворуч!»\nЧитається: джі́ра а сіні́стра.\nAttraversa al semaforo! — «Перейди дорогу біля світлофора!»\nЧитається: аттраве́рса аль сема́форо.\nAndiamo al mercato! — «Підемо на ринок!»\nЧитається: андья́мо аль мерка́то.\nСлово gira означає «поверни», слово attraversa — «перейди дорогу».\nСлова a sinistra означають «ліворуч».\nСлова al semaforo означають «біля світлофора».\nСлово andiamo означає «підемо»: так кличуть піти разом.\nСлово mercato означає «ринок».\nЩе: segui — «іди за», percorso — «маршрут».",
+        "en": "Look at how to show the way.\nGira a sinistra! — “Turn left!”\nAttraversa al semaforo! — “Cross at the traffic light!”\nAndiamo al mercato! — “Let’s go to the market!”\nThe word gira means “turn”, the word attraversa — “cross”.\nThe words a sinistra mean “to the left”.\nThe words al semaforo mean “at the traffic light”.\nThe word andiamo means “let’s go”: we call someone to go together.\nThe word mercato means “market”.\nMore: segui — “follow”, percorso — “route”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:16:17",
+          "say": {
+            "ru": "джи́ра а сини́стра",
+            "uk": "джі́ра а сіні́стра"
+          }
+        },
+        {
+          "phraseId": "it:16:18",
+          "say": {
+            "ru": "аттраве́рса аль сема́форо",
+            "uk": "аттраве́рса аль сема́форо"
+          }
+        },
+        {
+          "phraseId": "it:16:41",
+          "say": {
+            "ru": "андья́мо аль мерка́то",
+            "uk": "андья́мо аль мерка́то"
+          }
+        },
+        {
+          "phraseId": "it:16:19",
+          "say": {
+            "ru": "се́гви иль перко́рсо",
+            "uk": "се́гві іль перко́рсо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поверни налево»",
+            "uk": "Виберіть, як сказати: «Поверни ліворуч»",
+            "en": "Choose how to say: “Turn left”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:16:17",
+          "options": [
+            "it:16:17",
+            "it:16:18",
+            "it:16:41"
+          ],
+          "answerId": "it:16:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Перейди дорогу у светофора»",
+            "uk": "Виберіть, як сказати: «Перейди дорогу біля світлофора»",
+            "en": "Choose how to say: “Cross at the traffic light”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:16:18",
+          "options": [
+            "it:16:18",
+            "it:16:17",
+            "it:16:19"
+          ],
+          "answerId": "it:16:18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пойдём на рынок»",
+            "uk": "Виберіть, як сказати: «Підемо на ринок»",
+            "en": "Choose how to say: “Let’s go to the market”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:16:41",
+          "options": [
+            "it:16:41",
+            "it:16:17",
+            "it:16:19"
+          ],
+          "answerId": "it:16:41"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вежливо, на «вы»",
+        "uk": "Ввічливо, на «ви»",
+        "en": "Politely"
+      },
+      "text": {
+        "ru": "Смотрите, как вежливо попросить.\nFirmi in fondo, per favore. — «Распишитесь внизу, пожалуйста.»\nЧитается: фи́рми ин фо́ндо пер фаво́ре.\nMostri il biglietto, per favore. — «Покажите билет, пожалуйста.»\nЧитается: мо́стри иль билье́тто пер фаво́ре.\nAbbassi il volume, per favore. — «Убавьте громкость, пожалуйста.»\nЧитается: абба́сси иль во́луме пер фаво́ре.\nСлово firmi значит «распишитесь», слово mostri — «покажите», слово abbassi — «убавьте».\nСлова per favore значат «пожалуйста».\nСлова in fondo значат «внизу».\nСлово volume значит «громкость».\nЭти слова — для человека, которому говорят «вы».\nСлово bilancia значит «весы», слово l’importo — «сумма».",
+        "uk": "Дивіться, як ввічливо попросити.\nFirmi in fondo, per favore. — «Розпишіться внизу, будь ласка.»\nЧитається: фі́рмі ін фо́ндо пер фаво́ре.\nMostri il biglietto, per favore. — «Покажіть квиток, будь ласка.»\nЧитається: мо́стрі іль білье́тто пер фаво́ре.\nAbbassi il volume, per favore. — «Зменште гучність, будь ласка.»\nЧитається: абба́ссі іль во́луме пер фаво́ре.\nСлово firmi означає «розпишіться», слово mostri — «покажіть», слово abbassi — «зменште».\nСлова per favore означають «будь ласка».\nСлова in fondo означають «внизу».\nСлово volume означає «гучність».\nЦі слова — для людини, якій кажуть «ви».\nСлово bilancia означає «ваги», слово l’importo — «сума».",
+        "en": "Look at how to ask politely.\nFirmi in fondo, per favore. — “Sign at the bottom, please.”\nMostri il biglietto, per favore. — “Show your ticket, please.”\nAbbassi il volume, per favore. — “Turn the volume down, please.”\nThe word firmi means “sign”, the word mostri — “show”, the word abbassi — “turn down”.\nThe words per favore mean “please”.\nThe words in fondo mean “at the bottom”.\nThe word volume means “volume”.\nThese words are for a person you speak to formally.\nThe word bilancia means “scale”, the word l’importo — “amount”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:16:21",
+          "say": {
+            "ru": "фи́рми ин фо́ндо пер фаво́ре",
+            "uk": "фі́рмі ін фо́ндо пер фаво́ре"
+          }
+        },
+        {
+          "phraseId": "it:16:22",
+          "say": {
+            "ru": "мо́стри иль билье́тто пер фаво́ре",
+            "uk": "мо́стрі іль білье́тто пер фаво́ре"
+          }
+        },
+        {
+          "phraseId": "it:16:47",
+          "say": {
+            "ru": "абба́сси иль во́луме пер фаво́ре",
+            "uk": "абба́ссі іль во́луме пер фаво́ре"
+          }
+        },
+        {
+          "phraseId": "it:16:28",
+          "say": {
+            "ru": "ме́тта иль па́кко су́лла била́нча",
+            "uk": "ме́тта іль па́кко су́лла біла́нча"
+          }
+        },
+        {
+          "phraseId": "it:16:29",
+          "say": {
+            "ru": "контро́лли л’импо́рто",
+            "uk": "контро́ллі л’імпо́рто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Распишитесь внизу, пожалуйста»",
+            "uk": "Виберіть, як сказати: «Розпишіться внизу, будь ласка»",
+            "en": "Choose how to say: “Sign at the bottom, please”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:16:21",
+          "options": [
+            "it:16:21",
+            "it:16:22",
+            "it:16:47"
+          ],
+          "answerId": "it:16:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Покажите билет, пожалуйста»",
+            "uk": "Виберіть, як сказати: «Покажіть квиток, будь ласка»",
+            "en": "Choose how to say: “Show your ticket, please”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:16:22",
+          "options": [
+            "it:16:22",
+            "it:16:21",
+            "it:16:29"
+          ],
+          "answerId": "it:16:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Проверьте сумму»",
+            "uk": "Виберіть, як сказати: «Перевірте суму»",
+            "en": "Choose how to say: “Check the amount”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:16:29",
+          "options": [
+            "it:16:29",
+            "it:16:28",
+            "it:16:22"
+          ],
+          "answerId": "it:16:29"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не делайте",
+        "uk": "Не робіть",
+        "en": "Do not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не делай».\nNon correre! — «Не беги!»\nЧитается: нон ко́ррере.\nNon dimenticare l’ombrello! — «Не забудь зонт!»\nЧитается: нон диментика́ре л’омбре́лло.\nNon perda la ricevuta! — «Не потеряйте чек!»\nЧитается: нон пе́рда ла ричеву́та.\nСлово non значит «не».\nСлово correre значит «бежать», слово dimenticare — «забыть».\nПосле non они стоят без изменений: так говорят близкому человеку.\nСлово l’ombrello значит «зонт», слово ricevuta — «чек».\nСлово perda значит «потеряйте»: non perda — «не потеряйте».\nТак говорят человеку, которому говорят «вы».\nЕщё: non aspetti — «не ждите», non lasciare — «не оставляй».",
+        "uk": "Дивіться, як сказати «не роби».\nNon correre! — «Не біжи!»\nЧитається: нон ко́ррере.\nNon dimenticare l’ombrello! — «Не забудь парасольку!»\nЧитається: нон діментіка́ре л’омбре́лло.\nNon perda la ricevuta! — «Не втратьте чек!»\nЧитається: нон пе́рда ла річеву́та.\nСлово non означає «не».\nСлово correre означає «бігти», слово dimenticare — «забути».\nПісля non вони стоять без змін: так кажуть близькій людині.\nСлово l’ombrello означає «парасолька», слово ricevuta — «чек».\nСлово perda означає «втратьте»: non perda — «не втратьте».\nТак кажуть людині, якій кажуть «ви».\nЩе: non aspetti — «не чекайте», non lasciare — «не залишай».",
+        "en": "Look at how to say “don’t”.\nNon correre! — “Don’t run!”\nNon dimenticare l’ombrello! — “Don’t forget the umbrella!”\nNon perda la ricevuta! — “Don’t lose the receipt!”\nThe word non means “not”.\nThe word correre means “to run”, the word dimenticare — “to forget”.\nAfter non they stay as they are: we say this to a close person.\nThe word l’ombrello means “umbrella”, the word ricevuta — “receipt”.\nThe word perda means “lose”: non perda — “don’t lose”.\nWe say this to a person we speak to formally.\nMore: non aspetti — “don’t wait”, non lasciare — “don’t leave”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:16:31",
+          "say": {
+            "ru": "нон ко́ррере",
+            "uk": "нон ко́ррере"
+          }
+        },
+        {
+          "phraseId": "it:16:33",
+          "say": {
+            "ru": "нон диментика́ре л’омбре́лло",
+            "uk": "нон діментіка́ре л’омбре́лло"
+          }
+        },
+        {
+          "phraseId": "it:16:35",
+          "say": {
+            "ru": "нон пе́рда ла ричеву́та",
+            "uk": "нон пе́рда ла річеву́та"
+          }
+        },
+        {
+          "phraseId": "it:16:39",
+          "say": {
+            "ru": "нон аспе́тти вичи́но алл’уши́та",
+            "uk": "нон аспе́тті вічі́но алл’уші́та"
+          }
+        },
+        {
+          "phraseId": "it:16:36",
+          "say": {
+            "ru": "нон лаша́ре иль ла́тте фуо́ри",
+            "uk": "нон лаша́ре іль ла́тте фуо́рі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не беги»",
+            "uk": "Виберіть, як сказати: «Не біжи»",
+            "en": "Choose how to say: “Don’t run”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:16:31",
+          "options": [
+            "it:16:31",
+            "it:16:33",
+            "it:16:35"
+          ],
+          "answerId": "it:16:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не забудь зонт»",
+            "uk": "Виберіть, як сказати: «Не забудь парасольку»",
+            "en": "Choose how to say: “Don’t forget the umbrella”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:16:33",
+          "options": [
+            "it:16:33",
+            "it:16:31",
+            "it:16:35"
+          ],
+          "answerId": "it:16:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не потеряйте чек»",
+            "uk": "Виберіть, як сказати: «Не втратьте чек»",
+            "en": "Choose how to say: “Don’t lose the receipt”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:16:35",
+          "options": [
+            "it:16:35",
+            "it:16:39",
+            "it:16:33"
+          ],
+          "answerId": "it:16:35"
+        }
+      ]
+    }
+  ]
+}

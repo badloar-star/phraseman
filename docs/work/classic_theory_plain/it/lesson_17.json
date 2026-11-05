@@ -1,0 +1,517 @@
+{
+  "lang": "it",
+  "lesson": 17,
+  "title": {
+    "ru": "Моё утро",
+    "uk": "Мій ранок",
+    "en": "My morning"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Встаю",
+        "uk": "Встаю",
+        "en": "I get up"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я встаю».\nMi alzo. — «Я встаю.»\nЧитается: ми а́льцо.\nTi alzi. — «Ты встаешь.»\nЧитается: ти а́льци.\nSi alza. — «Она встает.»\nЧитается: си а́льца.\nСлово alzo значит «встаю», слово alzi — «ты встаёшь».\nСлово alza значит «он встаёт» или «она встаёт».\nПеред ним стоит маленькое слово: mi, ti или si.\nСлово mi — когда речь обо мне.\nСлово ti — когда речь о собеседнике, которому говорят «ты».\nСлово si — когда речь о нём или о ней.\nПо-русски этих слов нет: мы просто говорим «встаю».\nЕщё: alziamo — «встаём», alzate — «встаёте», alzano — «встают».\nПеред ними ci — о нас, vi — о вас, si — о них.",
+        "uk": "Дивіться, як сказати «Я встаю».\nMi alzo. — «Я встаю.»\nЧитається: мі а́льцо.\nTi alzi. — «Ти встаєш.»\nЧитається: ті а́льці.\nSi alza. — «Вона встає.»\nЧитається: сі а́льца.\nСлово alzo означає «встаю», слово alzi — «ти встаєш».\nСлово alza означає «він встає» або «вона встає».\nПеред ним стоїть маленьке слово: mi, ti або si.\nСлово mi — коли мова про мене.\nСлово ti — коли мова про співрозмовника, якому кажуть «ти».\nСлово si — коли мова про нього або про неї.\nУкраїнською цих слів нема: ми просто кажемо «встаю».\nЩе: alziamo — «встаємо», alzate — «встаєте», alzano — «встають».\nПеред ними ci — про нас, vi — про вас, si — про них.",
+        "en": "Look at how to say “I get up”.\nMi alzo. — “I get up.”\nTi alzi. — “You get up.”\nSi alza. — “She gets up.”\nThe word alzo means “I get up”, the word alzi — “you get up”.\nThe word alza means “he gets up” or “she gets up”.\nA small word stands before it: mi, ti or si.\nThe word mi is for “I”.\nThe word ti is for “you”.\nThe word si is for “he” or “she”.\nThere is no such small word in English.\nMore: alziamo — “we get up”, alzate — “you all get up”.\nAlso alzano — “they get up”.\nBefore them: ci for “we”, vi for “you all”, si for “they”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:17:01",
+          "say": {
+            "ru": "ми а́льцо",
+            "uk": "мі а́льцо"
+          }
+        },
+        {
+          "phraseId": "it:17:02",
+          "say": {
+            "ru": "ти а́льци",
+            "uk": "ті а́льці"
+          }
+        },
+        {
+          "phraseId": "it:17:03",
+          "say": {
+            "ru": "си а́льца",
+            "uk": "сі а́льца"
+          }
+        },
+        {
+          "phraseId": "it:17:04",
+          "say": {
+            "ru": "чи альцья́мо",
+            "uk": "чі альцья́мо"
+          }
+        },
+        {
+          "phraseId": "it:17:05",
+          "say": {
+            "ru": "ви альца́те",
+            "uk": "ві альца́те"
+          }
+        },
+        {
+          "phraseId": "it:17:06",
+          "say": {
+            "ru": "си а́льцано",
+            "uk": "сі а́льцано"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я встаю»",
+            "uk": "Виберіть, як сказати: «Я встаю»",
+            "en": "Choose how to say: “I get up”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:17:01",
+          "options": [
+            "it:17:01",
+            "it:17:02",
+            "it:17:03"
+          ],
+          "answerId": "it:17:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты встаешь»",
+            "uk": "Виберіть, як сказати: «Ти встаєш»",
+            "en": "Choose how to say: “You get up”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:17:02",
+          "options": [
+            "it:17:02",
+            "it:17:01",
+            "it:17:03"
+          ],
+          "answerId": "it:17:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она встает»",
+            "uk": "Виберіть, як сказати: «Вона встає»",
+            "en": "Choose how to say: “She gets up”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:17:03",
+          "options": [
+            "it:17:03",
+            "it:17:01",
+            "it:17:04"
+          ],
+          "answerId": "it:17:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Просыпаюсь и готовлюсь",
+        "uk": "Прокидаюся і готуюся",
+        "en": "I wake up and get ready"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я просыпаюсь рано».\nMi sveglio presto. — «Я просыпаюсь рано.»\nЧитается: ми зве́льо пре́сто.\nTi svegli alle sette. — «Ты просыпаешься в семь часов.»\nЧитается: ти зве́льи а́лле се́тте.\nCi svegliamo con la radio. — «Мы просыпаемся под радио.»\nЧитается: чи звелья́мо кон ла ра́дьо.\nСлово sveglio значит «просыпаюсь», слово svegli — «ты просыпаешься».\nСлово svegliamo значит «просыпаемся».\nСлово presto значит «рано».\nСлова alle sette значат «в семь часов».\nСлова con la radio значат «под радио».\nСлова mi и ci те же: mi — обо мне, ci — о нас.\nЕщё: preparo — «готовлюсь», prepari — «ты готовишься», prepara — «он готовится».",
+        "uk": "Дивіться, як сказати «Я прокидаюся рано».\nMi sveglio presto. — «Я прокидаюся рано.»\nЧитається: мі зве́льо пре́сто.\nTi svegli alle sette. — «Ти прокидаєшся о сьомій годині.»\nЧитається: ті зве́льі а́лле се́тте.\nCi svegliamo con la radio. — «Ми прокидаємося від радіо.»\nЧитається: чі звелья́мо кон ла ра́дьо.\nСлово sveglio означає «прокидаюся», слово svegli — «ти прокидаєшся».\nСлово svegliamo означає «прокидаємося».\nСлово presto означає «рано».\nСлова alle sette означають «о сьомій годині».\nСлова con la radio означають «від радіо».\nСлова mi та ci ті самі: mi — про мене, ci — про нас.\nЩе: preparo — «готуюся», prepari — «ти готуєшся», prepara — «він готується».",
+        "en": "Look at how to say “I wake up early”.\nMi sveglio presto. — “I wake up early.”\nTi svegli alle sette. — “You wake up at seven.”\nCi svegliamo con la radio. — “We wake up to the radio.”\nThe word sveglio means “I wake up”, the word svegli — “you wake up”.\nThe word svegliamo means “we wake up”.\nThe word presto means “early”.\nThe words alle sette mean “at seven”.\nThe words con la radio mean “to the radio”.\nThe words mi and ci are the same: mi for “I”, ci for “we”.\nMore: preparo — “I get ready”, prepari — “you get ready”, prepara — “he gets ready”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:17:11",
+          "say": {
+            "ru": "ми зве́льо пре́сто",
+            "uk": "мі зве́льо пре́сто"
+          }
+        },
+        {
+          "phraseId": "it:17:12",
+          "say": {
+            "ru": "ти зве́льи а́лле се́тте",
+            "uk": "ті зве́льі а́лле се́тте"
+          }
+        },
+        {
+          "phraseId": "it:17:14",
+          "say": {
+            "ru": "чи звелья́мо кон ла ра́дьо",
+            "uk": "чі звелья́мо кон ла ра́дьо"
+          }
+        },
+        {
+          "phraseId": "it:17:07",
+          "say": {
+            "ru": "ми препа́ро",
+            "uk": "мі препа́ро"
+          }
+        },
+        {
+          "phraseId": "it:17:08",
+          "say": {
+            "ru": "ти препа́ри",
+            "uk": "ті препа́рі"
+          }
+        },
+        {
+          "phraseId": "it:17:09",
+          "say": {
+            "ru": "па́оло си препа́ра",
+            "uk": "па́оло сі препа́ра"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я просыпаюсь рано»",
+            "uk": "Виберіть, як сказати: «Я прокидаюся рано»",
+            "en": "Choose how to say: “I wake up early”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:17:11",
+          "options": [
+            "it:17:11",
+            "it:17:12",
+            "it:17:14"
+          ],
+          "answerId": "it:17:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты просыпаешься в семь часов»",
+            "uk": "Виберіть, як сказати: «Ти прокидаєшся о сьомій годині»",
+            "en": "Choose how to say: “You wake up at seven”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:17:12",
+          "options": [
+            "it:17:12",
+            "it:17:11",
+            "it:17:08"
+          ],
+          "answerId": "it:17:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло готовится»",
+            "uk": "Виберіть, як сказати: «Паоло готується»",
+            "en": "Choose how to say: “Paolo is getting ready”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:17:09",
+          "options": [
+            "it:17:09",
+            "it:17:07",
+            "it:17:14"
+          ],
+          "answerId": "it:17:09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Душ и одежда",
+        "uk": "Душ і одяг",
+        "en": "Shower and clothes"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я принимаю душ».\nMi faccio la doccia al mattino. — «Я принимаю душ утром.»\nЧитается: ми фа́ччо ла до́чча аль матти́но.\nMi vesto in camera mia. — «Я одеваюсь в своей комнате.»\nЧитается: ми ве́сто ин ка́мера ми́а.\nCi corichiamo presto. — «Мы ложимся спать рано.»\nЧитается: чи корикья́мо пре́сто.\nСлово faccio значит «я делаю», слово doccia — «душ».\nСлова mi faccio la doccia значат «я принимаю душ».\nСлова al mattino значат «утром».\nСлово vesto значит «одеваюсь».\nСлово camera значит «комната», слово mia — «моя».\nСлово corichiamo значит «ложимся спать».\nСлова mi, ci и la такие же, как раньше.",
+        "uk": "Дивіться, як сказати «Я приймаю душ».\nMi faccio la doccia al mattino. — «Я приймаю душ вранці.»\nЧитається: мі фа́ччо ла до́чча аль матті́но.\nMi vesto in camera mia. — «Я одягаюся у своїй кімнаті.»\nЧитається: мі ве́сто ін ка́мера мі́а.\nCi corichiamo presto. — «Ми лягаємо спати рано.»\nЧитається: чі корікья́мо пре́сто.\nСлово faccio означає «я роблю», слово doccia — «душ».\nСлова mi faccio la doccia означають «я приймаю душ».\nСлова al mattino означають «вранці».\nСлово vesto означає «одягаюся».\nСлово camera означає «кімната», слово mia — «моя».\nСлово corichiamo означає «лягаємо спати».\nСлова mi, ci та la такі самі, як раніше.",
+        "en": "Look at how to say “I take a shower”.\nMi faccio la doccia al mattino. — “I take a shower in the morning.”\nMi vesto in camera mia. — “I get dressed in my room.”\nCi corichiamo presto. — “We go to bed early.”\nThe word faccio means “I do”, the word doccia — “shower”.\nThe words mi faccio la doccia mean “I take a shower”.\nThe words al mattino mean “in the morning”.\nThe word vesto means “I get dressed”.\nThe word camera means “room”, the word mia — “my”.\nThe word corichiamo means “we go to bed”.\nThe words mi, ci and la are the same as before."
+      },
+      "examples": [
+        {
+          "phraseId": "it:17:17",
+          "say": {
+            "ru": "ми фа́ччо ла до́чча аль матти́но",
+            "uk": "мі фа́ччо ла до́чча аль матті́но"
+          }
+        },
+        {
+          "phraseId": "it:17:21",
+          "say": {
+            "ru": "ми ве́сто ин ка́мера ми́а",
+            "uk": "мі ве́сто ін ка́мера мі́а"
+          }
+        },
+        {
+          "phraseId": "it:17:20",
+          "say": {
+            "ru": "чи корикья́мо пре́сто",
+            "uk": "чі корікья́мо пре́сто"
+          }
+        },
+        {
+          "phraseId": "it:17:22",
+          "say": {
+            "ru": "си ве́сте да со́ла",
+            "uk": "сі ве́сте да со́ла"
+          }
+        },
+        {
+          "phraseId": "it:17:18",
+          "say": {
+            "ru": "си фа ла до́чча до́по ло спорт",
+            "uk": "сі фа ла до́чча до́по ло спорт"
+          }
+        },
+        {
+          "phraseId": "it:17:23",
+          "say": {
+            "ru": "ти ве́сти велочеме́нте",
+            "uk": "ті ве́сті велочеме́нте"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я принимаю душ утром»",
+            "uk": "Виберіть, як сказати: «Я приймаю душ вранці»",
+            "en": "Choose how to say: “I take a shower in the morning”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:17:17",
+          "options": [
+            "it:17:17",
+            "it:17:21",
+            "it:17:20"
+          ],
+          "answerId": "it:17:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я одеваюсь в своей комнате»",
+            "uk": "Виберіть, як сказати: «Я одягаюся у своїй кімнаті»",
+            "en": "Choose how to say: “I get dressed in my room”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:17:21",
+          "options": [
+            "it:17:21",
+            "it:17:17",
+            "it:17:23"
+          ],
+          "answerId": "it:17:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она одевается сама»",
+            "uk": "Виберіть, як сказати: «Вона одягається сама»",
+            "en": "Choose how to say: “She gets dressed by herself”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:17:22",
+          "options": [
+            "it:17:22",
+            "it:17:18",
+            "it:17:21"
+          ],
+          "answerId": "it:17:22"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Умыться и побриться",
+        "uk": "Вмитися і поголитися",
+        "en": "Washing and shaving"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я чищу зубы».\nMi lavo i denti. — «Я чищу зубы.»\nЧитается: ми ла́во и де́нти.\nLei si lava le mani. — «Она моет руки.»\nЧитается: ле́й си ла́ва ле ма́ни.\nPaolo si rade davanti allo specchio. — «Паоло бреется перед зеркалом.»\nЧитается: па́оло си ра́де дава́нти а́лло спе́ккьо.\nСлово lavo значит «мою», слово lava — «моет».\nСлово denti значит «зубы», слово mani — «руки».\nПо-итальянски зубы «моют»: mi lavo i denti.\nСлово rade значит «бреется».\nСлово specchio значит «зеркало».\nСлова davanti allo specchio значат «перед зеркалом».\nЕщё: capelli — «волосы», faccia — «лицо».",
+        "uk": "Дивіться, як сказати «Я чищу зуби».\nMi lavo i denti. — «Я чищу зуби.»\nЧитається: мі ла́во і де́нті.\nLei si lava le mani. — «Вона миє руки.»\nЧитається: ле́й сі ла́ва ле ма́ні.\nPaolo si rade davanti allo specchio. — «Паоло голиться перед дзеркалом.»\nЧитається: па́оло сі ра́де дава́нті а́лло спе́ккьо.\nСлово lavo означає «мию», слово lava — «миє».\nСлово denti означає «зуби», слово mani — «руки».\nІталійською зуби «миють»: mi lavo i denti.\nСлово rade означає «голиться».\nСлово specchio означає «дзеркало».\nСлова davanti allo specchio означають «перед дзеркалом».\nЩе: capelli — «волосся», faccia — «обличчя».",
+        "en": "Look at how to say “I brush my teeth”.\nMi lavo i denti. — “I brush my teeth.”\nLei si lava le mani. — “She washes her hands.”\nPaolo si rade davanti allo specchio. — “Paolo shaves in front of the mirror.”\nThe word lavo means “I wash”, the word lava — “she washes”.\nThe word denti means “teeth”, the word mani — “hands”.\nIn Italian we “wash” teeth: mi lavo i denti.\nThe word rade means “shaves”.\nThe word specchio means “mirror”.\nThe words davanti allo specchio mean “in front of the mirror”.\nMore: capelli — “hair”, faccia — “face”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:17:26",
+          "say": {
+            "ru": "ми ла́во и де́нти",
+            "uk": "мі ла́во і де́нті"
+          }
+        },
+        {
+          "phraseId": "it:17:27",
+          "say": {
+            "ru": "ле́й си ла́ва ле ма́ни",
+            "uk": "ле́й сі ла́ва ле ма́ні"
+          }
+        },
+        {
+          "phraseId": "it:17:25",
+          "say": {
+            "ru": "па́оло си ра́де дава́нти а́лло спе́ккьо",
+            "uk": "па́оло сі ра́де дава́нті а́лло спе́ккьо"
+          }
+        },
+        {
+          "phraseId": "it:17:28",
+          "say": {
+            "ru": "и бамби́ни си ла́вано ла фа́чча",
+            "uk": "і бамбі́ні сі ла́вано ла фа́чча"
+          }
+        },
+        {
+          "phraseId": "it:17:29",
+          "say": {
+            "ru": "чи ашугья́мо и капе́лли",
+            "uk": "чі ашугья́мо і капе́ллі"
+          }
+        },
+        {
+          "phraseId": "it:17:30",
+          "say": {
+            "ru": "ти гуа́рди а́лло спе́ккьо",
+            "uk": "ті гуа́рді а́лло спе́ккьо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я чищу зубы»",
+            "uk": "Виберіть, як сказати: «Я чищу зуби»",
+            "en": "Choose how to say: “I brush my teeth”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:17:26",
+          "options": [
+            "it:17:26",
+            "it:17:27",
+            "it:17:25"
+          ],
+          "answerId": "it:17:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она моет руки»",
+            "uk": "Виберіть, як сказати: «Вона миє руки»",
+            "en": "Choose how to say: “She washes her hands”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:17:27",
+          "options": [
+            "it:17:27",
+            "it:17:26",
+            "it:17:28"
+          ],
+          "answerId": "it:17:27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло бреется перед зеркалом»",
+            "uk": "Виберіть, як сказати: «Паоло голиться перед дзеркалом»",
+            "en": "Choose how to say: “Paolo shaves in front of the mirror”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:17:25",
+          "options": [
+            "it:17:25",
+            "it:17:30",
+            "it:17:27"
+          ],
+          "answerId": "it:17:25"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не делаю",
+        "uk": "Не роблю",
+        "en": "I do not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не встаю».\nNon mi alzo prima delle sei. — «Я не встаю раньше шести часов.»\nЧитается: нон ми а́льцо при́ма де́лле се́й.\nLei non si corica tardi. — «Она не ложится спать поздно.»\nЧитается: ле́й нон си ко́рика та́рди.\nNon si rade la domenica. — «Он не бреется по воскресеньям.»\nЧитается: нон си ра́де ла доме́ника.\nСлово non значит «не».\nОно стоит перед mi, ti, si, ci.\nСлова prima delle sei значат «раньше шести».\nСлово corica значит «ложится спать», слово tardi — «поздно».\nСлово domenica значит «воскресенье», слова la domenica — «по воскресеньям».\nЕщё: affrettiamo — «спешим».",
+        "uk": "Дивіться, як сказати «Я не встаю».\nNon mi alzo prima delle sei. — «Я не встаю раніше шостої години.»\nЧитається: нон мі а́льцо прі́ма де́лле се́й.\nLei non si corica tardi. — «Вона не лягає спати пізно.»\nЧитається: ле́й нон сі ко́ріка та́рді.\nNon si rade la domenica. — «Він не голиться по неділях.»\nЧитається: нон сі ра́де ла доме́ніка.\nСлово non означає «не».\nВоно стоїть перед mi, ti, si, ci.\nСлова prima delle sei означають «раніше шостої».\nСлово corica означає «лягає спати», слово tardi — «пізно».\nСлово domenica означає «неділя», слова la domenica — «по неділях».\nЩе: affrettiamo — «поспішаємо».",
+        "en": "Look at how to say “I don’t get up”.\nNon mi alzo prima delle sei. — “I don’t get up before six.”\nLei non si corica tardi. — “She doesn’t go to bed late.”\nNon si rade la domenica. — “He doesn’t shave on Sundays.”\nThe word non means “not”.\nIt stands before mi, ti, si, ci.\nThe words prima delle sei mean “before six”.\nThe word corica means “goes to bed”, the word tardi — “late”.\nThe word domenica means “Sunday”, the words la domenica — “on Sundays”.\nMore: affrettiamo — “we hurry”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:17:31",
+          "say": {
+            "ru": "нон ми а́льцо при́ма де́лле се́й",
+            "uk": "нон мі а́льцо прі́ма де́лле се́й"
+          }
+        },
+        {
+          "phraseId": "it:17:32",
+          "say": {
+            "ru": "ле́й нон си ко́рика та́рди",
+            "uk": "ле́й нон сі ко́ріка та́рді"
+          }
+        },
+        {
+          "phraseId": "it:17:35",
+          "say": {
+            "ru": "нон си ра́де ла доме́ника",
+            "uk": "нон сі ра́де ла доме́ніка"
+          }
+        },
+        {
+          "phraseId": "it:17:33",
+          "say": {
+            "ru": "нон чи аффреттья́мо",
+            "uk": "нон чі аффреттья́мо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не встаю раньше шести часов»",
+            "uk": "Виберіть, як сказати: «Я не встаю раніше шостої години»",
+            "en": "Choose how to say: “I don’t get up before six”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:17:31",
+          "options": [
+            "it:17:31",
+            "it:17:01",
+            "it:17:32"
+          ],
+          "answerId": "it:17:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она не ложится спать поздно»",
+            "uk": "Виберіть, як сказати: «Вона не лягає спати пізно»",
+            "en": "Choose how to say: “She doesn’t go to bed late”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:17:32",
+          "options": [
+            "it:17:32",
+            "it:17:31",
+            "it:17:33"
+          ],
+          "answerId": "it:17:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он не бреется по воскресеньям»",
+            "uk": "Виберіть, як сказати: «Він не голиться по неділях»",
+            "en": "Choose how to say: “He doesn’t shave on Sundays”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:17:35",
+          "options": [
+            "it:17:35",
+            "it:17:32",
+            "it:17:25"
+          ],
+          "answerId": "it:17:35"
+        }
+      ]
+    }
+  ]
+}

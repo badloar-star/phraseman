@@ -1,0 +1,482 @@
+{
+  "lang": "de",
+  "lesson": 19,
+  "title": {
+    "ru": "Умываюсь, радуюсь, встречаюсь",
+    "uk": "Вмиваюся, радію, зустрічаюся",
+    "en": "I wash, I look forward, I meet"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я умываюсь",
+        "uk": "Я вмиваюся",
+        "en": "I wash up"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я умываюсь».\nIch wasche mich. — «Я умываюсь.»\nЧитается: их ва́ше мих\nСлово Ich значит «я». Слово wasche — «умываю». Слово mich — «себя».\nПо-русски «себя» прячется в конце: «умываюсь».\nПо-немецки оно стоит отдельно: mich.\nDu wäschst dich. — «Ты умываешься.»\nЧитается: ду вэ́шст дих\nСлово Du значит «ты». Слово wäschst — «умываешь». Слово dich — «себя».\nAnna wäscht sich. — «Анна умывается.»\nЧитается: А́нна вэшт зих\nСлово wäscht значит «умывает». Слово sich — «себя».\nWir waschen uns. — «Мы умываемся.»\nЧитается: вир ва́шен унс\nСлово Wir значит «мы». Слово waschen — «умываем, умывают».\nСлово uns значит «себя, друг друга».\nIhr wascht euch. — «Вы умываетесь.»\nЧитается: ир вашт ойх\nСлово Ihr значит «вы». Слово wascht — «умываете». Слово euch — «себя».\nСлово меняется, смотря о ком речь.\nЯ — mich, «ты» — dich, она — sich, мы — uns, вы — euch.",
+        "uk": "Дивіться, як сказати «Я вмиваюся».\nIch wasche mich. — «Я вмиваюся.»\nЧитається: іх ва́ше міх\nСлово Ich означає «я». Слово wasche — «вмиваю». Слово mich — «себе».\nПо-українськи «себе» ховається в кінці: «вмиваюся».\nПо-німецьки воно стоїть окремо: mich.\nDu wäschst dich. — «Ти вмиваєшся.»\nЧитається: ду ве́шст діх\nСлово Du означає «ти». Слово wäschst — «вмиваєш». Слово dich — «себе».\nAnna wäscht sich. — «Анна вмивається.»\nЧитається: А́нна вешт зіх\nСлово wäscht означає «вмиває». Слово sich — «себе».\nWir waschen uns. — «Ми вмиваємося.»\nЧитається: вір ва́шен унс\nСлово Wir означає «ми». Слово waschen — «вмиваємо, вмивають».\nСлово uns означає «себе, одне одного».\nIhr wascht euch. — «Ви вмиваєтеся.»\nЧитається: ір вашт ойх\nСлово Ihr означає «ви». Слово wascht — «вмиваєте». Слово euch — «себе».\nСлово змінюється залежно від того, про кого мова.\nЯ — mich, «ти» — dich, вона — sich, ми — uns, ви — euch.",
+        "en": "Look at how to say “I wash up”.\nIch wasche mich. — “I wash up.”\nSounds like: eekh vAshe meekh\nThe word Ich means “I”. The word wasche — “wash”.\nThe word mich means “myself”.\nIn English “myself” can hide: “I wash up”.\nIn German it stands apart: mich.\nDu wäschst dich. — “You wash up.”\nSounds like: doo vEshst deekh\nThe word Du means “you”. The word wäschst — “wash”.\nThe word dich means “yourself”.\nAnna wäscht sich. — “Anna washes up.”\nSounds like: Anna vesht zeekh\nThe word wäscht means “washes”. The word sich — “himself, herself”.\nWir waschen uns. — “We wash up.”\nSounds like: veer vAshen oons\nThe word Wir means “we”. The word waschen — “wash”.\nThe word uns means “ourselves”.\nIhr wascht euch. — “You all wash up.”\nSounds like: eer vasht oykh\nThe word Ihr means “you all”. The word wascht — “wash”.\nThe word euch means “yourselves”.\nThe word changes with who we talk about.\nI — mich, “you” — dich, she — sich, we — uns, you all — euch."
+      },
+      "examples": [
+        {
+          "phraseId": "de:19:01",
+          "say": {
+            "ru": "их ва́ше мих",
+            "uk": "іх ва́ше міх"
+          }
+        },
+        {
+          "phraseId": "de:19:02",
+          "say": {
+            "ru": "ду вэ́шст дих",
+            "uk": "ду ве́шст діх"
+          }
+        },
+        {
+          "phraseId": "de:19:03",
+          "say": {
+            "ru": "А́нна вэшт зих",
+            "uk": "А́нна вешт зіх"
+          }
+        },
+        {
+          "phraseId": "de:19:04",
+          "say": {
+            "ru": "вир ва́шен унс",
+            "uk": "вір ва́шен унс"
+          }
+        },
+        {
+          "phraseId": "de:19:05",
+          "say": {
+            "ru": "ир вашт ойх",
+            "uk": "ір вашт ойх"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я умываюсь»",
+            "uk": "Виберіть, як сказати: «Я вмиваюся»",
+            "en": "Choose how to say: “I wash up”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:19:01",
+          "options": [
+            "de:19:01",
+            "de:19:02",
+            "de:19:03"
+          ],
+          "answerId": "de:19:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы умываемся»",
+            "uk": "Виберіть, як сказати: «Ми вмиваємося»",
+            "en": "Choose how to say: “We wash up”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:19:04",
+          "options": [
+            "de:19:04",
+            "de:19:05",
+            "de:19:01"
+          ],
+          "answerId": "de:19:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы умываетесь»",
+            "uk": "Виберіть, як сказати: «Ви вмиваєтеся»",
+            "en": "Choose how to say: “You all wash up”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:19:05",
+          "options": [
+            "de:19:05",
+            "de:19:03",
+            "de:19:02"
+          ],
+          "answerId": "de:19:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Одеваюсь, раздеваюсь",
+        "uk": "Одягаюся, роздягаюся",
+        "en": "Getting dressed and undressed"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я одеваюсь».\nIch ziehe mich an. — «Я одеваюсь.»\nЧитается: их ци́е мих ан\nСлово ziehe значит «одеваю».\nСлово an по-русски не говорят, но по-немецки оно нужно.\nСлова ziehe и an нужны оба: ziehe в середине, an в конце.\nВместе они значат «одеваюсь».\nTom zieht sich aus. — «Том раздевается.»\nЧитается: Том цит зих аус\nСлово zieht значит «раздевает».\nСлово aus по-русски не говорят, но по-немецки оно нужно.\nВместе zieht ... aus значит «раздевается».\nDie Kinder ziehen sich an. — «Дети одеваются.»\nЧитается: ди ки́ндер ци́ен зих ан\nСлово Die по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Kinder значит «дети». Слово ziehen — «одеваем, одевают».\nWir ziehen uns warm an. — «Мы тепло одеваемся.»\nЧитается: вир ци́ен унс варм ан\nСлово warm значит «тепло».",
+        "uk": "Дивіться, як сказати «Я одягаюсь».\nIch ziehe mich an. — «Я одягаюсь.»\nЧитається: іх ці́е міх ан\nСлово ziehe означає «одягаю».\nСлово an по-українськи не кажуть, але по-німецьки воно потрібне.\nСлова ziehe і an потрібні обидва: ziehe всередині, an в кінці.\nРазом вони означають «одягаюся».\nTom zieht sich aus. — «Том роздягається.»\nЧитається: Том ціт зіх аус\nСлово zieht означає «роздягає».\nСлово aus по-українськи не кажуть, але по-німецьки воно потрібне.\nРазом zieht ... aus означає «роздягається».\nDie Kinder ziehen sich an. — «Діти одягаються.»\nЧитається: ді кі́ндер ці́ен зіх ан\nСлово Die по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Kinder означає «діти». Слово ziehen — «одягаємо, одягають».\nWir ziehen uns warm an. — «Ми тепло одягаємось.»\nЧитається: вір ці́ен унс варм ан\nСлово warm означає «тепло».",
+        "en": "Look at how to say “I get dressed”.\nIch ziehe mich an. — “I get dressed.”\nSounds like: eekh tsEEe meekh an\nThe word ziehe means “put on”.\nIn English there is no such word here, but in German the word an is needed.\nBoth ziehe and an are needed: ziehe in the middle, an at the end.\nTogether they mean “I get dressed”.\nTom zieht sich aus. — “Tom undresses.”\nSounds like: Tom tseet zeekh aoos\nThe word zieht means “undresses”.\nIn English there is no such word here, but in German the word aus is needed.\nTogether zieht ... aus means “undresses”.\nDie Kinder ziehen sich an. — “The children get dressed.”\nSounds like: dee kEEnder tsEEen zeekh an\nThe word Die means “the”. The word Kinder — “children”.\nThe word ziehen means “put on”.\nWir ziehen uns warm an. — “We dress warmly.”\nSounds like: veer tsEEen oons varm an\nThe word warm means “warm”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:19:06",
+          "say": {
+            "ru": "их ци́е мих ан",
+            "uk": "іх ці́е міх ан"
+          }
+        },
+        {
+          "phraseId": "de:19:08",
+          "say": {
+            "ru": "Том цит зих аус",
+            "uk": "Том ціт зіх аус"
+          }
+        },
+        {
+          "phraseId": "de:19:09",
+          "say": {
+            "ru": "ди ки́ндер ци́ен зих ан",
+            "uk": "ді кі́ндер ці́ен зіх ан"
+          }
+        },
+        {
+          "phraseId": "de:19:10",
+          "say": {
+            "ru": "вир ци́ен унс варм ан",
+            "uk": "вір ці́ен унс варм ан"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я одеваюсь»",
+            "uk": "Виберіть, як сказати: «Я одягаюсь»",
+            "en": "Choose how to say: “I get dressed”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:19:06",
+          "options": [
+            "de:19:06",
+            "de:19:08",
+            "de:19:09"
+          ],
+          "answerId": "de:19:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том раздевается»",
+            "uk": "Виберіть, як сказати: «Том роздягається»",
+            "en": "Choose how to say: “Tom undresses”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:19:08",
+          "options": [
+            "de:19:08",
+            "de:19:06",
+            "de:19:10"
+          ],
+          "answerId": "de:19:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы тепло одеваемся»",
+            "uk": "Виберіть, як сказати: «Ми тепло одягаємось»",
+            "en": "Choose how to say: “We dress warmly”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:19:10",
+          "options": [
+            "de:19:10",
+            "de:19:09",
+            "de:19:06"
+          ],
+          "answerId": "de:19:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Сажусь, ложусь, отдыхаю",
+        "uk": "Сідаю, лягаю, відпочиваю",
+        "en": "Sitting, lying, resting"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я сажусь».\nIch setze mich hin. — «Я сажусь.»\nЧитается: их зе́це мих хин\nСлово setze значит «сажаю».\nСлово hin по-русски не говорят, но по-немецки оно нужно.\nВместе setze ... hin значит «сажусь».\nAnna setzt sich neben Tom. — «Анна садится рядом с Томом.»\nЧитается: А́нна зецт зих не́бен Том\nСлово setzt значит «сажает». Слово neben — «рядом с».\nWir setzen uns ins Café. — «Мы садимся в кафе.»\nЧитается: вир зе́цен унс инс кафе́\nСлово setzen значит «сажаем». Слово ins — «в». Слово Café — «кафе».\nTom legt sich aufs Sofa. — «Том ложится на диван.»\nЧитается: Том легт зих ауфс зо́фа\nСлово legt значит «кладёт». Слово aufs — «на». Слово Sofa — «диван».\nErholst du dich gut? — «Ты хорошо отдыхаешь?»\nЧитается: эрхо́льст ду дих гут\nСлово Erholst значит «отдыхаешь». Слово gut — «хорошо».\nВ вопросе слово erholst стоит первым.",
+        "uk": "Дивіться, як сказати «Я сідаю».\nIch setze mich hin. — «Я сідаю.»\nЧитається: іх зе́це міх хін\nСлово setze означає «саджаю».\nСлово hin по-українськи не кажуть, але по-німецьки воно потрібне.\nРазом setze ... hin означає «сідаю».\nAnna setzt sich neben Tom. — «Анна сідає поряд із Томом.»\nЧитається: А́нна зецт зіх не́бен Том\nСлово setzt означає «садить». Слово neben — «поряд із».\nWir setzen uns ins Café. — «Ми сідаємо у кафе.»\nЧитається: вір зе́цен унс інс кафе́\nСлово setzen означає «садимо». Слово ins — «у». Слово Café — «кафе».\nTom legt sich aufs Sofa. — «Том лягає на диван.»\nЧитається: Том легт зіх ауфс зо́фа\nСлово legt означає «кладе». Слово aufs — «на». Слово Sofa — «диван».\nErholst du dich gut? — «Ти добре відпочиваєш?»\nЧитається: ерхо́льст ду діх гут\nСлово Erholst означає «відпочиваєш». Слово gut — «добре».\nУ питанні слово erholst стоїть першим.",
+        "en": "Look at how to say “I sit down”.\nIch setze mich hin. — “I sit down.”\nSounds like: eekh zEtse meekh kheen\nThe word setze means “sit”.\nIn English there is no such word here, but in German the word hin is needed.\nTogether setze ... hin means “I sit down”.\nAnna setzt sich neben Tom. — “Anna sits down next to Tom.”\nSounds like: Anna zetst zeekh nEben tom\nThe word setzt means “sits”. The word neben — “next to”.\nWir setzen uns ins Café. — “We sit down in the café.”\nSounds like: veer zEtsen oons eens kafE\nThe word setzen means “sit”. The word ins — “into”.\nThe word Café means “café”.\nTom legt sich aufs Sofa. — “Tom lies down on the sofa.”\nSounds like: Tom legt zeekh aoofs zOfa\nThe word legt means “lays”. The word aufs — “onto”.\nThe word Sofa means “sofa”.\nErholst du dich gut? — “Are you resting well?”\nSounds like: erkhOlst doo deekh goot\nThe word Erholst means “rest”. The word gut — “well”.\nIn a question the word erholst comes first."
+      },
+      "examples": [
+        {
+          "phraseId": "de:19:11",
+          "say": {
+            "ru": "их зе́це мих хин",
+            "uk": "іх зе́це міх хін"
+          }
+        },
+        {
+          "phraseId": "de:19:13",
+          "say": {
+            "ru": "А́нна зецт зих не́бен Том",
+            "uk": "А́нна зецт зіх не́бен Том"
+          }
+        },
+        {
+          "phraseId": "de:19:14",
+          "say": {
+            "ru": "вир зе́цен унс инс кафе́",
+            "uk": "вір зе́цен унс інс кафе́"
+          }
+        },
+        {
+          "phraseId": "de:19:17",
+          "say": {
+            "ru": "Том легт зих ауфс зо́фа",
+            "uk": "Том легт зіх ауфс зо́фа"
+          }
+        },
+        {
+          "phraseId": "de:19:19",
+          "say": {
+            "ru": "эрхо́льст ду дих гут",
+            "uk": "ерхо́льст ду діх гут"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сажусь»",
+            "uk": "Виберіть, як сказати: «Я сідаю»",
+            "en": "Choose how to say: “I sit down”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:19:11",
+          "options": [
+            "de:19:11",
+            "de:19:13",
+            "de:19:14"
+          ],
+          "answerId": "de:19:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том ложится на диван»",
+            "uk": "Виберіть, як сказати: «Том лягає на диван»",
+            "en": "Choose how to say: “Tom lies down on the sofa”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:19:17",
+          "options": [
+            "de:19:17",
+            "de:19:13",
+            "de:19:19"
+          ],
+          "answerId": "de:19:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты хорошо отдыхаешь?»",
+            "uk": "Виберіть, як сказати: «Ти добре відпочиваєш?»",
+            "en": "Choose how to say: “Are you resting well?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:19:19",
+          "options": [
+            "de:19:19",
+            "de:19:11",
+            "de:19:17"
+          ],
+          "answerId": "de:19:19"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Тороплюсь, радуюсь",
+        "uk": "Поспішаю, радію",
+        "en": "Hurrying and looking forward"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я тороплюсь».\nIch beeile mich. — «Я тороплюсь.»\nЧитается: их беа́йле мих\nСлово beeile значит «тороплю».\nВместе beeile mich значит «я тороплюсь».\nWir müssen uns beeilen. — «Нам надо поторопиться.»\nЧитается: вир мю́сен унс беа́йлен\nСлово müssen значит «должны». Слово beeilen — «торопиться».\nСлово müssen в середине, beeilen — в конце.\nAnna verspätet sich. — «Анна опаздывает.»\nЧитается: А́нна ферспэ́тет зих\nСлово verspätet значит «опаздывает».\nIch freue mich auf morgen. — «Я с нетерпением жду завтрашнего дня.»\nЧитается: их фро́йе мих ауф мо́рген\nСлово freue значит «радую». Слово auf — «на». Слово morgen — «завтра».\nВместе freue mich auf значит «жду с радостью».\nDie Kinder freuen sich auf die Ferien. — «Дети с нетерпением ждут каникул.»\nЧитается: ди ки́ндер фро́йен зих ауф ди фе́риен\nСлово freuen значит «радуют». Слово Ferien — «каникулы».",
+        "uk": "Дивіться, як сказати «Я поспішаю».\nIch beeile mich. — «Я поспішаю.»\nЧитається: іх беа́йле міх\nСлово beeile означає «поспішаю».\nРазом beeile mich означає «я поспішаю».\nWir müssen uns beeilen. — «Нам треба поквапитися.»\nЧитається: вір мю́сен унс беа́йлен\nСлово müssen означає «мусимо». Слово beeilen — «поспішати».\nСлово müssen всередині, beeilen — в кінці.\nAnna verspätet sich. — «Анна спізнюється.»\nЧитається: А́нна ферспе́тет зіх\nСлово verspätet означає «спізнюється».\nIch freue mich auf morgen. — «Я з нетерпінням чекаю завтрашнього дня.»\nЧитається: іх фро́йе міх ауф мо́рген\nСлово freue означає «радую». Слово auf — «на». Слово morgen — «завтра».\nРазом freue mich auf означає «чекаю з радістю».\nDie Kinder freuen sich auf die Ferien. — «Діти з нетерпінням чекають на канікули.»\nЧитається: ді кі́ндер фро́йен зіх ауф ді фе́ріен\nСлово freuen означає «радують». Слово Ferien — «канікули».",
+        "en": "Look at how to say “I am hurrying”.\nIch beeile mich. — “I am hurrying.”\nSounds like: eekh beAyle meekh\nThe word beeile means “hurry”.\nTogether beeile mich means “I am hurrying”.\nWir müssen uns beeilen. — “We have to hurry.”\nSounds like: veer mYOOsen oons beAylen\nThe word müssen means “must”. The word beeilen — “hurry”.\nThe word müssen is in the middle, beeilen is at the end.\nAnna verspätet sich. — “Anna is running late.”\nSounds like: Anna ferspEtet zeekh\nThe word verspätet means “is late”.\nIch freue mich auf morgen. — “I am looking forward to tomorrow.”\nSounds like: eekh frOye meekh aoof mOrgen\nThe word freue means “look forward”. The word auf — “on”.\nThe word morgen means “tomorrow”.\nTogether freue mich auf means “I look forward to”.\nDie Kinder freuen sich auf die Ferien. — “The children are looking forward to the holidays.”\nSounds like: dee kEEnder frOyen zeekh aoof dee fEreeen\nThe word freuen means “look forward”. The word Ferien — “holidays”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:19:21",
+          "say": {
+            "ru": "их беа́йле мих",
+            "uk": "іх беа́йле міх"
+          }
+        },
+        {
+          "phraseId": "de:19:23",
+          "say": {
+            "ru": "вир мю́сен унс беа́йлен",
+            "uk": "вір мю́сен унс беа́йлен"
+          }
+        },
+        {
+          "phraseId": "de:19:24",
+          "say": {
+            "ru": "А́нна ферспэ́тет зих",
+            "uk": "А́нна ферспе́тет зіх"
+          }
+        },
+        {
+          "phraseId": "de:19:26",
+          "say": {
+            "ru": "их фро́йе мих ауф мо́рген",
+            "uk": "іх фро́йе міх ауф мо́рген"
+          }
+        },
+        {
+          "phraseId": "de:19:30",
+          "say": {
+            "ru": "ди ки́ндер фро́йен зих ауф ди фе́риен",
+            "uk": "ді кі́ндер фро́йен зіх ауф ді фе́ріен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я тороплюсь»",
+            "uk": "Виберіть, як сказати: «Я поспішаю»",
+            "en": "Choose how to say: “I am hurrying”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:19:21",
+          "options": [
+            "de:19:21",
+            "de:19:23",
+            "de:19:24"
+          ],
+          "answerId": "de:19:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я с нетерпением жду завтрашнего дня»",
+            "uk": "Виберіть, як сказати: «Я з нетерпінням чекаю завтрашнього дня»",
+            "en": "Choose how to say: “I am looking forward to tomorrow”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:19:26",
+          "options": [
+            "de:19:26",
+            "de:19:21",
+            "de:19:30"
+          ],
+          "answerId": "de:19:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети с нетерпением ждут каникул»",
+            "uk": "Виберіть, як сказати: «Діти з нетерпінням чекають на канікули»",
+            "en": "Choose how to say: “The children are looking forward to the holidays”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:19:30",
+          "options": [
+            "de:19:30",
+            "de:19:24",
+            "de:19:26"
+          ],
+          "answerId": "de:19:30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Благодарю, встречаемся",
+        "uk": "Дякую, зустрічаємося",
+        "en": "Thanking and meeting"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы встречаемся на вокзале».\nWir treffen uns am Bahnhof. — «Мы встречаемся на вокзале.»\nЧитается: вир тре́фен унс ам ба́нхоф\nСлово treffen значит «встречаем». Слово am — «в, у». Слово Bahnhof — «вокзал».\nЗдесь uns значит «друг друга»: «встречаемся».\nIch bedanke mich für die Hilfe. — «Я благодарю за помощь.»\nЧитается: их беда́нке мих фюр ди хи́льфе\nСлово bedanke значит «благодарю». Слово für — «за». Слово Hilfe — «помощь».\nВместе bedanke mich значит «благодарю».\nEr erinnert sich an die Adresse. — «Он вспоминает адрес.»\nЧитается: эр эри́нерт зих ан ди адре́се\nСлово Er значит «он». Слово erinnert — «вспоминает». Слово an — «о».\nСлово Adresse значит «адрес».\nWir haben uns gestern getroffen. — «Мы вчера встречались.»\nЧитается: вир ха́бен унс ге́стерн гетро́фен\nСлово haben значит «имеем, имеют». Слово gestern — «вчера». Слово getroffen — «встречались».",
+        "uk": "Дивіться, як сказати «Ми зустрічаємось на вокзалі».\nWir treffen uns am Bahnhof. — «Ми зустрічаємось на вокзалі.»\nЧитається: вір тре́фен унс ам ба́нхоф\nСлово treffen означає «зустрічаємо». Слово am — «у, біля». Слово Bahnhof — «вокзал».\nТут uns означає «одне одного»: «зустрічаємося».\nIch bedanke mich für die Hilfe. — «Я дякую за допомогу.»\nЧитається: іх беда́нке міх фюр ді хі́льфе\nСлово bedanke означає «дякую». Слово für — «за». Слово Hilfe — «допомога».\nРазом bedanke mich означає «дякую».\nEr erinnert sich an die Adresse. — «Він згадує адресу.»\nЧитається: ер ері́нерт зіх ан ді адре́се\nСлово Er означає «він». Слово erinnert — «згадує». Слово an — «про».\nСлово Adresse означає «адреса».\nWir haben uns gestern getroffen. — «Ми вчора зустрічалися.»\nЧитається: вір ха́бен унс ге́стерн гетро́фен\nСлово haben означає «маємо, мають». Слово gestern — «учора». Слово getroffen — «зустрічалися».",
+        "en": "Look at how to say “We meet at the station”.\nWir treffen uns am Bahnhof. — “We meet at the station.”\nSounds like: veer trEfen oons am bAnkhof\nThe word treffen means “meet”. The word am — “at”.\nThe word Bahnhof means “station”.\nHere uns means “each other”: “we meet”.\nIch bedanke mich für die Hilfe. — “I thank you for the help.”\nSounds like: eekh bedAnke meekh fyoor dee khEElfe\nThe word bedanke means “thank”. The word für — “for”.\nThe word Hilfe means “help”.\nTogether bedanke mich means “I thank”.\nEr erinnert sich an die Adresse. — “He remembers the address.”\nSounds like: er erEEnert zeekh an dee adrEse\nThe word Er means “he”. The word erinnert — “remembers”.\nThe word an means “of”. The word Adresse — “address”.\nWir haben uns gestern getroffen. — “We met yesterday.”\nSounds like: veer khAben oons gEstern getrOfen\nThe word haben means “have”. The word gestern — “yesterday”.\nThe word getroffen means “met”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:19:34",
+          "say": {
+            "ru": "вир тре́фен унс ам ба́нхоф",
+            "uk": "вір тре́фен унс ам ба́нхоф"
+          }
+        },
+        {
+          "phraseId": "de:19:37",
+          "say": {
+            "ru": "их беда́нке мих фюр ди хи́льфе",
+            "uk": "іх беда́нке міх фюр ді хі́льфе"
+          }
+        },
+        {
+          "phraseId": "de:19:39",
+          "say": {
+            "ru": "эр эри́нерт зих ан ди адре́се",
+            "uk": "ер ері́нерт зіх ан ді адре́се"
+          }
+        },
+        {
+          "phraseId": "de:19:49",
+          "say": {
+            "ru": "вир ха́бен унс ге́стерн гетро́фен",
+            "uk": "вір ха́бен унс ге́стерн гетро́фен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы встречаемся на вокзале»",
+            "uk": "Виберіть, як сказати: «Ми зустрічаємось на вокзалі»",
+            "en": "Choose how to say: “We meet at the station”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:19:34",
+          "options": [
+            "de:19:34",
+            "de:19:37",
+            "de:19:39"
+          ],
+          "answerId": "de:19:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я благодарю за помощь»",
+            "uk": "Виберіть, як сказати: «Я дякую за допомогу»",
+            "en": "Choose how to say: “I thank you for the help”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:19:37",
+          "options": [
+            "de:19:37",
+            "de:19:34",
+            "de:19:49"
+          ],
+          "answerId": "de:19:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы вчера встречались»",
+            "uk": "Виберіть, як сказати: «Ми вчора зустрічалися»",
+            "en": "Choose how to say: “We met yesterday”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:19:49",
+          "options": [
+            "de:19:49",
+            "de:19:34",
+            "de:19:39"
+          ],
+          "answerId": "de:19:49"
+        }
+      ]
+    }
+  ]
+}

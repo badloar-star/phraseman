@@ -1,0 +1,524 @@
+{
+  "lang": "it",
+  "lesson": 19,
+  "title": {
+    "ru": "Кто приехал, кто ушёл",
+    "uk": "Хто приїхав, хто пішов",
+    "en": "Who arrived, who left"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Приехал, приехала",
+        "uk": "Приїхав, приїхала",
+        "en": "He arrived, she arrived"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что кто-то приехал.\nPaolo è arrivato. — «Паоло приехал.»\nЧитается: па́оло э аррива́то.\nLea è arrivata. — «Леа приехала.»\nЧитается: ле́а э аррива́та.\nPaolo è partito. — «Паоло уехал.»\nЧитается: па́оло э парти́то.\nLea è partita. — «Леа уехала.»\nЧитается: ле́а э парти́та.\nСлово è вы знаете: «есть, находится».\nЗдесь оно помогает сказать, что человек уже приехал.\nСлово arrivato значит «приехал», слово arrivata — «приехала».\nСлово partito значит «уехал», слово partita — «уехала».\nКогда речь о мужчине, слово кончается так же, как arrivato. Когда о женщине — как arrivata.",
+        "uk": "Дивіться, як сказати, що хтось приїхав.\nPaolo è arrivato. — «Паоло приїхав.»\nЧитається: па́оло е арріва́то.\nLea è arrivata. — «Леа приїхала.»\nЧитається: ле́а е арріва́та.\nPaolo è partito. — «Паоло поїхав.»\nЧитається: па́оло е парті́то.\nLea è partita. — «Леа поїхала.»\nЧитається: ле́а е парті́та.\nСлово è ви знаєте: «є, перебуває».\nТут воно допомагає сказати, що людина вже приїхала.\nСлово arrivato означає «приїхав», слово arrivata — «приїхала».\nСлово partito означає «поїхав», слово partita — «поїхала».\nКоли мова про чоловіка, слово закінчується так само, як arrivato. Коли про жінку — як arrivata.",
+        "en": "Look at how to say that someone has arrived.\nPaolo è arrivato. — “Paolo has arrived.”\nLea è arrivata. — “Lea has arrived.”\nPaolo è partito. — “Paolo has left.”\nLea è partita. — “Lea has left.”\nYou know the word è: “is”.\nHere it helps to say that the person has already arrived.\nThe word arrivato means “has arrived”, the word arrivata — “has arrived”, for a woman.\nThe word partito means “has left”, the word partita — “has left”, for a woman.\nThe end of the word changes: arrivato for a man, arrivata for a woman."
+      },
+      "examples": [
+        {
+          "phraseId": "it:19:01",
+          "say": {
+            "ru": "па́оло э аррива́то",
+            "uk": "па́оло е арріва́то"
+          }
+        },
+        {
+          "phraseId": "it:19:02",
+          "say": {
+            "ru": "ле́а э аррива́та",
+            "uk": "ле́а е арріва́та"
+          }
+        },
+        {
+          "phraseId": "it:19:03",
+          "say": {
+            "ru": "па́оло э парти́то",
+            "uk": "па́оло е парті́то"
+          }
+        },
+        {
+          "phraseId": "it:19:04",
+          "say": {
+            "ru": "ле́а э парти́та",
+            "uk": "ле́а е парті́та"
+          }
+        },
+        {
+          "phraseId": "it:19:09",
+          "say": {
+            "ru": "э аррива́то ми́о брате́лло",
+            "uk": "е арріва́то мі́о брате́лло"
+          }
+        },
+        {
+          "phraseId": "it:19:10",
+          "say": {
+            "ru": "э аррива́та ми́а соре́лла",
+            "uk": "е арріва́та мі́а соре́лла"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло приехал»",
+            "uk": "Виберіть, як сказати: «Паоло приїхав»",
+            "en": "Choose how to say: “Paolo has arrived”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:19:01",
+          "options": [
+            "it:19:01",
+            "it:19:02",
+            "it:19:03"
+          ],
+          "answerId": "it:19:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа приехала»",
+            "uk": "Виберіть, як сказати: «Леа приїхала»",
+            "en": "Choose how to say: “Lea has arrived”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:19:02",
+          "options": [
+            "it:19:02",
+            "it:19:01",
+            "it:19:04"
+          ],
+          "answerId": "it:19:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло уехал»",
+            "uk": "Виберіть, як сказати: «Паоло поїхав»",
+            "en": "Choose how to say: “Paolo has left”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:19:03",
+          "options": [
+            "it:19:03",
+            "it:19:04",
+            "it:19:09"
+          ],
+          "answerId": "it:19:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Приехали, ушли",
+        "uk": "Приїхали, пішли",
+        "en": "They arrived, they left"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что приехали несколько человек.\nSono arrivati. — «Они прибыли.»\nЧитается: со́но аррива́ти.\nSono arrivate. — «Они прибыли.»\nЧитается: со́но аррива́те.\nSono partiti. — «Они ушли.»\nЧитается: со́но парти́ти.\nSono partite. — «Они ушли.»\nЧитается: со́но парти́те.\nСлово sono вы знаете. Здесь оно значит «они есть».\nСлово arrivati значит «прибыли»: так говорят про мужчин или про мужчин и женщин вместе.\nСлово arrivate значит «прибыли»: так говорят только про женщин.\nСлова partiti и partite значат «ушли»: так же.",
+        "uk": "Дивіться, як сказати, що приїхало кілька людей.\nSono arrivati. — «Вони прибули.»\nЧитається: со́но арріва́ті.\nSono arrivate. — «Вони прибули.»\nЧитається: со́но арріва́те.\nSono partiti. — «Вони пішли.»\nЧитається: со́но парті́ті.\nSono partite. — «Вони пішли.»\nЧитається: со́но парті́те.\nСлово sono ви знаєте. Тут воно означає «вони є».\nСлово arrivati означає «прибули»: так кажуть про чоловіків або про чоловіків і жінок разом.\nСлово arrivate означає «прибули»: так кажуть лише про жінок.\nСлова partiti та partite означають «пішли»: так само.",
+        "en": "Look at how to say that several people have arrived.\nSono arrivati. — “They have arrived.”\nSono arrivate. — “They have arrived. (all women)”\nSono partiti. — “They have left.”\nSono partite. — “They have left. (all women)”\nYou know the word sono. Here it means “they are”.\nThe word arrivati means “have arrived”.\nWe say it for men, or for men and women together.\nThe word arrivate means “have arrived”: only for women.\nThe words partiti and partite mean “have left”: the same way."
+      },
+      "examples": [
+        {
+          "phraseId": "it:19:05",
+          "say": {
+            "ru": "со́но аррива́ти",
+            "uk": "со́но арріва́ті"
+          }
+        },
+        {
+          "phraseId": "it:19:06",
+          "say": {
+            "ru": "со́но аррива́те",
+            "uk": "со́но арріва́те"
+          }
+        },
+        {
+          "phraseId": "it:19:07",
+          "say": {
+            "ru": "со́но парти́ти",
+            "uk": "со́но парті́ті"
+          }
+        },
+        {
+          "phraseId": "it:19:08",
+          "say": {
+            "ru": "со́но парти́те",
+            "uk": "со́но парті́те"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они прибыли»",
+            "uk": "Виберіть, як сказати: «Вони прибули»",
+            "en": "Choose how to say: “They have arrived”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:19:05",
+          "options": [
+            "it:19:05",
+            "it:19:07",
+            "it:19:01"
+          ],
+          "answerId": "it:19:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они ушли»",
+            "uk": "Виберіть, як сказати: «Вони пішли»",
+            "en": "Choose how to say: “They have left”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:19:07",
+          "options": [
+            "it:19:07",
+            "it:19:05",
+            "it:19:03"
+          ],
+          "answerId": "it:19:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа приехала»",
+            "uk": "Виберіть, як сказати: «Леа приїхала»",
+            "en": "Choose how to say: “Lea has arrived”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:19:02",
+          "options": [
+            "it:19:02",
+            "it:19:05",
+            "it:19:04"
+          ],
+          "answerId": "it:19:02"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Пошёл, вернулась",
+        "uk": "Пішов, повернулася",
+        "en": "He went, she came back"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, куда кто-то пошёл.\nPaolo è andato alla stazione ferroviaria. — «Паоло пошел на вокзал.»\nЧитается: па́оло э анда́то а́лла стацьо́не ферровья́рья.\nLea è andata in banca. — «Леа пошла в банк.»\nЧитается: ле́а э анда́та ин ба́нка.\nMia madre è tornata a casa presto. — «Моя мама вернулась домой рано.»\nЧитается: ми́а ма́дре э торна́та а ка́за пре́сто.\nСлово andato значит «пошёл», слово andata — «пошла».\nСлово tornata значит «вернулась».\nСлова alla stazione ferroviaria значат «на вокзал».\nСлова in banca значат «в банк», слова a casa — «домой».\nСлово presto значит «рано».\nЕсли ушли несколько человек, говорят andati: sono andati — «пошли».\nСлово rimasti значит «остались».",
+        "uk": "Дивіться, як сказати, куди хтось пішов.\nPaolo è andato alla stazione ferroviaria. — «Паоло пішов на вокзал.»\nЧитається: па́оло е анда́то а́лла стацьо́не ферровья́рья.\nLea è andata in banca. — «Леа пішла до банку.»\nЧитається: ле́а е анда́та ін ба́нка.\nMia madre è tornata a casa presto. — «Моя мама повернулася додому рано.»\nЧитається: мі́а ма́дре е торна́та а ка́за пре́сто.\nСлово andato означає «пішов», слово andata — «пішла».\nСлово tornata означає «повернулася».\nСлова alla stazione ferroviaria означають «на вокзал».\nСлова in banca означають «до банку», слова a casa — «додому».\nСлово presto означає «рано».\nЯкщо пішло кілька людей, кажуть andati: sono andati — «пішли».\nСлово rimasti означає «залишилися».",
+        "en": "Look at how to say where someone went.\nPaolo è andato alla stazione ferroviaria. — “Paolo went to the railway station.”\nLea è andata in banca. — “Lea went to the bank.”\nMia madre è tornata a casa presto. — “My mother came home early.”\nThe word andato means “went”, the word andata — “went”, for a woman.\nThe word tornata means “came back”, for a woman.\nThe words alla stazione ferroviaria mean “to the railway station”.\nThe words in banca mean “to the bank”, the words a casa — “home”.\nThe word presto means “early”.\nWhen several people went, we say andati: sono andati — “they went”.\nThe word rimasti means “stayed”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:19:11",
+          "say": {
+            "ru": "па́оло э анда́то а́лла стацьо́не ферровья́рья",
+            "uk": "па́оло е анда́то а́лла стацьо́не ферровья́рья"
+          }
+        },
+        {
+          "phraseId": "it:19:12",
+          "say": {
+            "ru": "ле́а э анда́та ин ба́нка",
+            "uk": "ле́а е анда́та ін ба́нка"
+          }
+        },
+        {
+          "phraseId": "it:19:15",
+          "say": {
+            "ru": "ми́а ма́дре э торна́та а ка́за пре́сто",
+            "uk": "мі́а ма́дре е торна́та а ка́за пре́сто"
+          }
+        },
+        {
+          "phraseId": "it:19:16",
+          "say": {
+            "ru": "ми́о па́дре э торна́то а ка́за та́рди",
+            "uk": "мі́о па́дре е торна́то а ка́за та́рді"
+          }
+        },
+        {
+          "phraseId": "it:19:13",
+          "say": {
+            "ru": "и ми́ей дженито́ри со́но анда́ти аль мерка́то",
+            "uk": "і мі́ей дженіто́рі со́но анда́ті аль мерка́то"
+          }
+        },
+        {
+          "phraseId": "it:19:18",
+          "say": {
+            "ru": "и вичи́ни со́но рима́сти фуо́ри",
+            "uk": "і вічі́ні со́но ріма́сті фуо́рі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло пошел на вокзал»",
+            "uk": "Виберіть, як сказати: «Паоло пішов на вокзал»",
+            "en": "Choose how to say: “Paolo went to the railway station”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:19:11",
+          "options": [
+            "it:19:11",
+            "it:19:12",
+            "it:19:15"
+          ],
+          "answerId": "it:19:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа пошла в банк»",
+            "uk": "Виберіть, як сказати: «Леа пішла до банку»",
+            "en": "Choose how to say: “Lea went to the bank”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:19:12",
+          "options": [
+            "it:19:12",
+            "it:19:11",
+            "it:19:16"
+          ],
+          "answerId": "it:19:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои родители пошли на рынок»",
+            "uk": "Виберіть, як сказати: «Мої батьки пішли на ринок»",
+            "en": "Choose how to say: “My parents went to the market”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:19:13",
+          "options": [
+            "it:19:13",
+            "it:19:11",
+            "it:19:18"
+          ],
+          "answerId": "it:19:13"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вошёл, вышел, упал",
+        "uk": "Зайшов, вийшов, упав",
+        "en": "In, out, down"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Леа вошла в комнату».\nLea è entrata nella stanza. — «Леа вошла в комнату.»\nЧитается: ле́а э энтра́та не́лла ста́нца.\nPaolo è entrato in garage. — «Паоло вошел в гараж.»\nЧитается: па́оло э энтра́то ин гара́ж.\nI bambini sono usciti in cortile. — «Дети вышли во двор.»\nЧитается: и бамби́ни со́но уши́ти ин корти́ле.\nСлово entrata значит «вошла», слово entrato — «вошёл».\nСлово usciti значит «вышли».\nСлова nella stanza значат «в комнату».\nСлова in garage значат «в гараж», слова in cortile — «во двор».\nЕщё: scesi — «спустились», caduta — «упала».\nСлово pianerottolo значит «лестничная площадка», слово monete — «монеты».",
+        "uk": "Дивіться, як сказати «Леа зайшла до кімнати».\nLea è entrata nella stanza. — «Леа зайшла до кімнати.»\nЧитається: ле́а е ентра́та не́лла ста́нца.\nPaolo è entrato in garage. — «Паоло зайшов до гаража.»\nЧитається: па́оло е ентра́то ін гара́ж.\nI bambini sono usciti in cortile. — «Діти вийшли на подвір’я.»\nЧитається: і бамбі́ні со́но уші́ті ін корті́ле.\nСлово entrata означає «зайшла», слово entrato — «зайшов».\nСлово usciti означає «вийшли».\nСлова nella stanza означають «до кімнати».\nСлова in garage означають «до гаража», слова in cortile — «на подвір’я».\nЩе: scesi — «спустилися», caduta — «упала».\nСлово pianerottolo означає «сходовий майданчик», слово monete — «монети».",
+        "en": "Look at how to say “Lea went into the room”.\nLea è entrata nella stanza. — “Lea went into the room.”\nPaolo è entrato in garage. — “Paolo went into the garage.”\nI bambini sono usciti in cortile. — “The children went out into the yard.”\nThe word entrata means “went in”, for a woman.\nThe word entrato means “went in”, for a man.\nThe word usciti means “went out”.\nThe words nella stanza mean “into the room”.\nThe words in garage mean “into the garage”, the words in cortile — “into the yard”.\nMore: scesi — “went down”, caduta — “fell”.\nThe word pianerottolo means “landing”, the word monete — “coins”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:19:21",
+          "say": {
+            "ru": "ле́а э энтра́та не́лла ста́нца",
+            "uk": "ле́а е ентра́та не́лла ста́нца"
+          }
+        },
+        {
+          "phraseId": "it:19:22",
+          "say": {
+            "ru": "па́оло э энтра́то ин гара́ж",
+            "uk": "па́оло е ентра́то ін гара́ж"
+          }
+        },
+        {
+          "phraseId": "it:19:23",
+          "say": {
+            "ru": "и бамби́ни со́но уши́ти ин корти́ле",
+            "uk": "і бамбі́ні со́но уші́ті ін корті́ле"
+          }
+        },
+        {
+          "phraseId": "it:19:26",
+          "say": {
+            "ru": "и клье́нти со́но ше́зи суль пьянеро́ттоло",
+            "uk": "і клье́нті со́но ше́зі суль пьянеро́ттоло"
+          }
+        },
+        {
+          "phraseId": "it:19:27",
+          "say": {
+            "ru": "ла кья́ве э каду́та со́тто иль та́воло",
+            "uk": "ла кья́ве е каду́та со́тто іль та́воло"
+          }
+        },
+        {
+          "phraseId": "it:19:28",
+          "say": {
+            "ru": "ле моне́те ми со́но каду́те да́лла та́ска",
+            "uk": "ле моне́те мі со́но каду́те да́лла та́ска"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа вошла в комнату»",
+            "uk": "Виберіть, як сказати: «Леа зайшла до кімнати»",
+            "en": "Choose how to say: “Lea went into the room”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:19:21",
+          "options": [
+            "it:19:21",
+            "it:19:22",
+            "it:19:23"
+          ],
+          "answerId": "it:19:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло вошел в гараж»",
+            "uk": "Виберіть, як сказати: «Паоло зайшов до гаража»",
+            "en": "Choose how to say: “Paolo went into the garage”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:19:22",
+          "options": [
+            "it:19:22",
+            "it:19:21",
+            "it:19:27"
+          ],
+          "answerId": "it:19:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ упал под стол»",
+            "uk": "Виберіть, як сказати: «Ключ упав під стіл»",
+            "en": "Choose how to say: “The key fell under the table”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:19:27",
+          "options": [
+            "it:19:27",
+            "it:19:26",
+            "it:19:28"
+          ],
+          "answerId": "it:19:27"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Ещё нет, и вопросы",
+        "uk": "Ще ні, і запитання",
+        "en": "Not yet, and questions"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Паоло ещё не вернулся».\nPaolo non è ancora tornato. — «Паоло ещё не вернулся.»\nЧитается: па́оло нон э анко́ра торна́то.\nLea non è ancora tornata. — «Леа ещё не вернулась.»\nЧитается: ле́а нон э анко́ра торна́та.\nQuando è arrivata? — «Когда она приехала?»\nЧитается: куа́ндо э аррива́та.\nСлово non значит «не», слово ancora — «ещё».\nСлово quando значит «когда».\nСлово dove значит «где» или «куда»: dove sono andate — «куда они ушли».\nЕщё: già — «уже», infermiere — «медсёстры».\nСлово posta значит «почта», слово alunni — «ученики».",
+        "uk": "Дивіться, як сказати «Паоло ще не повернувся».\nPaolo non è ancora tornato. — «Паоло ще не повернувся.»\nЧитається: па́оло нон е анко́ра торна́то.\nLea non è ancora tornata. — «Леа ще не повернулася.»\nЧитається: ле́а нон е анко́ра торна́та.\nQuando è arrivata? — «Коли вона приїхала?»\nЧитається: куа́ндо е арріва́та.\nСлово non означає «не», слово ancora — «ще».\nСлово quando означає «коли».\nСлово dove означає «де» або «куди»: dove sono andate — «куди вони пішли».\nЩе: già — «вже», infermiere — «медсестри».\nСлово posta означає «пошта», слово alunni — «учні».",
+        "en": "Look at how to say “Paolo hasn’t come back yet”.\nPaolo non è ancora tornato. — “Paolo hasn’t come back yet.”\nLea non è ancora tornata. — “Lea hasn’t come back yet.”\nQuando è arrivata? — “When did she arrive?”\nThe word non means “not”, the word ancora — “yet”.\nThe word quando means “when”.\nThe word dove means “where”: dove sono andate — “where did they go”.\nMore: già — “already”, infermiere — “nurses”.\nThe word posta means “post”, the word alunni — “pupils”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:19:31",
+          "say": {
+            "ru": "па́оло нон э анко́ра торна́то",
+            "uk": "па́оло нон е анко́ра торна́то"
+          }
+        },
+        {
+          "phraseId": "it:19:32",
+          "say": {
+            "ru": "ле́а нон э анко́ра торна́та",
+            "uk": "ле́а нон е анко́ра торна́та"
+          }
+        },
+        {
+          "phraseId": "it:19:36",
+          "say": {
+            "ru": "куа́ндо э аррива́та",
+            "uk": "куа́ндо е арріва́та"
+          }
+        },
+        {
+          "phraseId": "it:19:37",
+          "say": {
+            "ru": "до́ве со́но анда́те",
+            "uk": "до́ве со́но анда́те"
+          }
+        },
+        {
+          "phraseId": "it:19:40",
+          "say": {
+            "ru": "ле инфермье́ре со́но джа́ анда́те ви́а",
+            "uk": "ле інфермье́ре со́но джа́ анда́те ві́а"
+          }
+        },
+        {
+          "phraseId": "it:19:46",
+          "say": {
+            "ru": "иль вичи́но э ше́зо а пре́ндере ла по́ста",
+            "uk": "іль вічі́но е ше́зо а пре́ндере ла по́ста"
+          }
+        },
+        {
+          "phraseId": "it:19:47",
+          "say": {
+            "ru": "льи алу́нни со́но торна́ти ин кла́ссе",
+            "uk": "льі алу́нні со́но торна́ті ін кла́ссе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло ещё не вернулся»",
+            "uk": "Виберіть, як сказати: «Паоло ще не повернувся»",
+            "en": "Choose how to say: “Paolo hasn’t come back yet”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:19:31",
+          "options": [
+            "it:19:31",
+            "it:19:32",
+            "it:19:36"
+          ],
+          "answerId": "it:19:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда она приехала»",
+            "uk": "Виберіть, як сказати: «Коли вона приїхала»",
+            "en": "Choose how to say: “When did she arrive”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:19:36",
+          "options": [
+            "it:19:36",
+            "it:19:37",
+            "it:19:31"
+          ],
+          "answerId": "it:19:36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Медсёстры уже ушли»",
+            "uk": "Виберіть, як сказати: «Медсестри вже пішли»",
+            "en": "Choose how to say: “Have the nurses already left”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:19:40",
+          "options": [
+            "it:19:40",
+            "it:19:46",
+            "it:19:47"
+          ],
+          "answerId": "it:19:40"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,468 @@
+{
+  "lang": "de",
+  "lesson": 20,
+  "title": {
+    "ru": "Больше, меньше, лучше",
+    "uk": "Більше, менше, краще",
+    "en": "More, less, better"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Быстрее, дешевле",
+        "uk": "Швидше, дешевше",
+        "en": "Faster, cheaper"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Поезд быстрее автобуса».\nDer Zug ist schneller als der Bus. — «Поезд быстрее автобуса.»\nЧитается: дер цук ист шне́лер альс дер бус\nСлово Der по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Zug значит «поезд». Слово ist — «есть». Слово schneller — «быстрее».\nСлово als значит «чем». Слово Bus — «автобус».\nСлово als стоит перед тем, с чем сравнивают.\nDas Fahrrad ist langsamer als der Zug. — «Велосипед медленнее поезда.»\nЧитается: дас фа́ррад ист ла́нгзамер альс дер цук\nСлово Das по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Fahrrad значит «велосипед». Слово langsamer — «медленнее».\nDie Bahn ist billiger als das Taxi. — «Поездка на электричке дешевле поездки на такси.»\nЧитается: ди бан ист би́лигер альс дас та́кси\nСлово Die по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Bahn значит «электричка». Слово billiger — «дешевле». Слово Taxi — «такси».\nDas Taxi ist teurer als die Bahn. — «Такси дороже электрички.»\nЧитается: дас та́кси ист то́йрер альс ди бан\nСлово teurer значит «дороже».\nВсе эти слова кончаются одинаково: schneller, langsamer, billiger, teurer.",
+        "uk": "Дивіться, як сказати «Поїзд швидший за автобус».\nDer Zug ist schneller als der Bus. — «Поїзд швидший за автобус.»\nЧитається: дер цук іст шне́лер альс дер бус\nСлово Der по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Zug означає «поїзд». Слово ist — «є». Слово schneller — «швидший».\nСлово als означає «за». Слово Bus — «автобус».\nСлово als стоїть перед тим, із чим порівнюють.\nDas Fahrrad ist langsamer als der Zug. — «Велосипед повільніший за поїзд.»\nЧитається: дас фа́ррад іст ла́нгзамер альс дер цук\nСлово Das по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Fahrrad означає «велосипед». Слово langsamer — «повільніший».\nDie Bahn ist billiger als das Taxi. — «Поїздка електричкою дешевша за поїздку на таксі.»\nЧитається: ді бан іст бі́лігер альс дас та́ксі\nСлово Die по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Bahn означає «електричка». Слово billiger — «дешевша». Слово Taxi — «таксі».\nDas Taxi ist teurer als die Bahn. — «Таксі дорожче за електричку.»\nЧитається: дас та́ксі іст то́йрер альс ді бан\nСлово teurer означає «дорожче».\nУсі ці слова закінчуються однаково: schneller, langsamer, billiger, teurer.",
+        "en": "Look at how to say “The train is faster than the bus”.\nDer Zug ist schneller als der Bus. — “The train is faster than the bus.”\nSounds like: der tsook eest shnEler als der boos\nThe word Der means “the”. The word Zug — “train”.\nThe word ist means “is”. The word schneller — “faster”.\nThe word als means “than”. The word Bus — “bus”.\nThe word als goes before the thing you compare with.\nDas Fahrrad ist langsamer als der Zug. — “The bicycle is slower than the train.”\nSounds like: das fArrad eest lAngzamer als der tsook\nThe word Das means “the”. The word Fahrrad — “bicycle”.\nThe word langsamer means “slower”.\nDie Bahn ist billiger als das Taxi. — “The train is cheaper than the taxi.”\nSounds like: dee ban eest bEEleeger als das tAksee\nThe word Die means “the”. The word Bahn — “train”.\nThe word billiger means “cheaper”. The word Taxi — “taxi”.\nDas Taxi ist teurer als die Bahn. — “The taxi is more expensive than the train.”\nSounds like: das tAksee eest tOyrer als dee ban\nThe word teurer means “more expensive”.\nAll these words end the same way: schneller, langsamer, billiger, teurer."
+      },
+      "examples": [
+        {
+          "phraseId": "de:20:02",
+          "say": {
+            "ru": "дер цук ист шне́лер альс дер бус",
+            "uk": "дер цук іст шне́лер альс дер бус"
+          }
+        },
+        {
+          "phraseId": "de:20:03",
+          "say": {
+            "ru": "дас фа́ррад ист ла́нгзамер альс дер цук",
+            "uk": "дас фа́ррад іст ла́нгзамер альс дер цук"
+          }
+        },
+        {
+          "phraseId": "de:20:04",
+          "say": {
+            "ru": "ди бан ист би́лигер альс дас та́кси",
+            "uk": "ді бан іст бі́лігер альс дас та́ксі"
+          }
+        },
+        {
+          "phraseId": "de:20:05",
+          "say": {
+            "ru": "дас та́кси ист то́йрер альс ди бан",
+            "uk": "дас та́ксі іст то́йрер альс ді бан"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поезд быстрее автобуса»",
+            "uk": "Виберіть, як сказати: «Поїзд швидший за автобус»",
+            "en": "Choose how to say: “The train is faster than the bus”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:20:02",
+          "options": [
+            "de:20:02",
+            "de:20:03",
+            "de:20:04"
+          ],
+          "answerId": "de:20:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поездка на электричке дешевле поездки на такси»",
+            "uk": "Виберіть, як сказати: «Поїздка електричкою дешевша за поїздку на таксі»",
+            "en": "Choose how to say: “The train is cheaper than the taxi”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:20:04",
+          "options": [
+            "de:20:04",
+            "de:20:05",
+            "de:20:02"
+          ],
+          "answerId": "de:20:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Такси дороже электрички»",
+            "uk": "Виберіть, як сказати: «Таксі дорожче за електричку»",
+            "en": "Choose how to say: “The taxi is more expensive than the train”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:20:05",
+          "options": [
+            "de:20:05",
+            "de:20:04",
+            "de:20:03"
+          ],
+          "answerId": "de:20:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Больше, меньше, светлее",
+        "uk": "Більше, менше, світліше",
+        "en": "Bigger, smaller, brighter"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Эта комната больше».\nDieses Zimmer ist größer. — «Эта комната больше.»\nЧитается: ди́зес ци́мер ист грё́сер\nСлово Dieses значит «эта». Слово Zimmer — «комната». Слово größer — «больше».\nЗдесь после größer ничего нет: и так понятно, с чем сравнивают.\nDas Bad ist kleiner. — «Ванная меньше.»\nЧитается: дас бад ист кла́йнер\nСлово Bad значит «ванная». Слово kleiner — «меньше».\nDie Küche ist heller. — «Кухня светлее.»\nЧитается: ди кю́хе ист хе́лер\nСлово Küche значит «кухня». Слово heller — «светлее».\nDer Garten ist ruhiger. — «В саду тише.»\nЧитается: дер га́ртен ист ру́игер\nСлово Garten значит «сад». Слово ruhiger — «тише».",
+        "uk": "Дивіться, як сказати «Ця кімната більша».\nDieses Zimmer ist größer. — «Ця кімната більша.»\nЧитається: ді́зес ці́мер іст грьо́сер\nСлово Dieses означає «ця». Слово Zimmer — «кімната». Слово größer — «більша».\nТут після größer нічого немає: і так зрозуміло, із чим порівнюють.\nDas Bad ist kleiner. — «Ванна кімната менша.»\nЧитається: дас бад іст кла́йнер\nСлово Bad означає «ванна кімната». Слово kleiner — «менша».\nDie Küche ist heller. — «Кухня світліша.»\nЧитається: ді кю́хе іст хе́лер\nСлово Küche означає «кухня». Слово heller — «світліша».\nDer Garten ist ruhiger. — «У саду тихіше.»\nЧитається: дер га́ртен іст ру́ігер\nСлово Garten означає «сад». Слово ruhiger — «тихіше».",
+        "en": "Look at how to say “This room is bigger”.\nDieses Zimmer ist größer. — “This room is bigger.”\nSounds like: dEEzes tsEEmer eest grYOser\nThe word Dieses means “this”. The word Zimmer — “room”.\nThe word größer means “bigger”.\nNothing follows größer here: it is clear what we compare with.\nDas Bad ist kleiner. — “The bathroom is smaller.”\nSounds like: das bad eest klAyner\nThe word Bad means “bathroom”. The word kleiner — “smaller”.\nDie Küche ist heller. — “The kitchen is brighter.”\nSounds like: dee kYOOkhe eest khEler\nThe word Küche means “kitchen”. The word heller — “brighter”.\nDer Garten ist ruhiger. — “The garden is quieter.”\nSounds like: der gArten eest rOOeeger\nThe word Garten means “garden”. The word ruhiger — “quieter”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:20:06",
+          "say": {
+            "ru": "ди́зес ци́мер ист грё́сер",
+            "uk": "ді́зес ці́мер іст грьо́сер"
+          }
+        },
+        {
+          "phraseId": "de:20:07",
+          "say": {
+            "ru": "дас бад ист кла́йнер",
+            "uk": "дас бад іст кла́йнер"
+          }
+        },
+        {
+          "phraseId": "de:20:09",
+          "say": {
+            "ru": "ди кю́хе ист хе́лер",
+            "uk": "ді кю́хе іст хе́лер"
+          }
+        },
+        {
+          "phraseId": "de:20:10",
+          "say": {
+            "ru": "дер га́ртен ист ру́игер",
+            "uk": "дер га́ртен іст ру́ігер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Эта комната больше»",
+            "uk": "Виберіть, як сказати: «Ця кімната більша»",
+            "en": "Choose how to say: “This room is bigger”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:20:06",
+          "options": [
+            "de:20:06",
+            "de:20:07",
+            "de:20:09"
+          ],
+          "answerId": "de:20:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ванная меньше»",
+            "uk": "Виберіть, як сказати: «Ванна кімната менша»",
+            "en": "Choose how to say: “The bathroom is smaller”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:20:07",
+          "options": [
+            "de:20:07",
+            "de:20:06",
+            "de:20:10"
+          ],
+          "answerId": "de:20:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В саду тише»",
+            "uk": "Виберіть, як сказати: «У саду тихіше»",
+            "en": "Choose how to say: “The garden is quieter”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:20:10",
+          "options": [
+            "de:20:10",
+            "de:20:09",
+            "de:20:06"
+          ],
+          "answerId": "de:20:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Теплее, холоднее",
+        "uk": "Тепліше, холодніше",
+        "en": "Warmer, colder"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Сегодня холоднее, чем вчера».\nHeute ist es kälter als gestern. — «Сегодня холоднее, чем вчера.»\nЧитается: хо́йте ист ес кэ́льтер альс ге́стерн\nСлово Heute значит «сегодня».\nСлово es по-русски не говорят, но по-немецки оно нужно.\nСлово kälter значит «холоднее». Слово gestern — «вчера».\nIm Süden ist es wärmer. — «На юге теплее.»\nЧитается: им зю́ден ист ес вэ́рмер\nСлово Im значит «в». Слово Süden — «юг». Слово wärmer — «теплее».\nDer Wind ist heute stärker. — «Сегодня ветер сильнее.»\nЧитается: дер винд ист хо́йте штэ́ркер\nСлово Wind значит «ветер». Слово stärker — «сильнее».\nDer Strand ist hier schöner. — «Пляж здесь красивее.»\nЧитается: дер штранд ист хир шё́нер\nСлово Strand значит «пляж». Слово hier — «здесь». Слово schöner — «красивее».",
+        "uk": "Дивіться, як сказати «Сьогодні холодніше, ніж учора».\nHeute ist es kälter als gestern. — «Сьогодні холодніше, ніж учора.»\nЧитається: хо́йте іст ес ке́льтер альс ге́стерн\nСлово Heute означає «сьогодні».\nСлово es по-українськи не кажуть, але по-німецьки воно потрібне.\nСлово kälter означає «холодніше». Слово gestern — «учора».\nIm Süden ist es wärmer. — «На півдні тепліше.»\nЧитається: ім зю́ден іст ес ве́рмер\nСлово Im означає «у». Слово Süden — «південь». Слово wärmer — «тепліше».\nDer Wind ist heute stärker. — «Сьогодні вітер сильніший.»\nЧитається: дер вінд іст хо́йте ште́ркер\nСлово Wind означає «вітер». Слово stärker — «сильніший».\nDer Strand ist hier schöner. — «Пляж тут гарніший.»\nЧитається: дер штранд іст хір шьо́нер\nСлово Strand означає «пляж». Слово hier — «тут». Слово schöner — «гарніший».",
+        "en": "Look at how to say “It is colder today than yesterday”.\nHeute ist es kälter als gestern. — “It is colder today than yesterday.”\nSounds like: khOyte eest es kElter als gEstern\nThe word Heute means “today”.\nIn English there is no such word here, but in German the word es is needed.\nThe word kälter means “colder”. The word gestern — “yesterday”.\nIm Süden ist es wärmer. — “It is warmer in the south.”\nSounds like: eem zYOOden eest es vErmer\nThe word Im means “in”. The word Süden — “south”.\nThe word wärmer means “warmer”.\nDer Wind ist heute stärker. — “The wind is stronger today.”\nSounds like: der veend eest khOyte shtErker\nThe word Wind means “wind”. The word stärker — “stronger”.\nDer Strand ist hier schöner. — “The beach is nicer here.”\nSounds like: der shtrand eest kheer shYOner\nThe word Strand means “beach”. The word hier — “here”.\nThe word schöner means “nicer”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:20:16",
+          "say": {
+            "ru": "хо́йте ист ес кэ́льтер альс ге́стерн",
+            "uk": "хо́йте іст ес ке́льтер альс ге́стерн"
+          }
+        },
+        {
+          "phraseId": "de:20:17",
+          "say": {
+            "ru": "им зю́ден ист ес вэ́рмер",
+            "uk": "ім зю́ден іст ес ве́рмер"
+          }
+        },
+        {
+          "phraseId": "de:20:18",
+          "say": {
+            "ru": "дер винд ист хо́йте штэ́ркер",
+            "uk": "дер вінд іст хо́йте ште́ркер"
+          }
+        },
+        {
+          "phraseId": "de:20:20",
+          "say": {
+            "ru": "дер штранд ист хир шё́нер",
+            "uk": "дер штранд іст хір шьо́нер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня холоднее, чем вчера»",
+            "uk": "Виберіть, як сказати: «Сьогодні холодніше, ніж учора»",
+            "en": "Choose how to say: “It is colder today than yesterday”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:20:16",
+          "options": [
+            "de:20:16",
+            "de:20:17",
+            "de:20:18"
+          ],
+          "answerId": "de:20:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На юге теплее»",
+            "uk": "Виберіть, як сказати: «На півдні тепліше»",
+            "en": "Choose how to say: “It is warmer in the south”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:20:17",
+          "options": [
+            "de:20:17",
+            "de:20:16",
+            "de:20:20"
+          ],
+          "answerId": "de:20:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пляж здесь красивее»",
+            "uk": "Виберіть, як сказати: «Пляж тут гарніший»",
+            "en": "Choose how to say: “The beach is nicer here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:20:20",
+          "options": [
+            "de:20:20",
+            "de:20:18",
+            "de:20:17"
+          ],
+          "answerId": "de:20:20"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Охотнее, лучше, меньше",
+        "uk": "Охочіше, краще, менше",
+        "en": "Rather, better, less"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я предпочитаю чай».\nIch trinke lieber Tee. — «Я предпочитаю чай.»\nЧитается: их три́нке ли́бер те́\nСлово Ich значит «я». Слово trinke — «пью». Слово lieber — «охотнее, предпочитаю».\nСлово Tee значит «чай».\nСлово lieber значит «охотнее»: «я охотнее пью чай».\nAnna fährt lieber mit dem Zug. — «Анна предпочитает ездить поездом.»\nЧитается: А́нна фэрт ли́бер мит дем цук\nСлово fährt значит «едет». Слово mit — «на, с».\nСлово dem по-русски не говорят: запоминайте его вместе с названием вещи.\nHeute geht es mir besser. — «Сегодня мне лучше.»\nЧитается: хо́йте гет ес мир бе́сер\nСлово geht значит «идёт». Слово mir — «мне». Слово besser — «лучше».\nВместе geht es mir besser значит «мне лучше».\nDer neue Ofen braucht weniger Strom. — «Новая духовка расходует меньше электричества.»\nЧитается: дер но́йе о́фен браухт ве́нигер штром\nСлово neue значит «новая». Слово Ofen — «духовка». Слово braucht — «расходует».\nСлово weniger значит «меньше». Слово Strom — «электричество».\nDie Tickets kosten jetzt mehr. — «Билеты теперь стоят дороже.»\nЧитается: ди ти́кетс ко́стен йе́цт мер\nСлово Tickets значит «билеты». Слово kosten — «стоят». Слово jetzt — «теперь».\nСлово mehr значит «больше, дороже».",
+        "uk": "Дивіться, як сказати «Я віддаю перевагу чаю».\nIch trinke lieber Tee. — «Я віддаю перевагу чаю.»\nЧитається: іх трі́нке лі́бер те́\nСлово Ich означає «я». Слово trinke — «п’ю». Слово lieber — «охочіше, воліти».\nСлово Tee означає «чай».\nСлово lieber означає «охочіше»: «я охочіше п’ю чай».\nAnna fährt lieber mit dem Zug. — «Анна воліє їздити поїздом.»\nЧитається: А́нна ферт лі́бер міт дем цук\nСлово fährt означає «їде». Слово mit — «на, з».\nСлово dem по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nHeute geht es mir besser. — «Сьогодні мені краще.»\nЧитається: хо́йте гет ес мір бе́сер\nСлово geht означає «іде». Слово mir — «мені». Слово besser — «краще».\nРазом geht es mir besser означає «мені краще».\nDer neue Ofen braucht weniger Strom. — «Нова духовка витрачає менше електрики.»\nЧитається: дер но́йе о́фен браухт ве́нігер штром\nСлово neue означає «нова». Слово Ofen — «духовка». Слово braucht — «витрачає».\nСлово weniger означає «менше». Слово Strom — «електрика».\nDie Tickets kosten jetzt mehr. — «Квитки тепер коштують дорожче.»\nЧитається: ді ті́кетс ко́стен йе́цт мер\nСлово Tickets означає «квитки». Слово kosten — «коштують». Слово jetzt — «тепер».\nСлово mehr означає «більше, дорожче».",
+        "en": "Look at how to say “I prefer to drink tea”.\nIch trinke lieber Tee. — “I prefer to drink tea.”\nSounds like: eekh trEEnke lEEber tE\nThe word Ich means “I”. The word trinke — “drink”.\nThe word lieber means “rather”. The word Tee — “tea”.\nThe word lieber means “rather”: “I would rather drink tea”.\nAnna fährt lieber mit dem Zug. — “Anna prefers to go by train.”\nSounds like: Anna fert lEEber meet dem tsook\nThe word fährt means “goes”. The word mit — “by, with”.\nThe word dem means “the”.\nHeute geht es mir besser. — “I feel better today.”\nSounds like: khOyte get es meer bEser\nThe word geht means “goes”. The word mir — “me”.\nThe word besser means “better”.\nTogether geht es mir besser means “I feel better”.\nDer neue Ofen braucht weniger Strom. — “The new oven uses less electricity.”\nSounds like: der nOye Ofen braookht vEneeger shtrom\nThe word neue means “new”. The word Ofen — “oven”.\nThe word braucht means “needs”. The word weniger — “less”.\nThe word Strom means “electricity”.\nDie Tickets kosten jetzt mehr. — “The tickets cost more now.”\nSounds like: dee tEEkets kOsten yEtst mer\nThe word Tickets means “tickets”. The word kosten — “cost”.\nThe word jetzt means “now”. The word mehr — “more”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:20:21",
+          "say": {
+            "ru": "их три́нке ли́бер те́",
+            "uk": "іх трі́нке лі́бер те́"
+          }
+        },
+        {
+          "phraseId": "de:20:22",
+          "say": {
+            "ru": "А́нна фэрт ли́бер мит дем цук",
+            "uk": "А́нна ферт лі́бер міт дем цук"
+          }
+        },
+        {
+          "phraseId": "de:20:26",
+          "say": {
+            "ru": "хо́йте гет ес мир бе́сер",
+            "uk": "хо́йте гет ес мір бе́сер"
+          }
+        },
+        {
+          "phraseId": "de:20:30",
+          "say": {
+            "ru": "дер но́йе о́фен браухт ве́нигер штром",
+            "uk": "дер но́йе о́фен браухт ве́нігер штром"
+          }
+        },
+        {
+          "phraseId": "de:20:31",
+          "say": {
+            "ru": "ди ти́кетс ко́стен йе́цт мер",
+            "uk": "ді ті́кетс ко́стен йе́цт мер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я предпочитаю чай»",
+            "uk": "Виберіть, як сказати: «Я віддаю перевагу чаю»",
+            "en": "Choose how to say: “I prefer to drink tea”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:20:21",
+          "options": [
+            "de:20:21",
+            "de:20:22",
+            "de:20:26"
+          ],
+          "answerId": "de:20:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Новая духовка расходует меньше электричества»",
+            "uk": "Виберіть, як сказати: «Нова духовка витрачає менше електрики»",
+            "en": "Choose how to say: “The new oven uses less electricity”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:20:30",
+          "options": [
+            "de:20:30",
+            "de:20:31",
+            "de:20:21"
+          ],
+          "answerId": "de:20:30"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Билеты теперь стоят дороже»",
+            "uk": "Виберіть, як сказати: «Квитки тепер коштують дорожче»",
+            "en": "Choose how to say: “The tickets cost more now”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:20:31",
+          "options": [
+            "de:20:31",
+            "de:20:30",
+            "de:20:26"
+          ],
+          "answerId": "de:20:31"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Так же и лучше всех",
+        "uk": "Так само і найкраще",
+        "en": "Just as, and the best"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Автобус так же полон, как вчера».\nDer Bus ist so voll wie gestern. — «Автобус так же полон, как вчера.»\nЧитается: дер бус ист зо фоль ви ге́стерн\nСлово so значит «так». Слово voll — «полный». Слово wie — «как».\nВместе so ... wie значит «так же ... как».\nIch bin genauso müde wie du. — «Я устал не меньше тебя.»\nЧитается: их бин гена́узо мю́де ви ду\nСлово bin значит «я есть». Слово genauso — «так же». Слово müde — «уставший».\nСлово du значит «ты».\nWelcher Zug ist am schnellsten? — «Какой поезд самый быстрый?»\nЧитается: ве́льхер цук ист ам шне́льстен\nСлово Welcher значит «какой».\nСлово am по-русски не говорят, но по-немецки оно нужно.\nСлово schnellsten значит «быстрее всех».\nСлова am schnellsten вместе значат «быстрее всех».\nDieser Platz gefällt mir am besten. — «Это место мне нравится больше всего.»\nЧитается: ди́зер платц гефэ́льт мир ам бе́стен\nСлово Dieser значит «этот». Слово Platz — «место». Слово gefällt — «нравится».\nСлово am по-русски не говорят, но по-немецки оно нужно.\nСлово besten значит «лучше всего».\nСлова am besten вместе значат «лучше всего».",
+        "uk": "Дивіться, як сказати «Автобус такий самий повний, як учора».\nDer Bus ist so voll wie gestern. — «Автобус такий самий повний, як учора.»\nЧитається: дер бус іст зо фоль ві ге́стерн\nСлово so означає «такий». Слово voll — «повний». Слово wie — «як».\nРазом so ... wie означає «так само ... як».\nIch bin genauso müde wie du. — «Я втомився не менше за тебе.»\nЧитається: іх бін гена́узо мю́де ві ду\nСлово bin означає «я є». Слово genauso — «так само». Слово müde — «втомлений».\nСлово du означає «ти».\nWelcher Zug ist am schnellsten? — «Який поїзд найшвидший?»\nЧитається: ве́льхер цук іст ам шне́льстен\nСлово Welcher означає «який».\nСлово am по-українськи не кажуть, але по-німецьки воно потрібне.\nСлово schnellsten означає «найшвидший».\nСлова am schnellsten разом означають «найшвидший».\nDieser Platz gefällt mir am besten. — «Це місце мені подобається найбільше.»\nЧитається: ді́зер платц гефе́льт мір ам бе́стен\nСлово Dieser означає «це». Слово Platz — «місце». Слово gefällt — «подобається».\nСлово am по-українськи не кажуть, але по-німецьки воно потрібне.\nСлово besten означає «найкраще».\nСлова am besten разом означають «найкраще».",
+        "en": "Look at how to say “The bus is as full as yesterday”.\nDer Bus ist so voll wie gestern. — “The bus is as full as yesterday.”\nSounds like: der boos eest zo fol vee gEstern\nThe word so means “so”. The word voll — “full”.\nThe word wie means “how”.\nTogether so ... wie means “as ... as”.\nIch bin genauso müde wie du. — “I am just as tired as you.”\nSounds like: eekh been genAoozo mYOOde vee doo\nThe word bin means “I am”. The word genauso — “just as”.\nThe word müde means “tired”. The word du — “you”.\nWelcher Zug ist am schnellsten? — “Which train is the fastest?”\nSounds like: vElkher tsook eest am shnElsten\nThe word Welcher means “which”.\nIn English there is no such word here, but in German the word am is needed.\nThe word schnellsten means “fastest”.\nThe words am schnellsten together mean “the fastest”.\nDieser Platz gefällt mir am besten. — “I like this place best.”\nSounds like: dEEzer platts gefElt meer am bEsten\nThe word Dieser means “this”. The word Platz — “place”.\nThe word gefällt means “likes”.\nIn English there is no such word here, but in German the word am is needed.\nThe word besten means “best”.\nThe words am besten together mean “best of all”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:20:41",
+          "say": {
+            "ru": "дер бус ист зо фоль ви ге́стерн",
+            "uk": "дер бус іст зо фоль ві ге́стерн"
+          }
+        },
+        {
+          "phraseId": "de:20:43",
+          "say": {
+            "ru": "их бин гена́узо мю́де ви ду",
+            "uk": "іх бін гена́узо мю́де ві ду"
+          }
+        },
+        {
+          "phraseId": "de:20:46",
+          "say": {
+            "ru": "ве́льхер цук ист ам шне́льстен",
+            "uk": "ве́льхер цук іст ам шне́льстен"
+          }
+        },
+        {
+          "phraseId": "de:20:48",
+          "say": {
+            "ru": "ди́зер платц гефэ́льт мир ам бе́стен",
+            "uk": "ді́зер платц гефе́льт мір ам бе́стен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус так же полон, как вчера»",
+            "uk": "Виберіть, як сказати: «Автобус такий самий повний, як учора»",
+            "en": "Choose how to say: “The bus is as full as yesterday”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:20:41",
+          "options": [
+            "de:20:41",
+            "de:20:43",
+            "de:20:46"
+          ],
+          "answerId": "de:20:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я устал не меньше тебя»",
+            "uk": "Виберіть, як сказати: «Я втомився не менше за тебе»",
+            "en": "Choose how to say: “I am just as tired as you”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:20:43",
+          "options": [
+            "de:20:43",
+            "de:20:41",
+            "de:20:48"
+          ],
+          "answerId": "de:20:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это место мне нравится больше всего»",
+            "uk": "Виберіть, як сказати: «Це місце мені подобається найбільше»",
+            "en": "Choose how to say: “I like this place best”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:20:48",
+          "options": [
+            "de:20:48",
+            "de:20:46",
+            "de:20:43"
+          ],
+          "answerId": "de:20:48"
+        }
+      ]
+    }
+  ]
+}

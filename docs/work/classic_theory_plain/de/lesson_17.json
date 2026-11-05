@@ -1,0 +1,468 @@
+{
+  "lang": "de",
+  "lesson": 17,
+  "title": {
+    "ru": "Приехал, встал, остался",
+    "uk": "Приїхав, встав, залишився",
+    "en": "Arrived, got up, stayed"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я приехал",
+        "uk": "Я приїхав",
+        "en": "I arrived"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я приехал».\nIch bin angekommen. — «Я приехал.»\nЧитается: их бин а́нгекомен\nСлово Ich значит «я». Слово bin — «я есть». Слово angekommen — «приехал, приехали».\nС angekommen вместо haben говорят bin.\nЗдесь bin не про место. Вместе они говорят: «я приехал».\nDu bist angekommen. — «Ты приехал.»\nЧитается: ду бист а́нгекомен\nСлово Du значит «ты». Слово bist — «ты есть».\nAnna ist angekommen. — «Анна приехала.»\nЧитается: А́нна ист а́нгекомен\nСлово ist значит «есть».\nWir sind angekommen. — «Мы приехали.»\nЧитается: вир зинд а́нгекомен\nСлово Wir значит «мы». Слово sind — «есть (о нас, о них)».\nIhr seid angekommen. — «Вы приехали.»\nЧитается: ир зайт а́нгекомен\nСлово Ihr значит «вы». Слово seid — «вы есть».\nСлово меняется, смотря о ком речь: о вас — bist, об Анне — ist.\nО нас — sind, о вас всех — seid.",
+        "uk": "Дивіться, як сказати «Я приїхав».\nIch bin angekommen. — «Я приїхав.»\nЧитається: іх бін а́нгекомен\nСлово Ich означає «я». Слово bin — «я є». Слово angekommen — «приїхав, приїхали».\nЗ angekommen замість haben кажуть bin.\nТут bin не про місце. Разом вони кажуть: «я приїхав».\nDu bist angekommen. — «Ти приїхав.»\nЧитається: ду біст а́нгекомен\nСлово Du означає «ти». Слово bist — «ти є».\nAnna ist angekommen. — «Ганна приїхала.»\nЧитається: А́нна іст а́нгекомен\nСлово ist означає «є».\nWir sind angekommen. — «Ми приїхали.»\nЧитається: вір зінд а́нгекомен\nСлово Wir означає «ми». Слово sind — «є (про нас, про них)».\nIhr seid angekommen. — «Ви приїхали.»\nЧитається: ір зайт а́нгекомен\nСлово Ihr означає «ви». Слово seid — «ви є».\nСлово змінюється залежно від того, про кого мова: про вас — bist, про Анну — ist.\nПро нас — sind, про вас усіх — seid.",
+        "en": "Look at how to say “I arrived”.\nIch bin angekommen. — “I arrived.”\nSounds like: eekh been Angekomen\nThe word Ich means “I”. The word bin — “I am”.\nThe word angekommen means “arrived”.\nWith angekommen you say bin instead of haben.\nHere bin is not about a place. Together they say: “I arrived”.\nDu bist angekommen. — “You arrived.”\nSounds like: doo beest Angekomen\nThe word Du means “you”. The word bist — “you are”.\nAnna ist angekommen. — “Anna arrived.”\nSounds like: Anna eest Angekomen\nThe word ist means “is”.\nWir sind angekommen. — “We arrived.”\nSounds like: veer zeend Angekomen\nThe word Wir means “we”. The word sind — “are”.\nIhr seid angekommen. — “You all arrived.”\nSounds like: eer zayt Angekomen\nThe word Ihr means “you all”. The word seid — “you all are”.\nThe word changes with who we talk about: “you” — bist, Anna — ist.\nAbout us — sind, about all of you — seid."
+      },
+      "examples": [
+        {
+          "phraseId": "de:17:01",
+          "say": {
+            "ru": "их бин а́нгекомен",
+            "uk": "іх бін а́нгекомен"
+          }
+        },
+        {
+          "phraseId": "de:17:02",
+          "say": {
+            "ru": "ду бист а́нгекомен",
+            "uk": "ду біст а́нгекомен"
+          }
+        },
+        {
+          "phraseId": "de:17:03",
+          "say": {
+            "ru": "А́нна ист а́нгекомен",
+            "uk": "А́нна іст а́нгекомен"
+          }
+        },
+        {
+          "phraseId": "de:17:04",
+          "say": {
+            "ru": "вир зинд а́нгекомен",
+            "uk": "вір зінд а́нгекомен"
+          }
+        },
+        {
+          "phraseId": "de:17:05",
+          "say": {
+            "ru": "ир зайт а́нгекомен",
+            "uk": "ір зайт а́нгекомен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я приехал»",
+            "uk": "Виберіть, як сказати: «Я приїхав»",
+            "en": "Choose how to say: “I arrived”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:17:01",
+          "options": [
+            "de:17:01",
+            "de:17:02",
+            "de:17:03"
+          ],
+          "answerId": "de:17:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы приехали»",
+            "uk": "Виберіть, як сказати: «Ми приїхали»",
+            "en": "Choose how to say: “We arrived”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:17:04",
+          "options": [
+            "de:17:04",
+            "de:17:05",
+            "de:17:01"
+          ],
+          "answerId": "de:17:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы приехали»",
+            "uk": "Виберіть, як сказати: «Ви приїхали»",
+            "en": "Choose how to say: “You all arrived”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:17:05",
+          "options": [
+            "de:17:05",
+            "de:17:02",
+            "de:17:03"
+          ],
+          "answerId": "de:17:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Встал, проснулся, уснул",
+        "uk": "Встав, прокинувся, заснув",
+        "en": "Got up, woke up, fell asleep"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я рано встал».\nIch bin früh aufgestanden. — «Я рано встал.»\nЧитается: их бин фрю а́уфгештанден\nСлово früh значит «рано». Слово aufgestanden — «встал».\nЧеловек сам встал — и снова bin, а не haben.\nTom ist spät aufgestanden. — «Том поздно встал.»\nЧитается: Том ист шпэт а́уфгештанден\nСлово spät значит «поздно».\nDie Kinder sind früh aufgewacht. — «Дети рано проснулись.»\nЧитается: ди ки́ндер зинд фрю а́уфгевахт\nСлово Die по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Kinder значит «дети». Слово aufgewacht — «проснулись».\nПро детей говорят sind.\nAnna ist sofort eingeschlafen. — «Анна сразу уснула.»\nЧитается: А́нна ист зофо́рт а́йнгешлафен\nСлово sofort значит «сразу». Слово eingeschlafen — «уснула».\nПроснуться и уснуть — тоже ist и sind.",
+        "uk": "Дивіться, як сказати «Я рано встав».\nIch bin früh aufgestanden. — «Я рано встав.»\nЧитається: іх бін фрю а́уфгештанден\nСлово früh означає «рано». Слово aufgestanden — «встав».\nЛюдина сама встала — і знову bin, а не haben.\nTom ist spät aufgestanden. — «Том пізно встав.»\nЧитається: Том іст шпет а́уфгештанден\nСлово spät означає «пізно».\nDie Kinder sind früh aufgewacht. — «Діти рано прокинулися.»\nЧитається: ді кі́ндер зінд фрю а́уфгевахт\nСлово Die по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Kinder означає «діти». Слово aufgewacht — «прокинулися».\nПро дітей кажуть sind.\nAnna ist sofort eingeschlafen. — «Анна одразу заснула.»\nЧитається: А́нна іст зофо́рт а́йнгешлафен\nСлово sofort означає «одразу». Слово eingeschlafen — «заснула».\nПрокинутися і заснути — теж ist і sind.",
+        "en": "Look at how to say “I got up early”.\nIch bin früh aufgestanden. — “I got up early.”\nSounds like: eekh been fryoo Aoofgeshtanden\nThe word früh means “early”. The word aufgestanden — “got up”.\nThe person got up by himself — again bin, not haben.\nTom ist spät aufgestanden. — “Tom got up late.”\nSounds like: Tom eest shpet Aoofgeshtanden\nThe word spät means “late”.\nDie Kinder sind früh aufgewacht. — “The children woke up early.”\nSounds like: dee kEEnder zeend fryoo Aoofgevakht\nThe word Die means “the”. The word Kinder — “children”.\nThe word aufgewacht means “woke up”.\nAbout the children you say sind.\nAnna ist sofort eingeschlafen. — “Anna fell asleep at once.”\nSounds like: Anna eest zofOrt Ayngeshlafen\nThe word sofort means “at once”. The word eingeschlafen — “fell asleep”.\nWaking up and falling asleep also go with ist and sind."
+      },
+      "examples": [
+        {
+          "phraseId": "de:17:07",
+          "say": {
+            "ru": "их бин фрю а́уфгештанден",
+            "uk": "іх бін фрю а́уфгештанден"
+          }
+        },
+        {
+          "phraseId": "de:17:08",
+          "say": {
+            "ru": "Том ист шпэт а́уфгештанден",
+            "uk": "Том іст шпет а́уфгештанден"
+          }
+        },
+        {
+          "phraseId": "de:17:09",
+          "say": {
+            "ru": "ди ки́ндер зинд фрю а́уфгевахт",
+            "uk": "ді кі́ндер зінд фрю а́уфгевахт"
+          }
+        },
+        {
+          "phraseId": "de:17:10",
+          "say": {
+            "ru": "А́нна ист зофо́рт а́йнгешлафен",
+            "uk": "А́нна іст зофо́рт а́йнгешлафен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я рано встал»",
+            "uk": "Виберіть, як сказати: «Я рано встав»",
+            "en": "Choose how to say: “I got up early”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:17:07",
+          "options": [
+            "de:17:07",
+            "de:17:08",
+            "de:17:09"
+          ],
+          "answerId": "de:17:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том поздно встал»",
+            "uk": "Виберіть, як сказати: «Том пізно встав»",
+            "en": "Choose how to say: “Tom got up late”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:17:08",
+          "options": [
+            "de:17:08",
+            "de:17:07",
+            "de:17:10"
+          ],
+          "answerId": "de:17:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна сразу уснула»",
+            "uk": "Виберіть, як сказати: «Анна одразу заснула»",
+            "en": "Choose how to say: “Anna fell asleep at once”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:17:10",
+          "options": [
+            "de:17:10",
+            "de:17:09",
+            "de:17:08"
+          ],
+          "answerId": "de:17:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Пошёл, поехал, полетел",
+        "uk": "Пішов, поїхав, полетів",
+        "en": "Went, drove, flew"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я пошёл домой».\nIch bin nach Hause gegangen. — «Я пошёл домой.»\nЧитается: их бин нах ха́узе гега́нген\nСлово nach значит «к, в». Слово Hause — «дом». Слово gegangen — «пошёл».\nВместе nach Hause значит «домой».\nAnna ist mit dem Bus gefahren. — «Анна поехала на автобусе.»\nЧитается: А́нна ист мит дем бус гефа́рен\nСлово mit значит «на, с».\nСлово dem по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Bus значит «автобус». Слово gefahren — «поехала».\nСлово mit здесь значит «на»: mit dem Bus — «на автобусе».\nWir sind nach Berlin geflogen. — «Мы полетели в Берлин.»\nЧитается: вир зинд нах берли́н гефло́ген\nСлово geflogen значит «полетели».\nTom ist zur Arbeit gelaufen. — «Том отправился на работу пешком.»\nЧитается: Том ист цур а́рбайт гела́уфен\nСлово zur значит «на». Слово Arbeit — «работа». Слово gelaufen — «пошёл пешком».\nКуда-то переместились — снова ist и sind.",
+        "uk": "Дивіться, як сказати «Я пішов додому».\nIch bin nach Hause gegangen. — «Я пішов додому.»\nЧитається: іх бін нах ха́узе гега́нген\nСлово nach означає «до». Слово Hause — «дім». Слово gegangen — «пішов».\nРазом nach Hause означає «додому».\nAnna ist mit dem Bus gefahren. — «Анна поїхала автобусом.»\nЧитається: А́нна іст міт дем бус гефа́рен\nСлово mit означає «на, з».\nСлово dem по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Bus означає «автобус». Слово gefahren — «поїхала».\nСлово mit тут означає «на»: mit dem Bus — «автобусом».\nWir sind nach Berlin geflogen. — «Ми полетіли до Берліна.»\nЧитається: вір зінд нах берлі́н гефло́ген\nСлово geflogen означає «полетіли».\nTom ist zur Arbeit gelaufen. — «Том вирушив на роботу пішки.»\nЧитається: Том іст цур а́рбайт гела́уфен\nСлово zur означає «на». Слово Arbeit — «робота». Слово gelaufen — «пішов пішки».\nКудись перемістилися — знову ist і sind.",
+        "en": "Look at how to say “I went home”.\nIch bin nach Hause gegangen. — “I went home.”\nSounds like: eekh been nakh khAooze gegAngen\nThe word nach means “to”. The word Hause — “home”.\nThe word gegangen means “went”.\nTogether nach Hause means “home” (as a direction).\nAnna ist mit dem Bus gefahren. — “Anna went by bus.”\nSounds like: Anna eest meet dem boos gefAren\nThe word mit means “by, with”. The word dem — “the”.\nThe word Bus means “bus”. The word gefahren — “went”.\nThe word mit here means “by”: mit dem Bus — “by bus”.\nWir sind nach Berlin geflogen. — “We flew to Berlin.”\nSounds like: veer zeend nakh berlEEn geflOgen\nThe word geflogen means “flew”.\nTom ist zur Arbeit gelaufen. — “Tom walked to work.”\nSounds like: Tom eest tsoor Arbayt gelAoofen\nThe word zur means “to”. The word Arbeit — “work”.\nThe word gelaufen means “walked”.\nYou moved somewhere — again ist and sind."
+      },
+      "examples": [
+        {
+          "phraseId": "de:17:11",
+          "say": {
+            "ru": "их бин нах ха́узе гега́нген",
+            "uk": "іх бін нах ха́узе гега́нген"
+          }
+        },
+        {
+          "phraseId": "de:17:13",
+          "say": {
+            "ru": "А́нна ист мит дем бус гефа́рен",
+            "uk": "А́нна іст міт дем бус гефа́рен"
+          }
+        },
+        {
+          "phraseId": "de:17:14",
+          "say": {
+            "ru": "вир зинд нах берли́н гефло́ген",
+            "uk": "вір зінд нах берлі́н гефло́ген"
+          }
+        },
+        {
+          "phraseId": "de:17:12",
+          "say": {
+            "ru": "Том ист цур а́рбайт гела́уфен",
+            "uk": "Том іст цур а́рбайт гела́уфен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я пошёл домой»",
+            "uk": "Виберіть, як сказати: «Я пішов додому»",
+            "en": "Choose how to say: “I went home”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:17:11",
+          "options": [
+            "de:17:11",
+            "de:17:13",
+            "de:17:14"
+          ],
+          "answerId": "de:17:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна поехала на автобусе»",
+            "uk": "Виберіть, як сказати: «Анна поїхала автобусом»",
+            "en": "Choose how to say: “Anna went by bus”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:17:13",
+          "options": [
+            "de:17:13",
+            "de:17:12",
+            "de:17:11"
+          ],
+          "answerId": "de:17:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы полетели в Берлин»",
+            "uk": "Виберіть, як сказати: «Ми полетіли до Берліна»",
+            "en": "Choose how to say: “We flew to Berlin”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:17:14",
+          "options": [
+            "de:17:14",
+            "de:17:12",
+            "de:17:13"
+          ],
+          "answerId": "de:17:14"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вошёл, вышел, пересел",
+        "uk": "Увійшов, вийшов, пересів",
+        "en": "Got on, got off, changed"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вошёл через переднюю дверь».\nIch bin vorne eingestiegen. — «Я вошёл через переднюю дверь.»\nЧитается: их бин фо́рне а́йнгештиген\nСлово vorne значит «впереди». Слово eingestiegen — «вошёл, сел».\nВойти в транспорт, выйти, пересесть — тоже bin и ist.\nAnna ist am Markt ausgestiegen. — «Анна вышла у рынка.»\nЧитается: А́нна ист ам маркт а́усгештиген\nСлово am значит «в, у». Слово Markt — «рынок». Слово ausgestiegen — «вышла».\nTom ist in Köln umgestiegen. — «Том пересел в Кёльне.»\nЧитается: Том ист ин кёльн у́мгештиген\nСлово in значит «в». Слово umgestiegen — «пересел».\nDie Gäste sind gestern abgereist. — «Гости вчера уехали.»\nЧитается: ди ге́сте зинд ге́стерн а́пгерайст\nСлово Gäste значит «гости». Слово gestern — «вчера». Слово abgereist — «уехали».",
+        "uk": "Дивіться, як сказати «Я увійшов через передні двері».\nIch bin vorne eingestiegen. — «Я увійшов через передні двері.»\nЧитається: іх бін фо́рне а́йнгештіген\nСлово vorne означає «спереду». Слово eingestiegen — «увійшов, сів».\nУвійти в транспорт, вийти, пересісти — теж bin і ist.\nAnna ist am Markt ausgestiegen. — «Анна вийшла біля ринку.»\nЧитається: А́нна іст ам маркт а́усгештіген\nСлово am означає «у, біля». Слово Markt — «ринок». Слово ausgestiegen — «вийшла».\nTom ist in Köln umgestiegen. — «Том пересів у Кельні.»\nЧитається: Том іст ін кьольн у́мгештіген\nСлово in означає «у». Слово umgestiegen — «пересів».\nDie Gäste sind gestern abgereist. — «Гості вчора виїхали.»\nЧитається: ді ге́сте зінд ге́стерн а́пгерайст\nСлово Gäste означає «гості». Слово gestern — «учора». Слово abgereist — «виїхали».",
+        "en": "Look at how to say “I got on at the front”.\nIch bin vorne eingestiegen. — “I got on at the front.”\nSounds like: eekh been fOrne Ayngeshteegen\nThe word vorne means “at the front”. The word eingestiegen — “got on”.\nGetting on, getting off and changing also go with bin and ist.\nAnna ist am Markt ausgestiegen. — “Anna got off at the market.”\nSounds like: Anna eest am markt Aoosgeshteegen\nThe word am means “at”. The word Markt — “market”.\nThe word ausgestiegen means “got off”.\nTom ist in Köln umgestiegen. — “Tom changed trains in Cologne.”\nSounds like: Tom eest een kyoln OOmgeshteegen\nThe word in means “in”. The word umgestiegen — “changed”.\nDie Gäste sind gestern abgereist. — “The guests left yesterday.”\nSounds like: dee gEste zeend gEstern Apgerayst\nThe word Gäste means “guests”. The word gestern — “yesterday”.\nThe word abgereist means “left”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:17:21",
+          "say": {
+            "ru": "их бин фо́рне а́йнгештиген",
+            "uk": "іх бін фо́рне а́йнгештіген"
+          }
+        },
+        {
+          "phraseId": "de:17:22",
+          "say": {
+            "ru": "А́нна ист ам маркт а́усгештиген",
+            "uk": "А́нна іст ам маркт а́усгештіген"
+          }
+        },
+        {
+          "phraseId": "de:17:23",
+          "say": {
+            "ru": "Том ист ин кёльн у́мгештиген",
+            "uk": "Том іст ін кьольн у́мгештіген"
+          }
+        },
+        {
+          "phraseId": "de:17:26",
+          "say": {
+            "ru": "ди ге́сте зинд ге́стерн а́пгерайст",
+            "uk": "ді ге́сте зінд ге́стерн а́пгерайст"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вошёл через переднюю дверь»",
+            "uk": "Виберіть, як сказати: «Я увійшов через передні двері»",
+            "en": "Choose how to say: “I got on at the front”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:17:21",
+          "options": [
+            "de:17:21",
+            "de:17:22",
+            "de:17:23"
+          ],
+          "answerId": "de:17:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна вышла у рынка»",
+            "uk": "Виберіть, як сказати: «Анна вийшла біля ринку»",
+            "en": "Choose how to say: “Anna got off at the market”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:17:22",
+          "options": [
+            "de:17:22",
+            "de:17:21",
+            "de:17:26"
+          ],
+          "answerId": "de:17:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Гости вчера уехали»",
+            "uk": "Виберіть, як сказати: «Гості вчора виїхали»",
+            "en": "Choose how to say: “The guests left yesterday”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:17:26",
+          "options": [
+            "de:17:26",
+            "de:17:23",
+            "de:17:21"
+          ],
+          "answerId": "de:17:26"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Остался, стал, въехал",
+        "uk": "Залишився, став, в’їхав",
+        "en": "Stayed, became, moved in"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я сегодня остался дома».\nIch bin heute zu Hause geblieben. — «Я сегодня остался дома.»\nЧитается: их бин хо́йте цу ха́узе гебли́бен\nСлово heute значит «сегодня». Слово zu — «в». Слово geblieben — «остался».\nВместе zu Hause значит «дома».\nDer Tee ist kalt geworden. — «Чай остыл.»\nЧитается: дер те́ ист кальт гево́рден\nСлово Der по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Tee значит «чай». Слово kalt — «холодный». Слово geworden — «стал, стало».\nСлово geworden значит «стал»: чай стал холодным.\nEs ist dunkel geworden. — «Стало темно.»\nЧитается: ес ист ду́нкель гево́рден\nСлово Es по-русски не говорят, но по-немецки оно нужно.\nСлово dunkel значит «тёмный, темно».\nWir sind in die neue Wohnung eingezogen. — «Мы въехали в новую квартиру.»\nЧитается: вир зинд ин ди но́йе во́нунг а́йнгецоген\nСлово neue значит «новую». Слово Wohnung — «квартира». Слово eingezogen — «въехали».",
+        "uk": "Дивіться, як сказати «Я сьогодні залишився вдома».\nIch bin heute zu Hause geblieben. — «Я сьогодні залишився вдома.»\nЧитається: іх бін хо́йте цу ха́узе геблі́бен\nСлово heute означає «сьогодні». Слово zu — «в». Слово geblieben — «залишився».\nРазом zu Hause означає «вдома».\nDer Tee ist kalt geworden. — «Чай охолонув.»\nЧитається: дер те́ іст кальт гево́рден\nСлово Der по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Tee означає «чай». Слово kalt — «холодний». Слово geworden — «став, стало».\nСлово geworden означає «став»: чай став холодним.\nEs ist dunkel geworden. — «Стало темно.»\nЧитається: ес іст ду́нкель гево́рден\nСлово Es по-українськи не кажуть, але по-німецьки воно потрібне.\nСлово dunkel означає «темний, темно».\nWir sind in die neue Wohnung eingezogen. — «Ми в'їхали до нової квартири.»\nЧитається: вір зінд ін ді но́йе во́нунг а́йнгецоген\nСлово neue означає «нову». Слово Wohnung — «квартира». Слово eingezogen — «в’їхали».",
+        "en": "Look at how to say “I stayed at home today”.\nIch bin heute zu Hause geblieben. — “I stayed at home today.”\nSounds like: eekh been khOyte tsoo khAooze geblEEben\nThe word heute means “today”. The word zu — “at”.\nThe word geblieben means “stayed”.\nTogether zu Hause means “at home”.\nDer Tee ist kalt geworden. — “The tea got cold.”\nSounds like: der tE eest kalt gevOrden\nThe word Der means “the”. The word Tee — “tea”.\nThe word kalt means “cold”. The word geworden — “became”.\nThe word geworden means “became”: the tea became cold.\nEs ist dunkel geworden. — “It got dark.”\nSounds like: es eest dOOnkel gevOrden\nIn English there is no such word here, but in German the word Es is needed.\nThe word dunkel means “dark”.\nWir sind in die neue Wohnung eingezogen. — “We moved into the new apartment.”\nSounds like: veer zeend een dee nOye vOnoong Ayngetsogen\nThe word neue means “new”. The word Wohnung — “apartment”.\nThe word eingezogen means “moved in”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:17:41",
+          "say": {
+            "ru": "их бин хо́йте цу ха́узе гебли́бен",
+            "uk": "іх бін хо́йте цу ха́узе геблі́бен"
+          }
+        },
+        {
+          "phraseId": "de:17:44",
+          "say": {
+            "ru": "дер те́ ист кальт гево́рден",
+            "uk": "дер те́ іст кальт гево́рден"
+          }
+        },
+        {
+          "phraseId": "de:17:46",
+          "say": {
+            "ru": "ес ист ду́нкель гево́рден",
+            "uk": "ес іст ду́нкель гево́рден"
+          }
+        },
+        {
+          "phraseId": "de:17:29",
+          "say": {
+            "ru": "вир зинд ин ди но́йе во́нунг а́йнгецоген",
+            "uk": "вір зінд ін ді но́йе во́нунг а́йнгецоген"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сегодня остался дома»",
+            "uk": "Виберіть, як сказати: «Я сьогодні залишився вдома»",
+            "en": "Choose how to say: “I stayed at home today”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:17:41",
+          "options": [
+            "de:17:41",
+            "de:17:44",
+            "de:17:46"
+          ],
+          "answerId": "de:17:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чай остыл»",
+            "uk": "Виберіть, як сказати: «Чай охолонув»",
+            "en": "Choose how to say: “The tea got cold”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:17:44",
+          "options": [
+            "de:17:44",
+            "de:17:41",
+            "de:17:46"
+          ],
+          "answerId": "de:17:44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Стало темно»",
+            "uk": "Виберіть, як сказати: «Стало темно»",
+            "en": "Choose how to say: “It got dark”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:17:46",
+          "options": [
+            "de:17:46",
+            "de:17:29",
+            "de:17:44"
+          ],
+          "answerId": "de:17:46"
+        }
+      ]
+    }
+  ]
+}

@@ -38,6 +38,7 @@ import {
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
 import { COPY, pick } from './PaywallPlusCopy';
 import { paywallContextHeadline, paywallEntryFactsFromParams } from '../../app/paywall_context_headline';
+import { PaywallTierScope } from './paywall_tier_context';
 import { PAYWALL_V3_CTA } from '../../app/paywall_language_add_copy';
 import { PAYWALL_V3_AUTO_RENEW, PAYWALL_V3_CTA_TRIAL, paywallV3Rows } from '../../app/paywall_v3_rows';
 import { paywallV3Body } from '../../app/paywall_language_add_copy';
@@ -281,7 +282,10 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     p.handleClose('close', 'scrim');
   };
 
+  // зачем (владелец 06.11, Plus/Ultra): Год = Ultra, Месяц = Plus — заголовок, кнопка и тексты «с Plus» следуют выбранной плитке.
+  const paywallTier = p.selected === 'yearly' ? 'ultra' : 'plus';
   return (
+    <PaywallTierScope tier={paywallTier}>
     <View style={S.root}>
       <Stack.Screen options={screenOptions} />
       {prompt ? (
@@ -349,6 +353,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
         </>
       )}
     </View>
+    </PaywallTierScope>
   );
 }
 

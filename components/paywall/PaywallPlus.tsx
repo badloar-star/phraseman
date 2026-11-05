@@ -27,6 +27,7 @@ import { paywallPlateBg, paywallSheetBg } from './paywall_surfaces';
 import V2Pressable from '../v2/V2Pressable';
 import type { PaywallPriceSource } from '../../app/paywall_reference_prices';
 import { PaywallCBenefits, PAYWALL_C_BENEFIT_COUNT } from './PaywallCBenefits';
+import { usePaywallTier, useTierText } from './paywall_tier_context';
 import { PAYWALL_V3_RESTORE } from '../../app/paywall_v3_rows';
 import {
   COPY, ctaBuyMonth, ctaBuyYear, ctaStartTrial, fineAfterTrial, fineThenMonth, heroTrialTitle, pick,
@@ -65,10 +66,13 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
 }) {
   // зачем (владелец 11.10: «Я НЕ ВИЖУ КОНТЕКСТА! ВСЕ ПЕЙВОЛЫ ДОЛЖНЫ БЫТЬ КОНТЕКСТНЫМИ»; решение 1 «Шторка»): окно говорит про место, откуда
   // человек пришёл — значок входа и пилюля «что закончилось» наверху, ниже заголовок и одна фраза.
-  const title = contextTitle || (trialDays ? heroTrialTitle(lang, trialDays) : pick(lang, COPY.heroNoTrial));
-  const subtitle = contextTitle
+  // зачем (Plus/Ultra 06.11): название уровня по выбранной плитке (Год → Ultra, Месяц → Plus); без провайдера — Plus.
+  const tierText = useTierText();
+  const tier = usePaywallTier();
+  const title = tierText(contextTitle || (trialDays ? heroTrialTitle(lang, trialDays) : pick(lang, COPY.heroNoTrial)));
+  const subtitle = tierText(contextTitle
     ? (contextSubtitle || '')
-    : trialDays && canPromiseTrialReminder(trialDays) ? pick(lang, COPY.heroTrialSub) : '';
+    : trialDays && canPromiseTrialReminder(trialDays) ? pick(lang, COPY.heroTrialSub) : '');
   const close = closeVisible ? (
     <V2Pressable
       testID="paywall-close"
@@ -86,10 +90,10 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
   return (
     <View style={S.cHeader}>
       <View style={S.topRow}>
-        <Text style={[S.kicker, { color: g.text }]}>PhraseMan Plus</Text>
+        <Text style={[S.kicker, { color: g.text }]}>{`PhraseMan ${tier === 'ultra' ? 'Ultra' : 'Plus'}`}</Text>
         {close}
       </View>
-      {contextPill ? <View testID="paywall-pill" style={[S.pill, { backgroundColor: paywallPlateBg(g) }]}><Text style={[S.pillText, { color: g.text }]}>{contextPill}</Text></View> : null}
+      {contextPill ? <View testID="paywall-pill" style={[S.pill, { backgroundColor: paywallPlateBg(g) }]}><Text style={[S.pillText, { color: g.text }]}>{tierText(contextPill)}</Text></View> : null}
       <Text testID="paywall-title" accessibilityRole="header" style={[S.h1, { color: g.text }]}>{title}</Text>
       {subtitle ? <Text testID="paywall-subtitle" style={[S.sub, { color: g.text }]}>{subtitle}</Text> : null}
     </View>
@@ -165,7 +169,10 @@ export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, le
   lang: Lang; g: GlassTokens; leadBenefit?: string; leadCaption?: string; factCaption?: string;
   items?: ReadonlyArray<Readonly<{ title: string; detail: string }>>; paragraph?: string;
 }) {
-  return <PaywallCBenefits lang={lang} g={g} leadBenefit={leadBenefit} leadCaption={leadCaption} factCaption={factCaption} items={items} paragraph={paragraph} />;
+  // зачем (Plus/Ultra 06.11): тексты «с Plus» → «с Ultra» при выбранной годовой плитке.
+  const tierText = useTierText();
+  const tierItems = items ? items.map((row) => ({ title: tierText(row.title), detail: tierText(row.detail) })) : items;
+  return <PaywallCBenefits lang={lang} g={g} leadBenefit={leadBenefit ? tierText(leadBenefit) : leadBenefit} leadCaption={leadCaption ? tierText(leadCaption) : leadCaption} factCaption={factCaption ? tierText(factCaption) : factCaption} items={tierItems} paragraph={paragraph ? tierText(paragraph) : paragraph} />;
 });
 
 // ── закреплённая кнопка ─────────────────────────────────────────────────────
@@ -205,7 +212,8 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
   // после сбоя тапа, либо мелкий текст тарифа; строка резервируется, чтобы геометрия не прыгала.
   const ctaDisabled = disabled;
   // зачем (макет paywall-context-redesign №9/№10): без цен под кнопкой — «Кнопка работает и без цен…», а не пустая строка.
-  const fineText = notice ? pick(lang, COPY.tryInMinute) : ready ? fine : pick(lang, COPY.fineNoPrices);
+  const tierText = useTierText();
+  const fineText = tierText(notice ? pick(lang, COPY.tryInMinute) : ready ? fine : pick(lang, COPY.fineNoPrices));
   return (
     <View style={[S.dock, { paddingBottom: Math.max(bottomInset, 16) }]}>
       {/* макет «Все окна Plus»: строка про автопродление — над кнопкой */}
@@ -213,7 +221,7 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
       {/* Вариант C: плоская кнопка активной темы, без декоративного свечения/3D. */}
       <V2Pressable
         testID="paywall-cta"
-        accessibilityLabel={label}
+        accessibilityLabel={tierText(label)}
         accessibilityState={{ disabled: ctaDisabled, busy: purchasing }}
         disabled={ctaDisabled}
         onPress={onPress}
@@ -224,7 +232,7 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
       >
         {purchasing
           ? <ActivityIndicator color={g.ctaFillInk} />
-          : <Text style={[S.ctaText, { color: g.ctaFillInk }]}>{label}</Text>}
+          : <Text style={[S.ctaText, { color: g.ctaFillInk }]}>{tierText(label)}</Text>}
       </V2Pressable>
       {restoreVisible || promoVisible ? <View style={S.secondaryActions}>
         {/* зачем (R1_PAYWALL_UX): восстановление видно — крутилка рядом с «Восстанавливаем…»; недоступная ссылка приглушена (раньше не отличалась от активной). */}

@@ -58,7 +58,8 @@ describe('пейвол по макету: экран', () => {
     expect(screen).toContain('labelReady && selectedPromo ? cta.label');
   });
   it('шапка: «PhraseMan Plus» обычным регистром, пилюля под ней; заголовок 29/34, подзаголовок 15/21', () => {
-    expect(plus).toContain('>PhraseMan Plus</Text>');
+    // зачем (Plus/Ultra 06.11): название в шапке следует выбранной плитке (Год → Ultra, Месяц → Plus; без провайдера — Plus)
+    expect(plus).toContain("{`PhraseMan ${tier === 'ultra' ? 'Ultra' : 'Plus'}`}</Text>");
     expect(plus).toContain('testID="paywall-pill"');
     expect(plus).toContain("h1: { marginTop: 16, fontSize: 29, lineHeight: 34, fontWeight: '800'");
     expect(plus).toContain('sub: { marginTop: 8, fontSize: 15, lineHeight: 21 }');

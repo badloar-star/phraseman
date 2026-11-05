@@ -22,6 +22,7 @@ import V2Pressable from '../v2/V2Pressable';
 import { paywallPlateBg } from './paywall_surfaces';
 export { planRowSelectedPaint } from './paywallPlanRowPaint';
 import { COPY, pick, trialFreeLabel } from './PaywallPlusCopy';
+import { SUBSCRIPTION_TIER_NAME } from '../../app/subscription_tier';
 import { PAYWALL_V3_NO_TRIAL_LINE } from '../../app/paywall_v3_rows';
 
 type GlassTokens = ReturnType<typeof liquidGlassTokens>;
@@ -85,7 +86,7 @@ export const PaywallPlanRows = memo(function PaywallPlanRows({
     <View style={S.list}>
       <PlanRow
         lang={lang} g={g} on={selected === 'yearly'} disabled={disabled} onPress={() => onSelect('yearly')}
-        testID="paywall-plan-yearly" priceTestID="paywall-year-price" name={pick(lang, COPY.year)}
+        testID="paywall-plan-yearly" priceTestID="paywall-year-price" name={`${SUBSCRIPTION_TIER_NAME.ultra} · ${pick(lang, COPY.year)}`}
         trialDays={yearlyTrialDays} price={yearlyPrice} promo={yearlyPromo} approx={yearlyPriceSource === 'reference'}
         // макет: «39,99 € в год» — сумма с периодом, без «≈ в месяц» и без бейджа скидки
         subPrice={pick(lang, COPY.perYear)}
@@ -93,7 +94,7 @@ export const PaywallPlanRows = memo(function PaywallPlanRows({
       />
       <PlanRow
         lang={lang} g={g} on={selected === 'monthly'} disabled={disabled} onPress={() => onSelect('monthly')}
-        testID="paywall-plan-monthly" priceTestID="paywall-month-price" name={pick(lang, COPY.month)}
+        testID="paywall-plan-monthly" priceTestID="paywall-month-price" name={`${SUBSCRIPTION_TIER_NAME.plus} · ${pick(lang, COPY.month)}`}
         trialDays={monthlyTrialDays} price={monthlyPrice} promo={monthlyPromo} approx={monthlyPriceSource === 'reference'}
         subPrice={pick(lang, COPY.perMonth)}
       />

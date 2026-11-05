@@ -49,7 +49,7 @@ describe('аудит экрана Пика B', () => {
     expect(counter).toContain("spireGameText(lang, 'placeN', { n: me.place })");
     expect(counter).toContain('accessibilityLabel=');
     expect(read('components/spire/peak/PeakScreenV2.tsx')).toContain("tourProp ?? (peakTourDevOff() ? 'off' : 'auto')");
-    expect(read('app/dev_spire_preview.tsx')).toContain("setPeakTourDevOff(params.tour === 'off')");
+    expect(read('app/dev_spire_preview.tsx')).toContain("setPeakTourDevOff(params.tour === 'off'"); // зачем (05.11): условие расширено «|| params.state === 'welcome'» — проверяем смысл, а не закрывающую скобку
     // старый тур (state=tour) при ?peakB=1 не рисуется — вместо него новый (state=peak_tour)
     expect(read('app/dev_spire_preview.tsx')).toContain("state === 'tour' && params.peakB !== '1'");
   });

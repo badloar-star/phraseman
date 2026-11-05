@@ -1,0 +1,369 @@
+{
+ "lang": "en",
+ "lesson": 25,
+ "words": [
+  {
+   "form": "dinner",
+   "surface": "dinner",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.05",
+     "target": "He was cooking dinner",
+     "ru": "Он готовил ужин.",
+     "en": "He was cooking dinner."
+    }
+   ]
+  },
+  {
+   "form": "having",
+   "surface": "having",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.13",
+     "target": "We were having breakfast at seven",
+     "ru": "Мы завтракали в семь.",
+     "en": "We were having breakfast at seven."
+    }
+   ]
+  },
+  {
+   "form": "barrier",
+   "surface": "barrier",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.14",
+     "target": "He was waiting near the barrier",
+     "ru": "Он ждал у шлагбаума.",
+     "en": "He was waiting near the barrier."
+    }
+   ]
+  },
+  {
+   "form": "waterproof",
+   "surface": "waterproof",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.16",
+     "target": "I was wearing a waterproof jacket that day",
+     "ru": "В тот день на мне была водонепроницаемая куртка.",
+     "en": "I was wearing a waterproof jacket that day."
+    }
+   ]
+  },
+  {
+   "form": "dripping",
+   "surface": "dripping",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.17",
+     "target": "The rain was dripping through the ceiling",
+     "ru": "Дождь капал сквозь потолок.",
+     "en": "The rain was dripping through the ceiling."
+    }
+   ]
+  },
+  {
+   "form": "through",
+   "surface": "through",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.17",
+     "target": "The rain was dripping through the ceiling",
+     "ru": "Дождь капал сквозь потолок.",
+     "en": "The rain was dripping through the ceiling."
+    }
+   ]
+  },
+  {
+   "form": "ceiling",
+   "surface": "ceiling",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.17",
+     "target": "The rain was dripping through the ceiling",
+     "ru": "Дождь капал сквозь потолок.",
+     "en": "The rain was dripping through the ceiling."
+    }
+   ]
+  },
+  {
+   "form": "barking",
+   "surface": "barking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.18",
+     "target": "The dog was barking by the handrail",
+     "ru": "Собака лаяла у поручня.",
+     "en": "The dog was barking by the handrail."
+    }
+   ]
+  },
+  {
+   "form": "brakes",
+   "surface": "brakes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.19",
+     "target": "The driver was checking the brakes",
+     "ru": "Водитель проверял тормоза.",
+     "en": "The driver was checking the brakes."
+    }
+   ]
+  },
+  {
+   "form": "rang",
+   "surface": "rang",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.21",
+     "target": "I was reading when the phone rang",
+     "ru": "Я читала, когда зазвонил телефон.",
+     "en": "I was reading when the phone rang."
+    }
+   ]
+  },
+  {
+   "form": "started",
+   "surface": "started",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.24",
+     "target": "He was walking home when it started to rain",
+     "ru": "Он шел домой, когда начался дождь.",
+     "en": "He was walking home when it started to rain."
+    }
+   ]
+  },
+  {
+   "form": "eating",
+   "surface": "eating",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.25",
+     "target": "They were eating when someone knocked",
+     "ru": "Они ели, когда кто-то постучал.",
+     "en": "They were eating when someone knocked."
+    }
+   ]
+  },
+  {
+   "form": "knocked",
+   "surface": "knocked",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.25",
+     "target": "They were eating when someone knocked",
+     "ru": "Они ели, когда кто-то постучал.",
+     "en": "They were eating when someone knocked."
+    }
+   ]
+  },
+  {
+   "form": "dropped",
+   "surface": "dropped",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.26",
+     "target": "I dropped my keys while I was running",
+     "ru": "Я уронил ключи, когда бежал.",
+     "en": "I dropped my keys while I was running."
+    }
+   ]
+  },
+  {
+   "form": "while",
+   "surface": "while",
+   "count": 8,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.26",
+     "target": "I dropped my keys while I was running",
+     "ru": "Я уронил ключи, когда бежал.",
+     "en": "I dropped my keys while I was running."
+    },
+    {
+     "id": "en-classic-r1:25.27",
+     "target": "She saw the sign while she was crossing the road",
+     "ru": "Она увидела знак, переходя дорогу.",
+     "en": "She saw the sign while she was crossing the road."
+    }
+   ]
+  },
+  {
+   "form": "bang",
+   "surface": "bang",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.28",
+     "target": "We heard a bang while we were packing",
+     "ru": "Мы услышали хлопок, когда собирали вещи.",
+     "en": "We heard a bang while we were packing."
+    }
+   ]
+  },
+  {
+   "form": "ferry",
+   "surface": "ferry",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.29",
+     "target": "The ferry left while I was buying a ticket",
+     "ru": "Паром отплыл, пока я покупал билет.",
+     "en": "The ferry left while I was buying a ticket."
+    }
+   ]
+  },
+  {
+   "form": "buying",
+   "surface": "buying",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.29",
+     "target": "The ferry left while I was buying a ticket",
+     "ru": "Паром отплыл, пока я покупал билет.",
+     "en": "The ferry left while I was buying a ticket."
+    }
+   ]
+  },
+  {
+   "form": "cleaning",
+   "surface": "cleaning",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.30",
+     "target": "He found the receipt while he was cleaning the car",
+     "ru": "Он нашел квитанцию, когда мыл машину.",
+     "en": "He found the receipt while he was cleaning the car."
+    }
+   ]
+  },
+  {
+   "form": "sitting",
+   "surface": "sitting",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.34",
+     "target": "Where were you sitting",
+     "ru": "Где вы сидели?",
+     "en": "Where were you sitting?"
+    }
+   ]
+  },
+  {
+   "form": "announcement",
+   "surface": "announcement",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.38",
+     "target": "He was not listening to the announcement",
+     "ru": "Он не слушал объявление.",
+     "en": "He was not listening to the announcement."
+    },
+    {
+     "id": "en-classic-r1:25.47",
+     "target": "I missed the announcement because I was wearing headphones",
+     "ru": "Я пропустил объявление, потому что был в наушниках.",
+     "en": "I missed the announcement because I was wearing headphones."
+    }
+   ]
+  },
+  {
+   "form": "blocking",
+   "surface": "blocking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.39",
+     "target": "We were not blocking the entrance",
+     "ru": "Мы не загораживали вход.",
+     "en": "We were not blocking the entrance."
+    }
+   ]
+  },
+  {
+   "form": "trying",
+   "surface": "trying",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.44",
+     "target": "She was trying on shoes when I called",
+     "ru": "Она примеряла обувь, когда я позвонил.",
+     "en": "She was trying on shoes when I called."
+    }
+   ]
+  },
+  {
+   "form": "filling",
+   "surface": "filling",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.45",
+     "target": "I was still filling in the form when they closed the desk",
+     "ru": "Я все еще заполнял форму, когда закрыли стойку.",
+     "en": "I was still filling in the form when they closed the desk."
+    }
+   ]
+  },
+  {
+   "form": "waved",
+   "surface": "waved",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.46",
+     "target": "The driver waved while we were crossing",
+     "ru": "Водитель помахал нам рукой, когда мы переходили дорогу.",
+     "en": "The driver waved while we were crossing."
+    }
+   ]
+  },
+  {
+   "form": "as",
+   "surface": "as",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.48",
+     "target": "The shop was closing as we arrived",
+     "ru": "Магазин закрывался, когда мы приехали.",
+     "en": "The shop was closing as we arrived."
+    }
+   ]
+  },
+  {
+   "form": "shelter",
+   "surface": "shelter",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:25.50",
+     "target": "They were looking for shelter when the rain stopped",
+     "ru": "Они искали укрытие, когда дождь прекратился.",
+     "en": "They were looking for shelter when the rain stopped."
+    }
+   ]
+  }
+ ]
+}

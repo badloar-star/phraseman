@@ -1,0 +1,710 @@
+{
+  "lang": "en",
+  "lesson": 24,
+  "title": {
+    "ru": "Уже случилось: have и has",
+    "uk": "Вже сталося: have і has",
+    "en": "It has happened: have and has"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Уже сделано: have и has",
+        "uk": "Вже зроблено: have і has",
+        "en": "Already done: have and has"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что что-то уже сделано и результат виден сейчас.\nДля этого нужны два слова: have или has и слово о том, что уже сделано.\nI have lost my keys. — Я потерял ключи.\nЧитается: ай хэ́в ло́ст май ки́з.\nСлово have здесь не значит «иметь». Это слово-помощник: по-русски его не говорят.\nСлово lost значит «потерял». Это слово о том, что уже сделано.\nКлючей нет и сейчас — это главное.\nСлово have — когда речь обо мне, о нас, о вас, о них.\nShe has found her card. — Она нашла свою карту.\nЧитается: ши хэ́з фа́унд хэ́р ка́рд.\nСлово has — когда речь о нём, о ней или об одной вещи.\nСлово found значит «нашла». Это тоже слово о том, что уже сделано.\nКарта нашлась и теперь у неё.\nWe have finished lunch. — Мы закончили обед.\nЧитается: уи хэ́в фи́ништ ла́нч.\nСлово finished значит «закончили»: к слову finish добавили ed.\nСлова lost и found — особые, их запоминайте отдельно.\nТакие же особые слова встретятся дальше: driven, known, seen, been.",
+        "uk": "Дивіться, як сказати, що щось уже зроблено і результат видно зараз.\nДля цього потрібні два слова: have або has і слово про те, що вже зроблено.\nI have lost my keys. — Я загубив свої ключі.\nЧитається: ай хе́в ло́ст май кі́з.\nСлово have тут не означає «мати». Це слово-помічник: українською його не кажуть.\nСлово lost означає «загубив». Це слово про те, що вже зроблено.\nКлючів немає й зараз — це головне.\nСлово have — коли мова про мене, про нас, про вас, про них.\nShe has found her card. — Вона знайшла свою картку.\nЧитається: ші хе́з фа́унд хе́р ка́рд.\nСлово has — коли мова про нього, про неї або про одну річ.\nСлово found означає «знайшла». Це теж слово про те, що вже зроблено.\nКартка знайшлася і тепер у неї.\nWe have finished lunch. — Ми закінчили обід.\nЧитається: уі хе́в фі́нішт ла́нч.\nСлово finished означає «закінчили»: до слова finish додали ed.\nСлова lost і found — особливі, запам’ятовуйте їх окремо.\nТакі самі особливі слова зустрінуться далі: driven, known, seen, been.",
+        "en": "See how to say that something is done and the result shows now.\nYou need two things: have or has, and a word about what was done.\nI have lost my keys.\nThe word have here does not mean “to own”. It only helps the sentence.\nThe word lost means you lost them. It is a word about what was done.\nThe keys are still missing now. That is the point.\nWe say have for I, we, you and they.\nShe has found her card.\nWe say has for he, she or one thing.\nThe word found is also a word about what was done.\nThe card is with her now.\nWe have finished lunch.\nThe word finished is finish with ed added.\nThe words lost and found are special. Learn them one by one.\nYou will meet more special ones: driven, known, seen, been."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:24.01",
+          "say": {
+            "ru": "ай хэ́в ло́ст май ки́з",
+            "uk": "ай хе́в ло́ст май кі́з"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.02",
+          "say": {
+            "ru": "ши хэ́з фа́унд хэ́р ка́рд",
+            "uk": "ші хе́з фа́унд хе́р ка́рд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.03",
+          "say": {
+            "ru": "уи хэ́в фи́ништ ла́нч",
+            "uk": "уі хе́в фі́нішт ла́нч"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я потерял ключи»",
+            "uk": "Виберіть, як сказати: «Я загубив свої ключі»",
+            "en": "Choose how to say: “I have lost my keys.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:24.01",
+          "options": [
+            "en-classic-r1:24.01",
+            "en-classic-r1:24.02",
+            "en-classic-r1:24.03"
+          ],
+          "answerId": "en-classic-r1:24.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она нашла свою карту»",
+            "uk": "Виберіть, як сказати: «Вона знайшла свою картку»",
+            "en": "Choose how to say: “She has found her card.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.02",
+          "options": [
+            "en-classic-r1:24.02",
+            "en-classic-r1:24.01",
+            "en-classic-r1:24.03"
+          ],
+          "answerId": "en-classic-r1:24.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы закончили обед»",
+            "uk": "Виберіть, як сказати: «Ми закінчили обід»",
+            "en": "Choose how to say: “We have finished lunch.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.03",
+          "options": [
+            "en-classic-r1:24.03",
+            "en-classic-r1:24.01",
+            "en-classic-r1:24.02"
+          ],
+          "answerId": "en-classic-r1:24.03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Обновила, закипел, прибыла",
+        "uk": "Поновила, закипів, прибула",
+        "en": "Renewed, boiled, arrived"
+      },
+      "text": {
+        "ru": "Так же говорят про всё, что закончилось и дало результат.\nShe has renewed her passport. — Она обновила свой паспорт.\nЧитается: ши хэ́з рини́юд хэ́р па́спорт.\nСлово renew значит «обновить». Слово renewed значит «обновила».\nПаспорт теперь новый.\nThe kettle has boiled. — Чайник закипел.\nЧитается: зэ кэ́тл хэ́з бо́йлд.\nСлово boiled значит «закипел»: к слову boil добавили ed.\nПро чайник говорят has: это одна вещь.\nВода уже горячая.\nYour parcel has arrived. — Ваша посылка прибыла.\nЧитается: ёр па́рсел хэ́з эра́йвд.\nСлова has arrived вместе значат «прибыла».\nПосылка уже здесь.\nShe has scanned the invoice twice. — Она дважды сканировала счет.\nЧитается: ши хэ́з скэ́нд зи и́нвойс туа́йс.\nСлово scan значит «сканировать». Слово scanned значит «сканировала»: n удвоилась.\nСлово invoice значит «счёт».\nСлово twice значит «дважды».",
+        "uk": "Так само кажуть про все, що закінчилось і дало результат.\nShe has renewed her passport. — Вона поновила свій паспорт.\nЧитається: ші хе́з ріні́юд хе́р па́спорт.\nСлово renew означає «поновити». Слово renewed означає «поновила».\nПаспорт тепер новий.\nThe kettle has boiled. — Чайник закипів.\nЧитається: зе ке́тл хе́з бо́йлд.\nСлово boiled означає «закипів»: до слова boil додали ed.\nПро чайник кажуть has: це одна річ.\nВода вже гаряча.\nYour parcel has arrived. — Ваша посилка прибула.\nЧитається: йор па́рсел хе́з ера́йвд.\nСлова has arrived разом означають «прибула».\nПосилка вже тут.\nShe has scanned the invoice twice. — Вона двічі відсканувала рахунок.\nЧитається: ші хе́з ске́нд зі і́нвойс туа́йс.\nСлово scan означає «сканувати». Слово scanned означає «відсканувала»: n подвоїлась.\nСлово invoice означає «рахунок».\nСлово twice означає «двічі».",
+        "en": "We say the same about anything that finished and gave a result.\nShe has renewed her passport.\nThe word renew means to make new again.\nThe word renewed is the word about what was done.\nThe passport is new now.\nThe kettle has boiled.\nThe word boiled is boil with ed added.\nWe say has for the kettle: it is one thing.\nThe water is hot now.\nYour parcel has arrived.\nThe words has arrived mean it is here now.\nThe parcel is here already.\nShe has scanned the invoice twice.\nThe word scan means to copy with a scanner. The word scanned has the n doubled.\nThe word invoice is a bill that you can pay.\nThe word twice means “two times”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:24.07",
+          "say": {
+            "ru": "ши хэ́з рини́юд хэ́р па́спорт",
+            "uk": "ші хе́з ріні́юд хе́р па́спорт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.09",
+          "say": {
+            "ru": "зэ кэ́тл хэ́з бо́йлд",
+            "uk": "зе ке́тл хе́з бо́йлд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.10",
+          "say": {
+            "ru": "ёр па́рсел хэ́з эра́йвд",
+            "uk": "йор па́рсел хе́з ера́йвд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.28",
+          "say": {
+            "ru": "ши хэ́з скэ́нд зи и́нвойс туа́йс",
+            "uk": "ші хе́з ске́нд зі і́нвойс туа́йс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она обновила свой паспорт»",
+            "uk": "Виберіть, як сказати: «Вона поновила свій паспорт»",
+            "en": "Choose how to say: “She has renewed her passport.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:24.07",
+          "options": [
+            "en-classic-r1:24.07",
+            "en-classic-r1:24.09",
+            "en-classic-r1:24.10"
+          ],
+          "answerId": "en-classic-r1:24.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чайник закипел»",
+            "uk": "Виберіть, як сказати: «Чайник закипів»",
+            "en": "Choose how to say: “The kettle has boiled.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.09",
+          "options": [
+            "en-classic-r1:24.09",
+            "en-classic-r1:24.10",
+            "en-classic-r1:24.07"
+          ],
+          "answerId": "en-classic-r1:24.09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваша посылка прибыла»",
+            "uk": "Виберіть, як сказати: «Ваша посилка прибула»",
+            "en": "Choose how to say: “Your parcel has arrived.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.10",
+          "options": [
+            "en-classic-r1:24.10",
+            "en-classic-r1:24.07",
+            "en-classic-r1:24.09"
+          ],
+          "answerId": "en-classic-r1:24.10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Только что и уже",
+        "uk": "Щойно і вже",
+        "en": "Just and already"
+      },
+      "text": {
+        "ru": "Два маленьких слова: just и already.\nОни стоят между have или has и словом о том, что сделано.\nI have just parked the van. — Я только что припарковал фургон.\nЧитается: ай хэ́в джа́ст па́ркт зэ вэ́н.\nСлово van значит «фургон».\nСлово just здесь значит «только что».\nHe has already paid. — Он уже заплатил.\nЧитается: хи хэ́з олрэ́ди пэ́йд.\nСлово already значит «уже».\nСлово paid значит «заплатил». Это особое слово, как lost и found.\nThey have already unpacked. — Они уже распаковали вещи.\nЧитается: зэй хэ́в олрэ́ди анпэ́кт.\nСлово unpack значит «распаковать». Слово unpacked значит «распаковали».\nСлово already и здесь стоит после have.",
+        "uk": "Два маленьких слова: just і already.\nВони стоять між have або has і словом про те, що зроблено.\nI have just parked the van. — Я щойно припаркував фургон.\nЧитається: ай хе́в джа́ст па́ркт зе ве́н.\nСлово van означає «фургон».\nСлово just тут означає «щойно».\nHe has already paid. — Він уже заплатив.\nЧитається: хі хе́з олре́ді пе́йд.\nСлово already означає «вже».\nСлово paid означає «заплатив». Це особливе слово, як lost і found.\nThey have already unpacked. — Вони вже розпакували речі.\nЧитається: зей хе́в олре́ді анпе́кт.\nСлово unpack означає «розпакувати». Слово unpacked означає «розпакували».\nСлово already і тут стоїть після have.",
+        "en": "Two small words: just and already.\nThey stand between have or has and the word about what was done.\nI have just parked the van.\nThe word van is a small truck.\nThe word just here means a moment ago.\nHe has already paid.\nThe word already means it is done earlier than you may expect.\nThe word paid is special, like lost and found.\nThey have already unpacked.\nThe word unpack means to take things out of bags.\nThe word unpacked is what was done.\nThe word already again stands right after have."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:24.11",
+          "say": {
+            "ru": "ай хэ́в джа́ст па́ркт зэ вэ́н",
+            "uk": "ай хе́в джа́ст па́ркт зе ве́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.14",
+          "say": {
+            "ru": "хи хэ́з олрэ́ди пэ́йд",
+            "uk": "хі хе́з олре́ді пе́йд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.15",
+          "say": {
+            "ru": "зэй хэ́в олрэ́ди анпэ́кт",
+            "uk": "зей хе́в олре́ді анпе́кт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я только что припарковал фургон»",
+            "uk": "Виберіть, як сказати: «Я щойно припаркував фургон»",
+            "en": "Choose how to say: “I have just parked the van.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:24.11",
+          "options": [
+            "en-classic-r1:24.11",
+            "en-classic-r1:24.14",
+            "en-classic-r1:24.15"
+          ],
+          "answerId": "en-classic-r1:24.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он уже заплатил»",
+            "uk": "Виберіть, як сказати: «Він уже заплатив»",
+            "en": "Choose how to say: “He has already paid.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.14",
+          "options": [
+            "en-classic-r1:24.14",
+            "en-classic-r1:24.11",
+            "en-classic-r1:24.15"
+          ],
+          "answerId": "en-classic-r1:24.14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они уже распаковали вещи»",
+            "uk": "Виберіть, як сказати: «Вони вже розпакували речі»",
+            "en": "Choose how to say: “They have already unpacked.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.15",
+          "options": [
+            "en-classic-r1:24.15",
+            "en-classic-r1:24.11",
+            "en-classic-r1:24.14"
+          ],
+          "answerId": "en-classic-r1:24.15"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Ещё не: слово yet",
+        "uk": "Ще не: слово yet",
+        "en": "Not yet: the word yet"
+      },
+      "text": {
+        "ru": "Теперь о том, чего ещё нет. Для этого есть слово yet.\nСлово yet стоит в конце фразы.\nWe have not ordered yet. — Мы еще не сделали заказ.\nЧитается: уи хэ́в но́т о́рдерд йэ́т.\nСлова have not значат «не».\nСлово yet само значит «ещё».\nВместе have not … yet значат «ещё не».\nThe bus has not left yet. — Автобус еще не уехал.\nЧитается: зэ ба́с хэ́з но́т лэ́фт йэ́т.\nСлово left значит «уехал»: это особое слово от leave.\nСлова has not left yet значат «ещё не уехал». Автобус пока здесь.\nHave you finished yet? — Вы уже закончили?\nЧитается: хэ́в ю фи́ништ йэ́т.\nВ вопросе have ставят первым.\nСлово yet в вопросе значит «уже?»: спрашиваем, сделано ли.\nСлово already — «уже» в обычной фразе, в середине.\nСлово yet стоит в конце: с not — «ещё не», в вопросе — «уже?».",
+        "uk": "Тепер про те, чого ще немає. Для цього є слово yet.\nСлово yet стоїть наприкінці фрази.\nWe have not ordered yet. — Ми ще не замовили.\nЧитається: уі хе́в но́т о́рдерд йе́т.\nСлова have not означають «не».\nСлово yet саме означає «ще».\nРазом have not … yet означають «ще не».\nThe bus has not left yet. — Автобус ще не поїхав.\nЧитається: зе ба́с хе́з но́т ле́фт йе́т.\nСлово left означає «поїхав»: це особливе слово від leave.\nСлова has not left yet означають «ще не поїхав». Автобус поки тут.\nHave you finished yet? — Ви вже закінчили?\nЧитається: хе́в ю фі́нішт йе́т.\nУ питанні have ставлять першим.\nСлово yet у питанні означає «вже?»: питаємо, чи зроблено.\nСлово already — «вже» у звичайній фразі, всередині.\nСлово yet стоїть наприкінці: з not — «ще не», у питанні — «вже?».",
+        "en": "Now about what has not happened. For this there is the word yet.\nThe word yet stands at the end of the sentence.\nWe have not ordered yet.\nThe words have not mean “not”.\nThe word yet alone means “still”.\nTogether, have not … yet mean “not yet”.\nThe bus has not left yet.\nThe word left is special. It is the word about what was done for leave.\nThe words has not left yet mean the bus is still here.\nHave you finished yet?\nIn a question we put have first.\nThe word yet in a question means “already?”.\nThe word already goes in the middle of a normal sentence.\nThe word yet goes at the end.\nWith not it means “not yet”. In a question it means “already?”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:24.17",
+          "say": {
+            "ru": "уи хэ́в но́т о́рдерд йэ́т",
+            "uk": "уі хе́в но́т о́рдерд йе́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.19",
+          "say": {
+            "ru": "зэ ба́с хэ́з но́т лэ́фт йэ́т",
+            "uk": "зе ба́с хе́з но́т ле́фт йе́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.20",
+          "say": {
+            "ru": "хэ́в ю фи́ништ йэ́т",
+            "uk": "хе́в ю фі́нішт йе́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы еще не сделали заказ»",
+            "uk": "Виберіть, як сказати: «Ми ще не замовили»",
+            "en": "Choose how to say: “We have not ordered yet.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:24.17",
+          "options": [
+            "en-classic-r1:24.17",
+            "en-classic-r1:24.20",
+            "en-classic-r1:24.19"
+          ],
+          "answerId": "en-classic-r1:24.17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус еще не уехал»",
+            "uk": "Виберіть, як сказати: «Автобус ще не поїхав»",
+            "en": "Choose how to say: “The bus has not left yet.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.19",
+          "options": [
+            "en-classic-r1:24.19",
+            "en-classic-r1:24.17",
+            "en-classic-r1:24.20"
+          ],
+          "answerId": "en-classic-r1:24.19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы уже закончили»",
+            "uk": "Виберіть, як сказати: «Ви вже закінчили»",
+            "en": "Choose how to say: “Have you finished yet?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.20",
+          "options": [
+            "en-classic-r1:24.20",
+            "en-classic-r1:24.17",
+            "en-classic-r1:24.19"
+          ],
+          "answerId": "en-classic-r1:24.20"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Бывало ли: ever и never",
+        "uk": "Чи бувало: ever і never",
+        "en": "Ever and never"
+      },
+      "text": {
+        "ru": "Можно спросить, бывало ли что-то хоть раз в жизни. И сказать, что не бывало.\nHave you ever worked nights? — Вы когда-нибудь работали по ночам?\nЧитается: хэ́в ю э́вер уо́ркт на́йтс.\nСлово ever значит «когда-нибудь».\nСлова Have you ever значат «вы когда-нибудь».\nHas she ever lived abroad? — Она когда-нибудь жила за границей?\nЧитается: хэ́з ши э́вер ли́вд эбро́д.\nСлово abroad значит «за границей». Слово lived значит «жила»: к слову live добавили d.\nТут has, потому что речь о ней.\nЗдесь lived значит «жила когда-то»: это опыт, а не «живёт сейчас».\nI have never driven a van. — Я никогда не водил фургон.\nЧитается: ай хэ́в нэ́вер дри́вен э вэ́н.\nСлово never значит «никогда».\nСлово driven значит «водил». Это особое слово: drive и driven.\nHave you met our new neighbour? — Вы знакомы с нашим новым соседом?\nЧитается: хэ́в ю мэ́т а́ур нью́ нэ́йбор.\nСлово met значит «познакомились». Это особое слово: meet и met.\nСлова Have you met значат «вы знакомы».\nВопрос про опыт: знакомились ли вы с ним хоть раз.",
+        "uk": "Можна спитати, чи бувало щось хоч раз у житті. І сказати, що не бувало.\nHave you ever worked nights? — Ви коли-небудь працювали вночі?\nЧитається: хе́в ю е́вер уо́ркт на́йтс.\nСлово ever означає «колись».\nСлова Have you ever означають «ви колись».\nHas she ever lived abroad? — Вона коли-небудь жила за кордоном?\nЧитається: хе́з ші е́вер лі́вд ебро́д.\nСлово abroad означає «за кордоном». Слово lived означає «жила»: до слова live додали d.\nТут has, бо мова про неї.\nТут lived означає «жила колись»: це досвід, а не «живе зараз».\nI have never driven a van. — Я ніколи не водив фургон.\nЧитається: ай хе́в не́вер дрі́вен е ве́н.\nСлово never означає «ніколи».\nСлово driven означає «водив». Це особливе слово: drive і driven.\nHave you met our new neighbour? — Ви познайомилися з нашим новим сусідом?\nЧитається: хе́в ю ме́т а́ур нью́ не́йбор.\nСлово met означає «познайомились». Це особливе слово: meet і met.\nСлова Have you met означають «ви знайомі».\nПитання про досвід: чи знайомились ви з ним бодай раз.",
+        "en": "We can ask if something ever happened in life. And we can say it never did.\nHave you ever worked nights?\nThe word ever means “at any time in life”.\nThe words Have you ever ask about your life so far.\nHas she ever lived abroad?\nThe word abroad means in another country. The word lived is live with d added.\nWe say has because it is about her.\nHere lived means “lived at some time before”: experience, not “lives now”.\nI have never driven a van.\nThe word never means not at any time.\nThe word driven is special: drive and driven.\nHave you met our new neighbour?\nThe word met is special: meet and met.\nThe words Have you met ask if you know him already."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:24.21",
+          "say": {
+            "ru": "хэ́в ю э́вер уо́ркт на́йтс",
+            "uk": "хе́в ю е́вер уо́ркт на́йтс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.22",
+          "say": {
+            "ru": "хэ́з ши э́вер ли́вд эбро́д",
+            "uk": "хе́з ші е́вер лі́вд ебро́д"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.25",
+          "say": {
+            "ru": "ай хэ́в нэ́вер дри́вен э вэ́н",
+            "uk": "ай хе́в не́вер дрі́вен е ве́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.30",
+          "say": {
+            "ru": "хэ́в ю мэ́т а́ур нью́ нэ́йбор",
+            "uk": "хе́в ю ме́т а́ур нью́ не́йбор"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы когда-нибудь работали по ночам»",
+            "uk": "Виберіть, як сказати: «Ви коли-небудь працювали вночі»",
+            "en": "Choose how to say: “Have you ever worked nights?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:24.21",
+          "options": [
+            "en-classic-r1:24.21",
+            "en-classic-r1:24.22",
+            "en-classic-r1:24.25"
+          ],
+          "answerId": "en-classic-r1:24.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я никогда не водил фургон»",
+            "uk": "Виберіть, як сказати: «Я ніколи не водив фургон»",
+            "en": "Choose how to say: “I have never driven a van.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.25",
+          "options": [
+            "en-classic-r1:24.25",
+            "en-classic-r1:24.21",
+            "en-classic-r1:24.22"
+          ],
+          "answerId": "en-classic-r1:24.25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы знакомы с нашим новым соседом?»",
+            "uk": "Виберіть, як сказати: «Ви познайомилися з нашим новим сусідом?»",
+            "en": "Choose how to say: “Have you met our new neighbour?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.30",
+          "options": [
+            "en-classic-r1:24.30",
+            "en-classic-r1:24.22",
+            "en-classic-r1:24.21"
+          ],
+          "answerId": "en-classic-r1:24.30"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Давно: for и since",
+        "uk": "Давно: for і since",
+        "en": "For and since"
+      },
+      "text": {
+        "ru": "Если что-то началось раньше и идёт до сих пор, тоже говорят have или has.\nI have lived here for a year. — Я живу здесь уже год.\nЧитается: ай хэ́в ли́вд хи́р фо́р э йи́р.\nСлово year значит «год». Слово for называет срок: сколько это длится.\nСлова have lived здесь значат «живу уже»: началось раньше и идёт до сих пор.\nСравните главу 5: с ever слово lived значит «жил раньше» (сейчас, может, уже нет).\nС for или since — «живёт до сих пор».\nShe has worked here since March. — Она работает здесь с марта.\nЧитается: ши хэ́з уо́ркт хи́р си́нс ма́рч.\nСлово since называет начало: с какого дня это идёт. Слово March значит «март».\nСлова has worked since March значат «работает с марта».\nHe has had that bike since school. — Этот велосипед у него со школы.\nЧитается: хи хэ́з хэ́д зэ́т ба́йк си́нс ску́л.\nСлово school значит «школа». Слово had значит «иметь», это особое слово от have.\nПервое слово has — помощник, второе слово had значит «иметь».\nI have not seen Tom since Friday. — Я не видел Тома с пятницы.\nЧитается: ай хэ́в но́т си́н то́м си́нс фра́йдэй.\nСлово seen значит «видел». Это особое слово: see и seen.\nСлова have not seen значат «не видел».\nИтак: for — сколько длится, since — с какого момента.",
+        "uk": "Якщо щось почалося раніше і триває досі, теж кажуть have або has.\nI have lived here for a year. — Я живу тут рік.\nЧитається: ай хе́в лі́вд хі́р фо́р е йі́р.\nСлово year означає «рік». Слово for називає строк: скільки це триває.\nСлова have lived тут означають «живу вже»: почалося раніше і триває досі.\nПорівняйте главу 5: з ever слово lived означає «жив раніше» (зараз, може, вже ні).\nЗ for або since — «живе досі».\nShe has worked here since March. — Вона працює тут з березня.\nЧитається: ші хе́з уо́ркт хі́р сі́нс ма́рч.\nСлово since називає початок: з якого дня це триває. Слово March означає «березень».\nСлова has worked since March означають «працює з березня».\nHe has had that bike since school. — У нього цей велосипед ще зі школи.\nЧитається: хі хе́з хе́д зе́т ба́йк сі́нс ску́л.\nСлово school означає «школа». Слово had означає «мати», це особливе слово від have.\nПерше слово has — помічник, друге слово had означає «мати».\nI have not seen Tom since Friday. — Я не бачив Тома з п'ятниці.\nЧитається: ай хе́в но́т сі́н то́м сі́нс фра́йдей.\nСлово seen означає «бачив». Це особливе слово: see і seen.\nСлова have not seen означають «не бачив».\nОтже: for — скільки триває, since — з якого моменту.",
+        "en": "If something started earlier and goes on until now, we also say have or has.\nI have lived here for a year.\nThe word for says how long it lasts: a year, a week, years.\nThe words have lived here mean I began earlier and still live here.\nCompare chapter 5: with ever, lived means “lived before”, maybe not now.\nWith for or since, it means “still lives”.\nShe has worked here since March.\nThe word since says when it started: since March, since Monday.\nThe words has worked since March mean she still works here.\nHe has had that bike since school.\nThe word school is the place where children learn.\nThe word had is special: it comes from have.\nThe first word has only helps. The second word had means “own”.\nI have not seen Tom since Friday.\nThe word seen is special: see and seen.\nThe words have not seen mean “did not see”.\nSo: for says how long it lasts, since says when it started."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:24.31",
+          "say": {
+            "ru": "ай хэ́в ли́вд хи́р фо́р э йи́р",
+            "uk": "ай хе́в лі́вд хі́р фо́р е йі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.32",
+          "say": {
+            "ru": "ши хэ́з уо́ркт хи́р си́нс ма́рч",
+            "uk": "ші хе́з уо́ркт хі́р сі́нс ма́рч"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.34",
+          "say": {
+            "ru": "хи хэ́з хэ́д зэ́т ба́йк си́нс ску́л",
+            "uk": "хі хе́з хе́д зе́т ба́йк сі́нс ску́л"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.39",
+          "say": {
+            "ru": "ай хэ́в но́т си́н то́м си́нс фра́йдэй",
+            "uk": "ай хе́в но́т сі́н то́м сі́нс фра́йдей"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я живу здесь уже год»",
+            "uk": "Виберіть, як сказати: «Я живу тут рік»",
+            "en": "Choose how to say: “I have lived here for a year.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:24.31",
+          "options": [
+            "en-classic-r1:24.31",
+            "en-classic-r1:24.32",
+            "en-classic-r1:24.34"
+          ],
+          "answerId": "en-classic-r1:24.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она работает здесь с марта»",
+            "uk": "Виберіть, як сказати: «Вона працює тут з березня»",
+            "en": "Choose how to say: “She has worked here since March.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.32",
+          "options": [
+            "en-classic-r1:24.32",
+            "en-classic-r1:24.31",
+            "en-classic-r1:24.34"
+          ],
+          "answerId": "en-classic-r1:24.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Этот велосипед у него со школы»",
+            "uk": "Виберіть, як сказати: «У нього цей велосипед ще зі школи»",
+            "en": "Choose how to say: “He has had that bike since school.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.34",
+          "options": [
+            "en-classic-r1:24.34",
+            "en-classic-r1:24.31",
+            "en-classic-r1:24.32"
+          ],
+          "answerId": "en-classic-r1:24.34"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Как давно и слово been",
+        "uk": "Як давно і слово been",
+        "en": "How long and the word been"
+      },
+      "text": {
+        "ru": "Теперь спросим, как давно. И узнаем слово been.\nThey have been away for a week. — Их нет уже неделю.\nЧитается: зэй хэ́в би́н эуэ́й фо́р э уи́к.\nСлово been значит «был» или «находился». Это особое слово от be.\nСлова have been away значат «их нет на месте».\nСлова for a week говорят, сколько это длится.\nThe shop has been closed since Monday. — Магазин закрыт с понедельника.\nЧитается: зэ шо́п хэ́з би́н кло́узд си́нс ма́ндэй.\nТут слова has been closed значат «закрыт».\nСлова has been вместе: был и до сих пор.\nHow long have you had this phone? — Как давно у вас этот телефон?\nЧитается: ха́у ло́нг хэ́в ю хэ́д зис фо́ун.\nСлова How long значат «как давно». Они стоят первыми.\nПотом идёт have, потом тот, о ком речь.\nHow long has she worked nights? — Как долго она работает в ночную смену?\nЧитается: ха́у ло́нг хэ́з ши уо́ркт на́йтс.\nТут has, потому что речь о ней. Порядок тот же: How long, has, she.",
+        "uk": "Тепер спитаємо, як давно. І дізнаємося слово been.\nThey have been away for a week. — Їх немає вже тиждень.\nЧитається: зей хе́в бі́н еуе́й фо́р е уі́к.\nСлово been означає «був» або «перебував». Це особливе слово від be.\nСлова have been away означають «їх немає на місці».\nСлова for a week кажуть, скільки це триває.\nThe shop has been closed since Monday. — Магазин закрито з понеділка.\nЧитається: зе шо́п хе́з бі́н кло́узд сі́нс ма́ндей.\nТут слова has been closed означають «зачинено».\nСлова has been разом: було і досі є.\nHow long have you had this phone? — Як довго у вас цей телефон?\nЧитається: ха́у ло́нг хе́в ю хе́д зіс фо́ун.\nСлова How long означають «як довго». Вони стоять першими.\nПотім іде have, потім той, про кого мова.\nHow long has she worked nights? — Як довго вона працює вночі?\nЧитається: ха́у ло́нг хе́з ші уо́ркт на́йтс.\nТут has, бо мова про неї. Порядок той самий: How long, has, she.",
+        "en": "Now we ask how long. And we meet the word been.\nThey have been away for a week.\nThe word been is special: it comes from be.\nThe words have been away mean they are not here.\nThe words for a week say how long it lasts.\nThe shop has been closed since Monday.\nHere the words has been closed mean it is shut.\nThe words has been together mean it was so and still is.\nHow long have you had this phone?\nThe words How long come first.\nThen comes have, then the one we talk about.\nHow long has she worked nights?\nHere we say has because it is about her.\nThe order is the same: How long, has, she."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:24.35",
+          "say": {
+            "ru": "зэй хэ́в би́н эуэ́й фо́р э уи́к",
+            "uk": "зей хе́в бі́н еуе́й фо́р е уі́к"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.36",
+          "say": {
+            "ru": "зэ шо́п хэ́з би́н кло́узд си́нс ма́ндэй",
+            "uk": "зе шо́п хе́з бі́н кло́узд сі́нс ма́ндей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.37",
+          "say": {
+            "ru": "ха́у ло́нг хэ́в ю хэ́д зис фо́ун",
+            "uk": "ха́у ло́нг хе́в ю хе́д зіс фо́ун"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.38",
+          "say": {
+            "ru": "ха́у ло́нг хэ́з ши уо́ркт на́йтс",
+            "uk": "ха́у ло́нг хе́з ші уо́ркт на́йтс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Их нет уже неделю»",
+            "uk": "Виберіть, як сказати: «Їх немає вже тиждень»",
+            "en": "Choose how to say: “They have been away for a week.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:24.35",
+          "options": [
+            "en-classic-r1:24.35",
+            "en-classic-r1:24.36",
+            "en-classic-r1:24.37"
+          ],
+          "answerId": "en-classic-r1:24.35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как давно у вас этот телефон»",
+            "uk": "Виберіть, як сказати: «Як довго у вас цей телефон»",
+            "en": "Choose how to say: “How long have you had this phone?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.37",
+          "options": [
+            "en-classic-r1:24.37",
+            "en-classic-r1:24.38",
+            "en-classic-r1:24.35"
+          ],
+          "answerId": "en-classic-r1:24.37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как долго она работает в ночную смену?»",
+            "uk": "Виберіть, як сказати: «Як довго вона працює вночі?»",
+            "en": "Choose how to say: “How long has she worked nights?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.38",
+          "options": [
+            "en-classic-r1:24.38",
+            "en-classic-r1:24.37",
+            "en-classic-r1:24.36"
+          ],
+          "answerId": "en-classic-r1:24.38"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Вчера или сегодня",
+        "uk": "Учора чи сьогодні",
+        "en": "Yesterday or today"
+      },
+      "text": {
+        "ru": "Если сказано, когда именно это было, have не нужно.\nI have lost my pass, so I cannot get in.\n— Я потерял свой пропуск, поэтому не могу войти.\nЧитается: ай хэ́в ло́ст май па́с со́у ай кэ́нот гэ́т ин.\nСлово so значит «поэтому». Пропуска нет сейчас — это главное.\nПоэтому здесь have lost.\nI lost my library pass yesterday. — Я потерял свой абонемент в библиотеку вчера.\nЧитается: ай ло́ст май ла́йбрери па́с е́стердэй.\nСлово yesterday значит «вчера»: сказано, когда. Поэтому lost без have.\nShe has called three times today. — Она звонила три раза сегодня.\nЧитается: ши хэ́з ко́лд сри́ та́ймз тудэ́й.\nСлово times значит «раз»: three times — «три раза».\nСлово today значит «сегодня». Сегодня ещё не закончился, поэтому has called.\nПро вчера сказали бы просто called.\nThe train left ten minutes ago. — Поезд уехал десять минут назад.\nЧитается: зэ трэ́йн лэ́фт тэ́н ми́нитс эго́у.\nСлово ago значит «назад». Слово left значит «уехал», как в главе 4.\nТут сказано, когда: ten minutes ago. Поэтому left без has.",
+        "uk": "Якщо сказано, коли саме це було, have не потрібне.\nI have lost my pass, so I cannot get in.\n— Я загубив свій пропуск, тому не можу потрапити.\nЧитається: ай хе́в ло́ст май па́с со́у ай ке́нот ге́т ін.\nСлово so означає «тому». Пропуска немає зараз — це головне.\nТому тут have lost.\nI lost my library pass yesterday. — Я втратив свій бібліотечний пропуск учора.\nЧитається: ай ло́ст май ла́йбрері па́с е́стердей.\nСлово yesterday означає «учора»: сказано, коли. Тому lost без have.\nShe has called three times today. — Вона дзвонила тричі сьогодні.\nЧитається: ші хе́з ко́лд срі́ та́ймз туде́й.\nСлово times означає «раз»: three times — «тричі».\nСлово today означає «сьогодні». Сьогодні ще не закінчилось, тому has called.\nПро вчора сказали б просто called.\nThe train left ten minutes ago. — Поїзд відправився десять хвилин тому.\nЧитається: зе тре́йн ле́фт те́н мі́нітс его́у.\nСлово ago означає «тому». Слово left означає «поїхав», як у главі 4.\nТут сказано, коли: ten minutes ago. Тому left без has.",
+        "en": "If we say exactly when it happened, we do not need have.\nI have lost my pass, so I cannot get in.\nThe word so means “because of that”. The pass is missing now. That is the point.\nSo here we say have lost.\nI lost my library pass yesterday.\nThe word yesterday says when. So we say lost without have.\nShe has called three times today.\nThe word times means “occasions”: three times is “on three occasions”.\nThe word today is not over yet, so we say has called.\nFor yesterday we would say just called.\nThe train left ten minutes ago.\nThe word ago says how long before now.\nThe word left is the same as in chapter 4.\nHere we say when: ten minutes ago. So we say left without has."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:24.42",
+          "say": {
+            "ru": "ай хэ́в ло́ст май па́с со́у ай кэ́нот гэ́т ин",
+            "uk": "ай хе́в ло́ст май па́с со́у ай ке́нот ге́т ін"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.41",
+          "say": {
+            "ru": "ай ло́ст май ла́йбрери па́с е́стердэй",
+            "uk": "ай ло́ст май ла́йбрері па́с е́стердей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.44",
+          "say": {
+            "ru": "ши хэ́з ко́лд сри́ та́ймз тудэ́й",
+            "uk": "ші хе́з ко́лд срі́ та́ймз туде́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:24.50",
+          "say": {
+            "ru": "зэ трэ́йн лэ́фт тэ́н ми́нитс эго́у",
+            "uk": "зе тре́йн ле́фт те́н мі́нітс его́у"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я потерял свой пропуск, поэтому не могу войти»",
+            "uk": "Виберіть, як сказати: «Я загубив свій пропуск, тому не можу потрапити»",
+            "en": "Choose how to say: “I have lost my pass, so I cannot get in.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:24.42",
+          "options": [
+            "en-classic-r1:24.42",
+            "en-classic-r1:24.41",
+            "en-classic-r1:24.44"
+          ],
+          "answerId": "en-classic-r1:24.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она звонила три раза сегодня»",
+            "uk": "Виберіть, як сказати: «Вона дзвонила тричі сьогодні»",
+            "en": "Choose how to say: “She has called three times today.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.44",
+          "options": [
+            "en-classic-r1:24.44",
+            "en-classic-r1:24.41",
+            "en-classic-r1:24.50"
+          ],
+          "answerId": "en-classic-r1:24.44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поезд уехал десять минут назад»",
+            "uk": "Виберіть, як сказати: «Поїзд відправився десять хвилин тому»",
+            "en": "Choose how to say: “The train left ten minutes ago.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:24.50",
+          "options": [
+            "en-classic-r1:24.50",
+            "en-classic-r1:24.41",
+            "en-classic-r1:24.44"
+          ],
+          "answerId": "en-classic-r1:24.50"
+        }
+      ]
+    }
+  ]
+}

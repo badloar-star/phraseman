@@ -1,0 +1,685 @@
+{
+ "lang": "en",
+ "lesson": 17,
+ "words": [
+  {
+   "form": "leaving",
+   "surface": "leaving",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.03",
+     "target": "We are leaving",
+     "ru": "Мы уходим.",
+     "en": "We are leaving."
+    },
+    {
+     "id": "en-classic-r1:17.04",
+     "target": "They are leaving",
+     "ru": "Они уходят.",
+     "en": "They are leaving."
+    }
+   ]
+  },
+  {
+   "form": "cooking",
+   "surface": "cooking",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.05",
+     "target": "He is cooking",
+     "ru": "Он готовит.",
+     "en": "He is cooking."
+    },
+    {
+     "id": "en-classic-r1:17.24",
+     "target": "What are you cooking",
+     "ru": "Что ты готовишь?",
+     "en": "What are you cooking?"
+    }
+   ]
+  },
+  {
+   "form": "listening",
+   "surface": "listening",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.06",
+     "target": "I am listening",
+     "ru": "Я слушаю.",
+     "en": "I am listening."
+    },
+    {
+     "id": "en-classic-r1:17.21",
+     "target": "Are you listening",
+     "ru": "Ты слушаешь?",
+     "en": "Are you listening?"
+    }
+   ]
+  },
+  {
+   "form": "ringing",
+   "surface": "ringing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.07",
+     "target": "The phone is ringing",
+     "ru": "Звонит телефон.",
+     "en": "The phone is ringing."
+    }
+   ]
+  },
+  {
+   "form": "closing",
+   "surface": "closing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.08",
+     "target": "The doors are closing",
+     "ru": "Двери закрываются.",
+     "en": "The doors are closing."
+    }
+   ]
+  },
+  {
+   "form": "coming",
+   "surface": "coming",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.09",
+     "target": "The bus is coming",
+     "ru": "Приезжает автобус.",
+     "en": "The bus is coming."
+    },
+    {
+     "id": "en-classic-r1:17.22",
+     "target": "Is she coming with us",
+     "ru": "Она идет с нами?",
+     "en": "Is she coming with us?"
+    }
+   ]
+  },
+  {
+   "form": "getting",
+   "surface": "getting",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.10",
+     "target": "Your tea is getting cold",
+     "ru": "Твой чай остывает.",
+     "en": "Your tea is getting cold."
+    },
+    {
+     "id": "en-classic-r1:17.46",
+     "target": "The shop is getting busier",
+     "ru": "В магазине становится всё больше покупателей.",
+     "en": "The shop is getting busier."
+    }
+   ]
+  },
+  {
+   "form": "putting",
+   "surface": "putting",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.12",
+     "target": "She is putting her coat on",
+     "ru": "Она надевает пальто.",
+     "en": "She is putting her coat on."
+    }
+   ]
+  },
+  {
+   "form": "washing",
+   "surface": "washing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.13",
+     "target": "He is washing his hands",
+     "ru": "Он моет руки.",
+     "en": "He is washing his hands."
+    }
+   ]
+  },
+  {
+   "form": "packing",
+   "surface": "packing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.14",
+     "target": "We are packing our suitcases",
+     "ru": "Мы собираем чемоданы.",
+     "en": "We are packing our suitcases."
+    }
+   ]
+  },
+  {
+   "form": "suitcases",
+   "surface": "suitcases",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.14",
+     "target": "We are packing our suitcases",
+     "ru": "Мы собираем чемоданы.",
+     "en": "We are packing our suitcases."
+    }
+   ]
+  },
+  {
+   "form": "carrying",
+   "surface": "carrying",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.15",
+     "target": "They are carrying a mattress upstairs",
+     "ru": "Они несут матрас наверх.",
+     "en": "They are carrying a mattress upstairs."
+    }
+   ]
+  },
+  {
+   "form": "mattress",
+   "surface": "mattress",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.15",
+     "target": "They are carrying a mattress upstairs",
+     "ru": "Они несут матрас наверх.",
+     "en": "They are carrying a mattress upstairs."
+    }
+   ]
+  },
+  {
+   "form": "standing",
+   "surface": "standing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.16",
+     "target": "You are standing on my scarf",
+     "ru": "Ты стоишь на моём шарфе.",
+     "en": "You are standing on my scarf."
+    }
+   ]
+  },
+  {
+   "form": "writing",
+   "surface": "writing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.17",
+     "target": "I am writing down the address",
+     "ru": "Я записываю адрес.",
+     "en": "I am writing down the address."
+    }
+   ]
+  },
+  {
+   "form": "checking",
+   "surface": "checking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.18",
+     "target": "The driver is checking the tickets",
+     "ru": "Водитель проверяет билеты.",
+     "en": "The driver is checking the tickets."
+    }
+   ]
+  },
+  {
+   "form": "neighbour",
+   "surface": "neighbour",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.19",
+     "target": "My neighbour is fixing his bike",
+     "ru": "Мой сосед чинит свой велосипед.",
+     "en": "My neighbour is fixing his bike."
+    }
+   ]
+  },
+  {
+   "form": "fixing",
+   "surface": "fixing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.19",
+     "target": "My neighbour is fixing his bike",
+     "ru": "Мой сосед чинит свой велосипед.",
+     "en": "My neighbour is fixing his bike."
+    }
+   ]
+  },
+  {
+   "form": "baby",
+   "surface": "baby",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.20",
+     "target": "The baby is sleeping in the cot",
+     "ru": "Ребенок спит в кроватке.",
+     "en": "The baby is sleeping in the cot."
+    }
+   ]
+  },
+  {
+   "form": "sleeping",
+   "surface": "sleeping",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.20",
+     "target": "The baby is sleeping in the cot",
+     "ru": "Ребенок спит в кроватке.",
+     "en": "The baby is sleeping in the cot."
+    }
+   ]
+  },
+  {
+   "form": "cot",
+   "surface": "cot",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.20",
+     "target": "The baby is sleeping in the cot",
+     "ru": "Ребенок спит в кроватке.",
+     "en": "The baby is sleeping in the cot."
+    }
+   ]
+  },
+  {
+   "form": "calling",
+   "surface": "calling",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.25",
+     "target": "Who is calling you",
+     "ru": "Кто тебе звонит?",
+     "en": "Who is calling you?"
+    }
+   ]
+  },
+  {
+   "form": "going",
+   "surface": "going",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.26",
+     "target": "Where are we going",
+     "ru": "Куда мы идём?",
+     "en": "Where are we going?"
+    }
+   ]
+  },
+  {
+   "form": "flashing",
+   "surface": "flashing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.27",
+     "target": "Why is the light flashing",
+     "ru": "Почему мигает свет?",
+     "en": "Why is the light flashing?"
+    }
+   ]
+  },
+  {
+   "form": "boiling",
+   "surface": "boiling",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.28",
+     "target": "Is the kettle boiling",
+     "ru": "Чайник кипит?",
+     "en": "Is the kettle boiling?"
+    }
+   ]
+  },
+  {
+   "form": "using",
+   "surface": "using",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.30",
+     "target": "Are you using this chair",
+     "ru": "Вы пользуетесь этим стулом?",
+     "en": "Are you using this chair?"
+    }
+   ]
+  },
+  {
+   "form": "ignoring",
+   "surface": "ignoring",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.31",
+     "target": "I am not ignoring you",
+     "ru": "Я вас не игнорирую.",
+     "en": "I am not ignoring you."
+    }
+   ]
+  },
+  {
+   "form": "feeling",
+   "surface": "feeling",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.32",
+     "target": "She is not feeling well",
+     "ru": "Она плохо себя чувствует.",
+     "en": "She is not feeling well."
+    }
+   ]
+  },
+  {
+   "form": "staying",
+   "surface": "staying",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.33",
+     "target": "We are not staying overnight",
+     "ru": "Мы не остаёмся на ночь.",
+     "en": "We are not staying overnight."
+    },
+    {
+     "id": "en-classic-r1:17.43",
+     "target": "We are staying with friends this week",
+     "ru": "На этой неделе мы гостим у друзей.",
+     "en": "We are staying with friends this week."
+    }
+   ]
+  },
+  {
+   "form": "wearing",
+   "surface": "wearing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.34",
+     "target": "He is not wearing his glasses",
+     "ru": "Он не надел свои очки.",
+     "en": "He is not wearing his glasses."
+    }
+   ]
+  },
+  {
+   "form": "responding",
+   "surface": "responding",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.35",
+     "target": "The printer is not responding",
+     "ru": "Принтер не отвечает.",
+     "en": "The printer is not responding."
+    }
+   ]
+  },
+  {
+   "form": "working",
+   "surface": "working",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.36",
+     "target": "They are not working today",
+     "ru": "Сегодня они не работают.",
+     "en": "They are not working today."
+    }
+   ]
+  },
+  {
+   "form": "charging",
+   "surface": "charging",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.37",
+     "target": "The battery is not charging",
+     "ru": "Батарея не заряжается.",
+     "en": "The battery is not charging."
+    }
+   ]
+  },
+  {
+   "form": "raining",
+   "surface": "raining",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.38",
+     "target": "It is not raining now",
+     "ru": "Сейчас не идёт дождь.",
+     "en": "It is not raining now."
+    }
+   ]
+  },
+  {
+   "form": "now",
+   "surface": "now",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.38",
+     "target": "It is not raining now",
+     "ru": "Сейчас не идёт дождь.",
+     "en": "It is not raining now."
+    }
+   ]
+  },
+  {
+   "form": "taking",
+   "surface": "taking",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.39",
+     "target": "I am not taking the car",
+     "ru": "Я не поеду на машине.",
+     "en": "I am not taking the car."
+    },
+    {
+     "id": "en-classic-r1:17.48",
+     "target": "He is taking a less crowded bus this week",
+     "ru": "На этой неделе он едет на менее переполненном автобусе.",
+     "en": "He is taking a less crowded bus this week."
+    }
+   ]
+  },
+  {
+   "form": "moving",
+   "surface": "moving",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.40",
+     "target": "The bus is not moving",
+     "ru": "Автобус не едет.",
+     "en": "The bus is not moving."
+    }
+   ]
+  },
+  {
+   "form": "walking",
+   "surface": "walking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.41",
+     "target": "I usually drive but today I am walking",
+     "ru": "Обычно я езжу на машине, но сегодня иду пешком.",
+     "en": "I usually drive, but today I am walking."
+    }
+   ]
+  },
+  {
+   "form": "normally",
+   "surface": "normally",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.42",
+     "target": "She normally works upstairs but today she is helping us",
+     "ru": "Обычно она работает наверху, но сегодня помогает нам.",
+     "en": "She normally works upstairs, but today she is helping us."
+    }
+   ]
+  },
+  {
+   "form": "helping",
+   "surface": "helping",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.42",
+     "target": "She normally works upstairs but today she is helping us",
+     "ru": "Обычно она работает наверху, но сегодня помогает нам.",
+     "en": "She normally works upstairs, but today she is helping us."
+    }
+   ]
+  },
+  {
+   "form": "friends",
+   "surface": "friends",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.43",
+     "target": "We are staying with friends this week",
+     "ru": "На этой неделе мы гостим у друзей.",
+     "en": "We are staying with friends this week."
+    }
+   ]
+  },
+  {
+   "form": "learning",
+   "surface": "learning",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.44",
+     "target": "I am learning to swim this summer",
+     "ru": "Этим летом я учусь плавать.",
+     "en": "I am learning to swim this summer."
+    }
+   ]
+  },
+  {
+   "form": "painting",
+   "surface": "painting",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.45",
+     "target": "They are painting the front door today",
+     "ru": "Сегодня красят входную дверь.",
+     "en": "They are painting the front door today."
+    }
+   ]
+  },
+  {
+   "form": "front",
+   "surface": "front",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.45",
+     "target": "They are painting the front door today",
+     "ru": "Сегодня красят входную дверь.",
+     "en": "They are painting the front door today."
+    }
+   ]
+  },
+  {
+   "form": "reading",
+   "surface": "reading",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.49",
+     "target": "Are you still reading that book",
+     "ru": "Ты всё ещё читаешь эту книгу?",
+     "en": "Are you still reading that book?"
+    }
+   ]
+  },
+  {
+   "form": "just",
+   "surface": "just",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.50",
+     "target": "I am just finishing the report on my tablet",
+     "ru": "Я как раз заканчиваю отчет на планшете.",
+     "en": "I am just finishing the report on my tablet."
+    }
+   ]
+  },
+  {
+   "form": "finishing",
+   "surface": "finishing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.50",
+     "target": "I am just finishing the report on my tablet",
+     "ru": "Я как раз заканчиваю отчет на планшете.",
+     "en": "I am just finishing the report on my tablet."
+    }
+   ]
+  },
+  {
+   "form": "report",
+   "surface": "report",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.50",
+     "target": "I am just finishing the report on my tablet",
+     "ru": "Я как раз заканчиваю отчет на планшете.",
+     "en": "I am just finishing the report on my tablet."
+    }
+   ]
+  },
+  {
+   "form": "tablet",
+   "surface": "tablet",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:17.50",
+     "target": "I am just finishing the report on my tablet",
+     "ru": "Я как раз заканчиваю отчет на планшете.",
+     "en": "I am just finishing the report on my tablet."
+    }
+   ]
+  }
+ ]
+}

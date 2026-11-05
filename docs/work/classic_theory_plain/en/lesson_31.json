@@ -1,0 +1,703 @@
+{
+  "lang": "en",
+  "lesson": 31,
+  "title": {
+    "ru": "Видел, слышал, разрешил, заставил",
+    "uk": "Бачив, чув, дозволив, змусив",
+    "en": "Seeing, hearing, letting, making"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Видел, как это случилось",
+        "uk": "Бачив, як це сталося",
+        "en": "I saw it happen"
+      },
+      "text": {
+        "ru": "Можно сказать, что вы видели или слышали, как что-то случилось.\nСлово saw значит «видел», слово heard значит «слышал».\nДальше идёт тот, кто это сделал, и что он сделал.\nI saw Tom leave. — Я видел, как Том ушёл.\nЧитается: ай со́ том ли́в.\nЗдесь leave значит «уйти».\nСлова saw Tom leave значат «видел, как Том ушёл».\nСлово leave остаётся простым: не leaves и не left.\nI heard Anna laugh. — Я слышал, как Анна засмеялась.\nЧитается: ай хэ́рд э́нэ ла́ф.\nСлово laugh значит «засмеяться».\nСлова heard Anna laugh значат «слышал, как Анна засмеялась».\nShe heard the gate slam. — Она слышала, как захлопнулись ворота.\nЧитается: ши хэ́рд зэ гэ́йт слэ́м.\nСлово slam значит «захлопнуться».\nСлова heard the gate slam значат «слышала, как захлопнулись ворота».\nПосле saw и heard слово не меняется: leave, laugh, slam.",
+        "uk": "Можна сказати, що ви бачили або чули, як щось сталося.\nСлово saw означає «бачив», слово heard означає «чув».\nДалі йде той, хто це зробив, і що він зробив.\nI saw Tom leave. — Я бачив, як Том пішов.\nЧитається: ай со́ том лі́в.\nТут leave означає «піти».\nСлова saw Tom leave означають «бачив, як Том пішов».\nСлово leave залишається простим: не leaves і не left.\nI heard Anna laugh. — Я чув, як Анна засміялася.\nЧитається: ай хе́рд е́не ла́ф.\nСлово laugh означає «засміятися».\nСлова heard Anna laugh означають «чув, як Анна засміялася».\nShe heard the gate slam. — Вона чула, як грюкнули ворота.\nЧитається: ші хе́рд зе ге́йт сле́м.\nСлово slam означає «зачинитися з гуркотом».\nСлова heard the gate slam означають «чула, як зачинилися ворота».\nПісля saw і heard слово не змінюється: leave, laugh, slam.",
+        "en": "You can say that you saw or heard something happen.\nThe word saw means “looked and noticed”. The word heard means “noticed with the ears”.\nThen comes the one who did it, and what that one did.\nI saw Tom leave.\nHere leave means “go away”.\nThe words saw Tom leave together mean “watched Tom go away”.\nThe word stays plain: leave, not leaves or left.\nI heard Anna laugh.\nThe word laugh means “make a happy sound with your voice”.\nThe words heard Anna laugh together mean “noticed Anna laughing”.\nShe heard the gate slam.\nThe word slam means “shut with a bang”.\nThe words heard the gate slam together mean “noticed the gate shut with a bang”.\nAfter saw and heard the word does not change: leave, laugh, slam."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:31.01",
+          "say": {
+            "ru": "ай со́ том ли́в",
+            "uk": "ай со́ том лі́в"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.02",
+          "say": {
+            "ru": "ай хэ́рд э́нэ ла́ф",
+            "uk": "ай хе́рд е́не ла́ф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.04",
+          "say": {
+            "ru": "ши хэ́рд зэ гэ́йт слэ́м",
+            "uk": "ші хе́рд зе ге́йт сле́м"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я видел, как Том ушёл»",
+            "uk": "Виберіть, як сказати: «Я бачив, як Том пішов»",
+            "en": "Choose how to say: “I saw Tom leave.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:31.01",
+          "options": [
+            "en-classic-r1:31.01",
+            "en-classic-r1:31.02",
+            "en-classic-r1:31.04"
+          ],
+          "answerId": "en-classic-r1:31.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я слышал, как Анна засмеялась»",
+            "uk": "Виберіть, як сказати: «Я чув, як Анна засміялася»",
+            "en": "Choose how to say: “I heard Anna laugh.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.02",
+          "options": [
+            "en-classic-r1:31.02",
+            "en-classic-r1:31.04",
+            "en-classic-r1:31.01"
+          ],
+          "answerId": "en-classic-r1:31.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она слышала, как захлопнулись ворота»",
+            "uk": "Виберіть, як сказати: «Вона чула, як грюкнули ворота»",
+            "en": "Choose how to say: “She heard the gate slam.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.04",
+          "options": [
+            "en-classic-r1:31.04",
+            "en-classic-r1:31.01",
+            "en-classic-r1:31.02"
+          ],
+          "answerId": "en-classic-r1:31.04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Звуки и движения",
+        "uk": "Звуки і рухи",
+        "en": "Sounds and movements"
+      },
+      "text": {
+        "ru": "Так же можно сказать о звуке или о движении.\nWe heard the kettle click off. — Мы слышали, как выключился чайник.\nЧитается: уи хэ́рд зэ кэ́тл кли́к о́ф.\nСлово click значит «щёлкнуть».\nСлова click off значат «выключиться со щелчком».\nThey watched the driver reverse. — Они видели, как водитель сдавал назад.\nЧитается: зэй уо́чт зэ дра́йвер ривэ́рс.\nСлово reverse значит «сдавать назад».\nСлова watched the driver reverse значат «смотрели, как водитель сдаёт назад».\nWe heard her pour water into the pan.\n— Мы слышали, как она наливала воду в кастрюлю.\nЧитается: уи хэ́рд хэр по́р уо́тэр и́нту зэ пэ́н.\nСлово pour значит «наливать».\nСлово poured вы видели: «налил».\nСлово into значит «в».\nСлова heard her pour значат «слышали, как она наливала».\nТак говорят и о людях, и о звуках, и о вещах.",
+        "uk": "Так само можна сказати про звук або про рух.\nWe heard the kettle click off. — Ми чули, як клацнув чайник.\nЧитається: уі хе́рд зе ке́тл клі́к о́ф.\nСлово click означає «клацнути».\nСлова click off означають «вимкнутися з клацанням».\nThey watched the driver reverse. — Вони спостерігали, як водій дав задній хід.\nЧитається: зей уо́чт зе дра́йвер ріве́рс.\nСлово reverse означає «їхати заднім ходом».\nСлова watched the driver reverse означають «дивилися, як водій дає задній хід».\nWe heard her pour water into the pan.\n— Ми чули, як вона налила воду в каструлю.\nЧитається: уі хе́рд хер по́р уо́тер і́нту зе пе́н.\nСлово pour означає «наливати».\nСлово poured ви бачили: «налив».\nСлово into означає «у».\nСлова heard her pour означають «чули, як вона наливала».\nТак кажуть і про людей, і про звуки, і про речі.",
+        "en": "You can say it about a sound or a movement too.\nWe heard the kettle click off.\nThe word click means “make a small sharp sound”.\nThe words click off together mean “stop with a small sound”.\nThey watched the driver reverse.\nThe word reverse means “drive backwards”.\nThe words watched the driver reverse together mean “looked at the driver driving backwards”.\nWe heard her pour water into the pan.\nThe word pour means “to make a liquid flow out”.\nYou saw the word poured. That is pour for yesterday.\nThe word into means “to the inside of”.\nThe words heard her pour together mean “noticed her making the water flow”.\nWe say it about people, sounds and things."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:31.07",
+          "say": {
+            "ru": "уи хэ́рд зэ кэ́тл кли́к о́ф",
+            "uk": "уі хе́рд зе ке́тл клі́к о́ф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.10",
+          "say": {
+            "ru": "зэй уо́чт зэ дра́йвер ривэ́рс",
+            "uk": "зей уо́чт зе дра́йвер ріве́рс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.12",
+          "say": {
+            "ru": "уи хэ́рд хэр по́р уо́тэр и́нту зэ пэ́н",
+            "uk": "уі хе́рд хер по́р уо́тер і́нту зе пе́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы слышали, как выключился чайник»",
+            "uk": "Виберіть, як сказати: «Ми чули, як клацнув чайник»",
+            "en": "Choose how to say: “We heard the kettle click off.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:31.07",
+          "options": [
+            "en-classic-r1:31.07",
+            "en-classic-r1:31.10",
+            "en-classic-r1:31.12"
+          ],
+          "answerId": "en-classic-r1:31.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они видели, как водитель сдавал назад»",
+            "uk": "Виберіть, як сказати: «Вони спостерігали, як водій дав задній хід»",
+            "en": "Choose how to say: “They watched the driver reverse.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.10",
+          "options": [
+            "en-classic-r1:31.10",
+            "en-classic-r1:31.12",
+            "en-classic-r1:31.07"
+          ],
+          "answerId": "en-classic-r1:31.10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы слышали, как она наливала воду в кастрюлю»",
+            "uk": "Виберіть, як сказати: «Ми чули, як вона налила воду в каструлю»",
+            "en": "Choose how to say: “We heard her pour water into the pan.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.12",
+          "options": [
+            "en-classic-r1:31.12",
+            "en-classic-r1:31.07",
+            "en-classic-r1:31.10"
+          ],
+          "answerId": "en-classic-r1:31.12"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Видел, как он, она, вы",
+        "uk": "Бачив, як він, вона, ви",
+        "en": "Seeing him, her, you"
+      },
+      "text": {
+        "ru": "Вместо имени можно поставить слово me, him, her, us, you, them.\nСлово после него остаётся простым.\nI saw him drop the key. — Я видел, как он уронил ключ.\nЧитается: ай со́ хи́м дро́п зэ ки́.\nСлова saw him drop значат «видел, как он уронил».\nShe watched me sign the receipt. — Она видела, как я подписал квитанцию.\nЧитается: ши уо́чт ми са́йн зэ риси́т.\nЗдесь sign значит «подписать».\nСлова watched me sign значат «смотрела, как я подписываю».\nWe saw you wave outside the clinic.\n— Мы видели, как вы махали рукой возле клиники.\nЧитается: уи со́ ю уэ́йв аутса́йд зэ кли́ник.\nСлово wave значит «махать рукой».\nСлова saw you wave значат «видели, как вы машете».\nСлово после me, him, you простое: drop, sign, wave.",
+        "uk": "Замість імені можна поставити слово me, him, her, us, you, them.\nСлово після нього залишається простим.\nI saw him drop the key. — Я бачив, як він упустив ключ.\nЧитається: ай со́ хі́м дро́п зе кі́.\nСлова saw him drop означають «бачив, як він упустив».\nShe watched me sign the receipt. — Вона спостерігала, як я підписав квитанцію.\nЧитається: ші уо́чт мі са́йн зе рісі́т.\nТут sign означає «підписати».\nСлова watched me sign означають «дивилася, як я підписую».\nWe saw you wave outside the clinic. — Ми бачили, як ви махали біля клініки.\nЧитається: уі со́ ю уе́йв аутса́йд зе клі́нік.\nСлово wave означає «махати рукою».\nСлова saw you wave означають «бачили, як ви махаєте».\nСлово після me, him, you просте: drop, sign, wave.",
+        "en": "Instead of a name you can put the word me, him, her, us, you or them.\nThe next word stays plain.\nI saw him drop the key.\nThe words saw him drop together mean “watched him let it fall”.\nShe watched me sign the receipt.\nHere sign means “write your name on it”.\nThe words watched me sign together mean “looked at me writing my name”.\nWe saw you wave outside the clinic.\nThe word wave means “to move your hand to say hello”.\nThe words saw you wave together mean “looked at you moving your hand”.\nThe word after me, him, you is plain: drop, sign, wave."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:31.11",
+          "say": {
+            "ru": "ай со́ хи́м дро́п зэ ки́",
+            "uk": "ай со́ хі́м дро́п зе кі́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.13",
+          "say": {
+            "ru": "ши уо́чт ми са́йн зэ риси́т",
+            "uk": "ші уо́чт мі са́йн зе рісі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.16",
+          "say": {
+            "ru": "уи со́ ю уэ́йв аутса́йд зэ кли́ник",
+            "uk": "уі со́ ю уе́йв аутса́йд зе клі́нік"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я видел, как он уронил ключ»",
+            "uk": "Виберіть, як сказати: «Я бачив, як він упустив ключ»",
+            "en": "Choose how to say: “I saw him drop the key.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:31.11",
+          "options": [
+            "en-classic-r1:31.11",
+            "en-classic-r1:31.13",
+            "en-classic-r1:31.16"
+          ],
+          "answerId": "en-classic-r1:31.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она видела, как я подписал квитанцию»",
+            "uk": "Виберіть, як сказати: «Вона спостерігала, як я підписав квитанцію»",
+            "en": "Choose how to say: “She watched me sign the receipt.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.13",
+          "options": [
+            "en-classic-r1:31.13",
+            "en-classic-r1:31.16",
+            "en-classic-r1:31.11"
+          ],
+          "answerId": "en-classic-r1:31.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы видели, как вы махали рукой возле клиники»",
+            "uk": "Виберіть, як сказати: «Ми бачили, як ви махали біля клініки»",
+            "en": "Choose how to say: “We saw you wave outside the clinic.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.16",
+          "options": [
+            "en-classic-r1:31.16",
+            "en-classic-r1:31.11",
+            "en-classic-r1:31.13"
+          ],
+          "answerId": "en-classic-r1:31.16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Видел, как это шло",
+        "uk": "Бачив, як це йшло",
+        "en": "I saw it while it was going on"
+      },
+      "text": {
+        "ru": "Иногда видели не весь случай, а только как это шло.\nТогда к слову добавляют ing.\nI saw the driver getting out. — Я видел, как водитель выходил.\nЧитается: ай со́ зэ дра́йвер гэ́тин а́ут.\nСлова getting out значат «выходил».\nСлово getting — это get и ing, буква t пишется дважды.\nI heard the children playing upstairs. — Я слышал, как дети играют наверху.\nЧитается: ай хэ́рд зэ чи́лдрен плэ́йин апстэ́рз.\nСлово play значит «играть».\nСлово playing — это play и ing: «играют».\nWe watched the paint dripping onto the floor.\n— Мы наблюдали, как краска капает на пол.\nЧитается: уи уо́чт зэ пэ́йнт дри́пин о́нту зэ фло́р.\nСлово paint значит «краска».\nСлово onto значит «на».\nСлово dripping вы видели: «капает».\nI felt my phone vibrating. — Я почувствовал, как мой телефон вибрирует.\nЧитается: ай фэ́лт май фо́ун вайбрэ́йтин.\nСлово vibrating значит «вибрирует».\nСлово vibrate значит «вибрировать»: на конце e пропадает, потом ing.\nShe watched the dog digging under the fence.\n— Она наблюдала, как собака копает под забором.\nЧитается: ши уо́чт зэ до́г ди́гин а́ндэр зэ фэ́нс.\nСлово dig значит «копать».\nСлово digging значит «копает»: буква g пишется дважды.\nСлово fence значит «забор».\nБез ing: видели, как всё случилось. С ing: видели, как это шло.",
+        "uk": "Іноді бачили не весь випадок, а тільки як це йшло.\nТоді до слова додають ing.\nI saw the driver getting out. — Я бачив, як водій виходив.\nЧитається: ай со́ зе дра́йвер ге́тін а́ут.\nСлова getting out означають «виходив».\nСлово getting — це get і ing, буква t пишеться двічі.\nI heard the children playing upstairs. — Я чув, як діти граються нагорі.\nЧитається: ай хе́рд зе чі́лдрен пле́йін апсте́рз.\nСлово play означає «гратися».\nСлово playing — це play і ing: «граються».\nWe watched the paint dripping onto the floor.\n— Ми спостерігали, як фарба капає на підлогу.\nЧитається: уі уо́чт зе пе́йнт дрі́пін о́нту зе фло́р.\nСлово paint означає «фарба».\nСлово onto означає «на».\nСлово dripping ви бачили: «крапає».\nI felt my phone vibrating. — Я відчув, як мій телефон вібрує.\nЧитається: ай фе́лт май фо́ун вайбре́йтін.\nСлово vibrating означає «вібрує».\nСлово vibrate означає «вібрувати»: наприкінці e зникає, потім ing.\nShe watched the dog digging under the fence.\n— Вона спостерігала, як собака риється під парканом.\nЧитається: ші уо́чт зе до́г ді́гін а́ндер зе фе́нс.\nСлово dig означає «копати».\nСлово digging означає «копає»: буква g пишеться двічі.\nСлово fence означає «паркан».\nБез ing: бачили, як усе сталося. З ing: бачили, як це йшло.",
+        "en": "Sometimes you saw only a part, while it was going on.\nThen we add ing to the word.\nI saw the driver getting out.\nThe words getting out together mean “coming out”.\nThe word getting is get and ing. The t is written twice.\nI heard the children playing upstairs.\nThe word play means “to have fun with toys or games”.\nThe word playing is play and ing: they are doing it now.\nWe watched the paint dripping onto the floor.\nThe word paint means “coloured liquid for walls”.\nThe word onto means “to the top of”.\nYou saw the word dripping.\nI felt my phone vibrating.\nThe word vibrating means “shaking quickly”.\nThe word vibrate loses its last e before ing.\nShe watched the dog digging under the fence.\nThe word dig means “to make a hole in the ground”.\nThe word digging is dig and ing. The g is written twice.\nThe word fence means “a wall of wood or metal round a garden”.\nNo ing: you saw it happen. With ing: you saw it going on."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:31.21",
+          "say": {
+            "ru": "ай со́ зэ дра́йвер гэ́тин а́ут",
+            "uk": "ай со́ зе дра́йвер ге́тін а́ут"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.22",
+          "say": {
+            "ru": "ай хэ́рд зэ чи́лдрен плэ́йин апстэ́рз",
+            "uk": "ай хе́рд зе чі́лдрен пле́йін апсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.23",
+          "say": {
+            "ru": "уи уо́чт зэ пэ́йнт дри́пин о́нту зэ фло́р",
+            "uk": "уі уо́чт зе пе́йнт дрі́пін о́нту зе фло́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.25",
+          "say": {
+            "ru": "ай фэ́лт май фо́ун вайбрэ́йтин",
+            "uk": "ай фе́лт май фо́ун вайбре́йтін"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.30",
+          "say": {
+            "ru": "ши уо́чт зэ до́г ди́гин а́ндэр зэ фэ́нс",
+            "uk": "ші уо́чт зе до́г ді́гін а́ндер зе фе́нс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я видел, как водитель выходил»",
+            "uk": "Виберіть, як сказати: «Я бачив, як водій виходив»",
+            "en": "Choose how to say: “I saw the driver getting out.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:31.21",
+          "options": [
+            "en-classic-r1:31.21",
+            "en-classic-r1:31.22",
+            "en-classic-r1:31.23"
+          ],
+          "answerId": "en-classic-r1:31.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы наблюдали, как краска капает на пол»",
+            "uk": "Виберіть, як сказати: «Ми спостерігали, як фарба капає на підлогу»",
+            "en": "Choose how to say: “We watched the paint dripping onto the floor.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.23",
+          "options": [
+            "en-classic-r1:31.23",
+            "en-classic-r1:31.25",
+            "en-classic-r1:31.30"
+          ],
+          "answerId": "en-classic-r1:31.23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она наблюдала, как собака копает под забором»",
+            "uk": "Виберіть, як сказати: «Вона спостерігала, як собака риється під парканом»",
+            "en": "Choose how to say: “She watched the dog digging under the fence.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.30",
+          "options": [
+            "en-classic-r1:31.30",
+            "en-classic-r1:31.21",
+            "en-classic-r1:31.22"
+          ],
+          "answerId": "en-classic-r1:31.30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Разрешил: слово let",
+        "uk": "Дозволив: слово let",
+        "en": "Letting someone: the word let"
+      },
+      "text": {
+        "ru": "Слово let значит «разрешить».\nРаньше вы видели let’s — «давайте». Здесь смысл другой.\nПосле let идёт тот, кому разрешили, а потом простое слово.\nThey let me use the printer. — Мне разрешили воспользоваться принтером.\nЧитается: зэй лэ́т ми ю́з зэ при́нтер.\nСлова let me use значат «разрешили мне воспользоваться».\nShe let us leave our bags. — Она разрешила нам оставить наши сумки.\nЧитается: ши лэ́т ас ли́в аур бэ́гз.\nЗдесь leave значит «оставить».\nСлова let us leave значат «разрешила нам оставить».\nHe let the children choose a book. — Он разрешил детям выбрать книгу.\nЧитается: хи лэ́т зэ чи́лдрен чу́з э бу́к.\nСлово choose значит «выбрать».\nСлово chose вы видели: «выбрал».\nСлова let the children choose значат «разрешил детям выбрать».\nСлово let одно для всех: let me, let us, let them.",
+        "uk": "Слово let означає «дозволити».\nРаніше ви бачили let’s — «давайте». Тут зміст інший.\nПісля let іде той, кому дозволили, а потім просте слово.\nThey let me use the printer. — Вони дозволили мені користуватися принтером.\nЧитається: зей ле́т мі ю́з зе прі́нтер.\nСлова let me use означають «дозволили мені скористатися».\nShe let us leave our bags. — Вона дозволила нам залишити наші сумки.\nЧитається: ші ле́т ас лі́в аур бе́гз.\nТут leave означає «залишити».\nСлова let us leave означають «дозволила нам залишити».\nHe let the children choose a book. — Він дозволив дітям вибрати книгу.\nЧитається: хі ле́т зе чі́лдрен чу́з е бу́к.\nСлово choose означає «вибрати».\nСлово chose ви бачили: «вибрав».\nСлова let the children choose означають «дозволив дітям вибрати».\nСлово let одне для всіх: let me, let us, let them.",
+        "en": "The word let means “allow”.\nBefore, you saw let’s. Here the meaning is different.\nAfter let comes the one who is allowed, then a plain word.\nThey let me use the printer.\nThe words let me use together mean “allowed me to use it”.\nShe let us leave our bags.\nHere leave means “put down and go away”.\nThe words let us leave together mean “allowed us to put down”.\nHe let the children choose a book.\nThe word choose means “to pick one”.\nYou saw the word chose. That is choose for yesterday.\nThe words let the children choose together mean “allowed the children to pick”.\nThe word let is the same for everyone: let me, let us, let them."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:31.31",
+          "say": {
+            "ru": "зэй лэ́т ми ю́з зэ при́нтер",
+            "uk": "зей ле́т мі ю́з зе прі́нтер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.32",
+          "say": {
+            "ru": "ши лэ́т ас ли́в аур бэ́гз",
+            "uk": "ші ле́т ас лі́в аур бе́гз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.33",
+          "say": {
+            "ru": "хи лэ́т зэ чи́лдрен чу́з э бу́к",
+            "uk": "хі ле́т зе чі́лдрен чу́з е бу́к"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне разрешили воспользоваться принтером»",
+            "uk": "Виберіть, як сказати: «Вони дозволили мені користуватися принтером»",
+            "en": "Choose how to say: “They let me use the printer.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:31.31",
+          "options": [
+            "en-classic-r1:31.31",
+            "en-classic-r1:31.32",
+            "en-classic-r1:31.33"
+          ],
+          "answerId": "en-classic-r1:31.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она разрешила нам оставить наши сумки»",
+            "uk": "Виберіть, як сказати: «Вона дозволила нам залишити наші сумки»",
+            "en": "Choose how to say: “She let us leave our bags.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.32",
+          "options": [
+            "en-classic-r1:31.32",
+            "en-classic-r1:31.33",
+            "en-classic-r1:31.31"
+          ],
+          "answerId": "en-classic-r1:31.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он разрешил детям выбрать книгу»",
+            "uk": "Виберіть, як сказати: «Він дозволив дітям вибрати книгу»",
+            "en": "Choose how to say: “He let the children choose a book.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.33",
+          "options": [
+            "en-classic-r1:31.33",
+            "en-classic-r1:31.31",
+            "en-classic-r1:31.32"
+          ],
+          "answerId": "en-classic-r1:31.33"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Заставил: слово made",
+        "uk": "Змусив: слово made",
+        "en": "Making something happen: the word made"
+      },
+      "text": {
+        "ru": "Слово made вы видели: «сделал».\nЗдесь оно значит «заставил»: что-то вызвало что-то.\nСначала то, что вызвало, потом made, потом кто и что с ним случилось.\nThe noise made me jump. — Шум заставил меня вздрогнуть.\nЧитается: зэ но́йз мэ́йд ми джа́мп.\nСлово jump значит «вздрогнуть».\nСлова made me jump значат «заставил меня вздрогнуть».\nThe smoke made my eyes water. — От дыма у меня слезились глаза.\nЧитается: зэ смо́ук мэ́йд май а́йз уо́тэр.\nСлово eyes значит «глаза».\nЗдесь water значит «слезиться».\nСлова made my eyes water значат «заставил слезиться глаза».\nThe delay made us miss the train. — Из-за задержки мы опоздали на поезд.\nЧитается: зэ дилэ́й мэ́йд ас ми́с зэ трэ́йн.\nСлово delay значит «задержка».\nЗдесь miss значит «опоздать».\nСлова made us miss значат «заставила нас опоздать».\nThe smell made her feel sick. — От запаха ей стало плохо.\nЧитается: зэ смэ́л мэ́йд хэр фи́л си́к.\nСлово smell значит «запах».\nСлова made her feel sick значат «ей стало плохо».\nСначала причина, потом made, потом простое слово: made me jump, made us miss.",
+        "uk": "Слово made ви бачили: «зробив».\nТут воно означає «змусив»: щось викликало щось.\nСпочатку те, що викликало, потім made, потім хто і що з ним сталося.\nThe noise made me jump. — Шум змусив мене здригнутися.\nЧитається: зе но́йз ме́йд мі джа́мп.\nСлово jump означає «сіпнутися».\nСлова made me jump означають «змусив мене сіпнутися».\nThe smoke made my eyes water. — Від диму в мене сльозилися очі.\nЧитається: зе смо́ук ме́йд май а́йз уо́тер.\nСлово eyes означає «очі».\nТут water означає «сльозитися».\nСлова made my eyes water означають «змусив сльозитися очі».\nThe delay made us miss the train. — Через затримку ми пропустили поїзд.\nЧитається: зе діле́й ме́йд ас мі́с зе тре́йн.\nСлово delay означає «затримка».\nТут miss означає «запізнитися».\nСлова made us miss означають «змусила нас запізнитися».\nThe smell made her feel sick. — Від запаху їй стало погано.\nЧитається: зе сме́л ме́йд хер фі́л сі́к.\nСлово smell означає «запах».\nСлова made her feel sick означають «їй стало погано».\nСпочатку причина, потім made, потім просте слово: made me jump, made us miss.",
+        "en": "You saw the word made before.\nHere it means “caused”: one thing causes another.\nFirst what caused it, then made, then who it happened to and what happened.\nThe noise made me jump.\nThe word jump means “move suddenly because of a fright”.\nThe words made me jump together mean “caused me to move suddenly”.\nThe smoke made my eyes water.\nThe word eyes means “the parts of the face that see”.\nHere water means “fill with tears”.\nThe words made my eyes water together mean “caused my eyes to fill with tears”.\nThe delay made us miss the train.\nThe word delay means “a time when things are late”.\nHere miss means “be too late for”.\nThe words made us miss together mean “caused us to be too late”.\nThe smell made her feel sick.\nThe word smell means “what you notice with your nose”.\nThe words made her feel sick together mean “caused her to feel ill”.\nThe cause, then made, then a plain word: made me jump, made us miss."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:31.36",
+          "say": {
+            "ru": "зэ но́йз мэ́йд ми джа́мп",
+            "uk": "зе но́йз ме́йд мі джа́мп"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.37",
+          "say": {
+            "ru": "зэ смо́ук мэ́йд май а́йз уо́тэр",
+            "uk": "зе смо́ук ме́йд май а́йз уо́тер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.38",
+          "say": {
+            "ru": "зэ дилэ́й мэ́йд ас ми́с зэ трэ́йн",
+            "uk": "зе діле́й ме́йд ас мі́с зе тре́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.39",
+          "say": {
+            "ru": "зэ смэ́л мэ́йд хэр фи́л си́к",
+            "uk": "зе сме́л ме́йд хер фі́л сі́к"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Шум заставил меня вздрогнуть»",
+            "uk": "Виберіть, як сказати: «Шум змусив мене здригнутися»",
+            "en": "Choose how to say: “The noise made me jump.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:31.36",
+          "options": [
+            "en-classic-r1:31.36",
+            "en-classic-r1:31.37",
+            "en-classic-r1:31.38"
+          ],
+          "answerId": "en-classic-r1:31.36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «От дыма у меня слезились глаза»",
+            "uk": "Виберіть, як сказати: «Від диму в мене сльозилися очі»",
+            "en": "Choose how to say: “The smoke made my eyes water.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.37",
+          "options": [
+            "en-classic-r1:31.37",
+            "en-classic-r1:31.38",
+            "en-classic-r1:31.39"
+          ],
+          "answerId": "en-classic-r1:31.37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «От запаха ей стало плохо»",
+            "uk": "Виберіть, як сказати: «Від запаху їй стало погано»",
+            "en": "Choose how to say: “The smell made her feel sick.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.39",
+          "options": [
+            "en-classic-r1:31.39",
+            "en-classic-r1:31.36",
+            "en-classic-r1:31.37"
+          ],
+          "answerId": "en-classic-r1:31.39"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Попросил, сказал, ожидал",
+        "uk": "Попросив, сказав, очікував",
+        "en": "Asking, telling, expecting"
+      },
+      "text": {
+        "ru": "Когда просят, говорят или ждут, что кто-то что-то сделает, ставят to.\nСлово to стоит перед тем, что нужно сделать.\nI asked him to unpack the boxes by the gate.\n— Я попросил его распаковать коробки у ворот.\nЧитается: ай а́скт хи́м ту анпэ́к зэ бо́ксиз бай зэ гэ́йт.\nСлово unpack значит «распаковать».\nСлова asked him to unpack значат «попросил его распаковать».\nShe wanted me to check the receipt. — Она хотела, чтобы я проверил квитанцию.\nЧитается: ши уо́нтид ми ту чэ́к зэ риси́т.\nСлова wanted me to check значат «хотела, чтобы я проверил».\nI expected the house to be empty before six.\n— Я ожидал, что дом опустеет до шести.\nЧитается: ай икспэ́ктид зэ ха́ус ту би э́мпти бифо́р си́кс.\nСлово expected значит «ожидал».\nСлова expected the house to be empty значат «ожидал, что дом будет пустым».\nСравните: saw Tom leave — без to, asked him to unpack — с to.",
+        "uk": "Коли просять, кажуть або чекають, що хтось щось зробить, ставлять to.\nСлово to стоїть перед тим, що треба зробити.\nI asked him to unpack the boxes by the gate.\n— Я попросив його розпакувати коробки біля воріт.\nЧитається: ай а́скт хі́м ту анпе́к зе бо́ксіз бай зе ге́йт.\nСлово unpack означає «розпакувати».\nСлова asked him to unpack означають «попросив його розпакувати».\nShe wanted me to check the receipt. — Вона хотіла, щоб я перевірив квитанцію.\nЧитається: ші уо́нтід мі ту че́к зе рісі́т.\nСлова wanted me to check означають «хотіла, щоб я перевірив».\nI expected the house to be empty before six.\n— Я очікував, що будинок буде порожнім до шостої.\nЧитається: ай ікспе́ктід зе ха́ус ту бі е́мпті біфо́р сі́кс.\nСлово expected означає «очікував».\nСлова expected the house to be empty означають «очікував, що дім буде порожнім».\nПорівняйте: saw Tom leave — без to, asked him to unpack — з to.",
+        "en": "When you ask, tell or expect someone to do something, you put to.\nThe word to stands before what must be done.\nI asked him to unpack the boxes by the gate.\nThe word unpack means “to take things out of a box”.\nThe words asked him to unpack together mean “said please to him about unpacking”.\nShe wanted me to check the receipt.\nThe words wanted me to check together mean “wished that I would look”.\nI expected the house to be empty before six.\nThe word expected means “thought it would happen”.\nThe words expected the house to be empty together mean “thought nobody would be inside”.\nCompare: saw Tom leave has no to, asked him to unpack has to."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:31.41",
+          "say": {
+            "ru": "ай а́скт хи́м ту анпэ́к зэ бо́ксиз бай зэ гэ́йт",
+            "uk": "ай а́скт хі́м ту анпе́к зе бо́ксіз бай зе ге́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.42",
+          "say": {
+            "ru": "ши уо́нтид ми ту чэ́к зэ риси́т",
+            "uk": "ші уо́нтід мі ту че́к зе рісі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.45",
+          "say": {
+            "ru": "ай икспэ́ктид зэ ха́ус ту би э́мпти бифо́р си́кс",
+            "uk": "ай ікспе́ктід зе ха́ус ту бі е́мпті біфо́р сі́кс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я попросил его распаковать коробки у ворот»",
+            "uk": "Виберіть, як сказати: «Я попросив його розпакувати коробки біля воріт»",
+            "en": "Choose how to say: “I asked him to unpack the boxes by the gate.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:31.41",
+          "options": [
+            "en-classic-r1:31.41",
+            "en-classic-r1:31.42",
+            "en-classic-r1:31.45"
+          ],
+          "answerId": "en-classic-r1:31.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она хотела, чтобы я проверил квитанцию»",
+            "uk": "Виберіть, як сказати: «Вона хотіла, щоб я перевірив квитанцію»",
+            "en": "Choose how to say: “She wanted me to check the receipt.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.42",
+          "options": [
+            "en-classic-r1:31.42",
+            "en-classic-r1:31.45",
+            "en-classic-r1:31.41"
+          ],
+          "answerId": "en-classic-r1:31.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ожидал, что дом опустеет до шести»",
+            "uk": "Виберіть, як сказати: «Я очікував, що будинок буде порожнім до шостої»",
+            "en": "Choose how to say: “I expected the house to be empty before six.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.45",
+          "options": [
+            "en-classic-r1:31.45",
+            "en-classic-r1:31.41",
+            "en-classic-r1:31.42"
+          ],
+          "answerId": "en-classic-r1:31.45"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Всё вместе",
+        "uk": "Усе разом",
+        "en": "Putting it together"
+      },
+      "text": {
+        "ru": "Ещё четыре фразы, где эти слова встречаются вместе.\nI heard the doorbell ring while I was upstairs.\n— Я услышал звонок в дверь, когда был наверху.\nЧитается: ай хэ́рд зэ до́рбэл ри́нг уа́йл ай уо́з апстэ́рз.\nСлово doorbell значит «дверной звонок».\nСлова heard the doorbell ring значат «услышал звонок в дверь».\nWe saw the driver stop and open the doors.\n— Мы видели, как водитель остановился и открыл двери.\nЧитается: уи со́ зэ дра́йвер сто́п энд о́упен зэ до́рз.\nСлова stop and open значат «остановиться и открыть».\nОба слова остаются простыми.\nShe let me borrow her waterproof jacket. — Она одолжила мне свою водонепроницаемую куртку.\nЧитается: ши лэ́т ми бо́роу хэр уо́терпруф джэ́кит.\nСлова let me borrow значат «разрешила мне взять на время».\nThey made him pay, but they let us go.\n— Его заставили заплатить, а нам разрешили уйти.\nЧитается: зэй мэ́йд хи́м пэ́й бат зэй лэ́т ас го́у.\nСлова made him pay значат «заставили его заплатить».\nСлова let us go значат «разрешили нам уйти».\nВидели, слышали, разрешили, заставили — слово после них простое.",
+        "uk": "Ще чотири фрази, де ці слова трапляються разом.\nI heard the doorbell ring while I was upstairs.\n— Я почув дзвінок у двері, коли був нагорі.\nЧитається: ай хе́рд зе до́рбел рі́нг уа́йл ай уо́з апсте́рз.\nСлово doorbell означає «дверний дзвінок».\nСлова heard the doorbell ring означають «почув дзвінок у двері».\nWe saw the driver stop and open the doors.\n— Ми бачили, як водій зупинився та відчинив двері.\nЧитається: уі со́ зе дра́йвер сто́п енд о́упен зе до́рз.\nСлова stop and open означають «зупинитися і відкрити».\nОбидва слова залишаються простими.\nShe let me borrow her waterproof jacket. — Вона позичила мені свою водонепроникну куртку.\nЧитається: ші ле́т мі бо́роу хер уо́терпруф дже́кіт.\nСлова let me borrow означають «дозволила мені взяти на деякий час».\nThey made him pay, but they let us go.\n— Його змусили заплатити, а нам дозволили піти.\nЧитається: зей ме́йд хі́м пе́й бат зей ле́т ас го́у.\nСлова made him pay означають «змусили його заплатити».\nСлова let us go означають «дозволили нам піти».\nБачили, чули, дозволили, змусили — слово після них просте.",
+        "en": "Four more sentences with these words together.\nI heard the doorbell ring while I was upstairs.\nThe word doorbell means “a bell by the door that people push”.\nThe words heard the doorbell ring together mean “noticed the bell making its sound”.\nWe saw the driver stop and open the doors.\nThe words stop and open together mean “come to a halt and open”.\nBoth words stay plain.\nShe let me borrow her waterproof jacket.\nThe words let me borrow together mean “allowed me to take for a short time”.\nThey made him pay, but they let us go.\nThe words made him pay together mean “caused him to pay”.\nThe words let us go together mean “allowed us to leave”.\nAfter saw, heard, let and made the word stays plain."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:31.46",
+          "say": {
+            "ru": "ай хэ́рд зэ до́рбэл ри́нг уа́йл ай уо́з апстэ́рз",
+            "uk": "ай хе́рд зе до́рбел рі́нг уа́йл ай уо́з апсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.47",
+          "say": {
+            "ru": "уи со́ зэ дра́йвер сто́п энд о́упен зэ до́рз",
+            "uk": "уі со́ зе дра́йвер сто́п енд о́упен зе до́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.48",
+          "say": {
+            "ru": "ши лэ́т ми бо́роу хэр уо́терпруф джэ́кит",
+            "uk": "ші ле́т мі бо́роу хер уо́терпруф дже́кіт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:31.50",
+          "say": {
+            "ru": "зэй мэ́йд хи́м пэ́й бат зэй лэ́т ас го́у",
+            "uk": "зей ме́йд хі́м пе́й бат зей ле́т ас го́у"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я услышал звонок в дверь, когда был наверху»",
+            "uk": "Виберіть, як сказати: «Я почув дзвінок у двері, коли був нагорі»",
+            "en": "Choose how to say: “I heard the doorbell ring while I was upstairs.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:31.46",
+          "options": [
+            "en-classic-r1:31.46",
+            "en-classic-r1:31.47",
+            "en-classic-r1:31.48"
+          ],
+          "answerId": "en-classic-r1:31.46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы видели, как водитель остановился и открыл двери»",
+            "uk": "Виберіть, як сказати: «Ми бачили, як водій зупинився та відчинив двері»",
+            "en": "Choose how to say: “We saw the driver stop and open the doors.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.47",
+          "options": [
+            "en-classic-r1:31.47",
+            "en-classic-r1:31.48",
+            "en-classic-r1:31.50"
+          ],
+          "answerId": "en-classic-r1:31.47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Его заставили заплатить, а нам разрешили уйти»",
+            "uk": "Виберіть, як сказати: «Його змусили заплатити, а нам дозволили піти»",
+            "en": "Choose how to say: “They made him pay, but they let us go.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:31.50",
+          "options": [
+            "en-classic-r1:31.50",
+            "en-classic-r1:31.46",
+            "en-classic-r1:31.47"
+          ],
+          "answerId": "en-classic-r1:31.50"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+ "lang": "en",
+ "lesson": 29,
+ "words": {
+  "warehouse": {
+   "ru": "склад",
+   "uk": "склад",
+   "en": "big building for storing goods",
+   "es": "almacén"
+  },
+  "playground": {
+   "ru": "детская площадка",
+   "uk": "дитячий майданчик",
+   "en": "outdoor place for children to play",
+   "es": "parque infantil"
+  },
+  "factory": {
+   "ru": "завод",
+   "uk": "завод",
+   "en": "building where things are made",
+   "es": "fábrica"
+  },
+  "cinema": {
+   "ru": "кинотеатр",
+   "uk": "кінотеатр",
+   "en": "place to watch films",
+   "es": "cine"
+  },
+  "corner": {
+   "ru": "угол",
+   "uk": "кут",
+   "en": "where two streets or walls meet",
+   "es": "esquina"
+  },
+  "entrances": {
+   "ru": "входы",
+   "uk": "входи",
+   "en": "places where you go in",
+   "es": "entradas"
+  },
+  "tram": {
+   "ru": "трамвай",
+   "uk": "трамвай",
+   "en": "electric vehicle on rails in a city",
+   "es": "tranvía"
+  },
+  "bookings": {
+   "ru": "бронирования",
+   "uk": "бронювання",
+   "en": "places reserved in advance",
+   "es": "reservas"
+  },
+  "deliver": {
+   "ru": "доставлять",
+   "uk": "доставляти",
+   "en": "bring goods to a home",
+   "es": "entregar"
+  },
+  "visit": {
+   "ru": "ходить в, посещать",
+   "uk": "ходити до, відвідувати",
+   "en": "go to a place for a while",
+   "es": "visitar"
+  },
+  "cycle": {
+   "ru": "ездить на велосипеде",
+   "uk": "їздити на велосипеді",
+   "en": "ride a bike",
+   "es": "ir en bici"
+  },
+  "hate": {
+   "ru": "ненавидеть",
+   "uk": "ненавидіти",
+   "en": "strongly dislike",
+   "es": "odiar"
+  }
+ }
+}

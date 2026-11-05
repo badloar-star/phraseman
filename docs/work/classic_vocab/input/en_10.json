@@ -1,0 +1,522 @@
+{
+ "lang": "en",
+ "lesson": 10,
+ "words": [
+  {
+   "form": "can",
+   "surface": "can",
+   "count": 27,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.01",
+     "target": "I can swim",
+     "ru": "Я умею плавать.",
+     "en": "I can swim."
+    },
+    {
+     "id": "en-classic-r1:10.02",
+     "target": "She can drive",
+     "ru": "Она умеет водить машину.",
+     "en": "She can drive."
+    }
+   ]
+  },
+  {
+   "form": "swim",
+   "surface": "swim",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.01",
+     "target": "I can swim",
+     "ru": "Я умею плавать.",
+     "en": "I can swim."
+    }
+   ]
+  },
+  {
+   "form": "come",
+   "surface": "come",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.04",
+     "target": "He can come today",
+     "ru": "Он может приехать сегодня.",
+     "en": "He can come today."
+    }
+   ]
+  },
+  {
+   "form": "us",
+   "surface": "us",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.05",
+     "target": "They can hear us",
+     "ru": "Они нас слышат.",
+     "en": "They can hear us."
+    }
+   ]
+  },
+  {
+   "form": "cannot",
+   "surface": "cannot",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.06",
+     "target": "I cannot hear you",
+     "ru": "Я вас не слышу.",
+     "en": "I cannot hear you."
+    },
+    {
+     "id": "en-classic-r1:10.07",
+     "target": "She cannot see the screen",
+     "ru": "Она не видит экран.",
+     "en": "She cannot see the screen."
+    }
+   ]
+  },
+  {
+   "form": "find",
+   "surface": "find",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.09",
+     "target": "He cannot find his ticket",
+     "ru": "Он не может найти свой билет.",
+     "en": "He cannot find his ticket."
+    }
+   ]
+  },
+  {
+   "form": "stay",
+   "surface": "stay",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.10",
+     "target": "They cannot stay late",
+     "ru": "Они не могут оставаться допоздна.",
+     "en": "They cannot stay late."
+    }
+   ]
+  },
+  {
+   "form": "sit",
+   "surface": "sit",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.11",
+     "target": "Can I sit here",
+     "ru": "Можно мне сесть здесь?",
+     "en": "Can I sit here?"
+    }
+   ]
+  },
+  {
+   "form": "bags",
+   "surface": "bags",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.14",
+     "target": "Can we leave our bags here",
+     "ru": "Можно нам оставить здесь наши сумки?",
+     "en": "Can we leave our bags here?"
+    }
+   ]
+  },
+  {
+   "form": "borrow",
+   "surface": "borrow",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.17",
+     "target": "Can I borrow a pen",
+     "ru": "Можно мне взять ручку?",
+     "en": "Can I borrow a pen?"
+    }
+   ]
+  },
+  {
+   "form": "book",
+   "surface": "book",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.19",
+     "target": "Can we book a table",
+     "ru": "Можно нам забронировать столик?",
+     "en": "Can we book a table?"
+    },
+    {
+     "id": "en-classic-r1:10.39",
+     "target": "Should I book in advance",
+     "ru": "Стоит ли мне бронировать заранее?",
+     "en": "Should I book in advance?"
+    }
+   ]
+  },
+  {
+   "form": "bring",
+   "surface": "bring",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.20",
+     "target": "Can I bring a friend",
+     "ru": "Можно мне привести друга?",
+     "en": "Can I bring a friend?"
+    },
+    {
+     "id": "en-classic-r1:10.43",
+     "target": "He has to bring his passport",
+     "ru": "Он должен принести свой паспорт.",
+     "en": "He has to bring his passport."
+    }
+   ]
+  },
+  {
+   "form": "friend",
+   "surface": "friend",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.20",
+     "target": "Can I bring a friend",
+     "ru": "Можно мне привести друга?",
+     "en": "Can I bring a friend?"
+    }
+   ]
+  },
+  {
+   "form": "again",
+   "surface": "again",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.22",
+     "target": "Can you say that again",
+     "ru": "Можете повторить?",
+     "en": "Can you say that again?"
+    }
+   ]
+  },
+  {
+   "form": "write",
+   "surface": "write",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.23",
+     "target": "Can you write it down",
+     "ru": "Можете записать?",
+     "en": "Can you write it down?"
+    }
+   ]
+  },
+  {
+   "form": "hold",
+   "surface": "hold",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.24",
+     "target": "Can you hold the door",
+     "ru": "Можете придержать дверь?",
+     "en": "Can you hold the door?"
+    }
+   ]
+  },
+  {
+   "form": "me",
+   "surface": "me",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.25",
+     "target": "Can you show me the way",
+     "ru": "Можете показать мне дорогу?",
+     "en": "Can you show me the way?"
+    },
+    {
+     "id": "en-classic-r1:10.27",
+     "target": "Can you send me the link",
+     "ru": "Можете прислать мне ссылку?",
+     "en": "Can you send me the link?"
+    }
+   ]
+  },
+  {
+   "form": "link",
+   "surface": "link",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.27",
+     "target": "Can you send me the link",
+     "ru": "Можете прислать мне ссылку?",
+     "en": "Can you send me the link?"
+    }
+   ]
+  },
+  {
+   "form": "move",
+   "surface": "move",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.28",
+     "target": "Can you move your bag",
+     "ru": "Можете передвинуть свою сумку?",
+     "en": "Can you move your bag?"
+    }
+   ]
+  },
+  {
+   "form": "pass",
+   "surface": "pass",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.29",
+     "target": "Can you pass me the salt",
+     "ru": "Можете передать мне соль?",
+     "en": "Can you pass me the salt?"
+    }
+   ]
+  },
+  {
+   "form": "salt",
+   "surface": "salt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.29",
+     "target": "Can you pass me the salt",
+     "ru": "Можете передать мне соль?",
+     "en": "Can you pass me the salt?"
+    }
+   ]
+  },
+  {
+   "form": "with",
+   "surface": "with",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.30",
+     "target": "Can you help me with this form",
+     "ru": "Можете помочь мне с этой формой?",
+     "en": "Can you help me with this form?"
+    }
+   ]
+  },
+  {
+   "form": "should",
+   "surface": "should",
+   "count": 10,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.31",
+     "target": "You should keep the receipt",
+     "ru": "Вам следует сохранить квитанцию.",
+     "en": "You should keep the receipt."
+    },
+    {
+     "id": "en-classic-r1:10.32",
+     "target": "You should check the date",
+     "ru": "Вам стоит проверить дату.",
+     "en": "You should check the date."
+    }
+   ]
+  },
+  {
+   "form": "some",
+   "surface": "some",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.34",
+     "target": "He should get some rest",
+     "ru": "Ему стоит отдохнуть.",
+     "en": "He should get some rest."
+    }
+   ]
+  },
+  {
+   "form": "rest",
+   "surface": "rest",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.34",
+     "target": "He should get some rest",
+     "ru": "Ему стоит отдохнуть.",
+     "en": "He should get some rest."
+    }
+   ]
+  },
+  {
+   "form": "block",
+   "surface": "block",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.36",
+     "target": "We should not block the exit",
+     "ru": "Нам не стоит загораживать выход.",
+     "en": "We should not block the exit."
+    }
+   ]
+  },
+  {
+   "form": "exit",
+   "surface": "exit",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.36",
+     "target": "We should not block the exit",
+     "ru": "Нам не стоит загораживать выход.",
+     "en": "We should not block the exit."
+    },
+    {
+     "id": "en-classic-r1:10.50",
+     "target": "You must not park by the exit",
+     "ru": "Вы не должны парковаться у выхода.",
+     "en": "You must not park by the exit."
+    }
+   ]
+  },
+  {
+   "form": "password",
+   "surface": "password",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.37",
+     "target": "You should not share your password",
+     "ru": "Вам не следует сообщать свой пароль.",
+     "en": "You should not share your password."
+    }
+   ]
+  },
+  {
+   "form": "advance",
+   "surface": "advance",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.39",
+     "target": "Should I book in advance",
+     "ru": "Стоит ли мне бронировать заранее?",
+     "en": "Should I book in advance?"
+    }
+   ]
+  },
+  {
+   "form": "tell",
+   "surface": "tell",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.40",
+     "target": "Should we tell the driver",
+     "ru": "Стоит ли нам сказать водителю?",
+     "en": "Should we tell the driver?"
+    }
+   ]
+  },
+  {
+   "form": "must",
+   "surface": "must",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.41",
+     "target": "You must wear a helmet",
+     "ru": "Вы должны надеть шлем.",
+     "en": "You must wear a helmet."
+    },
+    {
+     "id": "en-classic-r1:10.44",
+     "target": "You must not touch the cable",
+     "ru": "Вы не должны прикасаться к кабелю.",
+     "en": "You must not touch the cable."
+    }
+   ]
+  },
+  {
+   "form": "helmet",
+   "surface": "helmet",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.41",
+     "target": "You must wear a helmet",
+     "ru": "Вы должны надеть шлем.",
+     "en": "You must wear a helmet."
+    }
+   ]
+  },
+  {
+   "form": "touch",
+   "surface": "touch",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.44",
+     "target": "You must not touch the cable",
+     "ru": "Вы не должны прикасаться к кабелю.",
+     "en": "You must not touch the cable."
+    }
+   ]
+  },
+  {
+   "form": "cable",
+   "surface": "cable",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.44",
+     "target": "You must not touch the cable",
+     "ru": "Вы не должны прикасаться к кабелю.",
+     "en": "You must not touch the cable."
+    }
+   ]
+  },
+  {
+   "form": "print",
+   "surface": "print",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.45",
+     "target": "You do not have to print the ticket",
+     "ru": "Вам не нужно распечатывать билет.",
+     "en": "You do not have to print the ticket."
+    }
+   ]
+  },
+  {
+   "form": "both",
+   "surface": "both",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:10.47",
+     "target": "Do we have to sign both pages",
+     "ru": "Нужно ли нам подписывать обе страницы?",
+     "en": "Do we have to sign both pages?"
+    }
+   ]
+  }
+ ]
+}

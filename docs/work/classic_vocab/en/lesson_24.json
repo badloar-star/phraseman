@@ -1,0 +1,162 @@
+{
+ "lang": "en",
+ "lesson": 24,
+ "words": {
+  "renewed": {
+   "ru": "обновила, продлила",
+   "uk": "оновила, продовжила",
+   "en": "made valid again",
+   "es": "renovó"
+  },
+  "boiled": {
+   "ru": "закипел",
+   "uk": "закипів",
+   "en": "got very hot and bubbled",
+   "es": "hirvió"
+  },
+  "van": {
+   "ru": "фургон",
+   "uk": "фургон",
+   "en": "a small closed truck",
+   "es": "furgoneta"
+  },
+  "already": {
+   "ru": "уже",
+   "uk": "уже",
+   "en": "before now, sooner than expected",
+   "es": "ya"
+  },
+  "unpacked": {
+   "ru": "распаковали вещи",
+   "uk": "розпакували речі",
+   "en": "took things out of bags",
+   "es": "desempacaron"
+  },
+  "ever": {
+   "ru": "когда-нибудь",
+   "uk": "коли-небудь",
+   "en": "at any time in life",
+   "es": "alguna vez"
+  },
+  "lived": {
+   "ru": "жила, живу",
+   "uk": "жила, живу",
+   "en": "had a home in a place",
+   "es": "vivió"
+  },
+  "abroad": {
+   "ru": "за границей",
+   "uk": "за кордоном",
+   "en": "in another country",
+   "es": "en el extranjero"
+  },
+  "never": {
+   "ru": "никогда",
+   "uk": "ніколи",
+   "en": "not at any time",
+   "es": "nunca"
+  },
+  "driven": {
+   "ru": "водил",
+   "uk": "водив",
+   "en": "controlled a car",
+   "es": "conducido"
+  },
+  "used": {
+   "ru": "пользовался",
+   "uk": "користувався",
+   "en": "made use of a thing",
+   "es": "usó"
+  },
+  "scanned": {
+   "ru": "сканировала",
+   "uk": "сканувала",
+   "en": "copied a paper into a computer",
+   "es": "escaneó"
+  },
+  "invoice": {
+   "ru": "счёт",
+   "uk": "рахунок",
+   "en": "paper that asks for payment",
+   "es": "factura"
+  },
+  "stayed": {
+   "ru": "останавливался, жил",
+   "uk": "зупинявся, жив",
+   "en": "spent nights in a place",
+   "es": "se alojó"
+  },
+  "year": {
+   "ru": "год",
+   "uk": "рік",
+   "en": "twelve months",
+   "es": "año"
+  },
+  "since": {
+   "ru": "с (какого-то момента)",
+   "uk": "з (якогось моменту)",
+   "en": "from a past moment until now",
+   "es": "desde"
+  },
+  "march": {
+   "ru": "март",
+   "uk": "березень",
+   "en": "the third month",
+   "es": "marzo"
+  },
+  "known": {
+   "ru": "знали, знакомы",
+   "uk": "знали, знайомі",
+   "en": "been familiar with a person",
+   "es": "conocido"
+  },
+  "other": {
+   "ru": "друг друга",
+   "uk": "одне одного",
+   "en": "the second one of two",
+   "es": "otro"
+  },
+  "years": {
+   "ru": "годы, лет",
+   "uk": "роки, років",
+   "en": "many twelve-month periods",
+   "es": "años"
+  },
+  "school": {
+   "ru": "школа",
+   "uk": "школа",
+   "en": "place where children learn",
+   "es": "escuela"
+  },
+  "seen": {
+   "ru": "видел",
+   "uk": "бачив",
+   "en": "looked at with the eyes",
+   "es": "visto"
+  },
+  "so": {
+   "ru": "поэтому, так что",
+   "uk": "тому, так що",
+   "en": "and because of that",
+   "es": "así que"
+  },
+  "times": {
+   "ru": "раза",
+   "uk": "рази",
+   "en": "how many occasions",
+   "es": "veces"
+  },
+  "asked": {
+   "ru": "просили",
+   "uk": "просили",
+   "en": "requested something",
+   "es": "pidió"
+  },
+  "ago": {
+   "ru": "назад",
+   "uk": "тому",
+   "en": "back from now in the past",
+   "es": "hace"
+  }
+ }
+}

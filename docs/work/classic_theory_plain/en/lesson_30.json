@@ -1,0 +1,703 @@
+{
+  "lang": "en",
+  "lesson": 30,
+  "title": {
+    "ru": "Какой именно человек, вещь, место",
+    "uk": "Яка саме людина, річ, місце",
+    "en": "Which person, thing or place"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Кто: какой именно человек",
+        "uk": "Хто: яка саме людина",
+        "en": "Who: which person"
+      },
+      "text": {
+        "ru": "Иногда нужно сказать, о каком именно человеке речь.\nСлово who вы видели в вопросах: «кто».\nЗдесь оно работает иначе: связывает человека и то, что он сделал.\nThe person who called is here. — Тот, кто звонил, здесь.\nЧитается: зэ пэ́рсон ху ко́лд из хи́р.\nСлово person значит «человек».\nСлова the person who called значат «тот, кто звонил».\nСлово who стоит между человеком и тем, что он сделал.\nThe man who repaired the roof is outside. — Мужчина, ремонтировавший крышу, снаружи.\nЧитается: зэ мэ́н ху рипэ́рд зэ ру́ф из аутса́йд.\nСлово man значит «мужчина».\nСлова who repaired значат «который ремонтировал».\nThe woman who found my phone left a note.\n— Женщина, нашедшая мой телефон, оставила записку.\nЧитается: зэ у́умэн ху фа́унд май фо́ун лэ́фт э но́ут.\nСлово woman значит «женщина».\nСлова who found значат «которая нашла».\nЗдесь left значит «оставила»: left a note — «оставила записку».\nСначала человек, потом who, потом то, что он сделал.",
+        "uk": "Іноді треба сказати, про яку саме людину йдеться.\nСлово who ви бачили в запитаннях: «хто».\nТут воно працює інакше: зв’язує людину і те, що вона зробила.\nThe person who called is here. — Людина, яка дзвонила, тут.\nЧитається: зе пе́рсон ху ко́лд із хі́р.\nСлово person означає «людина».\nСлова the person who called означають «той, хто дзвонив».\nСлово who стоїть між людиною і тим, що вона зробила.\nThe man who repaired the roof is outside. — Чоловік, який ремонтував дах, надворі.\nЧитається: зе ме́н ху ріпе́рд зе ру́ф із аутса́йд.\nСлово man означає «чоловік».\nСлова who repaired означають «який ремонтував».\nThe woman who found my phone left a note.\n— Жінка, яка знайшла мій телефон, залишила записку.\nЧитається: зе у́умен ху фа́унд май фо́ун ле́фт е но́ут.\nСлово woman означає «жінка».\nСлова who found означають «яка знайшла».\nТут left означає «залишила»: left a note — «залишила записку».\nСпочатку людина, потім who, потім те, що вона зробила.",
+        "en": "Sometimes you must say exactly which person you mean.\nYou saw the word who in questions.\nHere it works in a new way: it joins a person with what that person did.\nThe person who called is here.\nThe word person means “a human being”.\nThe words the person who called together mean “the one who made the call”.\nThe word who stands between the person and what that person did.\nThe man who repaired the roof is outside.\nThe word man means “a grown-up male person”.\nThe words who repaired together mean “the one who fixed it”.\nThe woman who found my phone left a note.\nThe word woman means “a grown-up female person”.\nThe words who found together mean “the one who found it”.\nHere left means “put down and did not take away”.\nFirst the person, then who, then what the person did."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:30.01",
+          "say": {
+            "ru": "зэ пэ́рсон ху ко́лд из хи́р",
+            "uk": "зе пе́рсон ху ко́лд із хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.02",
+          "say": {
+            "ru": "зэ мэ́н ху рипэ́рд зэ ру́ф из аутса́йд",
+            "uk": "зе ме́н ху ріпе́рд зе ру́ф із аутса́йд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.03",
+          "say": {
+            "ru": "зэ у́умэн ху фа́унд май фо́ун лэ́фт э но́ут",
+            "uk": "зе у́умен ху фа́унд май фо́ун ле́фт е но́ут"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Тот, кто звонил, здесь»",
+            "uk": "Виберіть, як сказати: «Людина, яка дзвонила, тут»",
+            "en": "Choose how to say: “The person who called is here.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:30.01",
+          "options": [
+            "en-classic-r1:30.01",
+            "en-classic-r1:30.02",
+            "en-classic-r1:30.03"
+          ],
+          "answerId": "en-classic-r1:30.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мужчина, ремонтировавший крышу, снаружи»",
+            "uk": "Виберіть, як сказати: «Чоловік, який ремонтував дах, надворі»",
+            "en": "Choose how to say: “The man who repaired the roof is outside.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.02",
+          "options": [
+            "en-classic-r1:30.02",
+            "en-classic-r1:30.03",
+            "en-classic-r1:30.01"
+          ],
+          "answerId": "en-classic-r1:30.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Женщина, нашедшая мой телефон, оставила записку»",
+            "uk": "Виберіть, як сказати: «Жінка, яка знайшла мій телефон, залишила записку»",
+            "en": "Choose how to say: “The woman who found my phone left a note.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.03",
+          "options": [
+            "en-classic-r1:30.03",
+            "en-classic-r1:30.01",
+            "en-classic-r1:30.02"
+          ],
+          "answerId": "en-classic-r1:30.03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Кто: ещё люди",
+        "uk": "Хто: ще люди",
+        "en": "Who: more people"
+      },
+      "text": {
+        "ru": "Так можно сказать о соседе, о ребёнке, о любом человеке.\nThe neighbour who lives upstairs has a spare key.\n— У соседа сверху есть запасной ключ.\nЧитается: зэ нэ́йбор ху ли́вз апстэ́рз хэ́з э спэ́р ки́.\nСлова who lives upstairs значат «который живёт наверху».\nСлова has a spare key значат «у него есть запасной ключ».\nThe child who won the race is my niece.\n— Ребенок, выигравший гонку, — моя племянница.\nЧитается: зэ ча́йлд ху уа́н зэ рэ́йс из май ни́с.\nСлово child значит «ребёнок».\nСлово children вы видели: «дети». Один ребёнок — child.\nСлово win значит «выиграть».\nСлово won значит «выиграл».\nКогда победа уже была, говорят won, а не win.\nСлово race значит «гонка».\nСлово niece значит «племянница».\nThe man who fixed the tap lives nearby. — Мужчина, починивший кран, живет неподалеку.\nЧитается: зэ мэ́н ху фи́кст зэ тэ́п ли́вз ни́рбай.\nСлова who fixed значат «который починил».\nСлово who не меняется: who lives, who won, who fixed.",
+        "uk": "Так можна сказати про сусіда, про дитину, про будь-яку людину.\nThe neighbour who lives upstairs has a spare key.\n— У сусіда, який живе зверху, є запасний ключ.\nЧитається: зе не́йбор ху лі́вз апсте́рз хе́з е спе́р кі́.\nСлова who lives upstairs означають «який живе нагорі».\nСлова has a spare key означають «у нього є запасний ключ».\nThe child who won the race is my niece.\n— Дитина, яка виграла гонку, — моя племінниця.\nЧитається: зе ча́йлд ху уа́н зе ре́йс із май ні́с.\nСлово child означає «дитина».\nСлово children ви бачили: «діти». Одна дитина — child.\nСлово win означає «виграти».\nСлово won означає «виграв».\nКоли перемога вже була, кажуть won, а не win.\nСлово race означає «гонка».\nСлово niece означає «племінниця».\nThe man who fixed the tap lives nearby. — Чоловік, який полагодив кран, живе неподалік.\nЧитається: зе ме́н ху фі́кст зе те́п лі́вз ні́рбай.\nСлова who fixed означають «який полагодив».\nСлово who не змінюється: who lives, who won, who fixed.",
+        "en": "You can say it about a neighbour, a child, or any person.\nThe neighbour who lives upstairs has a spare key.\nThe words who lives upstairs together mean “the one whose home is on the floor above”.\nThe words has a spare key together mean “he keeps one more key”.\nThe child who won the race is my niece.\nThe word child means “a very young person”.\nYou saw the word children. One of them is a child.\nThe word win means “to be first”.\nThe word won means “was first”.\nWhen it has already happened, we say won, not win.\nThe word race means “a contest to see who is fastest”.\nThe word niece means “the daughter of your brother or sister”.\nThe man who fixed the tap lives nearby.\nThe words who fixed together mean “the one who repaired it”.\nThe word who never changes: who lives, who won, who fixed."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:30.04",
+          "say": {
+            "ru": "зэ нэ́йбор ху ли́вз апстэ́рз хэ́з э спэ́р ки́",
+            "uk": "зе не́йбор ху лі́вз апсте́рз хе́з е спе́р кі́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.05",
+          "say": {
+            "ru": "зэ ча́йлд ху уа́н зэ рэ́йс из май ни́с",
+            "uk": "зе ча́йлд ху уа́н зе ре́йс із май ні́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.06",
+          "say": {
+            "ru": "зэ мэ́н ху фи́кст зэ тэ́п ли́вз ни́рбай",
+            "uk": "зе ме́н ху фі́кст зе те́п лі́вз ні́рбай"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У соседа сверху есть запасной ключ»",
+            "uk": "Виберіть, як сказати: «У сусіда, який живе зверху, є запасний ключ»",
+            "en": "Choose how to say: “The neighbour who lives upstairs has a spare key.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:30.04",
+          "options": [
+            "en-classic-r1:30.04",
+            "en-classic-r1:30.05",
+            "en-classic-r1:30.06"
+          ],
+          "answerId": "en-classic-r1:30.04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ребенок, выигравший гонку, — моя племянница»",
+            "uk": "Виберіть, як сказати: «Дитина, яка виграла гонку, — моя племінниця»",
+            "en": "Choose how to say: “The child who won the race is my niece.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.05",
+          "options": [
+            "en-classic-r1:30.05",
+            "en-classic-r1:30.06",
+            "en-classic-r1:30.04"
+          ],
+          "answerId": "en-classic-r1:30.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мужчина, починивший кран, живет неподалеку»",
+            "uk": "Виберіть, як сказати: «Чоловік, який полагодив кран, живе неподалік»",
+            "en": "Choose how to say: “The man who fixed the tap lives nearby.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.06",
+          "options": [
+            "en-classic-r1:30.06",
+            "en-classic-r1:30.04",
+            "en-classic-r1:30.05"
+          ],
+          "answerId": "en-classic-r1:30.06"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Вещь: слово that",
+        "uk": "Річ: слово that",
+        "en": "A thing: the word that"
+      },
+      "text": {
+        "ru": "О вещи тоже можно сказать, какая именно.\nДля вещи вместо who говорят that.\nСлово that вы видели: «тот, это». Здесь оно значит «который».\nThe shop that sells maps is closed. — Магазин, продающий карты, закрыт.\nЧитается: зэ шо́п зэт сэ́лз мэ́пс из кло́узд.\nСлово sells значит «продаёт».\nСлово maps значит «карты».\nСлова that sells maps значат «который продаёт карты».\nThe bus that stops here goes to the airport.\n— Автобус, останавливающийся здесь, едет в аэропорт.\nЧитается: зэ ба́с зэт сто́пс хи́р го́уз ту зэ э́рпорт.\nСлова that stops here значат «который останавливается здесь».\nThe key that opens the barrier is missing. — Ключ, который открывает шлагбаум, пропал.\nЧитается: зэ ки́ зэт о́упенз зэ бэ́риэр из ми́син.\nСлова that opens значат «который открывает».\nСлово missing значит «пропал».\nО человеке говорят who. О вещи говорят that.",
+        "uk": "Про річ теж можна сказати, яка саме.\nДля речі замість who кажуть that.\nСлово that ви бачили: «той, це». Тут воно означає «який».\nThe shop that sells maps is closed. — Магазин, який продає карти, закритий.\nЧитається: зе шо́п зет се́лз ме́пс із кло́узд.\nСлово sells означає «продає».\nСлово maps означає «карти».\nСлова that sells maps означають «який продає карти».\nThe bus that stops here goes to the airport.\n— Автобус, який зупиняється тут, їде до аеропорту.\nЧитається: зе ба́с зет сто́пс хі́р го́уз ту зе е́рпорт.\nСлова that stops here означають «який зупиняється тут».\nThe key that opens the barrier is missing. — Ключ, який відкриває шлагбаум, відсутній.\nЧитається: зе кі́ зет о́упенз зе бе́ріер із мі́сін.\nСлова that opens означають «який відкриває».\nСлово missing означає «зник».\nПро людину кажуть who. Про річ кажуть that.",
+        "en": "You can also say which thing you mean.\nFor a thing we say that instead of who.\nYou saw the word that before. Here it means “the one which”.\nThe shop that sells maps is closed.\nThe word sells means “gives something and takes money”.\nThe word maps means “drawings of a town or a country”.\nThe words that sells maps together mean “which sells maps”.\nThe bus that stops here goes to the airport.\nThe words that stops here together mean “which stops in this place”.\nThe key that opens the barrier is missing.\nThe words that opens together mean “which opens it”.\nThe word missing means “not there”.\nFor a person we say who. For a thing we say that."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:30.07",
+          "say": {
+            "ru": "зэ шо́п зэт сэ́лз мэ́пс из кло́узд",
+            "uk": "зе шо́п зет се́лз ме́пс із кло́узд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.08",
+          "say": {
+            "ru": "зэ ба́с зэт сто́пс хи́р го́уз ту зэ э́рпорт",
+            "uk": "зе ба́с зет сто́пс хі́р го́уз ту зе е́рпорт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.09",
+          "say": {
+            "ru": "зэ ки́ зэт о́упенз зэ бэ́риэр из ми́син",
+            "uk": "зе кі́ зет о́упенз зе бе́ріер із мі́сін"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Магазин, продающий карты, закрыт»",
+            "uk": "Виберіть, як сказати: «Магазин, який продає карти, закритий»",
+            "en": "Choose how to say: “The shop that sells maps is closed.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:30.07",
+          "options": [
+            "en-classic-r1:30.07",
+            "en-classic-r1:30.08",
+            "en-classic-r1:30.09"
+          ],
+          "answerId": "en-classic-r1:30.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус, останавливающийся здесь, едет в аэропорт»",
+            "uk": "Виберіть, як сказати: «Автобус, який зупиняється тут, їде до аеропорту»",
+            "en": "Choose how to say: “The bus that stops here goes to the airport.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.08",
+          "options": [
+            "en-classic-r1:30.08",
+            "en-classic-r1:30.09",
+            "en-classic-r1:30.07"
+          ],
+          "answerId": "en-classic-r1:30.08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ, который открывает шлагбаум, пропал»",
+            "uk": "Виберіть, як сказати: «Ключ, який відкриває шлагбаум, відсутній»",
+            "en": "Choose how to say: “The key that opens the barrier is missing.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.09",
+          "options": [
+            "en-classic-r1:30.09",
+            "en-classic-r1:30.07",
+            "en-classic-r1:30.08"
+          ],
+          "answerId": "en-classic-r1:30.09"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вещь: что с ней сделали",
+        "uk": "Річ: що з нею зробили",
+        "en": "A thing: what someone did with it"
+      },
+      "text": {
+        "ru": "Бывает, что с вещью что-то сделал другой человек: вы, она, мы.\nТогда сразу после that идёт тот, кто это сделал.\nThe book that I borrowed is on the desk.\n— Книга, которую я взял, лежит на столе.\nЧитается: зэ бу́к зэт ай бо́роуд из он зэ дэ́ск.\nСлово borrowed значит «взял на время».\nСлова that I borrowed значат «которую я взял на время».\nThe leather coat that she bought is too small.\n— Кожаное пальто, которое она купила, слишком маленькое.\nЧитается: зэ лэ́зэр ко́ут зэт ши бо́т из ту́ смо́л.\nСлово too значит «слишком».\nСлова too small значат «слишком маленькое».\nСлова that she bought значат «которое она купила».\nThe film that we watched was funny. — Фильм, который мы смотрели, был смешным.\nЧитается: зэ фи́лм зэт уи уо́чт уо́з фа́ни.\nСлово watched значит «смотрели».\nСлово funny значит «смешной».\nСлова that we watched значат «который мы смотрели».\nThe bike that he bought needs new tyres.\n— Велосипеду, который он купил, нужны новые шины.\nЧитается: зэ ба́йк зэт хи бо́т ни́дз нью́ та́йрз.\nСлово tyres значит «шины».\nОдна шина — tyre.\nСлова that he bought значат «который он купил».\nThe reference number that she gave me is incorrect.\n— Справочный номер, который она мне дала, неверный.\nЧитается: зэ рэ́ференс на́мбер зэт ши гэ́йв ми из инкорэ́кт.\nСлово incorrect значит «неправильный».\nСлова that she gave me значат «который она мне дала».\nПосле that стоит тот, кто сделал: I, she, we, he.",
+        "uk": "Буває, що з річчю щось зробила інша людина: ви, вона, ми.\nТоді відразу після that іде той, хто це зробив.\nThe book that I borrowed is on the desk.\n— Книга, яку я позичив, лежить на столі.\nЧитається: зе бу́к зет ай бо́роуд із он зе де́ск.\nСлово borrowed означає «узяв на деякий час».\nСлова that I borrowed означають «яку я взяв на деякий час».\nThe leather coat that she bought is too small.\n— Шкіряне пальто, яке вона купила, замале.\nЧитається: зе ле́зер ко́ут зет ші бо́т із ту́ смо́л.\nСлово too означає «занадто».\nСлова too small означають «занадто маленьке».\nСлова that she bought означають «яке вона купила».\nThe film that we watched was funny. — Фільм, який ми дивилися, був кумедним.\nЧитається: зе фі́лм зет уі уо́чт уо́з фа́ні.\nСлово watched означає «дивилися».\nСлово funny означає «смішний».\nСлова that we watched означають «який ми дивилися».\nThe bike that he bought needs new tyres.\n— Велосипед, який він купив, потребує нових шин.\nЧитається: зе ба́йк зет хі бо́т ні́дз нью́ та́йрз.\nСлово tyres означає «шини».\nОдна шина — tyre.\nСлова that he bought означають «який він купив».\nThe reference number that she gave me is incorrect.\n— Довідковий номер, який вона мені дала, неправильний.\nЧитається: зе ре́ференс на́мбер зет ші ге́йв мі із інкоре́кт.\nСлово incorrect означає «неправильний».\nСлова that she gave me означають «який вона мені дала».\nПісля that стоїть той, хто зробив: I, she, we, he.",
+        "en": "Sometimes another person did something with the thing: you, she, we.\nThen the one who did it comes right after that.\nThe book that I borrowed is on the desk.\nThe word borrowed means “took for a short time and will give back”.\nThe words that I borrowed together mean “which I took for a short time”.\nThe leather coat that she bought is too small.\nThe word too means “more than is good”.\nThe words too small together mean “smaller than it should be”.\nThe words that she bought together mean “which she paid for”.\nThe film that we watched was funny.\nThe word watched means “looked at for some time”.\nThe word funny means “it makes you laugh”.\nThe words that we watched together mean “which we looked at”.\nThe bike that he bought needs new tyres.\nThe word tyres means “the rubber rings on wheels”.\nOne of them is a tyre.\nThe words that he bought together mean “which he paid for”.\nThe reference number that she gave me is incorrect.\nThe word incorrect means “not right”.\nThe words that she gave me together mean “which she handed to me”.\nAfter that comes the one who did it: I, she, we, he."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:30.11",
+          "say": {
+            "ru": "зэ бу́к зэт ай бо́роуд из он зэ дэ́ск",
+            "uk": "зе бу́к зет ай бо́роуд із он зе де́ск"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.12",
+          "say": {
+            "ru": "зэ лэ́зэр ко́ут зэт ши бо́т из ту́ смо́л",
+            "uk": "зе ле́зер ко́ут зет ші бо́т із ту́ смо́л"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.16",
+          "say": {
+            "ru": "зэ фи́лм зэт уи уо́чт уо́з фа́ни",
+            "uk": "зе фі́лм зет уі уо́чт уо́з фа́ні"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.18",
+          "say": {
+            "ru": "зэ ба́йк зэт хи бо́т ни́дз нью́ та́йрз",
+            "uk": "зе ба́йк зет хі бо́т ні́дз нью́ та́йрз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.20",
+          "say": {
+            "ru": "зэ рэ́ференс на́мбер зэт ши гэ́йв ми из инкорэ́кт",
+            "uk": "зе ре́ференс на́мбер зет ші ге́йв мі із інкоре́кт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Книга, которую я взял, лежит на столе»",
+            "uk": "Виберіть, як сказати: «Книга, яку я позичив, лежить на столі»",
+            "en": "Choose how to say: “The book that I borrowed is on the desk.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:30.11",
+          "options": [
+            "en-classic-r1:30.11",
+            "en-classic-r1:30.12",
+            "en-classic-r1:30.16"
+          ],
+          "answerId": "en-classic-r1:30.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Фильм, который мы смотрели, был смешным»",
+            "uk": "Виберіть, як сказати: «Фільм, який ми дивилися, був кумедним»",
+            "en": "Choose how to say: “The film that we watched was funny.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.16",
+          "options": [
+            "en-classic-r1:30.16",
+            "en-classic-r1:30.18",
+            "en-classic-r1:30.20"
+          ],
+          "answerId": "en-classic-r1:30.16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Справочный номер, который она мне дала, неверный»",
+            "uk": "Виберіть, як сказати: «Довідковий номер, який вона мені дала, неправильний»",
+            "en": "Choose how to say: “The reference number that she gave me is incorrect.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.20",
+          "options": [
+            "en-classic-r1:30.20",
+            "en-classic-r1:30.11",
+            "en-classic-r1:30.12"
+          ],
+          "answerId": "en-classic-r1:30.20"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Где и когда",
+        "uk": "Де і коли",
+        "en": "Where and when"
+      },
+      "text": {
+        "ru": "Слова where и when вы видели в вопросах: «где» и «когда».\nОни тоже умеют соединять: место или день и то, что там было.\nThis is the cafe where we met. — Это кафе, где мы встретились.\nЧитается: зи́с из зэ кэ́фэй уэ́р уи мэ́т.\nСлова the cafe where we met значат «кафе, где мы встретились».\nShow me the place where you left the bag.\n— Покажите мне место, где вы оставили сумку.\nЧитается: шо́у ми зэ плэ́йс уэ́р ю лэ́фт зэ бэ́г.\nСлово place значит «место».\nСлова the place where you left значат «место, где вы оставили».\nЗдесь left значит «оставили».\nI remember the day when the power went off.\n— Я помню день, когда отключили электричество.\nЧитается: ай римэ́мбер зэ дэ́й уэ́н зэ па́уэр уэ́нт о́ф.\nСлово power значит «электричество».\nСлова went off значат «отключилось».\nСлова the day when значат «день, когда».\nFriday is the day when we check the rota.\n— Пятница — день, когда мы проверяем график.\nЧитается: фра́йдэй из зэ дэ́й уэ́н уи чэ́к зэ ро́утэ.\nСлова the day when we check значат «день, когда мы проверяем».\nО месте говорят where. О дне говорят when.",
+        "uk": "Слова where і when ви бачили в запитаннях: «де» і «коли».\nВони теж уміють з’єднувати: місце або день і те, що там було.\nThis is the cafe where we met. — Це кафе, де ми зустрілися.\nЧитається: зі́с із зе ке́фей уе́р уі ме́т.\nСлова the cafe where we met означають «кафе, де ми зустрілися».\nShow me the place where you left the bag.\n— Покажіть мені місце, де ви залишили сумку.\nЧитається: шо́у мі зе пле́йс уе́р ю ле́фт зе бе́г.\nСлово place означає «місце».\nСлова the place where you left означають «місце, де ви залишили».\nТут left означає «залишили».\nI remember the day when the power went off.\n— Я пам'ятаю день, коли відключили електрику.\nЧитається: ай ріме́мбер зе де́й уе́н зе па́уер уе́нт о́ф.\nСлово power означає «електрика».\nСлова went off означають «вимкнулося».\nСлова the day when означають «день, коли».\nFriday is the day when we check the rota.\n— П'ятниця — день, коли ми перевіряємо графік.\nЧитається: фра́йдей із зе де́й уе́н уі че́к зе ро́уте.\nСлова the day when we check означають «день, коли ми перевіряємо».\nПро місце кажуть where. Про день кажуть when.",
+        "en": "You saw the words where and when in questions.\nThey can also join a place or a day with what happened there.\nThis is the cafe where we met.\nThe words the cafe where we met together mean “the cafe in which we met”.\nShow me the place where you left the bag.\nThe word place means “a spot”.\nThe words the place where you left together mean “the spot where you put it down”.\nHere left means “put down and did not take”.\nI remember the day when the power went off.\nThe word power means “what makes lights and machines work”.\nThe words went off together mean “stopped working”.\nThe words the day when together mean “the day at which”.\nFriday is the day when we check the rota.\nThe words the day when we check together mean “the day at which we look”.\nFor a place we say where. For a day we say when."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:30.21",
+          "say": {
+            "ru": "зи́с из зэ кэ́фэй уэ́р уи мэ́т",
+            "uk": "зі́с із зе ке́фей уе́р уі ме́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.23",
+          "say": {
+            "ru": "шо́у ми зэ плэ́йс уэ́р ю лэ́фт зэ бэ́г",
+            "uk": "шо́у мі зе пле́йс уе́р ю ле́фт зе бе́г"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.26",
+          "say": {
+            "ru": "ай римэ́мбер зэ дэ́й уэ́н зэ па́уэр уэ́нт о́ф",
+            "uk": "ай ріме́мбер зе де́й уе́н зе па́уер уе́нт о́ф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.27",
+          "say": {
+            "ru": "фра́йдэй из зэ дэ́й уэ́н уи чэ́к зэ ро́утэ",
+            "uk": "фра́йдей із зе де́й уе́н уі че́к зе ро́уте"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это кафе, где мы встретились»",
+            "uk": "Виберіть, як сказати: «Це кафе, де ми зустрілися»",
+            "en": "Choose how to say: “This is the cafe where we met.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:30.21",
+          "options": [
+            "en-classic-r1:30.21",
+            "en-classic-r1:30.23",
+            "en-classic-r1:30.26"
+          ],
+          "answerId": "en-classic-r1:30.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Покажите мне место, где вы оставили сумку»",
+            "uk": "Виберіть, як сказати: «Покажіть мені місце, де ви залишили сумку»",
+            "en": "Choose how to say: “Show me the place where you left the bag.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.23",
+          "options": [
+            "en-classic-r1:30.23",
+            "en-classic-r1:30.26",
+            "en-classic-r1:30.27"
+          ],
+          "answerId": "en-classic-r1:30.23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пятница — день, когда мы проверяем график»",
+            "uk": "Виберіть, як сказати: «П'ятниця — день, коли ми перевіряємо графік»",
+            "en": "Choose how to say: “Friday is the day when we check the rota.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.27",
+          "options": [
+            "en-classic-r1:30.27",
+            "en-classic-r1:30.21",
+            "en-classic-r1:30.23"
+          ],
+          "answerId": "en-classic-r1:30.27"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Чей: слово whose",
+        "uk": "Чий: слово whose",
+        "en": "Whose: who owns it"
+      },
+      "text": {
+        "ru": "Слово whose вы видели в вопросах: «чей».\nЗдесь оно связывает человека и то, что ему принадлежит.\nThe man whose bike was stolen called the police.\n— Мужчина, у которого украли велосипед, позвонил в полицию.\nЧитается: зэ мэ́н ху́з ба́йк уо́з сто́лен ко́лд зэ пэли́с.\nСлова whose bike значат «чей велосипед».\nСлово steal значит «красть».\nСлово stolen значит «украден».\nКогда кража уже была, говорят stolen.\nСлово police значит «полиция».\nСлова called the police значат «позвонил в полицию».\nThe woman whose keys we found is here. — Женщина, чьи ключи мы нашли, здесь.\nЧитается: зэ у́умэн ху́з ки́з уи фа́унд из хи́р.\nСлова whose keys значат «чьи ключи».\nСлова we found значат «которые мы нашли».\nThe neighbour whose dog escaped left a note.\n— Сосед, у которого убежала собака, оставил записку.\nЧитается: зэ нэ́йбор ху́з до́г искэ́йпт лэ́фт э но́ут.\nСлова whose dog значат «чья собака».\nСлово escaped значит «сбежала».\nПосле whose сразу идёт то, что принадлежит человеку: whose bike, whose keys, whose dog.",
+        "uk": "Слово whose ви бачили в запитаннях: «чий».\nТут воно зв’язує людину і те, що їй належить.\nThe man whose bike was stolen called the police.\n— Чоловік, у якого вкрали велосипед, викликав поліцію.\nЧитається: зе ме́н ху́з ба́йк уо́з сто́лен ко́лд зе пелі́с.\nСлова whose bike означають «чий велосипед».\nСлово steal означає «красти».\nСлово stolen означає «вкрадений».\nКоли крадіжка вже була, кажуть stolen.\nСлово police означає «поліція».\nСлова called the police означають «зателефонував до поліції».\nThe woman whose keys we found is here.\n— Жінка, ключі від якої ми знайшли, тут.\nЧитається: зе у́умен ху́з кі́з уі фа́унд із хі́р.\nСлова whose keys означають «чиї ключі».\nСлова we found означають «які ми знайшли».\nThe neighbour whose dog escaped left a note. — Сусід, чия собака втекла, залишив записку.\nЧитається: зе не́йбор ху́з до́г іске́йпт ле́фт е но́ут.\nСлова whose dog означають «чия собака».\nСлово escaped означає «втекла».\nПісля whose відразу йде те, що належить людині: whose bike, whose keys, whose dog.",
+        "en": "You saw the word whose in questions.\nHere it joins a person with something that belongs to that person.\nThe man whose bike was stolen called the police.\nThe words whose bike together mean “the bike of that person”.\nThe word steal means “to take what is not yours”.\nThe word stolen means “taken by a thief”.\nWhen it has already happened, we say stolen.\nThe word police means “people who keep the law”.\nThe words called the police together mean “rang the police”.\nThe woman whose keys we found is here.\nThe words whose keys together mean “the keys of that woman”.\nThe words we found together mean “which we came across”.\nThe neighbour whose dog escaped left a note.\nThe words whose dog together mean “the dog of that neighbour”.\nThe word escaped means “got away”.\nAfter whose comes the thing that belongs to the person: whose bike, whose keys, whose dog."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:30.31",
+          "say": {
+            "ru": "зэ мэ́н ху́з ба́йк уо́з сто́лен ко́лд зэ пэли́с",
+            "uk": "зе ме́н ху́з ба́йк уо́з сто́лен ко́лд зе пелі́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.32",
+          "say": {
+            "ru": "зэ у́умэн ху́з ки́з уи фа́унд из хи́р",
+            "uk": "зе у́умен ху́з кі́з уі фа́унд із хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.34",
+          "say": {
+            "ru": "зэ нэ́йбор ху́з до́г искэ́йпт лэ́фт э но́ут",
+            "uk": "зе не́йбор ху́з до́г іске́йпт ле́фт е но́ут"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мужчина, у которого украли велосипед, позвонил в полицию»",
+            "uk": "Виберіть, як сказати: «Чоловік, у якого вкрали велосипед, викликав поліцію»",
+            "en": "Choose how to say: “The man whose bike was stolen called the police.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:30.31",
+          "options": [
+            "en-classic-r1:30.31",
+            "en-classic-r1:30.32",
+            "en-classic-r1:30.34"
+          ],
+          "answerId": "en-classic-r1:30.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Женщина, чьи ключи мы нашли, здесь»",
+            "uk": "Виберіть, як сказати: «Жінка, ключі від якої ми знайшли, тут»",
+            "en": "Choose how to say: “The woman whose keys we found is here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.32",
+          "options": [
+            "en-classic-r1:30.32",
+            "en-classic-r1:30.34",
+            "en-classic-r1:30.31"
+          ],
+          "answerId": "en-classic-r1:30.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сосед, у которого убежала собака, оставил записку»",
+            "uk": "Виберіть, як сказати: «Сусід, чия собака втекла, залишив записку»",
+            "en": "Choose how to say: “The neighbour whose dog escaped left a note.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.34",
+          "options": [
+            "en-classic-r1:30.34",
+            "en-classic-r1:30.31",
+            "en-classic-r1:30.32"
+          ],
+          "answerId": "en-classic-r1:30.34"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Чей: ещё люди",
+        "uk": "Чий: ще люди",
+        "en": "Whose: more people"
+      },
+      "text": {
+        "ru": "Ещё три человека, о которых говорят через whose.\nThe student whose bag is missing is studying abroad.\n— Студент, у которого пропала сумка, учится за границей.\nЧитается: зэ стью́дент ху́з бэ́г из ми́син из ста́дин эбро́д.\nСлово student значит «студент».\nСлово studying значит «учится»: это study и ing.\nСлова whose bag is missing значат «у которого пропала сумка».\nWe spoke to the owner whose flat we rented.\n— Мы поговорили с владельцем квартиры, которую снимали.\nЧитается: уи спо́ук ту зи о́унэр ху́з флэ́т уи рэ́нтид.\nСлово owner значит «владелец».\nСлово speak значит «говорить».\nСлово spoke значит «говорили».\nКогда разговор уже был, говорят spoke, а не speak.\nСлова spoke to значат «поговорили с».\nI met a nurse whose daughter studies here.\n— Я встретил медсестру, чья дочь здесь учится.\nЧитается: ай мэ́т э нэ́рс ху́з до́тэр ста́диз хи́р.\nСлово nurse значит «медсестра».\nСлова whose daughter значат «чья дочь».\nWhose всегда стоит перед тем, что принадлежит человеку: whose bag, whose flat, whose daughter.",
+        "uk": "Ще три людини, про яких кажуть через whose.\nThe student whose bag is missing is studying abroad.\n— Студент, чия сумка зникла, навчається за кордоном.\nЧитається: зе стью́дент ху́з бе́г із мі́сін із ста́дін ебро́д.\nСлово student означає «студент».\nСлово studying означає «навчається»: це study і ing.\nСлова whose bag is missing означають «у якого зникла сумка».\nWe spoke to the owner whose flat we rented.\n— Ми поговорили з власником, чию квартиру ми орендували.\nЧитається: уі спо́ук ту зі о́унер ху́з фле́т уі ре́нтід.\nСлово owner означає «власник».\nСлово speak означає «говорити».\nСлово spoke означає «говорили».\nКоли розмова вже була, кажуть spoke, а не speak.\nСлова spoke to означають «поговорили з».\nI met a nurse whose daughter studies here.\n— Я зустрів медсестру, чия дочка тут навчається.\nЧитається: ай ме́т е не́рс ху́з до́тер ста́діз хі́р.\nСлово nurse означає «медсестра».\nСлова whose daughter означають «чия донька».\nWhose завжди стоїть перед тим, що належить людині: whose bag, whose flat, whose daughter.",
+        "en": "Three more people we talk about with whose.\nThe student whose bag is missing is studying abroad.\nThe word student means “a person who studies at a school or college”.\nThe word studying means “learning now”: it is study and ing.\nThe words whose bag is missing together mean “his bag is not there”.\nWe spoke to the owner whose flat we rented.\nThe word owner means “the person it belongs to”.\nThe word speak means “to use your voice to talk”.\nThe word spoke means “talked”.\nWhen it has already happened, we say spoke, not speak.\nThe words spoke to together mean “talked with”.\nI met a nurse whose daughter studies here.\nThe word nurse means “a person who looks after sick people”.\nThe words whose daughter together mean “the daughter of that nurse”.\nWhose comes before what belongs to the person: whose bag, whose flat, whose daughter."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:30.33",
+          "say": {
+            "ru": "зэ стью́дент ху́з бэ́г из ми́син из ста́дин эбро́д",
+            "uk": "зе стью́дент ху́з бе́г із мі́сін із ста́дін ебро́д"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.37",
+          "say": {
+            "ru": "уи спо́ук ту зи о́унэр ху́з флэ́т уи рэ́нтид",
+            "uk": "уі спо́ук ту зі о́унер ху́з фле́т уі ре́нтід"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.39",
+          "say": {
+            "ru": "ай мэ́т э нэ́рс ху́з до́тэр ста́диз хи́р",
+            "uk": "ай ме́т е не́рс ху́з до́тер ста́діз хі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Студент, у которого пропала сумка, учится за границей»",
+            "uk": "Виберіть, як сказати: «Студент, чия сумка зникла, навчається за кордоном»",
+            "en": "Choose how to say: “The student whose bag is missing is studying abroad.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:30.33",
+          "options": [
+            "en-classic-r1:30.33",
+            "en-classic-r1:30.37",
+            "en-classic-r1:30.39"
+          ],
+          "answerId": "en-classic-r1:30.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы поговорили с владельцем квартиры, которую снимали»",
+            "uk": "Виберіть, як сказати: «Ми поговорили з власником, чию квартиру ми орендували»",
+            "en": "Choose how to say: “We spoke to the owner whose flat we rented.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.37",
+          "options": [
+            "en-classic-r1:30.37",
+            "en-classic-r1:30.39",
+            "en-classic-r1:30.33"
+          ],
+          "answerId": "en-classic-r1:30.37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я встретил медсестру, чья дочь здесь учится»",
+            "uk": "Виберіть, як сказати: «Я зустрів медсестру, чия дочка тут навчається»",
+            "en": "Choose how to say: “I met a nurse whose daughter studies here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.39",
+          "options": [
+            "en-classic-r1:30.39",
+            "en-classic-r1:30.33",
+            "en-classic-r1:30.37"
+          ],
+          "answerId": "en-classic-r1:30.39"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Слово that можно пропустить",
+        "uk": "Слово that можна пропустити",
+        "en": "When you can leave that out"
+      },
+      "text": {
+        "ru": "Вы видели: The book that I borrowed. — Книга, которую я взял.\nТо же самое можно сказать короче: The book I borrowed.\nСлово that убрали, а смысл остался.\nThe key I found was too rusty to turn.\n— Найденный мной ключ был слишком ржавым, чтобы его повернуть.\nЧитается: зэ ки́ ай фа́унд уо́з ту́ ра́сти ту тэ́рн.\nСлова the key I found значат «ключ, который я нашёл».\nСлова to turn значат «чтобы повернуть».\nThe woman I spoke to was helpful. — Женщина, с которой я разговаривала, была любезна.\nЧитается: зэ у́умэн ай спо́ук ту уо́з хэ́лпфул.\nСлова the woman I spoke to значат «женщина, с которой я говорила».\nСлово to стоит в самом конце: spoke to.\nThe phone you lent me is more reliable than mine.\n— Телефон, который вы мне одолжили, надежнее моего.\nЧитается: зэ фо́ун ю лэ́нт ми из мо́р рила́йэбл зэн ма́йн.\nСлово lend значит «одолжить».\nСлово lent значит «одолжил».\nСлова you lent me значат «который вы мне одолжили».\nСлова more reliable than mine значат «надёжнее моего».\nThe replacement part you ordered is here. — Заказанная вами запасная часть здесь.\nЧитается: зэ риплэ́йсмент па́рт ю о́рдерд из хи́р.\nСлово part значит «часть».\nСлова replacement part значат «запасная часть».\nСлова you ordered значат «которую вы заказали».\nСлово that можно не говорить, когда после the key идёт I, you, she, we.\nА в The person who called слово who убирать нельзя: иначе не понять, кто звонил.",
+        "uk": "Ви бачили: The book that I borrowed. — Книжка, яку я взяв.\nТе саме можна сказати коротше: The book I borrowed.\nСлово that прибрали, а зміст залишився.\nThe key I found was too rusty to turn.\n— Ключ, який я знайшов, був надто іржавим, щоб його повернути.\nЧитається: зе кі́ ай фа́унд уо́з ту́ ра́сті ту те́рн.\nСлова the key I found означають «ключ, який я знайшов».\nСлова to turn означають «щоб повернути».\nThe woman I spoke to was helpful. — Жінка, з якою я розмовляла, була люб'язною.\nЧитається: зе у́умен ай спо́ук ту уо́з хе́лпфул.\nСлова the woman I spoke to означають «жінка, з якою я говорила».\nСлово to стоїть у самому кінці: spoke to.\nThe phone you lent me is more reliable than mine.\n— Телефон, який ви мені позичили, надійніший за мій.\nЧитається: зе фо́ун ю ле́нт мі із мо́р ріла́йебл зен ма́йн.\nСлово lend означає «позичити».\nСлово lent означає «позичив».\nСлова you lent me означають «який ви мені позичили».\nСлова more reliable than mine означають «надійніший за мій».\nThe replacement part you ordered is here. — Замовлена вами запасна частина тут.\nЧитається: зе ріпле́йсмент па́рт ю о́рдерд із хі́р.\nСлово part означає «частина».\nСлова replacement part означають «запасна частина».\nСлова you ordered означають «яку ви замовили».\nСлово that можна не казати, коли після the key йде I, you, she, we.\nА в The person who called слово who прибирати не можна: інакше не зрозуміти, хто дзвонив.",
+        "en": "You saw: The book that I borrowed.\nYou can say it in a shorter way: The book I borrowed.\nThe word that is gone, and the meaning is the same.\nThe key I found was too rusty to turn.\nThe words the key I found together mean “the key which I found”.\nThe words to turn together mean “so that you can move it round”.\nThe woman I spoke to was helpful.\nThe words the woman I spoke to together mean “the woman I talked with”.\nThe word to comes at the very end: spoke to.\nThe phone you lent me is more reliable than mine.\nThe word lend means “to give for a short time”.\nThe word lent means “gave for a short time”.\nThe words you lent me together mean “which I got for a short time”.\nThe words more reliable than mine together mean “you can trust it more than my phone”.\nThe replacement part you ordered is here.\nThe word part means “one piece of a bigger thing”.\nThe words replacement part together mean “a new piece for a broken one”.\nThe words you ordered together mean “which you asked for”.\nYou can leave out that when I, you, she or we comes after the key.\nBut in The person who called you cannot take away who.\nThen we do not know who called."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:30.41",
+          "say": {
+            "ru": "зэ ки́ ай фа́унд уо́з ту́ ра́сти ту тэ́рн",
+            "uk": "зе кі́ ай фа́унд уо́з ту́ ра́сті ту те́рн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.42",
+          "say": {
+            "ru": "зэ у́умэн ай спо́ук ту уо́з хэ́лпфул",
+            "uk": "зе у́умен ай спо́ук ту уо́з хе́лпфул"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.44",
+          "say": {
+            "ru": "зэ фо́ун ю лэ́нт ми из мо́р рила́йэбл зэн ма́йн",
+            "uk": "зе фо́ун ю ле́нт мі із мо́р ріла́йебл зен ма́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:30.48",
+          "say": {
+            "ru": "зэ риплэ́йсмент па́рт ю о́рдерд из хи́р",
+            "uk": "зе ріпле́йсмент па́рт ю о́рдерд із хі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Найденный мной ключ был слишком ржавым, чтобы его повернуть»",
+            "uk": "Виберіть, як сказати: «Ключ, який я знайшов, був надто іржавим, щоб його повернути»",
+            "en": "Choose how to say: “The key I found was too rusty to turn.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:30.41",
+          "options": [
+            "en-classic-r1:30.41",
+            "en-classic-r1:30.42",
+            "en-classic-r1:30.44"
+          ],
+          "answerId": "en-classic-r1:30.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Женщина, с которой я разговаривала, была любезна»",
+            "uk": "Виберіть, як сказати: «Жінка, з якою я розмовляла, була люб'язною»",
+            "en": "Choose how to say: “The woman I spoke to was helpful.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.42",
+          "options": [
+            "en-classic-r1:30.42",
+            "en-classic-r1:30.44",
+            "en-classic-r1:30.48"
+          ],
+          "answerId": "en-classic-r1:30.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Заказанная вами запасная часть здесь»",
+            "uk": "Виберіть, як сказати: «Замовлена вами запасна частина тут»",
+            "en": "Choose how to say: “The replacement part you ordered is here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:30.48",
+          "options": [
+            "en-classic-r1:30.48",
+            "en-classic-r1:30.41",
+            "en-classic-r1:30.42"
+          ],
+          "answerId": "en-classic-r1:30.48"
+        }
+      ]
+    }
+  ]
+}

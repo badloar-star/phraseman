@@ -1,0 +1,421 @@
+{
+ "lang": "en",
+ "lesson": 18,
+ "words": [
+  {
+   "form": "stand",
+   "surface": "Stand",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.05",
+     "target": "Stand behind the line",
+     "ru": "Встаньте за линию.",
+     "en": "Stand behind the line."
+    }
+   ]
+  },
+  {
+   "form": "line",
+   "surface": "line",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.05",
+     "target": "Stand behind the line",
+     "ru": "Встаньте за линию.",
+     "en": "Stand behind the line."
+    },
+    {
+     "id": "en-classic-r1:18.22",
+     "target": "Please sign on this line",
+     "ru": "Подпишитесь на этой строке.",
+     "en": "Please sign on this line."
+    }
+   ]
+  },
+  {
+   "form": "handrail",
+   "surface": "handrail",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.06",
+     "target": "Hold the handrail",
+     "ru": "Держитесь за поручень.",
+     "en": "Hold the handrail."
+    }
+   ]
+  },
+  {
+   "form": "watch",
+   "surface": "Watch",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.07",
+     "target": "Watch your step",
+     "ru": "Смотрите под ноги.",
+     "en": "Watch your step."
+    }
+   ]
+  },
+  {
+   "form": "step",
+   "surface": "step",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.07",
+     "target": "Watch your step",
+     "ru": "Смотрите под ноги.",
+     "en": "Watch your step."
+    }
+   ]
+  },
+  {
+   "form": "under",
+   "surface": "under",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.10",
+     "target": "Put your bag under the seat",
+     "ru": "Положите сумку под сиденье.",
+     "en": "Put your bag under the seat."
+    }
+   ]
+  },
+  {
+   "form": "running",
+   "surface": "running",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.13",
+     "target": "Do not leave the tap running",
+     "ru": "Не оставляйте кран открытым.",
+     "en": "Do not leave the tap running."
+    }
+   ]
+  },
+  {
+   "form": "press",
+   "surface": "press",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.14",
+     "target": "Do not press the red button",
+     "ru": "Не нажимайте красную кнопку.",
+     "en": "Do not press the red button."
+    }
+   ]
+  },
+  {
+   "form": "red",
+   "surface": "red",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.14",
+     "target": "Do not press the red button",
+     "ru": "Не нажимайте красную кнопку.",
+     "en": "Do not press the red button."
+    }
+   ]
+  },
+  {
+   "form": "feed",
+   "surface": "feed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.18",
+     "target": "Do not feed the dog",
+     "ru": "Не кормите собаку.",
+     "en": "Do not feed the dog."
+    }
+   ]
+  },
+  {
+   "form": "dog",
+   "surface": "dog",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.18",
+     "target": "Do not feed the dog",
+     "ru": "Не кормите собаку.",
+     "en": "Do not feed the dog."
+    }
+   ]
+  },
+  {
+   "form": "yet",
+   "surface": "yet",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.19",
+     "target": "Do not open the parcel yet",
+     "ru": "Пока не открывайте посылку.",
+     "en": "Do not open the parcel yet."
+    }
+   ]
+  },
+  {
+   "form": "reception",
+   "surface": "reception",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.23",
+     "target": "Please return the key at reception",
+     "ru": "Пожалуйста, верните ключ на ресепшен.",
+     "en": "Please return the key at reception."
+    }
+   ]
+  },
+  {
+   "form": "switch",
+   "surface": "switch",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.24",
+     "target": "Please switch your phone off",
+     "ru": "Пожалуйста, выключите телефон.",
+     "en": "Please switch your phone off."
+    }
+   ]
+  },
+  {
+   "form": "little",
+   "surface": "little",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.28",
+     "target": "Please speak a little louder",
+     "ru": "Пожалуйста, говорите немного громче.",
+     "en": "Please speak a little louder."
+    }
+   ]
+  },
+  {
+   "form": "louder",
+   "surface": "louder",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.28",
+     "target": "Please speak a little louder",
+     "ru": "Пожалуйста, говорите немного громче.",
+     "en": "Please speak a little louder."
+    }
+   ]
+  },
+  {
+   "form": "save",
+   "surface": "save",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.29",
+     "target": "Please save me a seat",
+     "ru": "Пожалуйста, оставьте мне место.",
+     "en": "Please save me a seat."
+    }
+   ]
+  },
+  {
+   "form": "copy",
+   "surface": "copy",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.30",
+     "target": "Please bring a copy of the receipt",
+     "ru": "Пожалуйста, возьмите с собой копию чека.",
+     "en": "Please bring a copy of the receipt."
+    }
+   ]
+  },
+  {
+   "form": "cross",
+   "surface": "Cross",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.33",
+     "target": "Cross at the crossing",
+     "ru": "Перейдите дорогу на пешеходном переходе.",
+     "en": "Cross at the crossing."
+    }
+   ]
+  },
+  {
+   "form": "follow",
+   "surface": "Follow",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.35",
+     "target": "Follow the blue signs",
+     "ru": "Следуйте синим указателям.",
+     "en": "Follow the blue signs."
+    }
+   ]
+  },
+  {
+   "form": "right",
+   "surface": "right",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.37",
+     "target": "Use the entrance on the right",
+     "ru": "Воспользуйтесь входом справа.",
+     "en": "Use the entrance on the right."
+    }
+   ]
+  },
+  {
+   "form": "push",
+   "surface": "Push",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.38",
+     "target": "Push the door gently",
+     "ru": "Осторожно толкните дверь.",
+     "en": "Push the door gently."
+    }
+   ]
+  },
+  {
+   "form": "gently",
+   "surface": "gently",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.38",
+     "target": "Push the door gently",
+     "ru": "Осторожно толкните дверь.",
+     "en": "Push the door gently."
+    }
+   ]
+  },
+  {
+   "form": "pull",
+   "surface": "Pull",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.39",
+     "target": "Pull the handle towards you",
+     "ru": "Потяните ручку на себя.",
+     "en": "Pull the handle towards you."
+    }
+   ]
+  },
+  {
+   "form": "towards",
+   "surface": "towards",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.39",
+     "target": "Pull the handle towards you",
+     "ru": "Потяните ручку на себя.",
+     "en": "Pull the handle towards you."
+    }
+   ]
+  },
+  {
+   "form": "ring",
+   "surface": "Ring",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.40",
+     "target": "Ring the bell once",
+     "ru": "Позвоните в звонок один раз.",
+     "en": "Ring the bell once."
+    }
+   ]
+  },
+  {
+   "form": "once",
+   "surface": "once",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.40",
+     "target": "Ring the bell once",
+     "ru": "Позвоните в звонок один раз.",
+     "en": "Ring the bell once."
+    }
+   ]
+  },
+  {
+   "form": "let's",
+   "surface": "Let's",
+   "count": 10,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.41",
+     "target": "Let's take the early train",
+     "ru": "Давайте поедем ранним поездом.",
+     "en": "Let's take the early train."
+    },
+    {
+     "id": "en-classic-r1:18.42",
+     "target": "Let's wait for the others",
+     "ru": "Подождем остальных.",
+     "en": "Let's wait for the others."
+    }
+   ]
+  },
+  {
+   "form": "others",
+   "surface": "others",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.42",
+     "target": "Let's wait for the others",
+     "ru": "Подождем остальных.",
+     "en": "Let's wait for the others."
+    }
+   ]
+  },
+  {
+   "form": "rush",
+   "surface": "rush",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.46",
+     "target": "Let's not rush",
+     "ru": "Не будем спешить.",
+     "en": "Let's not rush."
+    }
+   ]
+  },
+  {
+   "form": "try",
+   "surface": "try",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:18.49",
+     "target": "Let's try the side door",
+     "ru": "Давайте попробуем открыть боковую дверь.",
+     "en": "Let's try the side door."
+    }
+   ]
+  }
+ ]
+}

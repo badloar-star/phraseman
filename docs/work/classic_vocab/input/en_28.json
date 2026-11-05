@@ -1,0 +1,423 @@
+{
+ "lang": "en",
+ "lesson": 28,
+ "words": [
+  {
+   "form": "cut",
+   "surface": "cut",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.01",
+     "target": "I cut myself",
+     "ru": "Я порезался.",
+     "en": "I cut myself."
+    },
+    {
+     "id": "en-classic-r1:28.13",
+     "target": "He cut himself a slice of bread",
+     "ru": "Он отрезал себе ломтик хлеба.",
+     "en": "He cut himself a slice of bread."
+    }
+   ]
+  },
+  {
+   "form": "myself",
+   "surface": "myself",
+   "count": 8,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.01",
+     "target": "I cut myself",
+     "ru": "Я порезался.",
+     "en": "I cut myself."
+    },
+    {
+     "id": "en-classic-r1:28.08",
+     "target": "I saw myself in the mirror",
+     "ru": "Я увидел себя в зеркале.",
+     "en": "I saw myself in the mirror."
+    }
+   ]
+  },
+  {
+   "form": "hurt",
+   "surface": "hurt",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.02",
+     "target": "She hurt herself",
+     "ru": "Она поранилась.",
+     "en": "She hurt herself."
+    },
+    {
+     "id": "en-classic-r1:28.40",
+     "target": "Did you hurt yourself when you fell",
+     "ru": "Ты поранился, когда упал?",
+     "en": "Did you hurt yourself when you fell?"
+    }
+   ]
+  },
+  {
+   "form": "herself",
+   "surface": "herself",
+   "count": 8,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.02",
+     "target": "She hurt herself",
+     "ru": "Она поранилась.",
+     "en": "She hurt herself."
+    },
+    {
+     "id": "en-classic-r1:28.09",
+     "target": "She taught herself English",
+     "ru": "Она самостоятельно выучила английский.",
+     "en": "She taught herself English."
+    }
+   ]
+  },
+  {
+   "form": "blamed",
+   "surface": "blamed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.03",
+     "target": "He blamed himself",
+     "ru": "Он винил себя.",
+     "en": "He blamed himself."
+    }
+   ]
+  },
+  {
+   "form": "himself",
+   "surface": "himself",
+   "count": 9,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.03",
+     "target": "He blamed himself",
+     "ru": "Он винил себя.",
+     "en": "He blamed himself."
+    },
+    {
+     "id": "en-classic-r1:28.10",
+     "target": "He looked at himself in the window",
+     "ru": "Он посмотрел на себя в окне.",
+     "en": "He looked at himself in the window."
+    }
+   ]
+  },
+  {
+   "form": "introduced",
+   "surface": "introduced",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.04",
+     "target": "We introduced ourselves",
+     "ru": "Мы представились.",
+     "en": "We introduced ourselves."
+    },
+    {
+     "id": "en-classic-r1:28.05",
+     "target": "They introduced themselves",
+     "ru": "Они представились.",
+     "en": "They introduced themselves."
+    }
+   ]
+  },
+  {
+   "form": "ourselves",
+   "surface": "ourselves",
+   "count": 7,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.04",
+     "target": "We introduced ourselves",
+     "ru": "Мы представились.",
+     "en": "We introduced ourselves."
+    },
+    {
+     "id": "en-classic-r1:28.14",
+     "target": "We got ourselves a map",
+     "ru": "Мы взяли себе карту.",
+     "en": "We got ourselves a map."
+    }
+   ]
+  },
+  {
+   "form": "themselves",
+   "surface": "themselves",
+   "count": 7,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.05",
+     "target": "They introduced themselves",
+     "ru": "Они представились.",
+     "en": "They introduced themselves."
+    },
+    {
+     "id": "en-classic-r1:28.15",
+     "target": "They booked themselves a room",
+     "ru": "Они забронировали себе номер.",
+     "en": "They booked themselves a room."
+    }
+   ]
+  },
+  {
+   "form": "yourself",
+   "surface": "yourself",
+   "count": 6,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.06",
+     "target": "You can help yourself",
+     "ru": "Можете угощаться.",
+     "en": "You can help yourself."
+    },
+    {
+     "id": "en-classic-r1:28.26",
+     "target": "Did you make this yourself",
+     "ru": "Ты сам это сделал?",
+     "en": "Did you make this yourself?"
+    }
+   ]
+  },
+  {
+   "form": "cat",
+   "surface": "cat",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.07",
+     "target": "The cat washed itself",
+     "ru": "Кошка умылась.",
+     "en": "The cat washed itself."
+    }
+   ]
+  },
+  {
+   "form": "taught",
+   "surface": "taught",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.09",
+     "target": "She taught herself English",
+     "ru": "Она самостоятельно выучила английский.",
+     "en": "She taught herself English."
+    },
+    {
+     "id": "en-classic-r1:28.44",
+     "target": "They taught themselves to cook",
+     "ru": "Они научились готовить сами.",
+     "en": "They taught themselves to cook."
+    }
+   ]
+  },
+  {
+   "form": "poured",
+   "surface": "poured",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.12",
+     "target": "She poured herself some water",
+     "ru": "Она налила себе воды.",
+     "en": "She poured herself some water."
+    }
+   ]
+  },
+  {
+   "form": "reminded",
+   "surface": "reminded",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.16",
+     "target": "I reminded myself to bring the receipt",
+     "ru": "Я напомнил себе взять квитанцию.",
+     "en": "I reminded myself to bring the receipt."
+    }
+   ]
+  },
+  {
+   "form": "promised",
+   "surface": "promised",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.18",
+     "target": "He promised himself a day off",
+     "ru": "Он пообещал себе выходной.",
+     "en": "He promised himself a day off."
+    }
+   ]
+  },
+  {
+   "form": "extra",
+   "surface": "extra",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.19",
+     "target": "We gave ourselves extra time",
+     "ru": "Мы выделили себе дополнительное время.",
+     "en": "We gave ourselves extra time."
+    }
+   ]
+  },
+  {
+   "form": "built",
+   "surface": "built",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.25",
+     "target": "They built the shelter themselves",
+     "ru": "Они сами построили убежище.",
+     "en": "They built the shelter themselves."
+    }
+   ]
+  },
+  {
+   "form": "make",
+   "surface": "make",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.26",
+     "target": "Did you make this yourself",
+     "ru": "Ты сам это сделал?",
+     "en": "Did you make this yourself?"
+    },
+    {
+     "id": "en-classic-r1:28.37",
+     "target": "Please make yourself at home",
+     "ru": "Пожалуйста, чувствуйте себя как дома.",
+     "en": "Please make yourself at home."
+    }
+   ]
+  },
+  {
+   "form": "damage",
+   "surface": "damage",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.30",
+     "target": "We saw the damage ourselves",
+     "ru": "Мы сами увидели повреждения.",
+     "en": "We saw the damage ourselves."
+    }
+   ]
+  },
+  {
+   "form": "travelled",
+   "surface": "travelled",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.33",
+     "target": "He travelled by himself",
+     "ru": "Он ехал один.",
+     "en": "He travelled by himself."
+    }
+   ]
+  },
+  {
+   "form": "dress",
+   "surface": "dress",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.36",
+     "target": "Can your son dress himself",
+     "ru": "Ваш сын может одеться сам?",
+     "en": "Can your son dress himself?"
+    }
+   ]
+  },
+  {
+   "form": "yourselves",
+   "surface": "yourselves",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.38",
+     "target": "Help yourselves to some fruit",
+     "ru": "Угощайтесь фруктами.",
+     "en": "Help yourselves to some fruit."
+    }
+   ]
+  },
+  {
+   "form": "burn",
+   "surface": "burn",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.39",
+     "target": "Do not burn yourself on the pan",
+     "ru": "Не обожгитесь о сковороду.",
+     "en": "Do not burn yourself on the pan."
+    }
+   ]
+  },
+  {
+   "form": "pan",
+   "surface": "pan",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.39",
+     "target": "Do not burn yourself on the pan",
+     "ru": "Не обожгитесь о сковороду.",
+     "en": "Do not burn yourself on the pan."
+    }
+   ]
+  },
+  {
+   "form": "tested",
+   "surface": "tested",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.46",
+     "target": "I taught my brother but he tested himself",
+     "ru": "Я научил своего брата, но он проверил себя.",
+     "en": "I taught my brother, but he tested himself."
+    }
+   ]
+  },
+  {
+   "form": "enjoyed",
+   "surface": "enjoyed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.49",
+     "target": "I enjoyed myself at the concert",
+     "ru": "Мне понравилось на концерте.",
+     "en": "I enjoyed myself at the concert."
+    }
+   ]
+  },
+  {
+   "form": "care",
+   "surface": "care",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:28.50",
+     "target": "Take care of yourself on the way home",
+     "ru": "Береги себя по дороге домой.",
+     "en": "Take care of yourself on the way home."
+    }
+   ]
+  }
+ ]
+}

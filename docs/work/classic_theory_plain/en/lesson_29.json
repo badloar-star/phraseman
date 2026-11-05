@@ -1,0 +1,634 @@
+{
+  "lang": "en",
+  "lesson": 29,
+  "title": {
+    "ru": "Раньше так было",
+    "uk": "Раніше так було",
+    "en": "It used to be like that"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Раньше я…",
+        "uk": "Раніше я…",
+        "en": "I used to…"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что раньше было так, а теперь иначе.\nI used to drive to work. — Раньше я ездил на работу на машине.\nЧитается: ай ю́ст ту дра́йв ту уо́рк.\nСлова used to вместе значат «раньше (так бывало, а теперь нет)».\nСлова used to читают «юст ту». После них говорят, что делали: used to drive.\nShe used to live upstairs. — Она раньше жила наверху.\nЧитается: ши ю́ст ту ли́в апсте́рз.\nI used to work in a warehouse. — Я раньше работал на складе.\nЧитается: ай ю́ст ту уо́рк ин э уэ́рхаус.\nСлово warehouse значит «склад».\nThey used to meet at the playground. — Раньше они встречались на детской площадке.\nЧитается: зэй ю́ст ту ми́т эт зэ плэ́йграунд.\nСлово playground значит «детская площадка».\nСлова used to не меняются: I used to, she used to, they used to.",
+        "uk": "Дивіться, як сказати, що раніше було так, а тепер інакше.\nI used to drive to work. — Я раніше їздив на роботу на машині.\nЧитається: ай ю́ст ту дра́йв ту уо́рк.\nСлова used to разом означають «раніше (так бувало, а тепер ні)».\nСлова used to читають «юст ту». Після них кажуть, що робили: used to drive.\nShe used to live upstairs. — Вона раніше жила нагорі.\nЧитається: ші ю́ст ту лі́в апсте́рз.\nI used to work in a warehouse. — Я раніше працював на складі.\nЧитається: ай ю́ст ту уо́рк ін е уе́рхаус.\nСлово warehouse означає «склад».\nThey used to meet at the playground. — Раніше вони зустрічалися на дитячому майданчику.\nЧитається: зей ю́ст ту мі́т ет зе пле́йграунд.\nСлово playground означає «дитячий майданчик».\nСлова used to не змінюються: I used to, she used to, they used to.",
+        "en": "Look at how to say that it was one way before and is different now.\nI used to drive to work.\nThe words used to together mean “in the past, but not now”.\nWe say used to like “yoost to”.\nAfter it comes what we did: used to drive.\nShe used to live upstairs.\nI used to work in a warehouse.\nThe word warehouse means “a big building where things are kept”.\nThey used to meet at the playground.\nThe word playground means “a place where children play”.\nThe words used to do not change: I used to, she used to, they used to."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:29.01",
+          "say": {
+            "ru": "ай ю́ст ту дра́йв ту уо́рк",
+            "uk": "ай ю́ст ту дра́йв ту уо́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.02",
+          "say": {
+            "ru": "ши ю́ст ту ли́в апсте́рз",
+            "uk": "ші ю́ст ту лі́в апсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.06",
+          "say": {
+            "ru": "ай ю́ст ту уо́рк ин э уэ́рхаус",
+            "uk": "ай ю́ст ту уо́рк ін е уе́рхаус"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.10",
+          "say": {
+            "ru": "зэй ю́ст ту ми́т эт зэ плэ́йграунд",
+            "uk": "зей ю́ст ту мі́т ет зе пле́йграунд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше я ездил на работу на машине»",
+            "uk": "Виберіть, як сказати: «Я раніше їздив на роботу на машині»",
+            "en": "Choose how to say: “I used to drive to work.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:29.01",
+          "options": [
+            "en-classic-r1:29.01",
+            "en-classic-r1:29.02",
+            "en-classic-r1:29.06"
+          ],
+          "answerId": "en-classic-r1:29.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я раньше работал на складе»",
+            "uk": "Виберіть, як сказати: «Я раніше працював на складі»",
+            "en": "Choose how to say: “I used to work in a warehouse.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.06",
+          "options": [
+            "en-classic-r1:29.06",
+            "en-classic-r1:29.10",
+            "en-classic-r1:29.02"
+          ],
+          "answerId": "en-classic-r1:29.06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше они встречались на детской площадке»",
+            "uk": "Виберіть, як сказати: «Раніше вони зустрічалися на дитячому майданчику»",
+            "en": "Choose how to say: “They used to meet at the playground.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.10",
+          "options": [
+            "en-classic-r1:29.10",
+            "en-classic-r1:29.01",
+            "en-classic-r1:29.06"
+          ],
+          "answerId": "en-classic-r1:29.10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Раньше здесь было",
+        "uk": "Раніше тут було",
+        "en": "There used to be"
+      },
+      "text": {
+        "ru": "Так можно сказать и о месте, которого больше нет.\nThere used to be a factory here. — Здесь раньше был завод.\nЧитается: зэр ю́ст ту би́ э фэ́ктри хи́р.\nСлова there used to be вместе значат «раньше здесь был, была, было».\nСлово factory значит «завод».\nThere used to be a cinema on this corner.\nПо-русски: «На этом углу раньше был кинотеатр»\nЧитается: зэр ю́ст ту би́ э си́нема он зис ко́рнер.\nСлово cinema значит «кинотеатр».\nСлово corner значит «угол».\nThere used to be two entrances. — Раньше было два входа.\nЧитается: зэр ю́ст ту би́ ту́ э́нтрансиз.\nСлово entrances значит «входы».\nСлово entrance вы знаете: «вход». Здесь их два: entrances.\nThe tram used to stop here. — Раньше здесь останавливался трамвай.\nЧитается: зэ тра́м ю́ст ту сто́п хи́р.\nСлово tram значит «трамвай».",
+        "uk": "Так можна сказати й про місце, якого вже немає.\nThere used to be a factory here. — Тут колись був завод.\nЧитається: зер ю́ст ту бі́ е фе́ктрі хі́р.\nСлова there used to be разом означають «раніше тут був, була, було».\nСлово factory означає «завод».\nThere used to be a cinema on this corner.\nУкраїнською: «На цьому розі колись був кінотеатр»\nЧитається: зер ю́ст ту бі́ е сі́нема он зіс ко́рнер.\nСлово cinema означає «кінотеатр».\nСлово corner означає «ріг».\nThere used to be two entrances. — Колись було два входи.\nЧитається: зер ю́ст ту бі́ ту́ е́нтрансіз.\nСлово entrances означає «входи».\nСлово entrance ви знаєте: «вхід». Тут їх два: entrances.\nThe tram used to stop here. — Трамвай колись зупинявся тут.\nЧитається: зе тра́м ю́ст ту сто́п хі́р.\nСлово tram означає «трамвай».",
+        "en": "We can say it about a place that is not there any more.\nThere used to be a factory here.\nThe words there used to be together mean “in the past there was”.\nThe word factory means “a big place where things are made”.\nThere used to be a cinema on this corner.\nThe word cinema means “a place where we watch films”.\nThe word corner means “the place where two streets meet”.\nThere used to be two entrances.\nThe word entrances means “doors to go in”.\nYou know the word entrance. Here there are two: entrances.\nThe tram used to stop here.\nThe word tram means “a train that goes along a city street”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:29.11",
+          "say": {
+            "ru": "зэр ю́ст ту би́ э фэ́ктри хи́р",
+            "uk": "зер ю́ст ту бі́ е фе́ктрі хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.12",
+          "say": {
+            "ru": "зэр ю́ст ту би́ э си́нема он зис ко́рнер",
+            "uk": "зер ю́ст ту бі́ е сі́нема он зіс ко́рнер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.13",
+          "say": {
+            "ru": "зэр ю́ст ту би́ ту́ э́нтрансиз",
+            "uk": "зер ю́ст ту бі́ ту́ е́нтрансіз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.20",
+          "say": {
+            "ru": "зэ тра́м ю́ст ту сто́п хи́р",
+            "uk": "зе тра́м ю́ст ту сто́п хі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Здесь раньше был завод»",
+            "uk": "Виберіть, як сказати: «Тут колись був завод»",
+            "en": "Choose how to say: “There used to be a factory here.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:29.11",
+          "options": [
+            "en-classic-r1:29.11",
+            "en-classic-r1:29.12",
+            "en-classic-r1:29.13"
+          ],
+          "answerId": "en-classic-r1:29.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На этом углу раньше был кинотеатр»",
+            "uk": "Виберіть, як сказати: «На цьому розі колись був кінотеатр»",
+            "en": "Choose how to say: “There used to be a cinema on this corner.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.12",
+          "options": [
+            "en-classic-r1:29.12",
+            "en-classic-r1:29.20",
+            "en-classic-r1:29.11"
+          ],
+          "answerId": "en-classic-r1:29.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше здесь останавливался трамвай»",
+            "uk": "Виберіть, як сказати: «Трамвай колись зупинявся тут»",
+            "en": "Choose how to say: “The tram used to stop here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.20",
+          "options": [
+            "en-classic-r1:29.20",
+            "en-classic-r1:29.13",
+            "en-classic-r1:29.12"
+          ],
+          "answerId": "en-classic-r1:29.20"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Раньше было иначе",
+        "uk": "Раніше було інакше",
+        "en": "It was different before"
+      },
+      "text": {
+        "ru": "Часто добавляют: а теперь иначе.\nThis street used to be quieter. — Раньше на этой улице было тише.\nЧитается: зис стри́т ю́ст ту би́ куа́йетер.\nThe tickets used to be cheaper. — Раньше билеты были дешевле.\nЧитается: зэ ти́китс ю́ст ту би́ чи́пер.\nСлова used to be значат «раньше был, была, было».\nI used to drive, but now I cycle.\nПо-русски: «Раньше я водил машину, а теперь езжу на велосипеде»\nЧитается: ай ю́ст ту дра́йв, ба́т на́у ай са́йкл.\nСлово but значит «но, а». Слово now значит «теперь».\nСлово cycle значит «езжу на велосипеде».\nShe used to work nights, but now she starts at eight.\nПо-русски: «Раньше она работала по ночам, а теперь начинает в восемь»\nЧитается: ши ю́ст ту уо́рк на́йтс, ба́т на́у ши ста́ртс эт э́йт.\nСлова work nights значат «работать по ночам».",
+        "uk": "Часто додають: а тепер інакше.\nThis street used to be quieter. — Колись ця вулиця була тихішою.\nЧитається: зіс стрі́т ю́ст ту бі́ куа́йетер.\nThe tickets used to be cheaper. — Колись квитки були дешевші.\nЧитається: зе ті́кітс ю́ст ту бі́ чі́пер.\nСлова used to be означають «раніше був, була, було».\nI used to drive, but now I cycle.\nУкраїнською: «Раніше я їздив за кермом, але тепер їжджу на велосипеді»\nЧитається: ай ю́ст ту дра́йв, ба́т на́у ай са́йкл.\nСлово but означає «але, а». Слово now означає «тепер».\nСлово cycle означає «їжджу на велосипеді».\nShe used to work nights, but now she starts at eight.\nУкраїнською: «Вона раніше працювала вночі, але тепер починає о восьмій»\nЧитається: ші ю́ст ту уо́рк на́йтс, ба́т на́у ші ста́ртс ет е́йт.\nСлова work nights означають «працювати вночі».",
+        "en": "Often we add: and now it is different.\nThis street used to be quieter.\nThe tickets used to be cheaper.\nThe words used to be mean “in the past it was”.\nI used to drive, but now I cycle.\nThe word but shows a change. The word now means “at this time”.\nThe word cycle means “to go by bike”.\nShe used to work nights, but now she starts at eight.\nThe words work nights mean to work at night."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:29.16",
+          "say": {
+            "ru": "зис стри́т ю́ст ту би́ куа́йетер",
+            "uk": "зіс стрі́т ю́ст ту бі́ куа́йетер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.17",
+          "say": {
+            "ru": "зэ ти́китс ю́ст ту би́ чи́пер",
+            "uk": "зе ті́кітс ю́ст ту бі́ чі́пер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.41",
+          "say": {
+            "ru": "ай ю́ст ту дра́йв, ба́т на́у ай са́йкл",
+            "uk": "ай ю́ст ту дра́йв, ба́т на́у ай са́йкл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.42",
+          "say": {
+            "ru": "ши ю́ст ту уо́рк на́йтс, ба́т на́у ши ста́ртс эт э́йт",
+            "uk": "ші ю́ст ту уо́рк на́йтс, ба́т на́у ші ста́ртс ет е́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше на этой улице было тише»",
+            "uk": "Виберіть, як сказати: «Колись ця вулиця була тихішою»",
+            "en": "Choose how to say: “This street used to be quieter.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:29.16",
+          "options": [
+            "en-classic-r1:29.16",
+            "en-classic-r1:29.17",
+            "en-classic-r1:29.41"
+          ],
+          "answerId": "en-classic-r1:29.16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше билеты были дешевле»",
+            "uk": "Виберіть, як сказати: «Колись квитки були дешевші»",
+            "en": "Choose how to say: “The tickets used to be cheaper.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.17",
+          "options": [
+            "en-classic-r1:29.17",
+            "en-classic-r1:29.42",
+            "en-classic-r1:29.16"
+          ],
+          "answerId": "en-classic-r1:29.17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше я водил машину, а теперь езжу на велосипеде»",
+            "uk": "Виберіть, як сказати: «Раніше я їздив за кермом, але тепер їжджу на велосипеді»",
+            "en": "Choose how to say: “I used to drive, but now I cycle.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.41",
+          "options": [
+            "en-classic-r1:29.41",
+            "en-classic-r1:29.42",
+            "en-classic-r1:29.17"
+          ],
+          "answerId": "en-classic-r1:29.41"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Раньше не…",
+        "uk": "Раніше не…",
+        "en": "I did not use to…"
+      },
+      "text": {
+        "ru": "Чтобы сказать «раньше не», говорят did not use to.\nСлова did not значат «не» про то, что было раньше.\nI did not use to drink coffee. — Раньше я не пил кофе.\nЧитается: ай ди́д но́т ю́с ту дри́нк ко́фи.\nЗдесь use без d. Слово did уже говорит о прошлом, поэтому d не нужна.\nЧитается: use как отдельное слово — «юз».\nНо в used to — «юст ту», а в use to — «юс ту».\nShe did not use to work weekends. — Раньше она не работала по выходным.\nЧитается: ши ди́д но́т ю́с ту уо́рк уи́кэндз.\nThis bus did not use to run on Sundays.\nПо-русски: «Этот автобус раньше не ходил по воскресеньям»\nЧитается: зис ба́с ди́д но́т ю́с ту ра́н он са́ндэйз.\nСлово run здесь значит «ходить, ездить» про автобус.\nThey did not use to take bookings. — Раньше они не принимали бронирования.\nЧитается: зэй ди́д но́т ю́с ту тэ́йк бу́кингз.\nСлово bookings значит «бронирования».\nСлово bookings — это book с ing и s.",
+        "uk": "Щоб сказати «раніше не», кажуть did not use to.\nСлова did not означають «не» про те, що було раніше.\nI did not use to drink coffee. — Я колись не пив каву.\nЧитається: ай ді́д но́т ю́с ту дрі́нк ко́фі.\nТут use без d. Слово did уже говорить про минуле, тому d не потрібна.\nЧитається: use як окреме слово — «юз».\nАле в used to — «юст ту», а в use to — «юс ту».\nShe did not use to work weekends. — Вона колись не працювала у вихідні.\nЧитається: ші ді́д но́т ю́с ту уо́рк уі́кендз.\nThis bus did not use to run on Sundays.\nУкраїнською: «Цей автобус раніше не курсував по неділях»\nЧитається: зіс ба́с ді́д но́т ю́с ту ра́н он са́ндейз.\nСлово run тут означає «ходити, їздити» про автобус.\nThey did not use to take bookings. — Вони колись не приймали бронювання.\nЧитається: зей ді́д но́т ю́с ту те́йк бу́кінгз.\nСлово bookings означає «бронювання».\nСлово bookings — це book з ing і s.",
+        "en": "To say “not before”, we say did not use to.\nThe words did not mean “not” about the past.\nI did not use to drink coffee.\nHere it is use, with no d. The word did already shows the past.\nSaid like this: use alone is “yooz”.\nIn used to it is “yoost too”. In use to it is “yooss too”.\nShe did not use to work weekends.\nThis bus did not use to run on Sundays.\nThe word run here means that a bus goes along its way.\nThey did not use to take bookings.\nThe word bookings means “places kept for someone”.\nThe word bookings is book with ing and s."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:29.21",
+          "say": {
+            "ru": "ай ди́д но́т ю́с ту дри́нк ко́фи",
+            "uk": "ай ді́д но́т ю́с ту дрі́нк ко́фі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.22",
+          "say": {
+            "ru": "ши ди́д но́т ю́с ту уо́рк уи́кэндз",
+            "uk": "ші ді́д но́т ю́с ту уо́рк уі́кендз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.26",
+          "say": {
+            "ru": "зис ба́с ди́д но́т ю́с ту ра́н он са́ндэйз",
+            "uk": "зіс ба́с ді́д но́т ю́с ту ра́н он са́ндейз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.25",
+          "say": {
+            "ru": "зэй ди́д но́т ю́с ту тэ́йк бу́кингз",
+            "uk": "зей ді́д но́т ю́с ту те́йк бу́кінгз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше я не пил кофе»",
+            "uk": "Виберіть, як сказати: «Я колись не пив каву»",
+            "en": "Choose how to say: “I did not use to drink coffee.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:29.21",
+          "options": [
+            "en-classic-r1:29.21",
+            "en-classic-r1:29.22",
+            "en-classic-r1:29.26"
+          ],
+          "answerId": "en-classic-r1:29.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше она не работала по выходным»",
+            "uk": "Виберіть, як сказати: «Вона колись не працювала у вихідні»",
+            "en": "Choose how to say: “She did not use to work weekends.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.22",
+          "options": [
+            "en-classic-r1:29.22",
+            "en-classic-r1:29.25",
+            "en-classic-r1:29.21"
+          ],
+          "answerId": "en-classic-r1:29.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше они не принимали бронирования»",
+            "uk": "Виберіть, як сказати: «Вони колись не приймали бронювання»",
+            "en": "Choose how to say: “They did not use to take bookings.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.25",
+          "options": [
+            "en-classic-r1:29.25",
+            "en-classic-r1:29.26",
+            "en-classic-r1:29.22"
+          ],
+          "answerId": "en-classic-r1:29.25"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Спросить «раньше»",
+        "uk": "Запитати «раніше»",
+        "en": "Asking about the past"
+      },
+      "text": {
+        "ru": "Чтобы спросить «раньше вы…?», ставят Did в начало.\nDid you use to live near here? — Вы раньше жили неподалеку?\nЧитается: ди́д ю ю́с ту ли́в ни́р хи́р.\nИ здесь use без d: слово did уже говорит о прошлом.\nDid she use to work at reception? — Она раньше работала на ресепшене?\nЧитается: ди́д ши ю́с ту уо́рк эт рисэ́пшн.\nDid they use to deliver on Saturdays? — Они раньше доставляли по субботам?\nЧитается: ди́д зэй ю́с ту дели́вер он сэ́тердэйз.\nСлово deliver значит «доставлять».\nWhere did you use to buy your tickets? — Где вы раньше покупали билеты?\nЧитается: уэ́р ди́д ю ю́с ту бай йор ти́китс.\nСначала слово-вопрос Where, потом did.\nWas this the shop you used to visit?\nПо-русски: «Это был тот магазин, в который вы раньше ходили?»\nЧитается: уо́з зис зэ шо́п ю ю́ст ту ви́зит.\nСлово visit значит «ходить, заходить».\nСлова did здесь нет, поэтому остаётся used to: you used to visit.\nПо-английски нет слов «в который».\nСлова shop you used to visit значат «магазин, куда вы раньше ходили».",
+        "uk": "Щоб запитати «раніше ви…?», ставлять Did на початок.\nDid you use to live near here? — Ви колись жили поруч?\nЧитається: ді́д ю ю́с ту лі́в ні́р хі́р.\nІ тут use без d: слово did уже говорить про минуле.\nDid she use to work at reception? — Вона колись працювала на рецепції?\nЧитається: ді́д ші ю́с ту уо́рк ет рісе́пшн.\nDid they use to deliver on Saturdays? — Вони колись доставляли по суботах?\nЧитається: ді́д зей ю́с ту делі́вер он се́тердейз.\nСлово deliver означає «доставляти».\nWhere did you use to buy your tickets? — Де ви раніше купували квитки?\nЧитається: уе́р ді́д ю ю́с ту бай йор ті́кітс.\nСпершу питальне слово Where, потім did.\nWas this the shop you used to visit?\nУкраїнською: «Це був той магазин, який ви раніше відвідували?»\nЧитається: уо́з зіс зе шо́п ю ю́ст ту ві́зіт.\nСлово visit означає «ходити, заходити».\nСлова did тут немає, тому залишається used to: you used to visit.\nУ англійській немає слів «в який».\nСлова shop you used to visit означають «магазин, куди ви раніше ходили».",
+        "en": "To ask “did you before…?”, we put Did first.\nDid you use to live near here?\nHere too it is use with no d: the word did already shows the past.\nDid she use to work at reception?\nDid they use to deliver on Saturdays?\nThe word deliver means “to bring things to people”.\nWhere did you use to buy your tickets?\nFirst the question word Where, then did.\nWas this the shop you used to visit?\nThe word visit means “to go to a place for a short time”.\nThere is no did here, so it stays used to: you used to visit.\nThere is no word like “in which” here.\nThe words shop you used to visit mean “the shop you went to before”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:29.31",
+          "say": {
+            "ru": "ди́д ю ю́с ту ли́в ни́р хи́р",
+            "uk": "ді́д ю ю́с ту лі́в ні́р хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.32",
+          "say": {
+            "ru": "ди́д ши ю́с ту уо́рк эт рисэ́пшн",
+            "uk": "ді́д ші ю́с ту уо́рк ет рісе́пшн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.34",
+          "say": {
+            "ru": "ди́д зэй ю́с ту дели́вер он сэ́тердэйз",
+            "uk": "ді́д зей ю́с ту делі́вер он се́тердейз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.35",
+          "say": {
+            "ru": "уэ́р ди́д ю ю́с ту бай йор ти́китс",
+            "uk": "уе́р ді́д ю ю́с ту бай йор ті́кітс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.39",
+          "say": {
+            "ru": "уо́з зис зэ шо́п ю ю́ст ту ви́зит",
+            "uk": "уо́з зіс зе шо́п ю ю́ст ту ві́зіт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы раньше жили неподалеку?»",
+            "uk": "Виберіть, як сказати: «Ви колись жили поруч?»",
+            "en": "Choose how to say: “Did you use to live near here?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:29.31",
+          "options": [
+            "en-classic-r1:29.31",
+            "en-classic-r1:29.32",
+            "en-classic-r1:29.34"
+          ],
+          "answerId": "en-classic-r1:29.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они раньше доставляли по субботам?»",
+            "uk": "Виберіть, як сказати: «Вони колись доставляли по суботах?»",
+            "en": "Choose how to say: “Did they use to deliver on Saturdays?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.34",
+          "options": [
+            "en-classic-r1:29.34",
+            "en-classic-r1:29.35",
+            "en-classic-r1:29.31"
+          ],
+          "answerId": "en-classic-r1:29.34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это был тот магазин, в который вы раньше ходили?»",
+            "uk": "Виберіть, як сказати: «Це був той магазин, який ви раніше відвідували?»",
+            "en": "Choose how to say: “Was this the shop you used to visit?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.39",
+          "options": [
+            "en-classic-r1:29.39",
+            "en-classic-r1:29.35",
+            "en-classic-r1:29.32"
+          ],
+          "answerId": "en-classic-r1:29.39"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Я привык",
+        "uk": "Я звик",
+        "en": "I am used to it"
+      },
+      "text": {
+        "ru": "Слова used to бывают ещё и с am, is, are. Тогда смысл другой: «привык».\nI am used to getting up early now. — Теперь я привык рано вставать.\nЧитается: ай эм ю́ст ту гэ́тинг а́п э́рли на́у.\nСлова getting up значат «вставать». Буква t удвоилась: get → getting.\nПосле «привык» слово говорят с ing на конце: getting.\nShe is not used to driving on the left.\nПо-русски: «Она не привыкла ездить по левой стороне дороги»\nЧитается: ши из но́т ю́ст ту дра́йвинг он зэ лэ́фт.\nСлово left здесь значит «лево»: on the left — «по левой стороне».\nЭто другое значение слова left: «ушёл».\nI used to hate the early shift, but I am used to it now.\nПо-русски: «Раньше я ненавидел раннюю смену, а теперь привык»\nЧитается: ай ю́ст ту хэ́йт зи э́рли ши́фт, ба́т ай эм ю́ст ту ит на́у.\nСлово hate значит «ненавидеть, очень не любить».\nСравните: used to hate — «раньше ненавидел», am used to it — «привык к этому».",
+        "uk": "Слова used to бувають ще й з am, is, are. Тоді зміст інший: «звик».\nI am used to getting up early now. — Тепер я звик рано вставати.\nЧитається: ай ем ю́ст ту ге́тінг а́п е́рлі на́у.\nСлова getting up означають «вставати». Літера t подвоїлась: get → getting.\nПісля «звик» слово кажуть з ing у кінці: getting.\nShe is not used to driving on the left.\nУкраїнською: «Вона не звикла їздити ліворуч»\nЧитається: ші із но́т ю́ст ту дра́йвінг он зе ле́фт.\nСлово left тут означає «ліво»: on the left — «з лівого боку».\nЦе інше значення слова left: «поїхав».\nI used to hate the early shift, but I am used to it now.\nУкраїнською: «Раніше я ненавидів ранню зміну, але тепер я до неї звик»\nЧитається: ай ю́ст ту хе́йт зі е́рлі ші́фт, ба́т ай ем ю́ст ту іт на́у.\nСлово hate означає «ненавидіти, дуже не любити».\nПорівняйте: used to hate — «раніше ненавидів», am used to it — «звик до цього».",
+        "en": "The words used to can also come with am, is, are.\nThen the meaning is different: “I am used to it”.\nI am used to getting up early now.\nThe words getting up mean “leaving your bed”. The letter t is doubled: get → getting.\nAfter “I am used to” the next word ends in ing: getting.\nShe is not used to driving on the left.\nThe word left here means the side opposite to right: on the left.\nThis is another meaning of left: “went away”.\nI used to hate the early shift, but I am used to it now.\nThe word hate means “not like at all”.\nCompare: used to hate means “in the past I hated”.\nThen: am used to it means “it is normal for me now”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:29.45",
+          "say": {
+            "ru": "ай эм ю́ст ту гэ́тинг а́п э́рли на́у",
+            "uk": "ай ем ю́ст ту ге́тінг а́п е́рлі на́у"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.46",
+          "say": {
+            "ru": "ши из но́т ю́ст ту дра́йвинг он зэ лэ́фт",
+            "uk": "ші із но́т ю́ст ту дра́йвінг он зе ле́фт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.48",
+          "say": {
+            "ru": "ай ю́ст ту хэ́йт зи э́рли ши́фт, ба́т ай эм ю́ст ту ит на́у",
+            "uk": "ай ю́ст ту хе́йт зі е́рлі ші́фт, ба́т ай ем ю́ст ту іт на́у"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Теперь я привык рано вставать»",
+            "uk": "Виберіть, як сказати: «Тепер я звик рано вставати»",
+            "en": "Choose how to say: “I am used to getting up early now.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:29.45",
+          "options": [
+            "en-classic-r1:29.45",
+            "en-classic-r1:29.46",
+            "en-classic-r1:29.48"
+          ],
+          "answerId": "en-classic-r1:29.45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она не привыкла ездить по левой стороне дороги»",
+            "uk": "Виберіть, як сказати: «Вона не звикла їздити ліворуч»",
+            "en": "Choose how to say: “She is not used to driving on the left.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.46",
+          "options": [
+            "en-classic-r1:29.46",
+            "en-classic-r1:29.48",
+            "en-classic-r1:29.45"
+          ],
+          "answerId": "en-classic-r1:29.46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше я ненавидел раннюю смену, а теперь привык»",
+            "uk": "Виберіть, як сказати: «Раніше я ненавидів ранню зміну, але тепер я до неї звик»",
+            "en": "Choose how to say: “I used to hate the early shift, but I am used to it now.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.48",
+          "options": [
+            "en-classic-r1:29.48",
+            "en-classic-r1:29.45",
+            "en-classic-r1:29.46"
+          ],
+          "answerId": "en-classic-r1:29.48"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Привыкаю",
+        "uk": "Звикаю",
+        "en": "Getting used to it"
+      },
+      "text": {
+        "ru": "Слова get used to значат «привыкать» — постепенно.\nWe are getting used to the new timetable. — Мы привыкаем к новому расписанию.\nЧитается: уи ар гэ́тинг ю́ст ту зэ нью́ та́ймтэйбл.\nСлова are getting used to значат «привыкаем» — прямо сейчас.\nIt took me a week to get used to the noise.\nПо-русски: «Мне потребовалась неделя, чтобы привыкнуть к шуму»\nЧитается: ит ту́к ми э уи́к ту гэ́т ю́ст ту зэ но́из.\nСлова took me a week значат «мне понадобилась неделя».\nDid you get used to working from home? — Вы привыкли работать из дома?\nЧитается: ди́д ю гэ́т ю́ст ту уо́ркинг фром хо́ум.\nЗдесь тоже working с ing: get used to working.",
+        "uk": "Слова get used to означають «звикати» — поступово.\nWe are getting used to the new timetable. — Ми звикаємо до нового розкладу.\nЧитається: уі ар ге́тінг ю́ст ту зе нью́ та́ймтейбл.\nСлова are getting used to означають «звикаємо» — просто зараз.\nIt took me a week to get used to the noise.\nУкраїнською: «Мені знадобився тиждень, щоб звикнути до шуму»\nЧитається: іт ту́к мі е уі́к ту ге́т ю́ст ту зе но́із.\nСлова took me a week означають «мені знадобився тиждень».\nDid you get used to working from home? — Ви звикли працювати з дому?\nЧитається: ді́д ю ге́т ю́ст ту уо́ркінг фром хо́ум.\nТут теж working з ing: get used to working.",
+        "en": "The words get used to mean “slowly become used to”.\nWe are getting used to the new timetable.\nThe words are getting used to mean we are becoming used to it right now.\nIt took me a week to get used to the noise.\nThe words took me a week mean “I needed a week”.\nDid you get used to working from home?\nHere too working has ing: get used to working."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:29.47",
+          "say": {
+            "ru": "уи ар гэ́тинг ю́ст ту зэ нью́ та́ймтэйбл",
+            "uk": "уі ар ге́тінг ю́ст ту зе нью́ та́ймтейбл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.49",
+          "say": {
+            "ru": "ит ту́к ми э уи́к ту гэ́т ю́ст ту зэ но́из",
+            "uk": "іт ту́к мі е уі́к ту ге́т ю́ст ту зе но́із"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:29.50",
+          "say": {
+            "ru": "ди́д ю гэ́т ю́ст ту уо́ркинг фром хо́ум",
+            "uk": "ді́д ю ге́т ю́ст ту уо́ркінг фром хо́ум"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы привыкаем к новому расписанию»",
+            "uk": "Виберіть, як сказати: «Ми звикаємо до нового розкладу»",
+            "en": "Choose how to say: “We are getting used to the new timetable.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:29.47",
+          "options": [
+            "en-classic-r1:29.47",
+            "en-classic-r1:29.49",
+            "en-classic-r1:29.50"
+          ],
+          "answerId": "en-classic-r1:29.47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне потребовалась неделя, чтобы привыкнуть к шуму»",
+            "uk": "Виберіть, як сказати: «Мені знадобився тиждень, щоб звикнути до шуму»",
+            "en": "Choose how to say: “It took me a week to get used to the noise.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.49",
+          "options": [
+            "en-classic-r1:29.49",
+            "en-classic-r1:29.50",
+            "en-classic-r1:29.47"
+          ],
+          "answerId": "en-classic-r1:29.49"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы привыкли работать из дома?»",
+            "uk": "Виберіть, як сказати: «Ви звикли працювати з дому?»",
+            "en": "Choose how to say: “Did you get used to working from home?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:29.50",
+          "options": [
+            "en-classic-r1:29.50",
+            "en-classic-r1:29.47",
+            "en-classic-r1:29.49"
+          ],
+          "answerId": "en-classic-r1:29.50"
+        }
+      ]
+    }
+  ]
+}

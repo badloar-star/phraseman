@@ -1,0 +1,432 @@
+{
+ "lang": "en",
+ "lesson": 8,
+ "words": {
+  "seven": {
+   "ru": "семь",
+   "uk": "сім",
+   "en": "the number 7",
+   "es": "siete"
+  },
+  "noon": {
+   "ru": "полдень",
+   "uk": "полудень",
+   "en": "twelve in the day",
+   "es": "mediodía"
+  },
+  "tuesday": {
+   "ru": "вторник",
+   "uk": "вівторок",
+   "en": "day after Monday",
+   "es": "martes"
+  },
+  "travel": {
+   "ru": "путешествовать",
+   "uk": "подорожувати",
+   "en": "go to far places",
+   "es": "viajar"
+  },
+  "july": {
+   "ru": "июль",
+   "uk": "липень",
+   "en": "seventh month",
+   "es": "julio"
+  },
+  "midnight": {
+   "ru": "полночь",
+   "uk": "північ",
+   "en": "twelve at night",
+   "es": "medianoche"
+  },
+  "arrive": {
+   "ru": "приезжать, прибывать",
+   "uk": "приїжджати, прибувати",
+   "en": "reach a place",
+   "es": "llegar"
+  },
+  "monday": {
+   "ru": "понедельник",
+   "uk": "понеділок",
+   "en": "first day of the week",
+   "es": "lunes"
+  },
+  "morning": {
+   "ru": "утро",
+   "uk": "ранок",
+   "en": "early part of the day",
+   "es": "mañana"
+  },
+  "half": {
+   "ru": "половина",
+   "uk": "половина",
+   "en": "one of two equal parts",
+   "es": "mitad"
+  },
+  "past": {
+   "ru": "после (о часах)",
+   "uk": "по (про години)",
+   "en": "after, in clock time",
+   "es": "y (pasadas)"
+  },
+  "six": {
+   "ru": "шесть",
+   "uk": "шість",
+   "en": "the number 6",
+   "es": "seis"
+  },
+  "quarter": {
+   "ru": "четверть",
+   "uk": "чверть",
+   "en": "one of four equal parts",
+   "es": "cuarto"
+  },
+  "four": {
+   "ru": "четыре",
+   "uk": "чотири",
+   "en": "the number 4",
+   "es": "cuatro"
+  },
+  "lunchtime": {
+   "ru": "обеденное время",
+   "uk": "обідній час",
+   "en": "time of the midday meal",
+   "es": "hora de comer"
+  },
+  "concert": {
+   "ru": "концерт",
+   "uk": "концерт",
+   "en": "live music show",
+   "es": "concierto"
+  },
+  "fifteen": {
+   "ru": "пятнадцать",
+   "uk": "п'ятнадцять",
+   "en": "the number 15",
+   "es": "quince"
+  },
+  "rings": {
+   "ru": "звонит, звенит",
+   "uk": "дзвонить, дзеленчить",
+   "en": "makes a bell sound",
+   "es": "suena"
+  },
+  "thirty": {
+   "ru": "тридцать",
+   "uk": "тридцять",
+   "en": "the number 30",
+   "es": "treinta"
+  },
+  "bakery": {
+   "ru": "пекарня",
+   "uk": "пекарня",
+   "en": "shop that bakes bread",
+   "es": "panadería"
+  },
+  "dawn": {
+   "ru": "рассвет",
+   "uk": "світанок",
+   "en": "first light of day",
+   "es": "amanecer"
+  },
+  "changes": {
+   "ru": "меняется; сменяется",
+   "uk": "змінюється; настає нова зміна",
+   "en": "becomes different",
+   "es": "cambia"
+  },
+  "bell": {
+   "ru": "звонок, колокол",
+   "uk": "дзвінок, дзвін",
+   "en": "ringing metal object",
+   "es": "campana"
+  },
+  "midday": {
+   "ru": "полдень",
+   "uk": "полудень",
+   "en": "twelve in the day",
+   "es": "mediodía"
+  },
+  "public": {
+   "ru": "общественный; праздничный",
+   "uk": "громадський; святковий",
+   "en": "for everyone",
+   "es": "público"
+  },
+  "holidays": {
+   "ru": "праздники, праздничные дни",
+   "uk": "свята, святкові дні",
+   "en": "special days off",
+   "es": "fiestas"
+  },
+  "wednesday": {
+   "ru": "среда",
+   "uk": "середа",
+   "en": "day after Tuesday",
+   "es": "miércoles"
+  },
+  "evenings": {
+   "ru": "вечера",
+   "uk": "вечори",
+   "en": "late part of the day",
+   "es": "tardes"
+  },
+  "bill": {
+   "ru": "счёт",
+   "uk": "рахунок",
+   "en": "paper with money owed",
+   "es": "factura"
+  },
+  "due": {
+   "ru": "нужно оплатить; срок",
+   "uk": "потрібно сплатити; термін",
+   "en": "to be paid by a date",
+   "es": "vencido"
+  },
+  "friday": {
+   "ru": "пятница",
+   "uk": "п'ятниця",
+   "en": "day before Saturday",
+   "es": "viernes"
+  },
+  "thursday": {
+   "ru": "четверг",
+   "uk": "четвер",
+   "en": "day before Friday",
+   "es": "jueves"
+  },
+  "market": {
+   "ru": "рынок",
+   "uk": "ринок",
+   "en": "place to buy fresh goods",
+   "es": "mercado"
+  },
+  "saturdays": {
+   "ru": "субботы; по субботам",
+   "uk": "суботи; по суботах",
+   "en": "every Saturday",
+   "es": "los sábados"
+  },
+  "arrives": {
+   "ru": "приезжает, прибывает",
+   "uk": "приїжджає, прибуває",
+   "en": "reaches a place",
+   "es": "llega"
+  },
+  "first": {
+   "ru": "первое; первого",
+   "uk": "перше; першого",
+   "en": "number one in order",
+   "es": "primero"
+  },
+  "of": {
+   "ru": "слово при дате (первое мая); по-русски нет",
+   "uk": "слово при даті (перше травня); українською немає",
+   "en": "small linking word",
+   "es": "de"
+  },
+  "may": {
+   "ru": "май",
+   "uk": "травень",
+   "en": "fifth month",
+   "es": "mayo"
+  },
+  "birthday": {
+   "ru": "день рождения",
+   "uk": "день народження",
+   "en": "day you were born",
+   "es": "cumpleaños"
+  },
+  "year's": {
+   "ru": "года",
+   "uk": "року",
+   "en": "belonging to the year",
+   "es": "del año"
+  },
+  "shopping": {
+   "ru": "покупки",
+   "uk": "покупки",
+   "en": "buying things in shops",
+   "es": "compras"
+  },
+  "days": {
+   "ru": "дни",
+   "uk": "дні",
+   "en": "periods of twenty-four hours",
+   "es": "días"
+  },
+  "short": {
+   "ru": "короткий",
+   "uk": "короткий",
+   "en": "not long",
+   "es": "corto"
+  },
+  "winter": {
+   "ru": "зима",
+   "uk": "зима",
+   "en": "cold season",
+   "es": "invierno"
+  },
+  "course": {
+   "ru": "курс",
+   "uk": "курс",
+   "en": "series of lessons",
+   "es": "curso"
+  },
+  "september": {
+   "ru": "сентябрь",
+   "uk": "вересень",
+   "en": "ninth month",
+   "es": "septiembre"
+  },
+  "gets": {
+   "ru": "становится",
+   "uk": "стає",
+   "en": "becomes",
+   "es": "se pone"
+  },
+  "hot": {
+   "ru": "жаркий, жарко",
+   "uk": "гарячий, спекотно",
+   "en": "very warm",
+   "es": "caliente"
+  },
+  "summer": {
+   "ru": "лето",
+   "uk": "літо",
+   "en": "warm season",
+   "es": "verano"
+  },
+  "spring": {
+   "ru": "весна",
+   "uk": "весна",
+   "en": "season after winter",
+   "es": "primavera"
+  },
+  "park": {
+   "ru": "парк",
+   "uk": "парк",
+   "en": "green public place",
+   "es": "parque"
+  },
+  "june": {
+   "ru": "июнь",
+   "uk": "червень",
+   "en": "sixth month",
+   "es": "junio"
+  },
+  "club": {
+   "ru": "клуб",
+   "uk": "клуб",
+   "en": "group that meets",
+   "es": "club"
+  },
+  "meets": {
+   "ru": "собирается, встречается",
+   "uk": "збирається, зустрічається",
+   "en": "comes together",
+   "es": "se reúne"
+  },
+  "january": {
+   "ru": "январь",
+   "uk": "січень",
+   "en": "first month",
+   "es": "enero"
+  },
+  "timetable": {
+   "ru": "расписание",
+   "uk": "розклад",
+   "en": "list of times",
+   "es": "horario"
+  },
+  "april": {
+   "ru": "апрель",
+   "uk": "квітень",
+   "en": "fourth month",
+   "es": "abril"
+  },
+  "beautiful": {
+   "ru": "прекрасный",
+   "uk": "гарний, прекрасний",
+   "en": "very pretty",
+   "es": "hermoso"
+  },
+  "autumn": {
+   "ru": "осень",
+   "uk": "осінь",
+   "en": "season before winter",
+   "es": "otoño"
+  },
+  "every": {
+   "ru": "каждый",
+   "uk": "кожен",
+   "en": "each one",
+   "es": "cada"
+  },
+  "week": {
+   "ru": "неделя",
+   "uk": "тиждень",
+   "en": "seven days",
+   "es": "semana"
+  },
+  "film": {
+   "ru": "фильм",
+   "uk": "фільм",
+   "en": "movie",
+   "es": "película"
+  },
+  "tonight": {
+   "ru": "сегодня вечером",
+   "uk": "сьогодні ввечері",
+   "en": "this evening",
+   "es": "esta noche"
+  },
+  "see": {
+   "ru": "видеть",
+   "uk": "бачити",
+   "en": "look at with eyes",
+   "es": "ver"
+  },
+  "him": {
+   "ru": "его, ему",
+   "uk": "його, йому",
+   "en": "that man",
+   "es": "lo"
+  },
+  "study": {
+   "ru": "учиться",
+   "uk": "вчитися",
+   "en": "learn from books",
+   "es": "estudiar"
+  },
+  "sunday": {
+   "ru": "воскресенье",
+   "uk": "неділя",
+   "en": "last day of the week",
+   "es": "domingo"
+  },
+  "mornings": {
+   "ru": "утра",
+   "uk": "ранки",
+   "en": "early parts of days",
+   "es": "mañanas"
+  },
+  "eleven": {
+   "ru": "одиннадцать",
+   "uk": "одинадцять",
+   "en": "the number 11",
+   "es": "once"
+  },
+  "dentist's": {
+   "ru": "стоматолога",
+   "uk": "стоматолога",
+   "en": "belonging to the tooth doctor",
+   "es": "del dentista"
+  },
+  "before": {
+   "ru": "до",
+   "uk": "до",
+   "en": "earlier than",
+   "es": "antes de"
+  }
+ }
+}

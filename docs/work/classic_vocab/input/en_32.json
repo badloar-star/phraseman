@@ -1,0 +1,214 @@
+{
+ "lang": "en",
+ "lesson": 32,
+ "words": [
+  {
+   "form": "available",
+   "surface": "available",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.01",
+     "target": "Is the small room still available",
+     "ru": "Маленькая комната ещё свободна?",
+     "en": "Is the small room still available?"
+    }
+   ]
+  },
+  {
+   "form": "vibrate",
+   "surface": "vibrate",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.07",
+     "target": "I felt my phone vibrate in my coat pocket",
+     "ru": "Я почувствовал, как мой телефон завибрировал в кармане пальто.",
+     "en": "I felt my phone vibrate in my coat pocket."
+    }
+   ]
+  },
+  {
+   "form": "fire",
+   "surface": "fire",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.08",
+     "target": "Please keep the fire exit clear",
+     "ru": "Пожалуйста, не закрывайте пожарный выход.",
+     "en": "Please keep the fire exit clear."
+    }
+   ]
+  },
+  {
+   "form": "reservation",
+   "surface": "reservation",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.16",
+     "target": "Our reservation has just been confirmed",
+     "ru": "Наше бронирование только что подтверждено.",
+     "en": "Our reservation has just been confirmed."
+    }
+   ]
+  },
+  {
+   "form": "confirmed",
+   "surface": "confirmed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.16",
+     "target": "Our reservation has just been confirmed",
+     "ru": "Наше бронирование только что подтверждено.",
+     "en": "Our reservation has just been confirmed."
+    }
+   ]
+  },
+  {
+   "form": "total",
+   "surface": "total",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.17",
+     "target": "Was the deposit included in the total",
+     "ru": "Был ли депозит включен в общую сумму?",
+     "en": "Was the deposit included in the total?"
+    }
+   ]
+  },
+  {
+   "form": "painted",
+   "surface": "painted",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.18",
+     "target": "The lobby is being painted at the moment",
+     "ru": "В вестибюле сейчас идет покраска.",
+     "en": "The lobby is being painted at the moment."
+    }
+   ]
+  },
+  {
+   "form": "unless",
+   "surface": "Unless",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.23",
+     "target": "Unless you have a pass use the main entrance",
+     "ru": "Если у вас нет пропуска, воспользуйтесь главным входом.",
+     "en": "Unless you have a pass, use the main entrance."
+    }
+   ]
+  },
+  {
+   "form": "receptionist",
+   "surface": "receptionist",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.35",
+     "target": "The receptionist told us not to blame the driver",
+     "ru": "Администратор сказала нам не винить водителя.",
+     "en": "The receptionist told us not to blame the driver."
+    }
+   ]
+  },
+  {
+   "form": "blame",
+   "surface": "blame",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.35",
+     "target": "The receptionist told us not to blame the driver",
+     "ru": "Администратор сказала нам не винить водителя.",
+     "en": "The receptionist told us not to blame the driver."
+    }
+   ]
+  },
+  {
+   "form": "loose",
+   "surface": "loose",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.36",
+     "target": "I fixed the loose handle myself",
+     "ru": "Я сам починил расшатанную ручку.",
+     "en": "I fixed the loose handle myself."
+    }
+   ]
+  },
+  {
+   "form": "faces",
+   "surface": "faces",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.39",
+     "target": "The quietest room is the one that faces the factory",
+     "ru": "Самая тихая комната — та, что выходит на завод.",
+     "en": "The quietest room is the one that faces the factory."
+    }
+   ]
+  },
+  {
+   "form": "avoid",
+   "surface": "avoid",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.40",
+     "target": "We can avoid the queue at the cinema by booking online",
+     "ru": "Мы можем избежать очереди в кинотеатр, забронировав билеты онлайн.",
+     "en": "We can avoid the queue at the cinema by booking online."
+    }
+   ]
+  },
+  {
+   "form": "lower",
+   "surface": "lower",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.47",
+     "target": "We would use the tram if the fare were lower",
+     "ru": "Мы бы воспользовались трамваем, если бы стоимость проезда была ниже.",
+     "en": "We would use the tram if the fare were lower."
+    }
+   ]
+  },
+  {
+   "form": "tyre",
+   "surface": "tyre",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.48",
+     "target": "If she had an extra tyre she would lend it to us",
+     "ru": "Если бы у нее была лишняя шина, она бы одолжила ее нам.",
+     "en": "If she had an extra tyre, she would lend it to us."
+    }
+   ]
+  },
+  {
+   "form": "appeared",
+   "surface": "appeared",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:32.50",
+     "target": "I would ask for a refund if the charge appeared twice",
+     "ru": "Я бы попросил вернуть деньги, если бы списание произошло дважды.",
+     "en": "I would ask for a refund if the charge appeared twice."
+    }
+   ]
+  }
+ ]
+}

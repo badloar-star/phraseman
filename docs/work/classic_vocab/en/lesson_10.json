@@ -1,0 +1,222 @@
+{
+ "lang": "en",
+ "lesson": 10,
+ "words": {
+  "can": {
+   "ru": "могу, умею, может",
+   "uk": "можу, вмію, може",
+   "en": "be able to",
+   "es": "poder"
+  },
+  "swim": {
+   "ru": "плавать",
+   "uk": "плавати",
+   "en": "move in water",
+   "es": "nadar"
+  },
+  "come": {
+   "ru": "приехать, прийти",
+   "uk": "приїхати, прийти",
+   "en": "arrive at a place",
+   "es": "venir"
+  },
+  "us": {
+   "ru": "нас, нам",
+   "uk": "нас, нам",
+   "en": "me and others",
+   "es": "nos"
+  },
+  "cannot": {
+   "ru": "не могу, не может",
+   "uk": "не можу, не може",
+   "en": "am not able to",
+   "es": "no poder"
+  },
+  "find": {
+   "ru": "найти",
+   "uk": "знайти",
+   "en": "discover a thing",
+   "es": "encontrar"
+  },
+  "stay": {
+   "ru": "остаться, пробыть",
+   "uk": "залишитися, пробути",
+   "en": "not leave",
+   "es": "quedarse"
+  },
+  "sit": {
+   "ru": "сесть, сидеть",
+   "uk": "сісти, сидіти",
+   "en": "rest on a seat",
+   "es": "sentarse"
+  },
+  "bags": {
+   "ru": "сумки",
+   "uk": "сумки",
+   "en": "carriers for things",
+   "es": "bolsas"
+  },
+  "borrow": {
+   "ru": "взять на время",
+   "uk": "взяти на час",
+   "en": "take and give back later",
+   "es": "pedir prestado"
+  },
+  "book": {
+   "ru": "забронировать; книга",
+   "uk": "забронювати; книга",
+   "en": "reserve a place; printed pages",
+   "es": "reservar"
+  },
+  "bring": {
+   "ru": "принести, привести",
+   "uk": "принести, привести",
+   "en": "carry here with you",
+   "es": "traer"
+  },
+  "friend": {
+   "ru": "друг",
+   "uk": "друг",
+   "en": "person you like",
+   "es": "amigo"
+  },
+  "again": {
+   "ru": "ещё раз, снова",
+   "uk": "ще раз, знову",
+   "en": "one more time",
+   "es": "otra vez"
+  },
+  "write": {
+   "ru": "написать, записать",
+   "uk": "написати, записати",
+   "en": "put words on paper",
+   "es": "escribir"
+  },
+  "hold": {
+   "ru": "держать, придержать",
+   "uk": "тримати, притримати",
+   "en": "keep in the hand",
+   "es": "sostener"
+  },
+  "me": {
+   "ru": "мне, меня",
+   "uk": "мені, мене",
+   "en": "the speaker",
+   "es": "me"
+  },
+  "link": {
+   "ru": "ссылка",
+   "uk": "посилання",
+   "en": "web address to click",
+   "es": "enlace"
+  },
+  "move": {
+   "ru": "передвинуть",
+   "uk": "пересунути",
+   "en": "change the place of",
+   "es": "mover"
+  },
+  "pass": {
+   "ru": "передать; проездной",
+   "uk": "передати; проїзний",
+   "en": "hand to someone; travel card",
+   "es": "pasar"
+  },
+  "salt": {
+   "ru": "соль",
+   "uk": "сіль",
+   "en": "white seasoning",
+   "es": "sal"
+  },
+  "with": {
+   "ru": "с, вместе с",
+   "uk": "з, разом з",
+   "en": "together",
+   "es": "con"
+  },
+  "should": {
+   "ru": "стоит, следует, лучше бы",
+   "uk": "варто, слід, краще б",
+   "en": "it is a good idea to",
+   "es": "debería"
+  },
+  "some": {
+   "ru": "немного, какой-то",
+   "uk": "трохи, якийсь",
+   "en": "a little",
+   "es": "algo de"
+  },
+  "rest": {
+   "ru": "отдых",
+   "uk": "відпочинок",
+   "en": "time to relax",
+   "es": "descanso"
+  },
+  "block": {
+   "ru": "загораживать",
+   "uk": "загороджувати",
+   "en": "stop the way",
+   "es": "bloquear"
+  },
+  "exit": {
+   "ru": "выход",
+   "uk": "вихід",
+   "en": "way out",
+   "es": "salida"
+  },
+  "password": {
+   "ru": "пароль",
+   "uk": "пароль",
+   "en": "secret word to log in",
+   "es": "contraseña"
+  },
+  "advance": {
+   "ru": "вперёд; заранее",
+   "uk": "уперед; заздалегідь",
+   "en": "ahead of time",
+   "es": "adelantado"
+  },
+  "tell": {
+   "ru": "сказать, рассказать",
+   "uk": "сказати, розповісти",
+   "en": "give news in words",
+   "es": "decir"
+  },
+  "must": {
+   "ru": "обязан, очень нужно",
+   "uk": "мусить, дуже треба",
+   "en": "have to; no choice",
+   "es": "deber"
+  },
+  "helmet": {
+   "ru": "шлем",
+   "uk": "шолом",
+   "en": "hard head cover",
+   "es": "casco"
+  },
+  "touch": {
+   "ru": "трогать, касаться",
+   "uk": "чіпати, торкатися",
+   "en": "put a hand on",
+   "es": "tocar"
+  },
+  "cable": {
+   "ru": "кабель",
+   "uk": "кабель",
+   "en": "wire for power",
+   "es": "cable"
+  },
+  "print": {
+   "ru": "распечатать",
+   "uk": "роздрукувати",
+   "en": "make a paper copy",
+   "es": "imprimir"
+  },
+  "both": {
+   "ru": "оба, обе",
+   "uk": "обидва, обидві",
+   "en": "the two together",
+   "es": "ambos"
+  }
+ }
+}

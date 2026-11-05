@@ -1,0 +1,717 @@
+{
+  "lang": "en",
+  "lesson": 23,
+  "title": {
+    "ru": "Что сделали с вещью",
+    "uk": "Що зробили з річчю",
+    "en": "What was done to a thing"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Заперто, убрано, забрано",
+        "uk": "Замкнено, прибрано, забрано",
+        "en": "Locked, cleaned, collected"
+      },
+      "text": {
+        "ru": "Иногда важно, что делают с вещью, а не кто это делает.\nТогда вещь называют первой, а кто делает — не говорят.\nДальше идут is или are и слово, которое кончается на ed.\nThe gate is locked at night. — Ворота запираются на ночь.\nЧитается: зэ гэ́йт из ло́кт эт на́йт.\nСлово locked — это lock + ed: «заперт».\nСлова is locked значат «заперты».\nКто запирает ворота, не сказано. Важны сами ворота.\nThe rooms are cleaned daily. — Комнаты убираются ежедневно.\nЧитается: зэ ру́мз ар кли́нд дэ́йли.\nКогда вещей несколько, вместо is говорят are.\nСлова are cleaned значат «убираются».\nСлово daily значит «каждый день».\nThe letters are collected at noon. — Письма забирают в полдень.\nЧитается: зэ лэ́терз ар колэ́ктид эт ну́н.\nСлово letters значит «письма» (letter + s).\nСлово collected значит «забирают, собирают» (collect + ed).\nThe uniforms are washed on site. — Униформу стирают на месте.\nЧитается: зи ю́ниформз ар уо́шт он са́йт.\nСлово uniforms значит «рабочая одежда, одинаковая для всех» (uniform + s).\nСлово site значит «место».\nСлова on site значат «на месте».",
+        "uk": "Іноді важливо, що роблять із річчю, а не хто це робить.\nТоді річ називають першою, а хто робить — не кажуть.\nДалі йдуть is або are і слово, що закінчується на ed.\nThe gate is locked at night. — Ворота замкнені на ніч.\nЧитається: зе ге́йт із ло́кт ет на́йт.\nСлово locked — це lock + ed: «замкнений».\nСлова is locked означають «замкнені».\nХто замикає ворота, не сказано. Важливі самі ворота.\nThe rooms are cleaned daily. — Кімнати прибираються щодня.\nЧитається: зе ру́мз ар клі́нд де́йлі.\nКоли речей кілька, замість is кажуть are.\nСлова are cleaned означають «прибираються».\nСлово daily означає «щодня».\nThe letters are collected at noon. — Листи забирають опівдні.\nЧитається: зе ле́терз ар коле́ктід ет ну́н.\nСлово letters означає «листи» (letter + s).\nСлово collected означає «забирають, збирають» (collect + ed).\nThe uniforms are washed on site. — Уніформу перуть на місці.\nЧитається: зі ю́ніформз ар уо́шт он са́йт.\nСлово uniforms означає «робочий одяг, однаковий для всіх» (uniform + s).\nСлово site означає «місце».\nСлова on site означають «на місці».",
+        "en": "Sometimes what happens to a thing is important, not who does it.\nThen we name the thing first and do not say who does it.\nNext come is or are and a word that ends in ed.\nThe gate is locked at night.\nThe word locked is lock + ed: “closed with a key”.\nThe words is locked mean “someone has closed it with a key”.\nWe do not say who locks the gate. The gate is what matters.\nThe rooms are cleaned daily.\nWhen there are several things, we say are instead of is.\nThe words are cleaned mean “someone cleans them”.\nThe word daily means “every day”.\nThe letters are collected at noon.\nThe word letters means “papers that people send in envelopes” (letter + s).\nThe word collected means “taken from a place” (collect + ed).\nThe uniforms are washed on site.\nThe word uniforms means “clothes that everyone at work wears” (uniform + s).\nThe word site means “a place where something is”.\nThe words on site mean “in that place”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:23.01",
+          "say": {
+            "ru": "зэ гэ́йт из ло́кт эт на́йт",
+            "uk": "зе ге́йт із ло́кт ет на́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.02",
+          "say": {
+            "ru": "зэ ру́мз ар кли́нд дэ́йли",
+            "uk": "зе ру́мз ар клі́нд де́йлі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.03",
+          "say": {
+            "ru": "зэ лэ́терз ар колэ́ктид эт ну́н",
+            "uk": "зе ле́терз ар коле́ктід ет ну́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.09",
+          "say": {
+            "ru": "зи ю́ниформз ар уо́шт он са́йт",
+            "uk": "зі ю́ніформз ар уо́шт он са́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ворота запираются на ночь»",
+            "uk": "Виберіть, як сказати: «Ворота замкнені на ніч»",
+            "en": "Choose how to say: “The gate is locked at night.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:23.01",
+          "options": [
+            "en-classic-r1:23.01",
+            "en-classic-r1:23.02",
+            "en-classic-r1:23.03"
+          ],
+          "answerId": "en-classic-r1:23.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Комнаты убираются ежедневно»",
+            "uk": "Виберіть, як сказати: «Кімнати прибираються щодня»",
+            "en": "Choose how to say: “The rooms are cleaned daily.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.02",
+          "options": [
+            "en-classic-r1:23.02",
+            "en-classic-r1:23.03",
+            "en-classic-r1:23.09"
+          ],
+          "answerId": "en-classic-r1:23.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Письма забирают в полдень»",
+            "uk": "Виберіть, як сказати: «Листи забирають опівдні»",
+            "en": "Choose how to say: “The letters are collected at noon.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.03",
+          "options": [
+            "en-classic-r1:23.03",
+            "en-classic-r1:23.09",
+            "en-classic-r1:23.01"
+          ],
+          "answerId": "en-classic-r1:23.03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Продают, хранят, показывают, доставляют",
+        "uk": "Продають, зберігають, показують, доставляють",
+        "en": "Sold, kept, shown, delivered"
+      },
+      "text": {
+        "ru": "Некоторые слова не кончаются на ed.\nУ них своя пара: send → sent.\nThe milk is delivered in the morning. — Молоко доставляют утром.\nЧитается: зэ ми́лк из дели́верд ин зэ мо́рнинг.\nСлово delivered значит «доставляют» (deliver + ed).\nThe tickets are sold online. — Билеты продаются онлайн.\nЧитается: зэ ти́китс ар со́улд онла́йн.\nСлово sold значит «продаются» (sell → sold).\nThe spare key is kept downstairs. — Запасной ключ хранится внизу.\nЧитается: зэ спэ́р ки́ из кэ́пт даунсте́рз.\nСлово kept значит «хранится» (keep → kept).\nThe price is shown on the screen. — Цена отображается на экране.\nЧитается: зэ пра́йс из шо́ун он зэ скри́н.\nСлово shown значит «показана» (show → shown).\nThe bill is sent by email. — Счет высылается по электронной почте.\nЧитается: зэ би́л из сэ́нт бай и́мэйл.\nСлова is sent значат «высылается».",
+        "uk": "Деякі слова не закінчуються на ed.\nУ них своя пара: send → sent.\nThe milk is delivered in the morning. — Молоко доставляють вранці.\nЧитається: зе мі́лк із делі́верд ін зе мо́рнінг.\nСлово delivered означає «доставляють» (deliver + ed).\nThe tickets are sold online. — Квитки продаються онлайн.\nЧитається: зе ті́кітс ар со́улд онла́йн.\nСлово sold означає «продаються» (sell → sold).\nThe spare key is kept downstairs. — Запасний ключ зберігається внизу.\nЧитається: зе спе́р кі́ із ке́пт даунсте́рз.\nСлово kept означає «зберігається» (keep → kept).\nThe price is shown on the screen. — Ціна відображається на екрані.\nЧитається: зе пра́йс із шо́ун он зе скрі́н.\nСлово shown означає «показана» (show → shown).\nThe bill is sent by email. — Рахунок надсилають електронною поштою.\nЧитається: зе бі́л із се́нт бай і́мейл.\nСлова is sent означають «надсилається».",
+        "en": "Some words do not end in ed.\nThey have their own pair: send → sent.\nThe milk is delivered in the morning.\nThe word delivered means “brought to your home” (deliver + ed).\nThe tickets are sold online.\nThe word sold means “given to someone for money” (sell → sold).\nThe spare key is kept downstairs.\nThe word kept means “put in a place and not lost” (keep → kept).\nThe price is shown on the screen.\nThe word shown means “something you can see” (show → shown).\nThe bill is sent by email.\nThe words is sent mean “someone sends it”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:23.05",
+          "say": {
+            "ru": "зэ ми́лк из дели́верд ин зэ мо́рнинг",
+            "uk": "зе мі́лк із делі́верд ін зе мо́рнінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.07",
+          "say": {
+            "ru": "зэ ти́китс ар со́улд онла́йн",
+            "uk": "зе ті́кітс ар со́улд онла́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.06",
+          "say": {
+            "ru": "зэ спэ́р ки́ из кэ́пт даунсте́рз",
+            "uk": "зе спе́р кі́ із ке́пт даунсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.08",
+          "say": {
+            "ru": "зэ пра́йс из шо́ун он зэ скри́н",
+            "uk": "зе пра́йс із шо́ун он зе скрі́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Молоко доставляют утром»",
+            "uk": "Виберіть, як сказати: «Молоко доставляють вранці»",
+            "en": "Choose how to say: “The milk is delivered in the morning.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:23.05",
+          "options": [
+            "en-classic-r1:23.05",
+            "en-classic-r1:23.07",
+            "en-classic-r1:23.06"
+          ],
+          "answerId": "en-classic-r1:23.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Билеты продаются онлайн»",
+            "uk": "Виберіть, як сказати: «Квитки продаються онлайн»",
+            "en": "Choose how to say: “The tickets are sold online.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.07",
+          "options": [
+            "en-classic-r1:23.07",
+            "en-classic-r1:23.06",
+            "en-classic-r1:23.08"
+          ],
+          "answerId": "en-classic-r1:23.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Запасной ключ хранится внизу»",
+            "uk": "Виберіть, як сказати: «Запасний ключ зберігається внизу»",
+            "en": "Choose how to say: “The spare key is kept downstairs.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.06",
+          "options": [
+            "en-classic-r1:23.06",
+            "en-classic-r1:23.08",
+            "en-classic-r1:23.05"
+          ],
+          "answerId": "en-classic-r1:23.06"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Было вчера: was и were",
+        "uk": "Було вчора: was і were",
+        "en": "Yesterday: was and were"
+      },
+      "text": {
+        "ru": "Чтобы сказать, что это было, вместо is говорят was, а вместо are — were.\nСлово was вы видели: «был, была».\nСлово were значит «были».\nПо-русски эти слова здесь часто не нужны.\nThe room was booked yesterday. — Комната была забронирована вчера.\nЧитается: зэ ру́м уо́з бу́кт е́стердэй.\nСлова was booked значат «была забронирована».\nThe seats by the aisle were reserved for us.\n— Для нас были зарезервированы места у прохода.\nЧитается: зэ си́тс бай зи а́йл уэ́р ризэ́рвд фо́р а́с.\nСлово were значит «были».\nСлово seats значит «места», их несколько, поэтому were, а не was.\nСлово reserved значит «зарезервированы» (reserve + d).\nThe door was repaired on Friday. — Дверь была отремонтирована в пятницу.\nЧитается: зэ до́р уо́з рипэ́рд он фра́йдэй.\nСлово repaired значит «отремонтирована» (repair + ed).\nThe lights were switched off at ten. — Свет выключили в десять.\nЧитается: зэ ла́йтс уэ́р суи́чт оф эт тэ́н.\nСлово switched значит «выключили» (switch + ed).\nСлова switched off значат «выключили».\nOur keys were found under the bench. — Наши ключи нашли под скамейкой.\nЧитается: а́ур ки́з уэ́р фа́унд а́ндер зэ бэ́нч.\nСлово found — это find → found.\nСлова were found значат «нашли».",
+        "uk": "Щоб сказати, що це було, замість is кажуть was, а замість are — were.\nСлово was ви бачили: «був, була».\nСлово were означає «були».\nПо-українськи ці слова тут часто не потрібні.\nThe room was booked yesterday. — Кімнату було заброньовано вчора.\nЧитається: зе ру́м уо́з бу́кт е́стердей.\nСлова was booked означають «була заброньована».\nThe seats by the aisle were reserved for us.\n— Місця біля проходу були зарезервовані для нас.\nЧитається: зе сі́тс бай зі а́йл уе́р різе́рвд фо́р а́с.\nСлово were означає «були».\nСлово seats означає «місця», їх кілька, тому were, а не was.\nСлово reserved означає «зарезервовані» (reserve + d).\nThe door was repaired on Friday. — Двері було відремонтовано в п'ятницю.\nЧитається: зе до́р уо́з ріпе́рд он фра́йдей.\nСлово repaired означає «відремонтована» (repair + ed).\nThe lights were switched off at ten. — Світло вимкнули о десятій.\nЧитається: зе ла́йтс уе́р суі́чт оф ет те́н.\nСлово switched означає «вимкнули» (switch + ed).\nСлова switched off означають «вимкнули».\nOur keys were found under the bench. — Наші ключі знайшли під лавкою.\nЧитається: а́ур кі́з уе́р фа́унд а́ндер зе бе́нч.\nСлово found — це find → found.\nСлова were found означають «знайшли».",
+        "en": "To say that it was in the past, we say was instead of is.\nWe say were instead of are.\nYou have seen the word was.\nThe word were means the same, but for several things.\nThe room was booked yesterday.\nThe words was booked mean “someone booked it”.\nThe seats by the aisle were reserved for us.\nThe word were means “the word for several things in the past”.\nThe word seats means several places, so we say were, not was.\nThe word reserved means “kept for someone” (reserve + d).\nThe door was repaired on Friday.\nThe word repaired means “made to work again” (repair + ed).\nThe lights were switched off at ten.\nThe word switched means “changed so that it stops” (switch + ed).\nThe words switched off mean “made it stop working”.\nOur keys were found under the bench.\nThe word found is find → found.\nThe words were found mean “someone found them”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:23.11",
+          "say": {
+            "ru": "зэ ру́м уо́з бу́кт е́стердэй",
+            "uk": "зе ру́м уо́з бу́кт е́стердей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.12",
+          "say": {
+            "ru": "зэ си́тс бай зи а́йл уэ́р ризэ́рвд фо́р а́с",
+            "uk": "зе сі́тс бай зі а́йл уе́р різе́рвд фо́р а́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.13",
+          "say": {
+            "ru": "зэ до́р уо́з рипэ́рд он фра́йдэй",
+            "uk": "зе до́р уо́з ріпе́рд он фра́йдей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.18",
+          "say": {
+            "ru": "а́ур ки́з уэ́р фа́унд а́ндер зэ бэ́нч",
+            "uk": "а́ур кі́з уе́р фа́унд а́ндер зе бе́нч"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Комната была забронирована вчера»",
+            "uk": "Виберіть, як сказати: «Кімнату було заброньовано вчора»",
+            "en": "Choose how to say: “The room was booked yesterday.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:23.11",
+          "options": [
+            "en-classic-r1:23.11",
+            "en-classic-r1:23.13",
+            "en-classic-r1:23.12"
+          ],
+          "answerId": "en-classic-r1:23.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Для нас были зарезервированы места у прохода»",
+            "uk": "Виберіть, як сказати: «Місця біля проходу були зарезервовані для нас»",
+            "en": "Choose how to say: “The seats by the aisle were reserved for us.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.12",
+          "options": [
+            "en-classic-r1:23.12",
+            "en-classic-r1:23.11",
+            "en-classic-r1:23.18"
+          ],
+          "answerId": "en-classic-r1:23.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь была отремонтирована в пятницу»",
+            "uk": "Виберіть, як сказати: «Двері було відремонтовано в п'ятницю»",
+            "en": "Choose how to say: “The door was repaired on Friday.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.13",
+          "options": [
+            "en-classic-r1:23.13",
+            "en-classic-r1:23.18",
+            "en-classic-r1:23.11"
+          ],
+          "answerId": "en-classic-r1:23.13"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Задержали, отменили, отправили",
+        "uk": "Затримали, скасували, надіслали",
+        "en": "Delayed, cancelled, sent"
+      },
+      "text": {
+        "ru": "Так же рассказывают о посылке, рейсе и письме.\nMy parcel was delivered next door. — Мою посылку доставили в соседний дом.\nЧитается: май па́рсел уо́з дели́верд нэ́кст до́р.\nСлова next door значат «в соседний дом».\nThe flight was delayed because of fog. — Рейс задержали из-за тумана.\nЧитается: зэ фла́йт уо́з дилэ́йд бико́з ов фо́г.\nСлово delayed значит «задержан» (delay + ed).\nСлово because значит «потому что».\nСлова because of значат «из-за».\nThe appointment was cancelled this morning. — Встречу отменили сегодня утром.\nЧитается: зи эпо́йнтмент уо́з кэ́нсэлд зис мо́рнинг.\nСлово cancelled значит «отменили».\nThe receipt was sent to the wrong email address.\n— Квитанцию отправили на неверный адрес электронной почты.\nЧитается: зэ риси́т уо́з сэ́нт ту зэ ро́нг и́мэйл эдрэ́с.\nСлова was sent значат «отправили».",
+        "uk": "Так само розповідають про посилку, рейс і лист.\nMy parcel was delivered next door. — Мою посилку доставили по сусідству.\nЧитається: май па́рсел уо́з делі́верд не́кст до́р.\nСлова next door означають «у сусідній будинок».\nThe flight was delayed because of fog. — Рейс затримали через туман.\nЧитається: зе фла́йт уо́з діле́йд біко́з ов фо́г.\nСлово delayed означає «затриманий» (delay + ed).\nСлово because означає «тому що».\nСлова because of означають «через».\nThe appointment was cancelled this morning. — Зустріч скасували сьогодні вранці.\nЧитається: зі епо́йнтмент уо́з ке́нселд зіс мо́рнінг.\nСлово cancelled означає «скасували».\nThe receipt was sent to the wrong email address.\n— Квитанцію було надіслано на неправильну адресу електронної пошти.\nЧитається: зе рісі́т уо́з се́нт ту зе ро́нг і́мейл едре́с.\nСлова was sent означають «надіслали».",
+        "en": "We talk in the same way about a parcel, a flight and a letter.\nMy parcel was delivered next door.\nThe words next door mean “the home next to ours”.\nThe flight was delayed because of fog.\nThe word delayed means “made later than planned” (delay + ed).\nThe word because means “for this reason”.\nThe words because of mean “for this reason”.\nThe appointment was cancelled this morning.\nThe word cancelled means “said that it will not happen”.\nThe receipt was sent to the wrong email address.\nThe words was sent mean “someone sent it”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:23.15",
+          "say": {
+            "ru": "май па́рсел уо́з дели́верд нэ́кст до́р",
+            "uk": "май па́рсел уо́з делі́верд не́кст до́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.17",
+          "say": {
+            "ru": "зэ фла́йт уо́з дилэ́йд бико́з ов фо́г",
+            "uk": "зе фла́йт уо́з діле́йд біко́з ов фо́г"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.20",
+          "say": {
+            "ru": "зэ риси́т уо́з сэ́нт ту зэ ро́нг и́мэйл эдрэ́с",
+            "uk": "зе рісі́т уо́з се́нт ту зе ро́нг і́мейл едре́с"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мою посылку доставили в соседний дом»",
+            "uk": "Виберіть, як сказати: «Мою посилку доставили по сусідству»",
+            "en": "Choose how to say: “My parcel was delivered next door.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:23.15",
+          "options": [
+            "en-classic-r1:23.15",
+            "en-classic-r1:23.17",
+            "en-classic-r1:23.20"
+          ],
+          "answerId": "en-classic-r1:23.15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Рейс задержали из-за тумана»",
+            "uk": "Виберіть, як сказати: «Рейс затримали через туман»",
+            "en": "Choose how to say: “The flight was delayed because of fog.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.17",
+          "options": [
+            "en-classic-r1:23.17",
+            "en-classic-r1:23.20",
+            "en-classic-r1:23.15"
+          ],
+          "answerId": "en-classic-r1:23.17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Квитанцию отправили на неверный адрес электронной почты»",
+            "uk": "Виберіть, як сказати: «Квитанцію було надіслано на неправильну адресу електронної пошти»",
+            "en": "Choose how to say: “The receipt was sent to the wrong email address.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.20",
+          "options": [
+            "en-classic-r1:23.20",
+            "en-classic-r1:23.15",
+            "en-classic-r1:23.17"
+          ],
+          "answerId": "en-classic-r1:23.20"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Вопросы",
+        "uk": "Питання",
+        "en": "Questions"
+      },
+      "text": {
+        "ru": "Чтобы спросить, поставьте is, are, was или were в начало фразы.\nIs breakfast included? — Завтрак включен?\nЧитается: из брэ́кфаст инклу́дид.\nСлово included значит «включён» (include + d).\nAre the drinks included? — Напитки включены?\nЧитается: ар зэ дри́нкс инклу́дид.\nСлово drinks значит «напитки» (drink + s).\nWas your bag checked? — Вашу сумку проверили?\nЧитается: уо́з ёр бэ́г чэ́кт.\nСлово Was стоит первым, значит, это вопрос.\nWhen are the bins collected? — Когда вывозят мусор?\nЧитается: уэ́н ар зэ би́нз колэ́ктид.\nСлово bins значит «мусорные баки» (bin + s).\nСлово When значит «когда».\nHow is the deposit returned? — Как возвращается задаток?\nЧитается: ха́у из зэ дипо́зит рита́рнд.\nСлово deposit значит «задаток».",
+        "uk": "Щоб запитати, поставте is, are, was або were на початок фрази.\nIs breakfast included? — Чи включено сніданок?\nЧитається: із бре́кфаст інклу́дід.\nСлово included означає «включений» (include + d).\nAre the drinks included? — Чи включено напої?\nЧитається: ар зе дрі́нкс інклу́дід.\nСлово drinks означає «напої» (drink + s).\nWas your bag checked? — Вашу сумку перевірили?\nЧитається: уо́з йор бе́г че́кт.\nСлово Was стоїть першим, отже, це питання.\nWhen are the bins collected? — Коли вивозять сміття?\nЧитається: уе́н ар зе бі́нз коле́ктід.\nСлово bins означає «сміттєві баки» (bin + s).\nСлово When означає «коли».\nHow is the deposit returned? — Як повертається завдаток?\nЧитається: ха́у із зе діпо́зіт ріта́рнд.\nСлово deposit означає «завдаток».",
+        "en": "To ask a question, put is, are, was or were at the start.\nIs breakfast included?\nThe word included means “inside the price” (include + d).\nAre the drinks included?\nThe word drinks means “things we drink” (drink + s).\nWas your bag checked?\nThe word Was comes first, so this is a question.\nWhen are the bins collected?\nThe word bins means “big boxes for rubbish” (bin + s).\nThe word When asks about the time.\nHow is the deposit returned?\nThe word deposit means “money you give at the start and get back later”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:23.21",
+          "say": {
+            "ru": "из брэ́кфаст инклу́дид",
+            "uk": "із бре́кфаст інклу́дід"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.24",
+          "say": {
+            "ru": "уо́з ёр бэ́г чэ́кт",
+            "uk": "уо́з йор бе́г че́кт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.27",
+          "say": {
+            "ru": "уэ́н ар зэ би́нз колэ́ктид",
+            "uk": "уе́н ар зе бі́нз коле́ктід"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.28",
+          "say": {
+            "ru": "ха́у из зэ дипо́зит рита́рнд",
+            "uk": "ха́у із зе діпо́зіт ріта́рнд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Завтрак включен?»",
+            "uk": "Виберіть, як сказати: «Чи включено сніданок?»",
+            "en": "Choose how to say: “Is breakfast included?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:23.21",
+          "options": [
+            "en-classic-r1:23.21",
+            "en-classic-r1:23.24",
+            "en-classic-r1:23.27"
+          ],
+          "answerId": "en-classic-r1:23.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вашу сумку проверили?»",
+            "uk": "Виберіть, як сказати: «Вашу сумку перевірили?»",
+            "en": "Choose how to say: “Was your bag checked?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.24",
+          "options": [
+            "en-classic-r1:23.24",
+            "en-classic-r1:23.27",
+            "en-classic-r1:23.28"
+          ],
+          "answerId": "en-classic-r1:23.24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как возвращается задаток?»",
+            "uk": "Виберіть, як сказати: «Як повертається завдаток?»",
+            "en": "Choose how to say: “How is the deposit returned?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.28",
+          "options": [
+            "en-classic-r1:23.28",
+            "en-classic-r1:23.21",
+            "en-classic-r1:23.27"
+          ],
+          "answerId": "en-classic-r1:23.28"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Не сделано: is not, was not",
+        "uk": "Не зроблено: is not, was not",
+        "en": "Not done: is not, was not"
+      },
+      "text": {
+        "ru": "Чтобы сказать «не», поставьте not после is, are, was или were.\nThe garage is not included in the rent. — Гараж не входит в стоимость аренды.\nЧитается: зэ гэ́раж из но́т инклу́дид ин зэ рэ́нт.\nСлово garage значит «гараж».\nСлова is not included значат «не входит».\nThese shoes are not made of leather. — Эти туфли сделаны не из кожи.\nЧитается: зи́з шу́з ар но́т мэ́йд ов лэ́зер.\nСлово leather значит «кожа».\nСлова made of значат «сделаны из».\nСлово made — это make → made.\nParking is not allowed here. — Парковка здесь запрещена.\nЧитается: па́ркинг из но́т эла́уд хи́р.\nСлово allowed значит «разрешён».\nСлова is not allowed значат «запрещено».\nFood is not served after nine. — Еда не подается после девяти.\nЧитается: фу́д из но́т сэ́рвд э́фтер на́йн.\nСлово food значит «еда».\nСлово served значит «подаётся» (serve + d).\nThe parcel was not damaged. — Посылка не повреждена.\nЧитается: зэ па́рсел уо́з но́т дэ́миджд.\nСлово damaged значит «повреждена» (damage + d).",
+        "uk": "Щоб сказати «не», поставте not після is, are, was або were.\nThe garage is not included in the rent. — Гараж не включений у вартість оренди.\nЧитається: зе ге́раж із но́т інклу́дід ін зе ре́нт.\nСлово garage означає «гараж».\nСлова is not included означають «не входить».\nThese shoes are not made of leather. — Це взуття не зі шкіри.\nЧитається: зі́з шу́з ар но́т ме́йд ов ле́зер.\nСлово leather означає «шкіра».\nСлова made of означають «зроблені з».\nСлово made — це make → made.\nParking is not allowed here. — Паркування тут заборонено.\nЧитається: па́ркінг із но́т ела́уд хі́р.\nСлово allowed означає «дозволений».\nСлова is not allowed означають «заборонено».\nFood is not served after nine. — Їжа не подається після дев'ятої.\nЧитається: фу́д із но́т се́рвд е́фтер на́йн.\nСлово food означає «їжа».\nСлово served означає «подається» (serve + d).\nThe parcel was not damaged. — Посилка не пошкоджена.\nЧитається: зе па́рсел уо́з но́т де́міджд.\nСлово damaged означає «пошкоджена» (damage + d).",
+        "en": "To say “not”, put not after is, are, was or were.\nThe garage is not included in the rent.\nThe word garage means “a building for a car”.\nThe words is not included mean “is not part of it”.\nThese shoes are not made of leather.\nThe word leather means “the skin of an animal, used for shoes and bags”.\nThe words made of mean “the material is”.\nThe word made is make → made.\nParking is not allowed here.\nThe word allowed means “something you may do”.\nThe words is not allowed mean “you may not do it”.\nFood is not served after nine.\nThe word food means “things we eat”.\nThe word served means “given to guests” (serve + d).\nThe parcel was not damaged.\nThe word damaged means “broken or hurt” (damage + d)."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:23.31",
+          "say": {
+            "ru": "зэ гэ́раж из но́т инклу́дид ин зэ рэ́нт",
+            "uk": "зе ге́раж із но́т інклу́дід ін зе ре́нт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.32",
+          "say": {
+            "ru": "зи́з шу́з ар но́т мэ́йд ов лэ́зер",
+            "uk": "зі́з шу́з ар но́т ме́йд ов ле́зер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.36",
+          "say": {
+            "ru": "па́ркинг из но́т эла́уд хи́р",
+            "uk": "па́ркінг із но́т ела́уд хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.37",
+          "say": {
+            "ru": "фу́д из но́т сэ́рвд э́фтер на́йн",
+            "uk": "фу́д із но́т се́рвд е́фтер на́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.40",
+          "say": {
+            "ru": "зэ па́рсел уо́з но́т дэ́миджд",
+            "uk": "зе па́рсел уо́з но́т де́міджд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Гараж не входит в стоимость аренды»",
+            "uk": "Виберіть, як сказати: «Гараж не включений у вартість оренди»",
+            "en": "Choose how to say: “The garage is not included in the rent.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:23.31",
+          "options": [
+            "en-classic-r1:23.31",
+            "en-classic-r1:23.32",
+            "en-classic-r1:23.36"
+          ],
+          "answerId": "en-classic-r1:23.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Еда не подается после девяти»",
+            "uk": "Виберіть, як сказати: «Їжа не подається після дев'ятої»",
+            "en": "Choose how to say: “Food is not served after nine.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.37",
+          "options": [
+            "en-classic-r1:23.37",
+            "en-classic-r1:23.36",
+            "en-classic-r1:23.31"
+          ],
+          "answerId": "en-classic-r1:23.37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Посылка не повреждена»",
+            "uk": "Виберіть, як сказати: «Посилка не пошкоджена»",
+            "en": "Choose how to say: “The parcel was not damaged.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.40",
+          "options": [
+            "en-classic-r1:23.40",
+            "en-classic-r1:23.31",
+            "en-classic-r1:23.32"
+          ],
+          "answerId": "en-classic-r1:23.40"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Будет, должно быть, можно",
+        "uk": "Буде, має бути, можна",
+        "en": "Will be, must be, can be"
+      },
+      "text": {
+        "ru": "Можно сказать и о том, что будет или что нужно сделать.\nВместо is ставят will be, must be или can be.\nСлова will, must и can вы уже видели.\nYour card will be checked at the gate. — Ваша карта будет проверена на входе.\nЧитается: ёр ка́рд уил би чэ́кт эт зэ гэ́йт.\nСлова will be значат «будет».\nСлово be значит «быть».\nThe refund will be processed tomorrow. — Возврат средств будет обработан завтра.\nЧитается: зэ ри́фанд уил би про́усэст тумо́роу.\nСлово processed значит «обработан» (process + ed).\nThe boxes must be labelled. — Коробки должны быть подписаны.\nЧитается: зэ бо́ксиз ма́ст би лэ́йблд.\nСлово labelled значит «подписаны, с этикеткой» (label + led).\nСлова must be значат «должны быть».\nВ слове label две l: так пишут в Британии.\nThe screen can be replaced. — Экран можно заменить.\nЧитается: зэ скри́н кэн би риплэ́йст.\nСлово replaced значит «заменён» (replace + d).\nСлова can be значат «можно».",
+        "uk": "Можна сказати й про те, що буде або що треба зробити.\nЗамість is ставлять will be, must be або can be.\nСлова will, must і can ви вже бачили.\nYour card will be checked at the gate. — Вашу картку перевірять на вході.\nЧитається: йор ка́рд уіл бі че́кт ет зе ге́йт.\nСлова will be означають «буде».\nСлово be означає «бути».\nThe refund will be processed tomorrow. — Повернення коштів буде оброблено завтра.\nЧитається: зе рі́фанд уіл бі про́усест тумо́роу.\nСлово processed означає «оброблений» (process + ed).\nThe boxes must be labelled. — Коробки повинні бути марковані.\nЧитається: зе бо́ксіз ма́ст бі ле́йблд.\nСлово labelled означає «підписані, з етикеткою» (label + led).\nСлова must be означають «мають бути».\nУ слові label дві l: так пишуть у Британії.\nThe screen can be replaced. — Екран можна замінити.\nЧитається: зе скрі́н кен бі ріпле́йст.\nСлово replaced означає «замінений» (replace + d).\nСлова can be означають «можна».",
+        "en": "We can also say what will happen or what must be done.\nInstead of is we say will be, must be or can be.\nYou have already seen will, must and can.\nYour card will be checked at the gate.\nThe words will be mean “it is going to be”.\nThe word be means “to exist in a state”.\nThe refund will be processed tomorrow.\nThe word processed means “dealt with” (process + ed).\nThe boxes must be labelled.\nThe word labelled means “with a label on it” (label + led).\nThe words must be mean “it is necessary that it is”.\nIn label we write two l: this is how British people write it.\nThe screen can be replaced.\nThe word replaced means “put in place of the old one” (replace + d).\nThe words can be mean “it is possible to”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:23.41",
+          "say": {
+            "ru": "ёр ка́рд уил би чэ́кт эт зэ гэ́йт",
+            "uk": "йор ка́рд уіл бі че́кт ет зе ге́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.42",
+          "say": {
+            "ru": "зэ ри́фанд уил би про́усэст тумо́роу",
+            "uk": "зе рі́фанд уіл бі про́усест тумо́роу"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.45",
+          "say": {
+            "ru": "зэ скри́н кэн би риплэ́йст",
+            "uk": "зе скрі́н кен бі ріпле́йст"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваша карта будет проверена на входе»",
+            "uk": "Виберіть, як сказати: «Вашу картку перевірять на вході»",
+            "en": "Choose how to say: “Your card will be checked at the gate.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:23.41",
+          "options": [
+            "en-classic-r1:23.41",
+            "en-classic-r1:23.42",
+            "en-classic-r1:23.45"
+          ],
+          "answerId": "en-classic-r1:23.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Возврат средств будет обработан завтра»",
+            "uk": "Виберіть, як сказати: «Повернення коштів буде оброблено завтра»",
+            "en": "Choose how to say: “The refund will be processed tomorrow.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.42",
+          "options": [
+            "en-classic-r1:23.42",
+            "en-classic-r1:23.45",
+            "en-classic-r1:23.41"
+          ],
+          "answerId": "en-classic-r1:23.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Экран можно заменить»",
+            "uk": "Виберіть, як сказати: «Екран можна замінити»",
+            "en": "Choose how to say: “The screen can be replaced.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.45",
+          "options": [
+            "en-classic-r1:23.45",
+            "en-classic-r1:23.41",
+            "en-classic-r1:23.42"
+          ],
+          "answerId": "en-classic-r1:23.45"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Сейчас и уже: being и been",
+        "uk": "Зараз і вже: being і been",
+        "en": "Now and already: being and been"
+      },
+      "text": {
+        "ru": "Можно сказать, что делают прямо сейчас.\nИ что уже сделано.\nOur street is being resurfaced. — Нашу улицу заново асфальтируют.\nЧитается: а́ур стри́т из би́инг рисэ́рфист.\nСлово being значит «делают сейчас» (be + ing).\nСлова is being значат «сейчас делают».\nКак в is waiting — «сейчас ждёт».\nСлово resurfaced значит «заново покрыта асфальтом» (resurface + d).\nThe lift is being repaired this week. — Лифт ремонтируется на этой неделе.\nЧитается: зэ ли́фт из би́инг рипэ́рд зис уи́к.\nСлова is being repaired значат «сейчас ремонтируют».\nThe bags have been moved downstairs. — Сумки перенесли вниз.\nЧитается: зэ бэ́гз хэ́в би́н му́вд даунсте́рз.\nСлово been значит «был, было» (be → been).\nСлово moved значит «перенесены» (move + d).\nСлова have been moved значат «уже перенесены».\nThe message has been forwarded to reception. — Сообщение перенаправлено на ресепшен.\nЧитается: зэ мэ́сидж хэ́з би́н фо́рвардид ту рисэ́пшн.\nСлово forwarded значит «перенаправлено» (forward + ed).\nСлова has been значат «уже было».\nHas — когда речь об одной вещи.",
+        "uk": "Можна сказати, що роблять прямо зараз.\nІ що вже зроблено.\nOur street is being resurfaced. — Нашу вулицю заново асфальтують.\nЧитається: а́ур стрі́т із бі́інг рісе́рфіст.\nСлово being означає «роблять зараз» (be + ing).\nСлова is being означають «зараз роблять».\nЯк в is waiting — «зараз чекає».\nСлово resurfaced означає «заново вкрита асфальтом» (resurface + d).\nThe lift is being repaired this week. — Ліфт ремонтують цього тижня.\nЧитається: зе лі́фт із бі́інг ріпе́рд зіс уі́к.\nСлова is being repaired означають «зараз ремонтують».\nThe bags have been moved downstairs. — Сумки перенесли вниз.\nЧитається: зе бе́гз хе́в бі́н му́вд даунсте́рз.\nСлово been означає «був, було» (be → been).\nСлово moved означає «перенесені» (move + d).\nСлова have been moved означають «вже перенесені».\nThe message has been forwarded to reception. — Повідомлення переслано на рецепцію.\nЧитається: зе ме́сідж хе́з бі́н фо́рвардід ту рісе́пшн.\nСлово forwarded означає «переслано» (forward + ed).\nСлова has been означають «вже було».\nHas — коли мова про одну річ.",
+        "en": "We can say what is being done right now.\nAnd what has already been done.\nOur street is being resurfaced.\nThe word being means “happening now” (be + ing).\nThe words is being mean “someone is doing it now”.\nIt is like is waiting: it is happening now.\nThe word resurfaced means “given a new top of road” (resurface + d).\nThe lift is being repaired this week.\nThe words is being repaired mean “someone is repairing it now”.\nThe bags have been moved downstairs.\nThe word been means “the shape of be after have” (be → been).\nThe word moved means “taken to another place” (move + d).\nThe words have been moved mean “someone has moved them”.\nThe message has been forwarded to reception.\nThe word forwarded means “sent on to another person” (forward + ed).\nThe words has been mean “it has already been”.\nWe say has for one thing."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:23.47",
+          "say": {
+            "ru": "а́ур стри́т из би́инг рисэ́рфист",
+            "uk": "а́ур стрі́т із бі́інг рісе́рфіст"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.49",
+          "say": {
+            "ru": "зэ бэ́гз хэ́в би́н му́вд даунсте́рз",
+            "uk": "зе бе́гз хе́в бі́н му́вд даунсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:23.50",
+          "say": {
+            "ru": "зэ мэ́сидж хэ́з би́н фо́рвардид ту рисэ́пшн",
+            "uk": "зе ме́сідж хе́з бі́н фо́рвардід ту рісе́пшн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нашу улицу заново асфальтируют»",
+            "uk": "Виберіть, як сказати: «Нашу вулицю заново асфальтують»",
+            "en": "Choose how to say: “Our street is being resurfaced.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:23.47",
+          "options": [
+            "en-classic-r1:23.47",
+            "en-classic-r1:23.49",
+            "en-classic-r1:23.50"
+          ],
+          "answerId": "en-classic-r1:23.47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сумки перенесли вниз»",
+            "uk": "Виберіть, як сказати: «Сумки перенесли вниз»",
+            "en": "Choose how to say: “The bags have been moved downstairs.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.49",
+          "options": [
+            "en-classic-r1:23.49",
+            "en-classic-r1:23.50",
+            "en-classic-r1:23.47"
+          ],
+          "answerId": "en-classic-r1:23.49"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сообщение перенаправлено на ресепшен»",
+            "uk": "Виберіть, як сказати: «Повідомлення переслано на рецепцію»",
+            "en": "Choose how to say: “The message has been forwarded to reception.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:23.50",
+          "options": [
+            "en-classic-r1:23.50",
+            "en-classic-r1:23.47",
+            "en-classic-r1:23.49"
+          ],
+          "answerId": "en-classic-r1:23.50"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+ "lang": "en",
+ "lesson": 19,
+ "words": {
+  "beside": {
+   "ru": "рядом с, возле",
+   "uk": "поруч із, біля",
+   "en": "next to",
+   "es": "al lado de"
+  },
+  "menu": {
+   "ru": "меню",
+   "uk": "меню",
+   "en": "list of food in a restaurant",
+   "es": "menú, carta"
+  },
+  "clock": {
+   "ru": "часы (настенные)",
+   "uk": "годинник (настінний)",
+   "en": "thing that shows the time",
+   "es": "reloj"
+  },
+  "above": {
+   "ru": "над",
+   "uk": "над",
+   "en": "higher than",
+   "es": "encima de, sobre"
+  },
+  "lobby": {
+   "ru": "вестибюль, холл",
+   "uk": "вестибюль, хол",
+   "en": "big entrance room in a building",
+   "es": "vestíbulo"
+  },
+  "airport": {
+   "ru": "аэропорт",
+   "uk": "аеропорт",
+   "en": "place where planes land",
+   "es": "aeropuerto"
+  },
+  "aisle": {
+   "ru": "проход (между рядами)",
+   "uk": "прохід (між рядами)",
+   "en": "path between seats",
+   "es": "pasillo"
+  },
+  "opposite": {
+   "ru": "напротив",
+   "uk": "навпроти",
+   "en": "facing across from",
+   "es": "enfrente de"
+  },
+  "library": {
+   "ru": "библиотека",
+   "uk": "бібліотека",
+   "en": "place with books to borrow",
+   "es": "biblioteca"
+  },
+  "rank": {
+   "ru": "стоянка (такси)",
+   "uk": "стоянка (таксі)",
+   "en": "line of waiting taxis",
+   "es": "parada (de taxis)"
+  },
+  "between": {
+   "ru": "между",
+   "uk": "між",
+   "en": "in the middle of two",
+   "es": "entre"
+  },
+  "wall": {
+   "ru": "стена",
+   "uk": "стіна",
+   "en": "side of a room",
+   "es": "pared, muro"
+  },
+  "and": {
+   "ru": "и, а",
+   "uk": "і, та",
+   "en": "word that joins two things",
+   "es": "y"
+  },
+  "bench": {
+   "ru": "скамейка",
+   "uk": "лавка",
+   "en": "long seat outside",
+   "es": "banco"
+  },
+  "tree": {
+   "ru": "дерево",
+   "uk": "дерево",
+   "en": "tall plant with leaves",
+   "es": "árbol"
+  },
+  "bridge": {
+   "ru": "мост",
+   "uk": "міст",
+   "en": "road over a river",
+   "es": "puente"
+  },
+  "mirror": {
+   "ru": "зеркало",
+   "uk": "дзеркало",
+   "en": "glass you see yourself in",
+   "es": "espejo"
+  },
+  "folder": {
+   "ru": "папка",
+   "uk": "папка",
+   "en": "cover for papers",
+   "es": "carpeta"
+  },
+  "suitcase": {
+   "ru": "чемодан",
+   "uk": "валіза",
+   "en": "bag for travel",
+   "es": "maleta"
+  },
+  "counter": {
+   "ru": "стойка, прилавок",
+   "uk": "стійка, прилавок",
+   "en": "long table in a shop",
+   "es": "mostrador"
+  },
+  "hang": {
+   "ru": "повесить",
+   "uk": "повісити",
+   "en": "fix on a hook",
+   "es": "colgar"
+  },
+  "hook": {
+   "ru": "крючок",
+   "uk": "гачок",
+   "en": "bent piece for hanging",
+   "es": "gancho"
+  },
+  "slide": {
+   "ru": "подсунуть, сдвинуть",
+   "uk": "підсунути, посунути",
+   "en": "push gently along a surface",
+   "es": "deslizar"
+  },
+  "note": {
+   "ru": "записка",
+   "uk": "записка",
+   "en": "short written message",
+   "es": "nota"
+  },
+  "anna": {
+   "ru": "Анна",
+   "uk": "Анна",
+   "en": "a woman's name",
+   "es": "Anna (nombre de mujer)"
+  },
+  "stain": {
+   "ru": "пятно",
+   "uk": "пляма",
+   "en": "dirty mark",
+   "es": "mancha"
+  },
+  "sleeve": {
+   "ru": "рукав",
+   "uk": "рукав",
+   "en": "part of a shirt for the arm",
+   "es": "manga"
+  },
+  "hole": {
+   "ru": "дыра, дырка",
+   "uk": "дірка, діра",
+   "en": "empty opening in something",
+   "es": "agujero"
+  },
+  "pocket": {
+   "ru": "карман",
+   "uk": "кишеня",
+   "en": "small bag sewn in clothes",
+   "es": "bolsillo"
+  },
+  "top": {
+   "ru": "верхний",
+   "uk": "верхній",
+   "en": "highest",
+   "es": "de arriba, superior"
+  },
+  "bottom": {
+   "ru": "нижний",
+   "uk": "нижній",
+   "en": "lowest",
+   "es": "de abajo, inferior"
+  },
+  "ground": {
+   "ru": "земля; нижний (этаж)",
+   "uk": "земля; нижній (поверх)",
+   "en": "the earth; floor at street level",
+   "es": "suelo; planta baja"
+  },
+  "main": {
+   "ru": "главный",
+   "uk": "головний",
+   "en": "most important",
+   "es": "principal"
+  }
+ }
+}

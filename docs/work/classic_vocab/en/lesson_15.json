@@ -1,0 +1,168 @@
+{
+ "lang": "en",
+ "lesson": 15,
+ "words": {
+  "hers": {
+   "ru": "её",
+   "uk": "її",
+   "en": "belonging to her",
+   "es": "suyo, de ella"
+  },
+  "those": {
+   "ru": "те; эти",
+   "uk": "ті; ці",
+   "en": "the ones over there",
+   "es": "esos, aquellos"
+  },
+  "ours": {
+   "ru": "наш, наши",
+   "uk": "наш, наші",
+   "en": "belonging to us",
+   "es": "nuestro"
+  },
+  "theirs": {
+   "ru": "их, принадлежит им",
+   "uk": "їхній, належить їм",
+   "en": "belonging to them",
+   "es": "suyo, de ellos"
+  },
+  "gloves": {
+   "ru": "перчатки",
+   "uk": "рукавички",
+   "en": "hand covers for cold",
+   "es": "guantes"
+  },
+  "wet": {
+   "ru": "мокрый",
+   "uk": "мокрий",
+   "en": "covered with water",
+   "es": "mojado"
+  },
+  "scarf": {
+   "ru": "шарф",
+   "uk": "шарф",
+   "en": "cloth worn round the neck",
+   "es": "bufanda"
+  },
+  "jacket": {
+   "ru": "куртка",
+   "uk": "куртка",
+   "en": "short coat",
+   "es": "chaqueta"
+  },
+  "hall": {
+   "ru": "прихожая, коридор",
+   "uk": "передпокій, коридор",
+   "en": "room just inside the front door",
+   "es": "vestíbulo, pasillo"
+  },
+  "damp": {
+   "ru": "влажный",
+   "uk": "вологий",
+   "en": "a little wet",
+   "es": "húmedo"
+  },
+  "boots": {
+   "ru": "ботинки, сапоги",
+   "uk": "черевики, чоботи",
+   "en": "strong shoes that cover the ankle",
+   "es": "botas"
+  },
+  "umbrella": {
+   "ru": "зонт, зонтик",
+   "uk": "парасолька, парасоля",
+   "en": "keeps rain off your head",
+   "es": "paraguas"
+  },
+  "badge": {
+   "ru": "бейдж, значок",
+   "uk": "бейдж, значок",
+   "en": "small card with your name",
+   "es": "insignia, tarjeta identificativa"
+  },
+  "notebook": {
+   "ru": "блокнот, записная книжка",
+   "uk": "блокнот, записник",
+   "en": "book for writing notes",
+   "es": "cuaderno"
+  },
+  "whose": {
+   "ru": "чей, чья, чьи",
+   "uk": "чий, чия, чиї",
+   "en": "asks who owns something",
+   "es": "de quién"
+  },
+  "but": {
+   "ru": "но, а",
+   "uk": "але, а",
+   "en": "joins two different ideas",
+   "es": "pero"
+  },
+  "postcode": {
+   "ru": "почтовый индекс",
+   "uk": "поштовий індекс",
+   "en": "number-letter code of your address",
+   "es": "código postal"
+  },
+  "older": {
+   "ru": "старше",
+   "uk": "старший, старіший",
+   "en": "having more years",
+   "es": "mayor, más viejo"
+  },
+  "dry": {
+   "ru": "сухой",
+   "uk": "сухий",
+   "en": "without water",
+   "es": "seco"
+  },
+  "own": {
+   "ru": "свой, собственный",
+   "uk": "свій, власний",
+   "en": "belonging to you and no one else",
+   "es": "propio"
+  },
+  "please": {
+   "ru": "пожалуйста",
+   "uk": "будь ласка",
+   "en": "polite word when asking",
+   "es": "por favor"
+  },
+  "sister's": {
+   "ru": "сестры",
+   "uk": "сестри",
+   "en": "belonging to the sister",
+   "es": "de la hermana"
+  },
+  "brother's": {
+   "ru": "брата",
+   "uk": "брата",
+   "en": "belonging to the brother",
+   "es": "del hermano"
+  },
+  "children's": {
+   "ru": "детей",
+   "uk": "дітей",
+   "en": "belonging to the children",
+   "es": "de los niños"
+  },
+  "neighbour's": {
+   "ru": "соседа, соседки",
+   "uk": "сусіда, сусідки",
+   "en": "belonging to the neighbour",
+   "es": "del vecino"
+  },
+  "driver's": {
+   "ru": "водителя",
+   "uk": "водія",
+   "en": "belonging to the driver",
+   "es": "del conductor"
+  },
+  "taken": {
+   "ru": "занят",
+   "uk": "зайнятий",
+   "en": "already used by someone",
+   "es": "ocupado"
+  }
+ }
+}

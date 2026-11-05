@@ -1,0 +1,344 @@
+{
+ "lang": "en",
+ "lesson": 31,
+ "words": [
+  {
+   "form": "laugh",
+   "surface": "laugh",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.02",
+     "target": "I heard Anna laugh",
+     "ru": "Я слышал, как Анна засмеялась.",
+     "en": "I heard Anna laugh."
+    }
+   ]
+  },
+  {
+   "form": "slam",
+   "surface": "slam",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.04",
+     "target": "She heard the gate slam",
+     "ru": "Она слышала, как захлопнулись ворота.",
+     "en": "She heard the gate slam."
+    }
+   ]
+  },
+  {
+   "form": "fall",
+   "surface": "fall",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.05",
+     "target": "He saw the key fall",
+     "ru": "Он видел, как упал ключ.",
+     "en": "He saw the key fall."
+    }
+   ]
+  },
+  {
+   "form": "click",
+   "surface": "click",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.07",
+     "target": "We heard the kettle click off",
+     "ru": "Мы слышали, как выключился чайник.",
+     "en": "We heard the kettle click off."
+    }
+   ]
+  },
+  {
+   "form": "knock",
+   "surface": "knock",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.09",
+     "target": "I heard someone knock twice",
+     "ru": "Я слышал, как кто-то дважды постучал.",
+     "en": "I heard someone knock twice."
+    }
+   ]
+  },
+  {
+   "form": "reverse",
+   "surface": "reverse",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.10",
+     "target": "They watched the driver reverse",
+     "ru": "Они видели, как водитель сдавал назад.",
+     "en": "They watched the driver reverse."
+    }
+   ]
+  },
+  {
+   "form": "pour",
+   "surface": "pour",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.12",
+     "target": "We heard her pour water into the pan",
+     "ru": "Мы слышали, как она наливала воду в кастрюлю.",
+     "en": "We heard her pour water into the pan."
+    }
+   ]
+  },
+  {
+   "form": "into",
+   "surface": "into",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.12",
+     "target": "We heard her pour water into the pan",
+     "ru": "Мы слышали, как она наливала воду в кастрюлю.",
+     "en": "We heard her pour water into the pan."
+    }
+   ]
+  },
+  {
+   "form": "wave",
+   "surface": "wave",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.16",
+     "target": "We saw you wave outside the clinic",
+     "ru": "Мы видели, как вы махали рукой возле клиники.",
+     "en": "We saw you wave outside the clinic."
+    }
+   ]
+  },
+  {
+   "form": "hand",
+   "surface": "hand",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.20",
+     "target": "He saw her hand the invoice back",
+     "ru": "Он видел, как она вернула счет.",
+     "en": "He saw her hand the invoice back."
+    }
+   ]
+  },
+  {
+   "form": "playing",
+   "surface": "playing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.22",
+     "target": "I heard the children playing upstairs",
+     "ru": "Я слышал, как дети играют наверху.",
+     "en": "I heard the children playing upstairs."
+    }
+   ]
+  },
+  {
+   "form": "paint",
+   "surface": "paint",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.23",
+     "target": "We watched the paint dripping onto the floor",
+     "ru": "Мы наблюдали, как краска капает на пол.",
+     "en": "We watched the paint dripping onto the floor."
+    }
+   ]
+  },
+  {
+   "form": "onto",
+   "surface": "onto",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.23",
+     "target": "We watched the paint dripping onto the floor",
+     "ru": "Мы наблюдали, как краска капает на пол.",
+     "en": "We watched the paint dripping onto the floor."
+    }
+   ]
+  },
+  {
+   "form": "vibrating",
+   "surface": "vibrating",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.25",
+     "target": "I felt my phone vibrating",
+     "ru": "Я почувствовал, как мой телефон вибрирует.",
+     "en": "I felt my phone vibrating."
+    }
+   ]
+  },
+  {
+   "form": "lend",
+   "surface": "lend",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.28",
+     "target": "We saw Anna lend the driver a pen",
+     "ru": "Мы видели, как Анна одолжила водителю ручку.",
+     "en": "We saw Anna lend the driver a pen."
+    }
+   ]
+  },
+  {
+   "form": "introduce",
+   "surface": "introduce",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.29",
+     "target": "I heard Anna introduce herself to the nurse",
+     "ru": "Я слышал, как Анна представилась медсестре.",
+     "en": "I heard Anna introduce herself to the nurse."
+    }
+   ]
+  },
+  {
+   "form": "digging",
+   "surface": "digging",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.30",
+     "target": "She watched the dog digging under the fence",
+     "ru": "Она наблюдала, как собака копает под забором.",
+     "en": "She watched the dog digging under the fence."
+    }
+   ]
+  },
+  {
+   "form": "fence",
+   "surface": "fence",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.30",
+     "target": "She watched the dog digging under the fence",
+     "ru": "Она наблюдала, как собака копает под забором.",
+     "en": "She watched the dog digging under the fence."
+    }
+   ]
+  },
+  {
+   "form": "choose",
+   "surface": "choose",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.33",
+     "target": "He let the children choose a book",
+     "ru": "Он разрешил детям выбрать книгу.",
+     "en": "He let the children choose a book."
+    }
+   ]
+  },
+  {
+   "form": "jump",
+   "surface": "jump",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.36",
+     "target": "The noise made me jump",
+     "ru": "Шум заставил меня вздрогнуть.",
+     "en": "The noise made me jump."
+    }
+   ]
+  },
+  {
+   "form": "eyes",
+   "surface": "eyes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.37",
+     "target": "The smoke made my eyes water",
+     "ru": "От дыма у меня слезились глаза.",
+     "en": "The smoke made my eyes water."
+    }
+   ]
+  },
+  {
+   "form": "delay",
+   "surface": "delay",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.38",
+     "target": "The delay made us miss the train",
+     "ru": "Из-за задержки мы опоздали на поезд.",
+     "en": "The delay made us miss the train."
+    }
+   ]
+  },
+  {
+   "form": "smell",
+   "surface": "smell",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.39",
+     "target": "The smell made her feel sick",
+     "ru": "От запаха ей стало плохо.",
+     "en": "The smell made her feel sick."
+    }
+   ]
+  },
+  {
+   "form": "unpack",
+   "surface": "unpack",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.41",
+     "target": "I asked him to unpack the boxes by the gate",
+     "ru": "Я попросил его распаковать коробки у ворот.",
+     "en": "I asked him to unpack the boxes by the gate."
+    }
+   ]
+  },
+  {
+   "form": "expected",
+   "surface": "expected",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.45",
+     "target": "I expected the house to be empty before six",
+     "ru": "Я ожидал, что дом опустеет до шести.",
+     "en": "I expected the house to be empty before six."
+    }
+   ]
+  },
+  {
+   "form": "doorbell",
+   "surface": "doorbell",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:31.46",
+     "target": "I heard the doorbell ring while I was upstairs",
+     "ru": "Я услышал звонок в дверь, когда был наверху.",
+     "en": "I heard the doorbell ring while I was upstairs."
+    }
+   ]
+  }
+ ]
+}

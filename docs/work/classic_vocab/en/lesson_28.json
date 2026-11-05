@@ -1,0 +1,168 @@
+{
+ "lang": "en",
+ "lesson": 28,
+ "words": {
+  "cut": {
+   "ru": "порезал, порезался",
+   "uk": "порізав, порізався",
+   "en": "opened the skin with a sharp thing",
+   "es": "cortó"
+  },
+  "myself": {
+   "ru": "себя, сам",
+   "uk": "себе, сам",
+   "en": "me, the one who acts",
+   "es": "me, yo mismo"
+  },
+  "hurt": {
+   "ru": "поранила, ушибла",
+   "uk": "поранила, забила",
+   "en": "caused pain or an injury",
+   "es": "lastimó"
+  },
+  "herself": {
+   "ru": "себя, сама",
+   "uk": "себе, сама",
+   "en": "her, the one who acts",
+   "es": "se, ella misma"
+  },
+  "blamed": {
+   "ru": "винил",
+   "uk": "звинувачував",
+   "en": "said it was someone's fault",
+   "es": "culpó"
+  },
+  "himself": {
+   "ru": "себя, сам",
+   "uk": "себе, сам",
+   "en": "him, the one who acts",
+   "es": "se, él mismo"
+  },
+  "introduced": {
+   "ru": "представил, представились",
+   "uk": "представив, представилися",
+   "en": "told your name to new people",
+   "es": "presentó"
+  },
+  "ourselves": {
+   "ru": "себя, сами",
+   "uk": "себе, самі",
+   "en": "us, the ones who act",
+   "es": "nos, nosotros mismos"
+  },
+  "themselves": {
+   "ru": "себя, сами",
+   "uk": "себе, самі",
+   "en": "them, the ones who act",
+   "es": "se, ellos mismos"
+  },
+  "yourself": {
+   "ru": "себя, сам",
+   "uk": "себе, сам",
+   "en": "you, the one who acts",
+   "es": "te, tú mismo"
+  },
+  "cat": {
+   "ru": "кошка",
+   "uk": "кішка",
+   "en": "a small pet that says miaow",
+   "es": "gato"
+  },
+  "taught": {
+   "ru": "учил, научил",
+   "uk": "вчив, навчив",
+   "en": "helped someone learn",
+   "es": "enseñó"
+  },
+  "poured": {
+   "ru": "налила, налил",
+   "uk": "налила, налив",
+   "en": "made a liquid flow into a cup",
+   "es": "sirvió"
+  },
+  "reminded": {
+   "ru": "напомнил",
+   "uk": "нагадав",
+   "en": "made someone remember",
+   "es": "recordó"
+  },
+  "promised": {
+   "ru": "пообещал",
+   "uk": "пообіцяв",
+   "en": "said he will surely do it",
+   "es": "prometió"
+  },
+  "extra": {
+   "ru": "дополнительный",
+   "uk": "додатковий",
+   "en": "more than usual",
+   "es": "extra"
+  },
+  "built": {
+   "ru": "построили",
+   "uk": "збудували",
+   "en": "made a house or shelter",
+   "es": "construyeron"
+  },
+  "make": {
+   "ru": "сделать, делать",
+   "uk": "зробити, робити",
+   "en": "create something",
+   "es": "hacer"
+  },
+  "damage": {
+   "ru": "повреждения",
+   "uk": "пошкодження",
+   "en": "harm to a thing",
+   "es": "daño"
+  },
+  "travelled": {
+   "ru": "ехал, путешествовал",
+   "uk": "їхав, мандрував",
+   "en": "went from place to place",
+   "es": "viajó"
+  },
+  "dress": {
+   "ru": "одеваться, одеть",
+   "uk": "одягатися, одягти",
+   "en": "put clothes on",
+   "es": "vestirse"
+  },
+  "yourselves": {
+   "ru": "себя, сами",
+   "uk": "себе, самі",
+   "en": "you all, the ones who act",
+   "es": "se, ustedes mismos"
+  },
+  "burn": {
+   "ru": "обжечь, обжечься",
+   "uk": "обпекти, обпектися",
+   "en": "hurt with something hot",
+   "es": "quemar"
+  },
+  "pan": {
+   "ru": "сковорода",
+   "uk": "сковорода",
+   "en": "flat pot for cooking",
+   "es": "sartén"
+  },
+  "tested": {
+   "ru": "проверил",
+   "uk": "перевірив",
+   "en": "tried to see how good or ready",
+   "es": "puso a prueba"
+  },
+  "enjoyed": {
+   "ru": "получил удовольствие, понравилось",
+   "uk": "отримав задоволення, сподобалося",
+   "en": "had a good time",
+   "es": "disfrutó"
+  },
+  "care": {
+   "ru": "забота; беречь",
+   "uk": "турбота; берегти",
+   "en": "looking after someone",
+   "es": "cuidado"
+  }
+ }
+}

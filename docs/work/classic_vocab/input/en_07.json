@@ -1,0 +1,661 @@
+{
+ "lang": "en",
+ "lesson": 7,
+ "words": [
+  {
+   "form": "number",
+   "surface": "number",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.05",
+     "target": "I have your number",
+     "ru": "У меня есть ваш номер.",
+     "en": "I have your number."
+    },
+    {
+     "id": "en-classic-r1:07.20",
+     "target": "I have the doctor's number",
+     "ru": "У меня есть номер врача.",
+     "en": "I have the doctor's number."
+    }
+   ]
+  },
+  {
+   "form": "car",
+   "surface": "car",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.07",
+     "target": "They have a car",
+     "ru": "У них есть машина.",
+     "en": "They have a car."
+    }
+   ]
+  },
+  {
+   "form": "bicycle",
+   "surface": "bicycle",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.08",
+     "target": "He has a bicycle",
+     "ru": "У него есть велосипед.",
+     "en": "He has a bicycle."
+    }
+   ]
+  },
+  {
+   "form": "question",
+   "surface": "question",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.10",
+     "target": "I have a question",
+     "ru": "У меня есть вопрос.",
+     "en": "I have a question."
+    }
+   ]
+  },
+  {
+   "form": "sore",
+   "surface": "sore",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.11",
+     "target": "I have a sore throat",
+     "ru": "У меня болит горло.",
+     "en": "I have a sore throat."
+    }
+   ]
+  },
+  {
+   "form": "throat",
+   "surface": "throat",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.11",
+     "target": "I have a sore throat",
+     "ru": "У меня болит горло.",
+     "en": "I have a sore throat."
+    }
+   ]
+  },
+  {
+   "form": "cough",
+   "surface": "cough",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.12",
+     "target": "He has a cough",
+     "ru": "У него кашель.",
+     "en": "He has a cough."
+    }
+   ]
+  },
+  {
+   "form": "headache",
+   "surface": "headache",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.13",
+     "target": "She has a headache",
+     "ru": "У неё болит голова.",
+     "en": "She has a headache."
+    }
+   ]
+  },
+  {
+   "form": "an",
+   "surface": "an",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.14",
+     "target": "We have an appointment",
+     "ru": "У нас назначена встреча.",
+     "en": "We have an appointment."
+    }
+   ]
+  },
+  {
+   "form": "appointment",
+   "surface": "appointment",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.14",
+     "target": "We have an appointment",
+     "ru": "У нас назначена встреча.",
+     "en": "We have an appointment."
+    }
+   ]
+  },
+  {
+   "form": "daughter",
+   "surface": "daughter",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.15",
+     "target": "My daughter has a cold",
+     "ru": "У моей дочери простуда.",
+     "en": "My daughter has a cold."
+    }
+   ]
+  },
+  {
+   "form": "blocked",
+   "surface": "blocked",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.16",
+     "target": "I have a blocked nose",
+     "ru": "У меня заложен нос.",
+     "en": "I have a blocked nose."
+    }
+   ]
+  },
+  {
+   "form": "nose",
+   "surface": "nose",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.16",
+     "target": "I have a blocked nose",
+     "ru": "У меня заложен нос.",
+     "en": "I have a blocked nose."
+    }
+   ]
+  },
+  {
+   "form": "fever",
+   "surface": "fever",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.17",
+     "target": "He has a fever",
+     "ru": "У него температура.",
+     "en": "He has a fever."
+    }
+   ]
+  },
+  {
+   "form": "prescription",
+   "surface": "prescription",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.18",
+     "target": "She has a prescription",
+     "ru": "У неё есть рецепт.",
+     "en": "She has a prescription."
+    }
+   ]
+  },
+  {
+   "form": "health",
+   "surface": "health",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.19",
+     "target": "They have health insurance",
+     "ru": "У них есть медицинская страховка.",
+     "en": "They have health insurance."
+    }
+   ]
+  },
+  {
+   "form": "insurance",
+   "surface": "insurance",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.19",
+     "target": "They have health insurance",
+     "ru": "У них есть медицинская страховка.",
+     "en": "They have health insurance."
+    }
+   ]
+  },
+  {
+   "form": "doctor's",
+   "surface": "doctor's",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.20",
+     "target": "I have the doctor's number",
+     "ru": "У меня есть номер врача.",
+     "en": "I have the doctor's number."
+    }
+   ]
+  },
+  {
+   "form": "charger",
+   "surface": "charger",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.21",
+     "target": "Do you have a charger",
+     "ru": "У вас есть зарядное устройство?",
+     "en": "Do you have a charger?"
+    }
+   ]
+  },
+  {
+   "form": "passport",
+   "surface": "passport",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.22",
+     "target": "Does she have her passport",
+     "ru": "Паспорт у неё с собой?",
+     "en": "Does she have her passport?"
+    },
+    {
+     "id": "en-classic-r1:07.44",
+     "target": "My passport has a blue cover",
+     "ru": "Мой паспорт в синей обложке.",
+     "en": "My passport has a blue cover."
+    }
+   ]
+  },
+  {
+   "form": "enough",
+   "surface": "enough",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.23",
+     "target": "Do we have enough time",
+     "ru": "У нас достаточно времени?",
+     "en": "Do we have enough time?"
+    }
+   ]
+  },
+  {
+   "form": "any",
+   "surface": "any",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.24",
+     "target": "Does he have any change",
+     "ru": "У него есть сдача?",
+     "en": "Does he have any change?"
+    }
+   ]
+  },
+  {
+   "form": "change",
+   "surface": "change",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.24",
+     "target": "Does he have any change",
+     "ru": "У него есть сдача?",
+     "en": "Does he have any change?"
+    }
+   ]
+  },
+  {
+   "form": "pen",
+   "surface": "pen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.25",
+     "target": "Do you have a pen",
+     "ru": "У вас есть ручка?",
+     "en": "Do you have a pen?"
+    }
+   ]
+  },
+  {
+   "form": "shower",
+   "surface": "shower",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.26",
+     "target": "Does the room have a shower",
+     "ru": "В номере есть душ?",
+     "en": "Does the room have a shower?"
+    }
+   ]
+  },
+  {
+   "form": "zip",
+   "surface": "zip",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.28",
+     "target": "Does the bag have a zip",
+     "ru": "На сумке есть молния?",
+     "en": "Does the bag have a zip?"
+    }
+   ]
+  },
+  {
+   "form": "smaller",
+   "surface": "smaller",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.29",
+     "target": "Do you have a smaller size",
+     "ru": "У вас есть меньший размер?",
+     "en": "Do you have a smaller size?"
+    }
+   ]
+  },
+  {
+   "form": "booking",
+   "surface": "booking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.31",
+     "target": "I do not have a booking",
+     "ru": "У меня нет бронирования.",
+     "en": "I do not have a booking."
+    }
+   ]
+  },
+  {
+   "form": "glasses",
+   "surface": "glasses",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.32",
+     "target": "She does not have her glasses",
+     "ru": "У неё нет с собой очков.",
+     "en": "She does not have her glasses."
+    }
+   ]
+  },
+  {
+   "form": "original",
+   "surface": "original",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.33",
+     "target": "We do not have the original receipt",
+     "ru": "У нас нет оригинала чека.",
+     "en": "We do not have the original receipt."
+    }
+   ]
+  },
+  {
+   "form": "driving",
+   "surface": "driving",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.34",
+     "target": "He does not have a driving licence",
+     "ru": "У него нет водительских прав.",
+     "en": "He does not have a driving licence."
+    }
+   ]
+  },
+  {
+   "form": "licence",
+   "surface": "licence",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.34",
+     "target": "He does not have a driving licence",
+     "ru": "У него нет водительских прав.",
+     "en": "He does not have a driving licence."
+    }
+   ]
+  },
+  {
+   "form": "bike",
+   "surface": "bike",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.37",
+     "target": "My bike does not have lights",
+     "ru": "На моем велосипеде нет фар.",
+     "en": "My bike does not have lights."
+    }
+   ]
+  },
+  {
+   "form": "handle",
+   "surface": "handle",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.38",
+     "target": "This door does not have a handle",
+     "ru": "У этой двери нет ручки.",
+     "en": "This door does not have a handle."
+    }
+   ]
+  },
+  {
+   "form": "chair",
+   "surface": "chair",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.39",
+     "target": "We do not have a spare chair",
+     "ru": "У нас нет лишнего стула.",
+     "en": "We do not have a spare chair."
+    }
+   ]
+  },
+  {
+   "form": "garden",
+   "surface": "garden",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.40",
+     "target": "The flat does not have a garden",
+     "ru": "В квартире нет сада.",
+     "en": "The flat does not have a garden."
+    }
+   ]
+  },
+  {
+   "form": "two",
+   "surface": "two",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.41",
+     "target": "Our bus has two doors",
+     "ru": "В нашем автобусе две двери.",
+     "en": "Our bus has two doors."
+    },
+    {
+     "id": "en-classic-r1:07.47",
+     "target": "We have a table for two",
+     "ru": "У нас есть столик на двоих.",
+     "en": "We have a table for two."
+    }
+   ]
+  },
+  {
+   "form": "three",
+   "surface": "three",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.43",
+     "target": "The form has three pages",
+     "ru": "В анкете три страницы.",
+     "en": "The form has three pages."
+    }
+   ]
+  },
+  {
+   "form": "pages",
+   "surface": "pages",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.43",
+     "target": "The form has three pages",
+     "ru": "В анкете три страницы.",
+     "en": "The form has three pages."
+    }
+   ]
+  },
+  {
+   "form": "blue",
+   "surface": "blue",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.44",
+     "target": "My passport has a blue cover",
+     "ru": "Мой паспорт в синей обложке.",
+     "en": "My passport has a blue cover."
+    }
+   ]
+  },
+  {
+   "form": "deep",
+   "surface": "deep",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.45",
+     "target": "The coat has deep pockets",
+     "ru": "В пальто глубокие карманы.",
+     "en": "The coat has deep pockets."
+    }
+   ]
+  },
+  {
+   "form": "pockets",
+   "surface": "pockets",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.45",
+     "target": "The coat has deep pockets",
+     "ru": "В пальто глубокие карманы.",
+     "en": "The coat has deep pockets."
+    }
+   ]
+  },
+  {
+   "form": "afternoon",
+   "surface": "afternoon",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.46",
+     "target": "She has a free afternoon",
+     "ru": "У неё свободна вторая половина дня.",
+     "en": "She has a free afternoon."
+    }
+   ]
+  },
+  {
+   "form": "table",
+   "surface": "table",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.47",
+     "target": "We have a table for two",
+     "ru": "У нас есть столик на двоих.",
+     "en": "We have a table for two."
+    }
+   ]
+  },
+  {
+   "form": "for",
+   "surface": "for",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.47",
+     "target": "We have a table for two",
+     "ru": "У нас есть столик на двоих.",
+     "en": "We have a table for two."
+    }
+   ]
+  },
+  {
+   "form": "hotel",
+   "surface": "hotel",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.48",
+     "target": "The hotel has a luggage room",
+     "ru": "В отеле есть камера хранения багажа.",
+     "en": "The hotel has a luggage room."
+    }
+   ]
+  },
+  {
+   "form": "luggage",
+   "surface": "luggage",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.48",
+     "target": "The hotel has a luggage room",
+     "ru": "В отеле есть камера хранения багажа.",
+     "en": "The hotel has a luggage room."
+    }
+   ]
+  },
+  {
+   "form": "moment",
+   "surface": "moment",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.49",
+     "target": "Do you have a moment",
+     "ru": "У вас есть минутка?",
+     "en": "Do you have a moment?"
+    }
+   ]
+  },
+  {
+   "form": "everything",
+   "surface": "everything",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:07.50",
+     "target": "I have everything I need",
+     "ru": "У меня есть всё, что мне нужно.",
+     "en": "I have everything I need."
+    }
+   ]
+  }
+ ]
+}

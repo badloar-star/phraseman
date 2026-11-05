@@ -1,0 +1,276 @@
+{
+ "lang": "en",
+ "lesson": 9,
+ "words": {
+  "there": {
+   "ru": "в таких фразах «есть»; по-русски нет",
+   "uk": "у таких фразах «є»; українською немає",
+   "en": "word that begins \"there is\"",
+   "es": "hay"
+  },
+  "queue": {
+   "ru": "очередь",
+   "uk": "черга",
+   "en": "line of waiting people",
+   "es": "cola"
+  },
+  "queues": {
+   "ru": "очереди",
+   "uk": "черги",
+   "en": "lines of waiting people",
+   "es": "colas"
+  },
+  "back": {
+   "ru": "задняя часть; оборот",
+   "uk": "задня частина; зворот",
+   "en": "rear part or other side",
+   "es": "parte trasera"
+  },
+  "toilet": {
+   "ru": "туалет",
+   "uk": "туалет",
+   "en": "room for the bathroom",
+   "es": "baño"
+  },
+  "upstairs": {
+   "ru": "наверху",
+   "uk": "нагорі",
+   "en": "on a higher floor",
+   "es": "arriba"
+  },
+  "toilets": {
+   "ru": "туалеты",
+   "uk": "туалети",
+   "en": "rooms for the bathroom",
+   "es": "baños"
+  },
+  "downstairs": {
+   "ru": "внизу",
+   "uk": "внизу",
+   "en": "on a lower floor",
+   "es": "abajo"
+  },
+  "map": {
+   "ru": "карта",
+   "uk": "карта",
+   "en": "drawing of places",
+   "es": "mapa"
+  },
+  "outside": {
+   "ru": "снаружи",
+   "uk": "зовні",
+   "en": "not inside",
+   "es": "fuera"
+  },
+  "signs": {
+   "ru": "указатели, знаки",
+   "uk": "покажчики, знаки",
+   "en": "boards that show something",
+   "es": "letreros"
+  },
+  "inside": {
+   "ru": "внутри",
+   "uk": "всередині",
+   "en": "in the inner part",
+   "es": "dentro"
+  },
+  "fridge": {
+   "ru": "холодильник",
+   "uk": "холодильник",
+   "en": "cold box for food",
+   "es": "nevera"
+  },
+  "kettle": {
+   "ru": "чайник",
+   "uk": "чайник",
+   "en": "pot to boil water",
+   "es": "hervidor"
+  },
+  "soup": {
+   "ru": "суп",
+   "uk": "суп",
+   "en": "hot liquid food",
+   "es": "sopa"
+  },
+  "stove": {
+   "ru": "плита",
+   "uk": "плита",
+   "en": "cooker with burners",
+   "es": "cocina"
+  },
+  "eggs": {
+   "ru": "яйца",
+   "uk": "яйця",
+   "en": "food from hens",
+   "es": "huevos"
+  },
+  "cups": {
+   "ru": "чашки",
+   "uk": "чашки",
+   "en": "small drinking pots",
+   "es": "tazas"
+  },
+  "shelf": {
+   "ru": "полка",
+   "uk": "полиця",
+   "en": "flat board on a wall",
+   "es": "estante"
+  },
+  "bread": {
+   "ru": "хлеб",
+   "uk": "хліб",
+   "en": "baked food from flour",
+   "es": "pan"
+  },
+  "spoons": {
+   "ru": "ложки",
+   "uk": "ложки",
+   "en": "tools for eating soup",
+   "es": "cucharas"
+  },
+  "drawer": {
+   "ru": "ящик (стола, комода)",
+   "uk": "шухляда (столу, комода)",
+   "en": "sliding box in furniture",
+   "es": "cajón"
+  },
+  "rice": {
+   "ru": "рис",
+   "uk": "рис",
+   "en": "small white grains",
+   "es": "arroz"
+  },
+  "cupboard": {
+   "ru": "шкаф (на кухне)",
+   "uk": "шафа (на кухні)",
+   "en": "kitchen storage furniture",
+   "es": "armario"
+  },
+  "clean": {
+   "ru": "чистый",
+   "uk": "чистий",
+   "en": "not dirty",
+   "es": "limpio"
+  },
+  "towels": {
+   "ru": "полотенца",
+   "uk": "рушники",
+   "en": "cloths to dry the body",
+   "es": "toallas"
+  },
+  "soap": {
+   "ru": "мыло",
+   "uk": "мило",
+   "en": "stuff for washing hands",
+   "es": "jabón"
+  },
+  "sink": {
+   "ru": "раковина",
+   "uk": "раковина",
+   "en": "basin for washing",
+   "es": "fregadero"
+  },
+  "lockers": {
+   "ru": "шкафчики, камеры хранения",
+   "uk": "шафки, камери зберігання",
+   "en": "small locked cabinets",
+   "es": "taquillas"
+  },
+  "blankets": {
+   "ru": "одеяла",
+   "uk": "ковдри",
+   "en": "warm bed covers",
+   "es": "mantas"
+  },
+  "steps": {
+   "ru": "ступеньки",
+   "uk": "сходинки",
+   "en": "stairs to climb",
+   "es": "escalones"
+  },
+  "direct": {
+   "ru": "прямой",
+   "uk": "прямий",
+   "en": "without a change",
+   "es": "directo"
+  },
+  "sugar": {
+   "ru": "сахар",
+   "uk": "цукор",
+   "en": "sweet white powder",
+   "es": "azúcar"
+  },
+  "space": {
+   "ru": "место (свободное)",
+   "uk": "місце (вільне)",
+   "en": "empty room",
+   "es": "espacio"
+  },
+  "chairs": {
+   "ru": "стулья",
+   "uk": "стільці",
+   "en": "seats for people",
+   "es": "sillas"
+  },
+  "forks": {
+   "ru": "вилки",
+   "uk": "виделки",
+   "en": "tools for eating food",
+   "es": "tenedores"
+  },
+  "signal": {
+   "ru": "сигнал",
+   "uk": "сигнал",
+   "en": "phone or radio connection",
+   "es": "señal"
+  },
+  "floor": {
+   "ru": "этаж",
+   "uk": "поверх",
+   "en": "level of a building",
+   "es": "piso"
+  },
+  "single": {
+   "ru": "ни одного; единственный",
+   "uk": "жодного; єдиний",
+   "en": "only one",
+   "es": "solo"
+  },
+  "names": {
+   "ru": "имена",
+   "uk": "імена",
+   "en": "what people are called",
+   "es": "nombres"
+  },
+  "list": {
+   "ru": "список",
+   "uk": "список",
+   "en": "written items in order",
+   "es": "lista"
+  },
+  "mistake": {
+   "ru": "ошибка",
+   "uk": "помилка",
+   "en": "something wrong",
+   "es": "error"
+  },
+  "crack": {
+   "ru": "трещина",
+   "uk": "тріщина",
+   "en": "thin broken line",
+   "es": "grieta"
+  },
+  "light": {
+   "ru": "свет",
+   "uk": "світло",
+   "en": "brightness from a lamp",
+   "es": "luz"
+  },
+  "still": {
+   "ru": "ещё",
+   "uk": "ще",
+   "en": "up to now",
+   "es": "todavía"
+  }
+ }
+}

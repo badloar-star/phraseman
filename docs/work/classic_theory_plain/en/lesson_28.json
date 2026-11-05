@@ -1,0 +1,717 @@
+{
+  "lang": "en",
+  "lesson": 28,
+  "title": {
+    "ru": "Себя, сам, друг друга",
+    "uk": "Себе, сам, одне одного",
+    "en": "Myself, by myself, each other"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я порезался",
+        "uk": "Я порізався",
+        "en": "I cut myself"
+      },
+      "text": {
+        "ru": "Бывает, что человек делает что-то с самим собой.\nI cut myself. — Я порезался.\nЧитается: ай ка́т майсэ́лф.\nСлово cut значит «порезал».\nСлово myself значит «себя (когда речь обо мне)».\nShe hurt herself. — Она поранилась.\nЧитается: ши хэ́рт хэрсэ́лф.\nСлово hurt значит «поранила, сделала больно».\nСлово herself значит «себя (когда речь о ней)».\nHe blamed himself. — Он винил себя.\nЧитается: хи бле́ймд химсэ́лф.\nСлово blamed значит «винил».\nСлово himself значит «себя (когда речь о нём)».\nСмотрите: my + self, her + self, him + self. Слово self значит «сам».\nБез слова myself было бы просто «я порезал»: непонятно, кого.",
+        "uk": "Буває, що людина робить щось сама з собою.\nI cut myself. — Я порізався.\nЧитається: ай ка́т майсе́лф.\nСлово cut означає «порізав».\nСлово myself означає «себе (коли мова про мене)».\nShe hurt herself. — Вона поранилася.\nЧитається: ші хе́рт херсе́лф.\nСлово hurt означає «поранила, зробила боляче».\nСлово herself означає «себе (коли мова про неї)».\nHe blamed himself. — Він звинувачував себе.\nЧитається: хі бле́ймд хімсе́лф.\nСлово blamed означає «звинувачував».\nСлово himself означає «себе (коли мова про нього)».\nДивіться: my + self, her + self, him + self. Слово self означає «сам».\nБез слова myself було б просто «я порізав»: незрозуміло, кого.",
+        "en": "Sometimes a person does something to himself or herself.\nI cut myself.\nThe word cut means “opened with a sharp thing”.\nThe word myself means “me, when I do it to myself”.\nShe hurt herself.\nThe word hurt means “caused pain”.\nThe word herself means “her, when she does it to herself”.\nHe blamed himself.\nThe word blamed means “said that something was his fault”.\nThe word himself means “him, when he does it to himself”.\nLook: my + self, her + self, him + self.\nThe word self means “the same person”.\nWithout the word myself it would only be “I cut”: we would not know what."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:28.01",
+          "say": {
+            "ru": "ай ка́т майсэ́лф",
+            "uk": "ай ка́т майсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.02",
+          "say": {
+            "ru": "ши хэ́рт хэрсэ́лф",
+            "uk": "ші хе́рт херсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.03",
+          "say": {
+            "ru": "хи бле́ймд химсэ́лф",
+            "uk": "хі бле́ймд хімсе́лф"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я порезался»",
+            "uk": "Виберіть, як сказати: «Я порізався»",
+            "en": "Choose how to say: “I cut myself.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:28.01",
+          "options": [
+            "en-classic-r1:28.01",
+            "en-classic-r1:28.02",
+            "en-classic-r1:28.03"
+          ],
+          "answerId": "en-classic-r1:28.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она поранилась»",
+            "uk": "Виберіть, як сказати: «Вона поранилася»",
+            "en": "Choose how to say: “She hurt herself.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.02",
+          "options": [
+            "en-classic-r1:28.02",
+            "en-classic-r1:28.03",
+            "en-classic-r1:28.01"
+          ],
+          "answerId": "en-classic-r1:28.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он винил себя»",
+            "uk": "Виберіть, як сказати: «Він звинувачував себе»",
+            "en": "Choose how to say: “He blamed himself.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.03",
+          "options": [
+            "en-classic-r1:28.03",
+            "en-classic-r1:28.01",
+            "en-classic-r1:28.02"
+          ],
+          "answerId": "en-classic-r1:28.03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мы, они, вы",
+        "uk": "Ми, вони, ви",
+        "en": "We, they, you"
+      },
+      "text": {
+        "ru": "Для «мы», «они» и «вы» есть свои слова.\nWe introduced ourselves. — Мы представились.\nЧитается: уи интродью́сд ауэрсэ́лвз.\nСлово introduced значит «представились».\nСлово ourselves значит «себя (когда речь о нас)».\nThey introduced themselves. — Они представились.\nЧитается: зэй интродью́сд зэмсэ́лвз.\nСлово themselves значит «себя (когда речь о них)».\nЕсли людей несколько, вместо self говорят selves.\nYou can help yourself. — Можете угощаться.\nЧитается: ю кэ́н хэ́лп йорсэ́лф.\nСлово yourself значит «себя (когда речь о вас одном)».\nСлова help yourself значат «угощайтесь, берите сами».\nHelp yourselves to some fruit. — Угощайтесь фруктами.\nЧитается: хэ́лп йорсэ́лвз ту́ сам фру́т.\nСлово yourselves значит «себя (когда речь о вас, если вас несколько)».\nОдин человек — yourself, несколько — yourselves.",
+        "uk": "Для «ми», «вони» і «ви» є свої слова.\nWe introduced ourselves. — Ми представилися.\nЧитається: уі інтродью́сд ауерсе́лвз.\nСлово introduced означає «представилися».\nСлово ourselves означає «себе (коли мова про нас)».\nThey introduced themselves. — Вони представилися.\nЧитається: зей інтродью́сд земсе́лвз.\nСлово themselves означає «себе (коли мова про них)».\nЯкщо людей кілька, замість self кажуть selves.\nYou can help yourself. — Можете пригощатися.\nЧитається: ю ке́н хе́лп йорсе́лф.\nСлово yourself означає «себе (коли мова про вас одного)».\nСлова help yourself означають «пригощайтеся, беріть самі».\nHelp yourselves to some fruit. — Пригощайтеся фруктами.\nЧитається: хе́лп йорсе́лвз ту́ сам фру́т.\nСлово yourselves означає «себе (коли мова про вас, якщо вас кілька)».\nОдна людина — yourself, кілька — yourselves.",
+        "en": "There are words for we, they and you too.\nWe introduced ourselves.\nThe word introduced means “told others who they are”.\nThe word ourselves means “us, when we do it to ourselves”.\nThey introduced themselves.\nThe word themselves means “them, when they do it to themselves”.\nFor many people we say selves, not self.\nYou can help yourself.\nThe word yourself means “you, when you do it to yourself”.\nThe words help yourself mean “take what you like”.\nHelp yourselves to some fruit.\nThe word yourselves means “you, when there are many of you”.\nOne person: yourself. Many people: yourselves."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:28.04",
+          "say": {
+            "ru": "уи интродью́сд ауэрсэ́лвз",
+            "uk": "уі інтродью́сд ауерсе́лвз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.05",
+          "say": {
+            "ru": "зэй интродью́сд зэмсэ́лвз",
+            "uk": "зей інтродью́сд земсе́лвз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.06",
+          "say": {
+            "ru": "ю кэ́н хэ́лп йорсэ́лф",
+            "uk": "ю ке́н хе́лп йорсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.38",
+          "say": {
+            "ru": "хэ́лп йорсэ́лвз ту́ сам фру́т",
+            "uk": "хе́лп йорсе́лвз ту́ сам фру́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы представились»",
+            "uk": "Виберіть, як сказати: «Ми представилися»",
+            "en": "Choose how to say: “We introduced ourselves.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:28.04",
+          "options": [
+            "en-classic-r1:28.04",
+            "en-classic-r1:28.05",
+            "en-classic-r1:28.06"
+          ],
+          "answerId": "en-classic-r1:28.04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они представились»",
+            "uk": "Виберіть, як сказати: «Вони представилися»",
+            "en": "Choose how to say: “They introduced themselves.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.05",
+          "options": [
+            "en-classic-r1:28.05",
+            "en-classic-r1:28.38",
+            "en-classic-r1:28.04"
+          ],
+          "answerId": "en-classic-r1:28.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Угощайтесь фруктами»",
+            "uk": "Виберіть, як сказати: «Пригощайтеся фруктами»",
+            "en": "Choose how to say: “Help yourselves to some fruit.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.38",
+          "options": [
+            "en-classic-r1:28.38",
+            "en-classic-r1:28.06",
+            "en-classic-r1:28.05"
+          ],
+          "answerId": "en-classic-r1:28.38"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Смотрю на себя",
+        "uk": "Дивлюся на себе",
+        "en": "Looking at myself"
+      },
+      "text": {
+        "ru": "Иногда действие возвращается к самому человеку: он смотрит на себя, учит себя.\nI saw myself in the mirror. — Я увидел себя в зеркале.\nЧитается: ай со́ майсэ́лф ин зэ ми́рор.\nHe looked at himself in the window. — Он посмотрел на себя в окне.\nЧитается: хи лу́кт эт химсэ́лф ин зэ уи́ндоу.\nThe cat washed itself. — Кошка умылась.\nЧитается: зэ кэ́т уо́шт итсэ́лф.\nСлово cat значит «кошка».\nСлово itself вы знаете: это «себя» о кошке или о вещи.\nShe taught herself English. — Она самостоятельно выучила английский.\nЧитается: ши то́т хэрсэ́лф и́нглиш.\nСлово taught значит «научила, учила».\nСлово taught — это teach в прошлом. Слова taught herself значат «сама научилась».",
+        "uk": "Іноді дія повертається до самої людини: вона дивиться на себе, вчить себе.\nI saw myself in the mirror. — Я побачив себе в дзеркалі.\nЧитається: ай со́ майсе́лф ін зе мі́рор.\nHe looked at himself in the window. — Він подивився на себе у вікні.\nЧитається: хі лу́кт ет хімсе́лф ін зе уі́ндоу.\nThe cat washed itself. — Кіт помився.\nЧитається: зе ке́т уо́шт ітсе́лф.\nСлово cat означає «кішка».\nСлово itself ви знаєте: це «себе» про кішку або про річ.\nShe taught herself English. — Вона сама вивчила англійську.\nЧитається: ші то́т херсе́лф і́нгліш.\nСлово taught означає «навчила, вчила».\nСлово taught — це teach у минулому. Слова taught herself означають «сама навчилась».",
+        "en": "Sometimes the action comes back to the same person: he looks at himself.\nI saw myself in the mirror.\nHe looked at himself in the window.\nThe cat washed itself.\nThe word cat means “a small animal with soft fur”.\nYou know the word itself: it is for a cat or a thing.\nShe taught herself English.\nThe word taught means “helped someone to learn”.\nThe word taught is teach in the past.\nThe words taught herself mean she learned alone."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:28.08",
+          "say": {
+            "ru": "ай со́ майсэ́лф ин зэ ми́рор",
+            "uk": "ай со́ майсе́лф ін зе мі́рор"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.10",
+          "say": {
+            "ru": "хи лу́кт эт химсэ́лф ин зэ уи́ндоу",
+            "uk": "хі лу́кт ет хімсе́лф ін зе уі́ндоу"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.07",
+          "say": {
+            "ru": "зэ кэ́т уо́шт итсэ́лф",
+            "uk": "зе ке́т уо́шт ітсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.09",
+          "say": {
+            "ru": "ши то́т хэрсэ́лф и́нглиш",
+            "uk": "ші то́т херсе́лф і́нгліш"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я увидел себя в зеркале»",
+            "uk": "Виберіть, як сказати: «Я побачив себе в дзеркалі»",
+            "en": "Choose how to say: “I saw myself in the mirror.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:28.08",
+          "options": [
+            "en-classic-r1:28.08",
+            "en-classic-r1:28.10",
+            "en-classic-r1:28.07"
+          ],
+          "answerId": "en-classic-r1:28.08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он посмотрел на себя в окне»",
+            "uk": "Виберіть, як сказати: «Він подивився на себе у вікні»",
+            "en": "Choose how to say: “He looked at himself in the window.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.10",
+          "options": [
+            "en-classic-r1:28.10",
+            "en-classic-r1:28.09",
+            "en-classic-r1:28.08"
+          ],
+          "answerId": "en-classic-r1:28.10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она самостоятельно выучила английский»",
+            "uk": "Виберіть, як сказати: «Вона сама вивчила англійську»",
+            "en": "Choose how to say: “She taught herself English.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.09",
+          "options": [
+            "en-classic-r1:28.09",
+            "en-classic-r1:28.07",
+            "en-classic-r1:28.10"
+          ],
+          "answerId": "en-classic-r1:28.09"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Сделал себе",
+        "uk": "Зробив собі",
+        "en": "Made for myself"
+      },
+      "text": {
+        "ru": "Иногда self значит «себе»: сделал себе, налил себе.\nI made myself a sandwich. — Я сделал себе бутерброд.\nЧитается: ай мэ́йд майсэ́лф э сэ́ндвич.\nShe poured herself some water. — Она налила себе воды.\nЧитается: ши по́рд хэрсэ́лф сам уо́тер.\nСлово poured значит «налила».\nI reminded myself to bring the receipt. — Я напомнил себе взять квитанцию.\nЧитается: ай рима́йндид майсэ́лф ту бри́нг зэ риси́т.\nСлово reminded значит «напомнил».\nHe promised himself a day off. — Он пообещал себе выходной.\nЧитается: хи про́мист химсэ́лф э дэ́й о́ф.\nСлово promised значит «пообещал».\nWe gave ourselves extra time. — Мы выделили себе дополнительное время.\nЧитается: уи гэ́йв ауэрсэ́лвз э́кстра та́йм.\nСлово extra значит «дополнительный».",
+        "uk": "Іноді self означає «собі»: зробив собі, налив собі.\nI made myself a sandwich. — Я зробив собі бутерброд.\nЧитається: ай ме́йд майсе́лф е се́ндвіч.\nShe poured herself some water. — Вона налила собі води.\nЧитається: ші по́рд херсе́лф сам уо́тер.\nСлово poured означає «налила».\nI reminded myself to bring the receipt. — Я нагадав собі взяти чек.\nЧитається: ай ріма́йндід майсе́лф ту брі́нг зе рісі́т.\nСлово reminded означає «нагадав».\nHe promised himself a day off. — Він пообіцяв собі вихідний.\nЧитається: хі про́міст хімсе́лф е де́й о́ф.\nСлово promised означає «пообіцяв».\nWe gave ourselves extra time. — Ми дали собі додатковий час.\nЧитається: уі ге́йв ауерсе́лвз е́кстра та́йм.\nСлово extra означає «додатковий».",
+        "en": "Sometimes self means “for me”: made for myself, poured for herself.\nI made myself a sandwich.\nShe poured herself some water.\nThe word poured means “made water run into a cup”.\nI reminded myself to bring the receipt.\nThe word reminded means “helped someone remember”.\nHe promised himself a day off.\nThe word promised means “said “I will do it, for sure””.\nWe gave ourselves extra time.\nThe word extra means “more than usual”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:28.11",
+          "say": {
+            "ru": "ай мэ́йд майсэ́лф э сэ́ндвич",
+            "uk": "ай ме́йд майсе́лф е се́ндвіч"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.12",
+          "say": {
+            "ru": "ши по́рд хэрсэ́лф сам уо́тер",
+            "uk": "ші по́рд херсе́лф сам уо́тер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.16",
+          "say": {
+            "ru": "ай рима́йндид майсэ́лф ту бри́нг зэ риси́т",
+            "uk": "ай ріма́йндід майсе́лф ту брі́нг зе рісі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.18",
+          "say": {
+            "ru": "хи про́мист химсэ́лф э дэ́й о́ф",
+            "uk": "хі про́міст хімсе́лф е де́й о́ф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.19",
+          "say": {
+            "ru": "уи гэ́йв ауэрсэ́лвз э́кстра та́йм",
+            "uk": "уі ге́йв ауерсе́лвз е́кстра та́йм"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сделал себе бутерброд»",
+            "uk": "Виберіть, як сказати: «Я зробив собі бутерброд»",
+            "en": "Choose how to say: “I made myself a sandwich.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:28.11",
+          "options": [
+            "en-classic-r1:28.11",
+            "en-classic-r1:28.12",
+            "en-classic-r1:28.16"
+          ],
+          "answerId": "en-classic-r1:28.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она налила себе воды»",
+            "uk": "Виберіть, як сказати: «Вона налила собі води»",
+            "en": "Choose how to say: “She poured herself some water.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.12",
+          "options": [
+            "en-classic-r1:28.12",
+            "en-classic-r1:28.18",
+            "en-classic-r1:28.11"
+          ],
+          "answerId": "en-classic-r1:28.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы выделили себе дополнительное время»",
+            "uk": "Виберіть, як сказати: «Ми дали собі додатковий час»",
+            "en": "Choose how to say: “We gave ourselves extra time.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.19",
+          "options": [
+            "en-classic-r1:28.19",
+            "en-classic-r1:28.16",
+            "en-classic-r1:28.18"
+          ],
+          "answerId": "en-classic-r1:28.19"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Сам, своими руками",
+        "uk": "Сам, власними руками",
+        "en": "By my own hands"
+      },
+      "text": {
+        "ru": "Слова с self ещё значат «сам, без чужой помощи».\nI fixed the tap myself. — Я сам починил кран.\nЧитается: ай фи́кст зэ тэ́п майсэ́лф.\nСлово myself стоит в конце: I fixed the tap myself — «я сам починил кран».\nShe wrote the letter herself. — Она сама написала письмо.\nЧитается: ши ро́ут зэ ле́тер хэрсэ́лф.\nWe did the painting ourselves. — Мы сами покрасили.\nЧитается: уи ди́д зэ пэ́йнтинг ауэрсэ́лвз.\nСлово painting значит «покраска».\nThey built the shelter themselves. — Они сами построили убежище.\nЧитается: зэй би́лт зэ ше́лтер зэмсэ́лвз.\nСлово built значит «построили».\nСлово built — это build в прошлом.\nЕсли убрать слово с self, смысл останется. Но пропадёт «сам».",
+        "uk": "Слова з self ще означають «сам, без чужої допомоги».\nI fixed the tap myself. — Я сам полагодив кран.\nЧитається: ай фі́кст зе те́п майсе́лф.\nСлово myself стоїть у кінці: I fixed the tap myself — «я сам полагодив кран».\nShe wrote the letter herself. — Вона сама написала листа.\nЧитається: ші ро́ут зе ле́тер херсе́лф.\nWe did the painting ourselves. — Ми самі пофарбували.\nЧитається: уі ді́д зе пе́йнтінг ауерсе́лвз.\nСлово painting означає «фарбування».\nThey built the shelter themselves. — Вони самі збудували укриття.\nЧитається: зей бі́лт зе ше́лтер земсе́лвз.\nСлово built означає «збудували».\nСлово built — це build у минулому.\nЯкщо прибрати слово з self, зміст залишиться. Але зникне «сам».",
+        "en": "Words with self can also mean “alone, with no help”.\nI fixed the tap myself.\nThe word myself comes at the end: I fixed the tap myself.\nShe wrote the letter herself.\nWe did the painting ourselves.\nThe word painting means “putting colour on a wall”.\nThey built the shelter themselves.\nThe word built means “made a building”.\nThe word built is build in the past.\nWithout the word with self the meaning stays, but the “alone” is lost."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:28.21",
+          "say": {
+            "ru": "ай фи́кст зэ тэ́п майсэ́лф",
+            "uk": "ай фі́кст зе те́п майсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.22",
+          "say": {
+            "ru": "ши ро́ут зэ ле́тер хэрсэ́лф",
+            "uk": "ші ро́ут зе ле́тер херсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.24",
+          "say": {
+            "ru": "уи ди́д зэ пэ́йнтинг ауэрсэ́лвз",
+            "uk": "уі ді́д зе пе́йнтінг ауерсе́лвз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.25",
+          "say": {
+            "ru": "зэй би́лт зэ ше́лтер зэмсэ́лвз",
+            "uk": "зей бі́лт зе ше́лтер земсе́лвз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сам починил кран»",
+            "uk": "Виберіть, як сказати: «Я сам полагодив кран»",
+            "en": "Choose how to say: “I fixed the tap myself.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:28.21",
+          "options": [
+            "en-classic-r1:28.21",
+            "en-classic-r1:28.22",
+            "en-classic-r1:28.24"
+          ],
+          "answerId": "en-classic-r1:28.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы сами покрасили»",
+            "uk": "Виберіть, як сказати: «Ми самі пофарбували»",
+            "en": "Choose how to say: “We did the painting ourselves.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.24",
+          "options": [
+            "en-classic-r1:28.24",
+            "en-classic-r1:28.25",
+            "en-classic-r1:28.21"
+          ],
+          "answerId": "en-classic-r1:28.24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они сами построили убежище»",
+            "uk": "Виберіть, як сказати: «Вони самі збудували укриття»",
+            "en": "Choose how to say: “They built the shelter themselves.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.25",
+          "options": [
+            "en-classic-r1:28.25",
+            "en-classic-r1:28.22",
+            "en-classic-r1:28.24"
+          ],
+          "answerId": "en-classic-r1:28.25"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Один",
+        "uk": "Сам",
+        "en": "On my own"
+      },
+      "text": {
+        "ru": "Слова by myself значат «один, сам по себе».\nI went by myself. — Я поехал один.\nЧитается: ай уэ́нт бай майсэ́лф.\nShe lives by herself. — Она живет одна.\nЧитается: ши ли́вз бай хэрсэ́лф.\nHe travelled by himself. — Он ехал один.\nЧитается: хи тра́велд бай химсэ́лф.\nСлово travelled значит «ехал».\nК слову travel добавили ed и удвоили l: travelled. Так принято писать.",
+        "uk": "Слова by myself означають «сам, сам по собі».\nI went by myself. — Я їхав сам.\nЧитається: ай уе́нт бай майсе́лф.\nShe lives by herself. — Вона живе сама.\nЧитається: ші лі́вз бай херсе́лф.\nHe travelled by himself. — Він подорожував сам.\nЧитається: хі тра́велд бай хімсе́лф.\nСлово travelled означає «їхав».\nДо слова travel додали ed і подвоїли l: travelled. Так прийнято писати.",
+        "en": "The words by myself mean “alone, on my own”.\nI went by myself.\nShe lives by herself.\nHe travelled by himself.\nThe word travelled means “went from one place to another”.\nWe add ed to travel and write l twice: travelled.\nThis is the usual spelling."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:28.31",
+          "say": {
+            "ru": "ай уэ́нт бай майсэ́лф",
+            "uk": "ай уе́нт бай майсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.32",
+          "say": {
+            "ru": "ши ли́вз бай хэрсэ́лф",
+            "uk": "ші лі́вз бай херсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.33",
+          "say": {
+            "ru": "хи тра́велд бай химсэ́лф",
+            "uk": "хі тра́велд бай хімсе́лф"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я поехал один»",
+            "uk": "Виберіть, як сказати: «Я їхав сам»",
+            "en": "Choose how to say: “I went by myself.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:28.31",
+          "options": [
+            "en-classic-r1:28.31",
+            "en-classic-r1:28.32",
+            "en-classic-r1:28.33"
+          ],
+          "answerId": "en-classic-r1:28.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она живет одна»",
+            "uk": "Виберіть, як сказати: «Вона живе сама»",
+            "en": "Choose how to say: “She lives by herself.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.32",
+          "options": [
+            "en-classic-r1:28.32",
+            "en-classic-r1:28.33",
+            "en-classic-r1:28.31"
+          ],
+          "answerId": "en-classic-r1:28.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он ехал один»",
+            "uk": "Виберіть, як сказати: «Він подорожував сам»",
+            "en": "Choose how to say: “He travelled by himself.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.33",
+          "options": [
+            "en-classic-r1:28.33",
+            "en-classic-r1:28.31",
+            "en-classic-r1:28.32"
+          ],
+          "answerId": "en-classic-r1:28.33"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Друг друга",
+        "uk": "Одне одного",
+        "en": "Each other"
+      },
+      "text": {
+        "ru": "Есть ещё пара слов: each other — «друг друга».\nWe looked at each other. — Мы посмотрели друг на друга.\nЧитается: уи лу́кт эт и́ч а́зер.\nМы смотрели не на себя, а один на другого.\nThey helped each other carry the boxes. — Они помогали друг другу нести коробки.\nЧитается: зэй хэ́лпт и́ч а́зер кэ́ри зэ бо́ксиз.\nСлова each other — не self. Они значат: один другому.\nI taught my brother, but he tested himself.\nПо-русски: «Я научил своего брата, но он проверил себя»\nЧитается: ай то́т май бра́зер, ба́т хи тэ́стид химсэ́лф.\nСлово tested значит «проверил».\nБрата учил я, а проверил себя он сам.",
+        "uk": "Є ще пара слів: each other — «одне одного».\nWe looked at each other. — Ми подивилися одне на одного.\nЧитається: уі лу́кт ет і́ч а́зер.\nМи дивилися не на себе, а один на одного.\nThey helped each other carry the boxes. — Вони допомагали одне одному нести коробки.\nЧитається: зей хе́лпт і́ч а́зер ке́рі зе бо́ксіз.\nСлова each other — не self. Вони означають: один одному.\nI taught my brother, but he tested himself.\nУкраїнською: «Я навчив брата, але він перевірив себе»\nЧитається: ай то́т май бра́зер, ба́т хі те́стід хімсе́лф.\nСлово tested означає «перевірив».\nБрата вчив я, а перевірив себе він сам.",
+        "en": "There is one more pair of words: each other.\nWe looked at each other.\nWe did not look at ourselves. We looked one at the other.\nThey helped each other carry the boxes.\nThe words each other are not self. They mean one to the other.\nI taught my brother, but he tested himself.\nThe word tested means “looked to see if it is good”.\nI taught my brother, but he tested himself."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:28.41",
+          "say": {
+            "ru": "уи лу́кт эт и́ч а́зер",
+            "uk": "уі лу́кт ет і́ч а́зер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.43",
+          "say": {
+            "ru": "зэй хэ́лпт и́ч а́зер кэ́ри зэ бо́ксиз",
+            "uk": "зей хе́лпт і́ч а́зер ке́рі зе бо́ксіз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.46",
+          "say": {
+            "ru": "ай то́т май бра́зер, ба́т хи тэ́стид химсэ́лф",
+            "uk": "ай то́т май бра́зер, ба́т хі те́стід хімсе́лф"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы посмотрели друг на друга»",
+            "uk": "Виберіть, як сказати: «Ми подивилися одне на одного»",
+            "en": "Choose how to say: “We looked at each other.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:28.41",
+          "options": [
+            "en-classic-r1:28.41",
+            "en-classic-r1:28.43",
+            "en-classic-r1:28.46"
+          ],
+          "answerId": "en-classic-r1:28.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они помогали друг другу нести коробки»",
+            "uk": "Виберіть, як сказати: «Вони допомагали одне одному нести коробки»",
+            "en": "Choose how to say: “They helped each other carry the boxes.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.43",
+          "options": [
+            "en-classic-r1:28.43",
+            "en-classic-r1:28.46",
+            "en-classic-r1:28.41"
+          ],
+          "answerId": "en-classic-r1:28.43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я научил своего брата, но он проверил себя»",
+            "uk": "Виберіть, як сказати: «Я навчив брата, але він перевірив себе»",
+            "en": "Choose how to say: “I taught my brother, but he tested himself.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.46",
+          "options": [
+            "en-classic-r1:28.46",
+            "en-classic-r1:28.41",
+            "en-classic-r1:28.43"
+          ],
+          "answerId": "en-classic-r1:28.46"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Береги себя",
+        "uk": "Бережіть себе",
+        "en": "Take care"
+      },
+      "text": {
+        "ru": "Слова с self нужны и в просьбах, и в вопросах.\nCan your son dress himself? — Ваш сын может одеться сам?\nЧитается: кэ́н йор са́н дрэ́с химсэ́лф.\nСлово dress значит «одеться».\nDo not burn yourself on the pan. — Не обожгитесь о сковороду.\nЧитается: ду́ но́т бэ́рн йорсэ́лф он зэ пэ́н.\nСлово burn значит «обжечься».\nСлово pan значит «сковорода».\nTake care of yourself on the way home. — Береги себя по дороге домой.\nЧитается: тэ́йк кэ́р ов йорсэ́лф он зэ уэ́й хо́ум.\nСлово care значит «забота».\nСлова take care of yourself вместе значат «берегите себя».\nI enjoyed myself at the concert. — Мне понравилось на концерте.\nЧитается: ай инджо́йд майсэ́лф эт зэ ко́нсерт.\nСлово enjoyed значит «получил удовольствие».\nСлова enjoyed myself значат «мне понравилось, я хорошо провёл время».",
+        "uk": "Слова з self потрібні і в проханнях, і в питаннях.\nCan your son dress himself? — Ваш син може сам одягнутися?\nЧитається: ке́н йор са́н дре́с хімсе́лф.\nСлово dress означає «одягтися».\nDo not burn yourself on the pan. — Не обпеклися об сковороду.\nЧитається: ду́ но́т бе́рн йорсе́лф он зе пе́н.\nСлово burn означає «обпектися».\nСлово pan означає «сковорода».\nTake care of yourself on the way home. — Бережи себе дорогою додому.\nЧитається: те́йк ке́р ов йорсе́лф он зе уе́й хо́ум.\nСлово care означає «турбота».\nСлова take care of yourself разом означають «бережіть себе».\nI enjoyed myself at the concert. — Мені сподобалося на концерті.\nЧитається: ай інджо́йд майсе́лф ет зе ко́нсерт.\nСлово enjoyed означає «отримав задоволення».\nСлова enjoyed myself означають «мені сподобалось, я гарно провів час».",
+        "en": "Words with self are used in requests and questions too.\nCan your son dress himself?\nThe word dress means “to put on clothes”.\nDo not burn yourself on the pan.\nThe word burn means “to hurt yourself with something hot”.\nThe word pan means “a round pot for cooking”.\nTake care of yourself on the way home.\nThe word care means “thinking about someone to keep them well”.\nThe words take care of yourself together mean “look after yourself”.\nI enjoyed myself at the concert.\nThe word enjoyed means “liked what he did”.\nThe words enjoyed myself mean “I had a good time”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:28.36",
+          "say": {
+            "ru": "кэ́н йор са́н дрэ́с химсэ́лф",
+            "uk": "ке́н йор са́н дре́с хімсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.39",
+          "say": {
+            "ru": "ду́ но́т бэ́рн йорсэ́лф он зэ пэ́н",
+            "uk": "ду́ но́т бе́рн йорсе́лф он зе пе́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.50",
+          "say": {
+            "ru": "тэ́йк кэ́р ов йорсэ́лф он зэ уэ́й хо́ум",
+            "uk": "те́йк ке́р ов йорсе́лф он зе уе́й хо́ум"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:28.49",
+          "say": {
+            "ru": "ай инджо́йд майсэ́лф эт зэ ко́нсерт",
+            "uk": "ай інджо́йд майсе́лф ет зе ко́нсерт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваш сын может одеться сам?»",
+            "uk": "Виберіть, як сказати: «Ваш син може сам одягнутися?»",
+            "en": "Choose how to say: “Can your son dress himself?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:28.36",
+          "options": [
+            "en-classic-r1:28.36",
+            "en-classic-r1:28.39",
+            "en-classic-r1:28.50"
+          ],
+          "answerId": "en-classic-r1:28.36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не обожгитесь о сковороду»",
+            "uk": "Виберіть, як сказати: «Не обпеклися об сковороду»",
+            "en": "Choose how to say: “Do not burn yourself on the pan.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.39",
+          "options": [
+            "en-classic-r1:28.39",
+            "en-classic-r1:28.49",
+            "en-classic-r1:28.36"
+          ],
+          "answerId": "en-classic-r1:28.39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Береги себя по дороге домой»",
+            "uk": "Виберіть, як сказати: «Бережи себе дорогою додому»",
+            "en": "Choose how to say: “Take care of yourself on the way home.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:28.50",
+          "options": [
+            "en-classic-r1:28.50",
+            "en-classic-r1:28.49",
+            "en-classic-r1:28.39"
+          ],
+          "answerId": "en-classic-r1:28.50"
+        }
+      ]
+    }
+  ]
+}

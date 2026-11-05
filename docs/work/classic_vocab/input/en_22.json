@@ -1,0 +1,835 @@
+{
+ "lang": "en",
+ "lesson": 22,
+ "words": [
+  {
+   "form": "swimming",
+   "surface": "Swimming",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.01",
+     "target": "Swimming helps me relax",
+     "ru": "Плавание помогает мне расслабиться.",
+     "en": "Swimming helps me relax."
+    }
+   ]
+  },
+  {
+   "form": "helps",
+   "surface": "helps",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.01",
+     "target": "Swimming helps me relax",
+     "ru": "Плавание помогает мне расслабиться.",
+     "en": "Swimming helps me relax."
+    }
+   ]
+  },
+  {
+   "form": "relax",
+   "surface": "relax",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.01",
+     "target": "Swimming helps me relax",
+     "ru": "Плавание помогает мне расслабиться.",
+     "en": "Swimming helps me relax."
+    }
+   ]
+  },
+  {
+   "form": "saves",
+   "surface": "saves",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.02",
+     "target": "Walking saves money",
+     "ru": "Ходьба экономит деньги.",
+     "en": "Walking saves money."
+    }
+   ]
+  },
+  {
+   "form": "money",
+   "surface": "money",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.02",
+     "target": "Walking saves money",
+     "ru": "Ходьба экономит деньги.",
+     "en": "Walking saves money."
+    },
+    {
+     "id": "en-classic-r1:22.34",
+     "target": "We saved money by taking the bus",
+     "ru": "Мы сэкономили деньги, поехав на автобусе.",
+     "en": "We saved money by taking the bus."
+    }
+   ]
+  },
+  {
+   "form": "practice",
+   "surface": "practice",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.03",
+     "target": "Cooking takes practice",
+     "ru": "Готовка требует практики.",
+     "en": "Cooking takes practice."
+    }
+   ]
+  },
+  {
+   "form": "makes",
+   "surface": "makes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.04",
+     "target": "Reading on the bus makes me dizzy",
+     "ru": "Чтение в автобусе вызывает у меня головокружение.",
+     "en": "Reading on the bus makes me dizzy."
+    }
+   ]
+  },
+  {
+   "form": "dizzy",
+   "surface": "dizzy",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.04",
+     "target": "Reading on the bus makes me dizzy",
+     "ru": "Чтение в автобусе вызывает у меня головокружение.",
+     "en": "Reading on the bus makes me dizzy."
+    }
+   ]
+  },
+  {
+   "form": "fog",
+   "surface": "fog",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.05",
+     "target": "Driving in fog is difficult",
+     "ru": "Ездить в тумане сложно.",
+     "en": "Driving in fog is difficult."
+    }
+   ]
+  },
+  {
+   "form": "difficult",
+   "surface": "difficult",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.05",
+     "target": "Driving in fog is difficult",
+     "ru": "Ездить в тумане сложно.",
+     "en": "Driving in fog is difficult."
+    }
+   ]
+  },
+  {
+   "form": "fun",
+   "surface": "fun",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.06",
+     "target": "Waiting outside is not much fun",
+     "ru": "Ожидание на улице не доставляет удовольствия.",
+     "en": "Waiting outside is not much fun."
+    }
+   ]
+  },
+  {
+   "form": "sharing",
+   "surface": "Sharing",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.08",
+     "target": "Sharing a flat costs less",
+     "ru": "Снимать квартиру вместе дешевле.",
+     "en": "Sharing a flat costs less."
+    },
+    {
+     "id": "en-classic-r1:22.19",
+     "target": "He suggested sharing a taxi",
+     "ru": "Он предложил разделить такси.",
+     "en": "He suggested sharing a taxi."
+    }
+   ]
+  },
+  {
+   "form": "costs",
+   "surface": "costs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.08",
+     "target": "Sharing a flat costs less",
+     "ru": "Снимать квартиру вместе дешевле.",
+     "en": "Sharing a flat costs less."
+    }
+   ]
+  },
+  {
+   "form": "travelling",
+   "surface": "Travelling",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.09",
+     "target": "Travelling light is easier",
+     "ru": "Путешествовать налегке проще.",
+     "en": "Travelling light is easier."
+    }
+   ]
+  },
+  {
+   "form": "suits",
+   "surface": "suits",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.10",
+     "target": "Working nights suits my brother",
+     "ru": "Работа в ночную смену подходит моему брату.",
+     "en": "Working nights suits my brother."
+    }
+   ]
+  },
+  {
+   "form": "enjoy",
+   "surface": "enjoy",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.11",
+     "target": "I enjoy cooking for friends",
+     "ru": "Мне нравится готовить для друзей.",
+     "en": "I enjoy cooking for friends."
+    }
+   ]
+  },
+  {
+   "form": "enjoys",
+   "surface": "enjoys",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.12",
+     "target": "She enjoys walking by the river",
+     "ru": "Ей нравится гулять у реки.",
+     "en": "She enjoys walking by the river."
+    }
+   ]
+  },
+  {
+   "form": "river",
+   "surface": "river",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.12",
+     "target": "She enjoys walking by the river",
+     "ru": "Ей нравится гулять у реки.",
+     "en": "She enjoys walking by the river."
+    }
+   ]
+  },
+  {
+   "form": "avoids",
+   "surface": "avoids",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.13",
+     "target": "He avoids driving at night",
+     "ru": "Он избегает вождения ночью.",
+     "en": "He avoids driving at night."
+    }
+   ]
+  },
+  {
+   "form": "finished",
+   "surface": "finished",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.14",
+     "target": "We finished packing before lunch",
+     "ru": "Мы закончили собирать вещи до обеда.",
+     "en": "We finished packing before lunch."
+    },
+    {
+     "id": "en-classic-r1:22.45",
+     "target": "He finished writing the address",
+     "ru": "Он закончил писать адрес.",
+     "en": "He finished writing the address."
+    }
+   ]
+  },
+  {
+   "form": "talking",
+   "surface": "talking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.15",
+     "target": "They stopped talking at the door",
+     "ru": "Они перестали разговаривать у двери.",
+     "en": "They stopped talking at the door."
+    }
+   ]
+  },
+  {
+   "form": "losing",
+   "surface": "losing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.17",
+     "target": "She keeps losing her keys",
+     "ru": "Она постоянно теряет ключи.",
+     "en": "She keeps losing her keys."
+    }
+   ]
+  },
+  {
+   "form": "mind",
+   "surface": "mind",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.18",
+     "target": "Do you mind waiting here",
+     "ru": "Не могли бы вы подождать здесь?",
+     "en": "Do you mind waiting here?"
+    },
+    {
+     "id": "en-classic-r1:22.41",
+     "target": "Do you mind closing the door",
+     "ru": "Не могли бы вы закрыть дверь?",
+     "en": "Do you mind closing the door?"
+    }
+   ]
+  },
+  {
+   "form": "suggested",
+   "surface": "suggested",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.19",
+     "target": "He suggested sharing a taxi",
+     "ru": "Он предложил разделить такси.",
+     "en": "He suggested sharing a taxi."
+    }
+   ]
+  },
+  {
+   "form": "practise",
+   "surface": "practise",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.20",
+     "target": "We practise speaking after class",
+     "ru": "Мы практикуем разговорную речь после занятий.",
+     "en": "We practise speaking after class."
+    }
+   ]
+  },
+  {
+   "form": "speaking",
+   "surface": "speaking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.20",
+     "target": "We practise speaking after class",
+     "ru": "Мы практикуем разговорную речь после занятий.",
+     "en": "We practise speaking after class."
+    }
+   ]
+  },
+  {
+   "form": "thank",
+   "surface": "Thank",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.21",
+     "target": "Thank you for helping me",
+     "ru": "Спасибо за помощь.",
+     "en": "Thank you for helping me."
+    }
+   ]
+  },
+  {
+   "form": "good",
+   "surface": "good",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.22",
+     "target": "She is good at fixing bikes",
+     "ru": "Она хорошо чинит велосипеды.",
+     "en": "She is good at fixing bikes."
+    }
+   ]
+  },
+  {
+   "form": "bikes",
+   "surface": "bikes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.22",
+     "target": "She is good at fixing bikes",
+     "ru": "Она хорошо чинит велосипеды.",
+     "en": "She is good at fixing bikes."
+    }
+   ]
+  },
+  {
+   "form": "tired",
+   "surface": "tired",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.23",
+     "target": "I am tired of carrying this bag",
+     "ru": "Я устал носить эту сумку.",
+     "en": "I am tired of carrying this bag."
+    }
+   ]
+  },
+  {
+   "form": "interested",
+   "surface": "interested",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.24",
+     "target": "He is interested in learning English",
+     "ru": "Он заинтересован в изучении английского языка.",
+     "en": "He is interested in learning English."
+    }
+   ]
+  },
+  {
+   "form": "talked",
+   "surface": "talked",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.25",
+     "target": "We talked about moving house",
+     "ru": "Мы говорили о переезде.",
+     "en": "We talked about moving house."
+    }
+   ]
+  },
+  {
+   "form": "house",
+   "surface": "house",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.25",
+     "target": "We talked about moving house",
+     "ru": "Мы говорили о переезде.",
+     "en": "We talked about moving house."
+    }
+   ]
+  },
+  {
+   "form": "saying",
+   "surface": "saying",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.26",
+     "target": "She left without saying goodbye",
+     "ru": "Она ушла, не попрощавшись.",
+     "en": "She left without saying goodbye."
+    }
+   ]
+  },
+  {
+   "form": "goodbye",
+   "surface": "goodbye",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.26",
+     "target": "She left without saying goodbye",
+     "ru": "Она ушла, не попрощавшись.",
+     "en": "She left without saying goodbye."
+    }
+   ]
+  },
+  {
+   "form": "paying",
+   "surface": "paying",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.27",
+     "target": "Check the date before paying",
+     "ru": "Проверьте дату перед оплатой.",
+     "en": "Check the date before paying."
+    },
+    {
+     "id": "en-classic-r1:22.35",
+     "target": "She insisted on paying her share",
+     "ru": "Она настояла на том, чтобы заплатить свою долю.",
+     "en": "She insisted on paying her share."
+    }
+   ]
+  },
+  {
+   "form": "wash",
+   "surface": "Wash",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.28",
+     "target": "Wash your hands before cooking",
+     "ru": "Мойте руки перед приготовлением пищи.",
+     "en": "Wash your hands before cooking."
+    }
+   ]
+  },
+  {
+   "form": "learnt",
+   "surface": "learnt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.30",
+     "target": "I learnt the route by walking it",
+     "ru": "Я выучил маршрут пешком.",
+     "en": "I learnt the route by walking it."
+    }
+   ]
+  },
+  {
+   "form": "forward",
+   "surface": "forward",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.31",
+     "target": "I look forward to meeting you",
+     "ru": "Я с нетерпением жду встречи с вами.",
+     "en": "I look forward to meeting you."
+    }
+   ]
+  },
+  {
+   "form": "afraid",
+   "surface": "afraid",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.32",
+     "target": "She is afraid of waking the baby",
+     "ru": "Она боится разбудить ребенка.",
+     "en": "She is afraid of waking the baby."
+    }
+   ]
+  },
+  {
+   "form": "waking",
+   "surface": "waking",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.32",
+     "target": "She is afraid of waking the baby",
+     "ru": "Она боится разбудить ребенка.",
+     "en": "She is afraid of waking the baby."
+    },
+    {
+     "id": "en-classic-r1:22.47",
+     "target": "They avoided waking the baby",
+     "ru": "Они постарались не разбудить ребёнка.",
+     "en": "They avoided waking the baby."
+    }
+   ]
+  },
+  {
+   "form": "apologised",
+   "surface": "apologised",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.33",
+     "target": "He apologised for arriving late",
+     "ru": "Он извинился за опоздание.",
+     "en": "He apologised for arriving late."
+    }
+   ]
+  },
+  {
+   "form": "arriving",
+   "surface": "arriving",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.33",
+     "target": "He apologised for arriving late",
+     "ru": "Он извинился за опоздание.",
+     "en": "He apologised for arriving late."
+    }
+   ]
+  },
+  {
+   "form": "insisted",
+   "surface": "insisted",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.35",
+     "target": "She insisted on paying her share",
+     "ru": "Она настояла на том, чтобы заплатить свою долю.",
+     "en": "She insisted on paying her share."
+    }
+   ]
+  },
+  {
+   "form": "turning",
+   "surface": "turning",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.36",
+     "target": "Is this button for turning the screen off",
+     "ru": "Эта кнопка для выключения экрана?",
+     "en": "Is this button for turning the screen off?"
+    }
+   ]
+  },
+  {
+   "form": "thinking",
+   "surface": "thinking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.37",
+     "target": "He is thinking about changing jobs",
+     "ru": "Он подумывает о смене работы.",
+     "en": "He is thinking about changing jobs."
+    }
+   ]
+  },
+  {
+   "form": "changing",
+   "surface": "changing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.37",
+     "target": "He is thinking about changing jobs",
+     "ru": "Он подумывает о смене работы.",
+     "en": "He is thinking about changing jobs."
+    }
+   ]
+  },
+  {
+   "form": "jobs",
+   "surface": "jobs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.37",
+     "target": "He is thinking about changing jobs",
+     "ru": "Он подумывает о смене работы.",
+     "en": "He is thinking about changing jobs."
+    }
+   ]
+  },
+  {
+   "form": "complained",
+   "surface": "complained",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.38",
+     "target": "They complained about waiting in the rain",
+     "ru": "Они жаловались на ожидание под дождем.",
+     "en": "They complained about waiting in the rain."
+    }
+   ]
+  },
+  {
+   "form": "worried",
+   "surface": "worried",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.39",
+     "target": "I am worried about missing the last train",
+     "ru": "Я боюсь опоздать на последний поезд.",
+     "en": "I am worried about missing the last train."
+    }
+   ]
+  },
+  {
+   "form": "lending",
+   "surface": "lending",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.40",
+     "target": "She thanked me for lending her a pen",
+     "ru": "Она поблагодарила меня за то, что я одолжил ей ручку.",
+     "en": "She thanked me for lending her a pen."
+    }
+   ]
+  },
+  {
+   "form": "considered",
+   "surface": "considered",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.42",
+     "target": "We considered booking a later flight",
+     "ru": "Мы подумывали забронировать более поздний рейс.",
+     "en": "We considered booking a later flight."
+    }
+   ]
+  },
+  {
+   "form": "imagine",
+   "surface": "imagine",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.43",
+     "target": "I cannot imagine living without a kitchen",
+     "ru": "Я не могу представить себе жизнь без кухни.",
+     "en": "I cannot imagine living without a kitchen."
+    }
+   ]
+  },
+  {
+   "form": "living",
+   "surface": "living",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.43",
+     "target": "I cannot imagine living without a kitchen",
+     "ru": "Я не могу представить себе жизнь без кухни.",
+     "en": "I cannot imagine living without a kitchen."
+    }
+   ]
+  },
+  {
+   "form": "admitted",
+   "surface": "admitted",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.44",
+     "target": "She admitted taking the wrong bag",
+     "ru": "Она призналась, что взяла не ту сумку.",
+     "en": "She admitted taking the wrong bag."
+    }
+   ]
+  },
+  {
+   "form": "avoided",
+   "surface": "avoided",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.47",
+     "target": "They avoided waking the baby",
+     "ru": "Они постарались не разбудить ребёнка.",
+     "en": "They avoided waking the baby."
+    }
+   ]
+  },
+  {
+   "form": "aloud",
+   "surface": "aloud",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.48",
+     "target": "Try reading the number aloud",
+     "ru": "Попробуйте прочитать номер вслух.",
+     "en": "Try reading the number aloud."
+    }
+   ]
+  },
+  {
+   "form": "remember",
+   "surface": "remember",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.49",
+     "target": "I remember locking the front door",
+     "ru": "Я помню, как запер входную дверь.",
+     "en": "I remember locking the front door."
+    }
+   ]
+  },
+  {
+   "form": "locking",
+   "surface": "locking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.49",
+     "target": "I remember locking the front door",
+     "ru": "Я помню, как запер входную дверь.",
+     "en": "I remember locking the front door."
+    }
+   ]
+  },
+  {
+   "form": "then",
+   "surface": "then",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.50",
+     "target": "We stopped to buy water then carried on walking",
+     "ru": "Мы остановились, чтобы купить воды, а затем продолжили идти.",
+     "en": "We stopped to buy water, then carried on walking."
+    }
+   ]
+  },
+  {
+   "form": "carried",
+   "surface": "carried",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:22.50",
+     "target": "We stopped to buy water then carried on walking",
+     "ru": "Мы остановились, чтобы купить воды, а затем продолжили идти.",
+     "en": "We stopped to buy water, then carried on walking."
+    }
+   ]
+  }
+ ]
+}

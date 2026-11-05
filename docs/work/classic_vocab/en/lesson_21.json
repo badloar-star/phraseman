@@ -1,0 +1,132 @@
+{
+ "lang": "en",
+ "lesson": 21,
+ "words": {
+  "someone": {
+   "ru": "кто-то",
+   "uk": "хтось",
+   "en": "a person you do not name",
+   "es": "alguien"
+  },
+  "something": {
+   "ru": "что-то",
+   "uk": "щось",
+   "en": "a thing you do not name",
+   "es": "algo"
+  },
+  "burning": {
+   "ru": "горит",
+   "uk": "горить",
+   "en": "on fire",
+   "es": "quemándose"
+  },
+  "shoe": {
+   "ru": "туфля, ботинок",
+   "uk": "черевик, туфля",
+   "en": "covering for the foot",
+   "es": "zapato"
+  },
+  "somewhere": {
+   "ru": "где-нибудь; какое-то место",
+   "uk": "десь; якесь місце",
+   "en": "in a place not named",
+   "es": "en algún sitio"
+  },
+  "anything": {
+   "ru": "что-нибудь",
+   "uk": "що-небудь",
+   "en": "a thing, any one",
+   "es": "algo, cualquier cosa"
+  },
+  "else": {
+   "ru": "ещё, другое",
+   "uk": "ще, інше",
+   "en": "in addition",
+   "es": "más, otro"
+  },
+  "anywhere": {
+   "ru": "где-нибудь, куда-нибудь",
+   "uk": "десь, кудись",
+   "en": "in any place",
+   "es": "en cualquier sitio"
+  },
+  "nobody": {
+   "ru": "никто",
+   "uk": "ніхто",
+   "en": "not one person",
+   "es": "nadie"
+  },
+  "answered": {
+   "ru": "ответил",
+   "uk": "відповів",
+   "en": "replied",
+   "es": "respondió"
+  },
+  "nothing": {
+   "ru": "ничего",
+   "uk": "нічого",
+   "en": "not one thing",
+   "es": "nada"
+  },
+  "nowhere": {
+   "ru": "негде, нигде",
+   "uk": "ніде, ніде",
+   "en": "in no place",
+   "es": "en ningún sitio"
+  },
+  "happened": {
+   "ru": "произошло, случилось",
+   "uk": "сталося, відбулося",
+   "en": "took place",
+   "es": "ocurrió, pasó"
+  },
+  "town": {
+   "ru": "город (небольшой)",
+   "uk": "місто (невелике)",
+   "en": "place smaller than a city",
+   "es": "ciudad, pueblo"
+  },
+  "declare": {
+   "ru": "декларировать, заявлять",
+   "uk": "декларувати, заявляти",
+   "en": "tell officials what you carry",
+   "es": "declarar"
+  },
+  "everybody": {
+   "ru": "все",
+   "uk": "усі",
+   "en": "every person",
+   "es": "todos"
+  },
+  "everyone": {
+   "ru": "все, каждый",
+   "uk": "усі, кожен",
+   "en": "every person",
+   "es": "todos, cada uno"
+  },
+  "fits": {
+   "ru": "помещается",
+   "uk": "вміщується",
+   "en": "is the right size",
+   "es": "cabe"
+  },
+  "everywhere": {
+   "ru": "везде",
+   "uk": "скрізь",
+   "en": "in every place",
+   "es": "en todas partes"
+  },
+  "thanked": {
+   "ru": "поблагодарил",
+   "uk": "подякував",
+   "en": "said thank you",
+   "es": "agradeció"
+  },
+  "except": {
+   "ru": "кроме",
+   "uk": "крім",
+   "en": "not including",
+   "es": "excepto"
+  }
+ }
+}

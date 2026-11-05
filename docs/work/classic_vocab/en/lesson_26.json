@@ -1,0 +1,138 @@
+{
+ "lang": "en",
+ "lesson": 26,
+ "words": {
+  "if": {
+   "ru": "если",
+   "uk": "якщо",
+   "en": "on condition that",
+   "es": "si"
+  },
+  "rains": {
+   "ru": "идёт дождь",
+   "uk": "йде дощ",
+   "en": "water falls from the sky",
+   "es": "llueve"
+  },
+  "asks": {
+   "ru": "попросит, спросит",
+   "uk": "попросить, запитає",
+   "en": "wants an answer or help",
+   "es": "pide"
+  },
+  "latch": {
+   "ru": "защёлка",
+   "uk": "засувка",
+   "en": "small catch that holds a door",
+   "es": "pestillo"
+  },
+  "sticks": {
+   "ru": "заедает, заклинивает",
+   "uk": "заїдає, заклинює",
+   "en": "will not move easily",
+   "es": "se atasca"
+  },
+  "comes": {
+   "ru": "придёт",
+   "uk": "прийде",
+   "en": "arrives",
+   "es": "viene"
+  },
+  "shade": {
+   "ru": "тень",
+   "uk": "тінь",
+   "en": "place out of the sun",
+   "es": "sombra"
+  },
+  "text": {
+   "ru": "написать сообщение",
+   "uk": "написати повідомлення",
+   "en": "send a message by phone",
+   "es": "escribir un mensaje"
+  },
+  "full": {
+   "ru": "полный, полон",
+   "uk": "повний, повен",
+   "en": "with no space left",
+   "es": "lleno"
+  },
+  "sees": {
+   "ru": "увидит",
+   "uk": "побачить",
+   "en": "notices with the eyes",
+   "es": "ve"
+  },
+  "ends": {
+   "ru": "заканчивается",
+   "uk": "закінчується",
+   "en": "comes to a stop",
+   "es": "termina"
+  },
+  "flashes": {
+   "ru": "мигает",
+   "uk": "блимає",
+   "en": "goes on and off quickly",
+   "es": "parpadea"
+  },
+  "let": {
+   "ru": "дать, позволить",
+   "uk": "дати, дозволити",
+   "en": "allow; \"let me know\" means tell me",
+   "es": "dejar, permitir"
+  },
+  "leak": {
+   "ru": "протечка",
+   "uk": "протікання",
+   "en": "water coming out where it should not",
+   "es": "fuga"
+  },
+  "jams": {
+   "ru": "заклинивает",
+   "uk": "заклинює",
+   "en": "gets stuck and stops working",
+   "es": "se atasca"
+  },
+  "lid": {
+   "ru": "крышка",
+   "uk": "кришка",
+   "en": "cover on top of a container",
+   "es": "tapa"
+  },
+  "would": {
+   "ru": "бы",
+   "uk": "би",
+   "en": "word for an imagined result, like \"I would go\"",
+   "es": "condicional, como \"iría\""
+  },
+  "roof": {
+   "ru": "крыша",
+   "uk": "дах",
+   "en": "the top outside of a house",
+   "es": "techo"
+  },
+  "could": {
+   "ru": "мог бы, могла бы",
+   "uk": "міг би, могла б",
+   "en": "would be able to",
+   "es": "podría"
+  },
+  "job": {
+   "ru": "работа",
+   "uk": "робота",
+   "en": "the work you do for money",
+   "es": "trabajo"
+  },
+  "hours": {
+   "ru": "часы работы, график",
+   "uk": "години роботи, графік",
+   "en": "time you work each day",
+   "es": "horario"
+  },
+  "turns": {
+   "ru": "становится, загорается",
+   "uk": "стає, загоряється",
+   "en": "changes into a new colour",
+   "es": "se pone"
+  }
+ }
+}

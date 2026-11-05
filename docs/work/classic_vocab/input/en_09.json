@@ -1,0 +1,627 @@
+{
+ "lang": "en",
+ "lesson": 9,
+ "words": [
+  {
+   "form": "there",
+   "surface": "There",
+   "count": 50,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.01",
+     "target": "There is a lift",
+     "ru": "Есть лифт.",
+     "en": "There is a lift."
+    },
+    {
+     "id": "en-classic-r1:09.02",
+     "target": "There are stairs",
+     "ru": "Есть лестница.",
+     "en": "There are stairs."
+    }
+   ]
+  },
+  {
+   "form": "queue",
+   "surface": "queue",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.03",
+     "target": "There is a queue",
+     "ru": "Есть очередь.",
+     "en": "There is a queue."
+    }
+   ]
+  },
+  {
+   "form": "queues",
+   "surface": "queues",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.04",
+     "target": "There are two queues",
+     "ru": "Есть две очереди.",
+     "en": "There are two queues."
+    }
+   ]
+  },
+  {
+   "form": "back",
+   "surface": "back",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.06",
+     "target": "There are seats at the back",
+     "ru": "Сзади есть места.",
+     "en": "There are seats at the back."
+    },
+    {
+     "id": "en-classic-r1:09.41",
+     "target": "There is a number on the back",
+     "ru": "На обороте есть номер.",
+     "en": "There is a number on the back."
+    }
+   ]
+  },
+  {
+   "form": "toilet",
+   "surface": "toilet",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.07",
+     "target": "There is a toilet upstairs",
+     "ru": "Наверху есть туалет.",
+     "en": "There is a toilet upstairs."
+    }
+   ]
+  },
+  {
+   "form": "upstairs",
+   "surface": "upstairs",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.07",
+     "target": "There is a toilet upstairs",
+     "ru": "Наверху есть туалет.",
+     "en": "There is a toilet upstairs."
+    },
+    {
+     "id": "en-classic-r1:09.19",
+     "target": "There are clean towels upstairs",
+     "ru": "Наверху лежат чистые полотенца.",
+     "en": "There are clean towels upstairs."
+    }
+   ]
+  },
+  {
+   "form": "toilets",
+   "surface": "toilets",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.08",
+     "target": "There are toilets downstairs",
+     "ru": "Внизу есть туалеты.",
+     "en": "There are toilets downstairs."
+    }
+   ]
+  },
+  {
+   "form": "downstairs",
+   "surface": "downstairs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.08",
+     "target": "There are toilets downstairs",
+     "ru": "Внизу есть туалеты.",
+     "en": "There are toilets downstairs."
+    }
+   ]
+  },
+  {
+   "form": "map",
+   "surface": "map",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.09",
+     "target": "There is a map outside",
+     "ru": "Снаружи есть карта.",
+     "en": "There is a map outside."
+    }
+   ]
+  },
+  {
+   "form": "outside",
+   "surface": "outside",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.09",
+     "target": "There is a map outside",
+     "ru": "Снаружи есть карта.",
+     "en": "There is a map outside."
+    }
+   ]
+  },
+  {
+   "form": "signs",
+   "surface": "signs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.10",
+     "target": "There are signs inside",
+     "ru": "Внутри есть указатели.",
+     "en": "There are signs inside."
+    }
+   ]
+  },
+  {
+   "form": "inside",
+   "surface": "inside",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.10",
+     "target": "There are signs inside",
+     "ru": "Внутри есть указатели.",
+     "en": "There are signs inside."
+    }
+   ]
+  },
+  {
+   "form": "fridge",
+   "surface": "fridge",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.11",
+     "target": "There is milk in the fridge",
+     "ru": "В холодильнике есть молоко.",
+     "en": "There is milk in the fridge."
+    },
+    {
+     "id": "en-classic-r1:09.14",
+     "target": "There are eggs in the fridge",
+     "ru": "В холодильнике есть яйца.",
+     "en": "There are eggs in the fridge."
+    }
+   ]
+  },
+  {
+   "form": "kettle",
+   "surface": "kettle",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.12",
+     "target": "There is water in the kettle",
+     "ru": "В чайнике есть вода.",
+     "en": "There is water in the kettle."
+    }
+   ]
+  },
+  {
+   "form": "soup",
+   "surface": "soup",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.13",
+     "target": "There is soup on the stove",
+     "ru": "На плите стоит суп.",
+     "en": "There is soup on the stove."
+    }
+   ]
+  },
+  {
+   "form": "stove",
+   "surface": "stove",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.13",
+     "target": "There is soup on the stove",
+     "ru": "На плите стоит суп.",
+     "en": "There is soup on the stove."
+    }
+   ]
+  },
+  {
+   "form": "eggs",
+   "surface": "eggs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.14",
+     "target": "There are eggs in the fridge",
+     "ru": "В холодильнике есть яйца.",
+     "en": "There are eggs in the fridge."
+    }
+   ]
+  },
+  {
+   "form": "cups",
+   "surface": "cups",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.15",
+     "target": "There are cups on the shelf",
+     "ru": "На полке стоят чашки.",
+     "en": "There are cups on the shelf."
+    }
+   ]
+  },
+  {
+   "form": "shelf",
+   "surface": "shelf",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.15",
+     "target": "There are cups on the shelf",
+     "ru": "На полке стоят чашки.",
+     "en": "There are cups on the shelf."
+    }
+   ]
+  },
+  {
+   "form": "bread",
+   "surface": "bread",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.16",
+     "target": "There is bread on the table",
+     "ru": "На столе лежит хлеб.",
+     "en": "There is bread on the table."
+    }
+   ]
+  },
+  {
+   "form": "spoons",
+   "surface": "spoons",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.17",
+     "target": "There are spoons in the drawer",
+     "ru": "В ящике лежат ложки.",
+     "en": "There are spoons in the drawer."
+    }
+   ]
+  },
+  {
+   "form": "drawer",
+   "surface": "drawer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.17",
+     "target": "There are spoons in the drawer",
+     "ru": "В ящике лежат ложки.",
+     "en": "There are spoons in the drawer."
+    }
+   ]
+  },
+  {
+   "form": "rice",
+   "surface": "rice",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.18",
+     "target": "There is rice in the cupboard",
+     "ru": "В шкафу есть рис.",
+     "en": "There is rice in the cupboard."
+    }
+   ]
+  },
+  {
+   "form": "cupboard",
+   "surface": "cupboard",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.18",
+     "target": "There is rice in the cupboard",
+     "ru": "В шкафу есть рис.",
+     "en": "There is rice in the cupboard."
+    }
+   ]
+  },
+  {
+   "form": "clean",
+   "surface": "clean",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.19",
+     "target": "There are clean towels upstairs",
+     "ru": "Наверху лежат чистые полотенца.",
+     "en": "There are clean towels upstairs."
+    },
+    {
+     "id": "en-classic-r1:09.36",
+     "target": "There are no clean forks",
+     "ru": "Нет чистых вилок.",
+     "en": "There are no clean forks."
+    }
+   ]
+  },
+  {
+   "form": "towels",
+   "surface": "towels",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.19",
+     "target": "There are clean towels upstairs",
+     "ru": "Наверху лежат чистые полотенца.",
+     "en": "There are clean towels upstairs."
+    }
+   ]
+  },
+  {
+   "form": "soap",
+   "surface": "soap",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.20",
+     "target": "There is soap by the sink",
+     "ru": "У раковины лежит мыло.",
+     "en": "There is soap by the sink."
+    }
+   ]
+  },
+  {
+   "form": "sink",
+   "surface": "sink",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.20",
+     "target": "There is soap by the sink",
+     "ru": "У раковины лежит мыло.",
+     "en": "There is soap by the sink."
+    }
+   ]
+  },
+  {
+   "form": "lockers",
+   "surface": "lockers",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.24",
+     "target": "Are there lockers at the station",
+     "ru": "Есть ли на станции камеры хранения?",
+     "en": "Are there lockers at the station?"
+    },
+    {
+     "id": "en-classic-r1:09.38",
+     "target": "There are no lockers on this floor",
+     "ru": "На этом этаже нет шкафчиков.",
+     "en": "There are no lockers on this floor."
+    }
+   ]
+  },
+  {
+   "form": "blankets",
+   "surface": "blankets",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.26",
+     "target": "Are there any blankets",
+     "ru": "Есть ли одеяла?",
+     "en": "Are there any blankets?"
+    }
+   ]
+  },
+  {
+   "form": "steps",
+   "surface": "steps",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.28",
+     "target": "Are there any steps at the entrance",
+     "ru": "Есть ли ступеньки у входа?",
+     "en": "Are there any steps at the entrance?"
+    }
+   ]
+  },
+  {
+   "form": "direct",
+   "surface": "direct",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.30",
+     "target": "Is there a direct train",
+     "ru": "Есть ли прямой поезд?",
+     "en": "Is there a direct train?"
+    }
+   ]
+  },
+  {
+   "form": "sugar",
+   "surface": "sugar",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.31",
+     "target": "There is no sugar left",
+     "ru": "Сахара больше нет.",
+     "en": "There is no sugar left."
+    }
+   ]
+  },
+  {
+   "form": "space",
+   "surface": "space",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.33",
+     "target": "There is not much space",
+     "ru": "Места мало.",
+     "en": "There is not much space."
+    }
+   ]
+  },
+  {
+   "form": "chairs",
+   "surface": "chairs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.34",
+     "target": "There are not enough chairs",
+     "ru": "Недостаточно стульев.",
+     "en": "There are not enough chairs."
+    }
+   ]
+  },
+  {
+   "form": "forks",
+   "surface": "forks",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.36",
+     "target": "There are no clean forks",
+     "ru": "Нет чистых вилок.",
+     "en": "There are no clean forks."
+    }
+   ]
+  },
+  {
+   "form": "signal",
+   "surface": "signal",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.37",
+     "target": "There is no signal here",
+     "ru": "Здесь нет сигнала.",
+     "en": "There is no signal here."
+    }
+   ]
+  },
+  {
+   "form": "floor",
+   "surface": "floor",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.38",
+     "target": "There are no lockers on this floor",
+     "ru": "На этом этаже нет шкафчиков.",
+     "en": "There are no lockers on this floor."
+    }
+   ]
+  },
+  {
+   "form": "single",
+   "surface": "single",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.39",
+     "target": "There is not a single seat left",
+     "ru": "Нет ни одного свободного места.",
+     "en": "There is not a single seat left."
+    }
+   ]
+  },
+  {
+   "form": "names",
+   "surface": "names",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.42",
+     "target": "There are two names on the list",
+     "ru": "В списке два имени.",
+     "en": "There are two names on the list."
+    }
+   ]
+  },
+  {
+   "form": "list",
+   "surface": "list",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.42",
+     "target": "There are two names on the list",
+     "ru": "В списке два имени.",
+     "en": "There are two names on the list."
+    }
+   ]
+  },
+  {
+   "form": "mistake",
+   "surface": "mistake",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.43",
+     "target": "There is a mistake on my bill",
+     "ru": "В моем счете ошибка.",
+     "en": "There is a mistake on my bill."
+    }
+   ]
+  },
+  {
+   "form": "crack",
+   "surface": "crack",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.44",
+     "target": "There is a crack in the screen",
+     "ru": "На экране трещина.",
+     "en": "There is a crack in the screen."
+    }
+   ]
+  },
+  {
+   "form": "light",
+   "surface": "light",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.48",
+     "target": "There is a light on in the kitchen",
+     "ru": "На кухне горит свет.",
+     "en": "There is a light on in the kitchen."
+    }
+   ]
+  },
+  {
+   "form": "still",
+   "surface": "still",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:09.50",
+     "target": "There is still time for a coffee",
+     "ru": "Еще есть время выпить кофе.",
+     "en": "There is still time for a coffee."
+    }
+   ]
+  }
+ ]
+}

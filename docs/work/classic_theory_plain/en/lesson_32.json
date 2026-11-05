@@ -1,0 +1,710 @@
+{
+  "lang": "en",
+  "lesson": 32,
+  "title": {
+    "ru": "Всё вместе: вопросы, прошлое, «если»",
+    "uk": "Усе разом: запитання, минуле, «якщо»",
+    "en": "Everything together: questions, past, “if”"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Спросить и попросить",
+        "uk": "Запитати і попросити",
+        "en": "Asking and requesting"
+      },
+      "text": {
+        "ru": "Вот как спросить о комнате, о цене и как вежливо попросить.\nIs the small room still available? — Маленькая комната ещё свободна?\nЧитается: из зэ смо́л ру́м сти́л эвэ́йлэбл.\nСлово available значит «свободен».\nСлово still вы видели: «всё ещё».\nHow much does a return ticket cost? — Сколько стоит билет туда и обратно?\nЧитается: ха́у ма́ч да́з э ритэ́рн ти́кит ко́ст.\nСлово does только помогает задать вопрос. По-русски его не говорят.\nСлова return ticket значат «билет туда и обратно».\nPlease keep the fire exit clear. — Пожалуйста, не закрывайте пожарный выход.\nЧитается: пли́з ки́п зэ фа́йэр э́гзит кли́р.\nСлово fire значит «огонь».\nСлова fire exit значат «пожарный выход».\nСлова keep clear значат «не загораживайте».\nВ вопросе слово is или does стоит в начале: Is the room…? How much does…?",
+        "uk": "Ось як запитати про кімнату, про ціну і як ввічливо попросити.\nIs the small room still available? — Маленька кімната ще вільна?\nЧитається: із зе смо́л ру́м сті́л еве́йлебл.\nСлово available означає «вільний».\nСлово still ви бачили: «все ще».\nHow much does a return ticket cost? — Скільки коштує квиток туди й назад?\nЧитається: ха́у ма́ч да́з е ріте́рн ті́кіт ко́ст.\nСлово does тільки допомагає поставити запитання. По-українськи його не кажуть.\nСлова return ticket означають «квиток туди й назад».\nPlease keep the fire exit clear. — Будь ласка, тримайте пожежний вихід вільним.\nЧитається: плі́з кі́п зе фа́йер е́гзіт клі́р.\nСлово fire означає «вогонь».\nСлова fire exit означають «пожежний вихід».\nСлова keep clear означають «не загороджуйте».\nУ запитанні слово is або does стоїть на початку: Is the room…? How much does…?",
+        "en": "Here is how to ask about a room, a price, and how to ask politely.\nIs the small room still available?\nThe word available means “free to take”.\nYou saw the word still. It means “even now”.\nHow much does a return ticket cost?\nThe word does only helps to ask the question. It has no meaning of its own.\nThe words return ticket together mean “a ticket to go and to come back”.\nPlease keep the fire exit clear.\nThe word fire means “what burns with flames”.\nThe words fire exit together mean “a door to use if there is a fire”.\nThe words keep clear together mean “leave it free”.\nIn a question the word is or does comes early: Is the room…? How much does…?"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:32.01",
+          "say": {
+            "ru": "из зэ смо́л ру́м сти́л эвэ́йлэбл",
+            "uk": "із зе смо́л ру́м сті́л еве́йлебл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.02",
+          "say": {
+            "ru": "ха́у ма́ч да́з э ритэ́рн ти́кит ко́ст",
+            "uk": "ха́у ма́ч да́з е ріте́рн ті́кіт ко́ст"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.08",
+          "say": {
+            "ru": "пли́з ки́п зэ фа́йэр э́гзит кли́р",
+            "uk": "плі́з кі́п зе фа́йер е́гзіт клі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Маленькая комната ещё свободна»",
+            "uk": "Виберіть, як сказати: «Маленька кімната ще вільна»",
+            "en": "Choose how to say: “Is the small room still available?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:32.01",
+          "options": [
+            "en-classic-r1:32.01",
+            "en-classic-r1:32.02",
+            "en-classic-r1:32.08"
+          ],
+          "answerId": "en-classic-r1:32.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сколько стоит билет туда и обратно»",
+            "uk": "Виберіть, як сказати: «Скільки коштує квиток туди й назад»",
+            "en": "Choose how to say: “How much does a return ticket cost?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.02",
+          "options": [
+            "en-classic-r1:32.02",
+            "en-classic-r1:32.08",
+            "en-classic-r1:32.01"
+          ],
+          "answerId": "en-classic-r1:32.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пожалуйста, не закрывайте пожарный выход»",
+            "uk": "Виберіть, як сказати: «Будь ласка, тримайте пожежний вихід вільним»",
+            "en": "Choose how to say: “Please keep the fire exit clear.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.08",
+          "options": [
+            "en-classic-r1:32.08",
+            "en-classic-r1:32.01",
+            "en-classic-r1:32.02"
+          ],
+          "answerId": "en-classic-r1:32.08"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Уже случилось",
+        "uk": "Уже сталося",
+        "en": "Things that have already happened"
+      },
+      "text": {
+        "ru": "Слово have помогает сказать: это уже случилось и важно сейчас.\nПо-русски его не говорят.\nКогда речь о нём или о ней, говорят has.\nI have already sent you the receipt. — Я уже отправил вам квитанцию.\nЧитается: ай хэ́в олрэ́ди сэ́нт ю зэ риси́т.\nСлова have sent значат «отправил».\nСлово already значит «уже».\nHave you ever stayed in this part of town?\n— Вы когда-нибудь останавливались в этой части города?\nЧитается: хэ́в ю э́вер стэ́йд ин зи́с па́рт ов та́ун.\nСлово ever значит «когда-нибудь».\nСлова have you stayed значат «вы останавливались».\nСлова part of town значат «часть города».\nShe has worked at this hotel since April.\n— Она работает в этом отеле с апреля.\nЧитается: ши хэ́з уэ́ркт эт зи́с хоутэ́л си́нс э́йприл.\nСлово since значит «с».\nСлова since April значат «с апреля».\nСлова has worked значат «работает (уже давно)».\nWe changed the date last Thursday. — Мы изменили дату в прошлый четверг.\nЧитается: уи чэ́йнджд зэ дэ́йт ла́ст тэ́рздэй.\nЗдесь last значит «прошлый»: last Thursday — «в прошлый четверг».\nСлова we changed значат «мы изменили».\nКогда назван день (last Thursday), слово have не нужно.",
+        "uk": "Слово have допомагає сказати: це вже сталося і важливо зараз.\nПо-українськи його не кажуть.\nКоли мова про нього чи про неї, кажуть has.\nI have already sent you the receipt. — Я вже надіслав вам квитанцію.\nЧитається: ай хе́в олре́ді се́нт ю зе рісі́т.\nСлова have sent означають «відправив».\nСлово already означає «вже».\nHave you ever stayed in this part of town?\n— Ви коли-небудь зупинялися в цій частині міста?\nЧитається: хе́в ю е́вер сте́йд ін зі́с па́рт ов та́ун.\nСлово ever означає «коли-небудь».\nСлова have you stayed означають «ви зупинялися».\nСлова part of town означають «частина міста».\nShe has worked at this hotel since April.\n— Вона працює в цьому готелі з квітня.\nЧитається: ші хе́з уе́ркт ет зі́с хоуте́л сі́нс е́йпріл.\nСлово since означає «з».\nСлова since April означають «з квітня».\nСлова has worked означають «працює (вже давно)».\nWe changed the date last Thursday. — Ми змінили дату минулого четверга.\nЧитається: уі че́йнджд зе де́йт ла́ст те́рздей.\nТут last означає «минулий»: last Thursday — «минулого четверга».\nСлова we changed означають «ми змінили».\nКоли названо день (last Thursday), слово have не потрібне.",
+        "en": "The word have helps to say: it has already happened and it matters now.\nIt has no meaning of its own.\nWhen it is about him or her, we say has.\nI have already sent you the receipt.\nThe words have sent together mean “have posted”.\nThe word already means “before now”.\nHave you ever stayed in this part of town?\nThe word ever means “at any time in your life”.\nThe words have you stayed together mean “did you live there for a time”.\nThe words part of town together mean “one area of the town”.\nShe has worked at this hotel since April.\nThe word since means “from a time until now”.\nThe words since April together mean “from April until now”.\nThe words has worked together mean “works and still works”.\nWe changed the date last Thursday.\nHere last means “the one before this”: last Thursday.\nThe words we changed together mean “we made it different”.\nWhen the day is named (last Thursday), you do not need have."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:32.11",
+          "say": {
+            "ru": "ай хэ́в олрэ́ди сэ́нт ю зэ риси́т",
+            "uk": "ай хе́в олре́ді се́нт ю зе рісі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.13",
+          "say": {
+            "ru": "хэ́в ю э́вер стэ́йд ин зи́с па́рт ов та́ун",
+            "uk": "хе́в ю е́вер сте́йд ін зі́с па́рт ов та́ун"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.14",
+          "say": {
+            "ru": "ши хэ́з уэ́ркт эт зи́с хоутэ́л си́нс э́йприл",
+            "uk": "ші хе́з уе́ркт ет зі́с хоуте́л сі́нс е́йпріл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.12",
+          "say": {
+            "ru": "уи чэ́йнджд зэ дэ́йт ла́ст тэ́рздэй",
+            "uk": "уі че́йнджд зе де́йт ла́ст те́рздей"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уже отправил вам квитанцию»",
+            "uk": "Виберіть, як сказати: «Я вже надіслав вам квитанцію»",
+            "en": "Choose how to say: “I have already sent you the receipt.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:32.11",
+          "options": [
+            "en-classic-r1:32.11",
+            "en-classic-r1:32.13",
+            "en-classic-r1:32.14"
+          ],
+          "answerId": "en-classic-r1:32.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы когда-нибудь останавливались в этой части города»",
+            "uk": "Виберіть, як сказати: «Ви коли-небудь зупинялися в цій частині міста»",
+            "en": "Choose how to say: “Have you ever stayed in this part of town?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.13",
+          "options": [
+            "en-classic-r1:32.13",
+            "en-classic-r1:32.14",
+            "en-classic-r1:32.12"
+          ],
+          "answerId": "en-classic-r1:32.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она работает в этом отеле с апреля»",
+            "uk": "Виберіть, як сказати: «Вона працює в цьому готелі з квітня»",
+            "en": "Choose how to say: “She has worked at this hotel since April.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.14",
+          "options": [
+            "en-classic-r1:32.14",
+            "en-classic-r1:32.12",
+            "en-classic-r1:32.11"
+          ],
+          "answerId": "en-classic-r1:32.14"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Что-то сделали",
+        "uk": "Щось зробили",
+        "en": "Something was done"
+      },
+      "text": {
+        "ru": "Иногда не важно, кто сделал. Важно, что сделано.\nТогда говорят: уже сделано, делают сейчас или делали тогда.\nOur reservation has just been confirmed. — Наше бронирование только что подтверждено.\nЧитается: а́ур рэзэрвэ́йшн хэ́з джа́ст би́н конфэ́рмд.\nСлово reservation значит «бронирование».\nСлово confirmed значит «подтверждено».\nСлово just значит «только что».\nWas the deposit included in the total? — Был ли депозит включен в общую сумму?\nЧитается: уо́з зэ дипо́зит инклу́дид ин зэ то́утл.\nСлово total значит «общая сумма».\nСлова was included значат «был включён».\nThe lobby is being painted at the moment. — В вестибюле сейчас идет покраска.\nЧитается: зэ ло́би из би́ин пэ́йнтид эт зэ мо́умент.\nСлово painted значит «покрашен».\nСлова is being painted значат «красят сейчас».\nСлова at the moment значат «сейчас».\nWe had to wait because the lift was being repaired.\n— Нам пришлось ждать, потому что лифт ремонтировали.\nЧитается: уи хэ́д ту уэ́йт бикоз зэ ли́фт уо́з би́ин рипэ́рд.\nСлова had to значат «пришлось».\nСлова was being repaired значат «ремонтировали».\nСлова is being и was being, потом слово с ed: делают сейчас или делали тогда.",
+        "uk": "Іноді не важливо, хто зробив. Важливо, що зроблено.\nТоді кажуть: уже зроблено, роблять зараз або робили тоді.\nOur reservation has just been confirmed. — Наше бронювання щойно підтверджено.\nЧитається: а́ур резерве́йшн хе́з джа́ст бі́н конфе́рмд.\nСлово reservation означає «бронювання».\nСлово confirmed означає «підтверджено».\nСлово just означає «щойно».\nWas the deposit included in the total? — Чи був депозит включений у загальну суму?\nЧитається: уо́з зе діпо́зіт інклу́дід ін зе то́утл.\nСлово total означає «загальна сума».\nСлова was included означають «був включений».\nThe lobby is being painted at the moment. — У вестибюлі зараз фарбують.\nЧитається: зе ло́бі із бі́ін пе́йнтід ет зе мо́умент.\nСлово painted означає «пофарбований».\nСлова is being painted означають «фарбують зараз».\nСлова at the moment означають «зараз».\nWe had to wait because the lift was being repaired.\n— Нам довелося чекати, бо ліфт ремонтували.\nЧитається: уі хе́д ту уе́йт бікоз зе лі́фт уо́з бі́ін ріпе́рд.\nСлова had to означають «довелося».\nСлова was being repaired означають «ремонтували».\nСлова is being і was being, потім слово з ed: роблять зараз або робили тоді.",
+        "en": "Sometimes it does not matter who did it. What was done matters.\nThen we say: it is done, it is being done now, or it was being done.\nOur reservation has just been confirmed.\nThe word reservation means “a place kept for you”.\nThe word confirmed means “said to be sure”.\nThe word just means “a moment ago”.\nWas the deposit included in the total?\nThe word total means “all the money added up”.\nThe words was included together mean “was part of it”.\nThe lobby is being painted at the moment.\nThe word painted means “covered with colour”.\nThe words is being painted together mean “someone is painting it now”.\nThe words at the moment together mean “right now”.\nWe had to wait because the lift was being repaired.\nThe words had to together mean “must do”.\nThe words was being repaired together mean “someone was fixing it then”.\nUse is being or was being, then a word with ed: done now or done then."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:32.16",
+          "say": {
+            "ru": "а́ур рэзэрвэ́йшн хэ́з джа́ст би́н конфэ́рмд",
+            "uk": "а́ур резерве́йшн хе́з джа́ст бі́н конфе́рмд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.17",
+          "say": {
+            "ru": "уо́з зэ дипо́зит инклу́дид ин зэ то́утл",
+            "uk": "уо́з зе діпо́зіт інклу́дід ін зе то́утл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.18",
+          "say": {
+            "ru": "зэ ло́би из би́ин пэ́йнтид эт зэ мо́умент",
+            "uk": "зе ло́бі із бі́ін пе́йнтід ет зе мо́умент"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.20",
+          "say": {
+            "ru": "уи хэ́д ту уэ́йт бикоз зэ ли́фт уо́з би́ин рипэ́рд",
+            "uk": "уі хе́д ту уе́йт бікоз зе лі́фт уо́з бі́ін ріпе́рд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Наше бронирование только что подтверждено»",
+            "uk": "Виберіть, як сказати: «Наше бронювання щойно підтверджено»",
+            "en": "Choose how to say: “Our reservation has just been confirmed.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:32.16",
+          "options": [
+            "en-classic-r1:32.16",
+            "en-classic-r1:32.17",
+            "en-classic-r1:32.18"
+          ],
+          "answerId": "en-classic-r1:32.16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Был ли депозит включен в общую сумму»",
+            "uk": "Виберіть, як сказати: «Чи був депозит включений у загальну суму»",
+            "en": "Choose how to say: “Was the deposit included in the total?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.17",
+          "options": [
+            "en-classic-r1:32.17",
+            "en-classic-r1:32.18",
+            "en-classic-r1:32.20"
+          ],
+          "answerId": "en-classic-r1:32.17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам пришлось ждать, потому что лифт ремонтировали»",
+            "uk": "Виберіть, як сказати: «Нам довелося чекати, бо ліфт ремонтували»",
+            "en": "Choose how to say: “We had to wait because the lift was being repaired.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.20",
+          "options": [
+            "en-classic-r1:32.20",
+            "en-classic-r1:32.16",
+            "en-classic-r1:32.17"
+          ],
+          "answerId": "en-classic-r1:32.20"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Если и как только",
+        "uk": "Якщо і щойно",
+        "en": "If, as soon as, unless"
+      },
+      "text": {
+        "ru": "Так говорят о том, что будет, если что-то случится.\nIf the bus is full, we will walk to the station.\n— Если автобус будет полон, мы пойдем пешком до вокзала.\nЧитается: иф зэ ба́с из фу́л уи уил уо́к ту зэ стэ́йшн.\nСлово if значит «если».\nСлова will walk значат «пойдём пешком».\nI will send the number as soon as I find it.\n— Я пришлю номер, как только найду его.\nЧитается: ай уил сэ́нд зэ на́мбер эз су́н эз ай фа́йнд ит.\nСлова as soon as значат «как только».\nСлова will send значат «пришлю».\nUnless you have a pass, use the main entrance.\n— Если у вас нет пропуска, воспользуйтесь главным входом.\nЧитается: анлэ́с ю хэ́в э па́с ю́з зэ мэ́йн э́нтрэнс.\nСлово unless значит «если не».\nСлова unless you have a pass значат «если у вас нет пропуска».\nСлова use the main entrance значат «идите через главный вход».\nСлово will стоит во второй части, а не после if, as soon as, unless.",
+        "uk": "Так кажуть про те, що буде, якщо щось станеться.\nIf the bus is full, we will walk to the station.\n— Якщо автобус повний, ми підемо пішки до станції.\nЧитається: іф зе ба́с із фу́л уі уіл уо́к ту зе сте́йшн.\nСлово if означає «якщо».\nСлова will walk означають «підемо пішки».\nI will send the number as soon as I find it.\n— Я надішлю номер, щойно його знайду.\nЧитається: ай уіл се́нд зе на́мбер ез су́н ез ай фа́йнд іт.\nСлова as soon as означають «щойно».\nСлова will send означають «надішлю».\nUnless you have a pass, use the main entrance.\n— Якщо у вас немає перепустки, скористайтеся головним входом.\nЧитається: анле́с ю хе́в е па́с ю́з зе ме́йн е́нтренс.\nСлово unless означає «якщо не».\nСлова unless you have a pass означають «якщо у вас немає перепустки».\nСлова use the main entrance означають «ідіть через головний вхід».\nСлово will стоїть у другій частині, а не після if, as soon as, unless.",
+        "en": "We say it about what will happen if something happens.\nIf the bus is full, we will walk to the station.\nThe word if means “in the case that”.\nThe words will walk together mean “are going to go on foot”.\nI will send the number as soon as I find it.\nThe words as soon as together mean “at the very moment when”.\nThe words will send together mean “am going to send”.\nUnless you have a pass, use the main entrance.\nThe word unless means “if not”.\nThe words unless you have a pass together mean “if you do not have a pass”.\nThe words use the main entrance together mean “go in by the big door”.\nThe word will stands in the other part, not after if, as soon as, unless."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:32.21",
+          "say": {
+            "ru": "иф зэ ба́с из фу́л уи уил уо́к ту зэ стэ́йшн",
+            "uk": "іф зе ба́с із фу́л уі уіл уо́к ту зе сте́йшн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.22",
+          "say": {
+            "ru": "ай уил сэ́нд зэ на́мбер эз су́н эз ай фа́йнд ит",
+            "uk": "ай уіл се́нд зе на́мбер ез су́н ез ай фа́йнд іт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.23",
+          "say": {
+            "ru": "анлэ́с ю хэ́в э па́с ю́з зэ мэ́йн э́нтрэнс",
+            "uk": "анле́с ю хе́в е па́с ю́з зе ме́йн е́нтренс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если автобус будет полон, мы пойдем пешком до вокзала»",
+            "uk": "Виберіть, як сказати: «Якщо автобус повний, ми підемо пішки до станції»",
+            "en": "Choose how to say: “If the bus is full, we will walk to the station.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:32.21",
+          "options": [
+            "en-classic-r1:32.21",
+            "en-classic-r1:32.22",
+            "en-classic-r1:32.23"
+          ],
+          "answerId": "en-classic-r1:32.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я пришлю номер, как только найду его»",
+            "uk": "Виберіть, як сказати: «Я надішлю номер, щойно його знайду»",
+            "en": "Choose how to say: “I will send the number as soon as I find it.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.22",
+          "options": [
+            "en-classic-r1:32.22",
+            "en-classic-r1:32.23",
+            "en-classic-r1:32.21"
+          ],
+          "answerId": "en-classic-r1:32.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если у вас нет пропуска, воспользуйтесь главным входом»",
+            "uk": "Виберіть, як сказати: «Якщо у вас немає перепустки, скористайтеся головним входом»",
+            "en": "Choose how to say: “Unless you have a pass, use the main entrance.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.23",
+          "options": [
+            "en-classic-r1:32.23",
+            "en-classic-r1:32.21",
+            "en-classic-r1:32.22"
+          ],
+          "answerId": "en-classic-r1:32.23"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Пересказ чужих слов",
+        "uk": "Переказ чужих слів",
+        "en": "Telling what someone said"
+      },
+      "text": {
+        "ru": "Так говорят, что сказал или спросил другой человек.\nСлова чуть «сдвигаются назад»: can становится could.\nShe said she could meet us after lunch.\n— Она сказала, что может встретиться с нами после обеда.\nЧитается: ши сэ́д ши ку́д ми́т ас а́фтер ла́нч.\nСлова she said значат «она сказала».\nСлово could значит «может».\nСлова meet us значат «встретиться с нами».\nHe asked where we had left the keys. — Он спросил, где мы оставили ключи.\nЧитается: хи а́скт уэ́р уи хэ́д лэ́фт зэ ки́з.\nСлова he asked значат «он спросил».\nСлова we had left значат «мы оставили».\nСлово had показывает: это было раньше.\nThe receptionist told us not to blame the driver.\n— Администратор сказала нам не винить водителя.\nЧитается: зэ рисэ́пшенист то́улд ас но́т ту блэ́йм зэ дра́йвер.\nСлово receptionist значит «администратор».\nСлово blame значит «винить».\nСлова told us not to значат «сказала нам не».\nI asked if there was a cheaper room. — Я спросил, есть ли номер подешевле.\nЧитается: ай а́скт иф зэ́р уо́з э чи́пэр ру́м.\nЗдесь if значит «ли»: asked if — «спросил, есть ли».\nВ пересказе слова сдвигаются назад: can — could, left — had left.",
+        "uk": "Так кажуть, що сказала або запитала інша людина.\nСлова трохи «зсуваються назад»: can стає could.\nShe said she could meet us after lunch.\n— Вона сказала, що може зустрітися з нами після обіду.\nЧитається: ші се́д ші ку́д мі́т ас а́фтер ла́нч.\nСлова she said означають «вона сказала».\nСлово could означає «може».\nСлова meet us означають «зустрітися з нами».\nHe asked where we had left the keys. — Він запитав, де ми залишили ключі.\nЧитається: хі а́скт уе́р уі хе́д ле́фт зе кі́з.\nСлова he asked означають «він запитав».\nСлова we had left означають «ми залишили».\nСлово had показує: це було раніше.\nThe receptionist told us not to blame the driver.\n— Адміністратор сказала нам не звинувачувати водія.\nЧитається: зе рісе́пшеніст то́улд ас но́т ту бле́йм зе дра́йвер.\nСлово receptionist означає «адміністратор».\nСлово blame означає «звинувачувати».\nСлова told us not to означають «сказала нам не».\nI asked if there was a cheaper room. — Я запитав, чи є дешевший номер.\nЧитається: ай а́скт іф зе́р уо́з е чі́пер ру́м.\nТут if означає «чи»: asked if — «запитав, чи є».\nУ переказі слова зсуваються назад: can — could, left — had left.",
+        "en": "This is how we tell what another person said or asked.\nThe words move a small step back: can becomes could.\nShe said she could meet us after lunch.\nThe words she said together mean “she told us”.\nThe word could means “is able to”.\nThe words meet us together mean “come together with us”.\nHe asked where we had left the keys.\nThe words he asked together mean “he put a question”.\nThe words we had left together mean “we put them down earlier”.\nThe word had shows: it was earlier.\nThe receptionist told us not to blame the driver.\nThe word receptionist means “a person at the desk of a hotel”.\nThe word blame means “to say it is someone’s fault”.\nThe words told us not to together mean “said to us: do not”.\nI asked if there was a cheaper room.\nHere if means “whether”: asked if there was.\nWhen telling it, words move back: can becomes could, left becomes had left."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:32.24",
+          "say": {
+            "ru": "ши сэ́д ши ку́д ми́т ас а́фтер ла́нч",
+            "uk": "ші се́д ші ку́д мі́т ас а́фтер ла́нч"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.25",
+          "say": {
+            "ru": "хи а́скт уэ́р уи хэ́д лэ́фт зэ ки́з",
+            "uk": "хі а́скт уе́р уі хе́д ле́фт зе кі́з"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.35",
+          "say": {
+            "ru": "зэ рисэ́пшенист то́улд ас но́т ту блэ́йм зэ дра́йвер",
+            "uk": "зе рісе́пшеніст то́улд ас но́т ту бле́йм зе дра́йвер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.27",
+          "say": {
+            "ru": "ай а́скт иф зэ́р уо́з э чи́пэр ру́м",
+            "uk": "ай а́скт іф зе́р уо́з е чі́пер ру́м"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она сказала, что может встретиться с нами после обеда»",
+            "uk": "Виберіть, як сказати: «Вона сказала, що може зустрітися з нами після обіду»",
+            "en": "Choose how to say: “She said she could meet us after lunch.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:32.24",
+          "options": [
+            "en-classic-r1:32.24",
+            "en-classic-r1:32.25",
+            "en-classic-r1:32.35"
+          ],
+          "answerId": "en-classic-r1:32.24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он спросил, где мы оставили ключи»",
+            "uk": "Виберіть, як сказати: «Він запитав, де ми залишили ключі»",
+            "en": "Choose how to say: “He asked where we had left the keys.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.25",
+          "options": [
+            "en-classic-r1:32.25",
+            "en-classic-r1:32.35",
+            "en-classic-r1:32.27"
+          ],
+          "answerId": "en-classic-r1:32.25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я спросил, есть ли номер подешевле»",
+            "uk": "Виберіть, як сказати: «Я запитав, чи є дешевший номер»",
+            "en": "Choose how to say: “I asked if there was a cheaper room.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.27",
+          "options": [
+            "en-classic-r1:32.27",
+            "en-classic-r1:32.24",
+            "en-classic-r1:32.25"
+          ],
+          "answerId": "en-classic-r1:32.27"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Какой именно: повторяем",
+        "uk": "Який саме: повторюємо",
+        "en": "Which one: a quick repeat"
+      },
+      "text": {
+        "ru": "Помните слова who, where и that из прошлых уроков? Вот три фразы.\nThe woman who answered knew the driver. — Женщина, которая ответила, знала водителя.\nЧитается: зэ у́умэн ху а́нсэрд ню́ зэ дра́йвер.\nСлова who answered значат «которая ответила».\nThat is the hotel where I left my charger.\n— Это тот отель, где я оставил зарядное устройство.\nЧитается: зэ́т из зэ хоутэ́л уэ́р ай лэ́фт май ча́рджер.\nСлова the hotel where I left значат «отель, где я оставил».\nЗдесь left значит «оставил».\nThe quietest room is the one that faces the factory.\n— Самая тихая комната — та, что выходит на завод.\nЧитается: зэ ква́йетист ру́м из зэ уа́н зэт фэ́йсиз зэ фэ́ктори.\nСлова the one that значат «та, что».\nСлово faces значит «выходит на».\nWho — о человеке, that — о вещи, where — о месте.",
+        "uk": "Пам’ятаєте слова who, where і that з минулих уроків? Ось три фрази.\nThe woman who answered knew the driver. — Жінка, яка відповіла, знала водія.\nЧитається: зе у́умен ху а́нсерд ню́ зе дра́йвер.\nСлова who answered означають «яка відповіла».\nThat is the hotel where I left my charger.\n— Це готель, де я залишив свій зарядний пристрій.\nЧитається: зе́т із зе хоуте́л уе́р ай ле́фт май ча́рджер.\nСлова the hotel where I left означають «готель, де я залишив».\nТут left означає «залишив».\nThe quietest room is the one that faces the factory.\n— Найтихіша кімната — та, що виходить на фабрику.\nЧитається: зе ква́йетіст ру́м із зе уа́н зет фе́йсіз зе фе́кторі.\nСлова the one that означають «та, що».\nСлово faces означає «виходить на».\nWho — про людину, that — про річ, where — про місце.",
+        "en": "Do you remember who, where and that from before? Here are three sentences.\nThe woman who answered knew the driver.\nThe words who answered together mean “the one who gave an answer”.\nThat is the hotel where I left my charger.\nThe words the hotel where I left together mean “the hotel where I put it down”.\nHere left means “put down and did not take”.\nThe quietest room is the one that faces the factory.\nThe words the one that together mean “the room which”.\nThe word faces means “has its front towards”.\nWho is for a person, that is for a thing, where is for a place."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:32.28",
+          "say": {
+            "ru": "зэ у́умэн ху а́нсэрд ню́ зэ дра́йвер",
+            "uk": "зе у́умен ху а́нсерд ню́ зе дра́йвер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.29",
+          "say": {
+            "ru": "зэ́т из зэ хоутэ́л уэ́р ай лэ́фт май ча́рджер",
+            "uk": "зе́т із зе хоуте́л уе́р ай ле́фт май ча́рджер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.39",
+          "say": {
+            "ru": "зэ ква́йетист ру́м из зэ уа́н зэт фэ́йсиз зэ фэ́ктори",
+            "uk": "зе ква́йетіст ру́м із зе уа́н зет фе́йсіз зе фе́кторі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Женщина, которая ответила, знала водителя»",
+            "uk": "Виберіть, як сказати: «Жінка, яка відповіла, знала водія»",
+            "en": "Choose how to say: “The woman who answered knew the driver.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:32.28",
+          "options": [
+            "en-classic-r1:32.28",
+            "en-classic-r1:32.29",
+            "en-classic-r1:32.39"
+          ],
+          "answerId": "en-classic-r1:32.28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это тот отель, где я оставил зарядное устройство»",
+            "uk": "Виберіть, як сказати: «Це готель, де я залишив свій зарядний пристрій»",
+            "en": "Choose how to say: “That is the hotel where I left my charger.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.29",
+          "options": [
+            "en-classic-r1:32.29",
+            "en-classic-r1:32.39",
+            "en-classic-r1:32.28"
+          ],
+          "answerId": "en-classic-r1:32.29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Самая тихая комната — та, что выходит на завод»",
+            "uk": "Виберіть, як сказати: «Найтихіша кімната — та, що виходить на фабрику»",
+            "en": "Choose how to say: “The quietest room is the one that faces the factory.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.39",
+          "options": [
+            "en-classic-r1:32.39",
+            "en-classic-r1:32.28",
+            "en-classic-r1:32.29"
+          ],
+          "answerId": "en-classic-r1:32.39"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Ещё полезное",
+        "uk": "Ще корисне",
+        "en": "More useful sentences"
+      },
+      "text": {
+        "ru": "Ещё четыре полезные фразы.\nI used to take that bus before I moved.\n— Раньше я ездил на этом автобусе, до того как переехал.\nЧитается: ай ю́ст ту тэ́йк зэт ба́с бифо́р ай му́вд.\nСлова used to значат «раньше».\nСлова take that bus значат «ездить на этом автобусе».\nСлова before I moved значат «до того, как я переехал».\nI am still getting used to the early start.\n— Я все еще привыкаю к раннему подъему.\nЧитается: ай эм сти́л гэ́тин ю́ст ту зи э́рли ста́рт.\nСлова getting used to значат «привыкаю к».\nСлова early start значат «раннее начало дня».\nI fixed the loose handle myself. — Я сам починил расшатанную ручку.\nЧитается: ай фи́кст зэ лу́с хэ́ндл майсэ́лф.\nСлово loose значит «шатается».\nСлово myself значит «сам»: я сам починил.\nWe can avoid the queue at the cinema by booking online.\n— Мы можем избежать очереди в кинотеатр, забронировав билеты онлайн.\nЧитается: уи кэ́н эво́йд зэ кью́ эт зэ си́нэма бай бу́кин онла́йн.\nСлово avoid значит «избежать».\nСлова by booking online значат «забронировав онлайн».\nСлово by и слово с ing показывают, как это сделать.",
+        "uk": "Ще чотири корисні фрази.\nI used to take that bus before I moved.\n— Я їздив цим автобусом до переїзду.\nЧитається: ай ю́ст ту те́йк зет ба́с біфо́р ай му́вд.\nСлова used to означають «раніше».\nСлова take that bus означають «їздити цим автобусом».\nСлова before I moved означають «до того, як я переїхав».\nI am still getting used to the early start.\n— Я все ще звикаю до раннього підйому.\nЧитається: ай ем сті́л ге́тін ю́ст ту зі е́рлі ста́рт.\nСлова getting used to означають «звикаю до».\nСлова early start означають «ранній початок дня».\nI fixed the loose handle myself. — Я сам полагодив розхитану ручку.\nЧитається: ай фі́кст зе лу́с хе́ндл майсе́лф.\nСлово loose означає «хитається».\nСлово myself означає «сам»: я сам полагодив.\nWe can avoid the queue at the cinema by booking online.\n— Ми можемо уникнути черги в кіно, забронювавши квиток онлайн.\nЧитається: уі ке́н ево́йд зе кью́ ет зе сі́нема бай бу́кін онла́йн.\nСлово avoid означає «уникнути».\nСлова by booking online означають «забронювавши онлайн».\nСлово by і слово з ing показують, як це зробити.",
+        "en": "Four more useful sentences.\nI used to take that bus before I moved.\nThe words used to together mean “in the past, but not now”.\nThe words take that bus together mean “travel on that bus”.\nThe words before I moved together mean “earlier than my move”.\nI am still getting used to the early start.\nThe words getting used to together mean “slowly becoming used to”.\nThe words early start together mean “beginning the day early”.\nI fixed the loose handle myself.\nThe word loose means “not held tightly”.\nThe word myself means “by me, with no help”.\nWe can avoid the queue at the cinema by booking online.\nThe word avoid means “to keep away from”.\nThe words by booking online together mean “if we reserve on the internet”.\nThe word by and a word with ing show how to do it."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:32.31",
+          "say": {
+            "ru": "ай ю́ст ту тэ́йк зэт ба́с бифо́р ай му́вд",
+            "uk": "ай ю́ст ту те́йк зет ба́с біфо́р ай му́вд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.32",
+          "say": {
+            "ru": "ай эм сти́л гэ́тин ю́ст ту зи э́рли ста́рт",
+            "uk": "ай ем сті́л ге́тін ю́ст ту зі е́рлі ста́рт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.36",
+          "say": {
+            "ru": "ай фи́кст зэ лу́с хэ́ндл майсэ́лф",
+            "uk": "ай фі́кст зе лу́с хе́ндл майсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.40",
+          "say": {
+            "ru": "уи кэ́н эво́йд зэ кью́ эт зэ си́нэма бай бу́кин онла́йн",
+            "uk": "уі ке́н ево́йд зе кью́ ет зе сі́нема бай бу́кін онла́йн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Раньше я ездил на этом автобусе, до того как переехал»",
+            "uk": "Виберіть, як сказати: «Я їздив цим автобусом до переїзду»",
+            "en": "Choose how to say: “I used to take that bus before I moved.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:32.31",
+          "options": [
+            "en-classic-r1:32.31",
+            "en-classic-r1:32.32",
+            "en-classic-r1:32.36"
+          ],
+          "answerId": "en-classic-r1:32.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я все еще привыкаю к раннему подъему»",
+            "uk": "Виберіть, як сказати: «Я все ще звикаю до раннього підйому»",
+            "en": "Choose how to say: “I am still getting used to the early start.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.32",
+          "options": [
+            "en-classic-r1:32.32",
+            "en-classic-r1:32.36",
+            "en-classic-r1:32.40"
+          ],
+          "answerId": "en-classic-r1:32.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы можем избежать очереди в кинотеатр, забронировав билеты онлайн»",
+            "uk": "Виберіть, як сказати: «Ми можемо уникнути черги в кіно, забронювавши квиток онлайн»",
+            "en": "Choose how to say: “We can avoid the queue at the cinema by booking online.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.40",
+          "options": [
+            "en-classic-r1:32.40",
+            "en-classic-r1:32.31",
+            "en-classic-r1:32.32"
+          ],
+          "answerId": "en-classic-r1:32.40"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Если бы",
+        "uk": "Якби",
+        "en": "What would happen if…"
+      },
+      "text": {
+        "ru": "Так говорят о том, чего сейчас нет.\nСлово would значит «бы».\nСначала if и то, чего нет, потом would и что было бы.\nIf I had your number, I would call you.\n— Если бы у меня был ваш номер, я бы вам позвонила.\nЧитается: иф ай хэ́д ю́р на́мбер ай уу́д ко́л ю.\nСлова if I had your number значат «если бы у меня был ваш номер».\nСлова I would call значат «я бы позвонил».\nIf I were you, I would keep the receipt.\n— На вашем месте я бы сохранил квитанцию.\nЧитается: иф ай уэ́р ю ай уу́д ки́п зэ риси́т.\nСлова if I were you значат «на вашем месте».\nЗдесь говорят were, а не was: так принято в таких фразах.\nWe would use the tram if the fare were lower.\n— Мы бы воспользовались трамваем, если бы стоимость проезда была ниже.\nЧитается: уи уу́д ю́з зэ трэ́м иф зэ фэ́р уэ́р ло́уэр.\nСлово low значит «низкий».\nСлово lower значит «ниже».\nСлова we would use значат «мы бы воспользовались».\nI would ask for a refund if the charge appeared twice.\n— Я бы попросил вернуть деньги, если бы списание произошло дважды.\nЧитается: ай уу́д а́ск фо́р э ри́фанд иф зэ ча́рдж эпи́рд тва́йс.\nСлово appeared значит «появилось».\nСлова ask for a refund значат «попросить вернуть деньги».\nЗдесь charge — деньги, которые списали.\nПосле if стоит had или were, после would — простое слово: would call, would keep.",
+        "uk": "Так кажуть про те, чого зараз немає.\nСлово would означає «б».\nСпочатку if і те, чого немає, потім would і що було б.\nIf I had your number, I would call you.\n— Якби в мене був ваш номер, я б вам зателефонувала.\nЧитається: іф ай хе́д ю́р на́мбер ай уу́д ко́л ю.\nСлова if I had your number означають «якби в мене був ваш номер».\nСлова I would call означають «я б зателефонував».\nIf I were you, I would keep the receipt.\n— Якби я був на вашому місці, я б зберіг чек.\nЧитається: іф ай уе́р ю ай уу́д кі́п зе рісі́т.\nСлова if I were you означають «на вашому місці».\nТут кажуть were, а не was: так заведено в таких фразах.\nWe would use the tram if the fare were lower.\n— Ми б скористалися трамваєм, якби проїзд був нижчим.\nЧитається: уі уу́д ю́з зе тре́м іф зе фе́р уе́р ло́уер.\nСлово low означає «низький».\nСлово lower означає «нижче».\nСлова we would use означають «ми б скористалися».\nI would ask for a refund if the charge appeared twice.\n— Я б попросив повернення коштів, якби стягнення з'явилося двічі.\nЧитається: ай уу́д а́ск фо́р е рі́фанд іф зе ча́рдж епі́рд тва́йс.\nСлово appeared означає «з’явилося».\nСлова ask for a refund означають «попросити повернути гроші».\nТут charge — гроші, які списали.\nПісля if стоїть had або were, після would — просте слово: would call, would keep.",
+        "en": "We say it about something that is not true now.\nThe word would shows: this is only imagined, it is not real.\nFirst if and what is not real, then would and what would happen.\nIf I had your number, I would call you.\nThe words if I had your number together mean “but I do not have it”.\nThe words I would call together mean “I am ready to ring”.\nIf I were you, I would keep the receipt.\nThe words if I were you together mean “if I stood in your place”.\nHere we say were, not was: this is how these sentences work.\nWe would use the tram if the fare were lower.\nThe word low means “not high”.\nThe word lower means “less high”.\nThe words we would use together mean “we would take”.\nI would ask for a refund if the charge appeared twice.\nThe word appeared means “came to be seen”.\nThe words ask for a refund together mean “ask for your money back”.\nHere charge is money taken from your account.\nAfter if comes had or were. After would comes a plain word: would call, would keep."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:32.41",
+          "say": {
+            "ru": "иф ай хэ́д ю́р на́мбер ай уу́д ко́л ю",
+            "uk": "іф ай хе́д ю́р на́мбер ай уу́д ко́л ю"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.44",
+          "say": {
+            "ru": "иф ай уэ́р ю ай уу́д ки́п зэ риси́т",
+            "uk": "іф ай уе́р ю ай уу́д кі́п зе рісі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.47",
+          "say": {
+            "ru": "уи уу́д ю́з зэ трэ́м иф зэ фэ́р уэ́р ло́уэр",
+            "uk": "уі уу́д ю́з зе тре́м іф зе фе́р уе́р ло́уер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:32.50",
+          "say": {
+            "ru": "ай уу́д а́ск фо́р э ри́фанд иф зэ ча́рдж эпи́рд тва́йс",
+            "uk": "ай уу́д а́ск фо́р е рі́фанд іф зе ча́рдж епі́рд тва́йс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы у меня был ваш номер, я бы вам позвонила»",
+            "uk": "Виберіть, як сказати: «Якби в мене був ваш номер, я б вам зателефонувала»",
+            "en": "Choose how to say: “If I had your number, I would call you.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:32.41",
+          "options": [
+            "en-classic-r1:32.41",
+            "en-classic-r1:32.44",
+            "en-classic-r1:32.47"
+          ],
+          "answerId": "en-classic-r1:32.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На вашем месте я бы сохранил квитанцию»",
+            "uk": "Виберіть, як сказати: «Якби я був на вашому місці, я б зберіг чек»",
+            "en": "Choose how to say: “If I were you, I would keep the receipt.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.44",
+          "options": [
+            "en-classic-r1:32.44",
+            "en-classic-r1:32.47",
+            "en-classic-r1:32.50"
+          ],
+          "answerId": "en-classic-r1:32.44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы попросил вернуть деньги, если бы списание произошло дважды»",
+            "uk": "Виберіть, як сказати: «Я б попросив повернення коштів, якби стягнення з'явилося двічі»",
+            "en": "Choose how to say: “I would ask for a refund if the charge appeared twice.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:32.50",
+          "options": [
+            "en-classic-r1:32.50",
+            "en-classic-r1:32.41",
+            "en-classic-r1:32.44"
+          ],
+          "answerId": "en-classic-r1:32.50"
+        }
+      ]
+    }
+  ]
+}

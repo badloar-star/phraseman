@@ -1,0 +1,300 @@
+{
+ "lang": "en",
+ "lesson": 7,
+ "words": {
+  "number": {
+   "ru": "номер; число",
+   "uk": "номер; число",
+   "en": "a figure or phone number",
+   "es": "número"
+  },
+  "car": {
+   "ru": "машина",
+   "uk": "машина",
+   "en": "vehicle with four wheels",
+   "es": "coche"
+  },
+  "bicycle": {
+   "ru": "велосипед",
+   "uk": "велосипед",
+   "en": "vehicle with two wheels",
+   "es": "bicicleta"
+  },
+  "question": {
+   "ru": "вопрос",
+   "uk": "питання",
+   "en": "something you ask",
+   "es": "pregunta"
+  },
+  "sore": {
+   "ru": "больной; болит",
+   "uk": "хворий; болить",
+   "en": "painful",
+   "es": "dolorido"
+  },
+  "throat": {
+   "ru": "горло",
+   "uk": "горло",
+   "en": "part of the neck inside",
+   "es": "garganta"
+  },
+  "cough": {
+   "ru": "кашель",
+   "uk": "кашель",
+   "en": "noisy air from the lungs",
+   "es": "tos"
+  },
+  "headache": {
+   "ru": "боль в голове",
+   "uk": "біль у голові",
+   "en": "pain in the head",
+   "es": "dolor de cabeza"
+  },
+  "an": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "small word before a thing",
+   "es": "un"
+  },
+  "appointment": {
+   "ru": "запись на приём; встреча",
+   "uk": "запис на прийом; зустріч",
+   "en": "planned meeting time",
+   "es": "cita"
+  },
+  "daughter": {
+   "ru": "дочь",
+   "uk": "донька",
+   "en": "girl child of a parent",
+   "es": "hija"
+  },
+  "blocked": {
+   "ru": "заложенный",
+   "uk": "закладений",
+   "en": "not open, stuffed",
+   "es": "congestionado"
+  },
+  "nose": {
+   "ru": "нос",
+   "uk": "ніс",
+   "en": "part of the face for smelling",
+   "es": "nariz"
+  },
+  "fever": {
+   "ru": "температура, жар",
+   "uk": "температура, жар",
+   "en": "high body heat",
+   "es": "fiebre"
+  },
+  "prescription": {
+   "ru": "рецепт (на лекарство)",
+   "uk": "рецепт (на ліки)",
+   "en": "doctor's paper for medicine",
+   "es": "receta"
+  },
+  "health": {
+   "ru": "здоровье",
+   "uk": "здоров'я",
+   "en": "how well your body is",
+   "es": "salud"
+  },
+  "insurance": {
+   "ru": "страховка",
+   "uk": "страхування",
+   "en": "paid protection against costs",
+   "es": "seguro"
+  },
+  "doctor's": {
+   "ru": "врача",
+   "uk": "лікаря",
+   "en": "belonging to the doctor",
+   "es": "del médico"
+  },
+  "charger": {
+   "ru": "зарядное устройство",
+   "uk": "зарядний пристрій",
+   "en": "device that fills a battery",
+   "es": "cargador"
+  },
+  "passport": {
+   "ru": "паспорт",
+   "uk": "паспорт",
+   "en": "travel document",
+   "es": "pasaporte"
+  },
+  "enough": {
+   "ru": "достаточно",
+   "uk": "достатньо",
+   "en": "as much as needed",
+   "es": "suficiente"
+  },
+  "any": {
+   "ru": "какой-нибудь; хоть сколько-нибудь",
+   "uk": "будь-який; хоч скільки-небудь",
+   "en": "some or even a little",
+   "es": "algún"
+  },
+  "change": {
+   "ru": "сдача, мелочь",
+   "uk": "решта, дрібні гроші",
+   "en": "small coins or money back",
+   "es": "cambio"
+  },
+  "pen": {
+   "ru": "ручка (для письма)",
+   "uk": "ручка (для письма)",
+   "en": "tool for writing with ink",
+   "es": "bolígrafo"
+  },
+  "shower": {
+   "ru": "душ",
+   "uk": "душ",
+   "en": "water spray to wash",
+   "es": "ducha"
+  },
+  "zip": {
+   "ru": "молния (на одежде, сумке)",
+   "uk": "змійка (на одязі, сумці)",
+   "en": "fastener with teeth",
+   "es": "cremallera"
+  },
+  "smaller": {
+   "ru": "меньший",
+   "uk": "менший",
+   "en": "less big",
+   "es": "más pequeño"
+  },
+  "booking": {
+   "ru": "бронирование",
+   "uk": "бронювання",
+   "en": "reserved place",
+   "es": "reserva"
+  },
+  "glasses": {
+   "ru": "очки",
+   "uk": "окуляри",
+   "en": "lenses worn to see",
+   "es": "gafas"
+  },
+  "original": {
+   "ru": "оригинал",
+   "uk": "оригінал",
+   "en": "first real copy",
+   "es": "original"
+  },
+  "driving": {
+   "ru": "водительский",
+   "uk": "водійський",
+   "en": "about driving a car",
+   "es": "de conducir"
+  },
+  "licence": {
+   "ru": "права, разрешение",
+   "uk": "права, дозвіл",
+   "en": "official permit",
+   "es": "licencia"
+  },
+  "bike": {
+   "ru": "велосипед",
+   "uk": "велосипед",
+   "en": "short word for bicycle",
+   "es": "bici"
+  },
+  "handle": {
+   "ru": "ручка (дверная)",
+   "uk": "ручка (дверна)",
+   "en": "part you hold to open",
+   "es": "manija"
+  },
+  "chair": {
+   "ru": "стул",
+   "uk": "стілець",
+   "en": "seat for one person",
+   "es": "silla"
+  },
+  "garden": {
+   "ru": "сад",
+   "uk": "сад",
+   "en": "outdoor place with plants",
+   "es": "jardín"
+  },
+  "two": {
+   "ru": "два; двое",
+   "uk": "два; двоє",
+   "en": "the number 2",
+   "es": "dos"
+  },
+  "three": {
+   "ru": "три",
+   "uk": "три",
+   "en": "the number 3",
+   "es": "tres"
+  },
+  "pages": {
+   "ru": "страницы",
+   "uk": "сторінки",
+   "en": "sheets of paper in a book",
+   "es": "páginas"
+  },
+  "blue": {
+   "ru": "синий",
+   "uk": "синій",
+   "en": "colour of the sky",
+   "es": "azul"
+  },
+  "deep": {
+   "ru": "глубокий",
+   "uk": "глибокий",
+   "en": "going far down",
+   "es": "profundo"
+  },
+  "pockets": {
+   "ru": "карманы",
+   "uk": "кишені",
+   "en": "small bags in clothes",
+   "es": "bolsillos"
+  },
+  "afternoon": {
+   "ru": "вторая половина дня",
+   "uk": "друга половина дня",
+   "en": "time after noon",
+   "es": "tarde"
+  },
+  "table": {
+   "ru": "столик, стол",
+   "uk": "столик, стіл",
+   "en": "furniture to eat at",
+   "es": "mesa"
+  },
+  "for": {
+   "ru": "для; на",
+   "uk": "для; на",
+   "en": "meant for someone",
+   "es": "para"
+  },
+  "hotel": {
+   "ru": "отель",
+   "uk": "готель",
+   "en": "place to stay for a night",
+   "es": "hotel"
+  },
+  "luggage": {
+   "ru": "багаж",
+   "uk": "багаж",
+   "en": "bags for a trip",
+   "es": "equipaje"
+  },
+  "moment": {
+   "ru": "минутка, момент",
+   "uk": "хвилинка, момент",
+   "en": "a very short time",
+   "es": "momento"
+  },
+  "everything": {
+   "ru": "всё",
+   "uk": "все",
+   "en": "all things",
+   "es": "todo"
+  }
+ }
+}

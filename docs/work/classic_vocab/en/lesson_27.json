@@ -1,0 +1,102 @@
+{
+ "lang": "en",
+ "lesson": 27,
+ "words": {
+  "said": {
+   "ru": "сказал, сказала",
+   "uk": "сказав, сказала",
+   "en": "spoke words",
+   "es": "dijo"
+  },
+  "needed": {
+   "ru": "нужен был, нужно было",
+   "uk": "був потрібен, потрібно було",
+   "en": "had to have",
+   "es": "necesitaba"
+  },
+  "wanted": {
+   "ru": "хотел, хотели",
+   "uk": "хотів, хотіли",
+   "en": "wished to have",
+   "es": "quería"
+  },
+  "fuse": {
+   "ru": "предохранитель",
+   "uk": "запобіжник",
+   "en": "small part that stops too much power",
+   "es": "fusible"
+  },
+  "blown": {
+   "ru": "перегорел",
+   "uk": "перегорів",
+   "en": "burnt out and stopped working",
+   "es": "quemado"
+  },
+  "felt": {
+   "ru": "чувствовал, ему было",
+   "uk": "відчував, йому було",
+   "en": "had a feeling in the body",
+   "es": "sintió"
+  },
+  "sick": {
+   "ru": "плохо, больной",
+   "uk": "погано, хворий",
+   "en": "not well, wanting to vomit",
+   "es": "enfermo, mal"
+  },
+  "reminder": {
+   "ru": "напоминание",
+   "uk": "нагадування",
+   "en": "note that helps you remember",
+   "es": "recordatorio"
+  },
+  "might": {
+   "ru": "возможно, может быть",
+   "uk": "можливо, може бути",
+   "en": "shows a small chance",
+   "es": "podría"
+  },
+  "reference": {
+   "ru": "номер, справка",
+   "uk": "номер, довідка",
+   "en": "a number or note for finding a case",
+   "es": "referencia"
+  },
+  "whether": {
+   "ru": "ли",
+   "uk": "чи",
+   "en": "shows a yes-or-no question inside a sentence",
+   "es": "si"
+  },
+  "replacement": {
+   "ru": "замена",
+   "uk": "заміна",
+   "en": "a new thing instead of the old",
+   "es": "reemplazo"
+  },
+  "repair": {
+   "ru": "ремонт",
+   "uk": "ремонт",
+   "en": "fixing a broken thing",
+   "es": "reparación"
+  },
+  "dealt": {
+   "ru": "занимался, имел дело",
+   "uk": "займався, мав справу",
+   "en": "took care of a matter",
+   "es": "se ocupó"
+  },
+  "complaints": {
+   "ru": "жалобы",
+   "uk": "скарги",
+   "en": "words saying you are not happy",
+   "es": "quejas"
+  },
+  "received": {
+   "ru": "получил",
+   "uk": "отримав",
+   "en": "was given or sent something",
+   "es": "recibió"
+  }
+ }
+}

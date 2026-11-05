@@ -1,0 +1,554 @@
+{
+ "lang": "en",
+ "lesson": 23,
+ "words": [
+  {
+   "form": "daily",
+   "surface": "daily",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.02",
+     "target": "The rooms are cleaned daily",
+     "ru": "Комнаты убираются ежедневно.",
+     "en": "The rooms are cleaned daily."
+    }
+   ]
+  },
+  {
+   "form": "letters",
+   "surface": "letters",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.03",
+     "target": "The letters are collected at noon",
+     "ru": "Письма забирают в полдень.",
+     "en": "The letters are collected at noon."
+    }
+   ]
+  },
+  {
+   "form": "collected",
+   "surface": "collected",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.03",
+     "target": "The letters are collected at noon",
+     "ru": "Письма забирают в полдень.",
+     "en": "The letters are collected at noon."
+    },
+    {
+     "id": "en-classic-r1:23.27",
+     "target": "When are the bins collected",
+     "ru": "Когда вывозят мусор?",
+     "en": "When are the bins collected?"
+    }
+   ]
+  },
+  {
+   "form": "delivered",
+   "surface": "delivered",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.05",
+     "target": "The milk is delivered in the morning",
+     "ru": "Молоко доставляют утром.",
+     "en": "The milk is delivered in the morning."
+    },
+    {
+     "id": "en-classic-r1:23.15",
+     "target": "My parcel was delivered next door",
+     "ru": "Мою посылку доставили в соседний дом.",
+     "en": "My parcel was delivered next door."
+    }
+   ]
+  },
+  {
+   "form": "kept",
+   "surface": "kept",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.06",
+     "target": "The spare key is kept downstairs",
+     "ru": "Запасной ключ хранится внизу.",
+     "en": "The spare key is kept downstairs."
+    },
+    {
+     "id": "en-classic-r1:23.26",
+     "target": "Where is the spare key kept",
+     "ru": "Где хранится запасной ключ?",
+     "en": "Where is the spare key kept?"
+    }
+   ]
+  },
+  {
+   "form": "sold",
+   "surface": "sold",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.07",
+     "target": "The tickets are sold online",
+     "ru": "Билеты продаются онлайн.",
+     "en": "The tickets are sold online."
+    }
+   ]
+  },
+  {
+   "form": "shown",
+   "surface": "shown",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.08",
+     "target": "The price is shown on the screen",
+     "ru": "Цена отображается на экране.",
+     "en": "The price is shown on the screen."
+    }
+   ]
+  },
+  {
+   "form": "uniforms",
+   "surface": "uniforms",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.09",
+     "target": "The uniforms are washed on site",
+     "ru": "Униформу стирают на месте.",
+     "en": "The uniforms are washed on site."
+    }
+   ]
+  },
+  {
+   "form": "site",
+   "surface": "site",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.09",
+     "target": "The uniforms are washed on site",
+     "ru": "Униформу стирают на месте.",
+     "en": "The uniforms are washed on site."
+    }
+   ]
+  },
+  {
+   "form": "were",
+   "surface": "were",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.12",
+     "target": "The seats by the aisle were reserved for us",
+     "ru": "Для нас были зарезервированы места у прохода.",
+     "en": "The seats by the aisle were reserved for us."
+    },
+    {
+     "id": "en-classic-r1:23.14",
+     "target": "The lights were switched off at ten",
+     "ru": "Свет выключили в десять.",
+     "en": "The lights were switched off at ten."
+    }
+   ]
+  },
+  {
+   "form": "reserved",
+   "surface": "reserved",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.12",
+     "target": "The seats by the aisle were reserved for us",
+     "ru": "Для нас были зарезервированы места у прохода.",
+     "en": "The seats by the aisle were reserved for us."
+    }
+   ]
+  },
+  {
+   "form": "repaired",
+   "surface": "repaired",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.13",
+     "target": "The door was repaired on Friday",
+     "ru": "Дверь была отремонтирована в пятницу.",
+     "en": "The door was repaired on Friday."
+    },
+    {
+     "id": "en-classic-r1:23.48",
+     "target": "The lift is being repaired this week",
+     "ru": "Лифт ремонтируется на этой неделе.",
+     "en": "The lift is being repaired this week."
+    }
+   ]
+  },
+  {
+   "form": "switched",
+   "surface": "switched",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.14",
+     "target": "The lights were switched off at ten",
+     "ru": "Свет выключили в десять.",
+     "en": "The lights were switched off at ten."
+    }
+   ]
+  },
+  {
+   "form": "delayed",
+   "surface": "delayed",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.17",
+     "target": "The flight was delayed because of fog",
+     "ru": "Рейс задержали из-за тумана.",
+     "en": "The flight was delayed because of fog."
+    },
+    {
+     "id": "en-classic-r1:23.29",
+     "target": "Why was the flight delayed",
+     "ru": "Почему рейс был задержан?",
+     "en": "Why was the flight delayed?"
+    }
+   ]
+  },
+  {
+   "form": "because",
+   "surface": "because",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.17",
+     "target": "The flight was delayed because of fog",
+     "ru": "Рейс задержали из-за тумана.",
+     "en": "The flight was delayed because of fog."
+    }
+   ]
+  },
+  {
+   "form": "included",
+   "surface": "included",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.21",
+     "target": "Is breakfast included",
+     "ru": "Завтрак включен?",
+     "en": "Is breakfast included?"
+    },
+    {
+     "id": "en-classic-r1:23.22",
+     "target": "Are the drinks included",
+     "ru": "Напитки включены?",
+     "en": "Are the drinks included?"
+    }
+   ]
+  },
+  {
+   "form": "drinks",
+   "surface": "drinks",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.22",
+     "target": "Are the drinks included",
+     "ru": "Напитки включены?",
+     "en": "Are the drinks included?"
+    }
+   ]
+  },
+  {
+   "form": "forms",
+   "surface": "forms",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.25",
+     "target": "Were the forms signed",
+     "ru": "Были ли подписаны формы?",
+     "en": "Were the forms signed?"
+    }
+   ]
+  },
+  {
+   "form": "bins",
+   "surface": "bins",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.27",
+     "target": "When are the bins collected",
+     "ru": "Когда вывозят мусор?",
+     "en": "When are the bins collected?"
+    }
+   ]
+  },
+  {
+   "form": "deposit",
+   "surface": "deposit",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.28",
+     "target": "How is the deposit returned",
+     "ru": "Как возвращается залог?",
+     "en": "How is the deposit returned?"
+    }
+   ]
+  },
+  {
+   "form": "garage",
+   "surface": "garage",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.31",
+     "target": "The garage is not included in the rent",
+     "ru": "Гараж не входит в стоимость аренды.",
+     "en": "The garage is not included in the rent."
+    }
+   ]
+  },
+  {
+   "form": "leather",
+   "surface": "leather",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.32",
+     "target": "These shoes are not made of leather",
+     "ru": "Эти туфли сделаны не из кожи.",
+     "en": "These shoes are not made of leather."
+    }
+   ]
+  },
+  {
+   "form": "order",
+   "surface": "order",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.33",
+     "target": "My order was not delivered",
+     "ru": "Мой заказ не был доставлен.",
+     "en": "My order was not delivered."
+    }
+   ]
+  },
+  {
+   "form": "refunded",
+   "surface": "refunded",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.34",
+     "target": "The storage fee was not refunded",
+     "ru": "Плату за хранение не вернули.",
+     "en": "The storage fee was not refunded."
+    }
+   ]
+  },
+  {
+   "form": "allowed",
+   "surface": "allowed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.36",
+     "target": "Parking is not allowed here",
+     "ru": "Парковка здесь запрещена.",
+     "en": "Parking is not allowed here."
+    }
+   ]
+  },
+  {
+   "form": "food",
+   "surface": "Food",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.37",
+     "target": "Food is not served after nine",
+     "ru": "Еда не подается после девяти.",
+     "en": "Food is not served after nine."
+    }
+   ]
+  },
+  {
+   "form": "served",
+   "surface": "served",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.37",
+     "target": "Food is not served after nine",
+     "ru": "Еда не подается после девяти.",
+     "en": "Food is not served after nine."
+    }
+   ]
+  },
+  {
+   "form": "turned",
+   "surface": "turned",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.38",
+     "target": "The water was not turned off",
+     "ru": "Вода не была отключена.",
+     "en": "The water was not turned off."
+    }
+   ]
+  },
+  {
+   "form": "damaged",
+   "surface": "damaged",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.40",
+     "target": "The parcel was not damaged",
+     "ru": "Посылка не повреждена.",
+     "en": "The parcel was not damaged."
+    }
+   ]
+  },
+  {
+   "form": "processed",
+   "surface": "processed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.42",
+     "target": "The refund will be processed tomorrow",
+     "ru": "Возврат средств будет обработан завтра.",
+     "en": "The refund will be processed tomorrow."
+    }
+   ]
+  },
+  {
+   "form": "labelled",
+   "surface": "labelled",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.43",
+     "target": "The boxes must be labelled",
+     "ru": "Коробки должны быть подписаны.",
+     "en": "The boxes must be labelled."
+    }
+   ]
+  },
+  {
+   "form": "replaced",
+   "surface": "replaced",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.45",
+     "target": "The screen can be replaced",
+     "ru": "Экран можно заменить.",
+     "en": "The screen can be replaced."
+    }
+   ]
+  },
+  {
+   "form": "clear",
+   "surface": "clear",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.46",
+     "target": "The back door must be kept clear",
+     "ru": "Задняя дверь должна оставаться свободной.",
+     "en": "The back door must be kept clear."
+    }
+   ]
+  },
+  {
+   "form": "being",
+   "surface": "being",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.47",
+     "target": "Our street is being resurfaced",
+     "ru": "Нашу улицу заново асфальтируют.",
+     "en": "Our street is being resurfaced."
+    },
+    {
+     "id": "en-classic-r1:23.48",
+     "target": "The lift is being repaired this week",
+     "ru": "Лифт ремонтируется на этой неделе.",
+     "en": "The lift is being repaired this week."
+    }
+   ]
+  },
+  {
+   "form": "resurfaced",
+   "surface": "resurfaced",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.47",
+     "target": "Our street is being resurfaced",
+     "ru": "Нашу улицу заново асфальтируют.",
+     "en": "Our street is being resurfaced."
+    }
+   ]
+  },
+  {
+   "form": "been",
+   "surface": "been",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.49",
+     "target": "The bags have been moved downstairs",
+     "ru": "Сумки перенесли вниз.",
+     "en": "The bags have been moved downstairs."
+    },
+    {
+     "id": "en-classic-r1:23.50",
+     "target": "The message has been forwarded to reception",
+     "ru": "Сообщение перенаправлено на ресепшен.",
+     "en": "The message has been forwarded to reception."
+    }
+   ]
+  },
+  {
+   "form": "moved",
+   "surface": "moved",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.49",
+     "target": "The bags have been moved downstairs",
+     "ru": "Сумки перенесли вниз.",
+     "en": "The bags have been moved downstairs."
+    }
+   ]
+  },
+  {
+   "form": "forwarded",
+   "surface": "forwarded",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:23.50",
+     "target": "The message has been forwarded to reception",
+     "ru": "Сообщение перенаправлено на ресепшен.",
+     "en": "The message has been forwarded to reception."
+    }
+   ]
+  }
+ ]
+}

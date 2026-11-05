@@ -1,0 +1,174 @@
+{
+ "lang": "en",
+ "lesson": 16,
+ "words": {
+  "wake": {
+   "ru": "просыпаться, будить",
+   "uk": "прокидатися, будити",
+   "en": "stop sleeping, or make someone stop",
+   "es": "despertar(se)"
+  },
+  "tom": {
+   "ru": "Том",
+   "uk": "Том",
+   "en": "a man's name",
+   "es": "Tom (nombre de hombre)"
+  },
+  "set": {
+   "ru": "отправляться (в путь)",
+   "uk": "вирушати (в дорогу)",
+   "en": "start a journey",
+   "es": "ponerse en camino"
+  },
+  "harbour": {
+   "ru": "порт, гавань",
+   "uk": "порт, гавань",
+   "en": "place where boats stop",
+   "es": "puerto"
+  },
+  "pulls": {
+   "ru": "прибывает, подъезжает",
+   "uk": "прибуває, під'їжджає",
+   "en": "comes into a station",
+   "es": "llega (tren)"
+  },
+  "rehearsal": {
+   "ru": "репетиция",
+   "uk": "репетиція",
+   "en": "practice before a show",
+   "es": "ensayo"
+  },
+  "fan": {
+   "ru": "вентилятор",
+   "uk": "вентилятор",
+   "en": "machine that blows air",
+   "es": "ventilador"
+  },
+  "heater": {
+   "ru": "обогреватель",
+   "uk": "обігрівач",
+   "en": "machine that makes a room warm",
+   "es": "calefactor"
+  },
+  "pick": {
+   "ru": "поднимать, брать",
+   "uk": "піднімати, брати",
+   "en": "lift something up",
+   "es": "recoger, coger"
+  },
+  "looked": {
+   "ru": "посмотрел, поискал",
+   "uk": "подивився, пошукав",
+   "en": "searched for information",
+   "es": "miró, buscó"
+  },
+  "filled": {
+   "ru": "заполнил",
+   "uk": "заповнив",
+   "en": "wrote information in a form",
+   "es": "rellenó"
+  },
+  "handed": {
+   "ru": "сдал, передал",
+   "uk": "здав, передав",
+   "en": "gave something to someone",
+   "es": "entregó"
+  },
+  "them": {
+   "ru": "их",
+   "uk": "їх",
+   "en": "those people or things",
+   "es": "los, les"
+  },
+  "look": {
+   "ru": "смотреть; присматривать за",
+   "uk": "дивитися; доглядати за",
+   "en": "use your eyes; take care of",
+   "es": "mirar; cuidar de"
+  },
+  "nephew": {
+   "ru": "племянник",
+   "uk": "племінник",
+   "en": "your brother's or sister's son",
+   "es": "sobrino"
+  },
+  "looks": {
+   "ru": "присматривает, смотрит",
+   "uk": "доглядає, дивиться",
+   "en": "takes care of; uses eyes",
+   "es": "cuida, mira"
+  },
+  "looking": {
+   "ru": "ищет, ищем, ищу",
+   "uk": "шукає, шукаємо, шукаю",
+   "en": "trying to find",
+   "es": "buscando"
+  },
+  "ran": {
+   "ru": "закончился, кончился",
+   "uk": "закінчився, скінчився",
+   "en": "was all used up",
+   "es": "se acabó"
+  },
+  "out": {
+   "ru": "наружу, из; кончиться (о запасах)",
+   "uk": "назовні, з; закінчитися (про запаси)",
+   "en": "outside; used up completely",
+   "es": "fuera; agotarse"
+  },
+  "came": {
+   "ru": "пришёл; наткнулся",
+   "uk": "прийшов; натрапив",
+   "en": "arrived; found by chance",
+   "es": "vino; encontró"
+  },
+  "across": {
+   "ru": "через, поперёк; наткнуться",
+   "uk": "через, поперек; натрапити",
+   "en": "from one side to the other; found by chance",
+   "es": "a través; encontrar por casualidad"
+  },
+  "over": {
+   "ru": "через; оправиться (от болезни)",
+   "uk": "через; одужати (після хвороби)",
+   "en": "above; recover from an illness",
+   "es": "sobre; recuperarse"
+  },
+  "drop": {
+   "ru": "высадить, подвезти",
+   "uk": "висадити, підвезти",
+   "en": "let someone out of a car",
+   "es": "dejar (a alguien)"
+  },
+  "fare": {
+   "ru": "стоимость проезда, плата за проезд",
+   "uk": "вартість проїзду, плата за проїзд",
+   "en": "money you pay for a journey",
+   "es": "tarifa, precio del billete"
+  },
+  "give": {
+   "ru": "дать; вернуть",
+   "uk": "дати; повернути",
+   "en": "hand over; return",
+   "es": "dar; devolver"
+  },
+  "meeting": {
+   "ru": "встреча, собрание",
+   "uk": "зустріч, збори",
+   "en": "people coming together to talk",
+   "es": "reunión"
+  },
+  "five": {
+   "ru": "пять",
+   "uk": "п'ять",
+   "en": "the number 5",
+   "es": "cinco"
+  },
+  "away": {
+   "ru": "прочь, на место; убрать",
+   "uk": "геть, на місце; прибрати",
+   "en": "not here; to its place",
+   "es": "lejos; guardar"
+  }
+ }
+}

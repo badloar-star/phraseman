@@ -1,0 +1,288 @@
+{
+ "lang": "en",
+ "lesson": 12,
+ "words": {
+  "went": {
+   "ru": "пошёл, поехал, ушёл",
+   "uk": "пішов, поїхав, пішов геть",
+   "en": "moved to a place",
+   "es": "fue"
+  },
+  "bank": {
+   "ru": "банк",
+   "uk": "банк",
+   "en": "place for money",
+   "es": "banco"
+  },
+  "took": {
+   "ru": "взял; поехал на",
+   "uk": "взяв; поїхав на",
+   "en": "picked up; travelled by",
+   "es": "tomó"
+  },
+  "bought": {
+   "ru": "купил",
+   "uk": "купив",
+   "en": "paid for something",
+   "es": "compró"
+  },
+  "fresh": {
+   "ru": "свежий",
+   "uk": "свіжий",
+   "en": "just made, not old",
+   "es": "fresco"
+  },
+  "brought": {
+   "ru": "принесла, принёс",
+   "uk": "принесла, приніс",
+   "en": "carried here",
+   "es": "trajo"
+  },
+  "towel": {
+   "ru": "полотенце",
+   "uk": "рушник",
+   "en": "cloth to dry the body",
+   "es": "toalla"
+  },
+  "found": {
+   "ru": "нашёл, нашли",
+   "uk": "знайшов, знайшли",
+   "en": "discovered",
+   "es": "encontró"
+  },
+  "wallet": {
+   "ru": "кошелёк",
+   "uk": "гаманець",
+   "en": "small case for money",
+   "es": "cartera"
+  },
+  "lost": {
+   "ru": "потеряла",
+   "uk": "втратила",
+   "en": "could not find any more",
+   "es": "perdió"
+  },
+  "caught": {
+   "ru": "успели на, сели на",
+   "uk": "встигли на, сіли на",
+   "en": "got on in time",
+   "es": "tomó"
+  },
+  "got": {
+   "ru": "вернулись; получили",
+   "uk": "повернулися; отримали",
+   "en": "arrived; received",
+   "es": "llegó; recibió"
+  },
+  "gave": {
+   "ru": "дал",
+   "uk": "дав",
+   "en": "handed to someone",
+   "es": "dio"
+  },
+  "met": {
+   "ru": "встретил",
+   "uk": "зустрів",
+   "en": "came together with",
+   "es": "conoció"
+  },
+  "saw": {
+   "ru": "увидела, видела",
+   "uk": "побачила, бачила",
+   "en": "looked at with eyes",
+   "es": "vio"
+  },
+  "message": {
+   "ru": "сообщение",
+   "uk": "повідомлення",
+   "en": "short text sent to you",
+   "es": "mensaje"
+  },
+  "heard": {
+   "ru": "услышали",
+   "uk": "почули",
+   "en": "noticed by ear",
+   "es": "oyó"
+  },
+  "paid": {
+   "ru": "оплатил",
+   "uk": "оплатив",
+   "en": "gave money for",
+   "es": "pagó"
+  },
+  "online": {
+   "ru": "онлайн, через интернет",
+   "uk": "онлайн, через інтернет",
+   "en": "on the internet",
+   "es": "en línea"
+  },
+  "sent": {
+   "ru": "прислал",
+   "uk": "надіслав",
+   "en": "made go to someone",
+   "es": "envió"
+  },
+  "clinic": {
+   "ru": "клиника",
+   "uk": "клініка",
+   "en": "place for doctors",
+   "es": "clínica"
+  },
+  "put": {
+   "ru": "положила, положил",
+   "uk": "поклала, поклав",
+   "en": "placed somewhere",
+   "es": "puso"
+  },
+  "read": {
+   "ru": "прочитал",
+   "uk": "прочитав",
+   "en": "looked at words and understood",
+   "es": "leyó"
+  },
+  "ate": {
+   "ru": "съели, пообедали",
+   "uk": "з'їли, пообідали",
+   "en": "had food",
+   "es": "comió"
+  },
+  "drank": {
+   "ru": "выпил, допил",
+   "uk": "випив, допив",
+   "en": "had a drink",
+   "es": "bebió"
+  },
+  "made": {
+   "ru": "испекли; сделали",
+   "uk": "спекли; зробили",
+   "en": "baked; created",
+   "es": "hizo"
+  },
+  "cake": {
+   "ru": "торт",
+   "uk": "торт",
+   "en": "sweet baked dessert",
+   "es": "pastel"
+  },
+  "wrote": {
+   "ru": "написала",
+   "uk": "написала",
+   "en": "put words on paper",
+   "es": "escribió"
+  },
+  "forgot": {
+   "ru": "забыл",
+   "uk": "забув",
+   "en": "did not remember",
+   "es": "olvidó"
+  },
+  "chose": {
+   "ru": "выбрали",
+   "uk": "вибрали",
+   "en": "picked one",
+   "es": "eligió"
+  },
+  "cheaper": {
+   "ru": "дешевле",
+   "uk": "дешевший",
+   "en": "costing less",
+   "es": "más barato"
+  },
+  "broke": {
+   "ru": "разбил, сломал",
+   "uk": "розбив, зламав",
+   "en": "smashed or damaged",
+   "es": "rompió"
+  },
+  "glass": {
+   "ru": "стакан",
+   "uk": "склянка",
+   "en": "cup made of glass",
+   "es": "vaso"
+  },
+  "fell": {
+   "ru": "упал",
+   "uk": "упав",
+   "en": "dropped down",
+   "es": "cayó"
+  },
+  "photo": {
+   "ru": "фото",
+   "uk": "фото",
+   "en": "picture from a camera",
+   "es": "foto"
+  },
+  "catch": {
+   "ru": "успеть на",
+   "uk": "встигнути на",
+   "en": "get on in time",
+   "es": "alcanzar"
+  },
+  "forget": {
+   "ru": "забыть",
+   "uk": "забути",
+   "en": "not remember",
+   "es": "olvidar"
+  },
+  "name": {
+   "ru": "имя; название",
+   "uk": "ім'я; назва",
+   "en": "what something is called",
+   "es": "nombre"
+  },
+  "cup": {
+   "ru": "чашка",
+   "uk": "чашка",
+   "en": "small pot for tea",
+   "es": "taza"
+  },
+  "thought": {
+   "ru": "думал",
+   "uk": "думав",
+   "en": "had in mind",
+   "es": "pensó"
+  },
+  "pharmacy": {
+   "ru": "аптека",
+   "uk": "аптека",
+   "en": "shop for medicine",
+   "es": "farmacia"
+  },
+  "was": {
+   "ru": "был, была, было",
+   "uk": "був, була, було",
+   "en": "existed in the past",
+   "es": "era"
+  },
+  "knew": {
+   "ru": "знала",
+   "uk": "знала",
+   "en": "had in memory",
+   "es": "sabía"
+  },
+  "stood": {
+   "ru": "стояли, простояли",
+   "uk": "стояли, простояли",
+   "en": "were on your feet",
+   "es": "estuvo de pie"
+  },
+  "held": {
+   "ru": "держал, подержал",
+   "uk": "тримав, потримав",
+   "en": "kept in the hands",
+   "es": "sostuvo"
+  },
+  "ladder": {
+   "ru": "стремянка, лестница",
+   "uk": "драбина, сходи",
+   "en": "tool for climbing",
+   "es": "escalera"
+  },
+  "told": {
+   "ru": "сказал",
+   "uk": "сказав",
+   "en": "said to someone",
+   "es": "dijo"
+  }
+ }
+}

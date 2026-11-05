@@ -1,0 +1,232 @@
+{
+ "lang": "en",
+ "lesson": 27,
+ "words": [
+  {
+   "form": "said",
+   "surface": "said",
+   "count": 20,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.01",
+     "target": "Anna said she was tired",
+     "ru": "Анна сказала, что устала.",
+     "en": "Anna said she was tired."
+    },
+    {
+     "id": "en-classic-r1:27.02",
+     "target": "Tom said he was ready",
+     "ru": "Том сказал, что готов.",
+     "en": "Tom said he was ready."
+    }
+   ]
+  },
+  {
+   "form": "needed",
+   "surface": "needed",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.06",
+     "target": "I said I needed a receipt",
+     "ru": "Я сказал, что мне нужен чек.",
+     "en": "I said I needed a receipt."
+    },
+    {
+     "id": "en-classic-r1:27.14",
+     "target": "We told them we needed more time",
+     "ru": "Мы сказали им, что нам нужно больше времени.",
+     "en": "We told them we needed more time."
+    }
+   ]
+  },
+  {
+   "form": "wanted",
+   "surface": "wanted",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.07",
+     "target": "We said we wanted two seats",
+     "ru": "Мы сказали, что хотим два места.",
+     "en": "We said we wanted two seats."
+    },
+    {
+     "id": "en-classic-r1:27.37",
+     "target": "She asked whether we wanted a replacement",
+     "ru": "Она спросила, хотим ли мы замену.",
+     "en": "She asked whether we wanted a replacement."
+    }
+   ]
+  },
+  {
+   "form": "fuse",
+   "surface": "fuse",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.15",
+     "target": "Anna told him the fuse had blown",
+     "ru": "Анна сказала ему, что перегорел предохранитель.",
+     "en": "Anna told him the fuse had blown."
+    }
+   ]
+  },
+  {
+   "form": "blown",
+   "surface": "blown",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.15",
+     "target": "Anna told him the fuse had blown",
+     "ru": "Анна сказала ему, что перегорел предохранитель.",
+     "en": "Anna told him the fuse had blown."
+    }
+   ]
+  },
+  {
+   "form": "felt",
+   "surface": "felt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.19",
+     "target": "He told the driver he felt sick",
+     "ru": "Он сказал водителю, что ему плохо.",
+     "en": "He told the driver he felt sick."
+    }
+   ]
+  },
+  {
+   "form": "sick",
+   "surface": "sick",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.19",
+     "target": "He told the driver he felt sick",
+     "ru": "Он сказал водителю, что ему плохо.",
+     "en": "He told the driver he felt sick."
+    }
+   ]
+  },
+  {
+   "form": "reminder",
+   "surface": "reminder",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.22",
+     "target": "He said he would send a reminder",
+     "ru": "Он сказал, что пришлет напоминание.",
+     "en": "He said he would send a reminder."
+    }
+   ]
+  },
+  {
+   "form": "might",
+   "surface": "might",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.23",
+     "target": "They said they might be late",
+     "ru": "Они сказали, что могут опоздать.",
+     "en": "They said they might be late."
+    }
+   ]
+  },
+  {
+   "form": "reference",
+   "surface": "reference",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.36",
+     "target": "He asked if I had a reference number",
+     "ru": "Он спросил, есть ли у меня номер обращения.",
+     "en": "He asked if I had a reference number."
+    }
+   ]
+  },
+  {
+   "form": "whether",
+   "surface": "whether",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.37",
+     "target": "She asked whether we wanted a replacement",
+     "ru": "Она спросила, хотим ли мы замену.",
+     "en": "She asked whether we wanted a replacement."
+    }
+   ]
+  },
+  {
+   "form": "replacement",
+   "surface": "replacement",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.37",
+     "target": "She asked whether we wanted a replacement",
+     "ru": "Она спросила, хотим ли мы замену.",
+     "en": "She asked whether we wanted a replacement."
+    }
+   ]
+  },
+  {
+   "form": "repair",
+   "surface": "repair",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.39",
+     "target": "I asked how much the repair would cost",
+     "ru": "Я спросил, сколько будет стоить ремонт.",
+     "en": "I asked how much the repair would cost."
+    }
+   ]
+  },
+  {
+   "form": "dealt",
+   "surface": "dealt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.40",
+     "target": "We asked who dealt with complaints",
+     "ru": "Мы спросили, кто занимается жалобами.",
+     "en": "We asked who dealt with complaints."
+    }
+   ]
+  },
+  {
+   "form": "complaints",
+   "surface": "complaints",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.40",
+     "target": "We asked who dealt with complaints",
+     "ru": "Мы спросили, кто занимается жалобами.",
+     "en": "We asked who dealt with complaints."
+    }
+   ]
+  },
+  {
+   "form": "received",
+   "surface": "received",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:27.50",
+     "target": "He asked if I had received his message",
+     "ru": "Он спросил, получил ли я его сообщение.",
+     "en": "He asked if I had received his message."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,180 @@
+{
+ "lang": "en",
+ "lesson": 20,
+ "words": {
+  "idea": {
+   "ru": "идея",
+   "uk": "ідея",
+   "en": "a thought or plan",
+   "es": "idea"
+  },
+  "sandwich": {
+   "ru": "сэндвич, бутерброд",
+   "uk": "сендвіч, бутерброд",
+   "en": "bread with food inside",
+   "es": "sándwich, bocadillo"
+  },
+  "ordered": {
+   "ru": "заказал",
+   "uk": "замовив",
+   "en": "asked for food or goods",
+   "es": "pidió"
+  },
+  "omelette": {
+   "ru": "омлет",
+   "uk": "омлет",
+   "en": "eggs cooked in a pan",
+   "es": "tortilla"
+  },
+  "rented": {
+   "ru": "снял, арендовал",
+   "uk": "зняв, орендував",
+   "en": "paid to use for a time",
+   "es": "alquiló"
+  },
+  "rusty": {
+   "ru": "ржавый",
+   "uk": "іржавий",
+   "en": "covered with brown metal rot",
+   "es": "oxidado"
+  },
+  "salad": {
+   "ru": "салат",
+   "uk": "салат",
+   "en": "cold mix of vegetables",
+   "es": "ensalada"
+  },
+  "had": {
+   "ru": "имел; съел",
+   "uk": "мав; з'їв",
+   "en": "owned; ate",
+   "es": "tuvo; comió"
+  },
+  "notice": {
+   "ru": "объявление",
+   "uk": "оголошення",
+   "en": "written sign for people",
+   "es": "aviso, anuncio"
+  },
+  "loud": {
+   "ru": "громкий",
+   "uk": "гучний",
+   "en": "making a lot of noise",
+   "es": "fuerte, ruidoso"
+  },
+  "sealed": {
+   "ru": "запечатанный, заклеенный",
+   "uk": "запечатаний, заклеєний",
+   "en": "closed tightly",
+   "es": "sellado"
+  },
+  "building": {
+   "ru": "здание",
+   "uk": "будівля",
+   "en": "house or office with walls and a roof",
+   "es": "edificio"
+  },
+  "slow": {
+   "ru": "медленный",
+   "uk": "повільний",
+   "en": "not fast",
+   "es": "lento"
+  },
+  "lovely": {
+   "ru": "прекрасный, восхитительный",
+   "uk": "чудовий, чарівний",
+   "en": "very nice",
+   "es": "encantador, delicioso"
+  },
+  "bottle": {
+   "ru": "бутылка",
+   "uk": "пляшка",
+   "en": "container for drinks",
+   "es": "botella"
+  },
+  "helpful": {
+   "ru": "полезный, любезный",
+   "uk": "корисний, привітний",
+   "en": "ready to help",
+   "es": "servicial, útil"
+  },
+  "keeps": {
+   "ru": "держит, заставляет оставаться",
+   "uk": "тримає, змушує залишатися",
+   "en": "makes you stay in a state",
+   "es": "mantiene"
+  },
+  "awake": {
+   "ru": "не спящий, бодрый",
+   "uk": "не сонний, бадьорий",
+   "en": "not sleeping",
+   "es": "despierto"
+  },
+  "sleep": {
+   "ru": "сон",
+   "uk": "сон",
+   "en": "rest at night",
+   "es": "sueño"
+  },
+  "dogs": {
+   "ru": "собаки",
+   "uk": "собаки",
+   "en": "pets that bark",
+   "es": "perros"
+  },
+  "listens": {
+   "ru": "слушает",
+   "uk": "слухає",
+   "en": "pays attention to sounds",
+   "es": "escucha"
+  },
+  "music": {
+   "ru": "музыка",
+   "uk": "музика",
+   "en": "sounds of songs",
+   "es": "música"
+  },
+  "fruit": {
+   "ru": "фрукты",
+   "uk": "фрукти",
+   "en": "apples, oranges and so on",
+   "es": "fruta"
+  },
+  "egg": {
+   "ru": "яйцо",
+   "uk": "яйце",
+   "en": "food from a hen",
+   "es": "huevo"
+  },
+  "wears": {
+   "ru": "носит",
+   "uk": "носить",
+   "en": "has clothes on",
+   "es": "lleva puesto"
+  },
+  "hour": {
+   "ru": "час",
+   "uk": "година",
+   "en": "sixty minutes",
+   "es": "hora"
+  },
+  "customers": {
+   "ru": "клиенты, покупатели",
+   "uk": "клієнти, покупці",
+   "en": "people who buy in a shop",
+   "es": "clientes"
+  },
+  "slice": {
+   "ru": "кусок, ломтик",
+   "uk": "шматок, скибка",
+   "en": "thin piece cut off",
+   "es": "rebanada, trozo"
+  },
+  "meal": {
+   "ru": "еда, обед (приём пищи)",
+   "uk": "їжа, обід (прийом їжі)",
+   "en": "food eaten at one time",
+   "es": "comida"
+  }
+ }
+}

@@ -1,0 +1,717 @@
+{
+  "lang": "en",
+  "lesson": 25,
+  "title": {
+    "ru": "Что происходило: was и were с ing",
+    "uk": "Що відбувалося: was і were з ing",
+    "en": "What was happening: was and were with ing"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Читала, ехала, ждали",
+        "uk": "Читала, їхала, чекали",
+        "en": "Reading, driving, waiting"
+      },
+      "text": {
+        "ru": "Раньше вы видели: I am waiting — «я жду сейчас».\nЕсли вместо am сказать was, получится «я ждал» — в тот момент.\nДля нескольких людей вместо was говорят were.\nI was reading. — Я читала.\nЧитается: ай уо́з ри́динг.\nСлова was reading значат «читала».\nСлово was — когда речь обо мне, о нём, о ней.\nShe was driving. — Она была за рулем.\nЧитается: ши уо́з дра́йвинг.\nСлова was driving значат «ехала за рулём».\nWe were waiting. — Мы ждали.\nЧитается: уи уэ́р уэ́йтинг.\nСлово were — когда речь о нас, о вас, о них.\nСлова were waiting значат «ждали».\nThey were packing. — Они собирали вещи.\nЧитается: зэй уэ́р пэ́кинг.\nСлова were packing значат «собирали вещи».\nHe was cooking dinner. — Он готовил ужин.\nЧитается: хи уо́з ку́кинг ди́нер.\nСлово dinner значит «ужин».\nСлова was cooking значат «готовил».",
+        "uk": "Раніше ви бачили: I am waiting — «я чекаю зараз».\nЯкщо замість am сказати was, вийде «я чекав» — у той момент.\nДля кількох людей замість was кажуть were.\nI was reading. — Я читала.\nЧитається: ай уо́з рі́дінг.\nСлова was reading означають «читала».\nСлово was — коли мова про мене, про нього, про неї.\nShe was driving. — Вона була за кермом.\nЧитається: ші уо́з дра́йвінг.\nСлова was driving означають «їхала за кермом».\nWe were waiting. — Ми чекали.\nЧитається: уі уе́р уе́йтінг.\nСлово were — коли мова про нас, про вас, про них.\nСлова were waiting означають «чекали».\nThey were packing. — Вони пакували речі.\nЧитається: зей уе́р пе́кінг.\nСлова were packing означають «збирали речі».\nHe was cooking dinner. — Він готував вечерю.\nЧитається: хі уо́з ку́кінг ді́нер.\nСлово dinner означає «вечеря».\nСлова was cooking означають «готував».",
+        "en": "Before, you saw: I am waiting, which is happening now.\nIf we say was instead of am, it means “I was waiting”, at that moment.\nFor several people we say were instead of was.\nI was reading.\nThe words was reading mean “I was busy reading”.\nWe say was for I, he and she.\nShe was driving.\nThe words was driving mean “she was driving a car”.\nWe were waiting.\nWe say were for we, you and they.\nThe words were waiting mean “we were waiting”.\nThey were packing.\nThe words were packing mean “they were putting things in bags”.\nHe was cooking dinner.\nThe word dinner means “the main meal in the evening”.\nThe words was cooking mean “he was making food”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:25.01",
+          "say": {
+            "ru": "ай уо́з ри́динг",
+            "uk": "ай уо́з рі́дінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.02",
+          "say": {
+            "ru": "ши уо́з дра́йвинг",
+            "uk": "ші уо́з дра́йвінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.03",
+          "say": {
+            "ru": "уи уэ́р уэ́йтинг",
+            "uk": "уі уе́р уе́йтінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.05",
+          "say": {
+            "ru": "хи уо́з ку́кинг ди́нер",
+            "uk": "хі уо́з ку́кінг ді́нер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я читала»",
+            "uk": "Виберіть, як сказати: «Я читала»",
+            "en": "Choose how to say: “I was reading.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:25.01",
+          "options": [
+            "en-classic-r1:25.01",
+            "en-classic-r1:25.02",
+            "en-classic-r1:25.03"
+          ],
+          "answerId": "en-classic-r1:25.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она была за рулем»",
+            "uk": "Виберіть, як сказати: «Вона була за кермом»",
+            "en": "Choose how to say: “She was driving.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.02",
+          "options": [
+            "en-classic-r1:25.02",
+            "en-classic-r1:25.03",
+            "en-classic-r1:25.05"
+          ],
+          "answerId": "en-classic-r1:25.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он готовил ужин»",
+            "uk": "Виберіть, як сказати: «Він готував вечерю»",
+            "en": "Choose how to say: “He was cooking dinner.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.05",
+          "options": [
+            "en-classic-r1:25.05",
+            "en-classic-r1:25.01",
+            "en-classic-r1:25.03"
+          ],
+          "answerId": "en-classic-r1:25.05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Что делали в тот момент",
+        "uk": "Що робили в той момент",
+        "en": "What was going on at that moment"
+      },
+      "text": {
+        "ru": "Так рассказывают о том, что шло в какой-то момент.\nI was checking the address in my notebook. — Я проверял адрес в блокноте.\nЧитается: ай уо́з чэ́кинг зи эдрэ́с ин май но́утбук.\nСлова was checking значат «проверял».\nShe was carrying two bags. — Она несла две сумки.\nЧитается: ши уо́з кэ́ринг ту́ бэ́гз.\nСлова was carrying значат «несла».\nYou were standing by the lift. — Вы стояли у лифта.\nЧитается: ю уэ́р стэ́ндинг бай зэ ли́фт.\nЗдесь речь о вас, поэтому were.\nThe children were sleeping. — Дети спали.\nЧитается: зэ чи́лдрен уэ́р сли́пинг.\nСлова were sleeping значат «спали».\nДетей несколько, поэтому were.",
+        "uk": "Так розповідають про те, що йшло в якийсь момент.\nI was checking the address in my notebook. — Я перевіряв адресу у своєму блокноті.\nЧитається: ай уо́з че́кінг зі едре́с ін май но́утбук.\nСлова was checking означають «перевіряв».\nShe was carrying two bags. — Вона несла дві сумки.\nЧитається: ші уо́з ке́рінг ту́ бе́гз.\nСлова was carrying означають «несла».\nYou were standing by the lift. — Ви стояли біля ліфта.\nЧитається: ю уе́р сте́ндінг бай зе лі́фт.\nТут мова про вас, тому were.\nThe children were sleeping. — Діти спали.\nЧитається: зе чі́лдрен уе́р слі́пінг.\nСлова were sleeping означають «спали».\nДітей кілька, тому were.",
+        "en": "This is how we tell what was going on at some moment.\nI was checking the address in my notebook.\nThe words was checking mean “he was looking to see if it was right”.\nShe was carrying two bags.\nThe words was carrying mean “she had them in her hands”.\nYou were standing by the lift.\nHere it is about you, so we say were.\nThe children were sleeping.\nThe words were sleeping mean “they were asleep”.\nThere are several children, so we say were."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:25.06",
+          "say": {
+            "ru": "ай уо́з чэ́кинг зи эдрэ́с ин май но́утбук",
+            "uk": "ай уо́з че́кінг зі едре́с ін май но́утбук"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.07",
+          "say": {
+            "ru": "ши уо́з кэ́ринг ту́ бэ́гз",
+            "uk": "ші уо́з ке́рінг ту́ бе́гз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.10",
+          "say": {
+            "ru": "зэ чи́лдрен уэ́р сли́пинг",
+            "uk": "зе чі́лдрен уе́р слі́пінг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я проверял адрес в блокноте»",
+            "uk": "Виберіть, як сказати: «Я перевіряв адресу у своєму блокноті»",
+            "en": "Choose how to say: “I was checking the address in my notebook.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:25.06",
+          "options": [
+            "en-classic-r1:25.06",
+            "en-classic-r1:25.07",
+            "en-classic-r1:25.10"
+          ],
+          "answerId": "en-classic-r1:25.06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она несла две сумки»",
+            "uk": "Виберіть, як сказати: «Вона несла дві сумки»",
+            "en": "Choose how to say: “She was carrying two bags.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.07",
+          "options": [
+            "en-classic-r1:25.07",
+            "en-classic-r1:25.10",
+            "en-classic-r1:25.06"
+          ],
+          "answerId": "en-classic-r1:25.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети спали»",
+            "uk": "Виберіть, як сказати: «Діти спали»",
+            "en": "Choose how to say: “The children were sleeping.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.10",
+          "options": [
+            "en-classic-r1:25.10",
+            "en-classic-r1:25.06",
+            "en-classic-r1:25.07"
+          ],
+          "answerId": "en-classic-r1:25.10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "В шесть, в восемь, весь день",
+        "uk": "О шостій, о восьмій, цілий день",
+        "en": "At six, at eight, all day"
+      },
+      "text": {
+        "ru": "Можно сказать, в какое время это шло.\nAt six, I was walking home. — В шесть я шла домой.\nЧитается: эт си́кс ай уо́з уо́кинг хо́ум.\nСлова At six значат «в шесть».\nAt eight, she was still working. — В восемь она все еще работала.\nЧитается: эт э́йт ши уо́з сти́л уо́ркинг.\nСлово still здесь значит «всё ещё».\nWe were having breakfast at seven. — Мы завтракали в семь.\nЧитается: уи уэ́р хэ́винг брэ́кфаст эт сэ́вен.\nСлово having значит «есть, принимать пищу» (have + ing).\nБуква e пропала: have → having.\nСлова were having breakfast значат «завтракали».\nHe was waiting near the barrier. — Он ждал у шлагбаума.\nЧитается: хи уо́з уэ́йтинг ни́р зэ бэ́риер.\nСлово barrier значит «шлагбаум».\nI was wearing a waterproof jacket that day.\n— В тот день на мне была водонепроницаемая куртка.\nЧитается: ай уо́з уэ́ринг э уо́терпруф джэ́кит зэ́т дэ́й.\nСлово waterproof значит «водонепроницаемый».\nСлова that day значат «в тот день».",
+        "uk": "Можна сказати, у який час це йшло.\nAt six, I was walking home. — О шостій я йшла додому.\nЧитається: ет сі́кс ай уо́з уо́кінг хо́ум.\nСлова At six означають «о шостій».\nAt eight, she was still working. — О восьмій вона ще працювала.\nЧитається: ет е́йт ші уо́з сті́л уо́ркінг.\nСлово still тут означає «все ще».\nWe were having breakfast at seven. — Ми снідали о сьомій.\nЧитається: уі уе́р хе́вінг бре́кфаст ет се́вен.\nСлово having означає «їсти, вживати їжу» (have + ing).\nЛітера e зникла: have → having.\nСлова were having breakfast означають «снідали».\nHe was waiting near the barrier. — Він чекав біля шлагбаума.\nЧитається: хі уо́з уе́йтінг ні́р зе бе́ріер.\nСлово barrier означає «шлагбаум».\nI was wearing a waterproof jacket that day.\n— Того дня на мені була водонепроникна куртка.\nЧитається: ай уо́з уе́рінг е уо́терпруф дже́кіт зе́т де́й.\nСлово waterproof означає «водонепроникний».\nСлова that day означають «того дня».",
+        "en": "We can say at what time it was going on.\nAt six, I was walking home.\nThe words At six tell us the time.\nAt eight, she was still working.\nThe word still here means “even then”.\nWe were having breakfast at seven.\nThe word having means “eating a meal” (have + ing).\nThe letter e is gone: have → having.\nThe words were having breakfast mean “were eating breakfast”.\nHe was waiting near the barrier.\nThe word barrier means “a bar that stops cars”.\nI was wearing a waterproof jacket that day.\nThe word waterproof means “keeping water out”.\nThe words that day mean “on that day”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:25.11",
+          "say": {
+            "ru": "эт си́кс ай уо́з уо́кинг хо́ум",
+            "uk": "ет сі́кс ай уо́з уо́кінг хо́ум"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.13",
+          "say": {
+            "ru": "уи уэ́р хэ́винг брэ́кфаст эт сэ́вен",
+            "uk": "уі уе́р хе́вінг бре́кфаст ет се́вен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.14",
+          "say": {
+            "ru": "хи уо́з уэ́йтинг ни́р зэ бэ́риер",
+            "uk": "хі уо́з уе́йтінг ні́р зе бе́ріер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.16",
+          "say": {
+            "ru": "ай уо́з уэ́ринг э уо́терпруф джэ́кит зэ́т дэ́й",
+            "uk": "ай уо́з уе́рінг е уо́терпруф дже́кіт зе́т де́й"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В шесть я шла домой»",
+            "uk": "Виберіть, як сказати: «О шостій я йшла додому»",
+            "en": "Choose how to say: “At six, I was walking home.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:25.11",
+          "options": [
+            "en-classic-r1:25.11",
+            "en-classic-r1:25.13",
+            "en-classic-r1:25.14"
+          ],
+          "answerId": "en-classic-r1:25.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы завтракали в семь»",
+            "uk": "Виберіть, як сказати: «Ми снідали о сьомій»",
+            "en": "Choose how to say: “We were having breakfast at seven.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.13",
+          "options": [
+            "en-classic-r1:25.13",
+            "en-classic-r1:25.14",
+            "en-classic-r1:25.16"
+          ],
+          "answerId": "en-classic-r1:25.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В тот день на мне была водонепроницаемая куртка»",
+            "uk": "Виберіть, як сказати: «Того дня на мені була водонепроникна куртка»",
+            "en": "Choose how to say: “I was wearing a waterproof jacket that day.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.16",
+          "options": [
+            "en-classic-r1:25.16",
+            "en-classic-r1:25.11",
+            "en-classic-r1:25.13"
+          ],
+          "answerId": "en-classic-r1:25.16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Дождь, собака, тормоза",
+        "uk": "Дощ, собака, гальма",
+        "en": "Rain, a dog, brakes"
+      },
+      "text": {
+        "ru": "Так рассказывают и о вещах, и о животных.\nО предметах и животных тоже говорят was: the rain was, the dog was.\nThe rain was dripping through the ceiling. — Дождь капал сквозь потолок.\nЧитается: зэ рэ́йн уо́з дри́пинг сру́ зэ си́линг.\nСлово dripping значит «капал» (drip + p + ing).\nБуква p удвоилась: drip → dripping.\nТак же, как swim → swimming.\nСлово through значит «сквозь».\nСлово ceiling значит «потолок».\nThe dog was barking by the handrail. — Собака лаяла у поручня.\nЧитается: зэ до́г уо́з ба́ркинг бай зэ хэ́ндрэйл.\nСлово barking значит «лаяла» (bark + ing).\nThe driver was checking the brakes. — Водитель проверял тормоза.\nЧитается: зэ дра́йвер уо́з чэ́кинг зэ брэ́йкс.\nСлово brakes значит «тормоза» (brake + s).",
+        "uk": "Так розповідають і про речі, і про тварин.\nПро предмети й тварин теж кажуть was: the rain was, the dog was.\nThe rain was dripping through the ceiling. — Дощ капав крізь стелю.\nЧитається: зе ре́йн уо́з дрі́пінг сру́ зе сі́лінг.\nСлово dripping означає «крапав» (drip + p + ing).\nЛітера p подвоїлась: drip → dripping.\nТак само, як swim → swimming.\nСлово through означає «крізь».\nСлово ceiling означає «стеля».\nThe dog was barking by the handrail. — Собака гавкала біля поручня.\nЧитається: зе до́г уо́з ба́ркінг бай зе хе́ндрейл.\nСлово barking означає «гавкала» (bark + ing).\nThe driver was checking the brakes. — Водій перевіряв гальма.\nЧитається: зе дра́йвер уо́з че́кінг зе бре́йкс.\nСлово brakes означає «гальма» (brake + s).",
+        "en": "We tell about things and animals in the same way.\nFor things and animals we also say was: the rain was, the dog was.\nThe rain was dripping through the ceiling.\nThe word dripping means “falling in small drops” (drip + p + ing).\nThe letter p is doubled: drip → dripping.\nIt is the same as swim → swimming.\nThe word through means “from one side to the other”.\nThe word ceiling means “the top of a room”.\nThe dog was barking by the handrail.\nThe word barking means “making a loud dog sound” (bark + ing).\nThe driver was checking the brakes.\nThe word brakes means “parts that stop a car” (brake + s)."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:25.17",
+          "say": {
+            "ru": "зэ рэ́йн уо́з дри́пинг сру́ зэ си́линг",
+            "uk": "зе ре́йн уо́з дрі́пінг сру́ зе сі́лінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.18",
+          "say": {
+            "ru": "зэ до́г уо́з ба́ркинг бай зэ хэ́ндрэйл",
+            "uk": "зе до́г уо́з ба́ркінг бай зе хе́ндрейл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.19",
+          "say": {
+            "ru": "зэ дра́йвер уо́з чэ́кинг зэ брэ́йкс",
+            "uk": "зе дра́йвер уо́з че́кінг зе бре́йкс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дождь капал сквозь потолок»",
+            "uk": "Виберіть, як сказати: «Дощ капав крізь стелю»",
+            "en": "Choose how to say: “The rain was dripping through the ceiling.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:25.17",
+          "options": [
+            "en-classic-r1:25.17",
+            "en-classic-r1:25.18",
+            "en-classic-r1:25.19"
+          ],
+          "answerId": "en-classic-r1:25.17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Собака лаяла у поручня»",
+            "uk": "Виберіть, як сказати: «Собака гавкала біля поручня»",
+            "en": "Choose how to say: “The dog was barking by the handrail.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.18",
+          "options": [
+            "en-classic-r1:25.18",
+            "en-classic-r1:25.19",
+            "en-classic-r1:25.17"
+          ],
+          "answerId": "en-classic-r1:25.18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Водитель проверял тормоза»",
+            "uk": "Виберіть, як сказати: «Водій перевіряв гальма»",
+            "en": "Choose how to say: “The driver was checking the brakes.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.19",
+          "options": [
+            "en-classic-r1:25.19",
+            "en-classic-r1:25.17",
+            "en-classic-r1:25.18"
+          ],
+          "answerId": "en-classic-r1:25.19"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Шло одно — случилось другое",
+        "uk": "Йшло одне — сталося інше",
+        "en": "One thing went on, another happened"
+      },
+      "text": {
+        "ru": "Одно дело шло долго. В это время случилось другое, короткое.\nСлово when значит «когда». Оно соединяет их.\nI was reading when the phone rang. — Я читала, когда зазвонил телефон.\nЧитается: ай уо́з ри́динг уэ́н зэ фо́ун рэ́нг.\nСлово rang значит «зазвонил» (ring → rang).\nСлова was reading — то, что шло долго.\nСлово rang — то, что случилось на этом фоне.\nShe was cooking when the lights went out. — Она готовила, когда погас свет.\nЧитается: ши уо́з ку́кинг уэ́н зэ ла́йтс уэ́нт а́ут.\nСлова went out значат «погас».\nHe was walking home when it started to rain.\n— Он шел домой, когда начался дождь.\nЧитается: хи уо́з уо́кинг хо́ум уэ́н ит ста́ртид ту рэ́йн.\nСлово started значит «начался» (start + ed).\nThey were eating when someone knocked. — Они ели, когда кто-то постучал.\nЧитается: зэй уэ́р и́тинг уэ́н са́муан но́кт.\nСлово eating значит «ели» (eat + ing).\nСлово knocked значит «постучал» (knock + ed).\nThe shop was closing as we arrived. — Магазин закрывался, когда мы приехали.\nЧитается: зэ шо́п уо́з кло́узинг эз уи эра́йвд.\nСлово as значит «когда, в то время как».\nО магазине (предмете) тоже was: the shop was.\nThey were looking for shelter when the rain stopped.\n— Они искали укрытие, когда дождь прекратился.\nЧитается: зэй уэ́р лу́кинг фо́р шэ́лтер уэ́н зэ рэ́йн сто́пт.\nСлово shelter значит «укрытие».",
+        "uk": "Одна справа йшла довго. У цей час сталася інша, коротка.\nСлово when означає «коли». Воно поєднує їх.\nI was reading when the phone rang. — Я читала, коли задзвонив телефон.\nЧитається: ай уо́з рі́дінг уе́н зе фо́ун ре́нг.\nСлово rang означає «задзвонив» (ring → rang).\nСлова was reading — те, що йшло довго.\nСлово rang — те, що сталося на цьому тлі.\nShe was cooking when the lights went out. — Вона готувала, коли згасло світло.\nЧитається: ші уо́з ку́кінг уе́н зе ла́йтс уе́нт а́ут.\nСлова went out означають «погас».\nHe was walking home when it started to rain.\n— Він йшов додому, коли почався дощ.\nЧитається: хі уо́з уо́кінг хо́ум уе́н іт ста́ртід ту ре́йн.\nСлово started означає «почався» (start + ed).\nThey were eating when someone knocked. — Вони їли, коли хтось постукав.\nЧитається: зей уе́р і́тінг уе́н са́муан но́кт.\nСлово eating означає «їли» (eat + ing).\nСлово knocked означає «постукав» (knock + ed).\nThe shop was closing as we arrived. — Магазин закривався, коли ми приїхали.\nЧитається: зе шо́п уо́з кло́узінг ез уі ера́йвд.\nСлово as означає «коли, у той час як».\nПро магазин (предмет) теж was: the shop was.\nThey were looking for shelter when the rain stopped.\n— Вони шукали прихистку, коли дощ припинився.\nЧитається: зей уе́р лу́кінг фо́р ше́лтер уе́н зе ре́йн сто́пт.\nСлово shelter означає «укриття».",
+        "en": "One thing was going on for a while. Then another, short thing happened.\nThe word when means “at the time that”. It joins them.\nI was reading when the phone rang.\nThe word rang means “made a ringing sound” (ring → rang).\nThe words was reading are the long thing.\nThe word rang is the short thing that happened.\nShe was cooking when the lights went out.\nThe words went out mean “stopped shining”.\nHe was walking home when it started to rain.\nThe word started means “began” (start + ed).\nThey were eating when someone knocked.\nThe word eating means “putting food in the mouth” (eat + ing).\nThe word knocked means “hit a door softly to be heard” (knock + ed).\nThe shop was closing as we arrived.\nThe word as means “at the same time”.\nFor a shop (a thing) we also say was: the shop was.\nThey were looking for shelter when the rain stopped.\nThe word shelter means “a place where you are safe from rain”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:25.21",
+          "say": {
+            "ru": "ай уо́з ри́динг уэ́н зэ фо́ун рэ́нг",
+            "uk": "ай уо́з рі́дінг уе́н зе фо́ун ре́нг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.24",
+          "say": {
+            "ru": "хи уо́з уо́кинг хо́ум уэ́н ит ста́ртид ту рэ́йн",
+            "uk": "хі уо́з уо́кінг хо́ум уе́н іт ста́ртід ту ре́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.25",
+          "say": {
+            "ru": "зэй уэ́р и́тинг уэ́н са́муан но́кт",
+            "uk": "зей уе́р і́тінг уе́н са́муан но́кт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.48",
+          "say": {
+            "ru": "зэ шо́п уо́з кло́узинг эз уи эра́йвд",
+            "uk": "зе шо́п уо́з кло́узінг ез уі ера́йвд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.50",
+          "say": {
+            "ru": "зэй уэ́р лу́кинг фо́р шэ́лтер уэ́н зэ рэ́йн сто́пт",
+            "uk": "зей уе́р лу́кінг фо́р ше́лтер уе́н зе ре́йн сто́пт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я читала, когда зазвонил телефон»",
+            "uk": "Виберіть, як сказати: «Я читала, коли задзвонив телефон»",
+            "en": "Choose how to say: “I was reading when the phone rang.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:25.21",
+          "options": [
+            "en-classic-r1:25.21",
+            "en-classic-r1:25.24",
+            "en-classic-r1:25.25"
+          ],
+          "answerId": "en-classic-r1:25.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он шел домой, когда начался дождь»",
+            "uk": "Виберіть, як сказати: «Він йшов додому, коли почався дощ»",
+            "en": "Choose how to say: “He was walking home when it started to rain.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.24",
+          "options": [
+            "en-classic-r1:25.24",
+            "en-classic-r1:25.25",
+            "en-classic-r1:25.48"
+          ],
+          "answerId": "en-classic-r1:25.24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они искали укрытие, когда дождь прекратился»",
+            "uk": "Виберіть, як сказати: «Вони шукали прихистку, коли дощ припинився»",
+            "en": "Choose how to say: “They were looking for shelter when the rain stopped.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.50",
+          "options": [
+            "en-classic-r1:25.50",
+            "en-classic-r1:25.21",
+            "en-classic-r1:25.48"
+          ],
+          "answerId": "en-classic-r1:25.50"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Пока я…",
+        "uk": "Поки я…",
+        "en": "While I was…"
+      },
+      "text": {
+        "ru": "Есть ещё слово, чтобы соединить два дела.\nI dropped my keys while I was running. — Я уронил ключи, когда бежал.\nЧитается: ай дро́пт май ки́з уа́йл ай уо́з ра́нинг.\nСлово dropped значит «уронил» (drop + p + ed).\nБуква p удвоилась: drop → dropped.\nТак же, как swim → swimming.\nСлово while значит «пока».\nИтого: when — «когда», while — «пока», as — «когда, в то время как».\nПо-русски вместо всех трёх можно сказать «когда».\nСлова while I was running — то, что шло.\nСлово dropped — короткое событие.\nWe heard a bang while we were packing. — Мы услышали хлопок, когда собирали вещи.\nЧитается: уи хэ́рд э бэ́нг уа́йл уи уэ́р пэ́кинг.\nСлово bang значит «хлопок».\nThe ferry left while I was buying a ticket.\n— Паром отплыл, пока я покупал билет.\nЧитается: зэ фэ́ри лэ́фт уа́йл ай уо́з ба́йинг э ти́кет.\nСлово ferry значит «паром».\nСлово buying значит «покупать» (buy + ing).\nThe driver waved while we were crossing.\n— Водитель помахал нам рукой, когда мы переходили дорогу.\nЧитается: зэ дра́йвер уэ́йвд уа́йл уи уэ́р кро́синг.\nСлово waved значит «помахал» (wave + d).",
+        "uk": "Є ще слово, щоб поєднати дві справи.\nI dropped my keys while I was running. — Я впустив ключі, бігаючи.\nЧитається: ай дро́пт май кі́з уа́йл ай уо́з ра́нінг.\nСлово dropped означає «впустив» (drop + p + ed).\nЛітера p подвоїлась: drop → dropped.\nТак само, як swim → swimming.\nСлово while означає «поки».\nРазом: when — «коли», while — «поки», as — «коли, у той час як».\nУкраїнською замість усіх трьох можна сказати «коли».\nСлова while I was running — те, що йшло.\nСлово dropped — коротка подія.\nWe heard a bang while we were packing. — Ми почули гуркіт, коли пакували речі.\nЧитається: уі хе́рд е бе́нг уа́йл уі уе́р пе́кінг.\nСлово bang означає «хлопок».\nThe ferry left while I was buying a ticket.\n— Пором відплив, поки я купував квиток.\nЧитається: зе фе́рі ле́фт уа́йл ай уо́з ба́йінг е ті́кет.\nСлово ferry означає «пором».\nСлово buying означає «купувати» (buy + ing).\nThe driver waved while we were crossing. — Водій помахав рукою, коли ми переходили дорогу.\nЧитається: зе дра́йвер уе́йвд уа́йл уі уе́р кро́сінг.\nСлово waved означає «помахав» (wave + d).",
+        "en": "There is one more word that joins two things.\nI dropped my keys while I was running.\nThe word dropped means “let it fall” (drop + p + ed).\nThe letter p is doubled: drop → dropped.\nIt is the same as swim → swimming.\nThe word while means “during the time that”.\nSo: when is “at the time that”, as is “at the very moment that”.\nIn a translation, “when” fits all three.\nThe words while I was running are the long thing.\nThe word dropped is the short event.\nWe heard a bang while we were packing.\nThe word bang means “a loud short noise”.\nThe ferry left while I was buying a ticket.\nThe word ferry means “a boat that carries people and cars”.\nThe word buying means “giving money for something” (buy + ing).\nThe driver waved while we were crossing.\nThe word waved means “moved a hand to say hello” (wave + d)."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:25.26",
+          "say": {
+            "ru": "ай дро́пт май ки́з уа́йл ай уо́з ра́нинг",
+            "uk": "ай дро́пт май кі́з уа́йл ай уо́з ра́нінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.28",
+          "say": {
+            "ru": "уи хэ́рд э бэ́нг уа́йл уи уэ́р пэ́кинг",
+            "uk": "уі хе́рд е бе́нг уа́йл уі уе́р пе́кінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.29",
+          "say": {
+            "ru": "зэ фэ́ри лэ́фт уа́йл ай уо́з ба́йинг э ти́кет",
+            "uk": "зе фе́рі ле́фт уа́йл ай уо́з ба́йінг е ті́кет"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.46",
+          "say": {
+            "ru": "зэ дра́йвер уэ́йвд уа́йл уи уэ́р кро́синг",
+            "uk": "зе дра́йвер уе́йвд уа́йл уі уе́р кро́сінг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уронил ключи, когда бежал»",
+            "uk": "Виберіть, як сказати: «Я впустив ключі, бігаючи»",
+            "en": "Choose how to say: “I dropped my keys while I was running.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:25.26",
+          "options": [
+            "en-classic-r1:25.26",
+            "en-classic-r1:25.28",
+            "en-classic-r1:25.29"
+          ],
+          "answerId": "en-classic-r1:25.26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы услышали хлопок, когда собирали вещи»",
+            "uk": "Виберіть, як сказати: «Ми почули гуркіт, коли пакували речі»",
+            "en": "Choose how to say: “We heard a bang while we were packing.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.28",
+          "options": [
+            "en-classic-r1:25.28",
+            "en-classic-r1:25.29",
+            "en-classic-r1:25.46"
+          ],
+          "answerId": "en-classic-r1:25.28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Водитель помахал нам рукой, когда мы переходили дорогу»",
+            "uk": "Виберіть, як сказати: «Водій помахав рукою, коли ми переходили дорогу»",
+            "en": "Choose how to say: “The driver waved while we were crossing.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.46",
+          "options": [
+            "en-classic-r1:25.46",
+            "en-classic-r1:25.26",
+            "en-classic-r1:25.29"
+          ],
+          "answerId": "en-classic-r1:25.46"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Вопросы",
+        "uk": "Питання",
+        "en": "Questions"
+      },
+      "text": {
+        "ru": "Чтобы спросить, поставьте was или were в начало фразы.\nWere you working at nine? — Вы работали в девять?\nЧитается: уэ́р ю уо́ркинг эт на́йн.\nСлова Were you working значат «вы работали».\nWas she waiting for the driver? — Она ждала водителя?\nЧитается: уо́з ши уэ́йтинг фо́р зэ дра́йвер.\nСлова Was she waiting значат «она ждала».\nWhat were they carrying? — Что они везли?\nЧитается: уо́т уэ́р зэй кэ́ринг.\nСлово What стоит первым, потом were.\nWhere were you sitting? — Где вы сидели?\nЧитается: уэ́р уэ́р ю си́тинг.\nСлово sitting значит «сидели» (sit + ting).\nБуква t удвоилась: sit → sitting.\nТак же, как swim → swimming.",
+        "uk": "Щоб запитати, поставте was або were на початок фрази.\nWere you working at nine? — Ви працювали о дев'ятій?\nЧитається: уе́р ю уо́ркінг ет на́йн.\nСлова Were you working означають «ви працювали».\nWas she waiting for the driver? — Вона чекала на водія?\nЧитається: уо́з ші уе́йтінг фо́р зе дра́йвер.\nСлова Was she waiting означають «вона чекала».\nWhat were they carrying? — Що вони перевозили?\nЧитається: уо́т уе́р зей ке́рінг.\nСлово What стоїть першим, потім were.\nWhere were you sitting? — Де ви сиділи?\nЧитається: уе́р уе́р ю сі́тінг.\nСлово sitting означає «сиділи» (sit + ting).\nЛітера t подвоїлась: sit → sitting.\nТак само, як swim → swimming.",
+        "en": "To ask a question, put was or were at the start.\nWere you working at nine?\nThe words Were you working ask “was it your job at that time”.\nWas she waiting for the driver?\nThe words Was she waiting ask “did she wait”.\nWhat were they carrying?\nThe word What comes first, then were.\nWhere were you sitting?\nThe word sitting means “having your body on a seat” (sit + ting).\nThe letter t is doubled: sit → sitting.\nIt is the same as swim → swimming."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:25.31",
+          "say": {
+            "ru": "уэ́р ю уо́ркинг эт на́йн",
+            "uk": "уе́р ю уо́ркінг ет на́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.32",
+          "say": {
+            "ru": "уо́з ши уэ́йтинг фо́р зэ дра́йвер",
+            "uk": "уо́з ші уе́йтінг фо́р зе дра́йвер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.33",
+          "say": {
+            "ru": "уо́т уэ́р зэй кэ́ринг",
+            "uk": "уо́т уе́р зей ке́рінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.34",
+          "say": {
+            "ru": "уэ́р уэ́р ю си́тинг",
+            "uk": "уе́р уе́р ю сі́тінг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы работали в девять?»",
+            "uk": "Виберіть, як сказати: «Ви працювали о дев'ятій?»",
+            "en": "Choose how to say: “Were you working at nine?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:25.31",
+          "options": [
+            "en-classic-r1:25.31",
+            "en-classic-r1:25.32",
+            "en-classic-r1:25.33"
+          ],
+          "answerId": "en-classic-r1:25.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она ждала водителя?»",
+            "uk": "Виберіть, як сказати: «Вона чекала на водія?»",
+            "en": "Choose how to say: “Was she waiting for the driver?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.32",
+          "options": [
+            "en-classic-r1:25.32",
+            "en-classic-r1:25.33",
+            "en-classic-r1:25.34"
+          ],
+          "answerId": "en-classic-r1:25.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где вы сидели?»",
+            "uk": "Виберіть, як сказати: «Де ви сиділи?»",
+            "en": "Choose how to say: “Where were you sitting?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.34",
+          "options": [
+            "en-classic-r1:25.34",
+            "en-classic-r1:25.31",
+            "en-classic-r1:25.32"
+          ],
+          "answerId": "en-classic-r1:25.34"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Не происходило",
+        "uk": "Не відбувалося",
+        "en": "Was not happening"
+      },
+      "text": {
+        "ru": "Чтобы сказать «не», поставьте not после was или were.\nI was not looking at my phone. — Я не смотрел в телефон.\nЧитается: ай уо́з но́т лу́кинг эт май фо́ун.\nСлова was not looking значат «не смотрел».\nHe was not listening to the announcement. — Он не слушал объявление.\nЧитается: хи уо́з но́т ли́сенинг ту зи эна́унсмент.\nСлово announcement значит «объявление».\nWe were not blocking the entrance. — Мы не загораживали вход.\nЧитается: уи уэ́р но́т бло́кинг зи э́нтрэнс.\nСлово blocking значит «загораживали» (block + ing).",
+        "uk": "Щоб сказати «не», поставте not після was або were.\nI was not looking at my phone. — Я не дивився на телефон.\nЧитається: ай уо́з но́т лу́кінг ет май фо́ун.\nСлова was not looking означають «не дивився».\nHe was not listening to the announcement. — Він не слухав оголошення.\nЧитається: хі уо́з но́т лі́сенінг ту зі ена́унсмент.\nСлово announcement означає «оголошення».\nWe were not blocking the entrance. — Ми не блокували вхід.\nЧитається: уі уе́р но́т бло́кінг зі е́нтренс.\nСлово blocking означає «загороджували» (block + ing).",
+        "en": "To say “not”, put not after was or were.\nI was not looking at my phone.\nThe words was not looking mean “he did not look”.\nHe was not listening to the announcement.\nThe word announcement means “words said to everyone”.\nWe were not blocking the entrance.\nThe word blocking means “stopping people from passing” (block + ing)."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:25.37",
+          "say": {
+            "ru": "ай уо́з но́т лу́кинг эт май фо́ун",
+            "uk": "ай уо́з но́т лу́кінг ет май фо́ун"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.38",
+          "say": {
+            "ru": "хи уо́з но́т ли́сенинг ту зи эна́унсмент",
+            "uk": "хі уо́з но́т лі́сенінг ту зі ена́унсмент"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:25.39",
+          "say": {
+            "ru": "уи уэ́р но́т бло́кинг зи э́нтрэнс",
+            "uk": "уі уе́р но́т бло́кінг зі е́нтренс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не смотрел в телефон»",
+            "uk": "Виберіть, як сказати: «Я не дивився на телефон»",
+            "en": "Choose how to say: “I was not looking at my phone.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:25.37",
+          "options": [
+            "en-classic-r1:25.37",
+            "en-classic-r1:25.38",
+            "en-classic-r1:25.39"
+          ],
+          "answerId": "en-classic-r1:25.37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он не слушал объявление»",
+            "uk": "Виберіть, як сказати: «Він не слухав оголошення»",
+            "en": "Choose how to say: “He was not listening to the announcement.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.38",
+          "options": [
+            "en-classic-r1:25.38",
+            "en-classic-r1:25.39",
+            "en-classic-r1:25.37"
+          ],
+          "answerId": "en-classic-r1:25.38"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы не загораживали вход»",
+            "uk": "Виберіть, як сказати: «Ми не блокували вхід»",
+            "en": "Choose how to say: “We were not blocking the entrance.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:25.39",
+          "options": [
+            "en-classic-r1:25.39",
+            "en-classic-r1:25.37",
+            "en-classic-r1:25.38"
+          ],
+          "answerId": "en-classic-r1:25.39"
+        }
+      ]
+    }
+  ]
+}

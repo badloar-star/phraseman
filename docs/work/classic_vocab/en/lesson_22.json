@@ -1,0 +1,372 @@
+{
+ "lang": "en",
+ "lesson": 22,
+ "words": {
+  "swimming": {
+   "ru": "плавание, плавать",
+   "uk": "плавання, плавати",
+   "en": "moving in water",
+   "es": "nadar, natación"
+  },
+  "helps": {
+   "ru": "помогает",
+   "uk": "допомагає",
+   "en": "makes things easier",
+   "es": "ayuda"
+  },
+  "relax": {
+   "ru": "расслабиться",
+   "uk": "розслабитися",
+   "en": "become calm and rested",
+   "es": "relajarse"
+  },
+  "saves": {
+   "ru": "экономит, сберегает",
+   "uk": "заощаджує, зберігає",
+   "en": "keeps from spending",
+   "es": "ahorra"
+  },
+  "money": {
+   "ru": "деньги",
+   "uk": "гроші",
+   "en": "coins and notes for paying",
+   "es": "dinero"
+  },
+  "practice": {
+   "ru": "практика, тренировка",
+   "uk": "практика, тренування",
+   "en": "doing something again and again",
+   "es": "práctica"
+  },
+  "makes": {
+   "ru": "делает, вызывает",
+   "uk": "робить, викликає",
+   "en": "causes something",
+   "es": "hace, provoca"
+  },
+  "dizzy": {
+   "ru": "с головокружением",
+   "uk": "із запамороченням",
+   "en": "feeling that everything is turning",
+   "es": "mareado"
+  },
+  "fog": {
+   "ru": "туман",
+   "uk": "туман",
+   "en": "thick cloud near the ground",
+   "es": "niebla"
+  },
+  "difficult": {
+   "ru": "трудный, сложный",
+   "uk": "важкий, складний",
+   "en": "not easy",
+   "es": "difícil"
+  },
+  "fun": {
+   "ru": "удовольствие, веселье",
+   "uk": "задоволення, веселощі",
+   "en": "enjoyable time",
+   "es": "diversión"
+  },
+  "sharing": {
+   "ru": "делить, делиться, снимать вместе",
+   "uk": "ділити, ділитися, винаймати разом",
+   "en": "using together with others",
+   "es": "compartir"
+  },
+  "costs": {
+   "ru": "стоит",
+   "uk": "коштує",
+   "en": "has the price of",
+   "es": "cuesta"
+  },
+  "travelling": {
+   "ru": "путешествовать",
+   "uk": "подорожувати",
+   "en": "going on a journey",
+   "es": "viajar"
+  },
+  "suits": {
+   "ru": "подходит",
+   "uk": "підходить",
+   "en": "is good for someone",
+   "es": "conviene"
+  },
+  "enjoy": {
+   "ru": "нравится, получать удовольствие",
+   "uk": "подобається, отримувати задоволення",
+   "en": "like doing",
+   "es": "disfrutar"
+  },
+  "enjoys": {
+   "ru": "нравится, получает удовольствие",
+   "uk": "подобається, отримує задоволення",
+   "en": "likes doing",
+   "es": "disfruta"
+  },
+  "river": {
+   "ru": "река",
+   "uk": "річка",
+   "en": "long flow of water",
+   "es": "río"
+  },
+  "avoids": {
+   "ru": "избегает",
+   "uk": "уникає",
+   "en": "stays away from",
+   "es": "evita"
+  },
+  "finished": {
+   "ru": "закончил",
+   "uk": "закінчив",
+   "en": "came to the end of",
+   "es": "terminó"
+  },
+  "talking": {
+   "ru": "разговаривать",
+   "uk": "розмовляти",
+   "en": "speaking with someone",
+   "es": "hablar"
+  },
+  "losing": {
+   "ru": "терять",
+   "uk": "губити, втрачати",
+   "en": "no longer having",
+   "es": "perder"
+  },
+  "mind": {
+   "ru": "возражать, быть против",
+   "uk": "заперечувати, бути проти",
+   "en": "feel annoyed by",
+   "es": "importar, molestar"
+  },
+  "suggested": {
+   "ru": "предложил",
+   "uk": "запропонував",
+   "en": "put forward an idea",
+   "es": "sugirió"
+  },
+  "practise": {
+   "ru": "практиковать, тренировать",
+   "uk": "практикувати, тренувати",
+   "en": "do again to get better",
+   "es": "practicar"
+  },
+  "speaking": {
+   "ru": "говорить, разговорная речь",
+   "uk": "говорити, розмовна мова",
+   "en": "using your voice for words",
+   "es": "hablar"
+  },
+  "thank": {
+   "ru": "благодарить, спасибо",
+   "uk": "дякувати, дякую",
+   "en": "say thanks",
+   "es": "agradecer"
+  },
+  "good": {
+   "ru": "хороший; умелый",
+   "uk": "хороший; умілий",
+   "en": "nice; skilled",
+   "es": "bueno"
+  },
+  "bikes": {
+   "ru": "велосипеды",
+   "uk": "велосипеди",
+   "en": "two-wheeled machines you pedal",
+   "es": "bicicletas"
+  },
+  "tired": {
+   "ru": "уставший",
+   "uk": "втомлений",
+   "en": "needing rest",
+   "es": "cansado"
+  },
+  "interested": {
+   "ru": "заинтересованный",
+   "uk": "зацікавлений",
+   "en": "wanting to know more",
+   "es": "interesado"
+  },
+  "talked": {
+   "ru": "говорил, разговаривал",
+   "uk": "говорив, розмовляв",
+   "en": "spoke with others",
+   "es": "habló"
+  },
+  "house": {
+   "ru": "дом",
+   "uk": "будинок",
+   "en": "place where a family lives",
+   "es": "casa"
+  },
+  "saying": {
+   "ru": "говорить, сказать",
+   "uk": "говорити, сказати",
+   "en": "speaking words",
+   "es": "decir"
+  },
+  "goodbye": {
+   "ru": "до свидания, прощание",
+   "uk": "до побачення, прощання",
+   "en": "word when leaving",
+   "es": "adiós"
+  },
+  "paying": {
+   "ru": "платить, оплата",
+   "uk": "платити, оплата",
+   "en": "giving money",
+   "es": "pagar"
+  },
+  "wash": {
+   "ru": "мыть, мойте",
+   "uk": "мити, мийте",
+   "en": "clean with water",
+   "es": "lavar"
+  },
+  "learnt": {
+   "ru": "выучил",
+   "uk": "вивчив",
+   "en": "got to know how",
+   "es": "aprendió"
+  },
+  "forward": {
+   "ru": "вперёд",
+   "uk": "уперед",
+   "en": "towards the front",
+   "es": "adelante"
+  },
+  "afraid": {
+   "ru": "боящийся",
+   "uk": "наляканий, що боїться",
+   "en": "feeling fear",
+   "es": "asustado"
+  },
+  "waking": {
+   "ru": "будить",
+   "uk": "будити",
+   "en": "making someone stop sleeping",
+   "es": "despertar"
+  },
+  "apologised": {
+   "ru": "извинился",
+   "uk": "перепросив",
+   "en": "said sorry",
+   "es": "se disculpó"
+  },
+  "arriving": {
+   "ru": "приезд, прибытие",
+   "uk": "приїзд, прибуття",
+   "en": "coming to a place",
+   "es": "llegar"
+  },
+  "insisted": {
+   "ru": "настоял",
+   "uk": "наполягав",
+   "en": "said strongly that you must",
+   "es": "insistió"
+  },
+  "turning": {
+   "ru": "выключать, поворачивать",
+   "uk": "вимикати, повертати",
+   "en": "moving a switch or round",
+   "es": "girar, apagar"
+  },
+  "thinking": {
+   "ru": "думать, размышлять",
+   "uk": "думати, міркувати",
+   "en": "using your mind",
+   "es": "pensar"
+  },
+  "changing": {
+   "ru": "менять",
+   "uk": "змінювати",
+   "en": "making different",
+   "es": "cambiar"
+  },
+  "jobs": {
+   "ru": "работы",
+   "uk": "роботи",
+   "en": "paid work",
+   "es": "trabajos"
+  },
+  "complained": {
+   "ru": "жаловался",
+   "uk": "скаржився",
+   "en": "said you were not happy",
+   "es": "se quejó"
+  },
+  "worried": {
+   "ru": "обеспокоенный, боящийся",
+   "uk": "стурбований, що боїться",
+   "en": "thinking something bad may happen",
+   "es": "preocupado"
+  },
+  "lending": {
+   "ru": "одалживать, давать взаймы",
+   "uk": "позичати, давати в позику",
+   "en": "giving for a short time",
+   "es": "prestar"
+  },
+  "considered": {
+   "ru": "обдумывал, рассматривал",
+   "uk": "обдумував, розглядав",
+   "en": "thought about carefully",
+   "es": "consideró"
+  },
+  "imagine": {
+   "ru": "представлять себе",
+   "uk": "уявляти",
+   "en": "make a picture in your mind",
+   "es": "imaginar"
+  },
+  "living": {
+   "ru": "жить, жизнь",
+   "uk": "жити, життя",
+   "en": "being alive; having a home",
+   "es": "vivir"
+  },
+  "admitted": {
+   "ru": "признался",
+   "uk": "визнав, зізнався",
+   "en": "said it was true",
+   "es": "admitió"
+  },
+  "avoided": {
+   "ru": "избегал",
+   "uk": "уникав",
+   "en": "stayed away from",
+   "es": "evitó"
+  },
+  "aloud": {
+   "ru": "вслух",
+   "uk": "уголос",
+   "en": "so others can hear",
+   "es": "en voz alta"
+  },
+  "remember": {
+   "ru": "помнить",
+   "uk": "пам'ятати",
+   "en": "keep in your mind",
+   "es": "recordar"
+  },
+  "locking": {
+   "ru": "запирать",
+   "uk": "замикати",
+   "en": "closing with a key",
+   "es": "cerrar con llave"
+  },
+  "then": {
+   "ru": "затем, потом",
+   "uk": "потім, тоді",
+   "en": "after that",
+   "es": "luego, entonces"
+  },
+  "carried": {
+   "ru": "нёс; продолжил",
+   "uk": "ніс; продовжив",
+   "en": "held and moved; kept going",
+   "es": "llevó; continuó"
+  }
+ }
+}

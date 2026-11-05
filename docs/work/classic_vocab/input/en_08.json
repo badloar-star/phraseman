@@ -1,0 +1,1001 @@
+{
+ "lang": "en",
+ "lesson": 8,
+ "words": [
+  {
+   "form": "seven",
+   "surface": "seven",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.01",
+     "target": "I start at seven",
+     "ru": "Я начинаю в семь.",
+     "en": "I start at seven."
+    }
+   ]
+  },
+  {
+   "form": "noon",
+   "surface": "noon",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.02",
+     "target": "She starts at noon",
+     "ru": "Она начинает в полдень.",
+     "en": "She starts at noon."
+    }
+   ]
+  },
+  {
+   "form": "tuesday",
+   "surface": "Tuesday",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.03",
+     "target": "We meet on Tuesday",
+     "ru": "Мы встречаемся во вторник.",
+     "en": "We meet on Tuesday."
+    },
+    {
+     "id": "en-classic-r1:08.49",
+     "target": "I have a dentist's appointment on Tuesday",
+     "ru": "У меня во вторник приём у стоматолога.",
+     "en": "I have a dentist's appointment on Tuesday."
+    }
+   ]
+  },
+  {
+   "form": "travel",
+   "surface": "travel",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.05",
+     "target": "I travel in July",
+     "ru": "Я путешествую в июле.",
+     "en": "I travel in July."
+    },
+    {
+     "id": "en-classic-r1:08.34",
+     "target": "We usually travel in spring",
+     "ru": "Обычно мы путешествуем весной.",
+     "en": "We usually travel in spring."
+    }
+   ]
+  },
+  {
+   "form": "july",
+   "surface": "July",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.05",
+     "target": "I travel in July",
+     "ru": "Я путешествую в июле.",
+     "en": "I travel in July."
+    }
+   ]
+  },
+  {
+   "form": "midnight",
+   "surface": "midnight",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.07",
+     "target": "We finish at midnight",
+     "ru": "Мы заканчиваем в полночь.",
+     "en": "We finish at midnight."
+    }
+   ]
+  },
+  {
+   "form": "arrive",
+   "surface": "arrive",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.08",
+     "target": "They arrive on Monday",
+     "ru": "Они приезжают в понедельник.",
+     "en": "They arrive on Monday."
+    }
+   ]
+  },
+  {
+   "form": "monday",
+   "surface": "Monday",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.08",
+     "target": "They arrive on Monday",
+     "ru": "Они приезжают в понедельник.",
+     "en": "They arrive on Monday."
+    },
+    {
+     "id": "en-classic-r1:08.26",
+     "target": "The parcel arrives on Monday afternoon",
+     "ru": "Посылка прибудет в понедельник днем.",
+     "en": "The parcel arrives on Monday afternoon."
+    }
+   ]
+  },
+  {
+   "form": "morning",
+   "surface": "morning",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.09",
+     "target": "I walk in the morning",
+     "ru": "Я гуляю утром.",
+     "en": "I walk in the morning."
+    },
+    {
+     "id": "en-classic-r1:08.24",
+     "target": "My appointment is on Thursday morning",
+     "ru": "Моя встреча назначена на утро четверга.",
+     "en": "My appointment is on Thursday morning."
+    }
+   ]
+  },
+  {
+   "form": "half",
+   "surface": "half",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.11",
+     "target": "The gate opens at half past six",
+     "ru": "Ворота открываются в половине седьмого.",
+     "en": "The gate opens at half past six."
+    },
+    {
+     "id": "en-classic-r1:08.14",
+     "target": "The desk closes at half past four",
+     "ru": "Стойка закрывается в половине пятого.",
+     "en": "The desk closes at half past four."
+    }
+   ]
+  },
+  {
+   "form": "past",
+   "surface": "past",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.11",
+     "target": "The gate opens at half past six",
+     "ru": "Ворота открываются в половине седьмого.",
+     "en": "The gate opens at half past six."
+    },
+    {
+     "id": "en-classic-r1:08.12",
+     "target": "The train leaves at a quarter past eight",
+     "ru": "Поезд отправляется в четверть девятого.",
+     "en": "The train leaves at a quarter past eight."
+    }
+   ]
+  },
+  {
+   "form": "six",
+   "surface": "six",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.11",
+     "target": "The gate opens at half past six",
+     "ru": "Ворота открываются в половине седьмого.",
+     "en": "The gate opens at half past six."
+    },
+    {
+     "id": "en-classic-r1:08.17",
+     "target": "The alarm rings at six thirty",
+     "ru": "Будильник звонит в шесть тридцать.",
+     "en": "The alarm rings at six thirty."
+    }
+   ]
+  },
+  {
+   "form": "quarter",
+   "surface": "quarter",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.12",
+     "target": "The train leaves at a quarter past eight",
+     "ru": "Поезд отправляется в четверть девятого.",
+     "en": "The train leaves at a quarter past eight."
+    }
+   ]
+  },
+  {
+   "form": "four",
+   "surface": "four",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.14",
+     "target": "The desk closes at half past four",
+     "ru": "Стойка закрывается в половине пятого.",
+     "en": "The desk closes at half past four."
+    }
+   ]
+  },
+  {
+   "form": "lunchtime",
+   "surface": "lunchtime",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.15",
+     "target": "We meet at lunchtime",
+     "ru": "Мы встречаемся в обеденное время.",
+     "en": "We meet at lunchtime."
+    }
+   ]
+  },
+  {
+   "form": "concert",
+   "surface": "concert",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.16",
+     "target": "The concert starts at eight fifteen",
+     "ru": "Концерт начинается в восемь пятнадцать.",
+     "en": "The concert starts at eight fifteen."
+    }
+   ]
+  },
+  {
+   "form": "fifteen",
+   "surface": "fifteen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.16",
+     "target": "The concert starts at eight fifteen",
+     "ru": "Концерт начинается в восемь пятнадцать.",
+     "en": "The concert starts at eight fifteen."
+    }
+   ]
+  },
+  {
+   "form": "rings",
+   "surface": "rings",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.17",
+     "target": "The alarm rings at six thirty",
+     "ru": "Будильник звонит в шесть тридцать.",
+     "en": "The alarm rings at six thirty."
+    },
+    {
+     "id": "en-classic-r1:08.20",
+     "target": "The bell rings at midday",
+     "ru": "Звонок звенит в полдень.",
+     "en": "The bell rings at midday."
+    }
+   ]
+  },
+  {
+   "form": "thirty",
+   "surface": "thirty",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.17",
+     "target": "The alarm rings at six thirty",
+     "ru": "Будильник звонит в шесть тридцать.",
+     "en": "The alarm rings at six thirty."
+    }
+   ]
+  },
+  {
+   "form": "bakery",
+   "surface": "bakery",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.18",
+     "target": "The bakery opens at dawn",
+     "ru": "Пекарня открывается на рассвете.",
+     "en": "The bakery opens at dawn."
+    }
+   ]
+  },
+  {
+   "form": "dawn",
+   "surface": "dawn",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.18",
+     "target": "The bakery opens at dawn",
+     "ru": "Пекарня открывается на рассвете.",
+     "en": "The bakery opens at dawn."
+    }
+   ]
+  },
+  {
+   "form": "changes",
+   "surface": "changes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.19",
+     "target": "The shift changes at ten",
+     "ru": "Пересменка в десять.",
+     "en": "The shift changes at ten."
+    }
+   ]
+  },
+  {
+   "form": "bell",
+   "surface": "bell",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.20",
+     "target": "The bell rings at midday",
+     "ru": "Звонок звенит в полдень.",
+     "en": "The bell rings at midday."
+    }
+   ]
+  },
+  {
+   "form": "midday",
+   "surface": "midday",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.20",
+     "target": "The bell rings at midday",
+     "ru": "Звонок звенит в полдень.",
+     "en": "The bell rings at midday."
+    }
+   ]
+  },
+  {
+   "form": "public",
+   "surface": "public",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.21",
+     "target": "The office closes on public holidays",
+     "ru": "Офис закрыт в праздничные дни.",
+     "en": "The office closes on public holidays."
+    }
+   ]
+  },
+  {
+   "form": "holidays",
+   "surface": "holidays",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.21",
+     "target": "The office closes on public holidays",
+     "ru": "Офис закрыт в праздничные дни.",
+     "en": "The office closes on public holidays."
+    }
+   ]
+  },
+  {
+   "form": "wednesday",
+   "surface": "Wednesday",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.22",
+     "target": "We train on Wednesday evenings",
+     "ru": "Мы тренируемся по средам вечером.",
+     "en": "We train on Wednesday evenings."
+    }
+   ]
+  },
+  {
+   "form": "evenings",
+   "surface": "evenings",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.22",
+     "target": "We train on Wednesday evenings",
+     "ru": "Мы тренируемся по средам вечером.",
+     "en": "We train on Wednesday evenings."
+    }
+   ]
+  },
+  {
+   "form": "bill",
+   "surface": "bill",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.23",
+     "target": "The bill is due on Friday",
+     "ru": "Счет нужно оплатить в пятницу.",
+     "en": "The bill is due on Friday."
+    }
+   ]
+  },
+  {
+   "form": "due",
+   "surface": "due",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.23",
+     "target": "The bill is due on Friday",
+     "ru": "Счет нужно оплатить в пятницу.",
+     "en": "The bill is due on Friday."
+    },
+    {
+     "id": "en-classic-r1:08.27",
+     "target": "The rent is due on the first of May",
+     "ru": "Арендная плата должна быть внесена первого мая.",
+     "en": "The rent is due on the first of May."
+    }
+   ]
+  },
+  {
+   "form": "friday",
+   "surface": "Friday",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.23",
+     "target": "The bill is due on Friday",
+     "ru": "Счет нужно оплатить в пятницу.",
+     "en": "The bill is due on Friday."
+    },
+    {
+     "id": "en-classic-r1:08.29",
+     "target": "The last class is on Friday evening",
+     "ru": "Последнее занятие в пятницу вечером.",
+     "en": "The last class is on Friday evening."
+    }
+   ]
+  },
+  {
+   "form": "thursday",
+   "surface": "Thursday",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.24",
+     "target": "My appointment is on Thursday morning",
+     "ru": "Моя встреча назначена на утро четверга.",
+     "en": "My appointment is on Thursday morning."
+    }
+   ]
+  },
+  {
+   "form": "market",
+   "surface": "market",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.25",
+     "target": "The market opens on Saturdays",
+     "ru": "Рынок открыт по субботам.",
+     "en": "The market opens on Saturdays."
+    }
+   ]
+  },
+  {
+   "form": "saturdays",
+   "surface": "Saturdays",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.25",
+     "target": "The market opens on Saturdays",
+     "ru": "Рынок открыт по субботам.",
+     "en": "The market opens on Saturdays."
+    }
+   ]
+  },
+  {
+   "form": "arrives",
+   "surface": "arrives",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.26",
+     "target": "The parcel arrives on Monday afternoon",
+     "ru": "Посылка прибудет в понедельник днем.",
+     "en": "The parcel arrives on Monday afternoon."
+    }
+   ]
+  },
+  {
+   "form": "first",
+   "surface": "first",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.27",
+     "target": "The rent is due on the first of May",
+     "ru": "Арендная плата должна быть внесена первого мая.",
+     "en": "The rent is due on the first of May."
+    }
+   ]
+  },
+  {
+   "form": "of",
+   "surface": "of",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.27",
+     "target": "The rent is due on the first of May",
+     "ru": "Арендная плата должна быть внесена первого мая.",
+     "en": "The rent is due on the first of May."
+    }
+   ]
+  },
+  {
+   "form": "may",
+   "surface": "May",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.27",
+     "target": "The rent is due on the first of May",
+     "ru": "Арендная плата должна быть внесена первого мая.",
+     "en": "The rent is due on the first of May."
+    }
+   ]
+  },
+  {
+   "form": "birthday",
+   "surface": "birthday",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.28",
+     "target": "Her birthday is on New Year's Day",
+     "ru": "Ее день рождения приходится на Новый год.",
+     "en": "Her birthday is on New Year's Day."
+    },
+    {
+     "id": "en-classic-r1:08.36",
+     "target": "My birthday is in June",
+     "ru": "Мой день рождения в июне.",
+     "en": "My birthday is in June."
+    }
+   ]
+  },
+  {
+   "form": "year's",
+   "surface": "Year's",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.28",
+     "target": "Her birthday is on New Year's Day",
+     "ru": "Ее день рождения приходится на Новый год.",
+     "en": "Her birthday is on New Year's Day."
+    }
+   ]
+  },
+  {
+   "form": "shopping",
+   "surface": "shopping",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.30",
+     "target": "We do the shopping on Sundays",
+     "ru": "Мы ходим за покупками по воскресеньям.",
+     "en": "We do the shopping on Sundays."
+    }
+   ]
+  },
+  {
+   "form": "days",
+   "surface": "days",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.31",
+     "target": "The days are short in winter",
+     "ru": "Дни зимой короткие.",
+     "en": "The days are short in winter."
+    }
+   ]
+  },
+  {
+   "form": "short",
+   "surface": "short",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.31",
+     "target": "The days are short in winter",
+     "ru": "Дни зимой короткие.",
+     "en": "The days are short in winter."
+    }
+   ]
+  },
+  {
+   "form": "winter",
+   "surface": "winter",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.31",
+     "target": "The days are short in winter",
+     "ru": "Дни зимой короткие.",
+     "en": "The days are short in winter."
+    }
+   ]
+  },
+  {
+   "form": "course",
+   "surface": "course",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.32",
+     "target": "Our course starts in September",
+     "ru": "Наш курс начинается в сентябре.",
+     "en": "Our course starts in September."
+    }
+   ]
+  },
+  {
+   "form": "september",
+   "surface": "September",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.32",
+     "target": "Our course starts in September",
+     "ru": "Наш курс начинается в сентябре.",
+     "en": "Our course starts in September."
+    }
+   ]
+  },
+  {
+   "form": "gets",
+   "surface": "gets",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.33",
+     "target": "The kitchen gets hot in summer",
+     "ru": "На кухне летом жарко.",
+     "en": "The kitchen gets hot in summer."
+    }
+   ]
+  },
+  {
+   "form": "hot",
+   "surface": "hot",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.33",
+     "target": "The kitchen gets hot in summer",
+     "ru": "На кухне летом жарко.",
+     "en": "The kitchen gets hot in summer."
+    }
+   ]
+  },
+  {
+   "form": "summer",
+   "surface": "summer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.33",
+     "target": "The kitchen gets hot in summer",
+     "ru": "На кухне летом жарко.",
+     "en": "The kitchen gets hot in summer."
+    }
+   ]
+  },
+  {
+   "form": "spring",
+   "surface": "spring",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.34",
+     "target": "We usually travel in spring",
+     "ru": "Обычно мы путешествуем весной.",
+     "en": "We usually travel in spring."
+    }
+   ]
+  },
+  {
+   "form": "park",
+   "surface": "park",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.35",
+     "target": "The park is quiet in the afternoon",
+     "ru": "В парке тихо днем.",
+     "en": "The park is quiet in the afternoon."
+    }
+   ]
+  },
+  {
+   "form": "june",
+   "surface": "June",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.36",
+     "target": "My birthday is in June",
+     "ru": "Мой день рождения в июне.",
+     "en": "My birthday is in June."
+    }
+   ]
+  },
+  {
+   "form": "club",
+   "surface": "club",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.37",
+     "target": "Our club meets in January",
+     "ru": "Наш клуб собирается в январе.",
+     "en": "Our club meets in January."
+    }
+   ]
+  },
+  {
+   "form": "meets",
+   "surface": "meets",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.37",
+     "target": "Our club meets in January",
+     "ru": "Наш клуб собирается в январе.",
+     "en": "Our club meets in January."
+    }
+   ]
+  },
+  {
+   "form": "january",
+   "surface": "January",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.37",
+     "target": "Our club meets in January",
+     "ru": "Наш клуб собирается в январе.",
+     "en": "Our club meets in January."
+    }
+   ]
+  },
+  {
+   "form": "timetable",
+   "surface": "timetable",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.38",
+     "target": "The new timetable starts in April",
+     "ru": "Новое расписание вступает в силу в апреле.",
+     "en": "The new timetable starts in April."
+    }
+   ]
+  },
+  {
+   "form": "april",
+   "surface": "April",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.38",
+     "target": "The new timetable starts in April",
+     "ru": "Новое расписание вступает в силу в апреле.",
+     "en": "The new timetable starts in April."
+    }
+   ]
+  },
+  {
+   "form": "beautiful",
+   "surface": "beautiful",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.39",
+     "target": "The garden is beautiful in autumn",
+     "ru": "Сад прекрасен осенью.",
+     "en": "The garden is beautiful in autumn."
+    }
+   ]
+  },
+  {
+   "form": "autumn",
+   "surface": "autumn",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.39",
+     "target": "The garden is beautiful in autumn",
+     "ru": "Сад прекрасен осенью.",
+     "en": "The garden is beautiful in autumn."
+    }
+   ]
+  },
+  {
+   "form": "every",
+   "surface": "every",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.41",
+     "target": "I work every Monday",
+     "ru": "Я работаю каждый понедельник.",
+     "en": "I work every Monday."
+    },
+    {
+     "id": "en-classic-r1:08.44",
+     "target": "I see him every morning",
+     "ru": "Я вижу его каждое утро.",
+     "en": "I see him every morning."
+    }
+   ]
+  },
+  {
+   "form": "week",
+   "surface": "week",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.42",
+     "target": "She starts next week",
+     "ru": "Она начинает на следующей неделе.",
+     "en": "She starts next week."
+    }
+   ]
+  },
+  {
+   "form": "film",
+   "surface": "film",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.43",
+     "target": "The film starts tonight",
+     "ru": "Фильм начинается сегодня вечером.",
+     "en": "The film starts tonight."
+    }
+   ]
+  },
+  {
+   "form": "tonight",
+   "surface": "tonight",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.43",
+     "target": "The film starts tonight",
+     "ru": "Фильм начинается сегодня вечером.",
+     "en": "The film starts tonight."
+    }
+   ]
+  },
+  {
+   "form": "see",
+   "surface": "see",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.44",
+     "target": "I see him every morning",
+     "ru": "Я вижу его каждое утро.",
+     "en": "I see him every morning."
+    }
+   ]
+  },
+  {
+   "form": "him",
+   "surface": "him",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.44",
+     "target": "I see him every morning",
+     "ru": "Я вижу его каждое утро.",
+     "en": "I see him every morning."
+    }
+   ]
+  },
+  {
+   "form": "study",
+   "surface": "study",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.47",
+     "target": "Do you study on Sunday mornings",
+     "ru": "Вы учитесь по воскресеньям утром?",
+     "en": "Do you study on Sunday mornings?"
+    }
+   ]
+  },
+  {
+   "form": "sunday",
+   "surface": "Sunday",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.47",
+     "target": "Do you study on Sunday mornings",
+     "ru": "Вы учитесь по воскресеньям утром?",
+     "en": "Do you study on Sunday mornings?"
+    }
+   ]
+  },
+  {
+   "form": "mornings",
+   "surface": "mornings",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.47",
+     "target": "Do you study on Sunday mornings",
+     "ru": "Вы учитесь по воскресеньям утром?",
+     "en": "Do you study on Sunday mornings?"
+    }
+   ]
+  },
+  {
+   "form": "eleven",
+   "surface": "eleven",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.48",
+     "target": "The last bus leaves at eleven",
+     "ru": "Последний автобус отправляется в одиннадцать.",
+     "en": "The last bus leaves at eleven."
+    }
+   ]
+  },
+  {
+   "form": "dentist's",
+   "surface": "dentist's",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.49",
+     "target": "I have a dentist's appointment on Tuesday",
+     "ru": "У меня во вторник приём у стоматолога.",
+     "en": "I have a dentist's appointment on Tuesday."
+    }
+   ]
+  },
+  {
+   "form": "before",
+   "surface": "before",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:08.50",
+     "target": "Do we have time before the train leaves at six",
+     "ru": "У нас есть время до отправления поезда в шесть?",
+     "en": "Do we have time before the train leaves at six?"
+    }
+   ]
+  }
+ ]
+}

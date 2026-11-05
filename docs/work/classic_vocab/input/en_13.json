@@ -1,0 +1,381 @@
+{
+ "lang": "en",
+ "lesson": 13,
+ "words": [
+  {
+   "form": "will",
+   "surface": "will",
+   "count": 50,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.01",
+     "target": "I will wait outside",
+     "ru": "Я подожду снаружи.",
+     "en": "I will wait outside."
+    },
+    {
+     "id": "en-classic-r1:13.02",
+     "target": "She will call later",
+     "ru": "Она позвонит позже.",
+     "en": "She will call later."
+    }
+   ]
+  },
+  {
+   "form": "later",
+   "surface": "later",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.02",
+     "target": "She will call later",
+     "ru": "Она позвонит позже.",
+     "en": "She will call later."
+    }
+   ]
+  },
+  {
+   "form": "heavy",
+   "surface": "heavy",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.12",
+     "target": "I will carry the heavy box",
+     "ru": "Я понесу тяжелую коробку.",
+     "en": "I will carry the heavy box."
+    }
+   ]
+  },
+  {
+   "form": "split",
+   "surface": "split",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.17",
+     "target": "We will split the bill",
+     "ru": "Мы разделим счет.",
+     "en": "We will split the bill."
+    }
+   ]
+  },
+  {
+   "form": "ask",
+   "surface": "ask",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.18",
+     "target": "I will ask about luggage storage",
+     "ru": "Я спрошу о хранении багажа.",
+     "en": "I will ask about luggage storage."
+    }
+   ]
+  },
+  {
+   "form": "about",
+   "surface": "about",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.18",
+     "target": "I will ask about luggage storage",
+     "ru": "Я спрошу о хранении багажа.",
+     "en": "I will ask about luggage storage."
+    }
+   ]
+  },
+  {
+   "form": "storage",
+   "surface": "storage",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.18",
+     "target": "I will ask about luggage storage",
+     "ru": "Я спрошу о хранении багажа.",
+     "en": "I will ask about luggage storage."
+    }
+   ]
+  },
+  {
+   "form": "be",
+   "surface": "be",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.19",
+     "target": "There will be a small fee for delivery",
+     "ru": "За доставку будет небольшая плата.",
+     "en": "There will be a small fee for delivery."
+    },
+    {
+     "id": "en-classic-r1:13.21",
+     "target": "I will not be late",
+     "ru": "Я не опоздаю.",
+     "en": "I will not be late."
+    }
+   ]
+  },
+  {
+   "form": "small",
+   "surface": "small",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.19",
+     "target": "There will be a small fee for delivery",
+     "ru": "За доставку будет небольшая плата.",
+     "en": "There will be a small fee for delivery."
+    }
+   ]
+  },
+  {
+   "form": "fee",
+   "surface": "fee",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.19",
+     "target": "There will be a small fee for delivery",
+     "ru": "За доставку будет небольшая плата.",
+     "en": "There will be a small fee for delivery."
+    }
+   ]
+  },
+  {
+   "form": "overnight",
+   "surface": "overnight",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.24",
+     "target": "He will not stay overnight",
+     "ru": "Он не останется на ночь.",
+     "en": "He will not stay overnight."
+    }
+   ]
+  },
+  {
+   "form": "without",
+   "surface": "without",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.27",
+     "target": "We will not leave without you",
+     "ru": "Мы не уйдем без вас.",
+     "en": "We will not leave without you."
+    }
+   ]
+  },
+  {
+   "form": "tomorrow",
+   "surface": "tomorrow",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.28",
+     "target": "The shop will not open tomorrow",
+     "ru": "Магазин завтра не откроется.",
+     "en": "The shop will not open tomorrow."
+    },
+    {
+     "id": "en-classic-r1:13.34",
+     "target": "Will it rain tomorrow",
+     "ru": "Завтра будет дождь?",
+     "en": "Will it rain tomorrow?"
+    }
+   ]
+  },
+  {
+   "form": "locker",
+   "surface": "locker",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.29",
+     "target": "This bag will not fit in the locker",
+     "ru": "Эта сумка не поместится в шкафчик.",
+     "en": "This bag will not fit in the locker."
+    }
+   ]
+  },
+  {
+   "form": "battery",
+   "surface": "battery",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.30",
+     "target": "The battery will not last all day",
+     "ru": "Батарея не продержится весь день.",
+     "en": "The battery will not last all day."
+    }
+   ]
+  },
+  {
+   "form": "all",
+   "surface": "all",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.30",
+     "target": "The battery will not last all day",
+     "ru": "Батарея не продержится весь день.",
+     "en": "The battery will not last all day."
+    }
+   ]
+  },
+  {
+   "form": "rain",
+   "surface": "rain",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.34",
+     "target": "Will it rain tomorrow",
+     "ru": "Завтра будет дождь?",
+     "en": "Will it rain tomorrow?"
+    },
+    {
+     "id": "en-classic-r1:13.45",
+     "target": "The forecast says it will rain after lunch",
+     "ru": "По прогнозу, после обеда будет дождь.",
+     "en": "The forecast says it will rain after lunch."
+    }
+   ]
+  },
+  {
+   "form": "group",
+   "surface": "group",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.39",
+     "target": "Where will you meet the group",
+     "ru": "Где вы встретите группу?",
+     "en": "Where will you meet the group?"
+    }
+   ]
+  },
+  {
+   "form": "think",
+   "surface": "think",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.41",
+     "target": "I think the train will be busy",
+     "ru": "Думаю, в поезде будет много народу.",
+     "en": "I think the train will be busy."
+    }
+   ]
+  },
+  {
+   "form": "month",
+   "surface": "month",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.44",
+     "target": "The new timetable will start next month",
+     "ru": "Новое расписание начнет действовать в следующем месяце.",
+     "en": "The new timetable will start next month."
+    }
+   ]
+  },
+  {
+   "form": "forecast",
+   "surface": "forecast",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.45",
+     "target": "The forecast says it will rain after lunch",
+     "ru": "По прогнозу, после обеда будет дождь.",
+     "en": "The forecast says it will rain after lunch."
+    }
+   ]
+  },
+  {
+   "form": "says",
+   "surface": "says",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.45",
+     "target": "The forecast says it will rain after lunch",
+     "ru": "По прогнозу, после обеда будет дождь.",
+     "en": "The forecast says it will rain after lunch."
+    }
+   ]
+  },
+  {
+   "form": "turn",
+   "surface": "turn",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.46",
+     "target": "This light will turn green in a moment",
+     "ru": "Этот светофор через мгновение загорится зеленым.",
+     "en": "This light will turn green in a moment."
+    }
+   ]
+  },
+  {
+   "form": "green",
+   "surface": "green",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.46",
+     "target": "This light will turn green in a moment",
+     "ru": "Этот светофор через мгновение загорится зеленым.",
+     "en": "This light will turn green in a moment."
+    }
+   ]
+  },
+  {
+   "form": "brother",
+   "surface": "brother",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.47",
+     "target": "My brother will collect the keys tomorrow",
+     "ru": "Мой брат заберет ключи завтра.",
+     "en": "My brother will collect the keys tomorrow."
+    }
+   ]
+  },
+  {
+   "form": "worry",
+   "surface": "worry",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.49",
+     "target": "Do not worry I will lock up",
+     "ru": "Не волнуйся, я всё закрою.",
+     "en": "Do not worry; I will lock up."
+    }
+   ]
+  },
+  {
+   "form": "up",
+   "surface": "up",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:13.49",
+     "target": "Do not worry I will lock up",
+     "ru": "Не волнуйся, я всё закрою.",
+     "en": "Do not worry; I will lock up."
+    }
+   ]
+  }
+ ]
+}

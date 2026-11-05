@@ -1,0 +1,168 @@
+{
+ "lang": "en",
+ "lesson": 25,
+ "words": {
+  "dinner": {
+   "ru": "ужин",
+   "uk": "вечеря",
+   "en": "the evening meal",
+   "es": "cena"
+  },
+  "having": {
+   "ru": "ели, пили",
+   "uk": "їли, пили",
+   "en": "eating or drinking a meal",
+   "es": "teniendo"
+  },
+  "barrier": {
+   "ru": "шлагбаум",
+   "uk": "шлагбаум",
+   "en": "bar that stops cars or people",
+   "es": "barrera"
+  },
+  "waterproof": {
+   "ru": "водонепроницаемый",
+   "uk": "водонепроникний",
+   "en": "does not let water in",
+   "es": "impermeable"
+  },
+  "dripping": {
+   "ru": "капал",
+   "uk": "капав",
+   "en": "falling in small drops",
+   "es": "goteando"
+  },
+  "through": {
+   "ru": "сквозь, через",
+   "uk": "крізь, через",
+   "en": "from one side to the other",
+   "es": "a través de"
+  },
+  "ceiling": {
+   "ru": "потолок",
+   "uk": "стеля",
+   "en": "the top inside of a room",
+   "es": "techo"
+  },
+  "barking": {
+   "ru": "лаяла",
+   "uk": "гавкала",
+   "en": "making a dog sound",
+   "es": "ladrando"
+  },
+  "brakes": {
+   "ru": "тормоза",
+   "uk": "гальма",
+   "en": "parts that stop a vehicle",
+   "es": "frenos"
+  },
+  "rang": {
+   "ru": "зазвонил",
+   "uk": "задзвонив",
+   "en": "made a bell sound",
+   "es": "sonó"
+  },
+  "started": {
+   "ru": "начался",
+   "uk": "почався",
+   "en": "began",
+   "es": "empezó"
+  },
+  "eating": {
+   "ru": "ели",
+   "uk": "їли",
+   "en": "putting food in the mouth",
+   "es": "comiendo"
+  },
+  "knocked": {
+   "ru": "постучал",
+   "uk": "постукав",
+   "en": "hit a door to be heard",
+   "es": "llamó"
+  },
+  "dropped": {
+   "ru": "уронил",
+   "uk": "упустив",
+   "en": "let something fall",
+   "es": "se me cayó"
+  },
+  "while": {
+   "ru": "пока, когда",
+   "uk": "поки, коли",
+   "en": "during the time that",
+   "es": "mientras"
+  },
+  "bang": {
+   "ru": "хлопок",
+   "uk": "гучний хлопок",
+   "en": "a sudden loud noise",
+   "es": "estallido"
+  },
+  "ferry": {
+   "ru": "паром",
+   "uk": "пором",
+   "en": "boat that carries people and cars",
+   "es": "ferri"
+  },
+  "buying": {
+   "ru": "покупал",
+   "uk": "купував",
+   "en": "paying for something",
+   "es": "comprando"
+  },
+  "cleaning": {
+   "ru": "мыл, убирал",
+   "uk": "мив, прибирав",
+   "en": "making a thing clean",
+   "es": "limpiando"
+  },
+  "sitting": {
+   "ru": "сидели",
+   "uk": "сиділи",
+   "en": "resting on a seat",
+   "es": "sentado"
+  },
+  "announcement": {
+   "ru": "объявление",
+   "uk": "оголошення",
+   "en": "a message said aloud to everyone",
+   "es": "anuncio"
+  },
+  "blocking": {
+   "ru": "загораживали",
+   "uk": "загороджували",
+   "en": "stopping the way",
+   "es": "bloqueando"
+  },
+  "trying": {
+   "ru": "примеряла",
+   "uk": "приміряла",
+   "en": "putting on to see if it fits",
+   "es": "probándose"
+  },
+  "filling": {
+   "ru": "заполнял",
+   "uk": "заповнював",
+   "en": "writing in the empty spaces",
+   "es": "rellenando"
+  },
+  "waved": {
+   "ru": "помахал рукой",
+   "uk": "помахав рукою",
+   "en": "moved a hand to say hello",
+   "es": "saludó con la mano"
+  },
+  "as": {
+   "ru": "когда, в то время как",
+   "uk": "коли, у той час як",
+   "en": "at the same moment that",
+   "es": "cuando"
+  },
+  "shelter": {
+   "ru": "укрытие",
+   "uk": "укриття",
+   "en": "a place to hide from rain",
+   "es": "refugio"
+  }
+ }
+}

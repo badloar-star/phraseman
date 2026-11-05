@@ -1,0 +1,186 @@
+{
+ "lang": "en",
+ "lesson": 30,
+ "words": {
+  "person": {
+   "ru": "человек",
+   "uk": "людина",
+   "en": "one man or woman",
+   "es": "persona"
+  },
+  "man": {
+   "ru": "мужчина",
+   "uk": "чоловік",
+   "en": "an adult male",
+   "es": "hombre"
+  },
+  "woman": {
+   "ru": "женщина",
+   "uk": "жінка",
+   "en": "an adult female",
+   "es": "mujer"
+  },
+  "child": {
+   "ru": "ребёнок",
+   "uk": "дитина",
+   "en": "a young boy or girl",
+   "es": "niño"
+  },
+  "won": {
+   "ru": "выиграл, выиграла",
+   "uk": "виграв, виграла",
+   "en": "came first",
+   "es": "ganó"
+  },
+  "race": {
+   "ru": "гонка",
+   "uk": "гонка",
+   "en": "a contest of speed",
+   "es": "carrera"
+  },
+  "niece": {
+   "ru": "племянница",
+   "uk": "племінниця",
+   "en": "daughter of your brother or sister",
+   "es": "sobrina"
+  },
+  "sells": {
+   "ru": "продаёт",
+   "uk": "продає",
+   "en": "gives goods for money",
+   "es": "vende"
+  },
+  "maps": {
+   "ru": "карты",
+   "uk": "карти",
+   "en": "drawings of places and roads",
+   "es": "mapas"
+  },
+  "borrowed": {
+   "ru": "взял на время",
+   "uk": "узяв на час",
+   "en": "took and gave back later",
+   "es": "pidió prestado"
+  },
+  "too": {
+   "ru": "слишком",
+   "uk": "занадто",
+   "en": "more than is good",
+   "es": "demasiado"
+  },
+  "watched": {
+   "ru": "смотрели",
+   "uk": "дивилися",
+   "en": "looked at for some time",
+   "es": "vieron"
+  },
+  "funny": {
+   "ru": "смешной",
+   "uk": "смішний",
+   "en": "makes you laugh",
+   "es": "gracioso"
+  },
+  "tyres": {
+   "ru": "шины",
+   "uk": "шини",
+   "en": "rubber rings on wheels",
+   "es": "neumáticos"
+  },
+  "incorrect": {
+   "ru": "неверный",
+   "uk": "неправильний",
+   "en": "not right",
+   "es": "incorrecto"
+  },
+  "place": {
+   "ru": "место",
+   "uk": "місце",
+   "en": "a spot or position",
+   "es": "lugar"
+  },
+  "power": {
+   "ru": "электричество",
+   "uk": "електрика",
+   "en": "electric current",
+   "es": "electricidad"
+  },
+  "stolen": {
+   "ru": "украли",
+   "uk": "вкрали",
+   "en": "taken by a thief",
+   "es": "robado"
+  },
+  "police": {
+   "ru": "полиция",
+   "uk": "поліція",
+   "en": "people who catch criminals",
+   "es": "policía"
+  },
+  "student": {
+   "ru": "студент",
+   "uk": "студент",
+   "en": "a person who studies",
+   "es": "estudiante"
+  },
+  "studying": {
+   "ru": "учится",
+   "uk": "навчається",
+   "en": "learning at school or university",
+   "es": "estudiando"
+  },
+  "escaped": {
+   "ru": "убежала",
+   "uk": "втекла",
+   "en": "got away",
+   "es": "escapó"
+  },
+  "spoke": {
+   "ru": "поговорили",
+   "uk": "поговорили",
+   "en": "talked",
+   "es": "hablamos"
+  },
+  "owner": {
+   "ru": "владелец",
+   "uk": "власник",
+   "en": "the person it belongs to",
+   "es": "dueño"
+  },
+  "covered": {
+   "ru": "заменила, подменила",
+   "uk": "замінила, підмінила",
+   "en": "did someone's work for them",
+   "es": "cubrió"
+  },
+  "nurse": {
+   "ru": "медсестра",
+   "uk": "медсестра",
+   "en": "helps doctors and looks after patients",
+   "es": "enfermera"
+  },
+  "customer": {
+   "ru": "клиент",
+   "uk": "клієнт",
+   "en": "a person who buys",
+   "es": "cliente"
+  },
+  "lent": {
+   "ru": "одолжил, одолжили",
+   "uk": "позичив, позичили",
+   "en": "gave for a short time",
+   "es": "prestó"
+  },
+  "part": {
+   "ru": "часть, деталь",
+   "uk": "частина, деталь",
+   "en": "one piece of a machine",
+   "es": "pieza"
+  },
+  "handles": {
+   "ru": "занимается",
+   "uk": "займається",
+   "en": "takes care of",
+   "es": "se encarga de"
+  }
+ }
+}

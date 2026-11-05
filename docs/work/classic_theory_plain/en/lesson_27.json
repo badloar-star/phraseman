@@ -1,0 +1,689 @@
+{
+  "lang": "en",
+  "lesson": 27,
+  "title": {
+    "ru": "Он сказал, что…",
+    "uk": "Він сказав, що…",
+    "en": "He said that…"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Он сказал",
+        "uk": "Він сказав",
+        "en": "He said"
+      },
+      "text": {
+        "ru": "Смотрите, как пересказать чужие слова.\nAnna said she was tired. — Анна сказала, что устала.\nЧитается: э́нна сэ́д ши уо́з та́йрд.\nСлово said значит «сказал, сказала». Это say, когда сказали уже раньше.\nСлово was значит «был, была». По-русски его часто не говорят.\nАнна сказала: «I am tired». Здесь она говорит о себе — «I».\nМы пересказываем, и теперь речь о ней — «she». Поэтому I стало she.\nЕщё am стало was. Это шаг назад:\nсегодняшнее слово (am, is) меняется на вчерашнее (was).\nTom said he was ready. — Том сказал, что готов.\nЧитается: то́м сэ́д хи уо́з рэ́ди.\nТом сказал: «I am ready». Речь о нём — «he».\nСнова I стало he, am стало was.\nHe said the shop was closed. — Он сказал, что магазин закрыт.\nЧитается: хи сэ́д зэ шо́п уо́з кло́узд.\nЧеловек сказал: «The shop is closed». Здесь is стало was — тоже шаг назад.",
+        "uk": "Дивіться, як переказати чужі слова.\nAnna said she was tired. — Анна сказала, що втомилася.\nЧитається: е́нна се́д ші уо́з та́йрд.\nСлово said означає «сказав, сказала». Це say, коли сказали вже раніше.\nСлово was означає «був, була». Українською його часто не кажуть.\nАнна сказала: «I am tired». Тут вона говорить про себе — «I».\nМи переказуємо, і тепер мова про неї — «she». Тому I стало she.\nЩе am стало was. Це крок назад:\nсьогоднішнє слово (am, is) змінюється на вчорашнє (was).\nTom said he was ready. — Том сказав, що готовий.\nЧитається: то́м се́д хі уо́з ре́ді.\nТом сказав: «I am ready». Мова про нього — «he».\nЗнову I стало he, am стало was.\nHe said the shop was closed. — Він сказав, що магазин закритий.\nЧитається: хі се́д зе шо́п уо́з кло́узд.\nЛюдина сказала: «The shop is closed». Тут is стало was — теж крок назад.",
+        "en": "Look at how to tell what other people said.\nAnna said she was tired.\nThe word said means “spoke”. It is say, when the speaking happened earlier.\nThe word was means “used to be” in a story about the past.\nAnna said: “I am tired.” She speaks about herself, so she says “I”.\nWhen we retell it, we speak about her, so we say “she”. I became she.\nAlso am became was. This is a step back:\ntoday’s word (am, is) changes to yesterday’s word (was).\nTom said he was ready.\nTom said: “I am ready.” Now we speak about him.\nSo I became he, and am became was.\nHe said the shop was closed.\nA man said: “The shop is closed.” Here is became was, a step back again."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:27.01",
+          "say": {
+            "ru": "э́нна сэ́д ши уо́з та́йрд",
+            "uk": "е́нна се́д ші уо́з та́йрд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.02",
+          "say": {
+            "ru": "то́м сэ́д хи уо́з рэ́ди",
+            "uk": "то́м се́д хі уо́з ре́ді"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.04",
+          "say": {
+            "ru": "хи сэ́д зэ шо́п уо́з кло́узд",
+            "uk": "хі се́д зе шо́п уо́з кло́узд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна сказала, что устала»",
+            "uk": "Виберіть, як сказати: «Анна сказала, що втомилася»",
+            "en": "Choose how to say: “Anna said she was tired.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:27.01",
+          "options": [
+            "en-classic-r1:27.01",
+            "en-classic-r1:27.02",
+            "en-classic-r1:27.04"
+          ],
+          "answerId": "en-classic-r1:27.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том сказал, что готов»",
+            "uk": "Виберіть, як сказати: «Том сказав, що готовий»",
+            "en": "Choose how to say: “Tom said he was ready.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.02",
+          "options": [
+            "en-classic-r1:27.02",
+            "en-classic-r1:27.04",
+            "en-classic-r1:27.01"
+          ],
+          "answerId": "en-classic-r1:27.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он сказал, что магазин закрыт»",
+            "uk": "Виберіть, як сказати: «Він сказав, що магазин закритий»",
+            "en": "Choose how to say: “He said the shop was closed.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.04",
+          "options": [
+            "en-classic-r1:27.04",
+            "en-classic-r1:27.01",
+            "en-classic-r1:27.02"
+          ],
+          "answerId": "en-classic-r1:27.04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я сказал, что…",
+        "uk": "Я сказав, що…",
+        "en": "I said that…"
+      },
+      "text": {
+        "ru": "Другие слова тоже делают шаг назад.\nI said I needed a receipt. — Я сказал, что мне нужен чек.\nЧитается: ай сэ́д ай ни́дид э риси́т.\nЯ сказал о себе, поэтому I остаётся I. Меняется слово после него.\nЯ сказал: «I need a receipt». Need стало needed: к слову добавили ed.\nWe said we wanted two seats. — Мы сказали, что хотим два места.\nЧитается: уи сэ́д уи уо́нтид ту́ си́тс.\nТак же want стало wanted — снова ed.\nShe said she knew the address. — Она сказала, что знает адрес.\nЧитается: ши сэ́д ши нью́ зи эдрэ́с.\nСлово knew — особое. Это know в прошлом, и ed тут нет.\nТакие слова запоминают по одному: know — knew.\nHe said he had a spare key. — Он сказал, что у него есть запасной ключ.\nЧитается: хи сэ́д хи хэ́д э спэ́р ки́.\nОн сказал: «I have a spare key». Have стало had: шаг назад от have, has.\nСлова had a spare key значат «у него был запасной ключ».\nПо-русски в пересказе часто говорят «есть». Слово has значит «есть у него».",
+        "uk": "Інші слова теж роблять крок назад.\nI said I needed a receipt. — Я сказав, що мені потрібен чек.\nЧитається: ай се́д ай ні́дід е рісі́т.\nЯ сказав про себе, тому I лишається I. Змінюється слово після нього.\nЯ сказав: «I need a receipt». Need стало needed: до слова додали ed.\nWe said we wanted two seats. — Ми сказали, що хочемо два місця.\nЧитається: уі се́д уі уо́нтід ту́ сі́тс.\nТак само want стало wanted — знову ed.\nShe said she knew the address. — Вона сказала, що знає адресу.\nЧитається: ші се́д ші нью́ зі едре́с.\nСлово knew — особливе. Це know у минулому, і ed тут немає.\nТакі слова запам’ятовують по одному: know — knew.\nHe said he had a spare key. — Він сказав, що в нього є запасний ключ.\nЧитається: хі се́д хі хе́д е спе́р кі́.\nВін сказав: «I have a spare key». Have стало had: крок назад від have, has.\nСлова had a spare key означають «у нього був запасний ключ».\nУкраїнською в переказі часто кажуть «є». Слово has означає «є в нього».",
+        "en": "Other words take a step back too.\nI said I needed a receipt.\nI spoke about myself, so I stays I. The word after it changes.\nI said: “I need a receipt.” Need became needed: we added ed.\nWe said we wanted two seats.\nIn the same way want became wanted, with ed again.\nShe said she knew the address.\nThe word knew is special. It is know in the past, and it has no ed.\nLearn such words one by one: know, knew.\nHe said he had a spare key.\nHe said: “I have a spare key.”\nHave became had, a step back from have and has.\nHere had means “he owned it”: he had a spare key.\nIn a retelling, people often say “he has”.\nThe word has means “he owns it now”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:27.06",
+          "say": {
+            "ru": "ай сэ́д ай ни́дид э риси́т",
+            "uk": "ай се́д ай ні́дід е рісі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.07",
+          "say": {
+            "ru": "уи сэ́д уи уо́нтид ту́ си́тс",
+            "uk": "уі се́д уі уо́нтід ту́ сі́тс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.08",
+          "say": {
+            "ru": "ши сэ́д ши нью́ зи эдрэ́с",
+            "uk": "ші се́д ші нью́ зі едре́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.09",
+          "say": {
+            "ru": "хи сэ́д хи хэ́д э спэ́р ки́",
+            "uk": "хі се́д хі хе́д е спе́р кі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сказал, что мне нужен чек»",
+            "uk": "Виберіть, як сказати: «Я сказав, що мені потрібен чек»",
+            "en": "Choose how to say: “I said I needed a receipt.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:27.06",
+          "options": [
+            "en-classic-r1:27.06",
+            "en-classic-r1:27.07",
+            "en-classic-r1:27.09"
+          ],
+          "answerId": "en-classic-r1:27.06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы сказали, что хотим два места»",
+            "uk": "Виберіть, як сказати: «Ми сказали, що хочемо два місця»",
+            "en": "Choose how to say: “We said we wanted two seats.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.07",
+          "options": [
+            "en-classic-r1:27.07",
+            "en-classic-r1:27.08",
+            "en-classic-r1:27.06"
+          ],
+          "answerId": "en-classic-r1:27.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он сказал, что у него есть запасной ключ»",
+            "uk": "Виберіть, як сказати: «Він сказав, що в нього є запасний ключ»",
+            "en": "Choose how to say: “He said he had a spare key.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.09",
+          "options": [
+            "en-classic-r1:27.09",
+            "en-classic-r1:27.08",
+            "en-classic-r1:27.07"
+          ],
+          "answerId": "en-classic-r1:27.09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Сказал мне",
+        "uk": "Сказав мені",
+        "en": "Told me"
+      },
+      "text": {
+        "ru": "Слово told тоже значит «сказал, сказала».\nЭто tell, когда сказали уже раньше. Слово особое — запомните его.\nПосле told сначала идёт, кому сказали: me «мне», us «нам».\nShe told me she was downstairs. — Она сказала мне, что она внизу.\nЧитается: ши то́улд ми ши уо́з даунсте́рз.\nОна сказала: «I am downstairs». Речь о ней — she, am стало was.\nHe told us the bus was full. — Он сказал нам, что автобус полон.\nЧитается: хи то́улд эс зэ ба́с уо́з фу́л.\nПосле said сразу идёт то, что сказали. После told — сначала кому.\nHe told the driver he felt sick. — Он сказал водителю, что ему плохо.\nЧитается: хи то́улд зэ дра́йвер хи фэ́лт си́к.\nСлово sick значит «больной, нехорошо».\nОн сказал: «I feel sick». Feel стало felt: слово особое, как и told.",
+        "uk": "Слово told теж означає «сказав, сказала».\nЦе tell, коли сказали вже раніше. Слово особливе — запам’ятайте його.\nПісля told спочатку йде, кому сказали: me «мені», us «нам».\nShe told me she was downstairs. — Вона сказала мені, що вона внизу.\nЧитається: ші то́улд мі ші уо́з даунсте́рз.\nВона сказала: «I am downstairs». Мова про неї — she, am стало was.\nHe told us the bus was full. — Він сказав нам, що автобус повний.\nЧитається: хі то́улд ес зе ба́с уо́з фу́л.\nПісля said одразу йде те, що сказали. Після told — спочатку кому.\nHe told the driver he felt sick. — Він сказав водієві, що йому погано.\nЧитається: хі то́улд зе дра́йвер хі фе́лт сі́к.\nСлово sick означає «хворий, погано».\nВін сказав: «I feel sick». Feel стало felt: слово особливе, як і told.",
+        "en": "The word told also means “said”.\nIt is tell, when the telling happened earlier. It is a special word, so remember it.\nAfter told, first comes who was told: me, us.\nShe told me she was downstairs.\nShe said: “I am downstairs.” We speak about her: she, and am became was.\nHe told us the bus was full.\nAfter said, what was said comes straight away. After told, first comes who was told.\nHe told the driver he felt sick.\nThe word sick means “ill, not well”.\nHe said: “I feel sick.” Feel became felt, a special word like told."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:27.11",
+          "say": {
+            "ru": "ши то́улд ми ши уо́з даунсте́рз",
+            "uk": "ші то́улд мі ші уо́з даунсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.12",
+          "say": {
+            "ru": "хи то́улд эс зэ ба́с уо́з фу́л",
+            "uk": "хі то́улд ес зе ба́с уо́з фу́л"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.19",
+          "say": {
+            "ru": "хи то́улд зэ дра́йвер хи фэ́лт си́к",
+            "uk": "хі то́улд зе дра́йвер хі фе́лт сі́к"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она сказала мне, что она внизу»",
+            "uk": "Виберіть, як сказати: «Вона сказала мені, що вона внизу»",
+            "en": "Choose how to say: “She told me she was downstairs.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:27.11",
+          "options": [
+            "en-classic-r1:27.11",
+            "en-classic-r1:27.12",
+            "en-classic-r1:27.19"
+          ],
+          "answerId": "en-classic-r1:27.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он сказал нам, что автобус полон»",
+            "uk": "Виберіть, як сказати: «Він сказав нам, що автобус повний»",
+            "en": "Choose how to say: “He told us the bus was full.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.12",
+          "options": [
+            "en-classic-r1:27.12",
+            "en-classic-r1:27.19",
+            "en-classic-r1:27.11"
+          ],
+          "answerId": "en-classic-r1:27.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он сказал водителю, что ему плохо»",
+            "uk": "Виберіть, як сказати: «Він сказав водієві, що йому погано»",
+            "en": "Choose how to say: “He told the driver he felt sick.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.19",
+          "options": [
+            "en-classic-r1:27.19",
+            "en-classic-r1:27.11",
+            "en-classic-r1:27.12"
+          ],
+          "answerId": "en-classic-r1:27.19"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Пришлёт, может, возможно",
+        "uk": "Надішле, може, можливо",
+        "en": "Will, can, may"
+      },
+      "text": {
+        "ru": "Слова will, can, may тоже делают шаг назад.\nСлово will значит «сделает, будет». Слово can значит «может». Слово may значит «возможно».\nHe said he would send a reminder. — Он сказал, что пришлет напоминание.\nЧитается: хи сэ́д хи уд сэ́нд э рими́ндер.\nСлово reminder значит «напоминание».\nОн сказал: «I will send». Will стало would.\nWould — это will в рассказе о прошлом.\nWould send значит «пришлёт»: то, что обещали или собирались сделать.\nShe said she could wait. — Она сказала, что может подождать.\nЧитается: ши сэ́д ши куд уэ́йт.\nСлово can стало could: «может подождать».\nThey said they might be late. — Они сказали, что могут опоздать.\nЧитается: зэй сэ́д зэй ма́йт би лэ́йт.\nСлово may стало might. Слова might be late значат «возможно, опоздают».",
+        "uk": "Слова will, can, may теж роблять крок назад.\nСлово will означає «зробить, буде». Слово can означає «може». Слово may означає «можливо».\nHe said he would send a reminder. — Він сказав, що надішле нагадування.\nЧитається: хі се́д хі уд се́нд е рімі́ндер.\nСлово reminder означає «нагадування».\nВін сказав: «I will send». Will стало would.\nWould — це will у розповіді про минуле.\nWould send означає «надішле»: те, що обіцяли або збиралися зробити.\nShe said she could wait. — Вона сказала, що може почекати.\nЧитається: ші се́д ші куд уе́йт.\nСлово can стало could: «може почекати».\nThey said they might be late. — Вони сказали, що можуть запізнитися.\nЧитається: зей се́д зей ма́йт бі ле́йт.\nСлово may стало might. Слова might be late означають «можливо, запізняться».",
+        "en": "The words will, can, may also take a step back.\nThe word will means “is going to”.\nThe word can means “is able to”. The word may means “perhaps”.\nHe said he would send a reminder.\nThe word reminder means a note that helps you remember.\nHe said: “I will send.” Will became would.\nWould is will in a story about the past.\nWould send means “was going to send”: what was promised or planned.\nShe said she could wait.\nCan became could: “was able to wait”.\nThey said they might be late.\nMay became might. The words might be late mean “perhaps they will be late”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:27.22",
+          "say": {
+            "ru": "хи сэ́д хи уд сэ́нд э рими́ндер",
+            "uk": "хі се́д хі уд се́нд е рімі́ндер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.21",
+          "say": {
+            "ru": "ши сэ́д ши куд уэ́йт",
+            "uk": "ші се́д ші куд уе́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.23",
+          "say": {
+            "ru": "зэй сэ́д зэй ма́йт би лэ́йт",
+            "uk": "зей се́д зей ма́йт бі ле́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он сказал, что пришлет напоминание»",
+            "uk": "Виберіть, як сказати: «Він сказав, що надішле нагадування»",
+            "en": "Choose how to say: “He said he would send a reminder.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:27.22",
+          "options": [
+            "en-classic-r1:27.22",
+            "en-classic-r1:27.21",
+            "en-classic-r1:27.23"
+          ],
+          "answerId": "en-classic-r1:27.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она сказала, что может подождать»",
+            "uk": "Виберіть, як сказати: «Вона сказала, що може почекати»",
+            "en": "Choose how to say: “She said she could wait.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.21",
+          "options": [
+            "en-classic-r1:27.21",
+            "en-classic-r1:27.23",
+            "en-classic-r1:27.22"
+          ],
+          "answerId": "en-classic-r1:27.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они сказали, что могут опоздать»",
+            "uk": "Виберіть, як сказати: «Вони сказали, що можуть запізнитися»",
+            "en": "Choose how to say: “They said they might be late.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.23",
+          "options": [
+            "en-classic-r1:27.23",
+            "en-classic-r1:27.22",
+            "en-classic-r1:27.21"
+          ],
+          "answerId": "en-classic-r1:27.23"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Он спросил",
+        "uk": "Він запитав",
+        "en": "He asked"
+      },
+      "text": {
+        "ru": "Слово asked значит «спросил». Это ask, когда спросили уже раньше.\nТак пересказывают вопросы.\nShe asked what I needed. — Она спросила, что мне нужно.\nЧитается: ши а́скт уо́т ай ни́дид.\nОна спросила: «What do you need?».\nВ пересказе you стало I, слова do нет, а need стало needed.\nСлова идут как в обычной фразе: what I needed.\nThey asked when the shop closed. — Они спросили, когда закрывается магазин.\nЧитается: зэй а́скт уэ́н зэ шо́п кло́узд.\nСпросили: «When does the shop close?». Слова does нет.\nСлово close стало closed: добавили d. Это шаг назад.\nWe asked who dealt with complaints. — Мы спросили, кто занимается жалобами.\nЧитается: уи а́скт ху́ дэ́лт уиз комплэ́йнтс.\nСлова deal with значат «заниматься, иметь дело с». Слово dealt — это deal, шаг назад.\nСлово особое: deal — dealt. По-русски говорят: «кто занимается».\nСлово complaints значит «жалобы».\nСлово who значит «кто».\nПосле него сразу идёт слово о действии: who dealt — «кто занимался».",
+        "uk": "Слово asked означає «запитав». Це ask, коли запитали вже раніше.\nТак переказують питання.\nShe asked what I needed. — Вона запитала, що мені потрібно.\nЧитається: ші а́скт уо́т ай ні́дід.\nВона запитала: «What do you need?».\nУ переказі you стало I, слова do немає, а need стало needed.\nСлова йдуть як у звичайній фразі: what I needed.\nThey asked when the shop closed. — Вони запитали, коли магазин закривається.\nЧитається: зей а́скт уе́н зе шо́п кло́узд.\nЗапитали: «When does the shop close?». Слова does немає.\nСлово close стало closed: додали d. Це крок назад.\nWe asked who dealt with complaints. — Ми запитали, хто розглядає скарги.\nЧитається: уі а́скт ху́ де́лт уіз компле́йнтс.\nСлова deal with означають «займатися, мати справу з». Слово dealt — це deal, крок назад.\nСлово особливе: deal — dealt. Українською кажуть: «хто розглядає».\nСлово complaints означає «скарги».\nСлово who означає «хто».\nПісля нього одразу йде слово про дію: who dealt — «хто займався».",
+        "en": "The word asked means “put a question”.\nIt is ask, when the asking happened earlier.\nThis is how we retell questions.\nShe asked what I needed.\nShe asked: “What do you need?”\nWhen we retell it, you became I, there is no do, and need became needed.\nThe words go as in a normal sentence: what I needed.\nThey asked when the shop closed.\nThey asked: “When does the shop close?” There is no does.\nClose became closed: we added d. This is a step back.\nWe asked who dealt with complaints.\nThe words deal with mean “to be in charge of”.\nThe word dealt is deal, a step back.\nIt is a special word: deal, dealt.\nThe word complaints means “things people are unhappy about”.\nThe word who means “which person”.\nAn action word follows it at once: who dealt."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:27.32",
+          "say": {
+            "ru": "ши а́скт уо́т ай ни́дид",
+            "uk": "ші а́скт уо́т ай ні́дід"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.33",
+          "say": {
+            "ru": "зэй а́скт уэ́н зэ шо́п кло́узд",
+            "uk": "зей а́скт уе́н зе шо́п кло́узд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.40",
+          "say": {
+            "ru": "уи а́скт ху́ дэ́лт уиз комплэ́йнтс",
+            "uk": "уі а́скт ху́ де́лт уіз компле́йнтс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она спросила, что мне нужно»",
+            "uk": "Виберіть, як сказати: «Вона запитала, що мені потрібно»",
+            "en": "Choose how to say: “She asked what I needed.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:27.32",
+          "options": [
+            "en-classic-r1:27.32",
+            "en-classic-r1:27.33",
+            "en-classic-r1:27.40"
+          ],
+          "answerId": "en-classic-r1:27.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они спросили, когда закрывается магазин»",
+            "uk": "Виберіть, як сказати: «Вони запитали, коли магазин закривається»",
+            "en": "Choose how to say: “They asked when the shop closed.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.33",
+          "options": [
+            "en-classic-r1:27.33",
+            "en-classic-r1:27.40",
+            "en-classic-r1:27.32"
+          ],
+          "answerId": "en-classic-r1:27.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы спросили, кто занимается жалобами»",
+            "uk": "Виберіть, як сказати: «Ми запитали, хто розглядає скарги»",
+            "en": "Choose how to say: “We asked who dealt with complaints.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.40",
+          "options": [
+            "en-classic-r1:27.40",
+            "en-classic-r1:27.32",
+            "en-classic-r1:27.33"
+          ],
+          "answerId": "en-classic-r1:27.40"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Спросили: есть ли",
+        "uk": "Запитали: чи є",
+        "en": "Asked: whether"
+      },
+      "text": {
+        "ru": "Бывает вопрос без what, when, who.\nТогда ставят if или whether.\nОба слова значат «ли».\nHe asked if I had a reference number.\nПо-русски: «Он спросил, есть ли у меня номер заявки»\nЧитается: хи а́скт иф ай хэ́д э рэ́ференс на́мбер.\nСлово if вы знаете как «если». Здесь оно значит «ли».\nСлово reference здесь значит «заявка». Слова reference number — «номер заявки».\nОн спросил: «Do you have…?». Do нет, have стало had: шаг назад.\nShe asked whether we wanted a replacement. — Она спросила, хотим ли мы замену.\nЧитается: ши а́скт уэ́зер уи уо́нтид э риплэ́йсмент.\nСлово whether значит «ли». Это то же, что if.\nСлово replacement значит «замена».\nThey asked if the room was free. — Они спросили, свободна ли комната.\nЧитается: зэй а́скт иф зэ ру́м уо́з фри́.\nСпросили: «Is the room free?». Is стало was.",
+        "uk": "Буває питання без what, when, who.\nТоді ставлять if або whether.\nОбидва слова означають «чи».\nHe asked if I had a reference number.\nУкраїнською: «Він запитав, чи є у мене номер заявки»\nЧитається: хі а́скт іф ай хе́д е ре́ференс на́мбер.\nСлово if ви знаєте як «якщо». Тут воно означає «чи».\nСлово reference тут означає «заявка». Слова reference number — «номер заявки».\nВін запитав: «Do you have…?». Do немає, have стало had: крок назад.\nShe asked whether we wanted a replacement. — Вона запитала, чи хочемо ми заміну.\nЧитається: ші а́скт уе́зер уі уо́нтід е ріпле́йсмент.\nСлово whether означає «чи». Це те саме, що if.\nСлово replacement означає «заміна».\nThey asked if the room was free. — Вони запитали, чи вільний номер.\nЧитається: зей а́скт іф зе ру́м уо́з фрі́.\nЗапитали: «Is the room free?». Is стало was.",
+        "en": "Sometimes a question has no what, when, who.\nThen we use if or whether.\nBoth words mean “yes or no?”.\nHe asked if I had a reference number.\nYou know the word if as “on condition that”. Here it asks “yes or no?”.\nThe word reference here means “a request”.\nThe words reference number mean “the number of a request”.\nHe asked: “Do you have…?” There is no do, and have became had: a step back.\nShe asked whether we wanted a replacement.\nThe word whether means the same as if here.\nThe word replacement means “a new one instead of the old”.\nThey asked if the room was free.\nThey asked: “Is the room free?” Is became was."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:27.36",
+          "say": {
+            "ru": "хи а́скт иф ай хэ́д э рэ́ференс на́мбер",
+            "uk": "хі а́скт іф ай хе́д е ре́ференс на́мбер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.37",
+          "say": {
+            "ru": "ши а́скт уэ́зер уи уо́нтид э риплэ́йсмент",
+            "uk": "ші а́скт уе́зер уі уо́нтід е ріпле́йсмент"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.38",
+          "say": {
+            "ru": "зэй а́скт иф зэ ру́м уо́з фри́",
+            "uk": "зей а́скт іф зе ру́м уо́з фрі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он спросил, есть ли у меня номер обращения»",
+            "uk": "Виберіть, як сказати: «Він запитав, чи є у мене номер звернення»",
+            "en": "Choose how to say: “He asked if I had a reference number.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:27.36",
+          "options": [
+            "en-classic-r1:27.36",
+            "en-classic-r1:27.37",
+            "en-classic-r1:27.38"
+          ],
+          "answerId": "en-classic-r1:27.36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она спросила, хотим ли мы замену»",
+            "uk": "Виберіть, як сказати: «Вона запитала, чи хочемо ми заміну»",
+            "en": "Choose how to say: “She asked whether we wanted a replacement.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.37",
+          "options": [
+            "en-classic-r1:27.37",
+            "en-classic-r1:27.38",
+            "en-classic-r1:27.36"
+          ],
+          "answerId": "en-classic-r1:27.37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они спросили, свободна ли комната»",
+            "uk": "Виберіть, як сказати: «Вони запитали, чи вільний номер»",
+            "en": "Choose how to say: “They asked if the room was free.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.38",
+          "options": [
+            "en-classic-r1:27.38",
+            "en-classic-r1:27.36",
+            "en-classic-r1:27.37"
+          ],
+          "answerId": "en-classic-r1:27.38"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Просили и велели",
+        "uk": "Просили й казали",
+        "en": "Asked and told"
+      },
+      "text": {
+        "ru": "Просьбу и запрет тоже можно пересказать.\nПосле me, him, us ставят to и то, что надо сделать.\nShe asked me to wait in the shade. — Она попросила меня подождать в тени.\nЧитается: ши а́скт ми ту уэ́йт ин зэ шэ́йд.\nСлова asked me to значат «попросила меня».\nHe told me not to lift the lid. — Он сказал мне не поднимать крышку.\nЧитается: хи то́улд ми но́т ту ли́фт зэ ли́д.\nСлова not to значат «не»: not to lift — «не поднимать».\nThey told us to use the side entrance. — Нам сказали воспользоваться боковым входом.\nЧитается: зэй то́улд эс ту ю́з зэ са́йд э́нтранс.\nЗдесь told значит «сказали»: сказали воспользоваться. Слово use значит «пользоваться».\nВ таких фразах нет was и would: после to сразу идёт, что делать.",
+        "uk": "Прохання й заборону теж можна переказати.\nПісля me, him, us ставлять to і те, що треба зробити.\nShe asked me to wait in the shade. — Вона попросила мене почекати в тіні.\nЧитається: ші а́скт мі ту уе́йт ін зе ше́йд.\nСлова asked me to означають «попросила мене».\nHe told me not to lift the lid. — Він сказав мені не піднімати кришку.\nЧитається: хі то́улд мі но́т ту лі́фт зе лі́д.\nСлова not to означають «не»: not to lift — «не піднімати».\nThey told us to use the side entrance. — Вони сказали нам скористатися боковим входом.\nЧитається: зей то́улд ес ту ю́з зе са́йд е́нтранс.\nТут told означає «сказали»: сказали скористатися. Слово use означає «користуватися».\nУ таких фразах немає was і would: після to одразу йде, що робити.",
+        "en": "A request or a ban can be retold too.\nAfter me, him, us we put to and what must be done.\nShe asked me to wait in the shade.\nThe words asked me to mean “she asked me”.\nHe told me not to lift the lid.\nThe words not to mean “do not”: not to lift means “do not lift”.\nThey told us to use the side entrance.\nHere told means “said”: said to use. The word use means “to make use of”.\nIn such sentences there is no was and no would: after to comes what to do."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:27.41",
+          "say": {
+            "ru": "ши а́скт ми ту уэ́йт ин зэ шэ́йд",
+            "uk": "ші а́скт мі ту уе́йт ін зе ше́йд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.42",
+          "say": {
+            "ru": "хи то́улд ми но́т ту ли́фт зэ ли́д",
+            "uk": "хі то́улд мі но́т ту лі́фт зе лі́д"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.44",
+          "say": {
+            "ru": "зэй то́улд эс ту ю́з зэ са́йд э́нтранс",
+            "uk": "зей то́улд ес ту ю́з зе са́йд е́нтранс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она попросила меня подождать в тени»",
+            "uk": "Виберіть, як сказати: «Вона попросила мене почекати в тіні»",
+            "en": "Choose how to say: “She asked me to wait in the shade.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:27.41",
+          "options": [
+            "en-classic-r1:27.41",
+            "en-classic-r1:27.42",
+            "en-classic-r1:27.44"
+          ],
+          "answerId": "en-classic-r1:27.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он сказал мне не поднимать крышку»",
+            "uk": "Виберіть, як сказати: «Він сказав мені не піднімати кришку»",
+            "en": "Choose how to say: “He told me not to lift the lid.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.42",
+          "options": [
+            "en-classic-r1:27.42",
+            "en-classic-r1:27.44",
+            "en-classic-r1:27.41"
+          ],
+          "answerId": "en-classic-r1:27.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам сказали воспользоваться боковым входом»",
+            "uk": "Виберіть, як сказати: «Вони сказали нам скористатися боковим входом»",
+            "en": "Choose how to say: “They told us to use the side entrance.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.44",
+          "options": [
+            "en-classic-r1:27.44",
+            "en-classic-r1:27.41",
+            "en-classic-r1:27.42"
+          ],
+          "answerId": "en-classic-r1:27.44"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Это уже случилось",
+        "uk": "Це вже сталося",
+        "en": "It had already happened"
+      },
+      "text": {
+        "ru": "Бывает, что дело случилось ещё раньше, чем сказали.\nТогда ставят had. Это другое had, не то, что «у него был».\nОно показывает: дело сделано раньше.\nShe said she had left her phone at home. — Она сказала, что оставила телефон дома.\nЧитается: ши сэ́д ши хэ́д лэ́фт хэр фо́ун эт хо́ум.\nОна сказала: «I have left my phone». Have стало had.\nСлово left — это leave, когда уже оставили.\nAnna told him the fuse had blown. — Анна сказала ему, что перегорел предохранитель.\nЧитается: э́нна то́улд хим зэ фью́з хэ́д бло́ун.\nАнна сказала: «The fuse has blown». Has стало had.\nСлово fuse значит «электрический предохранитель».\nСлово blown особое: blow — blown. Слова had blown значат «перегорел».\nHe asked if I had received his message. — Он спросил, получил ли я его сообщение.\nЧитается: хи а́скт иф ай хэ́д рися́вд хиз мэ́сидж.\nСлово receive значит «получать». Слово received значит «получил».\nОн спросил: «Have you received…?». Было have received — стало had received.\nThey said the train had left ten minutes earlier.\nПо-русски: «Они сказали, что поезд ушёл десятью минутами ранее»\nЧитается: зэй сэ́д зэ трэ́йн хэ́д лэ́фт тэ́н ми́нитс э́рлиер.\nЗдесь left значит «ушёл». Это тот же leave, другой смысл.\nВ пересказе вместо ago говорят earlier («раньше»).",
+        "uk": "Буває, що справа сталася ще раніше, ніж сказали.\nТоді ставлять had. Це інше had, не те, що «у нього був».\nВоно показує: справу зроблено раніше.\nShe said she had left her phone at home. — Вона сказала, що залишила телефон вдома.\nЧитається: ші се́д ші хе́д ле́фт хер фо́ун ет хо́ум.\nВона сказала: «I have left my phone». Have стало had.\nСлово left — це leave, коли вже залишили.\nAnna told him the fuse had blown. — Анна сказала йому, що перегорів запобіжник.\nЧитається: е́нна то́улд хім зе фью́з хе́д бло́ун.\nАнна сказала: «The fuse has blown». Has стало had.\nСлово fuse означає «електричний запобіжник».\nСлово blown особливе: blow — blown. Слова had blown означають «перегорів».\nHe asked if I had received his message. — Він запитав, чи отримав я його повідомлення.\nЧитається: хі а́скт іф ай хе́д ріся́вд хіз ме́сідж.\nСлово receive означає «отримувати». Слово received означає «отримав».\nВін запитав: «Have you received…?». Було have received — стало had received.\nThey said the train had left ten minutes earlier.\nУкраїнською: «Вони сказали, що поїзд відправився десять хвилин раніше»\nЧитається: зей се́д зе тре́йн хе́д ле́фт те́н мі́нітс е́рліер.\nТут left означає «відправився». Це той самий leave, інший зміст.\nУ переказі замість ago кажуть earlier («раніше»).",
+        "en": "Sometimes the thing had happened even before the words.\nThen we use had. This is another had, not the one that meant “he owned it”.\nIt shows that the thing was done earlier.\nShe said she had left her phone at home.\nShe said: “I have left my phone.” Have became had.\nThe word left is leave, when it is already done.\nAnna told him the fuse had blown.\nAnna said: “The fuse has blown.” Has became had.\nThe word fuse means a small part that stops the electricity.\nThe word blown is special: blow, blown.\nThe words had blown mean “burned out earlier”.\nHe asked if I had received his message.\nThe word receive means “to get”. The word received means “got”.\nHe asked: “Have you received…?”\nIt was have received, and it became had received.\nThey said the train had left ten minutes earlier.\nHere left means “went away”. It is the same leave with another meaning.\nIn a retelling, ago becomes earlier."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:27.45",
+          "say": {
+            "ru": "ши сэ́д ши хэ́д лэ́фт хэр фо́ун эт хо́ум",
+            "uk": "ші се́д ші хе́д ле́фт хер фо́ун ет хо́ум"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.15",
+          "say": {
+            "ru": "э́нна то́улд хим зэ фью́з хэ́д бло́ун",
+            "uk": "е́нна то́улд хім зе фью́з хе́д бло́ун"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.50",
+          "say": {
+            "ru": "хи а́скт иф ай хэ́д рися́вд хиз мэ́сидж",
+            "uk": "хі а́скт іф ай хе́д ріся́вд хіз ме́сідж"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:27.48",
+          "say": {
+            "ru": "зэй сэ́д зэ трэ́йн хэ́д лэ́фт тэ́н ми́нитс э́рлиер",
+            "uk": "зей се́д зе тре́йн хе́д ле́фт те́н мі́нітс е́рліер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она сказала, что оставила телефон дома»",
+            "uk": "Виберіть, як сказати: «Вона сказала, що залишила телефон вдома»",
+            "en": "Choose how to say: “She said she had left her phone at home.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:27.45",
+          "options": [
+            "en-classic-r1:27.45",
+            "en-classic-r1:27.15",
+            "en-classic-r1:27.48"
+          ],
+          "answerId": "en-classic-r1:27.45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна сказала ему, что перегорел предохранитель»",
+            "uk": "Виберіть, як сказати: «Анна сказала йому, що перегорів запобіжник»",
+            "en": "Choose how to say: “Anna told him the fuse had blown.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.15",
+          "options": [
+            "en-classic-r1:27.15",
+            "en-classic-r1:27.50",
+            "en-classic-r1:27.45"
+          ],
+          "answerId": "en-classic-r1:27.15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он спросил, получил ли я его сообщение»",
+            "uk": "Виберіть, як сказати: «Він запитав, чи отримав я його повідомлення»",
+            "en": "Choose how to say: “He asked if I had received his message.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:27.50",
+          "options": [
+            "en-classic-r1:27.50",
+            "en-classic-r1:27.45",
+            "en-classic-r1:27.15"
+          ],
+          "answerId": "en-classic-r1:27.50"
+        }
+      ]
+    }
+  ]
+}

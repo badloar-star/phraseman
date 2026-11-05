@@ -1,0 +1,423 @@
+{
+ "lang": "en",
+ "lesson": 15,
+ "words": [
+  {
+   "form": "hers",
+   "surface": "hers",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.06",
+     "target": "This key is hers",
+     "ru": "Этот ключ её.",
+     "en": "This key is hers."
+    },
+    {
+     "id": "en-classic-r1:15.24",
+     "target": "Are those gloves hers",
+     "ru": "Эти перчатки ее?",
+     "en": "Are those gloves hers?"
+    }
+   ]
+  },
+  {
+   "form": "those",
+   "surface": "Those",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.07",
+     "target": "Those are our seats",
+     "ru": "Это наши места.",
+     "en": "Those are our seats."
+    },
+    {
+     "id": "en-classic-r1:15.24",
+     "target": "Are those gloves hers",
+     "ru": "Эти перчатки ее?",
+     "en": "Are those gloves hers?"
+    }
+   ]
+  },
+  {
+   "form": "ours",
+   "surface": "ours",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.08",
+     "target": "These seats are ours",
+     "ru": "Эти места наши.",
+     "en": "Those seats are ours."
+    },
+    {
+     "id": "en-classic-r1:15.26",
+     "target": "Are the seats by the window ours",
+     "ru": "Места у окна наши?",
+     "en": "Are the seats by the window ours?"
+    }
+   ]
+  },
+  {
+   "form": "theirs",
+   "surface": "theirs",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.10",
+     "target": "These tickets are theirs",
+     "ru": "Эти билеты принадлежат им.",
+     "en": "These tickets are theirs."
+    },
+    {
+     "id": "en-classic-r1:15.27",
+     "target": "Is this booking theirs",
+     "ru": "Это их бронирование?",
+     "en": "Is this booking theirs?"
+    }
+   ]
+  },
+  {
+   "form": "gloves",
+   "surface": "gloves",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.11",
+     "target": "My gloves are wet",
+     "ru": "Мои перчатки мокрые.",
+     "en": "My gloves are wet."
+    },
+    {
+     "id": "en-classic-r1:15.24",
+     "target": "Are those gloves hers",
+     "ru": "Эти перчатки ее?",
+     "en": "Are those gloves hers?"
+    }
+   ]
+  },
+  {
+   "form": "wet",
+   "surface": "wet",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.11",
+     "target": "My gloves are wet",
+     "ru": "Мои перчатки мокрые.",
+     "en": "My gloves are wet."
+    },
+    {
+     "id": "en-classic-r1:15.37",
+     "target": "Your towel is dry mine is wet",
+     "ru": "Ваше полотенце сухое, моё мокрое.",
+     "en": "Your towel is dry; mine is wet."
+    }
+   ]
+  },
+  {
+   "form": "scarf",
+   "surface": "scarf",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.12",
+     "target": "Your scarf is on the chair",
+     "ru": "Твой шарф лежит на стуле.",
+     "en": "Your scarf is on the chair."
+    }
+   ]
+  },
+  {
+   "form": "jacket",
+   "surface": "jacket",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.14",
+     "target": "His jacket is in the hall",
+     "ru": "Его куртка в прихожей.",
+     "en": "His jacket is in the hall."
+    }
+   ]
+  },
+  {
+   "form": "hall",
+   "surface": "hall",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.14",
+     "target": "His jacket is in the hall",
+     "ru": "Его куртка в прихожей.",
+     "en": "His jacket is in the hall."
+    }
+   ]
+  },
+  {
+   "form": "damp",
+   "surface": "damp",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.15",
+     "target": "Our towels are still damp",
+     "ru": "Наши полотенца все еще влажные.",
+     "en": "Our towels are still damp."
+    }
+   ]
+  },
+  {
+   "form": "boots",
+   "surface": "boots",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.16",
+     "target": "Their boots are outside",
+     "ru": "Их ботинки снаружи.",
+     "en": "Their boots are outside."
+    },
+    {
+     "id": "en-classic-r1:15.44",
+     "target": "The children's boots are by the door",
+     "ru": "Ботинки детей стоят у двери.",
+     "en": "The children's boots are by the door."
+    }
+   ]
+  },
+  {
+   "form": "umbrella",
+   "surface": "umbrella",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.17",
+     "target": "I found my umbrella",
+     "ru": "Я нашел свой зонтик.",
+     "en": "I found my umbrella."
+    },
+    {
+     "id": "en-classic-r1:15.23",
+     "target": "Is this umbrella yours",
+     "ru": "Этот зонт твой?",
+     "en": "Is this umbrella yours?"
+    }
+   ]
+  },
+  {
+   "form": "badge",
+   "surface": "badge",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.18",
+     "target": "She lost her badge",
+     "ru": "Она потеряла свой бейдж.",
+     "en": "She lost her badge."
+    }
+   ]
+  },
+  {
+   "form": "notebook",
+   "surface": "notebook",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.19",
+     "target": "He left his notebook here",
+     "ru": "Он оставил здесь свой блокнот.",
+     "en": "He left his notebook here."
+    }
+   ]
+  },
+  {
+   "form": "whose",
+   "surface": "Whose",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.21",
+     "target": "Whose coat is this",
+     "ru": "Чье это пальто?",
+     "en": "Whose coat is this?"
+    },
+    {
+     "id": "en-classic-r1:15.22",
+     "target": "Whose keys are these",
+     "ru": "Чьи это ключи?",
+     "en": "Whose keys are these?"
+    }
+   ]
+  },
+  {
+   "form": "but",
+   "surface": "but",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.31",
+     "target": "I have my ticket but she needs hers",
+     "ru": "У меня есть свой билет, а ей нужен свой.",
+     "en": "I have my ticket, but she needs hers."
+    },
+    {
+     "id": "en-classic-r1:15.35",
+     "target": "I know my postcode but not yours",
+     "ru": "Я знаю свой почтовый индекс, но не ваш.",
+     "en": "I know my postcode, but not yours."
+    }
+   ]
+  },
+  {
+   "form": "postcode",
+   "surface": "postcode",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.35",
+     "target": "I know my postcode but not yours",
+     "ru": "Я знаю свой почтовый индекс, но не ваш.",
+     "en": "I know my postcode, but not yours."
+    }
+   ]
+  },
+  {
+   "form": "older",
+   "surface": "older",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.36",
+     "target": "Her bike is older than his",
+     "ru": "Её велосипед старше его.",
+     "en": "Her bike is older than his."
+    }
+   ]
+  },
+  {
+   "form": "dry",
+   "surface": "dry",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.37",
+     "target": "Your towel is dry mine is wet",
+     "ru": "Ваше полотенце сухое, моё мокрое.",
+     "en": "Your towel is dry; mine is wet."
+    }
+   ]
+  },
+  {
+   "form": "own",
+   "surface": "own",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.38",
+     "target": "We brought our own cups",
+     "ru": "Мы принесли свои чашки.",
+     "en": "We brought our own cups."
+    },
+    {
+     "id": "en-classic-r1:15.39",
+     "target": "They forgot their own bags",
+     "ru": "Они забыли свои сумки.",
+     "en": "They forgot their own bags."
+    }
+   ]
+  },
+  {
+   "form": "please",
+   "surface": "Please",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.41",
+     "target": "Please use your own charger",
+     "ru": "Пожалуйста, используйте своё зарядное устройство.",
+     "en": "Please use your own charger."
+    }
+   ]
+  },
+  {
+   "form": "sister's",
+   "surface": "sister's",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.42",
+     "target": "Is that your sister's coat",
+     "ru": "Это пальто вашей сестры?",
+     "en": "Is that your sister's coat?"
+    }
+   ]
+  },
+  {
+   "form": "brother's",
+   "surface": "brother's",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.43",
+     "target": "This is my brother's helmet",
+     "ru": "Это шлем моего брата.",
+     "en": "This is my brother's helmet."
+    }
+   ]
+  },
+  {
+   "form": "children's",
+   "surface": "children's",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.44",
+     "target": "The children's boots are by the door",
+     "ru": "Ботинки детей стоят у двери.",
+     "en": "The children's boots are by the door."
+    }
+   ]
+  },
+  {
+   "form": "neighbour's",
+   "surface": "neighbour's",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.45",
+     "target": "Our neighbour's gate is open",
+     "ru": "Ворота нашего соседа открыты.",
+     "en": "Our neighbour's gate is open."
+    }
+   ]
+  },
+  {
+   "form": "driver's",
+   "surface": "driver's",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.46",
+     "target": "I have the driver's number",
+     "ru": "У меня есть номер водителя.",
+     "en": "I have the driver's number."
+    }
+   ]
+  },
+  {
+   "form": "taken",
+   "surface": "taken",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:15.47",
+     "target": "My seat is free but yours is taken",
+     "ru": "Мое место свободно, а ваше занято.",
+     "en": "My seat is free, but yours is taken."
+    }
+   ]
+  }
+ ]
+}

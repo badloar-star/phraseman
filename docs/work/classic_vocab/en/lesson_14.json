@@ -1,0 +1,342 @@
+{
+ "lang": "en",
+ "lesson": 14,
+ "words": {
+  "lighter": {
+   "ru": "легче",
+   "uk": "легший",
+   "en": "less heavy",
+   "es": "más ligero"
+  },
+  "heavier": {
+   "ru": "тяжелее",
+   "uk": "важчий",
+   "en": "more heavy",
+   "es": "más pesado"
+  },
+  "warmer": {
+   "ru": "теплее",
+   "uk": "тепліший",
+   "en": "more warm",
+   "es": "más cálido"
+  },
+  "colder": {
+   "ru": "холоднее",
+   "uk": "холодніший",
+   "en": "more cold",
+   "es": "más frío"
+  },
+  "wider": {
+   "ru": "шире",
+   "uk": "ширший",
+   "en": "more wide",
+   "es": "más ancho"
+  },
+  "longer": {
+   "ru": "длиннее",
+   "uk": "довший",
+   "en": "more long",
+   "es": "más largo"
+  },
+  "route": {
+   "ru": "маршрут",
+   "uk": "маршрут",
+   "en": "way you travel",
+   "es": "ruta"
+  },
+  "shorter": {
+   "ru": "короче",
+   "uk": "коротший",
+   "en": "less long",
+   "es": "más corto"
+  },
+  "faster": {
+   "ru": "быстрее",
+   "uk": "швидший",
+   "en": "more quick",
+   "es": "más rápido"
+  },
+  "than": {
+   "ru": "чем",
+   "uk": "ніж",
+   "en": "word used to compare",
+   "es": "que"
+  },
+  "quicker": {
+   "ru": "быстрее",
+   "uk": "швидший",
+   "en": "more fast",
+   "es": "más rápido"
+  },
+  "mine": {
+   "ru": "мой, моя, моё",
+   "uk": "мій, моя, моє",
+   "en": "belonging to me",
+   "es": "mío"
+  },
+  "old": {
+   "ru": "старый",
+   "uk": "старий",
+   "en": "not new",
+   "es": "viejo"
+  },
+  "closer": {
+   "ru": "ближе",
+   "uk": "ближчий",
+   "en": "nearer",
+   "es": "más cerca"
+  },
+  "yours": {
+   "ru": "твой, ваш",
+   "uk": "твій, ваш",
+   "en": "belonging to you",
+   "es": "tuyo"
+  },
+  "quieter": {
+   "ru": "тише",
+   "uk": "тихіший",
+   "en": "less noisy",
+   "es": "más silencioso"
+  },
+  "second": {
+   "ru": "второй",
+   "uk": "другий",
+   "en": "number two in order",
+   "es": "segundo"
+  },
+  "easier": {
+   "ru": "проще, легче",
+   "uk": "простіший, легший",
+   "en": "less difficult",
+   "es": "más fácil"
+  },
+  "busier": {
+   "ru": "оживлённее, больше людей",
+   "uk": "жвавіший, більше людей",
+   "en": "with more people",
+   "es": "más concurrido"
+  },
+  "comfortable": {
+   "ru": "удобный",
+   "uk": "зручний",
+   "en": "pleasant to use",
+   "es": "cómodo"
+  },
+  "expensive": {
+   "ru": "дорогой",
+   "uk": "дорогий",
+   "en": "costing a lot",
+   "es": "caro"
+  },
+  "useful": {
+   "ru": "полезный",
+   "uk": "корисний",
+   "en": "helps you",
+   "es": "útil"
+  },
+  "reliable": {
+   "ru": "надёжный",
+   "uk": "надійний",
+   "en": "can be trusted",
+   "es": "fiable"
+  },
+  "written": {
+   "ru": "написанный, письменный",
+   "uk": "написаний, письмовий",
+   "en": "put down on paper",
+   "es": "escrito"
+  },
+  "instructions": {
+   "ru": "инструкции",
+   "uk": "інструкції",
+   "en": "steps telling how to do",
+   "es": "instrucciones"
+  },
+  "clearer": {
+   "ru": "понятнее",
+   "uk": "зрозуміліший",
+   "en": "easier to understand",
+   "es": "más claro"
+  },
+  "less": {
+   "ru": "менее",
+   "uk": "менш",
+   "en": "not as much",
+   "es": "menos"
+  },
+  "crowded": {
+   "ru": "переполненный, людный",
+   "uk": "переповнений, людний",
+   "en": "full of people",
+   "es": "lleno de gente"
+  },
+  "stressful": {
+   "ru": "напряжённый",
+   "uk": "напружений",
+   "en": "causing worry",
+   "es": "estresante"
+  },
+  "option": {
+   "ru": "вариант",
+   "uk": "варіант",
+   "en": "one choice",
+   "es": "opción"
+  },
+  "better": {
+   "ru": "лучше",
+   "uk": "кращий, краще",
+   "en": "more good",
+   "es": "mejor"
+  },
+  "children": {
+   "ru": "дети",
+   "uk": "діти",
+   "en": "young people",
+   "es": "niños"
+  },
+  "weather": {
+   "ru": "погода",
+   "uk": "погода",
+   "en": "rain, sun, wind outside",
+   "es": "tiempo"
+  },
+  "worse": {
+   "ru": "хуже",
+   "uk": "гірший, гірше",
+   "en": "more bad",
+   "es": "peor"
+  },
+  "value": {
+   "ru": "выгода",
+   "uk": "вигода",
+   "en": "worth for the price",
+   "es": "valor"
+  },
+  "quietest": {
+   "ru": "самый тихий",
+   "uk": "найтихіший",
+   "en": "with the least noise",
+   "es": "más silencioso"
+  },
+  "fastest": {
+   "ru": "самый быстрый",
+   "uk": "найшвидший",
+   "en": "quickest of all",
+   "es": "más rápido"
+  },
+  "nearest": {
+   "ru": "ближайший",
+   "uk": "найближчий",
+   "en": "closest of all",
+   "es": "más cercano"
+  },
+  "smallest": {
+   "ru": "самый маленький",
+   "uk": "найменший",
+   "en": "least big of all",
+   "es": "más pequeño"
+  },
+  "safest": {
+   "ru": "самый безопасный",
+   "uk": "найбезпечніший",
+   "en": "least dangerous of all",
+   "es": "más seguro"
+  },
+  "crossing": {
+   "ru": "переход",
+   "uk": "перехід",
+   "en": "place to cross a road",
+   "es": "cruce"
+  },
+  "busiest": {
+   "ru": "самый оживлённый",
+   "uk": "найжвавіший",
+   "en": "with most people",
+   "es": "más concurrido"
+  },
+  "heaviest": {
+   "ru": "самый тяжёлый",
+   "uk": "найважчий",
+   "en": "most heavy of all",
+   "es": "más pesado"
+  },
+  "best": {
+   "ru": "лучший, самый лучший",
+   "uk": "найкращий",
+   "en": "most good of all",
+   "es": "el mejor"
+  },
+  "most": {
+   "ru": "самый",
+   "uk": "найбільш",
+   "en": "more than all",
+   "es": "más"
+  },
+  "earlier": {
+   "ru": "более ранний, раньше",
+   "uk": "ранніший, раніше",
+   "en": "before the other",
+   "es": "más temprano"
+  },
+  "larger": {
+   "ru": "больший, крупнее",
+   "uk": "більший, крупніший",
+   "en": "bigger",
+   "es": "más grande"
+  },
+  "ones": {
+   "ru": "те, что (вместо названия вещи)",
+   "uk": "ті, що (замість назви речі)",
+   "en": "stands for things already named",
+   "es": "los que"
+  },
+  "path": {
+   "ru": "тропа, путь",
+   "uk": "стежка, шлях",
+   "en": "narrow way to walk",
+   "es": "camino"
+  },
+  "safer": {
+   "ru": "безопаснее",
+   "uk": "безпечніший",
+   "en": "less dangerous",
+   "es": "más seguro"
+  },
+  "lasts": {
+   "ru": "работает, держится",
+   "uk": "працює, тримається",
+   "en": "keeps going",
+   "es": "dura"
+  },
+  "longest": {
+   "ru": "дольше всего",
+   "uk": "найдовше",
+   "en": "for the greatest time",
+   "es": "más largo"
+  },
+  "easiest": {
+   "ru": "самый простой",
+   "uk": "найпростіший",
+   "en": "least difficult of all",
+   "es": "más fácil"
+  },
+  "side": {
+   "ru": "боковой, сторона",
+   "uk": "боковий, сторона",
+   "en": "edge or part to the side",
+   "es": "lateral"
+  },
+  "big": {
+   "ru": "большой",
+   "uk": "великий",
+   "en": "large",
+   "es": "grande"
+  },
+  "even": {
+   "ru": "ещё, даже",
+   "uk": "ще, навіть",
+   "en": "more than expected",
+   "es": "aún"
+  }
+ }
+}

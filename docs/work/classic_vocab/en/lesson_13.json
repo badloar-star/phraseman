@@ -1,0 +1,168 @@
+{
+ "lang": "en",
+ "lesson": 13,
+ "words": {
+  "will": {
+   "ru": "слово-помощник: что случится потом; по-русски нет",
+   "uk": "слово-помічник: що станеться потім; українською немає",
+   "en": "helper word for later events",
+   "es": "(auxiliar de futuro)"
+  },
+  "later": {
+   "ru": "позже",
+   "uk": "пізніше",
+   "en": "after some time",
+   "es": "más tarde"
+  },
+  "heavy": {
+   "ru": "тяжёлый",
+   "uk": "важкий",
+   "en": "hard to lift",
+   "es": "pesado"
+  },
+  "split": {
+   "ru": "разделить",
+   "uk": "розділити",
+   "en": "share between people",
+   "es": "dividir"
+  },
+  "ask": {
+   "ru": "спросить",
+   "uk": "запитати",
+   "en": "put a question",
+   "es": "preguntar"
+  },
+  "about": {
+   "ru": "о, про",
+   "uk": "про",
+   "en": "on the subject of",
+   "es": "sobre"
+  },
+  "storage": {
+   "ru": "хранение",
+   "uk": "зберігання",
+   "en": "keeping things safe",
+   "es": "almacenamiento"
+  },
+  "be": {
+   "ru": "быть",
+   "uk": "бути",
+   "en": "exist, take place",
+   "es": "ser"
+  },
+  "small": {
+   "ru": "небольшой, маленький",
+   "uk": "невеликий, малий",
+   "en": "not big",
+   "es": "pequeño"
+  },
+  "fee": {
+   "ru": "плата",
+   "uk": "плата",
+   "en": "money for a service",
+   "es": "tarifa"
+  },
+  "overnight": {
+   "ru": "на ночь",
+   "uk": "на ніч",
+   "en": "during the night",
+   "es": "durante la noche"
+  },
+  "without": {
+   "ru": "без",
+   "uk": "без",
+   "en": "not having",
+   "es": "sin"
+  },
+  "tomorrow": {
+   "ru": "завтра",
+   "uk": "завтра",
+   "en": "the day after today",
+   "es": "mañana"
+  },
+  "locker": {
+   "ru": "шкафчик",
+   "uk": "шафка",
+   "en": "small locked cabinet",
+   "es": "taquilla"
+  },
+  "battery": {
+   "ru": "батарея, аккумулятор",
+   "uk": "батарея, акумулятор",
+   "en": "stores power in a device",
+   "es": "batería"
+  },
+  "all": {
+   "ru": "весь, всё",
+   "uk": "весь, все",
+   "en": "every part",
+   "es": "todo"
+  },
+  "rain": {
+   "ru": "дождь",
+   "uk": "дощ",
+   "en": "water from clouds",
+   "es": "lluvia"
+  },
+  "group": {
+   "ru": "группа",
+   "uk": "група",
+   "en": "people together",
+   "es": "grupo"
+  },
+  "think": {
+   "ru": "думаю",
+   "uk": "думаю",
+   "en": "have an opinion",
+   "es": "pensar"
+  },
+  "month": {
+   "ru": "месяц",
+   "uk": "місяць",
+   "en": "about thirty days",
+   "es": "mes"
+  },
+  "forecast": {
+   "ru": "прогноз погоды",
+   "uk": "прогноз погоди",
+   "en": "prediction of weather",
+   "es": "pronóstico"
+  },
+  "says": {
+   "ru": "говорит",
+   "uk": "каже",
+   "en": "tells",
+   "es": "dice"
+  },
+  "turn": {
+   "ru": "стать",
+   "uk": "стати",
+   "en": "become",
+   "es": "ponerse"
+  },
+  "green": {
+   "ru": "зелёный",
+   "uk": "зелений",
+   "en": "colour of grass",
+   "es": "verde"
+  },
+  "brother": {
+   "ru": "брат",
+   "uk": "брат",
+   "en": "boy in your family",
+   "es": "hermano"
+  },
+  "worry": {
+   "ru": "волноваться",
+   "uk": "хвилюватися",
+   "en": "feel anxious",
+   "es": "preocuparse"
+  },
+  "up": {
+   "ru": "вверх; часть выражения «закрыть всё»",
+   "uk": "угору; частина виразу «зачинити все»",
+   "en": "toward a higher place",
+   "es": "arriba"
+  }
+ }
+}

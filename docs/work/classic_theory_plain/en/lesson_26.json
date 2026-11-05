@@ -1,0 +1,627 @@
+{
+  "lang": "en",
+  "lesson": 26,
+  "title": {
+    "ru": "Если что-то случится",
+    "uk": "Якщо щось станеться",
+    "en": "If something happens"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Если пойдёт дождь",
+        "uk": "Якщо піде дощ",
+        "en": "If it rains"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы сделаете, если что-то случится.\nIf it rains, we will stay inside. — Если пойдет дождь, мы останемся внутри.\nЧитается: иф ит рэ́йнз, уи уил стэ́й инса́йд.\nСлово if значит «если».\nСлова it rains вместе значат «идёт дождь».\nВ такой фразе две части: что может случиться и что тогда будет.\nПервая часть: If it rains. Вторая часть: we will stay inside.\nСлово will вы уже видели. Оно говорит о том, что будет.\nСлово will стоит во второй части. После if его не ставят.\nIf you call, I will answer. — «Если ты позвонишь, я отвечу.»\nЧитается: иф ю кол, ай уил а́нсер.\nIf she asks, I will help. — Если она попросит, я помогу.\nЧитается: иф ши а́скс, ай уил хэ́лп.\nСлово asks значит «просит».\nКогда речь о ней, о нём или о вещи, в конце слова добавляют s: rains, asks.\nIf you wait in the shade, I will get the key.\nПо-русски: «Если ты подождешь в тени, я принесу ключ.»\nЧитается: иф ю уэ́йт ин зэ шэ́йд, ай уил гэ́т зэ ки́.\nСлово shade значит «тень».",
+        "uk": "Дивіться, як сказати, що ви зробите, якщо щось станеться.\nIf it rains, we will stay inside. — Якщо піде дощ, ми залишимося всередині.\nЧитається: іф іт ре́йнз, уі уіл сте́й інса́йд.\nСлово if означає «якщо».\nСлова it rains разом означають «йде дощ».\nУ такій фразі дві частини: що може статися і що тоді буде.\nПерша частина: If it rains. Друга частина: we will stay inside.\nСлово will ви вже бачили. Воно говорить про те, що буде.\nСлово will стоїть у другій частині. Після if його не ставлять.\nIf you call, I will answer. — «Якщо ти подзвониш, я відповім.»\nЧитається: іф ю кол, ай уіл а́нсер.\nIf she asks, I will help. — Якщо вона попросить, я допоможу.\nЧитається: іф ші а́скс, ай уіл хе́лп.\nСлово asks означає «просить».\nКоли мова про неї, про нього або про річ, у кінці слова додають s: rains, asks.\nIf you wait in the shade, I will get the key.\nУкраїнською: «Якщо ти почекаєш у тіні, я візьму ключ.»\nЧитається: іф ю уе́йт ін зе ше́йд, ай уіл ге́т зе кі́.\nСлово shade означає «тінь».",
+        "en": "Look at how to say what you will do if something happens.\nIf it rains, we will stay inside.\nThe word if means “only when this happens”.\nThe words it rains together mean “water falls from the sky”.\nSuch a sentence has two parts: what may happen, and what will happen then.\nThe first part: If it rains. The second part: we will stay inside.\nYou have seen the word will. It talks about what is coming.\nThe word will is in the second part.\nWe do not put it after if.\nIf you call, I will answer.\nIf she asks, I will help.\nThe word asks means “says: “please, I want this””.\nFor her, him or a thing, we add s at the end: rains, asks.\nIf you wait in the shade, I will get the key.\nThe word shade means “a place where the sun does not reach”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:26.01",
+          "say": {
+            "ru": "иф ит рэ́йнз, уи уил стэ́й инса́йд",
+            "uk": "іф іт ре́йнз, уі уіл сте́й інса́йд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.02",
+          "say": {
+            "ru": "иф ю кол, ай уил а́нсер",
+            "uk": "іф ю кол, ай уіл а́нсер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.03",
+          "say": {
+            "ru": "иф ши а́скс, ай уил хэ́лп",
+            "uk": "іф ші а́скс, ай уіл хе́лп"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.09",
+          "say": {
+            "ru": "иф ю уэ́йт ин зэ шэ́йд, ай уил гэ́т зэ ки́",
+            "uk": "іф ю уе́йт ін зе ше́йд, ай уіл ге́т зе кі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если пойдет дождь, мы останемся внутри»",
+            "uk": "Виберіть, як сказати: «Якщо піде дощ, ми залишимося всередині»",
+            "en": "Choose how to say: “If it rains, we will stay inside.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:26.01",
+          "options": [
+            "en-classic-r1:26.01",
+            "en-classic-r1:26.02",
+            "en-classic-r1:26.03"
+          ],
+          "answerId": "en-classic-r1:26.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если она попросит, я помогу»",
+            "uk": "Виберіть, як сказати: «Якщо вона попросить, я допоможу»",
+            "en": "Choose how to say: “If she asks, I will help.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.03",
+          "options": [
+            "en-classic-r1:26.03",
+            "en-classic-r1:26.09",
+            "en-classic-r1:26.02"
+          ],
+          "answerId": "en-classic-r1:26.03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если ты подождешь в тени, я принесу ключ»",
+            "uk": "Виберіть, як сказати: «Якщо ти почекаєш у тіні, я візьму ключ»",
+            "en": "Choose how to say: “If you wait in the shade, I will get the key.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.09",
+          "options": [
+            "en-classic-r1:26.09",
+            "en-classic-r1:26.01",
+            "en-classic-r1:26.02"
+          ],
+          "answerId": "en-classic-r1:26.09"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Сначала дело, потом if",
+        "uk": "Спершу справа, потім if",
+        "en": "The plan first, then if"
+      },
+      "text": {
+        "ru": "Вторую часть можно сказать первой. Смысл тот же.\nI will text you if the forecast changes.\nПо-русски: «Я напишу тебе, если изменится прогноз погоды.»\nЧитается: ай уил тэ́кст ю иф зэ фо́ркаст чэ́йнджиз.\nСлово text значит «написать сообщение на телефон».\nЕсли if в начале, после первой части ставят запятую.\nЕсли if в середине, запятой нет.\nShe will call if the price changes. — Она позвонит, если изменится цена.\nЧитается: ши уил кол иф зэ пра́йс чэ́йнджиз.\nWe will walk if the bus is full.\nПо-русски: «Мы пойдем пешком, если автобус будет полон»\nЧитается: уи уил уо́к иф зэ ба́с из фу́л.\nСлово full значит «полный, полон».\nHe will stop if he sees the sign. — Он остановится, если увидит знак.\nЧитается: хи уил сто́п иф хи си́з зэ са́йн.\nСлово sees значит «видит».\nИ здесь в конце добавлено s, потому что речь о нём: he sees.",
+        "uk": "Другу частину можна сказати першою. Зміст той самий.\nI will text you if the forecast changes.\nУкраїнською: «Я напишу тобі, якщо прогноз зміниться.»\nЧитається: ай уіл те́кст ю іф зе фо́ркаст че́йнджіз.\nСлово text означає «написати повідомлення на телефон».\nЯкщо if на початку, після першої частини ставлять кому.\nЯкщо if посередині, коми немає.\nShe will call if the price changes. — Вона зателефонує, якщо ціна зміниться.\nЧитається: ші уіл кол іф зе пра́йс че́йнджіз.\nWe will walk if the bus is full.\nУкраїнською: «Ми підемо пішки, якщо автобус буде повний»\nЧитається: уі уіл уо́к іф зе ба́с із фу́л.\nСлово full означає «повний».\nHe will stop if he sees the sign. — Він зупиниться, якщо побачить знак.\nЧитається: хі уіл сто́п іф хі сі́з зе са́йн.\nСлово sees означає «бачить».\nІ тут у кінці додано s, бо мова про нього: he sees.",
+        "en": "We can say the second part first. The meaning is the same.\nI will text you if the forecast changes.\nThe word text means “to send a short message to a phone”.\nWith if at the start, a comma follows the first part.\nWith if in the middle, there is no comma.\nShe will call if the price changes.\nWe will walk if the bus is full.\nThe word full means “with no space left”.\nHe will stop if he sees the sign.\nThe word sees means “looks and notices”.\nHere too we add s, because we speak about him: he sees."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:26.11",
+          "say": {
+            "ru": "ай уил тэ́кст ю иф зэ фо́ркаст чэ́йнджиз",
+            "uk": "ай уіл те́кст ю іф зе фо́ркаст че́йнджіз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.12",
+          "say": {
+            "ru": "ши уил кол иф зэ пра́йс чэ́йнджиз",
+            "uk": "ші уіл кол іф зе пра́йс че́йнджіз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.13",
+          "say": {
+            "ru": "уи уил уо́к иф зэ ба́с из фу́л",
+            "uk": "уі уіл уо́к іф зе ба́с із фу́л"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.14",
+          "say": {
+            "ru": "хи уил сто́п иф хи си́з зэ са́йн",
+            "uk": "хі уіл сто́п іф хі сі́з зе са́йн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я напишу тебе, если изменится прогноз погоды»",
+            "uk": "Виберіть, як сказати: «Я напишу тобі, якщо прогноз зміниться»",
+            "en": "Choose how to say: “I will text you if the forecast changes.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:26.11",
+          "options": [
+            "en-classic-r1:26.11",
+            "en-classic-r1:26.12",
+            "en-classic-r1:26.13"
+          ],
+          "answerId": "en-classic-r1:26.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы пойдем пешком, если автобус будет полон»",
+            "uk": "Виберіть, як сказати: «Ми підемо пішки, якщо автобус буде повний»",
+            "en": "Choose how to say: “We will walk if the bus is full.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.13",
+          "options": [
+            "en-classic-r1:26.13",
+            "en-classic-r1:26.14",
+            "en-classic-r1:26.12"
+          ],
+          "answerId": "en-classic-r1:26.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он остановится, если увидит знак»",
+            "uk": "Виберіть, як сказати: «Він зупиниться, якщо побачить знак»",
+            "en": "Choose how to say: “He will stop if he sees the sign.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.14",
+          "options": [
+            "en-classic-r1:26.14",
+            "en-classic-r1:26.11",
+            "en-classic-r1:26.13"
+          ],
+          "answerId": "en-classic-r1:26.14"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Если что-то сломалось",
+        "uk": "Якщо щось зламалось",
+        "en": "If something goes wrong"
+      },
+      "text": {
+        "ru": "Бывает, что вещь не работает. Вот что тогда делать.\nIf the latch sticks, lift the handle. — Если защелка заклинит, поднимите ручку.\nЧитается: иф зэ лэ́ч сти́кс, ли́фт зэ хэ́ндл.\nСлово latch значит «защёлка».\nСлово sticks значит «заедает, не поддаётся».\nСлово lift значит «поднимите».\nРаньше вы видели lift как «лифт». Здесь это просьба: «поднимите».\nПосле запятой стоит просьба: что сделать. Слова will здесь нет.\nIf the printer jams, lift the lid. — Если принтер заклинит, поднимите крышку.\nЧитается: иф зэ при́нтер джэ́мз, ли́фт зэ ли́д.\nСлово jams значит «заклинивает».\nСлово lid значит «крышка».\nIf there is a leak, call reception. — Если есть протечка, позвоните на ресепшн.\nЧитается: иф зэр из э ли́к, кол рисэ́пшн.\nСлово leak значит «протечка».\nСлова call reception значат «позвоните на ресепшн».\nIf the light flashes, call reception. — Если мигает индикатор, позвоните на ресепшн.\nЧитается: иф зэ ла́йт фла́шиз, кол рисэ́пшн.\nСлово flashes значит «мигает».\nПосле sh добавляют es, а не просто s: flashes. Так легче говорить.",
+        "uk": "Буває, що річ не працює. Ось що тоді робити.\nIf the latch sticks, lift the handle. — Якщо засувка заклинить, підніміть ручку.\nЧитається: іф зе ле́ч сті́кс, лі́фт зе хе́ндл.\nСлово latch означає «защіпка».\nСлово sticks означає «заїдає, не піддається».\nСлово lift означає «підніміть».\nРаніше ви бачили lift як «ліфт». Тут це прохання: «підніміть».\nПісля коми стоїть прохання: що зробити. Слова will тут немає.\nIf the printer jams, lift the lid. — Якщо принтер заклинить, підніміть кришку.\nЧитається: іф зе прі́нтер дже́мз, лі́фт зе лі́д.\nСлово jams означає «заклинює».\nСлово lid означає «кришка».\nIf there is a leak, call reception. — Якщо є витік, зателефонуйте на рецепцію.\nЧитається: іф зер із е лі́к, кол рісе́пшн.\nСлово leak означає «протікання».\nСлова call reception означають «зателефонуйте на рецепцію».\nIf the light flashes, call reception. — Якщо індикатор блимає, зателефонуйте на рецепцію.\nЧитається: іф зе ла́йт фла́шіз, кол рісе́пшн.\nСлово flashes означає «блимає».\nПісля sh додають es, а не просто s: flashes. Так легше вимовляти.",
+        "en": "Sometimes a thing does not work. Here is what to do then.\nIf the latch sticks, lift the handle.\nThe word latch means “a small lock on a door”.\nThe word sticks means “does not move easily”.\nThe word lift means “move up”.\nBefore, lift was a machine that carries people up.\nHere it is a request: move it up.\nAfter the comma comes a request: what to do. There is no will here.\nIf the printer jams, lift the lid.\nThe word jams means “gets stuck and stops working”.\nThe word lid means “a cover on top”.\nIf there is a leak, call reception.\nThe word leak means “water coming out where it should not”.\nThe words call reception ask you to phone the front desk.\nIf the light flashes, call reception.\nThe word flashes means “turns on and off again and again”.\nAfter sh we add es, not just s: flashes. It is easier to say."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:26.05",
+          "say": {
+            "ru": "иф зэ лэ́ч сти́кс, ли́фт зэ хэ́ндл",
+            "uk": "іф зе ле́ч сті́кс, лі́фт зе хе́ндл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.29",
+          "say": {
+            "ru": "иф зэ при́нтер джэ́мз, ли́фт зэ ли́д",
+            "uk": "іф зе прі́нтер дже́мз, лі́фт зе лі́д"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.28",
+          "say": {
+            "ru": "иф зэр из э ли́к, кол рисэ́пшн",
+            "uk": "іф зер із е лі́к, кол рісе́пшн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.22",
+          "say": {
+            "ru": "иф зэ ла́йт фла́шиз, кол рисэ́пшн",
+            "uk": "іф зе ла́йт фла́шіз, кол рісе́пшн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если защелка заклинит, поднимите ручку»",
+            "uk": "Виберіть, як сказати: «Якщо засувка заклинить, підніміть ручку»",
+            "en": "Choose how to say: “If the latch sticks, lift the handle.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:26.05",
+          "options": [
+            "en-classic-r1:26.05",
+            "en-classic-r1:26.29",
+            "en-classic-r1:26.28"
+          ],
+          "answerId": "en-classic-r1:26.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если принтер заклинит, поднимите крышку»",
+            "uk": "Виберіть, як сказати: «Якщо принтер заклинить, підніміть кришку»",
+            "en": "Choose how to say: “If the printer jams, lift the lid.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.29",
+          "options": [
+            "en-classic-r1:26.29",
+            "en-classic-r1:26.22",
+            "en-classic-r1:26.05"
+          ],
+          "answerId": "en-classic-r1:26.29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если есть протечка, позвоните на ресепшн»",
+            "uk": "Виберіть, як сказати: «Якщо є витік, зателефонуйте на рецепцію»",
+            "en": "Choose how to say: “If there is a leak, call reception.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.28",
+          "options": [
+            "en-classic-r1:26.28",
+            "en-classic-r1:26.22",
+            "en-classic-r1:26.29"
+          ],
+          "answerId": "en-classic-r1:26.28"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вопросы с if",
+        "uk": "Питання з if",
+        "en": "Questions with if"
+      },
+      "text": {
+        "ru": "Можно спросить, что будет, если что-то случится.\nWill you wait if I am late? — Вы будете ждать, если я опоздаю?\nЧитается: уил ю уэ́йт иф ай эм лэ́йт.\nВопрос начинается со слова will: Will you wait? — «Вы будете ждать?»\nЧасть с if остаётся такой же: if I am late — «если я опоздаю».\nWhat will we do if the office is closed?\nПо-русски: «Что мы будем делать, если офис будет закрыт?»\nЧитается: уо́т уил уи ду́ иф зи о́фис из кло́узд.\nWhere will you go if it starts to rain?\nПо-русски: «Куда вы пойдете, если начнется дождь?»\nЧитается: уэ́р уил ю го́у иф ит ста́ртс ту рэ́йн.\nСначала слово-вопрос (what «что», where «где»), потом will.",
+        "uk": "Можна запитати, що буде, якщо щось станеться.\nWill you wait if I am late? — Ви почекаєте, якщо я запізнюся?\nЧитається: уіл ю уе́йт іф ай ем ле́йт.\nПитання починається зі слова will: Will you wait? — «Ви будете чекати?»\nЧастина з if залишається такою самою: if I am late — «якщо я запізнюся».\nWhat will we do if the office is closed?\nУкраїнською: «Що ми робитимемо, якщо офіс буде закритий?»\nЧитається: уо́т уіл уі ду́ іф зі о́фіс із кло́узд.\nWhere will you go if it starts to rain?\nУкраїнською: «Куди ви підете, якщо почнеться дощ?»\nЧитається: уе́р уіл ю го́у іф іт ста́ртс ту ре́йн.\nСпершу питальне слово (what «що», where «де»), потім will.",
+        "en": "We can ask what will happen if something happens.\nWill you wait if I am late?\nThe question starts with will: Will you wait?\nThe part with if stays the same: if I am late.\nWhat will we do if the office is closed?\nWhere will you go if it starts to rain?\nFirst the question word (what, where), then will."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:26.32",
+          "say": {
+            "ru": "уил ю уэ́йт иф ай эм лэ́йт",
+            "uk": "уіл ю уе́йт іф ай ем ле́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.33",
+          "say": {
+            "ru": "уо́т уил уи ду́ иф зи о́фис из кло́узд",
+            "uk": "уо́т уіл уі ду́ іф зі о́фіс із кло́узд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.40",
+          "say": {
+            "ru": "уэ́р уил ю го́у иф ит ста́ртс ту рэ́йн",
+            "uk": "уе́р уіл ю го́у іф іт ста́ртс ту ре́йн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы будете ждать, если я опоздаю?»",
+            "uk": "Виберіть, як сказати: «Ви почекаєте, якщо я запізнюся?»",
+            "en": "Choose how to say: “Will you wait if I am late?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:26.32",
+          "options": [
+            "en-classic-r1:26.32",
+            "en-classic-r1:26.33",
+            "en-classic-r1:26.40"
+          ],
+          "answerId": "en-classic-r1:26.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Что мы будем делать, если офис будет закрыт?»",
+            "uk": "Виберіть, як сказати: «Що ми робитимемо, якщо офіс буде закритий?»",
+            "en": "Choose how to say: “What will we do if the office is closed?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.33",
+          "options": [
+            "en-classic-r1:26.33",
+            "en-classic-r1:26.40",
+            "en-classic-r1:26.32"
+          ],
+          "answerId": "en-classic-r1:26.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Куда вы пойдете, если начнется дождь?»",
+            "uk": "Виберіть, як сказати: «Куди ви підете, якщо почнеться дощ?»",
+            "en": "Choose how to say: “Where will you go if it starts to rain?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.40",
+          "options": [
+            "en-classic-r1:26.40",
+            "en-classic-r1:26.32",
+            "en-classic-r1:26.33"
+          ],
+          "answerId": "en-classic-r1:26.40"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Дайте знать",
+        "uk": "Дайте знати",
+        "en": "Let me know"
+      },
+      "text": {
+        "ru": "Часто после if идёт просьба.\nIf you find my pass, let me know.\nПо-русски: «Если найдете мой пропуск, сообщите мне»\nЧитается: иф ю фа́йнд май пэ́с, лэ́т ми но́у.\nСлово let значит «позволить, дать».\nСлова let me know вместе значат «дайте мне знать».\nI will let you know if anything changes.\nПо-русски: «Я сообщу вам, если что-то изменится»\nЧитается: ай уил лэ́т ю но́у иф э́нисинг чэ́йнджиз.\nЗдесь так же: let you know — «сообщу вам».\nIf you feel cold, take my coat. — Если вам холодно, возьмите мое пальто.\nЧитается: иф ю фи́л ко́лд, тэ́йк май ко́ут.\nСлова take my coat значат «возьмите моё пальто». Слова will здесь нет.",
+        "uk": "Часто після if іде прохання.\nIf you find my pass, let me know.\nУкраїнською: «Якщо знайдете мій пропуск, повідомте мене»\nЧитається: іф ю фа́йнд май пе́с, ле́т мі но́у.\nСлово let означає «дозволити, дати».\nСлова let me know разом означають «дайте мені знати».\nI will let you know if anything changes.\nУкраїнською: «Я повідомлю вас, якщо щось зміниться»\nЧитається: ай уіл ле́т ю но́у іф е́нісінг че́йнджіз.\nТут так само: let you know — «повідомлю вам».\nIf you feel cold, take my coat. — Якщо вам холодно, візьміть моє пальто.\nЧитається: іф ю фі́л ко́лд, те́йк май ко́ут.\nСлова take my coat означають «візьміть моє пальто». Слова will тут немає.",
+        "en": "Often a request comes after if.\nIf you find my pass, let me know.\nThe word let means “to allow”.\nThe words let me know together mean “tell me”.\nI will let you know if anything changes.\nIt is the same here: let you know means I will tell you.\nIf you feel cold, take my coat.\nThe words take my coat ask you to take it.\nThere is no will here."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:26.23",
+          "say": {
+            "ru": "иф ю фа́йнд май пэ́с, лэ́т ми но́у",
+            "uk": "іф ю фа́йнд май пе́с, ле́т мі но́у"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.50",
+          "say": {
+            "ru": "ай уил лэ́т ю но́у иф э́нисинг чэ́йнджиз",
+            "uk": "ай уіл ле́т ю но́у іф е́нісінг че́йнджіз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.25",
+          "say": {
+            "ru": "иф ю фи́л ко́лд, тэ́йк май ко́ут",
+            "uk": "іф ю фі́л ко́лд, те́йк май ко́ут"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если найдете мой пропуск, сообщите мне»",
+            "uk": "Виберіть, як сказати: «Якщо знайдете мій пропуск, повідомте мене»",
+            "en": "Choose how to say: “If you find my pass, let me know.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:26.23",
+          "options": [
+            "en-classic-r1:26.23",
+            "en-classic-r1:26.50",
+            "en-classic-r1:26.25"
+          ],
+          "answerId": "en-classic-r1:26.23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сообщу вам, если что-то изменится»",
+            "uk": "Виберіть, як сказати: «Я повідомлю вас, якщо щось зміниться»",
+            "en": "Choose how to say: “I will let you know if anything changes.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.50",
+          "options": [
+            "en-classic-r1:26.50",
+            "en-classic-r1:26.25",
+            "en-classic-r1:26.23"
+          ],
+          "answerId": "en-classic-r1:26.50"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если вам холодно, возьмите мое пальто»",
+            "uk": "Виберіть, як сказати: «Якщо вам холодно, візьміть моє пальто»",
+            "en": "Choose how to say: “If you feel cold, take my coat.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.25",
+          "options": [
+            "en-classic-r1:26.25",
+            "en-classic-r1:26.23",
+            "en-classic-r1:26.50"
+          ],
+          "answerId": "en-classic-r1:26.25"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Если бы",
+        "uk": "Якби",
+        "en": "If only it were so"
+      },
+      "text": {
+        "ru": "Бывает, что мы говорим о том, чего нет.\nНапример: «Если бы у меня была лестница».\nIf I had a ladder, I would check the roof.\nПо-русски: «Если бы у меня была лестница, я бы проверил крышу»\nЧитается: иф ай хэ́д э лэ́дер, ай уд че́к зэ ру́ф.\nСлово would значит «бы».\nСлово roof значит «крыша».\nЛестницы у меня нет.\nПоэтому в первой части стоит had, как в рассказе о прошлом.\nНо речь не о прошлом, а о том, чего нет сейчас.\nIf we had a car, we would drive there.\nПо-русски: «Если бы у нас была машина, мы бы поехали туда»\nЧитается: иф уи хэ́д э ка́р, уи уд дра́йв зэ́р.\nОпять had в первой части и would во второй.\nI would take the job if the hours were better.\nПо-русски: «Я бы согласился на эту работу, если бы график был лучше»\nЧитается: ай уд тэ́йк зэ джо́б иф зи а́уэрз уэ́р бэ́тер.\nСлово job значит «работа».\nСлово hours значит «часы работы, график».\nСлово were стоит вместо was: if the hours were better.\nТак говорят, когда речь о том, чего нет на самом деле.\nIf she lived nearby, she could walk to work.\nПо-русски: «Если бы она жила неподалеку, она могла бы дойти до работы пешком»\nЧитается: иф ши ли́вд ни́рбай, ши куд уо́к ту уо́рк.\nСлово could значит «могла бы, мог бы».\nВы знаете can. Слово could — это can, когда речь о том, чего нет.\nI would ask the landlord if I were you.\nПо-русски: «На вашем месте я бы спросил арендодателя»\nЧитается: ай уд а́ск зэ лэ́ндлорд иф ай уэ́р ю́.\nСлова if I were you значат «на вашем месте». Так дают совет.",
+        "uk": "Буває, що ми говоримо про те, чого немає. Наприклад: «Якби в мене була драбина».\nIf I had a ladder, I would check the roof.\nУкраїнською: «Якби у мене була драбина, я б перевірив дах»\nЧитається: іф ай хе́д е ле́дер, ай уд че́к зе ру́ф.\nСлово would означає «би».\nСлово roof означає «дах».\nДрабини в мене немає.\nТому в першій частині стоїть had, як в оповіді про минуле.\nАле мова не про минуле, а про те, чого немає зараз.\nIf we had a car, we would drive there.\nУкраїнською: «Якби у нас була машина, ми б поїхали туди»\nЧитається: іф уі хе́д е ка́р, уі уд дра́йв зе́р.\nЗнову had в першій частині й would в другій.\nI would take the job if the hours were better.\nУкраїнською: «Я б погодився на роботу, якби графік був кращим»\nЧитається: ай уд те́йк зе джо́б іф зі а́уерз уе́р бе́тер.\nСлово job означає «робота».\nСлово hours означає «години роботи, графік».\nСлово were стоїть замість was: if the hours were better.\nТак кажуть, коли мова про те, чого немає насправді.\nIf she lived nearby, she could walk to work.\nУкраїнською: «Якби вона жила неподалік, вона могла б дійти до роботи пішки»\nЧитається: іф ші лі́вд ні́рбай, ші куд уо́к ту уо́рк.\nСлово could означає «могла б, міг би».\nВи знаєте can. Слово could — це can, коли мова про те, чого немає.\nI would ask the landlord if I were you.\nУкраїнською: «На вашому місці я б запитав орендодавця»\nЧитається: ай уд а́ск зе ле́ндлорд іф ай уе́р ю́.\nСлова if I were you означають «на вашому місці». Так дають пораду.",
+        "en": "Sometimes we talk about something that is not true now.\nIf I had a ladder, I would check the roof.\nThe word would means “a word for what we might do”.\nThe word roof means “the top of a house”.\nI have no ladder. So the first part has had.\nWe say had as when we talk about the past.\nBut we do not talk about the past.\nWe talk about what is not true now.\nIf we had a car, we would drive there.\nAgain had in the first part and would in the second.\nI would take the job if the hours were better.\nThe word job means “what you do to earn money”.\nThe word hours means “how long and when you work”.\nWe say were instead of was: if the hours were better.\nWe say it this way when it is not true in real life.\nIf she lived nearby, she could walk to work.\nThe word could means “would be able to”.\nYou know can. The word could is can for what is not true now.\nI would ask the landlord if I were you.\nThe words if I were you mean “if I were in your place”.\nWe use them to give advice."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:26.41",
+          "say": {
+            "ru": "иф ай хэ́д э лэ́дер, ай уд че́к зэ ру́ф",
+            "uk": "іф ай хе́д е ле́дер, ай уд че́к зе ру́ф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.42",
+          "say": {
+            "ru": "иф уи хэ́д э ка́р, уи уд дра́йв зэ́р",
+            "uk": "іф уі хе́д е ка́р, уі уд дра́йв зе́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.44",
+          "say": {
+            "ru": "ай уд тэ́йк зэ джо́б иф зи а́уэрз уэ́р бэ́тер",
+            "uk": "ай уд те́йк зе джо́б іф зі а́уерз уе́р бе́тер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.43",
+          "say": {
+            "ru": "иф ши ли́вд ни́рбай, ши куд уо́к ту уо́рк",
+            "uk": "іф ші лі́вд ні́рбай, ші куд уо́к ту уо́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.45",
+          "say": {
+            "ru": "ай уд а́ск зэ лэ́ндлорд иф ай уэ́р ю́",
+            "uk": "ай уд а́ск зе ле́ндлорд іф ай уе́р ю́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы у меня была лестница, я бы проверил крышу»",
+            "uk": "Виберіть, як сказати: «Якби у мене була драбина, я б перевірив дах»",
+            "en": "Choose how to say: “If I had a ladder, I would check the roof.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:26.41",
+          "options": [
+            "en-classic-r1:26.41",
+            "en-classic-r1:26.42",
+            "en-classic-r1:26.44"
+          ],
+          "answerId": "en-classic-r1:26.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы согласился на эту работу, если бы график был лучше»",
+            "uk": "Виберіть, як сказати: «Я б погодився на роботу, якби графік був кращим»",
+            "en": "Choose how to say: “I would take the job if the hours were better.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.44",
+          "options": [
+            "en-classic-r1:26.44",
+            "en-classic-r1:26.43",
+            "en-classic-r1:26.42"
+          ],
+          "answerId": "en-classic-r1:26.44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На вашем месте я бы спросил арендодателя»",
+            "uk": "Виберіть, як сказати: «На вашому місці я б запитав орендодавця»",
+            "en": "Choose how to say: “I would ask the landlord if I were you.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.45",
+          "options": [
+            "en-classic-r1:26.45",
+            "en-classic-r1:26.41",
+            "en-classic-r1:26.43"
+          ],
+          "answerId": "en-classic-r1:26.45"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Когда и как только",
+        "uk": "Коли і щойно",
+        "en": "When and as soon as"
+      },
+      "text": {
+        "ru": "Есть слова, похожие на if: when «когда» и as soon as «как только».\nWhen the light turns green, press the button.\nПо-русски: «Когда загорится зеленый свет, нажмите кнопку»\nЧитается: уэ́н зэ ла́йт тэ́рнз гри́н, прэ́с зэ ба́тн.\nСлово turns значит «становится».\nРаньше вы видели turn как «повернуть, включить». Здесь turns значит «становится».\nAs soon as I get home, I will send the photo.\nПо-русски: «Как только я вернусь домой, я пришлю фотографию»\nЧитается: эз су́н эз ай гэ́т хо́ум, ай уил сэ́нд зэ фо́уто.\nСлова as soon as значат «как только».\nКак и после if, после when и as soon as слово will не ставят.\nShe will not leave until the driver arrives.\nПо-русски: «Она не уедет, пока не приедет водитель»\nЧитается: ши уил но́т ли́в антил зэ дра́йвер эра́йвз.\nСлово until значит «пока не». Здесь тоже нет will: until the driver arrives.",
+        "uk": "Є слова, схожі на if: when «коли» і as soon as «щойно».\nWhen the light turns green, press the button.\nУкраїнською: «Коли загориться зелене світло, натисніть кнопку»\nЧитається: уе́н зе ла́йт те́рнз грі́н, пре́с зе ба́тн.\nСлово turns означає «стає».\nРаніше ви бачили turn як «повернути, увімкнути». Тут turns означає «стає».\nAs soon as I get home, I will send the photo.\nУкраїнською: «Як тільки я повернуся додому, я надішлю фотографію»\nЧитається: ез су́н ез ай ге́т хо́ум, ай уіл се́нд зе фо́уто.\nСлова as soon as означають «щойно».\nЯк і після if, після when та as soon as слово will не ставлять.\nShe will not leave until the driver arrives.\nУкраїнською: «Вона не піде, доки не приїде водій»\nЧитається: ші уіл но́т лі́в антіл зе дра́йвер ера́йвз.\nСлово until означає «поки не». Тут теж немає will: until the driver arrives.",
+        "en": "Some words work like if: when and as soon as.\nWhen the light turns green, press the button.\nThe word turns means “changes into”.\nBefore, turn meant moving a switch. Here turns means “becomes”.\nAs soon as I get home, I will send the photo.\nThe words as soon as mean “right after this happens”.\nAs after if, we do not put will after when and as soon as.\nShe will not leave until the driver arrives.\nThe word until means “up to the time when”.\nAgain no will: until the driver arrives."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:26.47",
+          "say": {
+            "ru": "уэ́н зэ ла́йт тэ́рнз гри́н, прэ́с зэ ба́тн",
+            "uk": "уе́н зе ла́йт те́рнз грі́н, пре́с зе ба́тн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.48",
+          "say": {
+            "ru": "эз су́н эз ай гэ́т хо́ум, ай уил сэ́нд зэ фо́уто",
+            "uk": "ез су́н ез ай ге́т хо́ум, ай уіл се́нд зе фо́уто"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:26.46",
+          "say": {
+            "ru": "ши уил но́т ли́в антил зэ дра́йвер эра́йвз",
+            "uk": "ші уіл но́т лі́в антіл зе дра́йвер ера́йвз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда загорится зеленый свет, нажмите кнопку»",
+            "uk": "Виберіть, як сказати: «Коли загориться зелене світло, натисніть кнопку»",
+            "en": "Choose how to say: “When the light turns green, press the button.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:26.47",
+          "options": [
+            "en-classic-r1:26.47",
+            "en-classic-r1:26.48",
+            "en-classic-r1:26.46"
+          ],
+          "answerId": "en-classic-r1:26.47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как только я вернусь домой, я пришлю фотографию»",
+            "uk": "Виберіть, як сказати: «Як тільки я повернуся додому, я надішлю фотографію»",
+            "en": "Choose how to say: “As soon as I get home, I will send the photo.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.48",
+          "options": [
+            "en-classic-r1:26.48",
+            "en-classic-r1:26.46",
+            "en-classic-r1:26.47"
+          ],
+          "answerId": "en-classic-r1:26.48"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она не уедет, пока не приедет водитель»",
+            "uk": "Виберіть, як сказати: «Вона не піде, доки не приїде водій»",
+            "en": "Choose how to say: “She will not leave until the driver arrives.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:26.46",
+          "options": [
+            "en-classic-r1:26.46",
+            "en-classic-r1:26.47",
+            "en-classic-r1:26.48"
+          ],
+          "answerId": "en-classic-r1:26.46"
+        }
+      ]
+    }
+  ]
+}

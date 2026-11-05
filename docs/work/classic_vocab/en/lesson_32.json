@@ -1,0 +1,102 @@
+{
+ "lang": "en",
+ "lesson": 32,
+ "words": {
+  "available": {
+   "ru": "свободный, доступный",
+   "uk": "вільний, доступний",
+   "en": "free to use or take",
+   "es": "disponible"
+  },
+  "vibrate": {
+   "ru": "завибрировать",
+   "uk": "завібрувати",
+   "en": "shake quickly",
+   "es": "vibrar"
+  },
+  "fire": {
+   "ru": "пожар, огонь",
+   "uk": "пожежа, вогонь",
+   "en": "flames; a fire exit is for danger",
+   "es": "fuego"
+  },
+  "reservation": {
+   "ru": "бронирование",
+   "uk": "бронювання",
+   "en": "a place kept for you",
+   "es": "reserva"
+  },
+  "confirmed": {
+   "ru": "подтверждено",
+   "uk": "підтверджено",
+   "en": "said to be sure and true",
+   "es": "confirmado"
+  },
+  "total": {
+   "ru": "общая сумма",
+   "uk": "загальна сума",
+   "en": "all the money added up",
+   "es": "total"
+  },
+  "painted": {
+   "ru": "красят, покрашен",
+   "uk": "фарбують, пофарбований",
+   "en": "covered with colour",
+   "es": "pintado"
+  },
+  "unless": {
+   "ru": "если не",
+   "uk": "якщо не",
+   "en": "except if",
+   "es": "a menos que"
+  },
+  "receptionist": {
+   "ru": "администратор",
+   "uk": "адміністратор",
+   "en": "person at the desk who greets guests",
+   "es": "recepcionista"
+  },
+  "blame": {
+   "ru": "винить",
+   "uk": "звинувачувати",
+   "en": "say it is someone's fault",
+   "es": "culpar"
+  },
+  "loose": {
+   "ru": "расшатанный",
+   "uk": "розхитаний",
+   "en": "not fixed tight",
+   "es": "flojo"
+  },
+  "faces": {
+   "ru": "выходит окнами на",
+   "uk": "виходить вікнами на",
+   "en": "looks towards",
+   "es": "da a"
+  },
+  "avoid": {
+   "ru": "избежать",
+   "uk": "уникнути",
+   "en": "stay away from",
+   "es": "evitar"
+  },
+  "lower": {
+   "ru": "ниже",
+   "uk": "нижчий",
+   "en": "less high or less big",
+   "es": "más bajo"
+  },
+  "tyre": {
+   "ru": "шина",
+   "uk": "шина",
+   "en": "rubber ring on a wheel",
+   "es": "neumático"
+  },
+  "appeared": {
+   "ru": "появилось, произошло",
+   "uk": "з'явилося, сталося",
+   "en": "came into view",
+   "es": "apareció"
+  }
+ }
+}

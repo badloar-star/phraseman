@@ -1,0 +1,348 @@
+{
+ "lang": "en",
+ "lesson": 11,
+ "words": {
+  "walked": {
+   "ru": "шёл пешком, дошёл пешком",
+   "uk": "йшов пішки, дійшов пішки",
+   "en": "went on foot",
+   "es": "caminó"
+  },
+  "yesterday": {
+   "ru": "вчера",
+   "uk": "вчора",
+   "en": "the day before today",
+   "es": "ayer"
+  },
+  "worked": {
+   "ru": "работал, работали",
+   "uk": "працював, працювали",
+   "en": "did a job",
+   "es": "trabajó"
+  },
+  "from": {
+   "ru": "из, от",
+   "uk": "з, від",
+   "en": "starting at",
+   "es": "desde"
+  },
+  "called": {
+   "ru": "позвонил, вызвала",
+   "uk": "подзвонив, викликала",
+   "en": "phoned or summoned",
+   "es": "llamó"
+  },
+  "taxi": {
+   "ru": "такси",
+   "uk": "таксі",
+   "en": "car you pay to ride",
+   "es": "taxi"
+  },
+  "waited": {
+   "ru": "ждали, ждал",
+   "uk": "чекали, чекав",
+   "en": "stayed until something came",
+   "es": "esperó"
+  },
+  "helped": {
+   "ru": "помог",
+   "uk": "допоміг",
+   "en": "gave a hand",
+   "es": "ayudó"
+  },
+  "boxes": {
+   "ru": "коробки",
+   "uk": "коробки",
+   "en": "containers with lids",
+   "es": "cajas"
+  },
+  "opened": {
+   "ru": "открыл",
+   "uk": "відкрив",
+   "en": "made not closed",
+   "es": "abrió"
+  },
+  "envelope": {
+   "ru": "конверт",
+   "uk": "конверт",
+   "en": "paper cover for a letter",
+   "es": "sobre"
+  },
+  "cleaned": {
+   "ru": "убрали, помыли",
+   "uk": "прибрали, помили",
+   "en": "made not dirty",
+   "es": "limpió"
+  },
+  "washed": {
+   "ru": "вымыл",
+   "uk": "вимив",
+   "en": "cleaned with water",
+   "es": "lavó"
+  },
+  "packed": {
+   "ru": "собрали (вещи)",
+   "uk": "зібрали (речі)",
+   "en": "put things into bags",
+   "es": "empacó"
+  },
+  "their": {
+   "ru": "их, свои",
+   "uk": "їхні, свої",
+   "en": "belonging to them",
+   "es": "su"
+  },
+  "checked": {
+   "ru": "проверил",
+   "uk": "перевірив",
+   "en": "looked to be sure",
+   "es": "comprobó"
+  },
+  "printed": {
+   "ru": "распечатала",
+   "uk": "роздрукувала",
+   "en": "made a paper copy",
+   "es": "imprimió"
+  },
+  "posted": {
+   "ru": "отправили по почте",
+   "uk": "відправили поштою",
+   "en": "sent by mail",
+   "es": "envió"
+  },
+  "letter": {
+   "ru": "письмо",
+   "uk": "лист",
+   "en": "written message on paper",
+   "es": "carta"
+  },
+  "signed": {
+   "ru": "подписал",
+   "uk": "підписав",
+   "en": "wrote his name on",
+   "es": "firmó"
+  },
+  "locked": {
+   "ru": "запер",
+   "uk": "замкнув",
+   "en": "closed with a key",
+   "es": "cerró con llave"
+  },
+  "booked": {
+   "ru": "забронировал, забронировали",
+   "uk": "забронював, забронювали",
+   "en": "reserved",
+   "es": "reservó"
+  },
+  "changed": {
+   "ru": "изменили",
+   "uk": "змінили",
+   "en": "made different",
+   "es": "cambió"
+  },
+  "cancelled": {
+   "ru": "отменила",
+   "uk": "скасувала",
+   "en": "stopped a plan",
+   "es": "canceló"
+  },
+  "missed": {
+   "ru": "опоздал на",
+   "uk": "запізнився на",
+   "en": "was too late for",
+   "es": "perdió"
+  },
+  "reached": {
+   "ru": "добрался до",
+   "uk": "дістався до",
+   "en": "got to a place",
+   "es": "llegó a"
+  },
+  "crossed": {
+   "ru": "перешли",
+   "uk": "перейшли",
+   "en": "went to the other side",
+   "es": "cruzó"
+  },
+  "road": {
+   "ru": "дорога",
+   "uk": "дорога",
+   "en": "way for cars",
+   "es": "carretera"
+  },
+  "parked": {
+   "ru": "припарковалась",
+   "uk": "припаркувалася",
+   "en": "left a car in a spot",
+   "es": "aparcó"
+  },
+  "behind": {
+   "ru": "позади, за",
+   "uk": "позаду, за",
+   "en": "at the back of",
+   "es": "detrás de"
+  },
+  "stopped": {
+   "ru": "остановился",
+   "uk": "зупинився",
+   "en": "did not go on",
+   "es": "se detuvo"
+  },
+  "arrived": {
+   "ru": "приехал, прибыл",
+   "uk": "приїхав, прибув",
+   "en": "reached a place",
+   "es": "llegó"
+  },
+  "minutes": {
+   "ru": "минуты",
+   "uk": "хвилини",
+   "en": "short parts of an hour",
+   "es": "minutos"
+  },
+  "did": {
+   "ru": "слово-помощник вопроса и отрицания; по-русски нет",
+   "uk": "слово-помічник питання й заперечення; українською немає",
+   "en": "helper word in questions",
+   "es": "palabra auxiliar"
+  },
+  "cancel": {
+   "ru": "отменить",
+   "uk": "скасувати",
+   "en": "stop a plan",
+   "es": "cancelar"
+  },
+  "miss": {
+   "ru": "опоздать на",
+   "uk": "запізнитися на",
+   "en": "be too late for",
+   "es": "perder"
+  },
+  "flight": {
+   "ru": "рейс",
+   "uk": "рейс",
+   "en": "trip by plane",
+   "es": "vuelo"
+  },
+  "answer": {
+   "ru": "ответить; открыть (дверь)",
+   "uk": "відповісти; відчинити (двері)",
+   "en": "reply to a call or knock",
+   "es": "responder"
+  },
+  "flashed": {
+   "ru": "мигнул",
+   "uk": "блимнув",
+   "en": "lit up quickly",
+   "es": "parpadeó"
+  },
+  "twice": {
+   "ru": "дважды",
+   "uk": "двічі",
+   "en": "two times",
+   "es": "dos veces"
+  },
+  "restarted": {
+   "ru": "перезагрузил",
+   "uk": "перезавантажив",
+   "en": "started again",
+   "es": "reinició"
+  },
+  "laptop": {
+   "ru": "ноутбук",
+   "uk": "ноутбук",
+   "en": "portable computer",
+   "es": "portátil"
+  },
+  "tried": {
+   "ru": "попробовали",
+   "uk": "спробували",
+   "en": "made an attempt",
+   "es": "probó"
+  },
+  "different": {
+   "ru": "другой, иной",
+   "uk": "інший, не такий",
+   "en": "not the same",
+   "es": "diferente"
+  },
+  "copied": {
+   "ru": "скопировала",
+   "uk": "скопіювала",
+   "en": "made a duplicate",
+   "es": "copió"
+  },
+  "file": {
+   "ru": "файл",
+   "uk": "файл",
+   "en": "saved computer document",
+   "es": "archivo"
+  },
+  "saved": {
+   "ru": "сохранил",
+   "uk": "зберіг",
+   "en": "kept safe",
+   "es": "guardó"
+  },
+  "wrong": {
+   "ru": "неправильный",
+   "uk": "неправильний",
+   "en": "not correct",
+   "es": "equivocado"
+  },
+  "version": {
+   "ru": "версия",
+   "uk": "версія",
+   "en": "one form of a document",
+   "es": "versión"
+  },
+  "noticed": {
+   "ru": "заметил",
+   "uk": "помітив",
+   "en": "saw suddenly",
+   "es": "notó"
+  },
+  "missing": {
+   "ru": "недостающий",
+   "uk": "відсутній",
+   "en": "not there",
+   "es": "que falta"
+  },
+  "page": {
+   "ru": "страница",
+   "uk": "сторінка",
+   "en": "one sheet in a book",
+   "es": "página"
+  },
+  "fixed": {
+   "ru": "починили",
+   "uk": "полагодили",
+   "en": "repaired",
+   "es": "arregló"
+  },
+  "returned": {
+   "ru": "вернули",
+   "uk": "повернули",
+   "en": "gave back",
+   "es": "devolvió"
+  },
+  "broken": {
+   "ru": "сломанный",
+   "uk": "зламаний",
+   "en": "not working",
+   "es": "roto"
+  },
+  "lamp": {
+   "ru": "лампа",
+   "uk": "лампа",
+   "en": "light you can switch on",
+   "es": "lámpara"
+  },
+  "refund": {
+   "ru": "вернуть деньги",
+   "uk": "повернути гроші",
+   "en": "give money back",
+   "es": "reembolsar"
+  }
+ }
+}

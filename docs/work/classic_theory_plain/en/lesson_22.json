@@ -1,0 +1,717 @@
+{
+  "lang": "en",
+  "lesson": 22,
+  "title": {
+    "ru": "Слово с ing: плавание, готовка, ходьба",
+    "uk": "Слово з ing: плавання, готування, ходьба",
+    "en": "Words with ing: swimming, cooking, walking"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Ходьба, готовка, ожидание, плавание",
+        "uk": "Ходьба, готування, очікування, плавання",
+        "en": "Walking, cooking, waiting, swimming"
+      },
+      "text": {
+        "ru": "Слово с ing на конце может назвать само действие.\nРаньше такое слово значило «делаю сейчас»: I am waiting — «я жду».\nТеперь оно называет само действие, как слово «ходьба».\nWalking saves money. — Ходьба экономит деньги.\nЧитается: уо́кинг сэ́йвз ма́ни.\nСлово walking здесь значит «ходьба»\nСлово money значит «деньги»\nСлова saves money значат «экономит деньги»\nCooking takes practice. — Готовка требует практики.\nЧитается: ку́кинг тэ́йкс прэ́ктис.\nСлово cooking значит «готовка» (cook + ing)\nСлово practice значит «практика»\nСлово takes здесь значит «требует»: чтобы готовить хорошо, нужна практика\nWaiting outside is not much fun. — Ожидание на улице не доставляет удовольствия.\nЧитается: уэ́йтинг аутса́йд из но́т ма́ч фа́н.\nСлово waiting здесь значит «ожидание»\nСлово fun значит «удовольствие, веселье»\nСлова not much fun значат «не очень приятно»\nSwimming helps me relax. — Плавание помогает мне расслабиться.\nЧитается: суи́минг хэ́лпс ми рилэ́кс.\nСлово swimming значит «плавание» (swim + ing)\nСлово relax значит «расслабиться»\nСлова helps me relax значат «помогает мне расслабиться»\nПосле helps me слово relax стоит просто так, без ing и без to.\nБуква m удвоилась: swim → swimming.\nВ swim одна гласная i, а за ней одна буква m.\nТогда последнюю букву пишут дважды.\nВ walk за буквой a идут две буквы lk.\nВ wait подряд две гласные: ai.\nТам ничего не удваивают: walking, waiting, working.",
+        "uk": "Слово з ing на кінці може назвати саму дію.\nРаніше таке слово означало «роблю зараз»: I am waiting — «я чекаю».\nТепер воно називає саму дію, як слово «ходьба».\nWalking saves money. — Ходьба економить гроші.\nЧитається: уо́кінг се́йвз ма́ні.\nСлово walking тут означає «ходьба»\nСлово money означає «гроші»\nСлова saves money означають «заощаджує гроші»\nCooking takes practice. — Приготування їжі вимагає практики.\nЧитається: ку́кінг те́йкс пре́ктіс.\nСлово cooking означає «готування» (cook + ing)\nСлово practice означає «практика»\nСлово takes тут означає «потребує»: щоб добре готувати, потрібна практика\nWaiting outside is not much fun. — Чекати надворі не дуже весело.\nЧитається: уе́йтінг аутса́йд із но́т ма́ч фа́н.\nСлово waiting тут означає «очікування»\nСлово fun означає «задоволення, веселощі»\nСлова not much fun означають «не дуже приємно»\nSwimming helps me relax. — Плавання допомагає мені розслабитися.\nЧитається: суі́мінг хе́лпс мі ріле́кс.\nСлово swimming означає «плавання» (swim + ing)\nСлово relax означає «розслабитися»\nСлова helps me relax означають «допомагає мені розслабитися»\nПісля helps me слово relax стоїть просто так, без ing і без to.\nЛітера m подвоїлась: swim → swimming.\nУ swim одна голосна i, а за нею одна літера m.\nТоді останню літеру пишуть двічі.\nУ walk за літерою a ідуть дві літери lk.\nУ wait поспіль дві голосні: ai.\nТам нічого не подвоюють: walking, waiting, working.",
+        "en": "A word with ing at the end can name an action itself.\nBefore, such a word meant “doing it now”: I am waiting.\nNow it names the action itself, like the word “walking”.\nWalking saves money.\nThe word walking here means “the action of walking”\nThe word money means “the coins and notes we pay with”\nThe words saves money mean “keeps more money”\nCooking takes practice.\nThe word cooking means “making food” (cook + ing)\nThe word practice means “doing something again and again to get better”\nThe word takes here means “needs”: to cook well, you need practice\nWaiting outside is not much fun.\nThe word waiting here means “the action of waiting”\nThe word fun means “a nice, happy time”\nThe words not much fun mean “not very nice”\nSwimming helps me relax.\nThe word swimming means “moving through water” (swim + ing)\nThe word relax means “to rest and feel calm”\nThe words helps me relax mean “makes it easier for me to feel calm”\nAfter helps me, the word relax stays as it is, with no ing and no to.\nThe letter m is written twice: swim → swimming.\nIn swim there is one vowel, i, then one letter, m.\nThen the last letter is written twice.\nIn walk two letters, lk, follow the a.\nIn wait two vowels come in a row: ai.\nThere we write nothing twice: walking, waiting, working."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:22.02",
+          "say": {
+            "ru": "уо́кинг сэ́йвз ма́ни",
+            "uk": "уо́кінг се́йвз ма́ні"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.03",
+          "say": {
+            "ru": "ку́кинг тэ́йкс прэ́ктис",
+            "uk": "ку́кінг те́йкс пре́ктіс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.06",
+          "say": {
+            "ru": "уэ́йтинг аутса́йд из но́т ма́ч фа́н",
+            "uk": "уе́йтінг аутса́йд із но́т ма́ч фа́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.01",
+          "say": {
+            "ru": "суи́минг хэ́лпс ми рилэ́кс",
+            "uk": "суі́мінг хе́лпс мі ріле́кс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ходьба экономит деньги»",
+            "uk": "Виберіть, як сказати: «Ходьба економить гроші»",
+            "en": "Choose how to say: “Walking saves money.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:22.02",
+          "options": [
+            "en-classic-r1:22.02",
+            "en-classic-r1:22.03",
+            "en-classic-r1:22.06"
+          ],
+          "answerId": "en-classic-r1:22.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Готовка требует практики»",
+            "uk": "Виберіть, як сказати: «Приготування їжі вимагає практики»",
+            "en": "Choose how to say: “Cooking takes practice.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.03",
+          "options": [
+            "en-classic-r1:22.03",
+            "en-classic-r1:22.06",
+            "en-classic-r1:22.01"
+          ],
+          "answerId": "en-classic-r1:22.03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ожидание на улице не доставляет удовольствия»",
+            "uk": "Виберіть, як сказати: «Чекати надворі не дуже весело»",
+            "en": "Choose how to say: “Waiting outside is not much fun.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.06",
+          "options": [
+            "en-classic-r1:22.06",
+            "en-classic-r1:22.01",
+            "en-classic-r1:22.02"
+          ],
+          "answerId": "en-classic-r1:22.06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Чтение, езда, работа",
+        "uk": "Читання, їзда, робота",
+        "en": "Reading, driving, working"
+      },
+      "text": {
+        "ru": "Слово с ing можно поставить в начало фразы.\nДальше скажите, что это делает с человеком или какое оно.\nReading on the bus makes me dizzy. — Чтение в автобусе вызывает у меня головокружение.\nЧитается: ри́динг он зэ ба́с мэ́йкс ми ди́зи.\nСлово reading здесь значит «чтение»\nСлово makes значит «делает» (make + s)\nСлово dizzy значит «когда кружится голова»\nСлова makes me dizzy значат «от этого у меня кружится голова»\nDriving in fog is difficult. — Ездить в тумане сложно.\nЧитается: дра́йвинг ин фо́г из ди́фикалт.\nСлово driving здесь значит «езда за рулём»\nБуква e пропала: drive → driving.\nЕсли слово кончается на e, перед ing эту e убирают.\nСлово fog значит «туман»\nСлово difficult значит «трудный, сложный»\nСлова is difficult значат «это трудно»\nWorking nights suits my brother. — Работа в ночную смену подходит моему брату.\nЧитается: уо́ркинг на́йтс су́тс май бра́зер.\nСлово working здесь значит «работа», а не «работает»\nСлово suits значит «подходит» (suit + s)\nСлова working nights значат «работа по ночам», то есть «в ночную смену»\nСлова suits my brother значат «подходит моему брату»",
+        "uk": "Слово з ing можна поставити на початок фрази.\nДалі скажіть, що це робить із людиною або яке воно.\nReading on the bus makes me dizzy. — Читання в автобусі викликає у мене запаморочення.\nЧитається: рі́дінг он зе ба́с ме́йкс мі ді́зі.\nСлово reading тут означає «читання»\nСлово makes означає «робить» (make + s)\nСлово dizzy означає «коли паморочиться в голові»\nСлова makes me dizzy означають «від цього в мене паморочиться в голові»\nDriving in fog is difficult. — Керувати автомобілем у тумані важко.\nЧитається: дра́йвінг ін фо́г із ді́фікалт.\nСлово driving тут означає «їзда за кермом»\nЛітера e зникла: drive → driving.\nЯкщо слово закінчується на e, перед ing цю e прибирають.\nСлово fog означає «туман»\nСлово difficult означає «важкий, складний»\nСлова is difficult означають «це важко»\nWorking nights suits my brother. — Робота вночі підходить моєму братові.\nЧитається: уо́ркінг на́йтс су́тс май бра́зер.\nСлово working тут означає «робота», а не «працює»\nСлово suits означає «підходить» (suit + s)\nСлова working nights означають «робота вночі», тобто «в нічну зміну»\nСлова suits my brother означають «підходить моєму братові»",
+        "en": "A word with ing can start a sentence.\nThen say what it does to a person, or what it is like.\nReading on the bus makes me dizzy.\nThe word reading here means “the action of reading”\nThe word makes means “does something to someone” (make + s)\nThe word dizzy means “feeling that everything is turning round”\nThe words makes me dizzy mean “gives me that feeling”\nDriving in fog is difficult.\nThe word driving here means “the action of driving a car”\nThe letter e is gone: drive → driving.\nIf a word ends in e, we take that e away before ing.\nThe word fog means “thick cloud near the ground”\nThe word difficult means “not easy”\nThe words is difficult mean “it is hard”\nWorking nights suits my brother.\nThe word working here means “the work itself”, not “is working”\nThe word suits means “is right for someone” (suit + s)\nThe words working nights mean “working during the night”\nThe words suits my brother mean “is right for my brother”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:22.04",
+          "say": {
+            "ru": "ри́динг он зэ ба́с мэ́йкс ми ди́зи",
+            "uk": "рі́дінг он зе ба́с ме́йкс мі ді́зі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.05",
+          "say": {
+            "ru": "дра́йвинг ин фо́г из ди́фикалт",
+            "uk": "дра́йвінг ін фо́г із ді́фікалт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.10",
+          "say": {
+            "ru": "уо́ркинг на́йтс су́тс май бра́зер",
+            "uk": "уо́ркінг на́йтс су́тс май бра́зер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чтение в автобусе вызывает у меня головокружение»",
+            "uk": "Виберіть, як сказати: «Читання в автобусі викликає у мене запаморочення»",
+            "en": "Choose how to say: “Reading on the bus makes me dizzy.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:22.04",
+          "options": [
+            "en-classic-r1:22.04",
+            "en-classic-r1:22.05",
+            "en-classic-r1:22.10"
+          ],
+          "answerId": "en-classic-r1:22.04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ездить в тумане сложно»",
+            "uk": "Виберіть, як сказати: «Керувати автомобілем у тумані важко»",
+            "en": "Choose how to say: “Driving in fog is difficult.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.05",
+          "options": [
+            "en-classic-r1:22.05",
+            "en-classic-r1:22.10",
+            "en-classic-r1:22.04"
+          ],
+          "answerId": "en-classic-r1:22.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Работа в ночную смену подходит моему брату»",
+            "uk": "Виберіть, як сказати: «Робота вночі підходить моєму братові»",
+            "en": "Choose how to say: “Working nights suits my brother.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.10",
+          "options": [
+            "en-classic-r1:22.10",
+            "en-classic-r1:22.04",
+            "en-classic-r1:22.05"
+          ],
+          "answerId": "en-classic-r1:22.10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Любить, избегать, признать, представить",
+        "uk": "Любити, уникати, визнати, уявити",
+        "en": "Enjoy, avoid, admit, imagine"
+      },
+      "text": {
+        "ru": "После некоторых слов следующее действие тоже называют словом с ing.\nShe enjoys walking by the river. — Ей нравится гулять у реки.\nЧитается: ши инджо́йз уо́кинг бай зэ ри́вер.\nСлово enjoys значит «любит, получает удовольствие» (enjoy + s)\nСлова enjoys walking значат «любит гулять»\nСлово river значит «река»\nHe avoids driving at night. — Он избегает вождения ночью.\nЧитается: хи эво́йдз дра́йвинг эт на́йт.\nСлово avoids значит «избегает» (avoid + s)\nСлова avoids driving значат «избегает ездить за рулём»\nShe admitted taking the wrong bag. — Она призналась, что взяла не ту сумку.\nЧитается: ши эдми́тид тэ́йкинг зэ ро́нг бэ́г.\nСлово admitted значит «призналась» (admit + ed)\nБуква t удвоилась: admit → admitted.\nТак же удваивают последнюю букву в swim, stop, admit: swimming, stopped, admitted — запомните эти слова.\nА в visit («посещать») и listen («слушать») последнюю букву не удваивают: visiting, listening.\nСлово taking значит «брать, взять» (take + ing, e пропала)\nСлова admitted taking значат «призналась, что взяла»\nI cannot imagine living without a kitchen. — Я не могу представить себе жизнь без кухни.\nЧитается: ай кэ́нот има́джин ли́винг уизау́т э ки́чен.\nСлово imagine значит «представить»\nСлово living значит «жить» (live + ing, e пропала)\nСлова imagine living значат «представить жизнь»",
+        "uk": "Після деяких слів наступну дію теж називають словом з ing.\nShe enjoys walking by the river. — Їй подобається гуляти біля річки.\nЧитається: ші інджо́йз уо́кінг бай зе рі́вер.\nСлово enjoys означає «любить, отримує задоволення» (enjoy + s)\nСлова enjoys walking означають «любить гуляти»\nСлово river означає «річка»\nHe avoids driving at night. — Він уникає їздити за кермом вночі.\nЧитається: хі ево́йдз дра́йвінг ет на́йт.\nСлово avoids означає «уникає» (avoid + s)\nСлова avoids driving означають «уникає їздити за кермом»\nShe admitted taking the wrong bag. — Вона зізналася, що взяла не ту сумку.\nЧитається: ші едмі́тід те́йкінг зе ро́нг бе́г.\nСлово admitted означає «зізналася» (admit + ed)\nЛітера t подвоїлась: admit → admitted.\nТак само подвоюють останню літеру в swim, stop, admit: swimming, stopped, admitted — запам’ятайте ці слова.\nА в visit («відвідувати») і listen («слухати») останню літеру не подвоюють: visiting, listening.\nСлово taking означає «брати, взяти» (take + ing, e зникла)\nСлова admitted taking означають «зізналася, що взяла»\nI cannot imagine living without a kitchen. — Я не можу уявити життя без кухні.\nЧитається: ай ке́нот іма́джін лі́вінг уізау́т е кі́чен.\nСлово imagine означає «уявити»\nСлово living означає «жити» (live + ing, e зникла)\nСлова imagine living означають «уявити життя»",
+        "en": "After some words, the next action is also named with an ing word.\nShe enjoys walking by the river.\nThe word enjoys means “likes and has a good time” (enjoy + s)\nThe words enjoys walking mean “likes to walk”\nThe word river means “a long stream of water”\nHe avoids driving at night.\nThe word avoids means “stays away from” (avoid + s)\nThe words avoids driving mean “does not drive”\nShe admitted taking the wrong bag.\nThe word admitted means “said it was true” (admit + ed)\nThe letter t is written twice: admit → admitted.\nThe last letter is also written twice in swim, stop, admit.\nSo: swimming, stopped, admitted. Remember these words.\nIn visit (“go and see a place”) and listen (“hear with attention”)\nthe last letter is not doubled: visiting, listening.\nThe word taking means “getting hold of something” (take + ing, the e is gone)\nThe words admitted taking mean “said she took”\nI cannot imagine living without a kitchen.\nThe word imagine means “to see something in your mind”\nThe word living means “being alive somewhere” (live + ing, the e is gone)\nThe words imagine living mean “to picture a life”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:22.12",
+          "say": {
+            "ru": "ши инджо́йз уо́кинг бай зэ ри́вер",
+            "uk": "ші інджо́йз уо́кінг бай зе рі́вер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.13",
+          "say": {
+            "ru": "хи эво́йдз дра́йвинг эт на́йт",
+            "uk": "хі ево́йдз дра́йвінг ет на́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.44",
+          "say": {
+            "ru": "ши эдми́тид тэ́йкинг зэ ро́нг бэ́г",
+            "uk": "ші едмі́тід те́йкінг зе ро́нг бе́г"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.43",
+          "say": {
+            "ru": "ай кэ́нот има́джин ли́винг уизау́т э ки́чен",
+            "uk": "ай ке́нот іма́джін лі́вінг уізау́т е кі́чен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ей нравится гулять у реки»",
+            "uk": "Виберіть, як сказати: «Їй подобається гуляти біля річки»",
+            "en": "Choose how to say: “She enjoys walking by the river.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:22.12",
+          "options": [
+            "en-classic-r1:22.12",
+            "en-classic-r1:22.13",
+            "en-classic-r1:22.44"
+          ],
+          "answerId": "en-classic-r1:22.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он избегает вождения ночью»",
+            "uk": "Виберіть, як сказати: «Він уникає їздити за кермом вночі»",
+            "en": "Choose how to say: “He avoids driving at night.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.13",
+          "options": [
+            "en-classic-r1:22.13",
+            "en-classic-r1:22.44",
+            "en-classic-r1:22.43"
+          ],
+          "answerId": "en-classic-r1:22.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она призналась, что взяла не ту сумку»",
+            "uk": "Виберіть, як сказати: «Вона зізналася, що взяла не ту сумку»",
+            "en": "Choose how to say: “She admitted taking the wrong bag.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.44",
+          "options": [
+            "en-classic-r1:22.44",
+            "en-classic-r1:22.43",
+            "en-classic-r1:22.12"
+          ],
+          "answerId": "en-classic-r1:22.44"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Просьба, предложение, тренировка, мысль",
+        "uk": "Прохання, пропозиція, тренування, думка",
+        "en": "Asking, suggesting, practising, considering"
+      },
+      "text": {
+        "ru": "Есть слова, после которых действие тоже называют словом с ing.\nDo you mind waiting here? — Не могли бы вы подождать здесь?\nЧитается: ду́ ю ма́йнд уэ́йтинг хи́р.\nСлово mind здесь значит «возражать, быть против»\nСлова Do you mind значат «вы не против?»\nТак вежливо просят о чём-то.\nЕсли вы согласны, по-английски отвечают «нет»: ведь вопрос звучит «вы против?».\nСлова waiting here значат «подождать здесь»\nHe suggested sharing a taxi. — Он предложил разделить такси.\nЧитается: хи саджэ́стид шэ́ринг э тэ́кси.\nСлово suggested значит «предложил» (suggest + ed)\nСлово sharing значит «делить, пользоваться вместе» (share + ing)\nБуква e пропала: share → sharing.\nСлова sharing a taxi значат «разделить такси»\nWe practise speaking after class. — Мы практикуем разговорную речь после занятий.\nЧитается: уи прэ́ктис спи́кинг э́фтер клэ́с.\nСлово practise значит «тренироваться»\nСлово practice вы уже видели: «практика».\nЧитаются они одинаково.\nСлово с c — название, слово с s — действие.\nСлово speaking значит «говорить» (speak + ing)\nСлова practise speaking значат «тренироваться говорить»\nСлова after class значат «после занятий»\nWe considered booking a later flight. — Мы подумывали забронировать более поздний рейс.\nЧитается: уи конси́дерд бу́кинг э лэ́йтер фла́йт.\nСлово considered значит «обдумывали, подумывали» (consider + ed)\nСлово booking значит «бронировать» (book + ing)\nСлово later значит «более поздний» (late + er)\nСлова considered booking значат «подумывали забронировать»",
+        "uk": "Є слова, після яких дію теж називають словом з ing.\nDo you mind waiting here? — Ви не проти почекати тут?\nЧитається: ду́ ю ма́йнд уе́йтінг хі́р.\nСлово mind тут означає «заперечувати, бути проти»\nСлова Do you mind означають «ви не проти?»\nТак ввічливо про щось просять.\nЯкщо ви згодні, англійською відповідають «ні»: адже питання звучить «ви проти?».\nСлова waiting here означають «почекати тут»\nHe suggested sharing a taxi. — Він запропонував поїхати разом на таксі.\nЧитається: хі садже́стід ше́рінг е те́ксі.\nСлово suggested означає «запропонував» (suggest + ed)\nСлово sharing означає «ділити, користуватися разом» (share + ing)\nЛітера e зникла: share → sharing.\nСлова sharing a taxi означають «поїхати разом на таксі»\nWe practise speaking after class. — Ми практикуємо розмову після заняття.\nЧитається: уі пре́ктіс спі́кінг е́фтер кле́с.\nСлово practise означає «тренуватися»\nСлово practice ви вже бачили: «практика».\nЧитаються вони однаково.\nСлово з c — назва, слово з s — дія.\nСлово speaking означає «говорити» (speak + ing)\nСлова practise speaking означають «тренуватися говорити»\nСлова after class означають «після заняття»\nWe considered booking a later flight. — Ми розглядали можливість забронювати пізніший рейс.\nЧитається: уі консі́дерд бу́кінг е ле́йтер фла́йт.\nСлово considered означає «розглядали, обмірковували» (consider + ed)\nСлово booking означає «бронювати» (book + ing)\nСлово later означає «пізніший» (late + er)\nСлова considered booking означають «розглядали можливість забронювати»",
+        "en": "Some other words are also followed by an ing word.\nDo you mind waiting here?\nThe word mind here means “to object”\nThe words Do you mind mean “do you object?”\nThis is a polite way to ask for something.\nIf you agree, the answer is “no”, because the question asks “do you object?”.\nThe words waiting here mean “to wait in this place”\nHe suggested sharing a taxi.\nThe word suggested means “put forward an idea” (suggest + ed)\nThe word sharing means “using together” (share + ing)\nThe letter e is gone: share → sharing.\nThe words sharing a taxi mean “to split a taxi”\nWe practise speaking after class.\nThe word practise means “to do something again and again to get better”\nYou have already seen the word practice: “practice”.\nThey sound the same.\nThe word with c is a name, the word with s is an action.\nThe word speaking means “using your voice” (speak + ing)\nThe words practise speaking mean “to get better at speaking”\nThe words after class mean “when the lesson is over”\nWe considered booking a later flight.\nThe word considered means “thought about it” (consider + ed)\nThe word booking means “reserving” (book + ing)\nThe word later means “coming at a later hour” (late + er)\nThe words considered booking mean “thought about reserving”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:22.18",
+          "say": {
+            "ru": "ду́ ю ма́йнд уэ́йтинг хи́р",
+            "uk": "ду́ ю ма́йнд уе́йтінг хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.19",
+          "say": {
+            "ru": "хи саджэ́стид шэ́ринг э тэ́кси",
+            "uk": "хі садже́стід ше́рінг е те́ксі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.20",
+          "say": {
+            "ru": "уи прэ́ктис спи́кинг э́фтер клэ́с",
+            "uk": "уі пре́ктіс спі́кінг е́фтер кле́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.42",
+          "say": {
+            "ru": "уи конси́дерд бу́кинг э лэ́йтер фла́йт",
+            "uk": "уі консі́дерд бу́кінг е ле́йтер фла́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не могли бы вы подождать здесь?»",
+            "uk": "Виберіть, як сказати: «Ви не проти почекати тут?»",
+            "en": "Choose how to say: “Do you mind waiting here?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:22.18",
+          "options": [
+            "en-classic-r1:22.18",
+            "en-classic-r1:22.19",
+            "en-classic-r1:22.20"
+          ],
+          "answerId": "en-classic-r1:22.18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он предложил разделить такси»",
+            "uk": "Виберіть, як сказати: «Він запропонував поїхати разом на таксі»",
+            "en": "Choose how to say: “He suggested sharing a taxi.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.19",
+          "options": [
+            "en-classic-r1:22.19",
+            "en-classic-r1:22.20",
+            "en-classic-r1:22.42"
+          ],
+          "answerId": "en-classic-r1:22.19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы практикуем разговорную речь после занятий»",
+            "uk": "Виберіть, як сказати: «Ми практикуємо розмову після заняття»",
+            "en": "Choose how to say: “We practise speaking after class.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.20",
+          "options": [
+            "en-classic-r1:22.20",
+            "en-classic-r1:22.42",
+            "en-classic-r1:22.18"
+          ],
+          "answerId": "en-classic-r1:22.20"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Остановиться, помнить, попробовать",
+        "uk": "Зупинитися, пам’ятати, спробувати",
+        "en": "Stop, remember, try"
+      },
+      "text": {
+        "ru": "Слово stop может вести к слову с ing, а может — к to. Смотрите на разницу.\nThey stopped talking at the door. — Они перестали разговаривать у двери.\nЧитается: зэй сто́пт то́кинг эт зэ до́р.\nСлово stopped здесь значит «перестали»\nСлово talking значит «разговаривать» (talk + ing)\nБуква p удвоилась: stop → stopped.\nВ stop одна гласная o и после неё одна буква p.\nКак в swim, последнюю букву пишут дважды.\nСлова stopped talking значат «перестали разговаривать»\nWe stopped to buy water, then carried on walking.\n— Мы остановились, чтобы купить воды, а затем продолжили идти.\nЧитается: уи сто́пт ту ба́й уо́тер зэ́н кэ́рид он уо́кинг.\nСлово stopped здесь значит «остановились»\nСлова to buy значат «чтобы купить»\nСлово then значит «затем, потом»\nСлова carried on значат «продолжили»\nБуква y меняется на i: carry → carried.\nСлова carried on walking значат «продолжили идти»\nStopped talking — «перестали говорить»: действие закончилось.\nStopped to buy — «остановились, чтобы купить».\nto + слово без ing значит «чтобы».\nI remember locking the front door. — Я помню, как запер входную дверь.\nЧитается: ай рими́мбер ло́кинг зэ фра́нт до́р.\nСлово remember значит «помнить»\nСлово locking значит «запирать» (lock + ing)\nСлова I remember locking значат «я помню, что запер»\nTry reading the number aloud. — Попробуйте прочитать номер вслух.\nЧитается: тра́й ри́динг зэ на́мбер эла́уд.\nСлово Try здесь значит «попробуйте»\nСлово aloud значит «вслух»\nСлова reading the number aloud значат «прочитать номер вслух»",
+        "uk": "Слово stop може вести до слова з ing, а може — до to. Дивіться на різницю.\nThey stopped talking at the door. — Вони перестали розмовляти біля дверей.\nЧитається: зей сто́пт то́кінг ет зе до́р.\nСлово stopped тут означає «перестали»\nСлово talking означає «розмовляти» (talk + ing)\nЛітера p подвоїлась: stop → stopped.\nУ stop одна голосна o і після неї одна літера p.\nЯк у swim, останню літеру пишуть двічі.\nСлова stopped talking означають «перестали розмовляти»\nWe stopped to buy water, then carried on walking.\n— Ми зупинилися, щоб купити води, а потім продовжили йти.\nЧитається: уі сто́пт ту ба́й уо́тер зе́н ке́рід он уо́кінг.\nСлово stopped тут означає «зупинилися»\nСлова to buy означають «щоб купити»\nСлово then означає «потім, тоді»\nСлова carried on означають «продовжили»\nЛітера y змінюється на i: carry → carried.\nСлова carried on walking означають «продовжили йти»\nStopped talking — «перестали говорити»: дія закінчилась.\nStopped to buy — «зупинилися, щоб купити».\nto + слово без ing означає «щоб».\nI remember locking the front door. — Я пам'ятаю, як замкнув вхідні двері.\nЧитається: ай рімі́мбер ло́кінг зе фра́нт до́р.\nСлово remember означає «пам’ятати»\nСлово locking означає «замикати» (lock + ing)\nСлова I remember locking означають «я пам’ятаю, що замкнув»\nTry reading the number aloud. — Спробуйте прочитати номер вголос.\nЧитається: тра́й рі́дінг зе на́мбер ела́уд.\nСлово Try тут означає «спробуйте»\nСлово aloud означає «вголос»\nСлова reading the number aloud означають «прочитати номер вголос»",
+        "en": "After stop you can put an ing word, or to. The meaning is different.\nThey stopped talking at the door.\nThe word stopped here means “ended it (stop + ed)”\nThe word talking means “speaking with someone” (talk + ing)\nThe letter p is written twice: stop → stopped.\nIn stop there is one vowel, o, then one letter, p.\nLike in swim, the last letter is written twice.\nThe words stopped talking mean “ended the talk”\nWe stopped to buy water, then carried on walking.\nThe word stopped here means “came to a halt”\nThe words to buy mean “in order to buy”\nThe word then means “after that”\nThe words carried on mean “went on”\nThe letter y changes to i: carry → carried.\nThe words carried on walking mean “kept on walking”\nStopped talking: “the talking ended”.\nStopped to buy: “halted in order to buy”.\nto + a word without ing means “in order to”.\nI remember locking the front door.\nThe word remember means “to keep something in your mind”\nThe word locking means “closing with a key” (lock + ing)\nThe words I remember locking mean “I remember that I locked it”\nTry reading the number aloud.\nThe word Try here means “have a go”\nThe word aloud means “so that others can hear”\nThe words reading the number aloud mean “to say the number out loud”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:22.15",
+          "say": {
+            "ru": "зэй сто́пт то́кинг эт зэ до́р",
+            "uk": "зей сто́пт то́кінг ет зе до́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.50",
+          "say": {
+            "ru": "уи сто́пт ту ба́й уо́тер зэ́н кэ́рид он уо́кинг",
+            "uk": "уі сто́пт ту ба́й уо́тер зе́н ке́рід он уо́кінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.49",
+          "say": {
+            "ru": "ай рими́мбер ло́кинг зэ фра́нт до́р",
+            "uk": "ай рімі́мбер ло́кінг зе фра́нт до́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.48",
+          "say": {
+            "ru": "тра́й ри́динг зэ на́мбер эла́уд",
+            "uk": "тра́й рі́дінг зе на́мбер ела́уд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они перестали разговаривать у двери»",
+            "uk": "Виберіть, як сказати: «Вони перестали розмовляти біля дверей»",
+            "en": "Choose how to say: “They stopped talking at the door.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:22.15",
+          "options": [
+            "en-classic-r1:22.15",
+            "en-classic-r1:22.50",
+            "en-classic-r1:22.49"
+          ],
+          "answerId": "en-classic-r1:22.15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я помню, как запер входную дверь»",
+            "uk": "Виберіть, як сказати: «Я пам'ятаю, як замкнув вхідні двері»",
+            "en": "Choose how to say: “I remember locking the front door.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.49",
+          "options": [
+            "en-classic-r1:22.49",
+            "en-classic-r1:22.48",
+            "en-classic-r1:22.15"
+          ],
+          "answerId": "en-classic-r1:22.49"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы остановились, чтобы купить воды, а затем продолжили идти.»",
+            "uk": "Виберіть, як сказати: «Ми зупинилися, щоб купити води, а потім продовжили йти.»",
+            "en": "Choose how to say: “We stopped to buy water, then carried on walking.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.50",
+          "options": [
+            "en-classic-r1:22.50",
+            "en-classic-r1:22.49",
+            "en-classic-r1:22.48"
+          ],
+          "answerId": "en-classic-r1:22.50"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Говорили о, подумывает о, жаловались на, интересуется",
+        "uk": "Говорили про, думає про, скаржилися на, цікавиться",
+        "en": "Talked about, thinking about, complained about, interested in"
+      },
+      "text": {
+        "ru": "Действие можно поставить после маленьких слов about и in.\nОно по-прежнему кончается на ing.\nWe talked about moving house. — Мы говорили о переезде.\nЧитается: уи то́кт эба́ут му́винг ха́ус.\nСлово talked значит «говорили» (talk + ed)\nСлова talked about значат «говорили о»\nСлово house значит «дом»\nСлова moving house значат «переезжать в другой дом»\nБуква e пропала: move → moving.\nHe is thinking about changing jobs. — Он подумывает о смене работы.\nЧитается: хи из си́нкинг эба́ут чэ́йнджинг джо́бз.\nСлово job значит «работа, место работы»\nСлова thinking about значат «думает о»\nСлова changing jobs значат «менять работу»\nБуква e пропала: change → changing.\nThey complained about waiting in the rain. — Они жаловались на ожидание под дождем.\nЧитается: зэй комплэ́йнд эба́ут уэ́йтинг ин зэ рэ́йн.\nСлово complained значит «жаловались» (complain + ed)\nСлова complained about значат «жаловались на»\nСлова waiting in the rain значат «ждать под дождём»\nHe is interested in learning English. — Он заинтересован в изучении английского языка.\nЧитается: хи из и́нтристид ин ле́рнинг и́нглиш.\nСлово interested значит «заинтересованный»\nСлова interested in значат «интересуется»\nСлово worried значит «беспокоится». Слова worried about значат «беспокоится о».\nСлова learning English значат «изучать английский»",
+        "uk": "Дію можна поставити після маленьких слів about та in.\nВоно як і раніше закінчується на ing.\nWe talked about moving house. — Ми говорили про переїзд.\nЧитається: уі то́кт еба́ут му́вінг ха́ус.\nСлово talked означає «говорили» (talk + ed)\nСлова talked about означають «говорили про»\nСлово house означає «будинок»\nСлова moving house означають «переїжджати до іншого будинку»\nЛітера e зникла: move → moving.\nHe is thinking about changing jobs. — Він думає про зміну роботи.\nЧитається: хі із сі́нкінг еба́ут че́йнджінг джо́бз.\nСлово job означає «робота, місце роботи»\nСлова thinking about означають «думає про»\nСлова changing jobs означають «змінювати роботу»\nЛітера e зникла: change → changing.\nThey complained about waiting in the rain. — Вони скаржилися на очікування під дощем.\nЧитається: зей компле́йнд еба́ут уе́йтінг ін зе ре́йн.\nСлово complained означає «скаржилися» (complain + ed)\nСлова complained about означають «скаржилися на»\nСлова waiting in the rain означають «чекати під дощем»\nHe is interested in learning English. — Він зацікавлений у вивченні англійської мови.\nЧитається: хі із і́нтрістід ін ле́рнінг і́нгліш.\nСлово interested означає «зацікавлений»\nСлова interested in означають «цікавиться»\nСлово worried означає «хвилюється». Слова worried about означають «хвилюється про».\nСлова learning English означають «вивчати англійську»",
+        "en": "The action can come after the small words about and in.\nIt still ends in ing.\nWe talked about moving house.\nThe word talked means “spoke” (talk + ed)\nThe words talked about mean “spoke of”\nThe word house means “a building where people live”\nThe words moving house mean “going to live in another house”\nThe letter e is gone: move → moving.\nHe is thinking about changing jobs.\nThe word job means “the work a person does for money”\nThe words thinking about mean “is thinking of”\nThe words changing jobs mean “to move to a new job”\nThe letter e is gone: change → changing.\nThey complained about waiting in the rain.\nThe word complained means “said they were unhappy” (complain + ed)\nThe words complained about mean “said they were unhappy about”\nThe words waiting in the rain mean “to wait while it rains”\nHe is interested in learning English.\nThe word interested means “wanting to know more”\nThe words interested in mean “likes to find out about”\nThe word worried means “feeling anxious”. The words worried about mean “feeling anxious about”.\nThe words learning English mean “to study English”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:22.25",
+          "say": {
+            "ru": "уи то́кт эба́ут му́винг ха́ус",
+            "uk": "уі то́кт еба́ут му́вінг ха́ус"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.37",
+          "say": {
+            "ru": "хи из си́нкинг эба́ут чэ́йнджинг джо́бз",
+            "uk": "хі із сі́нкінг еба́ут че́йнджінг джо́бз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.38",
+          "say": {
+            "ru": "зэй комплэ́йнд эба́ут уэ́йтинг ин зэ рэ́йн",
+            "uk": "зей компле́йнд еба́ут уе́йтінг ін зе ре́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.24",
+          "say": {
+            "ru": "хи из и́нтристид ин ле́рнинг и́нглиш",
+            "uk": "хі із і́нтрістід ін ле́рнінг і́нгліш"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы говорили о переезде»",
+            "uk": "Виберіть, як сказати: «Ми говорили про переїзд»",
+            "en": "Choose how to say: “We talked about moving house.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:22.25",
+          "options": [
+            "en-classic-r1:22.25",
+            "en-classic-r1:22.37",
+            "en-classic-r1:22.38"
+          ],
+          "answerId": "en-classic-r1:22.25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он подумывает о смене работы»",
+            "uk": "Виберіть, як сказати: «Він думає про зміну роботи»",
+            "en": "Choose how to say: “He is thinking about changing jobs.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.37",
+          "options": [
+            "en-classic-r1:22.37",
+            "en-classic-r1:22.38",
+            "en-classic-r1:22.24"
+          ],
+          "answerId": "en-classic-r1:22.37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они жаловались на ожидание под дождем»",
+            "uk": "Виберіть, як сказати: «Вони скаржилися на очікування під дощем»",
+            "en": "Choose how to say: “They complained about waiting in the rain.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.38",
+          "options": [
+            "en-classic-r1:22.38",
+            "en-classic-r1:22.24",
+            "en-classic-r1:22.25"
+          ],
+          "answerId": "en-classic-r1:22.38"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Устал от, боится, ушла без",
+        "uk": "Втомився від, боїться, пішла без",
+        "en": "Tired of, afraid of, without"
+      },
+      "text": {
+        "ru": "Действие можно поставить после слов of и without.\nI am tired of carrying this bag. — Я устал носить эту сумку.\nЧитается: ай эм та́йэрд ов кэ́ринг зис бэ́г.\nСлово tired значит «усталый»\nСлова tired of значат «устал от»\nСлово carrying значит «носить» (carry + ing)\nПеред ing буква y остаётся: carry → carrying.\nShe is afraid of waking the baby. — Она боится разбудить ребенка.\nЧитается: ши из эфрэ́йд ов уэ́йкинг зэ бэ́йби.\nСлово afraid значит «испуганный»\nСлова afraid of значат «боится»\nСлово waking значит «будить» (wake + ing, e пропала)\nСлова waking the baby значат «разбудить ребёнка»\nShe left without saying goodbye. — Она ушла, не попрощавшись.\nЧитается: ши лэ́фт уизау́т сэ́йинг гудба́й.\nСлово left здесь значит «ушла»\nСлово without значит «без»\nСлово saying значит «говорить, сказать» (say + ing)\nСлово goodbye значит «до свидания»\nСлова without saying goodbye значат «не попрощавшись»",
+        "uk": "Дію можна поставити після слів of та without.\nI am tired of carrying this bag. — Я втомився носити цю сумку.\nЧитається: ай ем та́йерд ов ке́рінг зіс бе́г.\nСлово tired означає «втомлений»\nСлова tired of означають «втомився від»\nСлово carrying означає «носити» (carry + ing)\nПеред ing літера y залишається: carry → carrying.\nShe is afraid of waking the baby. — Вона боїться розбудити дитину.\nЧитається: ші із ефре́йд ов уе́йкінг зе бе́йбі.\nСлово afraid означає «наляканий»\nСлова afraid of означають «боїться»\nСлово waking означає «будити» (wake + ing, e зникла)\nСлова waking the baby означають «розбудити дитину»\nShe left without saying goodbye. — Вона пішла, не попрощавшись.\nЧитається: ші ле́фт уізау́т се́йінг гудба́й.\nСлово left тут означає «пішла»\nСлово without означає «без»\nСлово saying означає «говорити, казати» (say + ing)\nСлово goodbye означає «до побачення»\nСлова without saying goodbye означають «не попрощавшись»",
+        "en": "The action can come after of and without.\nI am tired of carrying this bag.\nThe word tired means “needing a rest”\nThe words tired of mean “fed up with”\nThe word carrying means “holding something while you move” (carry + ing)\nBefore ing the letter y stays: carry → carrying.\nShe is afraid of waking the baby.\nThe word afraid means “feeling fear”\nThe words afraid of mean “is scared of”\nThe word waking means “making someone wake up” (wake + ing, the e is gone)\nThe words waking the baby mean “to make the baby wake up”\nShe left without saying goodbye.\nThe word left here means “went away (leave → left)”\nThe word without means “not having”\nThe word saying means “speaking words” (say + ing)\nThe word goodbye means “the word we say when we part”\nThe words without saying goodbye mean “not saying goodbye”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:22.23",
+          "say": {
+            "ru": "ай эм та́йэрд ов кэ́ринг зис бэ́г",
+            "uk": "ай ем та́йерд ов ке́рінг зіс бе́г"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.32",
+          "say": {
+            "ru": "ши из эфрэ́йд ов уэ́йкинг зэ бэ́йби",
+            "uk": "ші із ефре́йд ов уе́йкінг зе бе́йбі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.26",
+          "say": {
+            "ru": "ши лэ́фт уизау́т сэ́йинг гудба́й",
+            "uk": "ші ле́фт уізау́т се́йінг гудба́й"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я устал носить эту сумку»",
+            "uk": "Виберіть, як сказати: «Я втомився носити цю сумку»",
+            "en": "Choose how to say: “I am tired of carrying this bag.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:22.23",
+          "options": [
+            "en-classic-r1:22.23",
+            "en-classic-r1:22.32",
+            "en-classic-r1:22.26"
+          ],
+          "answerId": "en-classic-r1:22.23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она боится разбудить ребенка»",
+            "uk": "Виберіть, як сказати: «Вона боїться розбудити дитину»",
+            "en": "Choose how to say: “She is afraid of waking the baby.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.32",
+          "options": [
+            "en-classic-r1:22.32",
+            "en-classic-r1:22.26",
+            "en-classic-r1:22.23"
+          ],
+          "answerId": "en-classic-r1:22.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она ушла, не попрощавшись»",
+            "uk": "Виберіть, як сказати: «Вона пішла, не попрощавшись»",
+            "en": "Choose how to say: “She left without saying goodbye.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.26",
+          "options": [
+            "en-classic-r1:22.26",
+            "en-classic-r1:22.23",
+            "en-classic-r1:22.32"
+          ],
+          "answerId": "en-classic-r1:22.26"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Извинился за, поблагодарила за, настояла на, жду встречи",
+        "uk": "Вибачився за, подякувала за, наполягала на, чекаю зустрічі",
+        "en": "Apologised for, thanked for, insisted on, looking forward to"
+      },
+      "text": {
+        "ru": "Ещё несколько маленьких слов перед действием: for, on, to.\nHe apologised for arriving late. — Он извинился за опоздание.\nЧитается: хи эпо́лоджайзд фо́р эра́йвинг лэ́йт.\nСлово apologised значит «извинился» (apologise + d)\nСлова apologised for значат «извинился за»\nСлово arriving значит «приезжать, приходить» (arrive + ing, e пропала)\nСлова arriving late значат «прийти поздно, то есть опоздать»\nShe thanked me for lending her a pen.\n— Она поблагодарила меня за то, что я одолжил ей ручку.\nЧитается: ши тэ́нкт ми фо́р лэ́ндинг хэ́р э пэ́н.\nСлово lend значит «давать на время»; lending — это lend + ing\nСлова thanked me for значат «поблагодарила меня за то, что»\nShe insisted on paying her share. — Она настояла на том, чтобы заплатить свою долю.\nЧитается: ши инси́стид он пэ́йинг хэ́р шэ́р.\nСлово insisted значит «настояла» (insist + ed)\nСлова insisted on значат «настояла на том, чтобы»\nСлово paying значит «платить» (pay + ing, y остаётся)\nСлово share здесь значит «своя доля» — часть счёта\nI look forward to meeting you. — Я с нетерпением жду встречи с вами.\nЧитается: ай лу́к фо́рвард ту ми́тинг ю.\nСлово forward значит «вперёд»\nСлова look forward to значат «с нетерпением жду»\nЗдесь to — часть выражения look forward to, а не «чтобы».\nПоэтому после него слово с ing: meeting.\nСравните: в to buy слово buy без ing, и там to значит «чтобы».\nСлово meeting значит «встреча» (meet + ing)\nСлова meeting you значат «встречи с вами»\nПосле маленького слова действие называют словом с ing.",
+        "uk": "Ще кілька маленьких слів перед дією: for, on, to.\nHe apologised for arriving late. — Він вибачився за те, що прийшов пізно.\nЧитається: хі епо́лоджайзд фо́р ера́йвінг ле́йт.\nСлово apologised означає «вибачився» (apologise + d)\nСлова apologised for означають «вибачився за»\nСлово arriving означає «приїжджати, приходити» (arrive + ing, e зникла)\nСлова arriving late означають «прийти пізно, тобто запізнитися»\nShe thanked me for lending her a pen.\n— Вона подякувала мені за те, що я позичив їй ручку.\nЧитається: ші те́нкт мі фо́р ле́ндінг хе́р е пе́н.\nСлово lend означає «давати на певний час»; lending — це lend + ing\nСлова thanked me for означають «подякувала мені за те, що»\nShe insisted on paying her share. — Вона наполягала на тому, щоб заплатити свою частку.\nЧитається: ші інсі́стід он пе́йінг хе́р ше́р.\nСлово insisted означає «наполягала» (insist + ed)\nСлова insisted on означають «наполягала на тому, щоб»\nСлово paying означає «платити» (pay + ing, y залишається)\nСлово share тут означає «своя частка» — частина рахунку\nI look forward to meeting you. — З нетерпінням чекаю зустрічі з вами.\nЧитається: ай лу́к фо́рвард ту мі́тінг ю.\nСлово forward означає «уперед»\nСлова look forward to означають «з нетерпінням чекаю»\nТут to — частина виразу look forward to, а не «щоб».\nТому після нього слово з ing: meeting.\nПорівняйте: у to buy слово buy без ing, і там to означає «щоб».\nСлово meeting означає «зустріч» (meet + ing)\nСлова meeting you означають «зустрічі з вами»\nПісля маленького слова дію називають словом з ing.",
+        "en": "A few more small words before an action: for, on, to.\nHe apologised for arriving late.\nThe word apologised means “said sorry” (apologise + d)\nThe words apologised for mean “said sorry for”\nThe word arriving means “coming to a place” (arrive + ing, the e is gone)\nThe words arriving late mean “to come after the right time”\nShe thanked me for lending her a pen.\nThe word lend means “give for a short while”; lending is lend + ing\nThe words thanked me for mean “said thank you to me because”\nShe insisted on paying her share.\nThe word insisted means “said firmly she would” (insist + ed)\nThe words insisted on mean “said firmly she would”\nThe word paying means “giving money” (pay + ing, the y stays)\nThe word share here means “her part” of the bill\nI look forward to meeting you.\nThe word forward means “ahead”\nThe words look forward to mean “am happy to wait for”\nHere to is part of the phrase look forward to, not “in order to”.\nSo an ing word follows it: meeting.\nCompare: in to buy, the word buy has no ing.\nThere to means “in order to”.\nThe word meeting means “coming together with someone” (meet + ing)\nThe words meeting you mean “seeing you”\nAfter a small word, the action is named with an ing word."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:22.33",
+          "say": {
+            "ru": "хи эпо́лоджайзд фо́р эра́йвинг лэ́йт",
+            "uk": "хі епо́лоджайзд фо́р ера́йвінг ле́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.40",
+          "say": {
+            "ru": "ши тэ́нкт ми фо́р лэ́ндинг хэ́р э пэ́н",
+            "uk": "ші те́нкт мі фо́р ле́ндінг хе́р е пе́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.35",
+          "say": {
+            "ru": "ши инси́стид он пэ́йинг хэ́р шэ́р",
+            "uk": "ші інсі́стід он пе́йінг хе́р ше́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:22.31",
+          "say": {
+            "ru": "ай лу́к фо́рвард ту ми́тинг ю",
+            "uk": "ай лу́к фо́рвард ту мі́тінг ю"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он извинился за опоздание»",
+            "uk": "Виберіть, як сказати: «Він вибачився за те, що прийшов пізно»",
+            "en": "Choose how to say: “He apologised for arriving late.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:22.33",
+          "options": [
+            "en-classic-r1:22.33",
+            "en-classic-r1:22.40",
+            "en-classic-r1:22.35"
+          ],
+          "answerId": "en-classic-r1:22.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она поблагодарила меня за то, что я одолжил ей ручку»",
+            "uk": "Виберіть, як сказати: «Вона подякувала мені за те, що я позичив їй ручку»",
+            "en": "Choose how to say: “She thanked me for lending her a pen.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.40",
+          "options": [
+            "en-classic-r1:22.40",
+            "en-classic-r1:22.35",
+            "en-classic-r1:22.31"
+          ],
+          "answerId": "en-classic-r1:22.40"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она настояла на том, чтобы заплатить свою долю»",
+            "uk": "Виберіть, як сказати: «Вона наполягала на тому, щоб заплатити свою частку»",
+            "en": "Choose how to say: “She insisted on paying her share.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:22.35",
+          "options": [
+            "en-classic-r1:22.35",
+            "en-classic-r1:22.31",
+            "en-classic-r1:22.33"
+          ],
+          "answerId": "en-classic-r1:22.35"
+        }
+      ]
+    }
+  ]
+}

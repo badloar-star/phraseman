@@ -1,0 +1,339 @@
+{
+ "lang": "en",
+ "lesson": 21,
+ "words": [
+  {
+   "form": "someone",
+   "surface": "Someone",
+   "count": 6,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.01",
+     "target": "Someone is at the door",
+     "ru": "Кто-то у двери.",
+     "en": "Someone is at the door."
+    },
+    {
+     "id": "en-classic-r1:21.03",
+     "target": "Someone left a scarf here",
+     "ru": "Кто-то оставил здесь шарф.",
+     "en": "Someone left a scarf here."
+    }
+   ]
+  },
+  {
+   "form": "something",
+   "surface": "Something",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.02",
+     "target": "Something is burning",
+     "ru": "Что-то горит.",
+     "en": "Something is burning."
+    },
+    {
+     "id": "en-classic-r1:21.04",
+     "target": "Something fell off the shelf",
+     "ru": "Что-то упало с полки.",
+     "en": "Something fell off the shelf."
+    }
+   ]
+  },
+  {
+   "form": "burning",
+   "surface": "burning",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.02",
+     "target": "Something is burning",
+     "ru": "Что-то горит.",
+     "en": "Something is burning."
+    }
+   ]
+  },
+  {
+   "form": "shoe",
+   "surface": "shoe",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.08",
+     "target": "There is something in my shoe",
+     "ru": "В моей туфле что-то есть.",
+     "en": "There is something in my shoe."
+    }
+   ]
+  },
+  {
+   "form": "somewhere",
+   "surface": "somewhere",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.10",
+     "target": "We need somewhere to sit",
+     "ru": "Нам нужно где-нибудь сесть.",
+     "en": "We need somewhere to sit."
+    },
+    {
+     "id": "en-classic-r1:21.49",
+     "target": "There is somewhere quiet upstairs",
+     "ru": "Наверху есть тихое место.",
+     "en": "There is somewhere quiet upstairs."
+    }
+   ]
+  },
+  {
+   "form": "anything",
+   "surface": "anything",
+   "count": 6,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.13",
+     "target": "Do you need anything else",
+     "ru": "Вам что-нибудь еще нужно?",
+     "en": "Do you need anything else?"
+    },
+    {
+     "id": "en-classic-r1:21.14",
+     "target": "Is anything missing",
+     "ru": "Что-нибудь пропало?",
+     "en": "Is anything missing?"
+    }
+   ]
+  },
+  {
+   "form": "else",
+   "surface": "else",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.13",
+     "target": "Do you need anything else",
+     "ru": "Вам что-нибудь еще нужно?",
+     "en": "Do you need anything else?"
+    }
+   ]
+  },
+  {
+   "form": "anywhere",
+   "surface": "anywhere",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.17",
+     "target": "Is there anywhere to park",
+     "ru": "Есть ли где-нибудь припарковаться?",
+     "en": "Is there anywhere to park?"
+    },
+    {
+     "id": "en-classic-r1:21.18",
+     "target": "Did you go anywhere yesterday",
+     "ru": "Вы куда-нибудь ходили вчера?",
+     "en": "Did you go anywhere yesterday?"
+    }
+   ]
+  },
+  {
+   "form": "nobody",
+   "surface": "Nobody",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.21",
+     "target": "Nobody answered the phone",
+     "ru": "Никто не ответил на телефон.",
+     "en": "Nobody answered the phone."
+    },
+    {
+     "id": "en-classic-r1:21.24",
+     "target": "Nobody signed the form",
+     "ru": "Никто не подписал форму.",
+     "en": "Nobody signed the form."
+    }
+   ]
+  },
+  {
+   "form": "answered",
+   "surface": "answered",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.21",
+     "target": "Nobody answered the phone",
+     "ru": "Никто не ответил на телефон.",
+     "en": "Nobody answered the phone."
+    }
+   ]
+  },
+  {
+   "form": "nothing",
+   "surface": "Nothing",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.22",
+     "target": "Nothing is open yet",
+     "ru": "Пока ничего не открыто.",
+     "en": "Nothing is open yet."
+    },
+    {
+     "id": "en-classic-r1:21.25",
+     "target": "Nothing happened after lunch",
+     "ru": "После обеда ничего не произошло.",
+     "en": "Nothing happened after lunch."
+    }
+   ]
+  },
+  {
+   "form": "nowhere",
+   "surface": "nowhere",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.23",
+     "target": "There is nowhere to sit",
+     "ru": "Сидеть негде.",
+     "en": "There is nowhere to sit."
+    },
+    {
+     "id": "en-classic-r1:21.30",
+     "target": "The key was nowhere to be found",
+     "ru": "Ключа нигде не было.",
+     "en": "The key was nowhere to be found."
+    }
+   ]
+  },
+  {
+   "form": "happened",
+   "surface": "happened",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.25",
+     "target": "Nothing happened after lunch",
+     "ru": "После обеда ничего не произошло.",
+     "en": "Nothing happened after lunch."
+    }
+   ]
+  },
+  {
+   "form": "town",
+   "surface": "town",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.26",
+     "target": "I know nobody in this town",
+     "ru": "Я никого не знаю в этом городе.",
+     "en": "I know nobody in this town."
+    }
+   ]
+  },
+  {
+   "form": "declare",
+   "surface": "declare",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.27",
+     "target": "We have nothing to declare",
+     "ru": "Нам нечего декларировать.",
+     "en": "We have nothing to declare."
+    }
+   ]
+  },
+  {
+   "form": "everybody",
+   "surface": "Everybody",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.31",
+     "target": "Everybody needs a ticket",
+     "ru": "Всем нужен билет.",
+     "en": "Everybody needs a ticket."
+    },
+    {
+     "id": "en-classic-r1:21.35",
+     "target": "Everybody heard the bell",
+     "ru": "Все услышали звонок.",
+     "en": "Everybody heard the bell."
+    }
+   ]
+  },
+  {
+   "form": "everyone",
+   "surface": "Everyone",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.33",
+     "target": "Everyone has a seat",
+     "ru": "У каждого есть место.",
+     "en": "Everyone has a seat."
+    },
+    {
+     "id": "en-classic-r1:21.38",
+     "target": "Everyone has a ticket for the rehearsal",
+     "ru": "У всех есть билет на репетицию.",
+     "en": "Everyone has a ticket for the rehearsal."
+    }
+   ]
+  },
+  {
+   "form": "fits",
+   "surface": "fits",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.36",
+     "target": "Everything fits in one bag",
+     "ru": "Всё помещается в одну сумку.",
+     "en": "Everything fits in one bag."
+    }
+   ]
+  },
+  {
+   "form": "everywhere",
+   "surface": "everywhere",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.37",
+     "target": "We looked everywhere for the receipt",
+     "ru": "Мы везде искали квитанцию.",
+     "en": "We looked everywhere for the receipt."
+    }
+   ]
+  },
+  {
+   "form": "thanked",
+   "surface": "thanked",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.40",
+     "target": "I thanked everyone at the desk",
+     "ru": "Я поблагодарил всех за стойкой.",
+     "en": "I thanked everyone at the desk."
+    }
+   ]
+  },
+  {
+   "form": "except",
+   "surface": "except",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:21.47",
+     "target": "Everyone is here except Tom",
+     "ru": "Все здесь, кроме Тома.",
+     "en": "Everyone is here except Tom."
+    }
+   ]
+  }
+ ]
+}

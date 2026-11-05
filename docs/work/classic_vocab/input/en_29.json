@@ -1,0 +1,168 @@
+{
+ "lang": "en",
+ "lesson": 29,
+ "words": [
+  {
+   "form": "warehouse",
+   "surface": "warehouse",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.06",
+     "target": "I used to work in a warehouse",
+     "ru": "Я раньше работал на складе.",
+     "en": "I used to work in a warehouse."
+    },
+    {
+     "id": "en-classic-r1:29.29",
+     "target": "The warehouse did not use to have heating",
+     "ru": "На складе раньше не было отопления.",
+     "en": "The warehouse did not use to have heating."
+    }
+   ]
+  },
+  {
+   "form": "playground",
+   "surface": "playground",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.10",
+     "target": "They used to meet at the playground",
+     "ru": "Раньше они встречались на детской площадке.",
+     "en": "They used to meet at the playground."
+    }
+   ]
+  },
+  {
+   "form": "factory",
+   "surface": "factory",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.11",
+     "target": "There used to be a factory here",
+     "ru": "Здесь раньше был завод.",
+     "en": "There used to be a factory here."
+    }
+   ]
+  },
+  {
+   "form": "cinema",
+   "surface": "cinema",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.12",
+     "target": "There used to be a cinema on this corner",
+     "ru": "На этом углу раньше был кинотеатр.",
+     "en": "There used to be a cinema on this corner."
+    }
+   ]
+  },
+  {
+   "form": "corner",
+   "surface": "corner",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.12",
+     "target": "There used to be a cinema on this corner",
+     "ru": "На этом углу раньше был кинотеатр.",
+     "en": "There used to be a cinema on this corner."
+    }
+   ]
+  },
+  {
+   "form": "entrances",
+   "surface": "entrances",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.13",
+     "target": "There used to be two entrances",
+     "ru": "Раньше было два входа.",
+     "en": "There used to be two entrances."
+    }
+   ]
+  },
+  {
+   "form": "tram",
+   "surface": "tram",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.20",
+     "target": "The tram used to stop here",
+     "ru": "Раньше здесь останавливался трамвай.",
+     "en": "The tram used to stop here."
+    }
+   ]
+  },
+  {
+   "form": "bookings",
+   "surface": "bookings",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.25",
+     "target": "They did not use to take bookings",
+     "ru": "Раньше они не принимали бронирования.",
+     "en": "They did not use to take bookings."
+    }
+   ]
+  },
+  {
+   "form": "deliver",
+   "surface": "deliver",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.34",
+     "target": "Did they use to deliver on Saturdays",
+     "ru": "Они раньше доставляли по субботам?",
+     "en": "Did they use to deliver on Saturdays?"
+    }
+   ]
+  },
+  {
+   "form": "visit",
+   "surface": "visit",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.39",
+     "target": "Was this the shop you used to visit",
+     "ru": "Это был тот магазин, в который вы раньше ходили?",
+     "en": "Was this the shop you used to visit?"
+    }
+   ]
+  },
+  {
+   "form": "cycle",
+   "surface": "cycle",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.41",
+     "target": "I used to drive but now I cycle",
+     "ru": "Раньше я водил машину, а теперь езжу на велосипеде.",
+     "en": "I used to drive, but now I cycle."
+    }
+   ]
+  },
+  {
+   "form": "hate",
+   "surface": "hate",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:29.48",
+     "target": "I used to hate the early shift but I am used to it now",
+     "ru": "Раньше я ненавидел раннюю смену, а теперь привык.",
+     "en": "I used to hate the early shift, but I am used to it now."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,300 @@
+{
+ "lang": "en",
+ "lesson": 17,
+ "words": {
+  "leaving": {
+   "ru": "уходим, уходят",
+   "uk": "йдемо, йдуть",
+   "en": "going away from a place",
+   "es": "saliendo, yéndose"
+  },
+  "cooking": {
+   "ru": "готовит, готовишь",
+   "uk": "готує, готуєш",
+   "en": "making food",
+   "es": "cocinando"
+  },
+  "listening": {
+   "ru": "слушаю, слушаешь",
+   "uk": "слухаю, слухаєш",
+   "en": "paying attention to sounds",
+   "es": "escuchando"
+  },
+  "ringing": {
+   "ru": "звонит",
+   "uk": "дзвонить",
+   "en": "making a bell sound",
+   "es": "sonando"
+  },
+  "closing": {
+   "ru": "закрываются",
+   "uk": "зачиняються",
+   "en": "shutting",
+   "es": "cerrándose"
+  },
+  "coming": {
+   "ru": "приезжает, идёт",
+   "uk": "приїжджає, йде",
+   "en": "moving towards you",
+   "es": "viniendo"
+  },
+  "getting": {
+   "ru": "становится",
+   "uk": "стає",
+   "en": "slowly becoming",
+   "es": "poniéndose, volviéndose"
+  },
+  "putting": {
+   "ru": "надевает, кладёт",
+   "uk": "одягає, кладе",
+   "en": "placing on something",
+   "es": "poniendo"
+  },
+  "washing": {
+   "ru": "моет",
+   "uk": "миє",
+   "en": "cleaning with water",
+   "es": "lavando"
+  },
+  "packing": {
+   "ru": "собираем (вещи)",
+   "uk": "збираємо (речі)",
+   "en": "putting things in a bag",
+   "es": "haciendo las maletas"
+  },
+  "suitcases": {
+   "ru": "чемоданы",
+   "uk": "валізи",
+   "en": "big bags for travel",
+   "es": "maletas"
+  },
+  "carrying": {
+   "ru": "несут",
+   "uk": "несуть",
+   "en": "holding while moving",
+   "es": "llevando"
+  },
+  "mattress": {
+   "ru": "матрас",
+   "uk": "матрац",
+   "en": "soft thing you sleep on",
+   "es": "colchón"
+  },
+  "standing": {
+   "ru": "стоишь, стоит",
+   "uk": "стоїш, стоїть",
+   "en": "on your feet",
+   "es": "de pie"
+  },
+  "writing": {
+   "ru": "записываю, пишу",
+   "uk": "записую, пишу",
+   "en": "putting words on paper",
+   "es": "escribiendo"
+  },
+  "checking": {
+   "ru": "проверяет",
+   "uk": "перевіряє",
+   "en": "looking to see if all is right",
+   "es": "comprobando"
+  },
+  "neighbour": {
+   "ru": "сосед, соседка",
+   "uk": "сусід, сусідка",
+   "en": "person who lives next to you",
+   "es": "vecino"
+  },
+  "fixing": {
+   "ru": "чинит",
+   "uk": "лагодить",
+   "en": "making something work again",
+   "es": "arreglando"
+  },
+  "baby": {
+   "ru": "ребёнок, малыш",
+   "uk": "дитина, немовля",
+   "en": "very young child",
+   "es": "bebé"
+  },
+  "sleeping": {
+   "ru": "спит",
+   "uk": "спить",
+   "en": "resting with eyes closed",
+   "es": "durmiendo"
+  },
+  "cot": {
+   "ru": "детская кроватка",
+   "uk": "дитяче ліжечко",
+   "en": "small bed for a baby",
+   "es": "cuna"
+  },
+  "calling": {
+   "ru": "звонит",
+   "uk": "телефонує",
+   "en": "phoning someone",
+   "es": "llamando"
+  },
+  "going": {
+   "ru": "идём, идёт",
+   "uk": "йдемо, йде",
+   "en": "moving to a place",
+   "es": "yendo"
+  },
+  "flashing": {
+   "ru": "мигает",
+   "uk": "блимає",
+   "en": "turning on and off quickly",
+   "es": "parpadeando"
+  },
+  "boiling": {
+   "ru": "кипит",
+   "uk": "кипить",
+   "en": "bubbling with heat",
+   "es": "hirviendo"
+  },
+  "using": {
+   "ru": "пользуетесь, используете",
+   "uk": "користуєтесь, використовуєте",
+   "en": "having something in use",
+   "es": "usando"
+  },
+  "ignoring": {
+   "ru": "игнорирую",
+   "uk": "ігнорую",
+   "en": "not paying attention",
+   "es": "ignorando"
+  },
+  "feeling": {
+   "ru": "чувствует себя",
+   "uk": "почувається",
+   "en": "having a feeling in your body",
+   "es": "sintiéndose"
+  },
+  "staying": {
+   "ru": "остаёмся, гостим",
+   "uk": "залишаємось, гостюємо",
+   "en": "not leaving; living for a short time",
+   "es": "quedándose, alojándose"
+  },
+  "wearing": {
+   "ru": "носит, надел",
+   "uk": "носить, одягнув",
+   "en": "having clothes on",
+   "es": "llevando puesto"
+  },
+  "responding": {
+   "ru": "отвечает, реагирует",
+   "uk": "відповідає, реагує",
+   "en": "answering a signal",
+   "es": "respondiendo"
+  },
+  "working": {
+   "ru": "работают",
+   "uk": "працюють",
+   "en": "doing a job; running well",
+   "es": "trabajando, funcionando"
+  },
+  "charging": {
+   "ru": "заряжается",
+   "uk": "заряджається",
+   "en": "filling with power",
+   "es": "cargándose"
+  },
+  "raining": {
+   "ru": "идёт дождь",
+   "uk": "йде дощ",
+   "en": "water falling from the sky",
+   "es": "lloviendo"
+  },
+  "now": {
+   "ru": "сейчас",
+   "uk": "зараз",
+   "en": "at this moment",
+   "es": "ahora"
+  },
+  "taking": {
+   "ru": "берёт, едет (на)",
+   "uk": "бере, їде (на)",
+   "en": "picking up; travelling by",
+   "es": "tomando"
+  },
+  "moving": {
+   "ru": "едет, двигается",
+   "uk": "їде, рухається",
+   "en": "changing place",
+   "es": "moviéndose"
+  },
+  "walking": {
+   "ru": "иду пешком",
+   "uk": "іду пішки",
+   "en": "going on foot",
+   "es": "caminando"
+  },
+  "normally": {
+   "ru": "обычно",
+   "uk": "зазвичай",
+   "en": "most of the time",
+   "es": "normalmente"
+  },
+  "helping": {
+   "ru": "помогает",
+   "uk": "допомагає",
+   "en": "making things easier for someone",
+   "es": "ayudando"
+  },
+  "friends": {
+   "ru": "друзья",
+   "uk": "друзі",
+   "en": "people you like and know well",
+   "es": "amigos"
+  },
+  "learning": {
+   "ru": "учусь",
+   "uk": "вчуся",
+   "en": "getting to know how to do something",
+   "es": "aprendiendo"
+  },
+  "painting": {
+   "ru": "красят",
+   "uk": "фарбують",
+   "en": "putting colour on a wall",
+   "es": "pintando"
+  },
+  "front": {
+   "ru": "передний, входной",
+   "uk": "передній, вхідний",
+   "en": "the side that faces forward",
+   "es": "delantero, de entrada"
+  },
+  "reading": {
+   "ru": "читаешь",
+   "uk": "читаєш",
+   "en": "looking at words and understanding",
+   "es": "leyendo"
+  },
+  "just": {
+   "ru": "как раз, только что",
+   "uk": "саме, щойно",
+   "en": "at this very moment",
+   "es": "justo, ahora mismo"
+  },
+  "finishing": {
+   "ru": "заканчиваю",
+   "uk": "закінчую",
+   "en": "doing the last part",
+   "es": "terminando"
+  },
+  "report": {
+   "ru": "отчёт",
+   "uk": "звіт",
+   "en": "written account of facts",
+   "es": "informe"
+  },
+  "tablet": {
+   "ru": "планшет",
+   "uk": "планшет",
+   "en": "flat touch-screen computer",
+   "es": "tableta"
+  }
+ }
+}

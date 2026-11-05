@@ -1,0 +1,162 @@
+{
+ "lang": "en",
+ "lesson": 31,
+ "words": {
+  "laugh": {
+   "ru": "засмеяться, смеяться",
+   "uk": "засміятися, сміятися",
+   "en": "make a happy sound",
+   "es": "reír"
+  },
+  "slam": {
+   "ru": "захлопнуться",
+   "uk": "грюкнути",
+   "en": "shut with a loud bang",
+   "es": "cerrarse de golpe"
+  },
+  "fall": {
+   "ru": "упасть",
+   "uk": "впасти",
+   "en": "go down quickly",
+   "es": "caer"
+  },
+  "click": {
+   "ru": "щёлкнуть, выключиться",
+   "uk": "клацнути, вимкнутися",
+   "en": "make a short sharp sound",
+   "es": "hacer clic"
+  },
+  "knock": {
+   "ru": "постучать",
+   "uk": "постукати",
+   "en": "hit a door to be heard",
+   "es": "llamar"
+  },
+  "reverse": {
+   "ru": "сдавать назад",
+   "uk": "подавати назад",
+   "en": "drive backwards",
+   "es": "ir marcha atrás"
+  },
+  "pour": {
+   "ru": "наливать",
+   "uk": "наливати",
+   "en": "make a liquid flow",
+   "es": "verter"
+  },
+  "into": {
+   "ru": "в, внутрь",
+   "uk": "у, всередину",
+   "en": "going inside something",
+   "es": "dentro de"
+  },
+  "wave": {
+   "ru": "махать рукой",
+   "uk": "махати рукою",
+   "en": "move your hand in the air",
+   "es": "saludar con la mano"
+  },
+  "hand": {
+   "ru": "передать, вернуть",
+   "uk": "передати, повернути",
+   "en": "give with your hand",
+   "es": "entregar"
+  },
+  "playing": {
+   "ru": "играют",
+   "uk": "граються",
+   "en": "having fun with a game",
+   "es": "jugando"
+  },
+  "paint": {
+   "ru": "краска",
+   "uk": "фарба",
+   "en": "coloured liquid for walls",
+   "es": "pintura"
+  },
+  "onto": {
+   "ru": "на (поверхность)",
+   "uk": "на (поверхню)",
+   "en": "moving to the top of a surface",
+   "es": "sobre"
+  },
+  "vibrating": {
+   "ru": "вибрирует",
+   "uk": "вібрує",
+   "en": "shaking quickly",
+   "es": "vibrando"
+  },
+  "lend": {
+   "ru": "одолжить",
+   "uk": "позичити",
+   "en": "give for a short time",
+   "es": "prestar"
+  },
+  "introduce": {
+   "ru": "представить, представиться",
+   "uk": "представити, представитися",
+   "en": "tell your name to someone new",
+   "es": "presentar"
+  },
+  "digging": {
+   "ru": "копает",
+   "uk": "риє",
+   "en": "making a hole in the ground",
+   "es": "cavando"
+  },
+  "fence": {
+   "ru": "забор",
+   "uk": "паркан",
+   "en": "wall of wood or wire around a garden",
+   "es": "valla"
+  },
+  "choose": {
+   "ru": "выбрать",
+   "uk": "вибрати",
+   "en": "pick one thing",
+   "es": "elegir"
+  },
+  "jump": {
+   "ru": "вздрогнуть, подпрыгнуть",
+   "uk": "здригнутися, підстрибнути",
+   "en": "move up suddenly",
+   "es": "sobresaltarse"
+  },
+  "eyes": {
+   "ru": "глаза",
+   "uk": "очі",
+   "en": "what you see with",
+   "es": "ojos"
+  },
+  "delay": {
+   "ru": "задержка",
+   "uk": "затримка",
+   "en": "being late",
+   "es": "retraso"
+  },
+  "smell": {
+   "ru": "запах",
+   "uk": "запах",
+   "en": "what your nose notices",
+   "es": "olor"
+  },
+  "unpack": {
+   "ru": "распаковать",
+   "uk": "розпакувати",
+   "en": "take things out of boxes",
+   "es": "desempacar"
+  },
+  "expected": {
+   "ru": "ожидал",
+   "uk": "очікував",
+   "en": "thought it would happen",
+   "es": "esperaba"
+  },
+  "doorbell": {
+   "ru": "дверной звонок",
+   "uk": "дверний дзвінок",
+   "en": "button that rings at the door",
+   "es": "timbre"
+  }
+ }
+}

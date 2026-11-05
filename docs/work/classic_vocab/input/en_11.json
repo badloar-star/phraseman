@@ -1,0 +1,801 @@
+{
+ "lang": "en",
+ "lesson": 11,
+ "words": [
+  {
+   "form": "walked",
+   "surface": "walked",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.01",
+     "target": "I walked home yesterday",
+     "ru": "Я вчера шел домой пешком.",
+     "en": "I walked home yesterday."
+    },
+    {
+     "id": "en-classic-r1:11.02",
+     "target": "She walked to the station",
+     "ru": "Она дошла до станции пешком.",
+     "en": "She walked to the station."
+    }
+   ]
+  },
+  {
+   "form": "yesterday",
+   "surface": "yesterday",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.01",
+     "target": "I walked home yesterday",
+     "ru": "Я вчера шел домой пешком.",
+     "en": "I walked home yesterday."
+    },
+    {
+     "id": "en-classic-r1:11.03",
+     "target": "We worked late yesterday",
+     "ru": "Мы вчера работали допоздна.",
+     "en": "We worked late yesterday."
+    }
+   ]
+  },
+  {
+   "form": "worked",
+   "surface": "worked",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.03",
+     "target": "We worked late yesterday",
+     "ru": "Мы вчера работали допоздна.",
+     "en": "We worked late yesterday."
+    },
+    {
+     "id": "en-classic-r1:11.04",
+     "target": "He worked from home on Monday",
+     "ru": "Он работал из дома в понедельник.",
+     "en": "He worked from home on Monday."
+    }
+   ]
+  },
+  {
+   "form": "from",
+   "surface": "from",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.04",
+     "target": "He worked from home on Monday",
+     "ru": "Он работал из дома в понедельник.",
+     "en": "He worked from home on Monday."
+    }
+   ]
+  },
+  {
+   "form": "called",
+   "surface": "called",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.05",
+     "target": "I called the office",
+     "ru": "Я позвонил в офис.",
+     "en": "I called the office."
+    },
+    {
+     "id": "en-classic-r1:11.06",
+     "target": "She called a taxi",
+     "ru": "Она вызвала такси.",
+     "en": "She called a taxi."
+    }
+   ]
+  },
+  {
+   "form": "taxi",
+   "surface": "taxi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.06",
+     "target": "She called a taxi",
+     "ru": "Она вызвала такси.",
+     "en": "She called a taxi."
+    }
+   ]
+  },
+  {
+   "form": "waited",
+   "surface": "waited",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.07",
+     "target": "They waited outside the shop",
+     "ru": "Они ждали у магазина.",
+     "en": "They waited outside the shop."
+    },
+    {
+     "id": "en-classic-r1:11.08",
+     "target": "We waited for the driver",
+     "ru": "Мы ждали водителя.",
+     "en": "We waited for the driver."
+    }
+   ]
+  },
+  {
+   "form": "helped",
+   "surface": "helped",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.09",
+     "target": "He helped me with the map",
+     "ru": "Он помог мне с картой.",
+     "en": "He helped me with the map."
+    },
+    {
+     "id": "en-classic-r1:11.10",
+     "target": "I helped her with the boxes",
+     "ru": "Я помог ей с коробками.",
+     "en": "I helped her with the boxes."
+    }
+   ]
+  },
+  {
+   "form": "boxes",
+   "surface": "boxes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.10",
+     "target": "I helped her with the boxes",
+     "ru": "Я помог ей с коробками.",
+     "en": "I helped her with the boxes."
+    }
+   ]
+  },
+  {
+   "form": "opened",
+   "surface": "opened",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.11",
+     "target": "I opened the envelope",
+     "ru": "Я открыл конверт.",
+     "en": "I opened the envelope."
+    }
+   ]
+  },
+  {
+   "form": "envelope",
+   "surface": "envelope",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.11",
+     "target": "I opened the envelope",
+     "ru": "Я открыл конверт.",
+     "en": "I opened the envelope."
+    }
+   ]
+  },
+  {
+   "form": "cleaned",
+   "surface": "cleaned",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.13",
+     "target": "We cleaned the kitchen",
+     "ru": "Мы убрали кухню.",
+     "en": "We cleaned the kitchen."
+    }
+   ]
+  },
+  {
+   "form": "washed",
+   "surface": "washed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.14",
+     "target": "He washed the cups",
+     "ru": "Он вымыл чашки.",
+     "en": "He washed the cups."
+    }
+   ]
+  },
+  {
+   "form": "packed",
+   "surface": "packed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.15",
+     "target": "They packed their bags",
+     "ru": "Они собрали свои чемоданы.",
+     "en": "They packed their bags."
+    }
+   ]
+  },
+  {
+   "form": "their",
+   "surface": "their",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.15",
+     "target": "They packed their bags",
+     "ru": "Они собрали свои чемоданы.",
+     "en": "They packed their bags."
+    }
+   ]
+  },
+  {
+   "form": "checked",
+   "surface": "checked",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.16",
+     "target": "I checked the address",
+     "ru": "Я проверил адрес.",
+     "en": "I checked the address."
+    }
+   ]
+  },
+  {
+   "form": "printed",
+   "surface": "printed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.17",
+     "target": "She printed the label",
+     "ru": "Она распечатала этикетку.",
+     "en": "She printed the label."
+    }
+   ]
+  },
+  {
+   "form": "posted",
+   "surface": "posted",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.18",
+     "target": "We posted the letter",
+     "ru": "Мы отправили письмо.",
+     "en": "We posted the letter."
+    }
+   ]
+  },
+  {
+   "form": "letter",
+   "surface": "letter",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.18",
+     "target": "We posted the letter",
+     "ru": "Мы отправили письмо.",
+     "en": "We posted the letter."
+    },
+    {
+     "id": "en-classic-r1:11.33",
+     "target": "Did they post the letter",
+     "ru": "Они отправили письмо?",
+     "en": "Did they post the letter?"
+    }
+   ]
+  },
+  {
+   "form": "signed",
+   "surface": "signed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.19",
+     "target": "He signed the receipt",
+     "ru": "Он подписал квитанцию.",
+     "en": "He signed the receipt."
+    }
+   ]
+  },
+  {
+   "form": "locked",
+   "surface": "locked",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.20",
+     "target": "I locked the back door",
+     "ru": "Я запер заднюю дверь.",
+     "en": "I locked the back door."
+    }
+   ]
+  },
+  {
+   "form": "booked",
+   "surface": "booked",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.21",
+     "target": "I booked a single room",
+     "ru": "Я забронировал одноместный номер.",
+     "en": "I booked a single room."
+    },
+    {
+     "id": "en-classic-r1:11.22",
+     "target": "They booked two seats",
+     "ru": "Они забронировали два места.",
+     "en": "They booked two seats."
+    }
+   ]
+  },
+  {
+   "form": "changed",
+   "surface": "changed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.23",
+     "target": "We changed our booking",
+     "ru": "Мы изменили своё бронирование.",
+     "en": "We changed our booking."
+    }
+   ]
+  },
+  {
+   "form": "cancelled",
+   "surface": "cancelled",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.24",
+     "target": "She cancelled the appointment",
+     "ru": "Она отменила встречу.",
+     "en": "She cancelled the appointment."
+    }
+   ]
+  },
+  {
+   "form": "missed",
+   "surface": "missed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.25",
+     "target": "He missed the last train",
+     "ru": "Он опоздал на последний поезд.",
+     "en": "He missed the last train."
+    }
+   ]
+  },
+  {
+   "form": "reached",
+   "surface": "reached",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.26",
+     "target": "I reached the platform in time",
+     "ru": "Я вовремя добрался до платформы.",
+     "en": "I reached the platform in time."
+    }
+   ]
+  },
+  {
+   "form": "crossed",
+   "surface": "crossed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.27",
+     "target": "We crossed the road at the lights",
+     "ru": "Мы перешли дорогу на светофоре.",
+     "en": "We crossed the road at the lights."
+    }
+   ]
+  },
+  {
+   "form": "road",
+   "surface": "road",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.27",
+     "target": "We crossed the road at the lights",
+     "ru": "Мы перешли дорогу на светофоре.",
+     "en": "We crossed the road at the lights."
+    }
+   ]
+  },
+  {
+   "form": "parked",
+   "surface": "parked",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.28",
+     "target": "She parked behind the shop",
+     "ru": "Она припарковалась за магазином.",
+     "en": "She parked behind the shop."
+    }
+   ]
+  },
+  {
+   "form": "behind",
+   "surface": "behind",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.28",
+     "target": "She parked behind the shop",
+     "ru": "Она припарковалась за магазином.",
+     "en": "She parked behind the shop."
+    }
+   ]
+  },
+  {
+   "form": "stopped",
+   "surface": "stopped",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.29",
+     "target": "The driver stopped by the gate",
+     "ru": "Водитель остановился у ворот.",
+     "en": "The driver stopped by the gate."
+    }
+   ]
+  },
+  {
+   "form": "arrived",
+   "surface": "arrived",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.30",
+     "target": "The train arrived ten minutes late",
+     "ru": "Поезд опоздал на десять минут.",
+     "en": "The train arrived ten minutes late."
+    }
+   ]
+  },
+  {
+   "form": "minutes",
+   "surface": "minutes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.30",
+     "target": "The train arrived ten minutes late",
+     "ru": "Поезд опоздал на десять минут.",
+     "en": "The train arrived ten minutes late."
+    }
+   ]
+  },
+  {
+   "form": "did",
+   "surface": "Did",
+   "count": 11,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.31",
+     "target": "Did you call the office",
+     "ru": "Вы звонили в офис?",
+     "en": "Did you call the office?"
+    },
+    {
+     "id": "en-classic-r1:11.32",
+     "target": "Did she check the address",
+     "ru": "Она проверила адрес?",
+     "en": "Did she check the address?"
+    }
+   ]
+  },
+  {
+   "form": "cancel",
+   "surface": "cancel",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.37",
+     "target": "She did not cancel the booking",
+     "ru": "Она не отменила бронирование.",
+     "en": "She did not cancel the booking."
+    }
+   ]
+  },
+  {
+   "form": "miss",
+   "surface": "miss",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.38",
+     "target": "They did not miss the flight",
+     "ru": "Они не опоздали на рейс.",
+     "en": "They did not miss the flight."
+    }
+   ]
+  },
+  {
+   "form": "flight",
+   "surface": "flight",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.38",
+     "target": "They did not miss the flight",
+     "ru": "Они не опоздали на рейс.",
+     "en": "They did not miss the flight."
+    }
+   ]
+  },
+  {
+   "form": "answer",
+   "surface": "answer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.40",
+     "target": "He did not answer the door",
+     "ru": "Он не открыл дверь.",
+     "en": "He did not answer the door."
+    }
+   ]
+  },
+  {
+   "form": "flashed",
+   "surface": "flashed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.42",
+     "target": "The screen flashed twice",
+     "ru": "Экран дважды мигнул.",
+     "en": "The screen flashed twice."
+    }
+   ]
+  },
+  {
+   "form": "twice",
+   "surface": "twice",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.42",
+     "target": "The screen flashed twice",
+     "ru": "Экран дважды мигнул.",
+     "en": "The screen flashed twice."
+    }
+   ]
+  },
+  {
+   "form": "restarted",
+   "surface": "restarted",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.43",
+     "target": "I restarted the laptop",
+     "ru": "Я перезагрузил ноутбук.",
+     "en": "I restarted the laptop."
+    }
+   ]
+  },
+  {
+   "form": "laptop",
+   "surface": "laptop",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.43",
+     "target": "I restarted the laptop",
+     "ru": "Я перезагрузил ноутбук.",
+     "en": "I restarted the laptop."
+    }
+   ]
+  },
+  {
+   "form": "tried",
+   "surface": "tried",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.44",
+     "target": "We tried a different cable",
+     "ru": "Мы попробовали другой кабель.",
+     "en": "We tried a different cable."
+    }
+   ]
+  },
+  {
+   "form": "different",
+   "surface": "different",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.44",
+     "target": "We tried a different cable",
+     "ru": "Мы попробовали другой кабель.",
+     "en": "We tried a different cable."
+    }
+   ]
+  },
+  {
+   "form": "copied",
+   "surface": "copied",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.45",
+     "target": "She copied the file",
+     "ru": "Она скопировала файл.",
+     "en": "She copied the file."
+    }
+   ]
+  },
+  {
+   "form": "file",
+   "surface": "file",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.45",
+     "target": "She copied the file",
+     "ru": "Она скопировала файл.",
+     "en": "She copied the file."
+    }
+   ]
+  },
+  {
+   "form": "saved",
+   "surface": "saved",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.46",
+     "target": "He saved the wrong version",
+     "ru": "Он сохранил неправильную версию.",
+     "en": "He saved the wrong version."
+    }
+   ]
+  },
+  {
+   "form": "wrong",
+   "surface": "wrong",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.46",
+     "target": "He saved the wrong version",
+     "ru": "Он сохранил неправильную версию.",
+     "en": "He saved the wrong version."
+    }
+   ]
+  },
+  {
+   "form": "version",
+   "surface": "version",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.46",
+     "target": "He saved the wrong version",
+     "ru": "Он сохранил неправильную версию.",
+     "en": "He saved the wrong version."
+    }
+   ]
+  },
+  {
+   "form": "noticed",
+   "surface": "noticed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.47",
+     "target": "I noticed a missing page",
+     "ru": "Я заметил, что не хватает страницы.",
+     "en": "I noticed a missing page."
+    }
+   ]
+  },
+  {
+   "form": "missing",
+   "surface": "missing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.47",
+     "target": "I noticed a missing page",
+     "ru": "Я заметил, что не хватает страницы.",
+     "en": "I noticed a missing page."
+    }
+   ]
+  },
+  {
+   "form": "page",
+   "surface": "page",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.47",
+     "target": "I noticed a missing page",
+     "ru": "Я заметил, что не хватает страницы.",
+     "en": "I noticed a missing page."
+    }
+   ]
+  },
+  {
+   "form": "fixed",
+   "surface": "fixed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.48",
+     "target": "They fixed the printer last week",
+     "ru": "Они починили принтер на прошлой неделе.",
+     "en": "They fixed the printer last week."
+    }
+   ]
+  },
+  {
+   "form": "returned",
+   "surface": "returned",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.49",
+     "target": "We returned the broken lamp",
+     "ru": "Мы вернули сломанную лампу.",
+     "en": "We returned the broken lamp."
+    }
+   ]
+  },
+  {
+   "form": "broken",
+   "surface": "broken",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.49",
+     "target": "We returned the broken lamp",
+     "ru": "Мы вернули сломанную лампу.",
+     "en": "We returned the broken lamp."
+    }
+   ]
+  },
+  {
+   "form": "lamp",
+   "surface": "lamp",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.49",
+     "target": "We returned the broken lamp",
+     "ru": "Мы вернули сломанную лампу.",
+     "en": "We returned the broken lamp."
+    }
+   ]
+  },
+  {
+   "form": "refund",
+   "surface": "refund",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:11.50",
+     "target": "Did the shop refund the delivery charge",
+     "ru": "Возместил ли магазин стоимость доставки?",
+     "en": "Did the shop refund the delivery charge?"
+    }
+   ]
+  }
+ ]
+}

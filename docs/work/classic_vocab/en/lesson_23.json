@@ -1,0 +1,234 @@
+{
+ "lang": "en",
+ "lesson": 23,
+ "words": {
+  "daily": {
+   "ru": "ежедневно",
+   "uk": "щодня",
+   "en": "every day",
+   "es": "a diario"
+  },
+  "letters": {
+   "ru": "письма",
+   "uk": "листи",
+   "en": "written messages in envelopes",
+   "es": "cartas"
+  },
+  "collected": {
+   "ru": "собранные, забранные",
+   "uk": "зібрані, забрані",
+   "en": "taken away from a place",
+   "es": "recogido"
+  },
+  "delivered": {
+   "ru": "доставленный",
+   "uk": "доставлений",
+   "en": "brought to your address",
+   "es": "entregado"
+  },
+  "kept": {
+   "ru": "хранится, хранимый",
+   "uk": "зберігається, збережений",
+   "en": "put and stored",
+   "es": "guardado"
+  },
+  "sold": {
+   "ru": "проданный",
+   "uk": "проданий",
+   "en": "given for money",
+   "es": "vendido"
+  },
+  "shown": {
+   "ru": "показанный",
+   "uk": "показаний",
+   "en": "made visible",
+   "es": "mostrado"
+  },
+  "uniforms": {
+   "ru": "униформа",
+   "uk": "уніформа",
+   "en": "special clothes for work",
+   "es": "uniformes"
+  },
+  "site": {
+   "ru": "место, площадка",
+   "uk": "місце, майданчик",
+   "en": "a place where something is",
+   "es": "lugar, sitio"
+  },
+  "were": {
+   "ru": "слово-помощник: были; по-русски нет",
+   "uk": "слово-помічник: були; українською немає",
+   "en": "helper word for past events",
+   "es": "palabra auxiliar (eran, fueron)"
+  },
+  "reserved": {
+   "ru": "зарезервированный",
+   "uk": "зарезервований",
+   "en": "kept for someone",
+   "es": "reservado"
+  },
+  "repaired": {
+   "ru": "отремонтированный",
+   "uk": "відремонтований",
+   "en": "made to work again",
+   "es": "reparado"
+  },
+  "switched": {
+   "ru": "выключенный, переключённый",
+   "uk": "вимкнений, перемкнений",
+   "en": "turned on or off",
+   "es": "apagado, cambiado"
+  },
+  "delayed": {
+   "ru": "задержанный",
+   "uk": "затриманий",
+   "en": "made late",
+   "es": "retrasado"
+  },
+  "because": {
+   "ru": "потому что",
+   "uk": "тому що",
+   "en": "word that gives a reason",
+   "es": "porque"
+  },
+  "included": {
+   "ru": "включённый",
+   "uk": "включений",
+   "en": "counted as part of the price",
+   "es": "incluido"
+  },
+  "drinks": {
+   "ru": "напитки",
+   "uk": "напої",
+   "en": "things you drink",
+   "es": "bebidas"
+  },
+  "forms": {
+   "ru": "бланки, анкеты",
+   "uk": "бланки, анкети",
+   "en": "papers to fill in",
+   "es": "formularios"
+  },
+  "bins": {
+   "ru": "мусорные баки",
+   "uk": "сміттєві баки",
+   "en": "containers for rubbish",
+   "es": "cubos de basura"
+  },
+  "deposit": {
+   "ru": "задаток, депозит",
+   "uk": "завдаток, депозит",
+   "en": "money paid and given back later",
+   "es": "fianza, depósito"
+  },
+  "garage": {
+   "ru": "гараж",
+   "uk": "гараж",
+   "en": "building for a car",
+   "es": "garaje"
+  },
+  "leather": {
+   "ru": "кожа",
+   "uk": "шкіра",
+   "en": "material made from animal skin",
+   "es": "cuero, piel"
+  },
+  "order": {
+   "ru": "заказ",
+   "uk": "замовлення",
+   "en": "goods you asked for",
+   "es": "pedido"
+  },
+  "refunded": {
+   "ru": "возвращённый (о деньгах)",
+   "uk": "повернений (про гроші)",
+   "en": "money given back",
+   "es": "reembolsado"
+  },
+  "allowed": {
+   "ru": "разрешённый",
+   "uk": "дозволений",
+   "en": "permitted",
+   "es": "permitido"
+  },
+  "food": {
+   "ru": "еда",
+   "uk": "їжа",
+   "en": "what people eat",
+   "es": "comida"
+  },
+  "served": {
+   "ru": "поданный",
+   "uk": "поданий",
+   "en": "brought to the table",
+   "es": "servido"
+  },
+  "turned": {
+   "ru": "выключенный, повёрнутый",
+   "uk": "вимкнений, повернутий",
+   "en": "switched or moved round",
+   "es": "apagado, girado"
+  },
+  "damaged": {
+   "ru": "повреждённый",
+   "uk": "пошкоджений",
+   "en": "broken or hurt",
+   "es": "dañado"
+  },
+  "processed": {
+   "ru": "обработанный",
+   "uk": "оброблений",
+   "en": "dealt with officially",
+   "es": "procesado"
+  },
+  "labelled": {
+   "ru": "подписанный, с этикеткой",
+   "uk": "підписаний, з етикеткою",
+   "en": "marked with a name",
+   "es": "etiquetado"
+  },
+  "replaced": {
+   "ru": "заменённый",
+   "uk": "замінений",
+   "en": "changed for a new one",
+   "es": "reemplazado"
+  },
+  "clear": {
+   "ru": "свободный, чистый",
+   "uk": "вільний, чистий",
+   "en": "with nothing in the way",
+   "es": "despejado"
+  },
+  "being": {
+   "ru": "слово-помощник: сейчас происходит; по-русски нет",
+   "uk": "слово-помічник: зараз відбувається; українською немає",
+   "en": "helper word for something happening now",
+   "es": "palabra auxiliar (siendo, estando)"
+  },
+  "resurfaced": {
+   "ru": "заново заасфальтированный",
+   "uk": "заново заасфальтований",
+   "en": "given a new road top",
+   "es": "repavimentado"
+  },
+  "been": {
+   "ru": "слово-помощник; по-русски нет",
+   "uk": "слово-помічник; українською немає",
+   "en": "helper word for finished actions",
+   "es": "palabra auxiliar (sido, estado)"
+  },
+  "moved": {
+   "ru": "перенесённый, перемещённый",
+   "uk": "перенесений, переміщений",
+   "en": "taken to another place",
+   "es": "trasladado"
+  },
+  "forwarded": {
+   "ru": "перенаправленный",
+   "uk": "переадресований",
+   "en": "sent on to another person",
+   "es": "reenviado"
+  }
+ }
+}

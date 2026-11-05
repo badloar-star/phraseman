@@ -1,0 +1,471 @@
+{
+ "lang": "en",
+ "lesson": 19,
+ "words": [
+  {
+   "form": "beside",
+   "surface": "beside",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.04",
+     "target": "The keys are beside the kettle",
+     "ru": "Ключи лежат рядом с чайником.",
+     "en": "The keys are beside the kettle."
+    },
+    {
+     "id": "en-classic-r1:19.26",
+     "target": "The cash machine is beside the entrance",
+     "ru": "Банкомат находится рядом с входом.",
+     "en": "The cash machine is beside the entrance."
+    }
+   ]
+  },
+  {
+   "form": "menu",
+   "surface": "menu",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.07",
+     "target": "The bill is under the menu",
+     "ru": "Счет лежит под меню.",
+     "en": "The bill is under the menu."
+    }
+   ]
+  },
+  {
+   "form": "clock",
+   "surface": "clock",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.10",
+     "target": "The clock is above the desk",
+     "ru": "Часы над столом.",
+     "en": "The clock is above the desk."
+    }
+   ]
+  },
+  {
+   "form": "above",
+   "surface": "above",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.10",
+     "target": "The clock is above the desk",
+     "ru": "Часы над столом.",
+     "en": "The clock is above the desk."
+    },
+    {
+     "id": "en-classic-r1:19.30",
+     "target": "The mirror is above the sink",
+     "ru": "Зеркало находится над раковиной.",
+     "en": "The mirror is above the sink."
+    }
+   ]
+  },
+  {
+   "form": "lobby",
+   "surface": "lobby",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.12",
+     "target": "Meet me in the lobby",
+     "ru": "Встретьтесь со мной в вестибюле.",
+     "en": "Meet me in the lobby."
+    }
+   ]
+  },
+  {
+   "form": "airport",
+   "surface": "airport",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.17",
+     "target": "They are at the airport",
+     "ru": "Они в аэропорту.",
+     "en": "They are at the airport."
+    }
+   ]
+  },
+  {
+   "form": "aisle",
+   "surface": "aisle",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.20",
+     "target": "Your seat is by the aisle",
+     "ru": "Ваше место у прохода.",
+     "en": "Your seat is by the aisle."
+    }
+   ]
+  },
+  {
+   "form": "opposite",
+   "surface": "opposite",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.21",
+     "target": "The pharmacy is opposite the bank",
+     "ru": "Аптека напротив банка.",
+     "en": "The pharmacy is opposite the bank."
+    },
+    {
+     "id": "en-classic-r1:19.49",
+     "target": "The bus stops opposite the main entrance",
+     "ru": "Автобус останавливается напротив главного входа.",
+     "en": "The bus stops opposite the main entrance."
+    }
+   ]
+  },
+  {
+   "form": "library",
+   "surface": "library",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.22",
+     "target": "The bakery is next to the library",
+     "ru": "Пекарня находится рядом с библиотекой.",
+     "en": "The bakery is next to the library."
+    }
+   ]
+  },
+  {
+   "form": "rank",
+   "surface": "rank",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.24",
+     "target": "The taxi rank is in front of the station",
+     "ru": "Стоянка такси находится перед вокзалом.",
+     "en": "The taxi rank is in front of the station."
+    }
+   ]
+  },
+  {
+   "form": "between",
+   "surface": "between",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.25",
+     "target": "The bike is between the wall and the gate",
+     "ru": "Велосипед стоит между стеной и воротами.",
+     "en": "The bike is between the wall and the gate."
+    },
+    {
+     "id": "en-classic-r1:19.40",
+     "target": "Sit between me and Anna",
+     "ru": "Сядьте между мной и Анной.",
+     "en": "Sit between me and Anna."
+    }
+   ]
+  },
+  {
+   "form": "wall",
+   "surface": "wall",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.25",
+     "target": "The bike is between the wall and the gate",
+     "ru": "Велосипед стоит между стеной и воротами.",
+     "en": "The bike is between the wall and the gate."
+    }
+   ]
+  },
+  {
+   "form": "and",
+   "surface": "and",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.25",
+     "target": "The bike is between the wall and the gate",
+     "ru": "Велосипед стоит между стеной и воротами.",
+     "en": "The bike is between the wall and the gate."
+    },
+    {
+     "id": "en-classic-r1:19.40",
+     "target": "Sit between me and Anna",
+     "ru": "Сядьте между мной и Анной.",
+     "en": "Sit between me and Anna."
+    }
+   ]
+  },
+  {
+   "form": "bench",
+   "surface": "bench",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.27",
+     "target": "The bench is under the tree",
+     "ru": "Скамейка находится под деревом.",
+     "en": "The bench is under the tree."
+    }
+   ]
+  },
+  {
+   "form": "tree",
+   "surface": "tree",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.27",
+     "target": "The bench is under the tree",
+     "ru": "Скамейка находится под деревом.",
+     "en": "The bench is under the tree."
+    }
+   ]
+  },
+  {
+   "form": "bridge",
+   "surface": "bridge",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.29",
+     "target": "The post office is near the bridge",
+     "ru": "Почта находится рядом с мостом.",
+     "en": "The post office is near the bridge."
+    }
+   ]
+  },
+  {
+   "form": "mirror",
+   "surface": "mirror",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.30",
+     "target": "The mirror is above the sink",
+     "ru": "Зеркало находится над раковиной.",
+     "en": "The mirror is above the sink."
+    }
+   ]
+  },
+  {
+   "form": "folder",
+   "surface": "folder",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.31",
+     "target": "Put the form in the folder",
+     "ru": "Положите бланк в папку.",
+     "en": "Put the form in the folder."
+    },
+    {
+     "id": "en-classic-r1:19.32",
+     "target": "Put the folder on the desk",
+     "ru": "Положите папку на стол.",
+     "en": "Put the folder on the desk."
+    }
+   ]
+  },
+  {
+   "form": "suitcase",
+   "surface": "suitcase",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.33",
+     "target": "Leave the suitcase by the counter",
+     "ru": "Оставьте чемодан у стойки.",
+     "en": "Leave the suitcase by the counter."
+    }
+   ]
+  },
+  {
+   "form": "counter",
+   "surface": "counter",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.33",
+     "target": "Leave the suitcase by the counter",
+     "ru": "Оставьте чемодан у стойки.",
+     "en": "Leave the suitcase by the counter."
+    }
+   ]
+  },
+  {
+   "form": "hang",
+   "surface": "Hang",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.34",
+     "target": "Hang the towel on the hook",
+     "ru": "Повесьте полотенце на крючок.",
+     "en": "Hang the towel on the hook."
+    }
+   ]
+  },
+  {
+   "form": "hook",
+   "surface": "hook",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.34",
+     "target": "Hang the towel on the hook",
+     "ru": "Повесьте полотенце на крючок.",
+     "en": "Hang the towel on the hook."
+    }
+   ]
+  },
+  {
+   "form": "slide",
+   "surface": "Slide",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.35",
+     "target": "Slide the note under the door",
+     "ru": "Подсуньте записку под дверь.",
+     "en": "Slide the note under the door."
+    }
+   ]
+  },
+  {
+   "form": "note",
+   "surface": "note",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.35",
+     "target": "Slide the note under the door",
+     "ru": "Подсуньте записку под дверь.",
+     "en": "Slide the note under the door."
+    }
+   ]
+  },
+  {
+   "form": "anna",
+   "surface": "Anna",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.40",
+     "target": "Sit between me and Anna",
+     "ru": "Сядьте между мной и Анной.",
+     "en": "Sit between me and Anna."
+    }
+   ]
+  },
+  {
+   "form": "stain",
+   "surface": "stain",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.41",
+     "target": "There is a stain on the sleeve",
+     "ru": "На рукаве пятно.",
+     "en": "There is a stain on the sleeve."
+    }
+   ]
+  },
+  {
+   "form": "sleeve",
+   "surface": "sleeve",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.41",
+     "target": "There is a stain on the sleeve",
+     "ru": "На рукаве пятно.",
+     "en": "There is a stain on the sleeve."
+    }
+   ]
+  },
+  {
+   "form": "hole",
+   "surface": "hole",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.42",
+     "target": "There is a hole in my pocket",
+     "ru": "В моем кармане дыра.",
+     "en": "There is a hole in my pocket."
+    }
+   ]
+  },
+  {
+   "form": "pocket",
+   "surface": "pocket",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.42",
+     "target": "There is a hole in my pocket",
+     "ru": "В моем кармане дыра.",
+     "en": "There is a hole in my pocket."
+    }
+   ]
+  },
+  {
+   "form": "top",
+   "surface": "top",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.44",
+     "target": "The spare batteries are in the top drawer",
+     "ru": "Запасные батарейки находятся в верхнем ящике.",
+     "en": "The spare batteries are in the top drawer."
+    }
+   ]
+  },
+  {
+   "form": "bottom",
+   "surface": "bottom",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.45",
+     "target": "Your towel is on the bottom shelf",
+     "ru": "Ваше полотенце на нижней полке.",
+     "en": "Your towel is on the bottom shelf."
+    }
+   ]
+  },
+  {
+   "form": "ground",
+   "surface": "ground",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.47",
+     "target": "Is the room on the ground floor",
+     "ru": "Комната на первом этаже?",
+     "en": "Is the room on the ground floor?"
+    }
+   ]
+  },
+  {
+   "form": "main",
+   "surface": "main",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:19.49",
+     "target": "The bus stops opposite the main entrance",
+     "ru": "Автобус останавливается напротив главного входа.",
+     "en": "The bus stops opposite the main entrance."
+    }
+   ]
+  }
+ ]
+}

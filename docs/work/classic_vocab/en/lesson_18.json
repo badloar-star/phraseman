@@ -1,0 +1,192 @@
+{
+ "lang": "en",
+ "lesson": 18,
+ "words": {
+  "stand": {
+   "ru": "встаньте, стойте",
+   "uk": "станьте, стійте",
+   "en": "be on your feet",
+   "es": "ponerse de pie, estar de pie"
+  },
+  "line": {
+   "ru": "линия, черта; строка",
+   "uk": "лінія, риска; рядок",
+   "en": "a long thin mark; a row of text",
+   "es": "línea"
+  },
+  "handrail": {
+   "ru": "поручень",
+   "uk": "поручень",
+   "en": "bar you hold for safety",
+   "es": "pasamanos"
+  },
+  "watch": {
+   "ru": "смотрите, следите",
+   "uk": "дивіться, стежте",
+   "en": "look at carefully",
+   "es": "mirar, vigilar"
+  },
+  "step": {
+   "ru": "шаг, ступенька",
+   "uk": "крок, сходинка",
+   "en": "one foot movement; stair",
+   "es": "paso, escalón"
+  },
+  "under": {
+   "ru": "под",
+   "uk": "під",
+   "en": "below something",
+   "es": "debajo de"
+  },
+  "running": {
+   "ru": "течёт, работает",
+   "uk": "тече, працює",
+   "en": "flowing or working",
+   "es": "corriendo, abierto"
+  },
+  "press": {
+   "ru": "нажмите",
+   "uk": "натисніть",
+   "en": "push with a finger",
+   "es": "presionar"
+  },
+  "red": {
+   "ru": "красный",
+   "uk": "червоний",
+   "en": "the colour of blood",
+   "es": "rojo"
+  },
+  "feed": {
+   "ru": "кормить",
+   "uk": "годувати",
+   "en": "give food to",
+   "es": "dar de comer"
+  },
+  "dog": {
+   "ru": "собака",
+   "uk": "собака",
+   "en": "pet animal that barks",
+   "es": "perro"
+  },
+  "yet": {
+   "ru": "пока (не), ещё (не)",
+   "uk": "поки (не), ще (не)",
+   "en": "up to now; not at this moment",
+   "es": "todavía, aún"
+  },
+  "reception": {
+   "ru": "ресепшен, стойка регистрации",
+   "uk": "рецепція, стійка реєстрації",
+   "en": "desk where guests arrive",
+   "es": "recepción"
+  },
+  "switch": {
+   "ru": "выключите, переключите",
+   "uk": "вимкніть, перемкніть",
+   "en": "turn a button on or off",
+   "es": "apagar, cambiar"
+  },
+  "little": {
+   "ru": "немного",
+   "uk": "трохи",
+   "en": "a small amount",
+   "es": "un poco"
+  },
+  "louder": {
+   "ru": "громче",
+   "uk": "голосніше",
+   "en": "with more sound",
+   "es": "más alto"
+  },
+  "save": {
+   "ru": "оставьте, придержите",
+   "uk": "залиште, притримайте",
+   "en": "keep for someone",
+   "es": "guardar, reservar"
+  },
+  "copy": {
+   "ru": "копия",
+   "uk": "копія",
+   "en": "a second paper like the first",
+   "es": "copia"
+  },
+  "cross": {
+   "ru": "перейдите",
+   "uk": "перейдіть",
+   "en": "go from one side to the other",
+   "es": "cruzar"
+  },
+  "follow": {
+   "ru": "следуйте, идите за",
+   "uk": "слідуйте, йдіть за",
+   "en": "go behind or after",
+   "es": "seguir"
+  },
+  "right": {
+   "ru": "справа, правый",
+   "uk": "праворуч, правий",
+   "en": "on the side opposite left",
+   "es": "derecha"
+  },
+  "push": {
+   "ru": "толкните",
+   "uk": "штовхніть",
+   "en": "press something away from you",
+   "es": "empujar"
+  },
+  "gently": {
+   "ru": "осторожно, мягко",
+   "uk": "обережно, м'яко",
+   "en": "in a soft, careful way",
+   "es": "con suavidad"
+  },
+  "pull": {
+   "ru": "потяните",
+   "uk": "потягніть",
+   "en": "move something towards you",
+   "es": "tirar"
+  },
+  "towards": {
+   "ru": "к, в сторону",
+   "uk": "до, у бік",
+   "en": "in the direction of",
+   "es": "hacia"
+  },
+  "ring": {
+   "ru": "позвоните, звонить",
+   "uk": "задзвоніть, дзвонити",
+   "en": "make a bell sound",
+   "es": "tocar (el timbre)"
+  },
+  "once": {
+   "ru": "один раз",
+   "uk": "один раз",
+   "en": "one time only",
+   "es": "una vez"
+  },
+  "let's": {
+   "ru": "давайте",
+   "uk": "давайте",
+   "en": "used to suggest doing something together",
+   "es": "vamos a"
+  },
+  "others": {
+   "ru": "остальные, другие",
+   "uk": "решта, інші",
+   "en": "the other people",
+   "es": "los demás, otros"
+  },
+  "rush": {
+   "ru": "спешить",
+   "uk": "поспішати",
+   "en": "hurry too much",
+   "es": "apresurarse"
+  },
+  "try": {
+   "ru": "попробовать, пытаться",
+   "uk": "спробувати, намагатися",
+   "en": "test it or make an effort",
+   "es": "probar, intentar"
+  }
+ }
+}

@@ -1,0 +1,426 @@
+{
+ "lang": "en",
+ "lesson": 30,
+ "words": [
+  {
+   "form": "person",
+   "surface": "person",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.01",
+     "target": "The person who called is here",
+     "ru": "Тот, кто звонил, здесь.",
+     "en": "The person who called is here."
+    },
+    {
+     "id": "en-classic-r1:30.36",
+     "target": "Do you know the person whose name is on the form",
+     "ru": "Вы знаете человека, чье имя указано в форме?",
+     "en": "Do you know the person whose name is on the form?"
+    }
+   ]
+  },
+  {
+   "form": "man",
+   "surface": "man",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.02",
+     "target": "The man who repaired the roof is outside",
+     "ru": "Мужчина, ремонтировавший крышу, снаружи.",
+     "en": "The man who repaired the roof is outside."
+    },
+    {
+     "id": "en-classic-r1:30.06",
+     "target": "The man who fixed the tap lives nearby",
+     "ru": "Мужчина, починивший кран, живет неподалеку.",
+     "en": "The man who fixed the tap lives nearby."
+    }
+   ]
+  },
+  {
+   "form": "woman",
+   "surface": "woman",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.03",
+     "target": "The woman who found my phone left a note",
+     "ru": "Женщина, нашедшая мой телефон, оставила записку.",
+     "en": "The woman who found my phone left a note."
+    },
+    {
+     "id": "en-classic-r1:30.32",
+     "target": "The woman whose keys we found is here",
+     "ru": "Женщина, чьи ключи мы нашли, здесь.",
+     "en": "The woman whose keys we found is here."
+    }
+   ]
+  },
+  {
+   "form": "child",
+   "surface": "child",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.05",
+     "target": "The child who won the race is my niece",
+     "ru": "Ребенок, выигравший гонку, — моя племянница.",
+     "en": "The child who won the race is my niece."
+    }
+   ]
+  },
+  {
+   "form": "won",
+   "surface": "won",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.05",
+     "target": "The child who won the race is my niece",
+     "ru": "Ребенок, выигравший гонку, — моя племянница.",
+     "en": "The child who won the race is my niece."
+    }
+   ]
+  },
+  {
+   "form": "race",
+   "surface": "race",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.05",
+     "target": "The child who won the race is my niece",
+     "ru": "Ребенок, выигравший гонку, — моя племянница.",
+     "en": "The child who won the race is my niece."
+    }
+   ]
+  },
+  {
+   "form": "niece",
+   "surface": "niece",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.05",
+     "target": "The child who won the race is my niece",
+     "ru": "Ребенок, выигравший гонку, — моя племянница.",
+     "en": "The child who won the race is my niece."
+    }
+   ]
+  },
+  {
+   "form": "sells",
+   "surface": "sells",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.07",
+     "target": "The shop that sells maps is closed",
+     "ru": "Магазин, продающий карты, закрыт.",
+     "en": "The shop that sells maps is closed."
+    }
+   ]
+  },
+  {
+   "form": "maps",
+   "surface": "maps",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.07",
+     "target": "The shop that sells maps is closed",
+     "ru": "Магазин, продающий карты, закрыт.",
+     "en": "The shop that sells maps is closed."
+    }
+   ]
+  },
+  {
+   "form": "borrowed",
+   "surface": "borrowed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.11",
+     "target": "The book that I borrowed is on the desk",
+     "ru": "Книга, которую я взял, лежит на столе.",
+     "en": "The book that I borrowed is on the desk."
+    }
+   ]
+  },
+  {
+   "form": "too",
+   "surface": "too",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.12",
+     "target": "The leather coat that she bought is too small",
+     "ru": "Кожаное пальто, которое она купила, слишком маленькое.",
+     "en": "The leather coat that she bought is too small."
+    },
+    {
+     "id": "en-classic-r1:30.41",
+     "target": "The key I found was too rusty to turn",
+     "ru": "Найденный мной ключ был слишком ржавым, чтобы его повернуть.",
+     "en": "The key I found was too rusty to turn."
+    }
+   ]
+  },
+  {
+   "form": "watched",
+   "surface": "watched",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.16",
+     "target": "The film that we watched was funny",
+     "ru": "Фильм, который мы смотрели, был смешным.",
+     "en": "The film that we watched was funny."
+    }
+   ]
+  },
+  {
+   "form": "funny",
+   "surface": "funny",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.16",
+     "target": "The film that we watched was funny",
+     "ru": "Фильм, который мы смотрели, был смешным.",
+     "en": "The film that we watched was funny."
+    }
+   ]
+  },
+  {
+   "form": "tyres",
+   "surface": "tyres",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.18",
+     "target": "The bike that he bought needs new tyres",
+     "ru": "Велосипеду, который он купил, нужны новые шины.",
+     "en": "The bike that he bought needs new tyres."
+    }
+   ]
+  },
+  {
+   "form": "incorrect",
+   "surface": "incorrect",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.20",
+     "target": "The reference number that she gave me is incorrect",
+     "ru": "Справочный номер, который она мне дала, неверный.",
+     "en": "The reference number that she gave me is incorrect."
+    }
+   ]
+  },
+  {
+   "form": "place",
+   "surface": "place",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.23",
+     "target": "Show me the place where you left the bag",
+     "ru": "Покажите мне место, где вы оставили сумку.",
+     "en": "Show me the place where you left the bag."
+    }
+   ]
+  },
+  {
+   "form": "power",
+   "surface": "power",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.26",
+     "target": "I remember the day when the power went off",
+     "ru": "Я помню день, когда отключили электричество.",
+     "en": "I remember the day when the power went off."
+    }
+   ]
+  },
+  {
+   "form": "stolen",
+   "surface": "stolen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.31",
+     "target": "The man whose bike was stolen called the police",
+     "ru": "Мужчина, у которого украли велосипед, позвонил в полицию.",
+     "en": "The man whose bike was stolen called the police."
+    }
+   ]
+  },
+  {
+   "form": "police",
+   "surface": "police",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.31",
+     "target": "The man whose bike was stolen called the police",
+     "ru": "Мужчина, у которого украли велосипед, позвонил в полицию.",
+     "en": "The man whose bike was stolen called the police."
+    }
+   ]
+  },
+  {
+   "form": "student",
+   "surface": "student",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.33",
+     "target": "The student whose bag is missing is studying abroad",
+     "ru": "Студент, у которого пропала сумка, учится за границей.",
+     "en": "The student whose bag is missing is studying abroad."
+    }
+   ]
+  },
+  {
+   "form": "studying",
+   "surface": "studying",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.33",
+     "target": "The student whose bag is missing is studying abroad",
+     "ru": "Студент, у которого пропала сумка, учится за границей.",
+     "en": "The student whose bag is missing is studying abroad."
+    }
+   ]
+  },
+  {
+   "form": "escaped",
+   "surface": "escaped",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.34",
+     "target": "The neighbour whose dog escaped left a note",
+     "ru": "Сосед, у которого убежала собака, оставил записку.",
+     "en": "The neighbour whose dog escaped left a note."
+    }
+   ]
+  },
+  {
+   "form": "spoke",
+   "surface": "spoke",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.37",
+     "target": "We spoke to the owner whose flat we rented",
+     "ru": "Мы поговорили с владельцем квартиры, которую снимали.",
+     "en": "We spoke to the owner whose flat we rented."
+    },
+    {
+     "id": "en-classic-r1:30.42",
+     "target": "The woman I spoke to was helpful",
+     "ru": "Женщина, с которой я разговаривала, была любезна.",
+     "en": "The woman I spoke to was helpful."
+    }
+   ]
+  },
+  {
+   "form": "owner",
+   "surface": "owner",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.37",
+     "target": "We spoke to the owner whose flat we rented",
+     "ru": "Мы поговорили с владельцем квартиры, которую снимали.",
+     "en": "We spoke to the owner whose flat we rented."
+    }
+   ]
+  },
+  {
+   "form": "covered",
+   "surface": "covered",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.38",
+     "target": "The colleague whose shift I covered thanked me",
+     "ru": "Коллега, чью смену я заменяла, поблагодарил меня.",
+     "en": "The colleague whose shift I covered thanked me."
+    }
+   ]
+  },
+  {
+   "form": "nurse",
+   "surface": "nurse",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.39",
+     "target": "I met a nurse whose daughter studies here",
+     "ru": "Я встретил медсестру, чья дочь здесь учится.",
+     "en": "I met a nurse whose daughter studies here."
+    }
+   ]
+  },
+  {
+   "form": "customer",
+   "surface": "customer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.40",
+     "target": "The customer whose parcel arrived late asked for a refund",
+     "ru": "Клиент, чья посылка пришла с опозданием, попросил вернуть деньги.",
+     "en": "The customer whose parcel arrived late asked for a refund."
+    }
+   ]
+  },
+  {
+   "form": "lent",
+   "surface": "lent",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.44",
+     "target": "The phone you lent me is more reliable than mine",
+     "ru": "Телефон, который вы мне одолжили, надежнее моего.",
+     "en": "The phone you lent me is more reliable than mine."
+    }
+   ]
+  },
+  {
+   "form": "part",
+   "surface": "part",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.48",
+     "target": "The replacement part you ordered is here",
+     "ru": "Заказанная вами запасная часть здесь.",
+     "en": "The replacement part you ordered is here."
+    }
+   ]
+  },
+  {
+   "form": "handles",
+   "surface": "handles",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:30.50",
+     "target": "Who is the person who handles complaints",
+     "ru": "Кто тот человек, который занимается жалобами?",
+     "en": "Who is the person who handles complaints?"
+    }
+   ]
+  }
+ ]
+}

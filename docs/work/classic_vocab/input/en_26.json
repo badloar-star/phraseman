@@ -1,0 +1,316 @@
+{
+ "lang": "en",
+ "lesson": 26,
+ "words": [
+  {
+   "form": "if",
+   "surface": "If",
+   "count": 46,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.01",
+     "target": "If it rains we will stay inside",
+     "ru": "Если пойдет дождь, мы останемся внутри.",
+     "en": "If it rains, we will stay inside."
+    },
+    {
+     "id": "en-classic-r1:26.02",
+     "target": "If you call I will answer",
+     "ru": "Если ты позвонишь, я отвечу.",
+     "en": "If you call, I will answer."
+    }
+   ]
+  },
+  {
+   "form": "rains",
+   "surface": "rains",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.01",
+     "target": "If it rains we will stay inside",
+     "ru": "Если пойдет дождь, мы останемся внутри.",
+     "en": "If it rains, we will stay inside."
+    }
+   ]
+  },
+  {
+   "form": "asks",
+   "surface": "asks",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.03",
+     "target": "If she asks I will help",
+     "ru": "Если она попросит, я помогу.",
+     "en": "If she asks, I will help."
+    }
+   ]
+  },
+  {
+   "form": "latch",
+   "surface": "latch",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.05",
+     "target": "If the latch sticks lift the handle",
+     "ru": "Если защелка заклинит, поднимите ручку.",
+     "en": "If the latch sticks, lift the handle."
+    }
+   ]
+  },
+  {
+   "form": "sticks",
+   "surface": "sticks",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.05",
+     "target": "If the latch sticks lift the handle",
+     "ru": "Если защелка заклинит, поднимите ручку.",
+     "en": "If the latch sticks, lift the handle."
+    },
+    {
+     "id": "en-classic-r1:26.24",
+     "target": "If the door sticks pull the handle gently",
+     "ru": "Если дверь заедает, осторожно потяните за ручку.",
+     "en": "If the door sticks, pull the handle gently."
+    }
+   ]
+  },
+  {
+   "form": "comes",
+   "surface": "comes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.06",
+     "target": "If he comes early we will have coffee",
+     "ru": "Если он придёт рано, мы выпьем кофе.",
+     "en": "If he comes early, we will have coffee."
+    }
+   ]
+  },
+  {
+   "form": "shade",
+   "surface": "shade",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.09",
+     "target": "If you wait in the shade I will get the key",
+     "ru": "Если ты подождешь в тени, я принесу ключ.",
+     "en": "If you wait in the shade, I will get the key."
+    }
+   ]
+  },
+  {
+   "form": "text",
+   "surface": "text",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.11",
+     "target": "I will text you if the forecast changes",
+     "ru": "Я напишу тебе, если изменится прогноз погоды.",
+     "en": "I will text you if the forecast changes."
+    }
+   ]
+  },
+  {
+   "form": "full",
+   "surface": "full",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.13",
+     "target": "We will walk if the bus is full",
+     "ru": "Мы пойдем пешком, если автобус будет полон.",
+     "en": "We will walk if the bus is full."
+    }
+   ]
+  },
+  {
+   "form": "sees",
+   "surface": "sees",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.14",
+     "target": "He will stop if he sees the sign",
+     "ru": "Он остановится, если увидит знак.",
+     "en": "He will stop if he sees the sign."
+    }
+   ]
+  },
+  {
+   "form": "ends",
+   "surface": "ends",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.19",
+     "target": "She will pick you up if her shift ends early",
+     "ru": "Она заберет тебя, если ее смена закончится раньше.",
+     "en": "She will pick you up if her shift ends early."
+    }
+   ]
+  },
+  {
+   "form": "flashes",
+   "surface": "flashes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.22",
+     "target": "If the light flashes call reception",
+     "ru": "Если мигает индикатор, позвоните на ресепшн.",
+     "en": "If the light flashes, call reception."
+    }
+   ]
+  },
+  {
+   "form": "let",
+   "surface": "let",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.23",
+     "target": "If you find my pass let me know",
+     "ru": "Если найдете мой пропуск, сообщите мне.",
+     "en": "If you find my pass, let me know."
+    },
+    {
+     "id": "en-classic-r1:26.50",
+     "target": "I will let you know if anything changes",
+     "ru": "Я сообщу вам, если что-то изменится.",
+     "en": "I will let you know if anything changes."
+    }
+   ]
+  },
+  {
+   "form": "leak",
+   "surface": "leak",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.28",
+     "target": "If there is a leak call reception",
+     "ru": "Если есть протечка, позвоните на ресепшн.",
+     "en": "If there is a leak, call reception."
+    }
+   ]
+  },
+  {
+   "form": "jams",
+   "surface": "jams",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.29",
+     "target": "If the printer jams lift the lid",
+     "ru": "Если принтер заклинит, поднимите крышку.",
+     "en": "If the printer jams, lift the lid."
+    }
+   ]
+  },
+  {
+   "form": "lid",
+   "surface": "lid",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.29",
+     "target": "If the printer jams lift the lid",
+     "ru": "Если принтер заклинит, поднимите крышку.",
+     "en": "If the printer jams, lift the lid."
+    }
+   ]
+  },
+  {
+   "form": "would",
+   "surface": "would",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.41",
+     "target": "If I had a ladder I would check the roof",
+     "ru": "Если бы у меня была лестница, я бы проверил крышу.",
+     "en": "If I had a ladder, I would check the roof."
+    },
+    {
+     "id": "en-classic-r1:26.42",
+     "target": "If we had a car we would drive there",
+     "ru": "Если бы у нас была машина, мы бы поехали туда.",
+     "en": "If we had a car, we would drive there."
+    }
+   ]
+  },
+  {
+   "form": "roof",
+   "surface": "roof",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.41",
+     "target": "If I had a ladder I would check the roof",
+     "ru": "Если бы у меня была лестница, я бы проверил крышу.",
+     "en": "If I had a ladder, I would check the roof."
+    }
+   ]
+  },
+  {
+   "form": "could",
+   "surface": "could",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.43",
+     "target": "If she lived nearby she could walk to work",
+     "ru": "Если бы она жила неподалеку, она могла бы дойти до работы пешком.",
+     "en": "If she lived nearby, she could walk to work."
+    }
+   ]
+  },
+  {
+   "form": "job",
+   "surface": "job",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.44",
+     "target": "I would take the job if the hours were better",
+     "ru": "Я бы согласился на эту работу, если бы график был лучше.",
+     "en": "I would take the job if the hours were better."
+    }
+   ]
+  },
+  {
+   "form": "hours",
+   "surface": "hours",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.44",
+     "target": "I would take the job if the hours were better",
+     "ru": "Я бы согласился на эту работу, если бы график был лучше.",
+     "en": "I would take the job if the hours were better."
+    }
+   ]
+  },
+  {
+   "form": "turns",
+   "surface": "turns",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:26.47",
+     "target": "When the light turns green press the button",
+     "ru": "Когда загорится зеленый свет, нажмите кнопку.",
+     "en": "When the light turns green, press the button."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,395 @@
+{
+ "lang": "en",
+ "lesson": 20,
+ "words": [
+  {
+   "form": "idea",
+   "surface": "idea",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.06",
+     "target": "I have an idea",
+     "ru": "У меня есть идея.",
+     "en": "I have an idea."
+    }
+   ]
+  },
+  {
+   "form": "sandwich",
+   "surface": "sandwich",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.07",
+     "target": "She wants a sandwich",
+     "ru": "Она хочет сэндвич.",
+     "en": "She wants a sandwich."
+    }
+   ]
+  },
+  {
+   "form": "ordered",
+   "surface": "ordered",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.08",
+     "target": "He ordered an omelette",
+     "ru": "Он заказал омлет.",
+     "en": "He ordered an omelette."
+    },
+    {
+     "id": "en-classic-r1:20.13",
+     "target": "She ordered a salad The salad was cold",
+     "ru": "Она заказала салат. Салат был холодным.",
+     "en": "She ordered a salad. The salad was cold."
+    }
+   ]
+  },
+  {
+   "form": "omelette",
+   "surface": "omelette",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.08",
+     "target": "He ordered an omelette",
+     "ru": "Он заказал омлет.",
+     "en": "He ordered an omelette."
+    }
+   ]
+  },
+  {
+   "form": "rented",
+   "surface": "rented",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.09",
+     "target": "They rented a flat",
+     "ru": "Они сняли квартиру.",
+     "en": "They rented a flat."
+    }
+   ]
+  },
+  {
+   "form": "rusty",
+   "surface": "rusty",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.12",
+     "target": "I found a key The key is rusty",
+     "ru": "Я нашел ключ. Ключ ржавый.",
+     "en": "I found a key. The key is rusty."
+    }
+   ]
+  },
+  {
+   "form": "salad",
+   "surface": "salad",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.13",
+     "target": "She ordered a salad The salad was cold",
+     "ru": "Она заказала салат. Салат был холодным.",
+     "en": "She ordered a salad. The salad was cold."
+    }
+   ]
+  },
+  {
+   "form": "had",
+   "surface": "had",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.14",
+     "target": "We saw a flat The flat had a balcony",
+     "ru": "Мы посмотрели квартиру. В квартире был балкон.",
+     "en": "We saw a flat. The flat had a balcony."
+    },
+    {
+     "id": "en-classic-r1:20.43",
+     "target": "I had an egg for breakfast",
+     "ru": "Я съел яйцо на завтрак.",
+     "en": "I had an egg for breakfast."
+    }
+   ]
+  },
+  {
+   "form": "notice",
+   "surface": "notice",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.16",
+     "target": "I read a notice The notice was in English",
+     "ru": "Я прочитал объявление. Объявление было на английском языке.",
+     "en": "I read a notice. The notice was in English."
+    }
+   ]
+  },
+  {
+   "form": "loud",
+   "surface": "loud",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.17",
+     "target": "She bought an alarm clock The clock is loud",
+     "ru": "Она купила будильник. Часы громкие.",
+     "en": "She bought an alarm clock. The clock is loud."
+    }
+   ]
+  },
+  {
+   "form": "sealed",
+   "surface": "sealed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.20",
+     "target": "He found an envelope The envelope was sealed",
+     "ru": "Он нашел конверт. Конверт был запечатан.",
+     "en": "He found an envelope. The envelope was sealed."
+    }
+   ]
+  },
+  {
+   "form": "building",
+   "surface": "building",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.21",
+     "target": "The lift in our building is slow",
+     "ru": "Лифт в нашем здании работает медленно.",
+     "en": "The lift in our building is slow."
+    }
+   ]
+  },
+  {
+   "form": "slow",
+   "surface": "slow",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.21",
+     "target": "The lift in our building is slow",
+     "ru": "Лифт в нашем здании работает медленно.",
+     "en": "The lift in our building is slow."
+    }
+   ]
+  },
+  {
+   "form": "lovely",
+   "surface": "lovely",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.23",
+     "target": "The coffee you made is lovely",
+     "ru": "Кофе, который вы приготовили, восхитителен.",
+     "en": "The coffee you made is lovely."
+    }
+   ]
+  },
+  {
+   "form": "bottle",
+   "surface": "bottle",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.24",
+     "target": "The water in this bottle is cold",
+     "ru": "Вода в этой бутылке холодная.",
+     "en": "The water in this bottle is cold."
+    }
+   ]
+  },
+  {
+   "form": "helpful",
+   "surface": "helpful",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.26",
+     "target": "The driver of our taxi was helpful",
+     "ru": "Водитель нашего такси был любезен.",
+     "en": "The driver of our taxi was helpful."
+    }
+   ]
+  },
+  {
+   "form": "keeps",
+   "surface": "keeps",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.32",
+     "target": "Coffee keeps me awake",
+     "ru": "Кофе не дает мне уснуть.",
+     "en": "Coffee keeps me awake."
+    }
+   ]
+  },
+  {
+   "form": "awake",
+   "surface": "awake",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.32",
+     "target": "Coffee keeps me awake",
+     "ru": "Кофе не дает мне уснуть.",
+     "en": "Coffee keeps me awake."
+    }
+   ]
+  },
+  {
+   "form": "sleep",
+   "surface": "sleep",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.33",
+     "target": "Children need sleep",
+     "ru": "Детям нужен сон.",
+     "en": "Children need sleep."
+    }
+   ]
+  },
+  {
+   "form": "dogs",
+   "surface": "dogs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.34",
+     "target": "My sister likes dogs",
+     "ru": "Моей сестре нравятся собаки.",
+     "en": "My sister likes dogs."
+    }
+   ]
+  },
+  {
+   "form": "listens",
+   "surface": "listens",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.39",
+     "target": "She listens to music on the bus",
+     "ru": "Она слушает музыку в автобусе.",
+     "en": "She listens to music on the bus."
+    }
+   ]
+  },
+  {
+   "form": "music",
+   "surface": "music",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.39",
+     "target": "She listens to music on the bus",
+     "ru": "Она слушает музыку в автобусе.",
+     "en": "She listens to music on the bus."
+    }
+   ]
+  },
+  {
+   "form": "fruit",
+   "surface": "fruit",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.40",
+     "target": "I buy fruit at the market",
+     "ru": "Я покупаю фрукты на рынке.",
+     "en": "I buy fruit at the market."
+    }
+   ]
+  },
+  {
+   "form": "egg",
+   "surface": "egg",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.43",
+     "target": "I had an egg for breakfast",
+     "ru": "Я съел яйцо на завтрак.",
+     "en": "I had an egg for breakfast."
+    }
+   ]
+  },
+  {
+   "form": "wears",
+   "surface": "wears",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.45",
+     "target": "He wears a uniform at work",
+     "ru": "Он носит униформу на работе.",
+     "en": "He wears a uniform at work."
+    }
+   ]
+  },
+  {
+   "form": "hour",
+   "surface": "hour",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.46",
+     "target": "The meeting lasts an hour",
+     "ru": "Встреча длится час.",
+     "en": "The meeting lasts an hour."
+    }
+   ]
+  },
+  {
+   "form": "customers",
+   "surface": "customers",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.47",
+     "target": "She speaks English with her customers",
+     "ru": "Она говорит по-английски со своими клиентами.",
+     "en": "She speaks English with her customers."
+    }
+   ]
+  },
+  {
+   "form": "slice",
+   "surface": "slice",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.48",
+     "target": "Do you want the last slice",
+     "ru": "Хотите последний кусок?",
+     "en": "Do you want the last slice?"
+    }
+   ]
+  },
+  {
+   "form": "meal",
+   "surface": "meal",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:20.49",
+     "target": "I paid for the meal by card",
+     "ru": "Я оплатил еду картой.",
+     "en": "I paid for the meal by card."
+    }
+   ]
+  }
+ ]
+}

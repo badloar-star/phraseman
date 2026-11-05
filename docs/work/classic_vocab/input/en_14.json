@@ -1,0 +1,836 @@
+{
+ "lang": "en",
+ "lesson": 14,
+ "words": [
+  {
+   "form": "lighter",
+   "surface": "lighter",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.01",
+     "target": "This bag is lighter",
+     "ru": "Эта сумка легче.",
+     "en": "This bag is lighter."
+    },
+    {
+     "id": "en-classic-r1:14.13",
+     "target": "Her bag is lighter than mine",
+     "ru": "Ее сумка легче моей.",
+     "en": "Her bag is lighter than mine."
+    }
+   ]
+  },
+  {
+   "form": "heavier",
+   "surface": "heavier",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.02",
+     "target": "That bag is heavier",
+     "ru": "Та сумка тяжелее.",
+     "en": "That bag is heavier."
+    }
+   ]
+  },
+  {
+   "form": "warmer",
+   "surface": "warmer",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.03",
+     "target": "This room is warmer",
+     "ru": "В этой комнате теплее.",
+     "en": "This room is warmer."
+    },
+    {
+     "id": "en-classic-r1:14.17",
+     "target": "My coat is warmer than yours",
+     "ru": "Моё пальто теплее твоего.",
+     "en": "My coat is warmer than yours."
+    }
+   ]
+  },
+  {
+   "form": "colder",
+   "surface": "colder",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.04",
+     "target": "The kitchen is colder",
+     "ru": "На кухне холоднее.",
+     "en": "The kitchen is colder."
+    }
+   ]
+  },
+  {
+   "form": "wider",
+   "surface": "wider",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.05",
+     "target": "This seat is wider",
+     "ru": "Это сиденье шире.",
+     "en": "This seat is wider."
+    },
+    {
+     "id": "en-classic-r1:14.14",
+     "target": "The new desk is wider than the old one",
+     "ru": "Новый стол шире старого.",
+     "en": "The new desk is wider than the old one."
+    }
+   ]
+  },
+  {
+   "form": "longer",
+   "surface": "longer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.06",
+     "target": "The blue coat is longer",
+     "ru": "Синее пальто длиннее.",
+     "en": "The blue coat is longer."
+    }
+   ]
+  },
+  {
+   "form": "route",
+   "surface": "route",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.07",
+     "target": "This route is shorter",
+     "ru": "Этот маршрут короче.",
+     "en": "This route is shorter."
+    },
+    {
+     "id": "en-classic-r1:14.32",
+     "target": "Which route is the fastest",
+     "ru": "Какой маршрут самый быстрый?",
+     "en": "Which route is the fastest?"
+    }
+   ]
+  },
+  {
+   "form": "shorter",
+   "surface": "shorter",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.07",
+     "target": "This route is shorter",
+     "ru": "Этот маршрут короче.",
+     "en": "This route is shorter."
+    },
+    {
+     "id": "en-classic-r1:14.44",
+     "target": "The return journey was shorter",
+     "ru": "Обратный путь был короче.",
+     "en": "The return journey was shorter."
+    }
+   ]
+  },
+  {
+   "form": "faster",
+   "surface": "faster",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.08",
+     "target": "The new lift is faster",
+     "ru": "Новый лифт быстрее.",
+     "en": "The new lift is faster."
+    },
+    {
+     "id": "en-classic-r1:14.15",
+     "target": "This train is faster than the bus",
+     "ru": "Этот поезд быстрее автобуса.",
+     "en": "This train is faster than the bus."
+    }
+   ]
+  },
+  {
+   "form": "than",
+   "surface": "than",
+   "count": 13,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.11",
+     "target": "Tea is cheaper than coffee here",
+     "ru": "Чай здесь дешевле кофе.",
+     "en": "Tea is cheaper than coffee here."
+    },
+    {
+     "id": "en-classic-r1:14.12",
+     "target": "The stairs are quicker than the lift",
+     "ru": "Лестница быстрее лифта.",
+     "en": "The stairs are quicker than the lift."
+    }
+   ]
+  },
+  {
+   "form": "quicker",
+   "surface": "quicker",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.12",
+     "target": "The stairs are quicker than the lift",
+     "ru": "Лестница быстрее лифта.",
+     "en": "The stairs are quicker than the lift."
+    }
+   ]
+  },
+  {
+   "form": "mine",
+   "surface": "mine",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.13",
+     "target": "Her bag is lighter than mine",
+     "ru": "Ее сумка легче моей.",
+     "en": "Her bag is lighter than mine."
+    }
+   ]
+  },
+  {
+   "form": "old",
+   "surface": "old",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.14",
+     "target": "The new desk is wider than the old one",
+     "ru": "Новый стол шире старого.",
+     "en": "The new desk is wider than the old one."
+    },
+    {
+     "id": "en-classic-r1:14.43",
+     "target": "My new shoes are more comfortable than my old ones",
+     "ru": "Мои новые туфли удобнее старых.",
+     "en": "My new shoes are more comfortable than my old ones."
+    }
+   ]
+  },
+  {
+   "form": "closer",
+   "surface": "closer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.16",
+     "target": "The station is closer than the hotel",
+     "ru": "Вокзал ближе, чем отель.",
+     "en": "The station is closer than the hotel."
+    }
+   ]
+  },
+  {
+   "form": "yours",
+   "surface": "yours",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.17",
+     "target": "My coat is warmer than yours",
+     "ru": "Моё пальто теплее твоего.",
+     "en": "My coat is warmer than yours."
+    }
+   ]
+  },
+  {
+   "form": "quieter",
+   "surface": "quieter",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.18",
+     "target": "The back room is quieter than the kitchen",
+     "ru": "Задняя комната тише кухни.",
+     "en": "The back room is quieter than the kitchen."
+    }
+   ]
+  },
+  {
+   "form": "second",
+   "surface": "second",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.19",
+     "target": "The second question is easier than the first",
+     "ru": "Второй вопрос проще первого.",
+     "en": "The second question is easier than the first."
+    },
+    {
+     "id": "en-classic-r1:14.50",
+     "target": "The second bus was even later than the first",
+     "ru": "Второй автобус опоздал ещё сильнее первого.",
+     "en": "The second bus was even later than the first."
+    }
+   ]
+  },
+  {
+   "form": "easier",
+   "surface": "easier",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.19",
+     "target": "The second question is easier than the first",
+     "ru": "Второй вопрос проще первого.",
+     "en": "The second question is easier than the first."
+    },
+    {
+     "id": "en-classic-r1:14.49",
+     "target": "The paper map is easier to read",
+     "ru": "Бумажную карту легче читать.",
+     "en": "The paper map is easier to read."
+    }
+   ]
+  },
+  {
+   "form": "busier",
+   "surface": "busier",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.20",
+     "target": "Today is busier than yesterday",
+     "ru": "Сегодня больше людей, чем вчера.",
+     "en": "Today is busier than yesterday."
+    }
+   ]
+  },
+  {
+   "form": "comfortable",
+   "surface": "comfortable",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.21",
+     "target": "This chair is more comfortable",
+     "ru": "Этот стул удобнее.",
+     "en": "This chair is more comfortable."
+    },
+    {
+     "id": "en-classic-r1:14.43",
+     "target": "My new shoes are more comfortable than my old ones",
+     "ru": "Мои новые туфли удобнее старых.",
+     "en": "My new shoes are more comfortable than my old ones."
+    }
+   ]
+  },
+  {
+   "form": "expensive",
+   "surface": "expensive",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.22",
+     "target": "The early flight is more expensive",
+     "ru": "Ранний рейс дороже.",
+     "en": "The early flight is more expensive."
+    },
+    {
+     "id": "en-classic-r1:14.42",
+     "target": "Is the larger room more expensive",
+     "ru": "Больший номер дороже?",
+     "en": "Is the larger room more expensive?"
+    }
+   ]
+  },
+  {
+   "form": "useful",
+   "surface": "useful",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.23",
+     "target": "The map is more useful than the list",
+     "ru": "Карта полезнее, чем список.",
+     "en": "The map is more useful than the list."
+    },
+    {
+     "id": "en-classic-r1:14.40",
+     "target": "This is the most useful page",
+     "ru": "Это самая полезная страница.",
+     "en": "This is the most useful page."
+    }
+   ]
+  },
+  {
+   "form": "reliable",
+   "surface": "reliable",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.24",
+     "target": "The new screen is more reliable",
+     "ru": "Новый экран более надежен.",
+     "en": "The new screen is more reliable."
+    }
+   ]
+  },
+  {
+   "form": "written",
+   "surface": "written",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.25",
+     "target": "The written instructions are clearer",
+     "ru": "Письменные инструкции понятнее.",
+     "en": "The written instructions are clearer."
+    }
+   ]
+  },
+  {
+   "form": "instructions",
+   "surface": "instructions",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.25",
+     "target": "The written instructions are clearer",
+     "ru": "Письменные инструкции понятнее.",
+     "en": "The written instructions are clearer."
+    }
+   ]
+  },
+  {
+   "form": "clearer",
+   "surface": "clearer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.25",
+     "target": "The written instructions are clearer",
+     "ru": "Письменные инструкции понятнее.",
+     "en": "The written instructions are clearer."
+    }
+   ]
+  },
+  {
+   "form": "less",
+   "surface": "less",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.26",
+     "target": "This road is less crowded",
+     "ru": "Эта дорога менее загружена.",
+     "en": "This road is less crowded."
+    },
+    {
+     "id": "en-classic-r1:14.27",
+     "target": "The morning shift is less stressful",
+     "ru": "Утренняя смена менее напряженная.",
+     "en": "The morning shift is less stressful."
+    }
+   ]
+  },
+  {
+   "form": "crowded",
+   "surface": "crowded",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.26",
+     "target": "This road is less crowded",
+     "ru": "Эта дорога менее загружена.",
+     "en": "This road is less crowded."
+    }
+   ]
+  },
+  {
+   "form": "stressful",
+   "surface": "stressful",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.27",
+     "target": "The morning shift is less stressful",
+     "ru": "Утренняя смена менее напряженная.",
+     "en": "The morning shift is less stressful."
+    }
+   ]
+  },
+  {
+   "form": "option",
+   "surface": "option",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.28",
+     "target": "This option is better for children",
+     "ru": "Этот вариант лучше подходит для детей.",
+     "en": "This option is better for children."
+    }
+   ]
+  },
+  {
+   "form": "better",
+   "surface": "better",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.28",
+     "target": "This option is better for children",
+     "ru": "Этот вариант лучше подходит для детей.",
+     "en": "This option is better for children."
+    },
+    {
+     "id": "en-classic-r1:14.30",
+     "target": "A return ticket is better value",
+     "ru": "Билет туда и обратно выгоднее.",
+     "en": "A return ticket is better value."
+    }
+   ]
+  },
+  {
+   "form": "children",
+   "surface": "children",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.28",
+     "target": "This option is better for children",
+     "ru": "Этот вариант лучше подходит для детей.",
+     "en": "This option is better for children."
+    }
+   ]
+  },
+  {
+   "form": "weather",
+   "surface": "weather",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.29",
+     "target": "The weather is worse today",
+     "ru": "Сегодня погода хуже.",
+     "en": "The weather is worse today."
+    }
+   ]
+  },
+  {
+   "form": "worse",
+   "surface": "worse",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.29",
+     "target": "The weather is worse today",
+     "ru": "Сегодня погода хуже.",
+     "en": "The weather is worse today."
+    }
+   ]
+  },
+  {
+   "form": "value",
+   "surface": "value",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.30",
+     "target": "A return ticket is better value",
+     "ru": "Билет туда и обратно выгоднее.",
+     "en": "A return ticket is better value."
+    }
+   ]
+  },
+  {
+   "form": "quietest",
+   "surface": "quietest",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.31",
+     "target": "Which room is the quietest",
+     "ru": "Какая комната самая тихая?",
+     "en": "Which room is the quietest?"
+    }
+   ]
+  },
+  {
+   "form": "fastest",
+   "surface": "fastest",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.32",
+     "target": "Which route is the fastest",
+     "ru": "Какой маршрут самый быстрый?",
+     "en": "Which route is the fastest?"
+    }
+   ]
+  },
+  {
+   "form": "nearest",
+   "surface": "nearest",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.33",
+     "target": "This is the nearest exit",
+     "ru": "Это ближайший выход.",
+     "en": "This is the nearest exit."
+    }
+   ]
+  },
+  {
+   "form": "smallest",
+   "surface": "smallest",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.34",
+     "target": "That is the smallest size",
+     "ru": "Это самый маленький размер.",
+     "en": "That is the smallest size."
+    },
+    {
+     "id": "en-classic-r1:14.48",
+     "target": "The smallest locker is big enough",
+     "ru": "Самый маленький шкафчик достаточно большой.",
+     "en": "The smallest locker is big enough."
+    }
+   ]
+  },
+  {
+   "form": "safest",
+   "surface": "safest",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.35",
+     "target": "This is the safest crossing",
+     "ru": "Это самый безопасный переход.",
+     "en": "This is the safest crossing."
+    }
+   ]
+  },
+  {
+   "form": "crossing",
+   "surface": "crossing",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.35",
+     "target": "This is the safest crossing",
+     "ru": "Это самый безопасный переход.",
+     "en": "This is the safest crossing."
+    }
+   ]
+  },
+  {
+   "form": "busiest",
+   "surface": "busiest",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.36",
+     "target": "It is the busiest stop on the route",
+     "ru": "Это самая оживлённая остановка на маршруте.",
+     "en": "It is the busiest stop on the route."
+    },
+    {
+     "id": "en-classic-r1:14.39",
+     "target": "Friday is our busiest day",
+     "ru": "Пятница — наш самый оживлённый день.",
+     "en": "Friday is our busiest day."
+    }
+   ]
+  },
+  {
+   "form": "heaviest",
+   "surface": "heaviest",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.37",
+     "target": "The last box is the heaviest",
+     "ru": "Последний ящик самый тяжёлый.",
+     "en": "The last box is the heaviest."
+    }
+   ]
+  },
+  {
+   "form": "best",
+   "surface": "best",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.38",
+     "target": "This is the best seat on the bus",
+     "ru": "Это лучшее место в автобусе.",
+     "en": "This is the best seat on the bus."
+    }
+   ]
+  },
+  {
+   "form": "most",
+   "surface": "most",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.40",
+     "target": "This is the most useful page",
+     "ru": "Это самая полезная страница.",
+     "en": "This is the most useful page."
+    }
+   ]
+  },
+  {
+   "form": "earlier",
+   "surface": "earlier",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.41",
+     "target": "The earlier train is not always cheaper",
+     "ru": "Более ранний поезд не всегда дешевле.",
+     "en": "The earlier train is not always cheaper."
+    }
+   ]
+  },
+  {
+   "form": "larger",
+   "surface": "larger",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.42",
+     "target": "Is the larger room more expensive",
+     "ru": "Больший номер дороже?",
+     "en": "Is the larger room more expensive?"
+    }
+   ]
+  },
+  {
+   "form": "ones",
+   "surface": "ones",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.43",
+     "target": "My new shoes are more comfortable than my old ones",
+     "ru": "Мои новые туфли удобнее старых.",
+     "en": "My new shoes are more comfortable than my old ones."
+    }
+   ]
+  },
+  {
+   "form": "path",
+   "surface": "path",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.45",
+     "target": "This path is safer at night",
+     "ru": "Этот путь безопаснее ночью.",
+     "en": "This path is safer at night."
+    }
+   ]
+  },
+  {
+   "form": "safer",
+   "surface": "safer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.45",
+     "target": "This path is safer at night",
+     "ru": "Этот путь безопаснее ночью.",
+     "en": "This path is safer at night."
+    }
+   ]
+  },
+  {
+   "form": "lasts",
+   "surface": "lasts",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.46",
+     "target": "Which battery lasts the longest",
+     "ru": "Какая батарея работает дольше всего?",
+     "en": "Which battery lasts the longest?"
+    }
+   ]
+  },
+  {
+   "form": "longest",
+   "surface": "longest",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.46",
+     "target": "Which battery lasts the longest",
+     "ru": "Какая батарея работает дольше всего?",
+     "en": "Which battery lasts the longest?"
+    }
+   ]
+  },
+  {
+   "form": "easiest",
+   "surface": "easiest",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.47",
+     "target": "The easiest way is the side entrance",
+     "ru": "Проще всего войти через боковой вход.",
+     "en": "The easiest way is the side entrance."
+    }
+   ]
+  },
+  {
+   "form": "side",
+   "surface": "side",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.47",
+     "target": "The easiest way is the side entrance",
+     "ru": "Проще всего войти через боковой вход.",
+     "en": "The easiest way is the side entrance."
+    }
+   ]
+  },
+  {
+   "form": "big",
+   "surface": "big",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.48",
+     "target": "The smallest locker is big enough",
+     "ru": "Самый маленький шкафчик достаточно большой.",
+     "en": "The smallest locker is big enough."
+    }
+   ]
+  },
+  {
+   "form": "even",
+   "surface": "even",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:14.50",
+     "target": "The second bus was even later than the first",
+     "ru": "Второй автобус опоздал ещё сильнее первого.",
+     "en": "The second bus was even later than the first."
+    }
+   ]
+  }
+ ]
+}

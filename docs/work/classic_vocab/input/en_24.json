@@ -1,0 +1,386 @@
+{
+ "lang": "en",
+ "lesson": 24,
+ "words": [
+  {
+   "form": "renewed",
+   "surface": "renewed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.07",
+     "target": "She has renewed her passport",
+     "ru": "Она обновила свой паспорт.",
+     "en": "She has renewed her passport."
+    }
+   ]
+  },
+  {
+   "form": "boiled",
+   "surface": "boiled",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.09",
+     "target": "The kettle has boiled",
+     "ru": "Чайник закипел.",
+     "en": "The kettle has boiled."
+    }
+   ]
+  },
+  {
+   "form": "van",
+   "surface": "van",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.11",
+     "target": "I have just parked the van",
+     "ru": "Я только что припарковал фургон.",
+     "en": "I have just parked the van."
+    },
+    {
+     "id": "en-classic-r1:24.25",
+     "target": "I have never driven a van",
+     "ru": "Я никогда не водил фургон.",
+     "en": "I have never driven a van."
+    }
+   ]
+  },
+  {
+   "form": "already",
+   "surface": "already",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.14",
+     "target": "He has already paid",
+     "ru": "Он уже заплатил.",
+     "en": "He has already paid."
+    },
+    {
+     "id": "en-classic-r1:24.15",
+     "target": "They have already unpacked",
+     "ru": "Они уже распаковали вещи.",
+     "en": "They have already unpacked."
+    }
+   ]
+  },
+  {
+   "form": "unpacked",
+   "surface": "unpacked",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.15",
+     "target": "They have already unpacked",
+     "ru": "Они уже распаковали вещи.",
+     "en": "They have already unpacked."
+    }
+   ]
+  },
+  {
+   "form": "ever",
+   "surface": "ever",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.21",
+     "target": "Have you ever worked nights",
+     "ru": "Вы когда-нибудь работали по ночам?",
+     "en": "Have you ever worked nights?"
+    },
+    {
+     "id": "en-classic-r1:24.22",
+     "target": "Has she ever lived abroad",
+     "ru": "Она когда-нибудь жила за границей?",
+     "en": "Has she ever lived abroad?"
+    }
+   ]
+  },
+  {
+   "form": "lived",
+   "surface": "lived",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.22",
+     "target": "Has she ever lived abroad",
+     "ru": "Она когда-нибудь жила за границей?",
+     "en": "Has she ever lived abroad?"
+    },
+    {
+     "id": "en-classic-r1:24.31",
+     "target": "I have lived here for a year",
+     "ru": "Я живу здесь уже год.",
+     "en": "I have lived here for a year."
+    }
+   ]
+  },
+  {
+   "form": "abroad",
+   "surface": "abroad",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.22",
+     "target": "Has she ever lived abroad",
+     "ru": "Она когда-нибудь жила за границей?",
+     "en": "Has she ever lived abroad?"
+    }
+   ]
+  },
+  {
+   "form": "never",
+   "surface": "never",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.25",
+     "target": "I have never driven a van",
+     "ru": "Я никогда не водил фургон.",
+     "en": "I have never driven a van."
+    },
+    {
+     "id": "en-classic-r1:24.26",
+     "target": "He has never used a locker",
+     "ru": "Он никогда не пользовался шкафчиком.",
+     "en": "He has never used a locker."
+    }
+   ]
+  },
+  {
+   "form": "driven",
+   "surface": "driven",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.25",
+     "target": "I have never driven a van",
+     "ru": "Я никогда не водил фургон.",
+     "en": "I have never driven a van."
+    }
+   ]
+  },
+  {
+   "form": "used",
+   "surface": "used",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.26",
+     "target": "He has never used a locker",
+     "ru": "Он никогда не пользовался шкафчиком.",
+     "en": "He has never used a locker."
+    }
+   ]
+  },
+  {
+   "form": "scanned",
+   "surface": "scanned",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.28",
+     "target": "She has scanned the invoice twice",
+     "ru": "Она дважды сканировала счет.",
+     "en": "She has scanned the invoice twice."
+    }
+   ]
+  },
+  {
+   "form": "invoice",
+   "surface": "invoice",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.28",
+     "target": "She has scanned the invoice twice",
+     "ru": "Она дважды сканировала счет.",
+     "en": "She has scanned the invoice twice."
+    }
+   ]
+  },
+  {
+   "form": "stayed",
+   "surface": "stayed",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.29",
+     "target": "This is the first time I have stayed here",
+     "ru": "Я здесь впервые останавливаюсь.",
+     "en": "This is the first time I have stayed here."
+    }
+   ]
+  },
+  {
+   "form": "year",
+   "surface": "year",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.31",
+     "target": "I have lived here for a year",
+     "ru": "Я живу здесь уже год.",
+     "en": "I have lived here for a year."
+    }
+   ]
+  },
+  {
+   "form": "since",
+   "surface": "since",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.32",
+     "target": "She has worked here since March",
+     "ru": "Она работает здесь с марта.",
+     "en": "She has worked here since March."
+    },
+    {
+     "id": "en-classic-r1:24.34",
+     "target": "He has had that bike since school",
+     "ru": "Этот велосипед у него со школы.",
+     "en": "He has had that bike since school."
+    }
+   ]
+  },
+  {
+   "form": "march",
+   "surface": "March",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.32",
+     "target": "She has worked here since March",
+     "ru": "Она работает здесь с марта.",
+     "en": "She has worked here since March."
+    }
+   ]
+  },
+  {
+   "form": "known",
+   "surface": "known",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.33",
+     "target": "We have known each other for years",
+     "ru": "Мы знакомы много лет.",
+     "en": "We have known each other for years."
+    }
+   ]
+  },
+  {
+   "form": "other",
+   "surface": "other",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.33",
+     "target": "We have known each other for years",
+     "ru": "Мы знакомы много лет.",
+     "en": "We have known each other for years."
+    }
+   ]
+  },
+  {
+   "form": "years",
+   "surface": "years",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.33",
+     "target": "We have known each other for years",
+     "ru": "Мы знакомы много лет.",
+     "en": "We have known each other for years."
+    }
+   ]
+  },
+  {
+   "form": "school",
+   "surface": "school",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.34",
+     "target": "He has had that bike since school",
+     "ru": "Этот велосипед у него со школы.",
+     "en": "He has had that bike since school."
+    }
+   ]
+  },
+  {
+   "form": "seen",
+   "surface": "seen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.39",
+     "target": "I have not seen Tom since Friday",
+     "ru": "Я не видел Тома с пятницы.",
+     "en": "I have not seen Tom since Friday."
+    }
+   ]
+  },
+  {
+   "form": "so",
+   "surface": "so",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.42",
+     "target": "I have lost my pass so I cannot get in",
+     "ru": "Я потерял свой пропуск, поэтому не могу войти.",
+     "en": "I have lost my pass, so I cannot get in."
+    },
+    {
+     "id": "en-classic-r1:24.46",
+     "target": "We have booked the room so you can stop looking",
+     "ru": "Мы забронировали номер, так что можете прекратить поиски.",
+     "en": "We have booked the room, so you can stop looking."
+    }
+   ]
+  },
+  {
+   "form": "times",
+   "surface": "times",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.44",
+     "target": "She has called three times today",
+     "ru": "Она звонила три раза сегодня.",
+     "en": "She has called three times today."
+    }
+   ]
+  },
+  {
+   "form": "asked",
+   "surface": "asked",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.49",
+     "target": "I have just found the receipt you asked for",
+     "ru": "Я только что нашёл квитанцию, которую вы просили.",
+     "en": "I have just found the receipt you asked for."
+    }
+   ]
+  },
+  {
+   "form": "ago",
+   "surface": "ago",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:24.50",
+     "target": "The train left ten minutes ago",
+     "ru": "Поезд уехал десять минут назад.",
+     "en": "The train left ten minutes ago."
+    }
+   ]
+  }
+ ]
+}

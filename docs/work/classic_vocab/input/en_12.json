@@ -1,0 +1,665 @@
+{
+ "lang": "en",
+ "lesson": 12,
+ "words": [
+  {
+   "form": "went",
+   "surface": "went",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.01",
+     "target": "I went home early",
+     "ru": "Я ушёл домой рано.",
+     "en": "I went home early."
+    },
+    {
+     "id": "en-classic-r1:12.02",
+     "target": "She went to the bank",
+     "ru": "Она пошла в банк.",
+     "en": "She went to the bank."
+    }
+   ]
+  },
+  {
+   "form": "bank",
+   "surface": "bank",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.02",
+     "target": "She went to the bank",
+     "ru": "Она пошла в банк.",
+     "en": "She went to the bank."
+    }
+   ]
+  },
+  {
+   "form": "took",
+   "surface": "took",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.03",
+     "target": "We took the bus home",
+     "ru": "Мы поехали домой на автобусе.",
+     "en": "We took the bus home."
+    },
+    {
+     "id": "en-classic-r1:12.04",
+     "target": "He took my coat by mistake",
+     "ru": "Он по ошибке взял мое пальто.",
+     "en": "He took my coat by mistake."
+    }
+   ]
+  },
+  {
+   "form": "bought",
+   "surface": "bought",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.05",
+     "target": "I bought fresh bread",
+     "ru": "Я купил свежий хлеб.",
+     "en": "I bought fresh bread."
+    },
+    {
+     "id": "en-classic-r1:12.06",
+     "target": "They bought the last two tickets",
+     "ru": "Они купили последние два билета.",
+     "en": "They bought the last two tickets."
+    }
+   ]
+  },
+  {
+   "form": "fresh",
+   "surface": "fresh",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.05",
+     "target": "I bought fresh bread",
+     "ru": "Я купил свежий хлеб.",
+     "en": "I bought fresh bread."
+    }
+   ]
+  },
+  {
+   "form": "brought",
+   "surface": "brought",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.07",
+     "target": "She brought a spare key",
+     "ru": "Она принесла запасной ключ.",
+     "en": "She brought a spare key."
+    },
+    {
+     "id": "en-classic-r1:12.08",
+     "target": "I brought you a towel",
+     "ru": "Я принес тебе полотенце.",
+     "en": "I brought you a towel."
+    }
+   ]
+  },
+  {
+   "form": "towel",
+   "surface": "towel",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.08",
+     "target": "I brought you a towel",
+     "ru": "Я принес тебе полотенце.",
+     "en": "I brought you a towel."
+    }
+   ]
+  },
+  {
+   "form": "found",
+   "surface": "found",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.09",
+     "target": "We found a quiet cafe",
+     "ru": "Мы нашли тихое кафе.",
+     "en": "We found a quiet cafe."
+    },
+    {
+     "id": "en-classic-r1:12.10",
+     "target": "He found his wallet downstairs",
+     "ru": "Он нашел свой кошелек внизу.",
+     "en": "He found his wallet downstairs."
+    }
+   ]
+  },
+  {
+   "form": "wallet",
+   "surface": "wallet",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.10",
+     "target": "He found his wallet downstairs",
+     "ru": "Он нашел свой кошелек внизу.",
+     "en": "He found his wallet downstairs."
+    }
+   ]
+  },
+  {
+   "form": "lost",
+   "surface": "lost",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.12",
+     "target": "She lost her bus pass",
+     "ru": "Она потеряла свой проездной на автобус.",
+     "en": "She lost her bus pass."
+    }
+   ]
+  },
+  {
+   "form": "caught",
+   "surface": "caught",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.13",
+     "target": "We caught the early train",
+     "ru": "Мы сели на ранний поезд.",
+     "en": "We caught the early train."
+    }
+   ]
+  },
+  {
+   "form": "got",
+   "surface": "got",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.14",
+     "target": "They got home at nine",
+     "ru": "Они вернулись домой в девять.",
+     "en": "They got home at nine."
+    }
+   ]
+  },
+  {
+   "form": "gave",
+   "surface": "gave",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.15",
+     "target": "He gave me a lift",
+     "ru": "Он подвёз меня.",
+     "en": "He gave me a lift."
+    }
+   ]
+  },
+  {
+   "form": "met",
+   "surface": "met",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.16",
+     "target": "I met your sister yesterday",
+     "ru": "Я вчера встретил твою сестру.",
+     "en": "I met your sister yesterday."
+    }
+   ]
+  },
+  {
+   "form": "saw",
+   "surface": "saw",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.17",
+     "target": "She saw my message",
+     "ru": "Она видела моё сообщение.",
+     "en": "She saw my message."
+    }
+   ]
+  },
+  {
+   "form": "message",
+   "surface": "message",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.17",
+     "target": "She saw my message",
+     "ru": "Она видела моё сообщение.",
+     "en": "She saw my message."
+    },
+    {
+     "id": "en-classic-r1:12.40",
+     "target": "They did not get my message",
+     "ru": "Они не получили моего сообщения.",
+     "en": "They did not get my message."
+    }
+   ]
+  },
+  {
+   "form": "heard",
+   "surface": "heard",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.18",
+     "target": "We heard the alarm",
+     "ru": "Мы услышали сигнал тревоги.",
+     "en": "We heard the alarm."
+    }
+   ]
+  },
+  {
+   "form": "paid",
+   "surface": "paid",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.19",
+     "target": "I paid the bill online",
+     "ru": "Я оплатил счёт онлайн.",
+     "en": "I paid the bill online."
+    }
+   ]
+  },
+  {
+   "form": "online",
+   "surface": "online",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.19",
+     "target": "I paid the bill online",
+     "ru": "Я оплатил счёт онлайн.",
+     "en": "I paid the bill online."
+    }
+   ]
+  },
+  {
+   "form": "sent",
+   "surface": "sent",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.20",
+     "target": "He sent me the address of the clinic",
+     "ru": "Он прислал мне адрес клиники.",
+     "en": "He sent me the address of the clinic."
+    }
+   ]
+  },
+  {
+   "form": "clinic",
+   "surface": "clinic",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.20",
+     "target": "He sent me the address of the clinic",
+     "ru": "Он прислал мне адрес клиники.",
+     "en": "He sent me the address of the clinic."
+    }
+   ]
+  },
+  {
+   "form": "put",
+   "surface": "put",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.21",
+     "target": "She put the parcel by the door",
+     "ru": "Она положила посылку у двери.",
+     "en": "She put the parcel by the door."
+    },
+    {
+     "id": "en-classic-r1:12.41",
+     "target": "Where did you put the spare key",
+     "ru": "Куда ты положил запасной ключ?",
+     "en": "Where did you put the spare key?"
+    }
+   ]
+  },
+  {
+   "form": "read",
+   "surface": "read",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.22",
+     "target": "I read the sign twice",
+     "ru": "Я дважды прочитал надпись.",
+     "en": "I read the sign twice."
+    }
+   ]
+  },
+  {
+   "form": "ate",
+   "surface": "ate",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.23",
+     "target": "We ate lunch outside",
+     "ru": "Мы пообедали на улице.",
+     "en": "We ate lunch outside."
+    }
+   ]
+  },
+  {
+   "form": "drank",
+   "surface": "drank",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.24",
+     "target": "He drank the last of the milk",
+     "ru": "Он допил остатки молока.",
+     "en": "He drank the last of the milk."
+    }
+   ]
+  },
+  {
+   "form": "made",
+   "surface": "made",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.25",
+     "target": "They made a cake together",
+     "ru": "Они вместе испекли торт.",
+     "en": "They made a cake together."
+    }
+   ]
+  },
+  {
+   "form": "cake",
+   "surface": "cake",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.25",
+     "target": "They made a cake together",
+     "ru": "Они вместе испекли торт.",
+     "en": "They made a cake together."
+    }
+   ]
+  },
+  {
+   "form": "wrote",
+   "surface": "wrote",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.26",
+     "target": "She wrote the price on the box",
+     "ru": "Она написала цену на коробке.",
+     "en": "She wrote the price on the box."
+    }
+   ]
+  },
+  {
+   "form": "forgot",
+   "surface": "forgot",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.27",
+     "target": "I forgot my password",
+     "ru": "Я забыл свой пароль.",
+     "en": "I forgot my password."
+    }
+   ]
+  },
+  {
+   "form": "chose",
+   "surface": "chose",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.28",
+     "target": "We chose the cheaper room",
+     "ru": "Мы выбрали более дешевый номер.",
+     "en": "We chose the cheaper room."
+    }
+   ]
+  },
+  {
+   "form": "cheaper",
+   "surface": "cheaper",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.28",
+     "target": "We chose the cheaper room",
+     "ru": "Мы выбрали более дешевый номер.",
+     "en": "We chose the cheaper room."
+    }
+   ]
+  },
+  {
+   "form": "broke",
+   "surface": "broke",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.29",
+     "target": "He broke his glasses",
+     "ru": "Он разбил свои очки.",
+     "en": "He broke his glasses."
+    }
+   ]
+  },
+  {
+   "form": "glass",
+   "surface": "glass",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.30",
+     "target": "The glass fell off the shelf",
+     "ru": "Стакан упал с полки.",
+     "en": "The glass fell off the shelf."
+    }
+   ]
+  },
+  {
+   "form": "fell",
+   "surface": "fell",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.30",
+     "target": "The glass fell off the shelf",
+     "ru": "Стакан упал с полки.",
+     "en": "The glass fell off the shelf."
+    }
+   ]
+  },
+  {
+   "form": "photo",
+   "surface": "photo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.33",
+     "target": "Did he send the photo",
+     "ru": "Он отправил фото?",
+     "en": "Did he send the photo?"
+    }
+   ]
+  },
+  {
+   "form": "catch",
+   "surface": "catch",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.34",
+     "target": "Did they catch the bus",
+     "ru": "Они успели на автобус?",
+     "en": "Did they catch the bus?"
+    }
+   ]
+  },
+  {
+   "form": "forget",
+   "surface": "forget",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.39",
+     "target": "I did not forget your name",
+     "ru": "Я не забыл твоё имя.",
+     "en": "I did not forget your name."
+    }
+   ]
+  },
+  {
+   "form": "name",
+   "surface": "name",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.39",
+     "target": "I did not forget your name",
+     "ru": "Я не забыл твоё имя.",
+     "en": "I did not forget your name."
+    },
+    {
+     "id": "en-classic-r1:12.47",
+     "target": "She knew the street name",
+     "ru": "Она знала название улицы.",
+     "en": "She knew the street name."
+    }
+   ]
+  },
+  {
+   "form": "cup",
+   "surface": "cup",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.43",
+     "target": "Who took the last cup",
+     "ru": "Кто взял последнюю чашку?",
+     "en": "Who took the last cup?"
+    }
+   ]
+  },
+  {
+   "form": "thought",
+   "surface": "thought",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.46",
+     "target": "I thought the pharmacy was open",
+     "ru": "Я думал, аптека открыта.",
+     "en": "I thought the pharmacy was open."
+    }
+   ]
+  },
+  {
+   "form": "pharmacy",
+   "surface": "pharmacy",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.46",
+     "target": "I thought the pharmacy was open",
+     "ru": "Я думал, аптека открыта.",
+     "en": "I thought the pharmacy was open."
+    }
+   ]
+  },
+  {
+   "form": "was",
+   "surface": "was",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.46",
+     "target": "I thought the pharmacy was open",
+     "ru": "Я думал, аптека открыта.",
+     "en": "I thought the pharmacy was open."
+    }
+   ]
+  },
+  {
+   "form": "knew",
+   "surface": "knew",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.47",
+     "target": "She knew the street name",
+     "ru": "Она знала название улицы.",
+     "en": "She knew the street name."
+    }
+   ]
+  },
+  {
+   "form": "stood",
+   "surface": "stood",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.48",
+     "target": "We stood outside for ten minutes",
+     "ru": "Мы простояли на улице десять минут.",
+     "en": "We stood outside for ten minutes."
+    }
+   ]
+  },
+  {
+   "form": "held",
+   "surface": "held",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.49",
+     "target": "He held the ladder for me",
+     "ru": "Он подержал для меня лестницу.",
+     "en": "He held the ladder for me."
+    }
+   ]
+  },
+  {
+   "form": "ladder",
+   "surface": "ladder",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.49",
+     "target": "He held the ladder for me",
+     "ru": "Он подержал для меня лестницу.",
+     "en": "He held the ladder for me."
+    }
+   ]
+  },
+  {
+   "form": "told",
+   "surface": "told",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:12.50",
+     "target": "I told the driver my address",
+     "ru": "Я сказал водителю свой адрес.",
+     "en": "I told the driver my address."
+    }
+   ]
+  }
+ ]
+}

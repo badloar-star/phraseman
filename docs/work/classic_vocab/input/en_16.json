@@ -1,0 +1,418 @@
+{
+ "lang": "en",
+ "lesson": 16,
+ "words": [
+  {
+   "form": "wake",
+   "surface": "Wake",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.01",
+     "target": "Wake up Tom",
+     "ru": "Проснись, Том.",
+     "en": "Wake up, Tom."
+    },
+    {
+     "id": "en-classic-r1:16.04",
+     "target": "The children wake up early",
+     "ru": "Дети просыпаются рано.",
+     "en": "The children wake up early."
+    }
+   ]
+  },
+  {
+   "form": "tom",
+   "surface": "Tom",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.01",
+     "target": "Wake up Tom",
+     "ru": "Проснись, Том.",
+     "en": "Wake up, Tom."
+    }
+   ]
+  },
+  {
+   "form": "set",
+   "surface": "set",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.05",
+     "target": "We set off for the harbour before lunch",
+     "ru": "Мы отправились в порт до обеда.",
+     "en": "We set off for the harbour before lunch."
+    }
+   ]
+  },
+  {
+   "form": "harbour",
+   "surface": "harbour",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.05",
+     "target": "We set off for the harbour before lunch",
+     "ru": "Мы отправились в порт до обеда.",
+     "en": "We set off for the harbour before lunch."
+    }
+   ]
+  },
+  {
+   "form": "pulls",
+   "surface": "pulls",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.06",
+     "target": "The train pulls in at noon",
+     "ru": "Поезд прибывает в полдень.",
+     "en": "The train pulls in at noon."
+    }
+   ]
+  },
+  {
+   "form": "rehearsal",
+   "surface": "rehearsal",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.08",
+     "target": "Come back after the rehearsal",
+     "ru": "Вернитесь после репетиции.",
+     "en": "Come back after the rehearsal."
+    }
+   ]
+  },
+  {
+   "form": "fan",
+   "surface": "fan",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.14",
+     "target": "Turn off the fan",
+     "ru": "Выключите вентилятор.",
+     "en": "Turn off the fan."
+    }
+   ]
+  },
+  {
+   "form": "heater",
+   "surface": "heater",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.15",
+     "target": "Turn the heater off",
+     "ru": "Выключите обогреватель.",
+     "en": "Turn the heater off."
+    }
+   ]
+  },
+  {
+   "form": "pick",
+   "surface": "Pick",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.17",
+     "target": "Pick up the phone",
+     "ru": "Поднимите трубку.",
+     "en": "Pick up the phone."
+    },
+    {
+     "id": "en-classic-r1:16.18",
+     "target": "Pick it up",
+     "ru": "Возьмите её.",
+     "en": "Pick it up."
+    }
+   ]
+  },
+  {
+   "form": "looked",
+   "surface": "looked",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.23",
+     "target": "We looked up the address",
+     "ru": "Мы посмотрели адрес.",
+     "en": "We looked up the address."
+    },
+    {
+     "id": "en-classic-r1:16.24",
+     "target": "He looked it up",
+     "ru": "Он это посмотрел.",
+     "en": "He looked it up."
+    }
+   ]
+  },
+  {
+   "form": "filled",
+   "surface": "filled",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.25",
+     "target": "They filled in the form",
+     "ru": "Они заполнили форму.",
+     "en": "They filled in the form."
+    },
+    {
+     "id": "en-classic-r1:16.26",
+     "target": "I filled it in",
+     "ru": "Я заполнил её.",
+     "en": "I filled it in."
+    }
+   ]
+  },
+  {
+   "form": "handed",
+   "surface": "handed",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.27",
+     "target": "She handed in the keys",
+     "ru": "Она сдала ключи.",
+     "en": "She handed in the keys."
+    },
+    {
+     "id": "en-classic-r1:16.28",
+     "target": "He handed them in",
+     "ru": "Он сдал их.",
+     "en": "He handed them in."
+    }
+   ]
+  },
+  {
+   "form": "them",
+   "surface": "them",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.28",
+     "target": "He handed them in",
+     "ru": "Он сдал их.",
+     "en": "He handed them in."
+    }
+   ]
+  },
+  {
+   "form": "look",
+   "surface": "look",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.31",
+     "target": "I look after my nephew",
+     "ru": "Я присматриваю за своим племянником.",
+     "en": "I look after my nephew."
+    },
+    {
+     "id": "en-classic-r1:16.35",
+     "target": "Can you look after my bag",
+     "ru": "Вы можете присмотреть за моей сумкой?",
+     "en": "Can you look after my bag?"
+    }
+   ]
+  },
+  {
+   "form": "nephew",
+   "surface": "nephew",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.31",
+     "target": "I look after my nephew",
+     "ru": "Я присматриваю за своим племянником.",
+     "en": "I look after my nephew."
+    }
+   ]
+  },
+  {
+   "form": "looks",
+   "surface": "looks",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.32",
+     "target": "She looks after the children",
+     "ru": "Она присматривает за детьми.",
+     "en": "She looks after the children."
+    }
+   ]
+  },
+  {
+   "form": "looking",
+   "surface": "looking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.33",
+     "target": "We are looking for a flat",
+     "ru": "Мы ищем квартиру.",
+     "en": "We are looking for a flat."
+    }
+   ]
+  },
+  {
+   "form": "ran",
+   "surface": "ran",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.37",
+     "target": "We ran out of milk",
+     "ru": "У нас закончилось молоко.",
+     "en": "We ran out of milk."
+    },
+    {
+     "id": "en-classic-r1:16.38",
+     "target": "She ran out of paper",
+     "ru": "У неё закончилась бумага.",
+     "en": "She ran out of paper."
+    }
+   ]
+  },
+  {
+   "form": "out",
+   "surface": "out",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.37",
+     "target": "We ran out of milk",
+     "ru": "У нас закончилось молоко.",
+     "en": "We ran out of milk."
+    },
+    {
+     "id": "en-classic-r1:16.38",
+     "target": "She ran out of paper",
+     "ru": "У неё закончилась бумага.",
+     "en": "She ran out of paper."
+    }
+   ]
+  },
+  {
+   "form": "came",
+   "surface": "came",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.39",
+     "target": "I came across an old photo",
+     "ru": "Я наткнулся на старую фотографию.",
+     "en": "I came across an old photo."
+    }
+   ]
+  },
+  {
+   "form": "across",
+   "surface": "across",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.39",
+     "target": "I came across an old photo",
+     "ru": "Я наткнулся на старую фотографию.",
+     "en": "I came across an old photo."
+    }
+   ]
+  },
+  {
+   "form": "over",
+   "surface": "over",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.40",
+     "target": "He got over his cold",
+     "ru": "Он оправился от простуды.",
+     "en": "He got over his cold."
+    }
+   ]
+  },
+  {
+   "form": "drop",
+   "surface": "drop",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.44",
+     "target": "I will drop you off outside",
+     "ru": "Я высажу тебя у входа.",
+     "en": "I will drop you off outside."
+    }
+   ]
+  },
+  {
+   "form": "fare",
+   "surface": "fare",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.45",
+     "target": "We need to find out the fare",
+     "ru": "Нам нужно узнать стоимость проезда.",
+     "en": "We need to find out the fare."
+    }
+   ]
+  },
+  {
+   "form": "give",
+   "surface": "give",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.47",
+     "target": "Can I give it back tomorrow",
+     "ru": "Могу я вернуть её завтра?",
+     "en": "Can I give it back tomorrow?"
+    }
+   ]
+  },
+  {
+   "form": "meeting",
+   "surface": "meeting",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.48",
+     "target": "The meeting went on until lunch",
+     "ru": "Встреча продолжалась до обеда.",
+     "en": "The meeting went on until lunch."
+    }
+   ]
+  },
+  {
+   "form": "five",
+   "surface": "five",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.49",
+     "target": "The alarm went off at five",
+     "ru": "Будильник зазвонил в пять.",
+     "en": "The alarm went off at five."
+    }
+   ]
+  },
+  {
+   "form": "away",
+   "surface": "away",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:16.50",
+     "target": "Please put the milk away",
+     "ru": "Пожалуйста, убери молоко.",
+     "en": "Please put the milk away."
+    }
+   ]
+  }
+ ]
+}

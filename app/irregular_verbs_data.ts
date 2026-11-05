@@ -181,6 +181,7 @@ const IRREGULAR_VERB_SOURCE_LOCALES: Record<string, IrregularVerbSourceLocaleMap
   swim: { es: 'Nadar', 'pt-BR': 'Nadar', vi: 'Bơi', id: 'Berenang', tr: 'Yüzmek', pl: 'Pływać' },
   teach: { es: 'Enseñar', 'pt-BR': 'Ensinar', vi: 'Dạy', id: 'Mengajar', tr: 'Öğretmek', pl: 'Uczyć' },
   win: { es: 'Ganar', 'pt-BR': 'Ganhar / vencer', vi: 'Thắng', id: 'Menang', tr: 'Kazanmak', pl: 'Wygrywać' },
+  catch: { es: 'Atrapar', 'pt-BR': 'Pegar', vi: 'Bắt', id: 'Menangkap', tr: 'Yakalamak', pl: 'Łapać' },
 };
 
 // зачем (владелец 05.11, 150 = английский курс, ≤1% ошибок; координатор): глагол стоит в том уроке, где его формы (V1/V2/V3, -s, -ing) ВПЕРВЫЕ встречаются

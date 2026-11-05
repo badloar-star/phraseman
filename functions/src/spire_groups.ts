@@ -33,7 +33,7 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolveArenaStudyTarget, type ArenaStudyTarget } from './arena_target_registry';
 import { normalizeStars, starsWeekEarned } from './stars_ledger';
-import { isRealPlusActive } from './premium_status';
+import { isRealPlusActive, realPlusTier, type PlusTier } from './premium_status';
 import { spireEnergyBonusFromDeltas } from '../../shared/spire_energy_bonus';
 import {
   SPIRE_ROOM_SIZE,
@@ -70,6 +70,8 @@ type SpireMember = {
   weekCoins: number;
   /** Plus у игрока — кольцо у монеты для соседей (владелец 21.10, «Plus виден другим»). Пишет только сервер. */
   isPremium: boolean;
+  /** Уровень Plus (06.11, «Plus/Ultra»): 'ultra' — годовая подписка, 'plus' — остальное, null — Plus нет. Нет поля у старых записей = plus. Пишет только сервер. */
+  plusTier?: PlusTier | null;
 };
 
 /**
@@ -80,6 +82,11 @@ type SpireMember = {
 export function spireIsPlusOf(userData: Record<string, unknown> | undefined, nowMs: number): boolean {
   // Одно правило на сервере: isRealPlusActive (premium_status.ts) — его же пишет public_profiles.isPlus.
   return isRealPlusActive((userData?.progress ?? {}) as Record<string, unknown>, nowMs);
+}
+
+/** Уровень Plus по уже прочитанному users/{uid} — 0 лишних чтений (то же правило, что public_profiles.plusTier). */
+export function spirePlusTierOf(userData: Record<string, unknown> | undefined, nowMs: number): PlusTier | null {
+  return realPlusTier((userData?.progress ?? {}) as Record<string, unknown>, nowMs);
 }
 
 /** D162: монеты недели игрока по уже прочитанному users/{uid} — 0 лишних чтений. */
@@ -185,6 +192,7 @@ function buildMember(
     coinRank: spireCoinRankOrNull(raw.coinRank),
     weekCoins: spireWeekCoinsOf(userData, weekId),
     isPremium: spireIsPlusOf(userData, nowMs),
+    plusTier: spirePlusTierOf(userData, nowMs),
   };
 }
 
@@ -198,13 +206,15 @@ function buildMember(
  */
 export function spireMemberStepsUpdate(
   stableUid: string,
-  current: Readonly<{ steps?: unknown; coinRank?: unknown; weekCoins?: unknown; isPremium?: unknown }> | undefined,
+  current: Readonly<{ steps?: unknown; coinRank?: unknown; weekCoins?: unknown; isPremium?: unknown; plusTier?: unknown }> | undefined,
   next: Readonly<{ steps: number; reachedAtMs: number; totalMs: number }>,
   nowMs: number,
   coinRank: number | null = null,
   weekCoins: number | null = null,
   isPremium: boolean | null = null,
-): Record<string, number | boolean> | null {
+  /** undefined — уровень не передан (старые вызовы); null — Plus нет. */
+  plusTier?: PlusTier | null,
+): Record<string, number | boolean | string | null> | null {
   const prev = Math.max(0, Math.trunc(Number(current?.steps)) || 0);
   const steps = Math.max(0, Math.trunc(next.steps) || 0);
   // зачем (владелец 13.10, аватар-монета): ранг едет той же записью, что ступени; отдельная запись — только если ранг сменился
@@ -214,7 +224,9 @@ export function spireMemberStepsUpdate(
   const coins = weekCoins !== null && Number(current?.weekCoins) !== weekCoins ? { [`members.${stableUid}.weekCoins`]: weekCoins } : {};
   // зачем (владелец 21.10, кольцо Plus у соседей): статус едет той же записью; отдельная — только если он сменился.
   const plus = isPremium !== null && (current?.isPremium === true) !== isPremium ? { [`members.${stableUid}.isPremium`]: isPremium } : {};
-  const extra = { ...rank, ...coins, ...plus };
+  // зачем (06.11, «Plus/Ultra»): уровень едет той же записью; отдельная — только если он сменился (у старых записей поля нет = null)
+  const tier = plusTier !== undefined && ((current?.plusTier as PlusTier | null | undefined) ?? null) !== plusTier ? { [`members.${stableUid}.plusTier`]: plusTier } : {};
+  const extra = { ...rank, ...coins, ...plus, ...tier };
   if (steps <= prev) return Object.keys(extra).length > 0 ? { ...extra, updatedAt: nowMs } : null;
   return {
     [`members.${stableUid}.steps`]: steps,
@@ -305,14 +317,18 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
       const isPremium = spireIsPlusOf(userData, nowMs);
       const coinsChanged = Number(saved.members[stableUid]?.weekCoins) !== weekCoins;
       const plusChanged = (saved.members[stableUid]?.isPremium === true) !== isPremium;
-      if (coinsChanged || plusChanged) {
+      // зачем (06.11, «Plus/Ultra»): смена уровня (месяц → год) тоже обновляет строку; у старой записи поля нет = null
+      const plusTier = spirePlusTierOf(userData, nowMs);
+      const tierChanged = (((saved.members[stableUid] as { plusTier?: PlusTier | null } | undefined)?.plusTier) ?? null) !== plusTier;
+      if (coinsChanged || plusChanged || tierChanged) {
         try {
           await savedSnap.ref.update({
             ...(coinsChanged ? { [`members.${stableUid}.weekCoins`]: weekCoins } : {}),
             ...(plusChanged ? { [`members.${stableUid}.isPremium`]: isPremium } : {}),
+            ...(tierChanged ? { [`members.${stableUid}.plusTier`]: plusTier } : {}),
             updatedAt: nowMs,
           });
-          console.log(LOG, JSON.stringify({ event: 'week_coins_snapshot', groupId: savedId, weekCoins, isPremium, coinsChanged, plusChanged }));
+          console.log(LOG, JSON.stringify({ event: 'week_coins_snapshot', groupId: savedId, weekCoins, isPremium, plusTier, coinsChanged, plusChanged, tierChanged }));
         } catch (error) {
           console.warn(LOG, JSON.stringify({ event: 'week_coins_snapshot_failed', groupId: savedId, reason: String((error as Error)?.message ?? error).slice(0, 160) }));
         }

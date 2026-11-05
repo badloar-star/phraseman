@@ -15,7 +15,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
-import { signOutAndWipeForAccountSwitch } from '../../app/auth_provider';
+import { resumeAccountSwitchRecovery, signOutAndWipeForAccountSwitch } from '../../app/auth_provider';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import { DebugLogger } from '../../app/debug-logger';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
@@ -150,6 +150,19 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
       onStageChange('idle');
       onSignedOut({ synced: forced.synced });
       return;
+    }
+    // зачем (A5, владелец 05.11 «выход только успех»): отказ ПОСЛЕ защитного маркера (recovery_required / wipe_failed) — маркер на диске,
+    // его доводит то же восстановление, что при запуске. Доводим тихо сейчас; шторку входа показываем ТОЛЬКО при ok (локальные данные стёрты —
+    // чужой прогресс следующему аккаунту не достанется). При ok:false (карантин) — окно ниже: старый аккаунт не закрыт, пускать нельзя.
+    if (forced.reason === 'recovery_required' || forced.reason === 'wipe_failed') {
+      console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'ui_recovery_start', reason: forced.reason, userSees: 'button_saving_progress' })); // guard-ok: ветка и значение, которое её решило
+      const recovered = await resumeAccountSwitchRecovery();
+      console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'ui_recovery_done', ok: recovered.ok, reason: forced.reason, totalMs: Date.now() - tapAtMs, userSees: recovered.ok ? 'sign_in_sheet' : 'failed_restart' })); // guard-ok: итог
+      if (recovered.ok) {
+        onStageChange('idle');
+        onSignedOut({ synced: false });
+        return;
+      }
     }
     // Сюда попадаем, только если не удалось стереть ЛОКАЛЬНЫЕ данные —
     // выпускать нельзя, иначе следующий аккаунт увидит чужой прогресс.

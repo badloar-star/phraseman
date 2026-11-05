@@ -94,6 +94,18 @@ async function readState(): Promise<ScheduledSmartTime | null> {
 }
 
 /**
+ * Привычное время занятий (минуты от полуночи) — для подсказки в Настройках «Обычно ты занимаешься в 19:40 · поставить» (раунд 2, Настройки п.3).
+ * null — данных мало или привычка неуверенная: подсказки нет, ничего не выдумываем. Только локальная история, без сети и записи.
+ */
+export async function peekHabitMinute(nowMs: number = Date.now()): Promise<number | null> {
+  const history = await readSmartReminderHistory();
+  const { tzOffsetMin } = localNow(nowMs);
+  const decision = computeSmartReminderTime(history, nowMs, tzOffsetMin);
+  console.log(`[SMART-REMINDER] habit-peek events=${decision.events} days=${decision.distinctDays} source=${decision.source} reason=${decision.reason} peak=${decision.peakMinute == null ? '-' : formatReminderMinute(decision.peakMinute)}`); // guard-ok: значение, решившее подсказку
+  return decision.source === 'smart' && decision.peakMinute != null ? decision.peakMinute : null;
+}
+
+/**
  * Время для дней расписания в режиме «авто»: расчёт по истории + устойчивость. Считается при запуске (миллисекунды,
  * ≤ 60 записей). Состояние пишется только при смене — перепланировка тоже только при смене (решает вызывающий код).
  */

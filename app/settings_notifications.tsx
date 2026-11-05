@@ -28,6 +28,7 @@ import {
   hydrateNotifPrefsFromStorage, saveNotifPrefs, applyNotifPrefsSideEffects,
   isNotificationPermissionGranted, requestNotificationPermissionWithFallback,
 } from './notifications';
+import { peekHabitMinute } from './smart_reminder_store';
 import { triLang, type Lang } from '../constants/i18n';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
@@ -229,6 +230,13 @@ export default function SettingsNotifications() {
   // Разрешение на уведомления отсутствует → честно показываем это и ведём в настройки.
   const [needsPermission, setNeedsPermission] = useState(false);
   const [timeOpen, setTimeOpen] = useState(false);
+  // зачем (раунд 2, Настройки п.3): «Обычно ты занимаешься в 19:40 · поставить» — привычное время из локальной истории; null — данных мало, подсказки нет
+  const [habitMinute, setHabitMinute] = useState<number | null>(null);
+  useEffect(() => {
+    let alive = true;
+    peekHabitMinute().then((minuteOfDay) => { if (alive) setHabitMinute(minuteOfDay); }).catch((error: unknown) => console.warn(`[SMART-REMINDER] habit-peek не удался: ${error instanceof Error ? error.message : String(error)}`)); // guard-ok: catch называет причину
+    return () => { alive = false; };
+  }, []);
 
   const prefsRef = useRef(prefs); prefsRef.current = prefs;
   const sRef = useRef(s); sRef.current = s;
@@ -456,6 +464,11 @@ export default function SettingsNotifications() {
   // ФАКТИЧЕСКОЕ состояние: мастер выключен, строки выключены и приглушены. Сохранённые выборы человека не трогаем — после разрешения они вернутся.
   const master = (prefs.master || devShowcase) && !needsPermission;
   const timeRowActive = master && dailyEnabled;
+  const habitHour = habitMinute === null ? null : Math.floor(habitMinute / 60);
+  const habitMin = habitMinute === null ? null : habitMinute % 60;
+  const habitDiffers = habitHour !== null && habitMin !== null && (habitHour !== hour || habitMin !== minute);
+  const habitUsualLabel = L({ ru:'Обычно ты занимаешься в', uk:'Зазвичай ти займаєшся о', en:'You usually study at', es:'Sueles estudiar a las', 'pt-BR':'Você costuma estudar às', vi:'Bạn thường học lúc', id:'Biasanya kamu belajar pukul', tr:'Genelde şu saatte çalışıyorsun:', pl:'Zwykle uczysz się o' });
+  const habitSetLabel = L({ ru:'поставить', uk:'поставити', en:'set', es:'poner', 'pt-BR':'definir', vi:'đặt', id:'atur', tr:'ayarla', pl:'ustaw' });
 
   // зачем: паритет с макетом profile.html PRF-04 — заголовок секции как eyebrow (SettingsGlassEyebrow: secondary, 1.7)
   // зачем (EN-проход 13.10, координатор): заголовки разделов — тот же eyebrow, что в Настройках (SettingsGlassEyebrow: 13 по D145,
@@ -561,6 +574,23 @@ export default function SettingsNotifications() {
                     <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
                   </View>
                 </PressableHybrid>
+                {timeRowActive && habitDiffers && habitHour !== null && habitMin !== null ? (
+                  <PressableHybrid
+                    testID="notif-habit-suggest"
+                    accessibilityRole="button"
+                    accessibilityLabel={`${habitUsualLabel} ${pad(habitHour)}:${pad(habitMin)} · ${habitSetLabel}`}
+                    onPress={() => { hapticTap(); confirmTime(habitHour, habitMin); }}
+                    withHaptic={false}
+                    withSound={false}
+                    style={{ alignSelf: 'flex-start' }}
+                    contentStyle={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 6 }}
+                  >
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
+                      <FlowText testID="notif-habit-suggest-text" provenance="authored" style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '400' }}>{`${habitUsualLabel} ${pad(habitHour)}:${pad(habitMin)} · `}</FlowText>
+                      <FlowText testID="notif-habit-suggest-action" provenance="authored" style={{ color: t.textPrimary, fontSize: 15, lineHeight: 20, fontWeight: '700' }}>{habitSetLabel}</FlowText>
+                    </View>
+                  </PressableHybrid>
+                ) : null}
                 <ToggleRow label={streakLabel} icon="flame-outline" value={master && prefs.categories.streak} onValueChange={toggleCategory('streak')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-streak" />
                 <ToggleRow label={phraseLabel} icon="bookmark-outline" value={master && prefs.categories.phrase_of_day} onValueChange={toggleCategory('phrase_of_day')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-phrase_of_day" />
                 <ToggleRow label={energyLabel} icon="flash-outline" value={master && prefs.categories.energy} onValueChange={toggleCategory('energy')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-energy" />

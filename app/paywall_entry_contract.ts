@@ -26,6 +26,10 @@ export const PAYWALL_SOURCE_VALUES = [
   'rank_locked',
   // зачем (координатор 04.11): строка «Попробуй Plus бесплатно» в «Сегодня» открывает обычный generic-пейвол (тексты, цены и триал-оффер те же); отдельный контекст не нужен, источник — для воронки
   'home_trial_row',
+  // зачем (Ядро/координатор 06.11): покупки с новой вкладки «Plus» считаются в воронке отдельно (раньше вкладка слала source 'direct')
+  'plus_tab',
+  // зачем (координатор 06.11): экран «Оформление» — замок Plus на ползунках тем (app/settings_appearance.tsx) открывает пейвол со своим источником
+  'appearance_tune',
   'card_editor_create',
   'flashcards_hub_speaking',
   'flashcards_hub_training_mode',

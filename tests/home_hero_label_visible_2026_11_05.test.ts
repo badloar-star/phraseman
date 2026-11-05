@@ -21,7 +21,7 @@ describe('кнопка героя: подпись всегда видна', () =
 describe('«Фраза дня» на Главной: значение строкой', () => {
   const card = read('components/DailyPhraseCard.tsx');
   it('под фразой — смысл (meaning), буквальный перевод только если смысла нет', () => {
-    expect(card).toContain("const cardLiteral = noSourceExplanation ? '' : (phraseCopy.meaning || phraseCopy.literal);");
+    expect(card).toContain("const cardLiteral = translationAllowed ? (phraseCopy.meaning || phraseCopy.literal) : '';"); // перевод — только после ответа на вопрос дня (05.11)
   });
   it('кнопки озвучки на карточке нет (замок владельца 18.10 в силе)', () => {
     const v2 = card.slice(card.indexOf('testID="home-v2-phrase-of-day"'), card.indexOf('</Pressable>', card.indexOf('testID="home-v2-phrase-of-day"')));

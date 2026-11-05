@@ -182,6 +182,23 @@ function DailyPhraseCard({
     [phrase, detailsVisible, noSourceExplanation, phraseLang, studyTarget],
   );
   const hasValidQuest = questOptions.length === 3;
+  // зачем (🔴 слово владельца через координатора 05.11: «Фраза дня не должна показывать перевод! Только после того, как ответили на квиз»): на карточке Главной перевод
+  // виден только когда на вопрос дня ЭТОЙ фразы уже ответили (в этом процессе или сохранено на диске); до ответа — только сама фраза. Журнал [DAILY-PHRASE-TRANSLATION].
+  const [cardAnswered, setCardAnswered] = useState(false);
+  useEffect(() => {
+    if (!phrase) return undefined;
+    let cancelled = false;
+    const phraseId = phrase.id || phrase.date;
+    const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
+    const questKey = `${studyTarget === 'en' ? '' : `${studyTarget}:`}${date}:${phraseId}`;
+    if (answeredQuestKeysRef.has(questKey)) { setCardAnswered(true); return undefined; }
+    setCardAnswered(false);
+    console.log('[DAILY-PHRASE-TRANSLATION] gate', JSON.stringify({ uiLang: lang, studyTarget, phraseId, rule: 'перевод только после ответа на вопрос дня; язык перевода = язык интерфейса (en — без перевода)' })); // guard-ok: правило показа строки
+    hasDailyPhraseQuestAnswered({ phraseId, date, studyTarget })
+      .then((answered) => { if (!cancelled) { setCardAnswered(answered); console.log('[DAILY-PHRASE-TRANSLATION] answered', JSON.stringify({ phraseId, date, studyTarget, answered, source: 'disk' })); } }) // guard-ok: итог чтения ответа
+      .catch(noteSwallowedAs('DailyPhraseCard:cardAnswered.hasDailyPhraseQuestAnswered', undefined));
+    return () => { cancelled = true; };
+  }, [phrase, studyTarget, lang, answeredQuestKeysRef]);
   const selectedQuestOption = selectedQuestOptionId
     ? questOptions.find((option) => option.id === selectedQuestOptionId) ?? null
     : null;
@@ -508,7 +525,11 @@ function DailyPhraseCard({
   });
   const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
   // зачем (🔴 кадр 5554 10:53 + макет rev6-home-free-0: под фразой — её ЗНАЧЕНИЕ строкой («Отправиться на тот свет»), а не «Буквально: …»): берём смысл, буквальный перевод — только если смысла нет
-  const cardLiteral = noSourceExplanation ? '' : (phraseCopy.meaning || phraseCopy.literal);
+  // зачем (то же правило 05.11): до ответа перевода нет; после ответа — только на ЯЗЫКЕ ИНТЕРФЕЙСА (ru→ru, uk→uk, остальные — свой перевод, если он целиком есть); английскому интерфейсу русский не показываем
+  // (английского источника у фраз нет, решение 12.10), чужой язык вместо перевода хуже, чем пустая строка.
+  const translationLang = lang === 'en' ? null : phraseLang;
+  const translationAllowed = cardAnswered && !noSourceExplanation && translationLang !== null && !phraseCopy.isFallback;
+  const cardLiteral = translationAllowed ? (phraseCopy.meaning || phraseCopy.literal) : '';
   const flashcardSourceLocales = {
     'pt-BR': phrase.sourceLocales?.['pt-BR']?.meaning,
     vi: phrase.sourceLocales?.vi?.meaning,
@@ -615,6 +636,7 @@ function DailyPhraseCard({
       || await hasDailyPhraseQuestAnswered({ phraseId, date, studyTarget }).catch(noteSwallowedAs('DailyPhraseCard:openDetails.hasDailyPhraseQuestAnswered', false));
 
     if (alreadyAnswered) {
+      setCardAnswered(true);
       setQuestAnswered(true);
       setShowQuestExplanation(true);
       setQuestPreviouslyAnswered(true);
@@ -654,6 +676,7 @@ function DailyPhraseCard({
     const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
     const questKey = `${studyTarget === 'en' ? '' : `${studyTarget}:`}${date}:${phraseId}`;
     answeredQuestKeysRef.add(questKey);
+    setCardAnswered(true);
     setSelectedQuestOptionId(optionId);
     setQuestAnswered(true);
     setQuestPreviouslyAnswered(false);

@@ -92,7 +92,7 @@ describe('Daily phrase for es/de/it is bundled (D163)', () => {
     expect(card).toContain('phrase && detailsVisible && !noSourceExplanation');
     expect(card).toContain('(showQuestExplanation || !hasValidQuest) && !noSourceExplanation');
     expect(card).toContain('phrase.allowSave !== false && !noSourceExplanation');
-    expect(card).toContain("const cardLiteral = noSourceExplanation ? '' : phraseCopy.literal;");
+    expect(card).toContain('const translationAllowed = cardAnswered && !noSourceExplanation && translationLang !== null && !phraseCopy.isFallback;');
   });
 
   it('the three targets carry different phrases (no shared or substituted pack)', async () => {

@@ -133,7 +133,6 @@ import * as Linking from 'expo-linking';
 import { redirectSystemPath } from './+native-intent';
 import React, { Profiler, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { Animated, Appearance, AppState, BackHandler, Easing, InteractionManager, LogBox, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { EnergyProvider } from '../components/EnergyContext';
@@ -267,7 +266,9 @@ import {
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
 import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
-import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useReduceMotion, useReduceMotionPreference } from '../hooks/use_reduce_motion';
+// зачем (слово владельца 05.11, «Г · Монета»): экранная заставка — монета катится и раскрывается в знак; бесконечный пульс убран
+import { SplashCoin, SPLASH_COIN_REDUCED_MS, SPLASH_COIN_TOTAL_MS, isSplashCoinFinished } from '../components/startup/SplashCoin';
 import { primeAllLessonsFromStorageOnAppLaunch } from './lesson_screen_bootstrap';
 import { hydrateUserSettingsFromStorage } from './user_settings_store';
 import { createSettingsBootReadScope } from '../lib/startup_settings_read_scope';
@@ -695,23 +696,21 @@ const SPLASH_WORDMARK_RATIO = 68 / 553; // из assets/images/splash-wordmark.we
 const SPLASH_WORDMARK_HEIGHT = Math.round(SPLASH_WORDMARK_WIDTH * SPLASH_WORDMARK_RATIO);
 const SPLASH_SHINE_WIDTH = Math.round(SPLASH_WORDMARK_WIDTH * 0.45);
 
+/** Отсчёт минимального удержания заставки (1,8 с): общий для компонента и раннего скрытия по кадру Главной. */
+const splashMinHold = { startedAt: 0, ms: SPLASH_COIN_TOTAL_MS };
+
 /**
- * Анимированный стартовый сплэш поверх нативного: глиф мягко «дышит» (пульс),
- * ворд-марк «Phraseman» проявляется и по нему один раз проезжает блик,
- * подзаголовок «by Professor Lingman» проявляется последним.
- * Всё на нативном драйвере (UI-поток), pointerEvents=none — фон остаётся «замороженным».
- * Loop останавливается в cleanup, чтобы не крутиться после скрытия сплэша.
+ * Анимированный стартовый сплэш поверх нативного: «Г · Монета» (слово владельца 05.11, макет splash_variants_2026-11-05.html) — монета катится и раскрывается
+ * в знак, внизу «Phraseman» и «by Professor Lingman». Анимация (components/startup/SplashCoin.tsx) конечная, на нативном драйвере, стартует с первого кадра JS,
+ * в финале стоит знак — бесконечного пульса больше нет. Заставка держится до готовности Главной, но не короче 1,8 с (SPLASH_COIN_TOTAL_MS).
+ * Нативная заставка — только тёмный фон #101214 без картинки (app.json), поэтому до старта JS виден лишь тёмный экран.
  */
 function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: boolean; canHideNativeSplash?: boolean }) {
   // Хуки должны вызываться безусловно — ранний return только после их объявления.
-  const glyphIn = useRef(new Animated.Value(0)).current;   // вход глифа: 0→1
-  const pulse = useRef(new Animated.Value(0)).current;     // бесконечный пульс: 0↔1
-  const wordIn = useRef(new Animated.Value(0)).current;    // проявление ворд-марка
-  const subIn = useRef(new Animated.Value(0)).current;     // проявление подзаголовка
-  const shine = useRef(new Animated.Value(0)).current;     // проезд блика: 0→1
   // зачем (координатор 18.10, theme_boot): при светлой системе заставка была тёмной ~4 с, потом вспышка светлой Главной.
   // Фон и надпись — по сохранённой теме, пока её нет — по системной схеме (Appearance читается синхронно).
   const { liquidGlassThemeId, liquidGlassAppearance, liquidGlassChoiceReady } = useTheme();
+  const reducedMotion = useReduceMotionPreference();
   const splashPalette = useMemo(
     () => startupSplashPalette(Appearance.getColorScheme(), liquidGlassChoiceReady ? liquidGlassTokens(liquidGlassThemeId) : null),
     // liquidGlassAppearance — смена оформления меняет токены той же темы
@@ -731,10 +730,23 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
     Animated.timing(splashThemeFade, { toValue: 1, duration: SPLASH_THEME_FADE_MS, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
   }, [splashPalette.bg, splashThemeFade]);
 
+  // зачем (слово владельца 05.11, «анимация не короче 1,8 с»): Главная могла стать готовой раньше — заставка остаётся до конца анимации, затем уходит.
+  // Отсчёт — от первого показа; по истечении один раз переключаем флаг (без таймера в кадрах).
+  const holdStartedAtRef = useRef<number | null>(null);
+  const [minHoldDone, setMinHoldDone] = useState(isSplashCoinFinished());
+  if (visible && holdStartedAtRef.current === null) holdStartedAtRef.current = Date.now();
+  useEffect(() => {
+    if (minHoldDone || holdStartedAtRef.current === null) return undefined;
+    const total = reducedMotion === true ? SPLASH_COIN_REDUCED_MS : SPLASH_COIN_TOTAL_MS;
+    const left = Math.max(0, total - (Date.now() - holdStartedAtRef.current));
+    const id = setTimeout(() => { bootMark('[SPLASH-COIN] min-hold done', { total, reducedMotion }); setMinHoldDone(true); }, left);
+    return () => clearTimeout(id);
+  }, [visible, minHoldDone, reducedMotion]);
+  const shown = visible || (holdStartedAtRef.current !== null && !minHoldDone);
+
   // Как только анимированный оверлей смонтирован и отрисован — прячем нативный сплэш,
-  // чтобы застывшая нативная картинка сразу уступила место анимации (фон тот же #101214,
-  // мигания нет). Иначе нативный слой перекрывает анимацию до самого content-ready.
-  // Пока рантайм-шрифты не встали, нативная картинка остаётся сверху: иначе первым
+  // чтобы нативный тёмный фон сразу уступил место анимации (фон тот же #101214, мигания нет).
+  // Пока рантайм-шрифты не встали, нативный слой остаётся сверху: иначе первым
   // кадром JS покажет текст системным начертанием и потом подменит его на Inter.
   useEffect(() => {
     if (!visible || !canHideNativeSplash) { bootMark('[THEME-BOOT] splash-hold: нативную заставку не снимаем', { visible, canHideNativeSplash }); return; }
@@ -745,56 +757,16 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   }, [visible, canHideNativeSplash]);
 
   useEffect(() => {
-    // зачем: ранний показ Главной гасит заставку прозрачностью; при следующем показе заставка снова видна.
-    if (!visible) {
-      startupHoldEarlyDismissOpacity.setValue(1);
-      return;
-    }
-    glyphIn.setValue(0); pulse.setValue(0); wordIn.setValue(0); subIn.setValue(0); shine.setValue(0);
+    // зачем: ранний показ Главной гасит заставку прозрачностью; при следующем показе заставка снова видна (сброс — когда она уже не показана, в удержании не трогаем)
+    if (!shown) startupHoldEarlyDismissOpacity.setValue(1);
+  }, [shown]);
+  // зачем: обработчик раннего скрытия по кадру Главной ждёт конец удержания (см. splashMinHold)
+  useEffect(() => {
+    splashMinHold.ms = reducedMotion === true ? SPLASH_COIN_REDUCED_MS : SPLASH_COIN_TOTAL_MS;
+    if (visible && splashMinHold.startedAt === 0) splashMinHold.startedAt = Date.now();
+  }, [visible, reducedMotion]);
 
-    const enter = Animated.timing(glyphIn, {
-      toValue: 1, duration: 520, easing: Easing.out(Easing.back(1.4)), useNativeDriver: true,
-    });
-    const pulseLoop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(pulse, { toValue: 1, duration: 1150, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-        Animated.timing(pulse, { toValue: 0, duration: 1150, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-      ]),
-    );
-    const word = Animated.timing(wordIn, {
-      toValue: 1, duration: 460, delay: 300, easing: Easing.out(Easing.cubic), useNativeDriver: true,
-    });
-    const shineRun = Animated.timing(shine, {
-      toValue: 1, duration: 900, delay: 620, easing: Easing.inOut(Easing.quad), useNativeDriver: true,
-    });
-    const sub = Animated.timing(subIn, {
-      toValue: 1, duration: 420, delay: 720, easing: Easing.out(Easing.cubic), useNativeDriver: true,
-    });
-
-    enter.start();
-    pulseLoop.start();
-    word.start();
-    shineRun.start();
-    sub.start();
-    return () => {
-      pulseLoop.stop();
-      enter.stop(); word.stop(); shineRun.stop(); sub.stop();
-    };
-  }, [visible, glyphIn, pulse, wordIn, subIn, shine]);
-
-  if (!visible) return null;
-
-  // Keep these transforms on separate native nodes. Animated.add can retain a
-  // reference to an already removed interpolation when the startup overlay is
-  // hidden, which produces an Android New Architecture race on first launch.
-  const glyphEnterScale = glyphIn.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1] });
-  const glyphPulseScale = pulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.055] });
-  const wordTranslateY = wordIn.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
-  const subTranslateY = subIn.interpolate({ inputRange: [0, 1], outputRange: [6, 0] });
-  const shineX = shine.interpolate({
-    inputRange: [0, 1],
-    outputRange: [-SPLASH_SHINE_WIDTH, SPLASH_WORDMARK_WIDTH + SPLASH_SHINE_WIDTH],
-  });
+  if (!shown) return null;
 
   return (
     <Animated.View
@@ -807,61 +779,13 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
       style={[styles.startupSplashAnimatedRoot, { backgroundColor: splashFirstBgRef.current, opacity: startupHoldEarlyDismissOpacity }]}
     >
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: splashPalette.bg, opacity: splashThemeFade }]} />
-      <Animated.View style={{ opacity: glyphIn, transform: [{ scale: glyphEnterScale }] }}>
-        <Animated.View style={[styles.startupSplashGlyphPulse, { transform: [{ scale: glyphPulseScale }] }]}>
-          <Image
-            source={require('../assets/images/splash-glyph.webp')}
-            contentFit="contain"
-            style={{ width: SPLASH_GLYPH_SIZE, height: SPLASH_GLYPH_SIZE }}
-          />
-        </Animated.View>
-      </Animated.View>
-
-      <Animated.View
-        style={{
-          marginTop: 22,
-          width: SPLASH_WORDMARK_WIDTH,
-          height: SPLASH_WORDMARK_HEIGHT,
-          opacity: wordIn,
-          transform: [{ translateY: wordTranslateY }],
-        }}
-      >
-        <Image
-          source={require('../assets/images/splash-wordmark.webp')}
-          contentFit="contain"
-          tintColor={splashPalette.wordmarkTint ?? undefined}
-          style={{ width: '100%', height: '100%' }}
-        />
-        {/* Блик: светлый диагональный градиент, ограниченный формой ворд-марка через маску. */}
-        <MaskedView
-          style={StyleSheet.absoluteFill}
-          maskElement={
-            <Image
-              source={require('../assets/images/splash-wordmark.webp')}
-              contentFit="contain"
-              style={{ width: '100%', height: '100%' }}
-            />
-          }
-        >
-          <Animated.View style={{ flex: 1, transform: [{ translateX: shineX }] }}>
-            <LinearGradient
-              colors={['transparent', 'rgba(255,255,255,0.85)', 'transparent']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={{ width: SPLASH_SHINE_WIDTH, height: '100%' }}
-            />
-          </Animated.View>
-        </MaskedView>
-      </Animated.View>
-
-      <Animated.Text
-        style={[
-          styles.startupSplashSubtitle,
-          { color: splashPalette.subtitle, opacity: subIn, transform: [{ translateY: subTranslateY }] },
-        ]}
-      >
-        by Professor Lingman
-      </Animated.Text>
+      <SplashCoin
+        subtitleColor={splashPalette.subtitle}
+        wordmarkTint={splashPalette.wordmarkTint}
+        reducedMotion={reducedMotion}
+        fontFamily={APP_FONT_FAMILY}
+        onLog={bootMark}
+      />
     </Animated.View>
   );
 }
@@ -2081,9 +2005,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       splashEarlyHideDone = true;
       bootMark('HOME-PAINT early hide — сплеш скрыт по кадру Главной', gate);
       hideNativeSplashAfterJsFrame('homePaintEarlyHide');
-      Animated.timing(startupHoldEarlyDismissOpacity, {
-        toValue: 0, duration: 120, easing: Easing.out(Easing.cubic), useNativeDriver: true,
-      }).start();
+      // зачем (слово владельца 05.11): анимация заставки не короче 1,8 с — гасим её не раньше конца удержания
+      const holdLeft = Math.max(0, splashMinHold.ms - (splashMinHold.startedAt ? Date.now() - splashMinHold.startedAt : 0));
+      bootMark('[SPLASH-COIN] early hide ждёт конец анимации', { holdLeft });
+      setTimeout(() => {
+        Animated.timing(startupHoldEarlyDismissOpacity, {
+          toValue: 0, duration: 120, easing: Easing.out(Easing.cubic), useNativeDriver: true,
+        }).start();
+      }, holdLeft);
       resolveNativeSplashHidden();
       markNativeSplashHidden();
     });

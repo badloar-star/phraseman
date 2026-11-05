@@ -172,7 +172,7 @@ function DailyPhraseCard({
   const noSourceExplanation = lang === 'en';
   useEffect(() => {
     if (!noSourceExplanation) return;
-    console.log('[DAILY-PHRASE-GATE] reason=no_en_explanation', JSON.stringify({ studyTarget, uiLang: lang, phraseLang, rule: 'en-интерфейс: толкований на английском нет, русский не показываем', hidden: ['literal', 'meaning', 'example', 'quiz', 'save'] })); // guard-ok: видимое сокращение карточки называет причину
+    console.log('[DAILY-PHRASE-GATE] reason=no_en_explanation', JSON.stringify({ studyTarget, uiLang: lang, phraseLang, rule: 'en-интерфейс: толкований на английском нет, русский не показываем', hidden: ['literal', 'meaning', 'example', 'quiz'] })); // guard-ok: видимое сокращение карточки называет причину
   }, [noSourceExplanation, studyTarget, lang]);
   // зачем: варианты квеста нужны только в открытой шторке деталей — не считаем
   // их (и не грузим каталог идиом) на первом кадре Главной. useMemo заодно
@@ -897,7 +897,8 @@ function DailyPhraseCard({
                   Кнопки собраны в свой ряд с шагом 6: общий gap шапки (12) на
                   трёх иконках отъедал ширину у фразы. */}
               <View style={styles.sheetActions}>
-                {(questAnswered || !hasValidQuest) && phrase.allowSave !== false && !noSourceExplanation && (
+                {/* зачем (правило владельца «функции при правке не удаляем», координатор 05.11): «Сохранить» не зависит от толкований — англоязычный интерфейс тоже может сохранить фразу дня */}
+                {(questAnswered || !hasValidQuest) && phrase.allowSave !== false && (
                   <AddToFlashcard
                     en={phrase.english}
                     ru={phrase.meaning}

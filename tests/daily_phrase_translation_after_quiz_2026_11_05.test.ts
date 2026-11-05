@@ -32,6 +32,8 @@ describe('Фраза дня: перевод только после ответа
   it('английскому интерфейсу русский не показываем ни при каком курсе; в окне после ответа озвучки нет (находка эмулятора 05.11)', () => {
     expect(card).toContain("const noSourceExplanation = lang === 'en';");
     expect(card).not.toContain('name="volume-high"');
+    // «Сохранить» остаётся и для английского интерфейса (правило «функции не удаляем», 05.11)
+    expect(card).toContain('{(questAnswered || !hasValidQuest) && phrase.allowSave !== false && ('); 
     expect(card).toContain("'[DAILY-PHRASE-GATE] reason=no_en_explanation'");
   });
   it('озвучки на карточке нет (замок 18.10)', () => {

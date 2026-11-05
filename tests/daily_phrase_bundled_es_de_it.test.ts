@@ -91,7 +91,8 @@ describe('Daily phrase for es/de/it is bundled (D163)', () => {
     expect(card).toContain('[DAILY-PHRASE-GATE] reason=no_en_explanation');
     expect(card).toContain('phrase && detailsVisible && !noSourceExplanation');
     expect(card).toContain('(showQuestExplanation || !hasValidQuest) && !noSourceExplanation');
-    expect(card).toContain('phrase.allowSave !== false && !noSourceExplanation');
+    // «Сохранить» не зависит от толкований и остаётся для английского интерфейса (правило владельца «функции не удаляем», 05.11)
+    expect(card).toContain('phrase.allowSave !== false && (');
     expect(card).toContain('const translationAllowed = cardAnswered && !noSourceExplanation && translationLang !== null && !phraseCopy.isFallback;');
   });
 

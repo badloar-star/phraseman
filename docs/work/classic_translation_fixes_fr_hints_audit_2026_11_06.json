@@ -1,0 +1,1246 @@
+{
+ "_note": "fr: полный аудит подсказок 1583 фраз (Теория, 06.11): исправления es/en (и точечно ru/uk) — регистр tu/vous, времена, род, имена, лексика. Накладывает сборщик classic_course_pack.mjs (слой TRANSLATION_FIXES).",
+ "fr:01.05": {
+  "es": "Léa está aquí.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:01.08": {
+  "es": "Usted está aquí.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:01.10": {
+  "es": "Ellas están aquí.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:01.14": {
+  "es": "Léa está en la estación.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:01.16": {
+  "es": "Usted está en la estación de tren.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:01.25": {
+  "es": "Léa está cansada.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:01.27": {
+  "es": "Ustedes están listos.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:01.29": {
+  "es": "Ellas están listas.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:01.41": {
+  "es": "Léa ya está aquí.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:01.48": {
+  "es": "Usted está cerca de la estación de tren.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:01.50": {
+  "en": "I'm near the door.",
+  "es": "Estoy cerca de la puerta.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:02.08": {
+  "es": "Usted no está en casa.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:02.19": {
+  "es": "Usted no llega tarde.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:02.20": {
+  "en": "We're not early.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:02.10": {
+  "es": "Ellas no están aquí.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:02.48": {
+  "es": "Ustedes no están solos aquí.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.03": {
+  "es": "¿Estás listo?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.05": {
+  "uk": "Поль в офісі?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.18": {
+  "uk": "Поль втомився?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.07": {
+  "es": "¿Está usted en casa?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.10": {
+  "es": "¿Está usted libre?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.17": {
+  "es": "¿Llega usted temprano?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.31": {
+  "es": "¿Está Léa contigo?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.35": {
+  "en": "Are the tickets in your pocket?",
+  "es": "¿Están los boletos en tu bolsillo?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.40": {
+  "ru": "Вы рядом со входом?",
+  "es": "¿Está usted cerca de la entrada?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.47": {
+  "es": "¿Está usted aquí para el concierto?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:03.49": {
+  "es": "¿Están los niños con usted?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.01": {
+  "uk": "Це Поль.",
+  "es": "Es Paul.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.02": {
+  "es": "Es Léa.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.05": {
+  "es": "Esta es una amiga.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.07": {
+  "en": "This is a neighbor.",
+  "es": "Este es un vecino.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.08": {
+  "es": "Esta es una vecina.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.19": {
+  "en": "This is a receipt.",
+  "es": "Este es un recibo.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.24": {
+  "es": "Estos son vecinos.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.28": {
+  "ru": "Это ваши чеки.",
+  "uk": "Це ваші чеки.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.35": {
+  "es": "Es su turno.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.43": {
+  "es": "Este no es el andén correcto.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.45": {
+  "es": "¿Es este su teléfono?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:04.47": {
+  "es": "¿Es este su equipaje?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:05.06": {
+  "es": "Usted tiene un plan.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:05.16": {
+  "en": "You feel hot.",
+  "es": "Usted tiene calor.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:05.18": {
+  "en": "They're sleepy.",
+  "es": "Tienen sueño.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:05.26": {
+  "es": "Usted tiene cinco minutos.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:05.31": {
+  "es": "¿Tiene usted un bolígrafo?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:05.33": {
+  "es": "¿Tiene usted un momento?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:05.38": {
+  "es": "¿Tienes mi número?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:05.40": {
+  "es": "¿Tiene usted una reserva?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:05.46": {
+  "es": "Usted puede elegir.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:06.19": {
+  "es": "¿Le gusta la sopa?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:06.36": {
+  "en": "The change is in the pocket.",
+  "es": "El cambio está en el bolsillo.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:07.15": {
+  "es": "Usted vive en la ciudad.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:07.16": {
+  "es": "Ellas viven aquí.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:07.25": {
+  "es": "¿Está buscando un hotel?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:07.45": {
+  "es": "¿Reserva usted para esta noche?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:08.05": {
+  "es": "¿Dónde trabaja usted?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:08.09": {
+  "es": "¿Dónde está su hotel?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:08.22": {
+  "es": "¿Cuándo se va usted?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:08.34": {
+  "es": "¿Cuántos asientos quiere usted?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:08.43": {
+  "es": "¿Cómo está usted?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:08.45": {
+  "es": "¿Cómo vuelve usted a casa esta noche?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:08.47": {
+  "es": "¿Qué prepara usted?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:09.18": {
+  "es": "Su café está en la mesa.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:09.26": {
+  "es": "Usted está buscando su equipaje.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:09.32": {
+  "es": "Tu amiga ha llegado.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:09.42": {
+  "es": "¿Dónde están sus maletas?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:09.45": {
+  "es": "Guardas tus gafas en el estuche.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:10.27": {
+  "en": "Is there a vacant room?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:10.42": {
+  "en": "There are play facilities for children in the park.",
+  "es": "Hay juegos infantiles en el parque.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:11.06": {
+  "es": "Usted va a la escuela.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:11.08": {
+  "es": "Ellas van al banco.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:11.17": {
+  "es": "¿Usted va a su casa?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:11.26": {
+  "es": "Usted va a Portugal.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:11.35": {
+  "es": "¿Usted va a la playa en tren?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:11.43": {
+  "uk": "Я не йду сьогодні до магазину.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:11.46": {
+  "es": "¿Usted va al mostrador de información o a la taquilla?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:11.47": {
+  "es": "Voy a la sección de calzado.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.01": {
+  "es": "Tomo pan.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.02": {
+  "es": "Tomas pan.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.03": {
+  "en": "I'm having some soup.",
+  "es": "Tomo sopa.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.04": {
+  "en": "She's having some soup.",
+  "es": "Ella toma sopa.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.06": {
+  "es": "Usted lleva leche.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.11": {
+  "es": "Compro mantequilla.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.25": {
+  "es": "Pongo sal.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.26": {
+  "es": "Ella añade pimienta.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.27": {
+  "en": "You add mustard.",
+  "es": "Añades mostaza.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.31": {
+  "en": "I'm not having any milk.",
+  "es": "No tomo leche.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.34": {
+  "es": "Ella no compra mantequilla.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.35": {
+  "en": "Don't you add salt?",
+  "es": "¿No pones sal?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.36": {
+  "es": "Ya no tengo harina.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.44": {
+  "en": "Do you want a cup of tea?",
+  "es": "¿Quieres una taza de té?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:12.49": {
+  "en": "We are sharing a plate of fries.",
+  "es": "Compartimos un plato de papas fritas.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:13.09": {
+  "es": "El gorro es gris.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:13.25": {
+  "es": "Compro calcetines negros.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:13.37": {
+  "es": "¿Tiene una nueva dirección?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:13.45": {
+  "es": "La puerta del garaje es alta.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:13.50": {
+  "es": "Me llevo la cajita azul.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.02": {
+  "es": "Puedes pasar.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.05": {
+  "es": "Puede pasar.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.08": {
+  "es": "Tienes que esperar.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.11": {
+  "en": "I want to try.",
+  "es": "Quiero probar.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.13": {
+  "es": "¿Quieres sentarte?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.18": {
+  "es": "¿Puedes cerrar la puerta?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.25": {
+  "en": "You need to reserve a seat.",
+  "es": "Hay que reservar un asiento.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.27": {
+  "es": "Tienes que devolver tu pase.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.32": {
+  "es": "No puedes entrar aquí.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.33": {
+  "uk": "Поль зараз не може відповісти.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.35": {
+  "en": "You must not touch this button.",
+  "es": "No debe tocar este botón.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.36": {
+  "en": "I don't want to disturb.",
+  "es": "No quiero molestar.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:14.43": {
+  "en": "Can you lend me your charger?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.01": {
+  "es": "Voy a irme.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.02": {
+  "es": "Vas a irte.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.05": {
+  "es": "Va a quedarse.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.10": {
+  "uk": "Поль відкриє магазин.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.14": {
+  "es": "Va a cambiar de tren.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.21": {
+  "en": "I'm going to see Léa tomorrow.",
+  "es": "Voy a ver a Léa mañana.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.27": {
+  "es": "¿Va a tomar postre?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.30": {
+  "es": "¿Dónde va a dormir?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.35": {
+  "es": "No tendrá que esperar mucho.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.36": {
+  "es": "Ellas no van a coger un taxi.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:15.37": {
+  "ru": "Я сохраню счёт.",
+  "uk": "Я збережу рахунок.",
+  "en": "I'm going to keep the invoice.",
+  "es": "Voy a guardar la factura.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:16.05": {
+  "es": "¡Quédate aquí!",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:16.08": {
+  "es": "¡Escuche atentamente!",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:16.10": {
+  "es": "¡Mire al frente!",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:16.21": {
+  "es": "Por favor, firme abajo.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:16.32": {
+  "es": "¡No toque el cristal!",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:16.35": {
+  "es": "¡No pierda el recibo!",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:16.37": {
+  "es": "¡No añada sal!",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:16.46": {
+  "es": "¡Abróchate el cinturón!",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:16.47": {
+  "es": "Baje el volumen, por favor.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:16.49": {
+  "es": "Deje un mensaje después del pitido.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.05": {
+  "es": "Usted se levanta.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.11": {
+  "es": "Me despierto temprano.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.15": {
+  "es": "¿Usted se despierta a menudo por la noche?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.24": {
+  "en": "You get dressed to go out.",
+  "es": "Usted se viste para salir.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.34": {
+  "es": "¿Usted nunca descansa?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.40": {
+  "es": "¿Quiere instalarse junto a la ventana?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.44": {
+  "es": "¿Cómo se llama tu vecino?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.47": {
+  "es": "Los niños están jugando en el patio.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.48": {
+  "es": "¿Usted se siente mejor?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.49": {
+  "ru": "Он перепутал платформу.",
+  "uk": "Він переплутав платформу.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.05": {
+  "es": "Usted cerró el garaje.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.11": {
+  "es": "Reservé una mesa.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.15": {
+  "es": "Usted guardó el recibo.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.16": {
+  "es": "Ellas compartieron un taxi.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.22": {
+  "es": "¿Tomaste mi bolso?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.26": {
+  "es": "¿Escribió usted su nombre?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.33": {
+  "en": "She didn't find her pass.",
+  "es": "No encontró su pase.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.36": {
+  "es": "Usted todavía no ha firmado.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.38": {
+  "es": "¿Probó usted la sopa?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.39": {
+  "es": "¿Quién rompió el vaso?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.40": {
+  "es": "¿Cuándo envió usted el expediente?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.42": {
+  "es": "Esta mañana cambió la pila.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.44": {
+  "es": "Esperamos una hora en la ventanilla.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.46": {
+  "es": "Olvidaste tomar la factura.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.02": {
+  "en": "Léa arrived.",
+  "es": "Llegó Léa.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.04": {
+  "en": "Léa left.",
+  "es": "Se fue Léa.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.06": {
+  "es": "Ellas llegaron.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.08": {
+  "es": "Ellas se fueron.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.12": {
+  "en": "Léa went to the bank.",
+  "es": "Léa fue al banco.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.18": {
+  "en": "The neighbors stayed outside.",
+  "es": "Las vecinas se quedaron afuera.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.20": {
+  "ru": "Почтальонша пришла вчера.",
+  "es": "La cartera llegó ayer.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.34": {
+  "es": "Las clientas no entraron.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.46": {
+  "es": "La vecina bajó a buscar el correo.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.50": {
+  "es": "Las viajeras tomaron el último autobús.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:20.05": {
+  "es": "Usted vivía en la ciudad.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:20.22": {
+  "ru": "Уже была ночь.",
+  "uk": "Вже була ніч.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:20.38": {
+  "es": "¿Qué hacía usted por las noches?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:20.39": {
+  "es": "¿Estaba usted a menudo de guardia?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.09": {
+  "uk": "Поль готується.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:17.25": {
+  "uk": "Поль голиться перед дзеркалом.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.08": {
+  "uk": "Поль купив каву.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:18.43": {
+  "uk": "Поль полагодив замок.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.11": {
+  "uk": "Поль пішов на вокзал.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.22": {
+  "uk": "Поль зайшов до гаража.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.31": {
+  "uk": "Поль ще не повернувся.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:19.49": {
+  "uk": "Поль пішов після обіду.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:21.04": {
+  "uk": "Ми їли, коли прийшов Поль.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:21.13": {
+  "uk": "Вулиця була порожня, коли вийшов Поль.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:21.25": {
+  "uk": "Поки Поль розмовляв, я записав його номер.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:23.09": {
+  "uk": "Поль відповідає їй.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:24.01": {
+  "uk": "Я йду на ринок, і Поль теж йде.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:21.08": {
+  "es": "Léa estaba caminando cuando empezó a llover.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:21.41": {
+  "en": "I was looking for a bench when I saw Léa.",
+  "es": "Estaba buscando un banco cuando vi a Léa.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:21.19": {
+  "en": "The students were waiting when the departure was announced.",
+  "es": "Los estudiantes estaban esperando cuando anunciaron la salida.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:21.30": {
+  "es": "El cartero pasó mientras usted dormía.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:22.15": {
+  "es": "Corto el pan.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:22.16": {
+  "es": "Lavo los vasos.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:22.20": {
+  "es": "Escucho esta canción.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:22.25": {
+  "en": "They don't take it.",
+  "es": "No lo toman.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:22.31": {
+  "es": "Voy a devolverle la llamada.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:22.34": {
+  "es": "Puedes dejarla aquí.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:22.40": {
+  "es": "Quiere mantenerla fresca.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:23.18": {
+  "es": "Usted les indica la salida.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:23.28": {
+  "es": "Le leo un cuento antes de dormir.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:23.29": {
+  "ru": "Я сообщаю ей об утечке на кухне.",
+  "uk": "Я повідомляю їй про витік на кухні.",
+  "en": "I let her know about the leak in the kitchen.",
+  "es": "Le aviso de la fuga en la cocina.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:23.37": {
+  "es": "Puede dejarles un mensaje.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:23.45": {
+  "es": "¿Les explicó usted la ruta?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:24.05": {
+  "es": "Vamos a la oficina, y usted también.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:24.10": {
+  "es": "Vamos para allá en autobús.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:24.15": {
+  "en": "Are you staying there long?",
+  "es": "¿Se queda usted mucho tiempo allí?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:24.29": {
+  "en": "We lived there before getting to know this neighborhood.",
+  "es": "Vivimos allí antes de conocer este barrio.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:24.30": {
+  "es": "Este escenario es grande: ¿ha actuado usted alguna vez en él?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:24.38": {
+  "en": "He has to stop by there tomorrow.",
+  "es": "Tiene que pasar por allí mañana.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:24.39": {
+  "es": "Puede ir allí en bicicleta.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:24.42": {
+  "en": "The market is far away, but we walk there.",
+  "es": "El mercado está lejos, pero vamos andando.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:24.46": {
+  "es": "Conozco la estación y puedo encontrarme con usted allí.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.03": {
+  "es": "Tomas uno.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.04": {
+  "es": "Tomas dos.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.07": {
+  "en": "Do you want five of them?",
+  "es": "¿Quiere usted cinco?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.11": {
+  "en": "Bread, I take a little of it.",
+  "es": "Pan, tomo un poco.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.13": {
+  "en": "Apples, I buy a kilo of them.",
+  "es": "Manzanas, compro un kilo.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.14": {
+  "en": "Eggs, I take six.",
+  "es": "Huevos, tomo seis.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.17": {
+  "en": "Honey, I add a spoonful.",
+  "es": "Miel, añado una cucharada.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.20": {
+  "en": "Butter, I put in very little.",
+  "es": "Mantequilla, pongo muy poca.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.25": {
+  "en": "Don't you ever take any?",
+  "es": "¿Nunca tomas ninguno?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.26": {
+  "es": "Hoy no compro ninguno.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.28": {
+  "en": "Don't you have any others?",
+  "es": "¿No tiene usted otros?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.32": {
+  "es": "Encontró una.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.34": {
+  "es": "¿Cuántos recibiste?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.36": {
+  "en": "I'm going to have some more.",
+  "es": "Voy a servirme más.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.40": {
+  "es": "Estas baterías están cargadas; puede quedarse con la mitad.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.43": {
+  "en": "These shutters are flapping in the wind, I'm going to close two of them.",
+  "es": "Estas persianas golpean con el viento, voy a cerrar dos.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.44": {
+  "es": "Estas peras están maduras, quisiera tres.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.47": {
+  "es": "Este té es suave, ¿quiere más?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:25.48": {
+  "en": "I have too many boxes and I'm going to give some away.",
+  "es": "Tengo demasiadas cajas y voy a regalar algunas.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:26.01": {
+  "uk": "Поль вищий за мене.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:26.26": {
+  "es": "Oímos mejor cerca del escenario.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:26.40": {
+  "en": "You have more room near the window.",
+  "es": "Tienes más espacio junto a la ventana.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.05": {
+  "es": "Ustedes saldrán juntos.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.10": {
+  "es": "Léa preparará la comida.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.13": {
+  "en": "He will get the result on Monday.",
+  "es": "Tendrá el resultado el lunes.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.15": {
+  "en": "You will be able to pay on site.",
+  "es": "Podrá pagar en el lugar.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.27": {
+  "es": "El banco cerrará temprano esta noche.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.30": {
+  "es": "Las obras durarán tres días.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.36": {
+  "es": "Necesitará una identificación.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.37": {
+  "en": "When will I receive the invoice?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.38": {
+  "es": "¿A qué hora llegará usted?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.39": {
+  "es": "¿Me ayudarás a llevar las cajas?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.42": {
+  "es": "Ella le enseñará el nuevo apartamento.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:27.48": {
+  "es": "Encontrarás la llave debajo de la maceta.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.03": {
+  "ru": "Ты бы хотел молока?",
+  "uk": "Ти б хотів молока?",
+  "en": "Would you like some milk?",
+  "es": "¿Querrías leche?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.05": {
+  "es": "Querríamos dos entradas.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.06": {
+  "ru": "Хотели бы вы другой столик?",
+  "uk": "Чи бажали б ви інший столик?",
+  "es": "¿Querría usted otra mesa?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.10": {
+  "en": "Léa would like to change seats.",
+  "es": "A Léa le gustaría cambiar de asiento.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.11": {
+  "es": "¿Podría usted repetirlo, por favor?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.12": {
+  "es": "¿Podría usted escribir su nombre?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.13": {
+  "es": "¿Podría usted cerrar la ventana?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.14": {
+  "es": "¿Podría usted comprobar el importe?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.15": {
+  "es": "¿Podría usted indicarme la salida?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.24": {
+  "es": "¿Preferirías caminar?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.31": {
+  "es": "Debería guardar el recibo.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.38": {
+  "en": "You could stop by after class.",
+  "es": "Usted podría pasar después de la clase.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.41": {
+  "en": "Would you have a room for two?",
+  "es": "¿Tendría usted una habitación para dos?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.42": {
+  "en": "Would you have any availability tomorrow?",
+  "es": "¿Tendría usted disponibilidad mañana?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.48": {
+  "ru": "Не могли бы вы перезвонить мне после десяти?",
+  "uk": "Чи не могли б ви передзвонити мені після десятої?",
+  "en": "Could you call me back after ten o'clock?",
+  "es": "¿Podría usted llamarme después de las diez?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:28.50": {
+  "en": "I would prefer the aisle seat.",
+  "es": "Preferiría el asiento del pasillo.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:29.13": {
+  "en": "It was Léa who made the reservation.",
+  "es": "Fue Léa quien hizo la reserva.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:29.20": {
+  "es": "La gente que vive aquí se conoce.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:29.21": {
+  "ru": "Хлеб, который ты готовишь, вкусно пахнет.",
+  "uk": "Хліб, який ти готуєш, смачно пахне.",
+  "en": "The bread you're preparing smells delicious.",
+  "es": "El pan que preparas huele delicioso.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:29.26": {
+  "es": "Los precios que usted ve incluyen el envío.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:29.29": {
+  "es": "La bolsa que guardo es de mi hermana.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:29.30": {
+  "es": "El plato que usted sirve está delicioso.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:29.36": {
+  "es": "La persona que me ayuda es mi vecina.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:29.37": {
+  "es": "La persona a la que ayudo es mi vecina.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:29.46": {
+  "es": "La maceta que buscas está detrás de la menta.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:29.49": {
+  "es": "La sala que reservamos es luminosa.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:30.05": {
+  "es": "Tiene que irse.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:30.19": {
+  "es": "Tiene que tomar una decisión.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:30.25": {
+  "es": "Tiene que ir a la recepción.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:30.29": {
+  "ru": "Нам нужно взять талон.",
+  "uk": "Нам потрібно взяти талон.",
+  "en": "We need to take a ticket.",
+  "es": "Tenemos que sacar un tique.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:30.30": {
+  "es": "Tiene que pedir cita.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:30.35": {
+  "es": "La sala debe estar vacía.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:30.41": {
+  "en": "You must not leave alone.",
+  "es": "No debes irte solo.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:30.46": {
+  "es": "Tiene que venir mañana por la mañana.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:31.03": {
+  "es": "Ella ya había ordenado la sala.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:31.05": {
+  "es": "Usted ya había leído el mensaje.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:31.09": {
+  "es": "Las clientas ya habían salido.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:31.11": {
+  "es": "Ya no encontraba la llave que había escondido.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:31.25": {
+  "en": "Hadn't you brought your card?",
+  "es": "¿No habías traído tu tarjeta?",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:31.43": {
+  "en": "We had put the paper on the floor before painting.",
+  "es": "Habíamos puesto el papel en el suelo antes de pintar.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:31.44": {
+  "en": "She had made mint tea and my favorite dish.",
+  "es": "Había preparado té de menta y mi plato favorito.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:32.04": {
+  "es": "Si estuviera libre, te ayudaría.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:32.05": {
+  "es": "Si estuvieras libre, podrías venir.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:32.09": {
+  "en": "If you agreed, we would start.",
+  "es": "Si usted estuviera de acuerdo, empezaríamos.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:32.17": {
+  "en": "If you knew the address, you could guide us.",
+  "es": "Si conocieras la dirección, podrías guiarnos.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:32.22": {
+  "es": "Me llevaría la chaqueta si fuera más abrigada.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:32.34": {
+  "ru": "Если бы ты сохранил чек, ты мог бы обменять свитер.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:32.41": {
+  "en": "If you warned me the day before, I would prepare a bed.",
+  "es": "Si me avisaras el día anterior, prepararía una cama.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ },
+ "fr:32.46": {
+  "en": "If you promised me you'd come back, I would keep your place.",
+  "es": "Si me prometieras volver, te guardaría el sitio.",
+  "reason": "аудит подсказок fr (Теория 06.11)"
+ }
+}

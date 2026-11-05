@@ -42,7 +42,7 @@ function graphemes(w, hadFinal = false) {
     // группы гласных
     if (rest.startsWith('eau')) { out += 'о'; i += 3; continue; }
     if (rest.startsWith('oeu') || rest.startsWith('œu')) { out += 'ё'; i += rest.startsWith('oeu') ? 3 : 2; continue; }
-    if (rest.startsWith('ou')) { out += 'у'; i += 2; continue; }
+    if (rest.startsWith('ou') || rest.startsWith('oû')) { out += 'у'; i += 2; continue; } // зачем (Ревизор 06.11, класс 3): coûtait — «кутэ́», û после o = [u], без «ю»
     if (rest.startsWith('oi')) { out += 'уа'; i += 2; continue; }
     if (rest === 'ai' && !hadFinal) { out += 'е'; i += 2; continue; } // будущее: partirai → партире́ (а «ais/ait» — «э»)
     if (rest.startsWith('ai') || rest.startsWith('ei') || rest.startsWith('aî')) { out += 'э'; i += 2; continue; }
@@ -119,7 +119,13 @@ function markLast(ru) {
 
 const CLITIC_RU = { l: 'л', j: 'ж', n: 'н', d: 'д', c: 'с', qu: 'к', s: 'с', m: 'м', t: 'т' };
 const LIAISON_Z = new Set(['les', 'des', 'ces', 'mes', 'tes', 'ses', 'nos', 'vos', 'leurs', 'nous', 'vous', 'ils', 'elles', 'aux', 'deux', 'trois', 'six', 'dix', 'quels', 'quelles']);
-const VOWEL_START = /^(h?[aeiouyàâéèêëîïôûœ])/i;
+// обязательная связка (кроме «з» из LIAISON_Z): слово → согласная, которая переходит в следующее слово с гласной
+const LIAISON_CONS = {
+  dans: 'з', sans: 'з', sous: 'з', chez: 'з', très: 'з', quelques: 'з',
+  grand: 'т', petit: 'т', premier: 'р',
+  un: 'н', aucun: 'н', mon: 'н', ton: 'н', son: 'н', bon: 'н', en: 'н',
+};
+const VOWEL_START =/^(h?[aeiouyàâéèêëîïôûœ])/i;
 
 /** Слово (без знаков препинания) → чтение со знаком ударения; словарь исключений имеет приоритет. */
 function readWord(raw, words) {
@@ -149,6 +155,8 @@ function translitFr(text, words = {}) {
     if (LIAISON_Z.has(prev) && VOWEL_START.test(toks[i].toLowerCase()) && !/^(h)/i.test(toks[i])) reading = 'з' + reading;
     // зачем (Ревизор 06.11, класс 2): после c'est перед гласной лиэзон [t] обязателен — «сэ тюн», «сэ та» (c'est un/une/à/ici)
     else if (/^c[’']est$/.test(prev) && VOWEL_START.test(toks[i].toLowerCase()) && !/^(h)/i.test(toks[i])) reading = 'т' + reading;
+    // зачем (Ревизор 06.11, повторная выборка, класс 1): обязательный лиэзон «предлог/определитель/прилагательное + гласная» — «дан зён», «гран тапартёма́н», «ён нами», «пти́ тами»
+    else if ((LIAISON_CONS[prev] || /^[jn][’']en$/.test(prev)) && VOWEL_START.test(toks[i].toLowerCase()) && !/^(h)/i.test(toks[i]) && !/^(et|ou)$/i.test(toks[i])) reading = (LIAISON_CONS[prev] || 'н') + reading; // j'en ai → «жан не»
     out.push(reading);
   }
   return out.join(' ');

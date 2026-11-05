@@ -48,7 +48,9 @@ describe('низ окна Plus: плашки и ссылки не перекры
     expect(outer).not.toBeNull();
     // макет «Все окна Plus» (05.11): «Восстановить покупки» и «Ввести промокод» — две текстовые ссылки по центру колонкой; место — на внешнем слое, не flex на внутреннем
     expect(inner![1]).not.toMatch(/\bflex:\s*1\b/);
-    expect(inner![1]).toMatch(/flexGrow:\s*1/);
+    // зачем (150, Сверка 05.11, журнал [PAYWALL-LAYOUT]: dock h=1827 = 2 × высота окна 915, scroll h=0 — на кадрах нет плиток и ссылок): flexGrow на плашке в КОЛОНКЕ при замере AtMost раздувал
+    // каждую из двух плашек на всё окно, нижняя панель вытесняла прокрутку в 0. flexGrow здесь запрещён.
+    expect(inner![1]).not.toMatch(/flexGrow/);
     expect(outer![1]).toMatch(/alignSelf:\s*'center'/);
     expect(outer![1]).toMatch(/minWidth:\s*0/);
     expect(dockSource.match(/outerStyle=\{S\.secondaryOuter\}/g)?.length).toBe(2);

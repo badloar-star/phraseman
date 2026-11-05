@@ -349,7 +349,7 @@ const S = StyleSheet.create({
   // базу высоты 0 — плашка занимала только minHeight 44, текст в 2–3 строки (крупный шрифт, длинный перевод) вылезал вниз на ссылки.
   // Место в ряду (flex) — на внешний слой (outerStyle), внутренний слой растёт по содержимому и тянется до высоты соседней плашки.
   secondaryOuter: { alignSelf: 'center', minWidth: 0 },
-  secondaryAction: { flexGrow: 1, minHeight: 44, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
+  secondaryAction: { minHeight: 44, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
   secondaryActionText: { flexShrink: 1, fontSize: 13, lineHeight: 18, fontWeight: '500', textAlign: 'center' },
   linkHit: { minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' },
   restoreRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },

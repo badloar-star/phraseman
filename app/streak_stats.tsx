@@ -9,6 +9,9 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+/** Ключ памяти раскрытого блока «Все показатели» (раунд 2, Статистика п.3). */
+const STATS_LIFETIME_EXPANDED_KEY = 'stats_lifetime_expanded_v1';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
 import { useAccentGraphics } from '../hooks/use_accent_graphics';
@@ -2010,6 +2013,16 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         return cur - prev;
     }, [allTimeDays]);
     const [expandedLifetimeKind, setExpandedLifetimeKind] = useState<LifetimeTotalsChartKind | null>(null);
+    // зачем (раунд 2, Статистика п.3 «Все показатели»: раскрытый блок запоминается, локально, без Firestore): читаем один раз при входе, пишем при каждом переключении
+    useEffect(() => {
+        let alive = true;
+        AsyncStorage.getItem(STATS_LIFETIME_EXPANDED_KEY).then((stored) => {
+            if (!alive) return;
+            console.log(`[STATS-LIFETIME] раскрытый блок: из памяти=${String(stored)}`); // guard-ok: значение, решившее вид
+            if (stored) setExpandedLifetimeKind((prev) => prev ?? (stored as LifetimeTotalsChartKind));
+        }).catch((error: unknown) => console.warn(`[STATS-LIFETIME] чтение раскрытого блока не удалось: ${error instanceof Error ? error.message : String(error)}`)); // guard-ok: catch называет причину
+        return () => { alive = false; };
+    }, []);
     const [lifetimeChartDays, setLifetimeChartDays] = useState<LifetimeChartDay[]>([]);
     const [lifetimeChartLoading, setLifetimeChartLoading] = useState(false);
     /** Сброс загрузки графиков «Весь путь» после dev-рандома (AsyncStorage). */
@@ -2703,7 +2716,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                             setDevLifetimeAllCharts(false);
                             setLifetimePathChartsByKind({});
                             hapticTap();
-                            setExpandedLifetimeKind((prev) => (prev === kind ? null : kind));
+                            const nextKind = expandedLifetimeKind === kind ? null : kind;
+                            setExpandedLifetimeKind(nextKind);
+                            const persist = nextKind ? AsyncStorage.setItem(STATS_LIFETIME_EXPANDED_KEY, nextKind) : AsyncStorage.removeItem(STATS_LIFETIME_EXPANDED_KEY);
+                            persist.catch((error: unknown) => console.warn(`[STATS-LIFETIME] запись раскрытого блока не удалась: ${error instanceof Error ? error.message : String(error)}`)); // guard-ok: catch называет причину
                         }} chartDays={lifetimeChartDays} chartLoading={lifetimeChartLoading} chartScrollRef={lifetimeChartScrollRef} showAllPathCharts={devLifetimeAllCharts} pathChartsByKind={lifetimePathChartsByKind} isGoldTheme={isGoldTheme} themeMode={themeMode}/>
                   </StatsPremiumBlur>)}
                 {ENABLE_DEV_TOOLS && (<TouchableOpacity onPress={() => void randomizeLifetimeChartsForDev()} disabled={devLifetimeChartsBusy} activeOpacity={0.75} style={{

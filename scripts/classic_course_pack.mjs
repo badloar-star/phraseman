@@ -71,6 +71,26 @@ const nonEmpty = (s) => typeof s === 'string' && s.trim().length > 0;
 // {"en": {"<ключ глоссы>": {локаль: значение}}, "es": {"<лемма>": {локаль: значение}}}. pl пока HOLD: оставляем как в архиве.
 const OVERRIDES_PATH = join(ROOT, 'docs', 'work', 'classic_gloss_overrides.json');
 const OVERRIDES = existsSync(OVERRIDES_PATH) ? JSON.parse(readFileSync(OVERRIDES_PATH, 'utf8')) : {};
+// зачем (владелец 05.11: «Представь ситуацию» запрещено): переписанные интро живут в слое оверрайдов, а не в архиве — пересборка их сохраняет.
+// Два писателя — два файла: ru/прочие языки — Темы, uk — Переводчик. Ключ — screenId «<lang>:<LL>:intro:<N>», значение — поля titleXX/textXX/linesXX.
+const readIntroOverrides = (p) => (existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : {});
+const INTRO_OVERRIDES_PATHS = [join(ROOT, 'docs', 'work', 'classic_intro_overrides.json'), join(ROOT, 'docs', 'work', 'classic_intro_overrides_uk.json')];
+const INTRO_OVERRIDES = Object.assign({}, ...INTRO_OVERRIDES_PATHS.map(readIntroOverrides).map((o) => Object.fromEntries(Object.entries(o).filter(([k]) => k !== '_note'))));
+const introOverrideUsed = new Set();
+// зачем: приоритет над архивом; возвращает НОВЫЕ объекты (блоки архива не мутируем). Неиспользованный ключ — предупреждение, чтобы опечатка в screenId была видна.
+function applyIntroOverrides(blocks, lang, n) {
+  return blocks.map((b, i) => {
+    const key = `${lang}:${pad2(n)}:intro:${i + 1}`;
+    const ov = INTRO_OVERRIDES[key];
+    if (!ov) return b;
+    introOverrideUsed.add(key);
+    return { ...b, ...ov };
+  });
+}
+process.on('exit', () => {
+  const unused = Object.keys(INTRO_OVERRIDES).filter((k) => !introOverrideUsed.has(k));
+  if (unused.length) console.warn(`[intro-overrides] не применено ${unused.length} ключ(ей): ${unused.slice(0, 8).join(', ')}`);
+});
 const overrideLocales = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr'];
 // зачем (Координатор 04.11): исправления ru/uk из аудита вносит Переводчик в docs/work/classic_translation_fixes_*.json —
 // {"<lang>:<LL>.<PP>": {"ru": …, "uk": …, "reason": …}}; здесь они накладываются на sourceLocales фразы (числа и порядок фраз не меняются)
@@ -750,6 +770,8 @@ function convert(lang, zips) {
 
     let blocks = take(prof.intro(n));
     if (!Array.isArray(blocks) || blocks.map((b) => b.kind).join() !== 'concept,formula,practice') fail(lang, `урок ${n}: вступление не concept/formula/practice`);
+    // зачем: оверрайды применяем до проверок ниже, чтобы проверка видела итоговые тексты
+    blocks = applyIntroOverrides(blocks, lang, n);
     for (const b of blocks ?? []) for (const loc of LOCALES) if (!introText(b, loc, 'title') || !introText(b, loc, 'text')) fail(lang, `урок ${n} вступление ${b.kind}: нет ${loc}`);
     // заголовки — обычный текст: обратные кавычки (`je suis`) без разметки показались бы ученику буквально; в текстах и lines* разметку не трогаем
     for (const b of blocks ?? []) {

@@ -878,7 +878,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const monthlyPriceSource: PaywallPriceSource = monthlyPick.source;
   const pricesApproximate = yearlyPick.source === 'reference' || monthlyPick.source === 'reference';
   useEffect(() => {
-    DebugLogger.info('[PAYWALL-PRICE]', `цены на плитках: год=${yearlyPrice || '—'}(${yearlyPick.source}) месяц=${monthlyPrice || '—'}(${monthlyPick.source}) справочная=${String(allowReferencePrice)} storeUnavailable=${storeUnavailableReason ?? 'нет'} ever=${String(offeringsEverLoaded)}`);
+    // зачем (владелец 06.11 «ЦЕНЫ ИЗ СТОРОВ!»): итог одной строкой — источник=store (живые цены магазина) или fallback (кэш/справочная/превью) и ПРИЧИНА, почему не магазин.
+    const bothFromStore = yearlyPick.source === 'store' && monthlyPick.source === 'store';
+    const fallbackReason = bothFromStore
+      ? 'нет'
+      : `${storeUnavailableReason ?? (offeringsEverLoaded ? 'магазин_ответил_без_плана' : 'магазин_ещё_не_ответил')}`;
+    DebugLogger.info('[PAYWALL-PRICE]', `источник=${bothFromStore ? 'store' : 'fallback'} причина=${fallbackReason} цены на плитках: год=${yearlyPrice || '—'}(${yearlyPick.source}) месяц=${monthlyPrice || '—'}(${monthlyPick.source}) справочная=${String(allowReferencePrice)} storeUnavailable=${storeUnavailableReason ?? 'нет'} ever=${String(offeringsEverLoaded)}`);
   }, [allowReferencePrice, monthlyPick.source, monthlyPrice, offeringsEverLoaded, storeUnavailableReason, yearlyPick.source, yearlyPrice]);
   const monthlyPerMonth = storePricePerMonthTrim(packages.monthly);
   // Кнопка Phraseman Pro показывается, когда админ-флаг включён И пакет lifetime

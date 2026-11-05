@@ -16,6 +16,7 @@ import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { plateBoxShadow, raisedBoxShadow } from '../v2/ShadowSurface';
 import { studyTargetsForSourceLocale, type StudyTarget } from '../../app/study_target';
+import { visibleCourseTargets } from '../../app/courses_gate'; // зачем (слово владельца 05.11): в 150 только английский курс
 import { LEARNING_LANGUAGE_CONTOURS } from '../../app/learning_language_contour';
 import type { Lang } from '../../constants/i18n';
 import {
@@ -154,7 +155,8 @@ export function useStudyLanguageSelection({
     void reloadStarted();
   }, [reloadStarted]);
 
-  const options = studyTargetsForSourceLocale(lang);
+  // зачем (слово владельца 05.11): es/fr/de/it скрыты до 2.1.1; активный курс остаётся, данные не трогаем
+  const options = visibleCourseTargets(studyTargetsForSourceLocale(lang), activeTarget, 'settings_picker');
 
   const select = useCallback((code: StudyTarget): StudyLanguageSelectOutcome => {
     if (__DEV__) console.log(`${logTag} select code=${code} active=${activeTarget} busy=${busyRef.current} resolved=${startedLanguagesResolved} started=${startedLanguages.join(',')}`);

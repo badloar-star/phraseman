@@ -84,9 +84,11 @@ import { trackEvent } from './analytics';
 import { creatorPaywallContext, shouldGateCreator } from './creator_access';
 import BouncyScrollView from '../components/BouncyScrollView';
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
+import { visiblePackChoicesForNewPack } from './courses_gate'; // зачем (слово владельца 05.11): в 150 только английский курс
 import {
   normalizePackCardTexts,
   NO_PACK_LANGUAGE,
+  PACK_LANGUAGE_CHOICES,
   normalizePackLanguage,
   type PackLanguage,
 } from './flashcards/pack_languages';
@@ -1494,7 +1496,8 @@ export default function CommunityPackCreateScreen() {
             <Text style={{ color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '600', flexShrink: 1 }}>
               {L('Язык набора', 'Мова набору', 'Pack language', 'Idioma del pack', 'Idioma do pacote', 'Ngôn ngữ bộ thẻ', 'Bahasa paket', 'Paket dili', 'Język zestawu')}
             </Text>
-            <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={setPackLanguage} allowNone liquidGlass />
+            {/* зачем (слово владельца 05.11, 150 — только английский курс): язык НОВОГО набора не предлагает es/fr/de/it; выбранный остаётся, «без языка» есть */}
+            <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={setPackLanguage} allowNone liquidGlass languages={visiblePackChoicesForNewPack(PACK_LANGUAGE_CHOICES, packLanguage)} />
           </View>
           {!isEditMode && draftHydrated && localDraftLooksMeaningful ? (
             <PackMenuRow

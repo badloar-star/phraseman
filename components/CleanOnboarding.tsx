@@ -90,6 +90,7 @@ import {
 import { GENERATED_NICKNAME_PENDING_KEY, resumePendingGeneratedNickname } from '../app/nickname_guard';
 import type { StudyTarget } from '../app/study_target';
 import { isStudyTargetAllowedForUi, setStoredStudyTarget } from '../app/study_target';
+import { isCourseVisibleOnOnboarding } from '../app/courses_gate'; // зачем (слово владельца 05.11): в 150 только английский курс
 import { emitDevStudyTargetChanged, setDevStudyTargetLang } from '../app/study_target_lang_dev';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../app/events';
 import { getDevGreetName, isDevConfettiHold } from '../app/dev_account_state';
@@ -4263,7 +4264,7 @@ function CleanOnboarding({
       footer={<PrimaryButton label={oc.languagePick} onPress={() => go('level')} disabled={!isStudyTargetAllowedForUi(studyTarget, lang)} testID="onboarding-language-continue" />}
     >
       <View style={styles.optionList}>
-        {LANGUAGE_OPTIONS.filter((item) => isStudyTargetAllowedForUi(item.id, lang)).map((item) => (
+        {LANGUAGE_OPTIONS.filter((item) => isStudyTargetAllowedForUi(item.id, lang) && isCourseVisibleOnOnboarding(item.id)).map((item) => (
           <LanguageCard
             key={item.id}
             option={{ ...item, title: languageNameOf(oc, item.id), native: languageNameOf(oc, item.id) }}

@@ -21,13 +21,11 @@ export type StartupSplashPalette = Readonly<{
 
 type ThemeLike = Readonly<{ bg: string; text: string; secondary: string; isLight?: boolean }>;
 
+// зачем (владелец 05.11): «сплеш не делай белого цвета — он был раньше тёмный, тёмным должен оставаться вне зависимости от темы интерфейса».
+// Заставка ВСЕГДА тёмная (#101214 + исходный светлый рисунок), и при светлой системе, и при светлой теме. Параметры оставлены для
+// журнала [THEME-BOOT] (что было бы раньше) — решение от них больше не зависит.
 export function startupSplashPalette(systemScheme: string | null | undefined, theme: ThemeLike | null): StartupSplashPalette {
-  if (theme) {
-    const light = !!theme.isLight;
-    return { bg: theme.bg, wordmarkTint: light ? theme.text : null, subtitle: light ? theme.secondary : DARK_SUB, light, source: 'theme' };
-  }
-  const light = systemScheme === 'light';
-  return light
-    ? { bg: STARTUP_SPLASH_LIGHT_BG, wordmarkTint: LIGHT_INK, subtitle: LIGHT_SUB, light, source: 'system' }
-    : { bg: STARTUP_SPLASH_DARK_BG, wordmarkTint: null, subtitle: DARK_SUB, light, source: 'system' };
+  return { bg: STARTUP_SPLASH_DARK_BG, wordmarkTint: null, subtitle: DARK_SUB, light: false, source: theme ? 'theme' : 'system' };
 }
+/** Прежние светлые значения — не используются (владелец 05.11: заставка всегда тёмная); оставлены для истории и тестов. */
+export const STARTUP_SPLASH_LEGACY_LIGHT = Object.freeze({ bg: STARTUP_SPLASH_LIGHT_BG, ink: LIGHT_INK, sub: LIGHT_SUB });

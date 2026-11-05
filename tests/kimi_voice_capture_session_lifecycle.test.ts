@@ -24,10 +24,10 @@ jest.mock('../hooks/use_runtime_active', () => ({
   useRuntimeActive: () => mockRuntimeActive,
 }));
 jest.mock('../app/audio_session_coordinator', () => ({
-  setManagedAudioMode: jest.fn(async () => undefined),
+  setManagedAudioMode: jest.fn(async () => ({ outcome: 'applied' })),
   // зачем (10.10): аудио-модуль при загрузке подписывается на режим записи (останавливает озвучку на время микрофона).
   subscribeManagedAudioMode: jest.fn(() => () => undefined),
-  getManagedAudioModeSnapshot: jest.fn(() => ({ recordingActive: false })),
+  getManagedAudioModeSnapshot: jest.fn(() => ({ recordingActive: true })),
 }));
 jest.mock('expo-speech-recognition', () => ({
   ExpoSpeechRecognitionModule: mockSpeech,

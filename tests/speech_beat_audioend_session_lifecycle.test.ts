@@ -57,7 +57,7 @@ jest.mock('../hooks/use-haptics', () => ({
   hapticTap: jest.fn(),
   hapticWarning: jest.fn(),
 }));
-jest.mock('../app/audio_session_coordinator', () => ({ setManagedAudioMode: jest.fn(async () => undefined) }));
+jest.mock('../app/audio_session_coordinator', () => ({ setManagedAudioMode: jest.fn(async () => ({ outcome: 'applied' })) }));
 jest.mock('../modules/audio/audio_runtime_arbiter', () => ({
   claimSpokenAudio: jest.fn(() => ({ isCurrent: () => true, release: jest.fn() })),
   claimRecordingAudio: jest.fn(() => ({ isCurrent: () => true, release: jest.fn() })),

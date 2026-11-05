@@ -1,9 +1,7 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { BlurView } from 'expo-blur';
-import { LinearGradient } from 'expo-linear-gradient';
-import Svg, { Defs, Ellipse, RadialGradient, Stop } from 'react-native-svg';
 import type { Lang } from '../../constants/i18n';
+import { WELCOME_DIM_FALLBACK, WELCOME_DIM_OPACITY } from './welcome_dim';
 import { nextWelcomeAction, visibleReply, welcomeReplies, welcomeUi } from './welcomeCopy';
 
 export type ApprovedWelcomeProps = Readonly<{
@@ -15,6 +13,8 @@ export type ApprovedWelcomeProps = Readonly<{
   reducedMotion: boolean;
   safeTop?: number;
   safeBottom?: number;
+  /** Тон пелены (глубокий тёмный цвета темы); нет — фиолетовый одобренного превью. */
+  dimColor?: string;
   onSkip(): void;
   onStart(): void;
 }>;
@@ -25,7 +25,7 @@ const coin = require('../../assets/images/coins/coin_rank_00.webp');
 const ease = Easing.bezier(.23,1,.32,1);
 
 /** Presentational only: host owns activation, account state and destinations. */
-export function ApprovedWelcome({homeBackdrop,selectedLanguage,lang='ru',active,reducedMotion,safeTop=0,safeBottom=0,onSkip,onStart}:ApprovedWelcomeProps){
+export function ApprovedWelcome({homeBackdrop,selectedLanguage,lang='ru',active,reducedMotion,safeTop=0,safeBottom=0,dimColor=WELCOME_DIM_FALLBACK,onSkip,onStart}:ApprovedWelcomeProps){
   const {height,width}=useWindowDimensions();
   const [step,setStep]=useState(0);
   const [count,setCount]=useState(0);
@@ -78,12 +78,11 @@ export function ApprovedWelcome({homeBackdrop,selectedLanguage,lang='ru',active,
   return <View style={styles.root} accessibilityViewIsModal={active}>
     <View style={StyleSheet.absoluteFill} pointerEvents={active?'none':'auto'} accessibilityElementsHidden={active} importantForAccessibility={active?'no-hide-descendants':'auto'}>{homeBackdrop}</View>
     {active&&<>
-    <BlurView intensity={14} tint="dark" style={StyleSheet.absoluteFill} pointerEvents="none" />
-    <LinearGradient colors={['#11151c62','#11151cb3']} start={{x:0,y:0}} end={{x:1,y:0}} style={StyleSheet.absoluteFill} pointerEvents="none" />
+    {/* зачем (владелец 05.11, «96 без свечения»): плотная пелена тона темы вместо блюра и полупрозрачного градиента; свечения за Лингман нет */}
+    <View testID="welcome-dim" style={[StyleSheet.absoluteFill,{backgroundColor:dimColor,opacity:WELCOME_DIM_OPACITY}]} pointerEvents="none" />
     <View style={[styles.top,{paddingTop:safeTop+8}]}><Pressable accessibilityRole="button" accessibilityLabel={ui.skip} onPress={onSkip} disabled={exiting} style={styles.skip}><Text style={styles.skipText}>{ui.skip}</Text></Pressable></View>
     <View style={[styles.composition,{minHeight:Math.min(420,Math.max(0,height-safeTop-safeBottom-155))}]}>
       <Animated.View testID="welcome-character" style={[styles.characterStage,heroStyle]}>
-        <Animated.View pointerEvents="none" style={[styles.halo,{opacity:halo.interpolate({inputRange:[0,1],outputRange:[.2,.35]}),transform:[{scale:halo.interpolate({inputRange:[0,1],outputRange:[.9,1]})}]}]}><Svg width="100%" height="100%" viewBox="0 0 200 400" preserveAspectRatio="none"><Defs><RadialGradient id="welcome-halo" cx="50%" cy="50%" rx="50%" ry="50%"><Stop offset="0" stopColor="#fff" stopOpacity={.46}/><Stop offset=".7" stopColor="#fff" stopOpacity={0}/></RadialGradient></Defs><Ellipse cx="100" cy="200" rx="100" ry="200" fill="url(#welcome-halo)" /></Svg></Animated.View>
         <Image source={character} resizeMode="contain" style={{width:Math.min(213,width*.64),height:Math.min(520,height*.64),transform:[{translateX:10}]}} accessibilityIgnoresInvertColors accessibilityLabel={ui.character} />
       </Animated.View>
       <Animated.View style={[styles.speech,{opacity:speech,transform:[{translateY:speech.interpolate({inputRange:[0,1],outputRange:[8,0]})}]}]}>
@@ -102,7 +101,7 @@ export function ApprovedWelcome({homeBackdrop,selectedLanguage,lang='ru',active,
 
 const styles=StyleSheet.create({
   root:{...StyleSheet.absoluteFillObject,justifyContent:'space-between'},top:{alignItems:'flex-end',paddingHorizontal:20},skip:{minHeight:48,justifyContent:'center',paddingHorizontal:14,borderRadius:18,backgroundColor:'#ffffff18'},skipText:{fontSize:13,color:'#fff'},
-  composition:{flex:1,flexDirection:'row',alignItems:'center',paddingRight:24},characterStage:{width:'41%',alignItems:'center',justifyContent:'center',alignSelf:'stretch'},halo:{position:'absolute',width:'155%',height:'90%'},
+  composition:{flex:1,flexDirection:'row',alignItems:'center',paddingRight:24},characterStage:{width:'41%',alignItems:'center',justifyContent:'center',alignSelf:'stretch'},
   speech:{width:'59%',paddingLeft:8,paddingVertical:20,alignSelf:'center'},title:{fontSize:26,lineHeight:30.16,fontWeight:'800',letterSpacing:-.6,marginTop:12,marginBottom:16,color:'#fff',textShadowColor:'#0008',textShadowRadius:18,textShadowOffset:{width:0,height:2}},body:{fontSize:17,lineHeight:25.5,minHeight:230,color:'#fff',textShadowColor:'#0008',textShadowRadius:10,textShadowOffset:{width:0,height:1}},coin:{width:25,height:25},
   footer:{paddingHorizontal:20},dots:{flexDirection:'row',gap:7,marginVertical:20},dot:{flex:1,height:4,borderRadius:4,backgroundColor:'#ffffff3b'},dotDone:{backgroundColor:'#fff'},primary:{height:52,borderRadius:26,backgroundColor:'#fff',alignItems:'center',justifyContent:'center'},primaryText:{color:'#181c24',fontSize:16,fontWeight:'700'},hint:{textAlign:'center',color:'#ffffffb8',fontSize:11,marginTop:14},
 });

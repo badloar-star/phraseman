@@ -7,17 +7,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
+import { Modal } from 'react-native';
 
 import { readRankGateUserVerdict } from '../../app/rank_gates_new_user';
 import { useLang } from '../LangContext';
 import { useStudyTarget } from '../StudyTargetContext';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
-import { tabPillTopOffset } from '../v2/tab_bar_geometry';
 import { useActiveAccountOwner } from '../../hooks/use_active_account_owner';
 import { useOverlayVisible } from '../OverlayArbiter';
 import type { Lang } from '../../constants/i18n';
+import { useSpirePalette } from '../spire/useSpirePalette';
 import { ApprovedWelcome } from './ApprovedWelcome';
+import { welcomeDimColor } from './welcome_dim';
 
 /**
  * Отметка «приветствие показано» — НА АККАУНТ (владелец 04.11): удаление аккаунта, выход и второй человек на том же телефоне не наследуют чужую отметку.
@@ -66,6 +68,7 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
   const { studyTarget } = useStudyTarget();
   const reducedMotion = useReduceMotion();
   const insets = useStableSafeAreaInsets();
+  const palette = useSpirePalette();
   // зачем (координатор 04.11): приветствие показывается ТОЛЬКО через арбитр окон (ключ 'onboardingWelcome', приоритет выше «Открытий разделов» и праздников) —
   // wants = «хочу показать», visible = «арбитр выдал слот». force (dev-съёмка) идёт мимо арбитра.
   const [wants, setWants] = useState(force);
@@ -123,7 +126,10 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
   }, [close, router, force]);
 
   if (!visible) return null;
+  // зачем (слово владельца 05.11): пелена обязана накрывать ВСЁ — Главную, нижнюю панель и статус-бар. Слой внутри экрана Главной лежал ниже панели вкладок,
+  // поэтому приветствие идёт в прозрачной Modal на весь экран; «Next» тогда не прячется под капсулу панели, низ считаем от обычного отступа.
   return (
+    <Modal visible transparent animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={onSkip}>
     <ApprovedWelcome
       homeBackdrop={<></>}
       selectedLanguage={welcomeLanguageName(lang, String(studyTarget))}
@@ -132,9 +138,11 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
       reducedMotion={reducedMotion}
       safeTop={insets.top}
       // зачем (находка Maestro 05.11): «Next» уходил под плавающую капсулу таб-бара — низ экрана считаем от ВЕРХА капсулы (общая геометрия tab_bar_geometry), а не от системной полосы. В dev-превью (force) таб-бара нет.
-      safeBottom={force ? insets.bottom : tabPillTopOffset(insets.bottom)}
+      safeBottom={insets.bottom}
+      dimColor={welcomeDimColor(palette.accentGraphic)}
       onSkip={onSkip}
       onStart={onStart}
     />
+    </Modal>
   );
 }

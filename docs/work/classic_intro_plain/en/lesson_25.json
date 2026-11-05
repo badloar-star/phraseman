@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 25,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "What was going on"
+      },
+      "text": {
+        "en": "Today you say what was going on at that moment.\nI was reading.\nShe was driving.\nWe were waiting.\nThey were packing.\nIt shows a little scene."
+      },
+      "exampleIds": [
+        "en-classic-r1:25.01",
+        "en-classic-r1:25.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Was or were, then a word with ing"
+      },
+      "text": {
+        "en": "I, he, she or one thing: was.\nYou, we or they: were.\nThen add ing: reading, waiting.\nI was reading when the phone rang.\nOne thing goes on. Another thing happens.\nI dropped my keys while I was running."
+      },
+      "exampleIds": [
+        "en-classic-r1:25.21",
+        "en-classic-r1:25.26"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say what you were doing.\nAt six, I was walking home.\nWe were having breakfast at seven.\nTo ask, put was or were first.\nTo say no, add not after it."
+      },
+      "exampleIds": [
+        "en-classic-r1:25.11",
+        "en-classic-r1:25.13"
+      ]
+    }
+  ]
+}

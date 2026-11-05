@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 12,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Слова, що сильно змінюються"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся слів, які змінюються по-своєму.\nУ них немає ed.\ngo стає went.\nI went home early. — Я пішов додому рано.\nbuy стає bought.\nI bought fresh bread. — Я купив свіжий хліб."
+      },
+      "exampleIds": [
+        "en-classic-r1:12.01",
+        "en-classic-r1:12.05"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Вчіть їх парами"
+      },
+      "text": {
+        "uk": "Кожне слово змінюється саме. Вчіть їх парами.\ntake — took. find — found.\nWe took the bus home. — Ми поїхали додому автобусом.\nHe found his wallet downstairs. — Він знайшов свій гаманець внизу.\nДеякі не змінюються зовсім: put — put.\nShe put the parcel by the door. — Вона поклала посилку біля дверей."
+      },
+      "exampleIds": [
+        "en-classic-r1:12.03",
+        "en-classic-r1:12.10",
+        "en-classic-r1:12.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви обиратимете потрібне слово, питатимете й казатимете «не» зі словом Did.\nПісля Did і did not слово знову звичайне.\nDid he send the photo? — Він надіслав фотографію?\nWe did not find a parking space. — Ми не знайшли місця для паркування.\nДивіться: sent, але після Did — send."
+      },
+      "exampleIds": [
+        "en-classic-r1:12.33",
+        "en-classic-r1:12.36"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 21,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Someone and something"
+      },
+      "text": {
+        "en": "Today you learn words for people and things you do not know.\nSomeone is at the door.\nSomething is burning."
+      },
+      "exampleIds": [
+        "en-classic-r1:21.01",
+        "en-classic-r1:21.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Some, any, no, every"
+      },
+      "text": {
+        "en": "Some: someone, something, somewhere.\nQuestions: anyone, anything, anywhere.\nIs anyone waiting here?\nNone: nobody, nothing, nowhere.\nNobody answered the phone.\nAll: everyone, everything.\nEveryone has a seat."
+      },
+      "exampleIds": [
+        "en-classic-r1:21.11",
+        "en-classic-r1:21.21",
+        "en-classic-r1:21.33"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say no only one time.\nI did not see anyone downstairs.\nNot two no words in one sentence.\nSomeone called, but nobody left a message.\nEveryone has a seat."
+      },
+      "exampleIds": [
+        "en-classic-r1:21.41",
+        "en-classic-r1:21.46",
+        "en-classic-r1:21.31"
+      ]
+    }
+  ]
+}

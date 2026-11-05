@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 8,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Говорим, когда"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, когда что-то бывает.\nI start at seven. — Я начинаю в семь.\nЭто значит: семь часов — моё время начала.\nWe meet on Tuesday. — Мы встречаемся во вторник.\nЭто значит: вторник — наш день."
+      },
+      "exampleIds": [
+        "en-classic-r1:08.01",
+        "en-classic-r1:08.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "At, on, in"
+      },
+      "text": {
+        "ru": "Перед временем ставим маленькое слово.\nЧас — at: at seven, at noon.\nДень — on: on Monday.\nМесяц или сезон — in: in July, in winter.\nThe gate opens at half past six. — Ворота открываются в половине седьмого.\nThe market opens on Saturdays. — Рынок открыт по субботам.\nThe days are short in winter. — Дни зимой короткие."
+      },
+      "exampleIds": [
+        "en-classic-r1:08.11",
+        "en-classic-r1:08.25",
+        "en-classic-r1:08.31"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы будете выбирать маленькое слово для каждого времени.\nЧас — at. День — on. Месяц или сезон — in.\nСо словами every и tonight маленькое слово не нужно.\nI work every Monday. — Я работаю каждый понедельник.\nThe film starts tonight. — Фильм начинается сегодня вечером."
+      },
+      "exampleIds": [
+        "en-classic-r1:08.41",
+        "en-classic-r1:08.43"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "lang": "en",
+  "lesson": 18,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Просим, предупреждаем, предлагаем"
+      },
+      "text": {
+        "ru": "Сегодня ты учишься просить, предупреждать и предлагать.\nCome this way. — Пройдите сюда.\nClose the window, please. — Закройте окно, пожалуйста.\nНе нужно говорить «вы»: начни сразу с действия."
+      },
+      "exampleIds": [
+        "en-classic-r1:18.01",
+        "en-classic-r1:18.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Начни с действия"
+      },
+      "text": {
+        "ru": "Просьба начинается с действия.\nHold the handrail. — Держитесь за перила.\nWatch your step. — Осторожно, под ноги.\nЗапрет начинается с Do not.\nDo not touch the oven. — Не трогайте духовку.\nПредложение начинается с Let's.\nLet's wait for the others. — Давайте подождём остальных."
+      },
+      "exampleIds": [
+        "en-classic-r1:18.06",
+        "en-classic-r1:18.07",
+        "en-classic-r1:18.11",
+        "en-classic-r1:18.42"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что ты будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь выбирать, как это сказать.\nЧтобы было вежливо, добавь please.\nPlease bring a copy of the receipt. — Пожалуйста, принесите копию чека.\nПредупреждение: Do not feed the dog. — Не кормите собаку.\nПредложение: Let's check the address first. — Давайте сначала проверим адрес."
+      },
+      "exampleIds": [
+        "en-classic-r1:18.30",
+        "en-classic-r1:18.18",
+        "en-classic-r1:18.44"
+      ]
+    }
+  ]
+}

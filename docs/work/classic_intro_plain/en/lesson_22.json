@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 22,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Naming an activity"
+      },
+      "text": {
+        "en": "Today you learn to name an activity with ing.\nSwimming helps me relax.\nCooking takes practice.\nWaiting outside is not much fun."
+      },
+      "exampleIds": [
+        "en-classic-r1:22.01",
+        "en-classic-r1:22.03",
+        "en-classic-r1:22.06"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Add ing"
+      },
+      "text": {
+        "en": "Add ing to the action: cook, cooking. work, working.\nSometimes a letter is doubled: swim, swimming.\nThen say what it is like.\nReading on the bus makes me dizzy.\nDriving in fog is difficult."
+      },
+      "exampleIds": [
+        "en-classic-r1:22.04",
+        "en-classic-r1:22.05"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "After some words, ing names what we do.\nShe enjoys walking by the river.\nHe avoids driving at night.\nThey stopped talking at the door."
+      },
+      "exampleIds": [
+        "en-classic-r1:22.12",
+        "en-classic-r1:22.13",
+        "en-classic-r1:22.15"
+      ]
+    }
+  ]
+}

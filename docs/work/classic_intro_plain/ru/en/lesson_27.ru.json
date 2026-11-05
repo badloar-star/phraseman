@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 27,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Он сказал, что"
+      },
+      "text": {
+        "ru": "Сегодня пересказываем, что сказал человек.\nAnna said she was tired. — Анна сказала, что устала.\nHe said the shop was closed. — Он сказал, что магазин закрыт.\nЕго слова были раньше.\nПоэтому am и is становятся was."
+      },
+      "exampleIds": [
+        "en-classic-r1:27.01",
+        "en-classic-r1:27.04"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Слово делает шаг назад"
+      },
+      "text": {
+        "ru": "Человек сказал I need, пересказываем: I said I needed.\nОн сказал will, пересказываем: he said he would.\nWe said we wanted two seats. — Мы сказали, что хотим два места.\nHe said he would send a reminder. — Он сказал, что пришлёт напоминание.\nCan становится could.\nShe said she could wait. — Она сказала, что может подождать."
+      },
+      "exampleIds": [
+        "en-classic-r1:27.06",
+        "en-classic-r1:27.22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь пересказывать, что сказали люди.\nПосле told сначала говорим, кому.\nShe told me she was downstairs. — Она сказала мне, что она внизу.\nHe told us the bus was full. — Он сказал нам, что автобус полон.\nЧтобы пересказать вопрос, говорим asked.\nShe asked what I needed. — Она спросила, что мне нужно."
+      },
+      "exampleIds": [
+        "en-classic-r1:27.11",
+        "en-classic-r1:27.12"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 23,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что сделали с вещью"
+      },
+      "text": {
+        "ru": "Сегодня учимся говорить, что сделали с вещью.\nСначала называем вещь.\nThe gate is locked at night. — Ворота запирают на ночь.\nКто запирает, не говорим. Важны ворота.\nThe rooms are cleaned daily. — Комнаты убирают каждый день."
+      },
+      "exampleIds": [
+        "en-classic-r1:23.01",
+        "en-classic-r1:23.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "is или are, потом слово про дело"
+      },
+      "text": {
+        "ru": "Одна вещь: is. Много вещей: are.\nПотом слово вроде locked или cleaned.\nThe milk is delivered in the morning. — Молоко привозят утром.\nThe tickets are sold online. — Билеты продают онлайн.\nЕсли это было вчера, говорим was или were.\nThe room was booked yesterday. — Комнату забронировали вчера."
+      },
+      "exampleIds": [
+        "en-classic-r1:23.11",
+        "en-classic-r1:23.12"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь говорить и спрашивать короткие фразы.\nВыбирай is, are, was или were.\nЧтобы спросить, поставь это слово первым.\nIs breakfast included? — Завтрак включён?\nWhen are the bins collected? — Когда вывозят мусор?\nЧтобы сказать «не», добавь not."
+      },
+      "exampleIds": [
+        "en-classic-r1:23.21",
+        "en-classic-r1:23.27"
+      ]
+    }
+  ]
+}

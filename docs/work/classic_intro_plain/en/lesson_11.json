@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 11,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying what happened"
+      },
+      "text": {
+        "en": "Today you learn to say what already happened.\nI walked home yesterday.\nIt means: I got home on foot, and it is done.\nShe called a taxi.\nIt means: she phoned for a car, and it is done."
+      },
+      "exampleIds": [
+        "en-classic-r1:11.01",
+        "en-classic-r1:11.06"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Add ed"
+      },
+      "text": {
+        "en": "Add ed to the end of the word.\nwash, washed: He washed the cups.\nIf the word already ends in e, add only d: arrive, arrived.\nThe train arrived ten minutes late.\nSome words double the last letter: stop, stopped.\nThe driver stopped by the gate.\nIf the word ends in y, the y becomes i: try, tried.\nWe tried a different cable."
+      },
+      "exampleIds": [
+        "en-classic-r1:11.14",
+        "en-classic-r1:11.30",
+        "en-classic-r1:11.29",
+        "en-classic-r1:11.44"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say what people did, ask, and say they did not.\nTo ask, start with Did.\nTo say no, use did not.\nAfter Did and did not, the word is short again.\nDid the bus arrive on time?\nThey did not miss the flight."
+      },
+      "exampleIds": [
+        "en-classic-r1:11.35",
+        "en-classic-r1:11.38"
+      ]
+    }
+  ]
+}

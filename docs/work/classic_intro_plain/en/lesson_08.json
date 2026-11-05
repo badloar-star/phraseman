@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 8,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying when"
+      },
+      "text": {
+        "en": "Today you learn to say when something happens.\nI start at seven.\nIt means: seven o'clock is my start time.\nWe meet on Tuesday.\nIt means: Tuesday is our day."
+      },
+      "exampleIds": [
+        "en-classic-r1:08.01",
+        "en-classic-r1:08.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "At, on, in"
+      },
+      "text": {
+        "en": "Put a small word before the time.\nFor the hour, say at: at seven, at noon.\nFor the day, say on: on Monday.\nFor a month or season, say in: in July, in winter.\nThe gate opens at half past six.\nThe market opens on Saturdays.\nThe days are short in winter."
+      },
+      "exampleIds": [
+        "en-classic-r1:08.11",
+        "en-classic-r1:08.25",
+        "en-classic-r1:08.31"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will pick the small word for each time.\nHour: at. Day: on. Month or season: in.\nWith every and tonight, use no small word.\nI work every Monday.\nThe film starts tonight."
+      },
+      "exampleIds": [
+        "en-classic-r1:08.41",
+        "en-classic-r1:08.43"
+      ]
+    }
+  ]
+}

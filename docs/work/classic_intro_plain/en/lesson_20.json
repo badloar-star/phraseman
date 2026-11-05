@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 20,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "A and an"
+      },
+      "text": {
+        "en": "Today you learn two tiny words: a and an.\nI need a pen.\nI need an envelope.\nThey mean: one of them."
+      },
+      "exampleIds": [
+        "en-classic-r1:20.01",
+        "en-classic-r1:20.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Which one to use"
+      },
+      "text": {
+        "en": "Use an when the next word starts with the sound a, e, i or o.\nan envelope, an appointment, an idea.\nIn other cases use a.\na pen, a sandwich.\nIt is easier to say."
+      },
+      "exampleIds": [
+        "en-classic-r1:20.04",
+        "en-classic-r1:20.06",
+        "en-classic-r1:20.07"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "First time: a or an.\nSecond time: the.\nI bought a lamp. The lamp is broken.\nThe means: the one we already know.\nI found a key. The key is rusty."
+      },
+      "exampleIds": [
+        "en-classic-r1:20.11",
+        "en-classic-r1:20.12"
+      ]
+    }
+  ]
+}

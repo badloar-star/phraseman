@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 5,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Asking about what people do"
+      },
+      "text": {
+        "en": "Today you learn to ask questions.\nDo you drive?\nIt means: are you someone who drives a car?\nDoes she drive?\nIt means: is she someone who drives?"
+      },
+      "exampleIds": [
+        "en-classic-r1:05.01",
+        "en-classic-r1:05.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Start with Do or Does"
+      },
+      "text": {
+        "en": "Put Do or Does first.\nWith I, you, we and they, say Do.\nDo you sell stamps?\nWith one other person or one thing, say Does.\nDoes the oven work?\nMany things, like buses, take Do.\nDo the buses run on Sundays?\nThe next word stays short: no s."
+      },
+      "exampleIds": [
+        "en-classic-r1:05.16",
+        "en-classic-r1:05.26",
+        "en-classic-r1:05.18"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will ask about home, work and shopping.\nLook at who the question is about.\nThen pick Do or Does.\nDoes your team start early?\nDo we pay here?"
+      },
+      "exampleIds": [
+        "en-classic-r1:05.32",
+        "en-classic-r1:05.20"
+      ]
+    }
+  ]
+}

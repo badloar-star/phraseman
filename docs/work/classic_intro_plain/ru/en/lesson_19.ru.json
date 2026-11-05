@@ -1,0 +1,48 @@
+{
+  "lang": "en",
+  "lesson": 19,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Где что лежит"
+      },
+      "text": {
+        "ru": "Сегодня ты учишься говорить, где что лежит.\nThe keys are on the shelf. — Ключи на полке.\nThe keys are in the drawer. — Ключи в ящике.\nThe bill is under the menu. — Счёт под меню."
+      },
+      "exampleIds": [
+        "en-classic-r1:19.01",
+        "en-classic-r1:19.02",
+        "en-classic-r1:19.07"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Маленькие слова показывают место"
+      },
+      "text": {
+        "ru": "Маленькие слова показывают место: on, in, under, beside, above, behind.\nThe clock is above the desk. — Часы над столом.\nMy coat is behind the door. — Моё пальто за дверью.\nОдна вещь — is. Много вещей — are.\nThe keys are beside the kettle. — Ключи рядом с чайником."
+      },
+      "exampleIds": [
+        "en-classic-r1:19.10",
+        "en-classic-r1:19.08",
+        "en-classic-r1:19.04"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что ты будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь говорить, где что в городе.\nНазови место, потом is, потом маленькое слово.\nThe pharmacy is opposite the bank. — Аптека напротив банка.\nThe bakery is next to the library. — Пекарня рядом с библиотекой.\nThe car park is behind the hotel. — Парковка за отелем."
+      },
+      "exampleIds": [
+        "en-classic-r1:19.21",
+        "en-classic-r1:19.22",
+        "en-classic-r1:19.23"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 14,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Порівнюємо дві речі"
+      },
+      "text": {
+        "uk": "Сьогодні ти вчишся порівнювати дві речі.\nThis bag is lighter. — Ця сумка легша.\nThis room is warmer. — У цій кімнаті тепліше.\nДо слова додали er, і вийшло «більше, ніж»."
+      },
+      "exampleIds": [
+        "en-classic-r1:14.01",
+        "en-classic-r1:14.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Коротке слово й довге"
+      },
+      "text": {
+        "uk": "Коротке слово: додай er.\nlight — lighter. warm — warmer.\nЩоб порівняти, додай than.\nTea is cheaper than coffee here. — Тут чай дешевший за каву.\nДовге слово: постав перед ним more.\nThe map is more useful than the list. — Карта кориснша за список."
+      },
+      "exampleIds": [
+        "en-classic-r1:14.11",
+        "en-classic-r1:14.23"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ти робитимеш"
+      },
+      "text": {
+        "uk": "Ти обиратимеш, як порівняти.\nКоротке слово? Додай er.\nДовге слово? Спочатку more.\nПотім than і друга річ.\nHer bag is lighter than mine. — Її сумка легша за мою."
+      },
+      "exampleIds": [
+        "en-classic-r1:14.13",
+        "en-classic-r1:14.43"
+      ]
+    }
+  ]
+}

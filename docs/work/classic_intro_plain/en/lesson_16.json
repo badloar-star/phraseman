@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 16,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Small words, new meaning"
+      },
+      "text": {
+        "en": "Today you learn small words that go with an action.\nWake up, Tom.\nIt means: stop sleeping.\nCome back after the rehearsal.\nIt means: return later."
+      },
+      "exampleIds": [
+        "en-classic-r1:16.01",
+        "en-classic-r1:16.08"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Get up, get on, get off"
+      },
+      "text": {
+        "en": "Two words together make one idea.\nGet up means leave your bed.\nGet on means step into a bus or train.\nGet off means step out of it.\nI get up at seven.\nShe gets off at the next stop."
+      },
+      "exampleIds": [
+        "en-classic-r1:16.02",
+        "en-classic-r1:16.10",
+        "en-classic-r1:16.09"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "Turn on starts a machine. Turn off stops it.\nTurn on the lamp.\nTurn off the fan.\nYou can also say it this way:\nTurn the oven on.\nLearn the two words as one."
+      },
+      "exampleIds": [
+        "en-classic-r1:16.11",
+        "en-classic-r1:16.14",
+        "en-classic-r1:16.12"
+      ]
+    }
+  ]
+}

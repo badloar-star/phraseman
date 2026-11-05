@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 29,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "It used to be like that"
+      },
+      "text": {
+        "en": "Today you talk about how things were before.\nBut not now.\nI used to drive to work.\nThere used to be a factory here.\nIt was so, then it stopped."
+      },
+      "exampleIds": [
+        "en-classic-r1:29.01",
+        "en-classic-r1:29.11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Used to stays the same"
+      },
+      "text": {
+        "en": "I used to. She used to. They used to.\nThen say what you did.\nThis street used to be quieter.\nFor no, say did not use to.\nI did not use to drink coffee.\nNo d on use."
+      },
+      "exampleIds": [
+        "en-classic-r1:29.16",
+        "en-classic-r1:29.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say what you did before.\nShe used to live upstairs.\nI used to work in a warehouse.\nAnd ask: Did you use to live near here?\nDid already shows it was before.\nSo use has no d."
+      },
+      "exampleIds": [
+        "en-classic-r1:29.02",
+        "en-classic-r1:29.06"
+      ]
+    }
+  ]
+}

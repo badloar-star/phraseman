@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 6,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Asking where, when and what"
+      },
+      "text": {
+        "en": "Today you learn to ask with a first word.\nWhere do you work?\nIt means: in which place?\nWhen does the sale end?\nIt means: at what time?"
+      },
+      "exampleIds": [
+        "en-classic-r1:06.01",
+        "en-classic-r1:06.25"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Put the new word first"
+      },
+      "text": {
+        "en": "Put the question word first.\nThen Do or Does, then the rest.\nWhat size do you wear?\nWhy does the alarm beep?\nHow much does a ticket cost?\nWith Who, you skip Do and Does.\nWho checks the orders?"
+      },
+      "exampleIds": [
+        "en-classic-r1:06.22",
+        "en-classic-r1:06.10",
+        "en-classic-r1:06.13",
+        "en-classic-r1:06.38"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will pick the right first word.\nWhere is a place. When is a time.\nWhat and Which pick a thing. Why asks the reason.\nHow asks the way. How many asks a number.\nHow many people live here?\nHow do I restart the printer?"
+      },
+      "exampleIds": [
+        "en-classic-r1:06.45",
+        "en-classic-r1:06.35"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 12,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Слова, которые сильно меняются"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь словам, которые меняются по-своему.\nУ них нет ed.\ngo становится went.\nI went home early. — Я рано ушёл домой.\nbuy становится bought.\nI bought fresh bread. — Я купил свежий хлеб."
+      },
+      "exampleIds": [
+        "en-classic-r1:12.01",
+        "en-classic-r1:12.05"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Учите их парами"
+      },
+      "text": {
+        "ru": "Каждое слово меняется само. Учите их парами.\ntake — took. find — found.\nWe took the bus home. — Мы поехали домой на автобусе.\nHe found his wallet downstairs. — Он нашёл свой кошелёк внизу.\nНекоторые не меняются вовсе: put — put.\nShe put the parcel by the door. — Она положила посылку у двери."
+      },
+      "exampleIds": [
+        "en-classic-r1:12.03",
+        "en-classic-r1:12.10",
+        "en-classic-r1:12.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы будете выбирать нужное слово, спрашивать и говорить «не» со словом Did.\nПосле Did и did not слово снова обычное.\nDid he send the photo? — Он отправил фото?\nWe did not find a parking space. — Мы не нашли парковочное место.\nСмотрите: sent, но после Did — send."
+      },
+      "exampleIds": [
+        "en-classic-r1:12.33",
+        "en-classic-r1:12.36"
+      ]
+    }
+  ]
+}

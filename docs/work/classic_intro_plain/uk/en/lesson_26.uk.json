@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 26,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Якщо щось станеться"
+      },
+      "text": {
+        "uk": "Сьогодні вчимо слово if — «якщо».\nIf it rains, we will stay inside. — Якщо піде дощ, ми залишимося всередині.\nIf you call, I will answer. — Якщо зателефонуєш, я відповім.\nСпочатку частина з if. Потім план.\nWill стоїть у плані.\nПісля if його не ставимо."
+      },
+      "exampleIds": [
+        "en-classic-r1:26.01",
+        "en-classic-r1:26.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "if на початку або в кінці"
+      },
+      "text": {
+        "uk": "Можна почати з if.\nIf she asks, I will help. — Якщо вона попросить, я допоможу.\nАбо почати з плану.\nI will text you if the forecast changes. — Напишу тобі, якщо прогноз зміниться.\nЗ she, he або однією річчю додай s.\nHe sees the sign. — Він бачить знак."
+      },
+      "exampleIds": [
+        "en-classic-r1:26.11",
+        "en-classic-r1:26.12"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що будеш робити"
+      },
+      "text": {
+        "uk": "Ти будеш казати, що буде, якщо щось станеться.\nІ питати: Will you wait if I am late? — Ви почекаєте, якщо я запізнюся?\nІноді після if іде прохання.\nIf you need help, press this button. — Якщо потрібна допомога, натисніть цю кнопку.\nIf you find my pass, let me know. — Якщо знайдете мою перепустку, дайте знати.\nУ них will немає."
+      },
+      "exampleIds": [
+        "en-classic-r1:26.21",
+        "en-classic-r1:26.23"
+      ]
+    }
+  ]
+}

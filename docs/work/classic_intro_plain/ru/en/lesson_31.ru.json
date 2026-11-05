@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 31,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Видел и слышал"
+      },
+      "text": {
+        "ru": "Сегодня говорим, что ты видел или слышал.\nI saw Tom leave. — Я видел, как Том ушёл.\nI heard Anna laugh. — Я слышал, как Анна засмеялась.\nПосле saw или heard следующее слово остаётся коротким.\nНе leaves и не left."
+      },
+      "exampleIds": [
+        "en-classic-r1:31.01",
+        "en-classic-r1:31.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "him, her, me и короткое слово"
+      },
+      "text": {
+        "ru": "Можно сказать him, her, me, us или them.\nI saw him drop the key. — Я видел, как он уронил ключ.\nShe watched me sign the receipt. — Она смотрела, как я подписываю квитанцию.\nХочешь сказать, что это шло прямо тогда?\nДобавь ing.\nI saw the driver getting out. — Я видел, как водитель выходил."
+      },
+      "exampleIds": [
+        "en-classic-r1:31.11",
+        "en-classic-r1:31.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь говорить, что видел, слышал или почувствовал.\nИ не только.\nShe watched me sign the receipt. — Она смотрела, как я подписываю квитанцию.\nWe watched the paint dripping. — Мы смотрели, как капает краска.\nLet значит «разрешить».\nThey let me use the printer. — Мне разрешили пользоваться принтером."
+      },
+      "exampleIds": [
+        "en-classic-r1:31.13",
+        "en-classic-r1:31.23"
+      ]
+    }
+  ]
+}

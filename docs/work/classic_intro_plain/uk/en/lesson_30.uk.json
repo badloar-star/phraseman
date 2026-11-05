@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 30,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Яка людина, річ чи місце"
+      },
+      "text": {
+        "uk": "Сьогодні вчимося казати, про кого чи про що мова.\nThe person who called is here. — Той, хто дзвонив, тут.\nThe man who repaired the roof is outside. — Чоловік, який лагодив дах, надворі.\nПро людину кажемо who.\nВоно показує, про яку людину мова."
+      },
+      "exampleIds": [
+        "en-classic-r1:30.01",
+        "en-classic-r1:30.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "who, that, where"
+      },
+      "text": {
+        "uk": "Людина: who.\nРіч: that.\nThe shop that sells maps is closed. — Магазин, де продають карти, зачинений.\nThe bus that stops here goes to the airport. — Автобус, який тут зупиняється, їде в аеропорт.\nМісце: where.\nThis is the cafe where we met. — Це кафе, де ми зустрілися."
+      },
+      "exampleIds": [
+        "en-classic-r1:30.07",
+        "en-classic-r1:30.08"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що будеш робити"
+      },
+      "text": {
+        "uk": "Ти будеш казати, про кого мова, одним реченням.\nThe book that I borrowed is on the desk. — Книжка, яку я взяв, лежить на столі.\nThat можна прибрати.\nThe book I borrowed is on the desk.\nСенс той самий."
+      },
+      "exampleIds": [
+        "en-classic-r1:30.11",
+        "en-classic-r1:30.21"
+      ]
+    }
+  ]
+}

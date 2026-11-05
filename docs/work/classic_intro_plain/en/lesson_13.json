@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 13,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Doing something later"
+      },
+      "text": {
+        "en": "Today you learn to say what you will do later.\nI will wait outside.\nIt means: I am not outside yet, but I will be.\nShe will call later.\nIt means: the call comes after some time."
+      },
+      "exampleIds": [
+        "en-classic-r1:13.01",
+        "en-classic-r1:13.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "One little word: will"
+      },
+      "text": {
+        "en": "Put will before the action.\nI will wait. She will wait. We will wait.\nThe little word will never changes.\nAfter will, the next word stays short.\nHe will open the gate."
+      },
+      "exampleIds": [
+        "en-classic-r1:13.04",
+        "en-classic-r1:13.06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say what you decide or promise.\nThink: what will I do?\nPut will before it.\nWe will split the bill.\nI will put the kettle on."
+      },
+      "exampleIds": [
+        "en-classic-r1:13.17",
+        "en-classic-r1:13.20"
+      ]
+    }
+  ]
+}

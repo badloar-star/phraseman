@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 31,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Seeing and hearing"
+      },
+      "text": {
+        "en": "Today you say what you saw or heard.\nI saw Tom leave.\nI heard Anna laugh.\nAfter saw or heard, the next word stays short.\nNot leaves. Not left."
+      },
+      "exampleIds": [
+        "en-classic-r1:31.01",
+        "en-classic-r1:31.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Him, her, me, then a short word"
+      },
+      "text": {
+        "en": "You can say him, her, me, us or them.\nI saw him drop the key.\nShe watched me sign the receipt.\nWant to say it was going on?\nAdd ing.\nI saw the driver getting out."
+      },
+      "exampleIds": [
+        "en-classic-r1:31.11",
+        "en-classic-r1:31.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say what you saw, heard or felt.\nAnd more.\nShe watched me sign the receipt.\nWe watched the paint dripping.\nLet means allow.\nThey let me use the printer."
+      },
+      "exampleIds": [
+        "en-classic-r1:31.13",
+        "en-classic-r1:31.23"
+      ]
+    }
+  ]
+}

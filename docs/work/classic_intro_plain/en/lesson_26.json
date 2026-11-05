@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 26,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "If something happens"
+      },
+      "text": {
+        "en": "Today you learn if.\nIf it rains, we will stay inside.\nIf you call, I will answer.\nFirst the if part. Then the plan.\nWill goes in the plan part.\nNot after if."
+      },
+      "exampleIds": [
+        "en-classic-r1:26.01",
+        "en-classic-r1:26.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "If first or if last"
+      },
+      "text": {
+        "en": "You can start with if.\nIf she asks, I will help.\nOr start with the plan.\nI will text you if the forecast changes.\nWith she, he or one thing, add s.\nHe stops if he sees the sign."
+      },
+      "exampleIds": [
+        "en-classic-r1:26.11",
+        "en-classic-r1:26.12"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say what happens if something happens.\nAsk too: Will you wait if I am late?\nSometimes after if comes a request.\nIf you need help, press this button.\nIf you find my pass, let me know.\nNo will in these."
+      },
+      "exampleIds": [
+        "en-classic-r1:26.21",
+        "en-classic-r1:26.23"
+      ]
+    }
+  ]
+}

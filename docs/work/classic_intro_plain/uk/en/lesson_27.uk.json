@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 27,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Він сказав, що"
+      },
+      "text": {
+        "uk": "Сьогодні переказуємо, що сказала людина.\nAnna said she was tired. — Анна сказала, що втомилася.\nHe said the shop was closed. — Він сказав, що магазин зачинений.\nЇї слова були раніше.\nТому am та is стають was."
+      },
+      "exampleIds": [
+        "en-classic-r1:27.01",
+        "en-classic-r1:27.04"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Слово робить крок назад"
+      },
+      "text": {
+        "uk": "Людина сказала I need, переказуємо: I said I needed.\nВона сказала will, переказуємо: he said he would.\nWe said we wanted two seats. — Ми сказали, що хочемо два місця.\nHe said he would send a reminder. — Він сказав, що надішле нагадування.\nCan стає could.\nShe said she could wait. — Вона сказала, що може почекати."
+      },
+      "exampleIds": [
+        "en-classic-r1:27.06",
+        "en-classic-r1:27.22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що будеш робити"
+      },
+      "text": {
+        "uk": "Ти будеш переказувати, що сказали люди.\nПісля told спочатку кажемо, кому.\nShe told me she was downstairs. — Вона сказала мені, що вона внизу.\nHe told us the bus was full. — Він сказав нам, що автобус повний.\nЩоб переказати питання, кажемо asked.\nShe asked what I needed. — Вона спитала, що мені потрібно."
+      },
+      "exampleIds": [
+        "en-classic-r1:27.11",
+        "en-classic-r1:27.12"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 17,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Прямо сейчас"
+      },
+      "text": {
+        "ru": "Сегодня ты учишься говорить, что происходит прямо сейчас.\nI am waiting. — Я жду.\nWe are leaving. — Мы уходим.\nЭто происходит сейчас, в эту минуту."
+      },
+      "exampleIds": [
+        "en-classic-r1:17.01",
+        "en-classic-r1:17.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Am, is, are и ing"
+      },
+      "text": {
+        "ru": "Бери am, is или are, а потом слово с ing.\nI am waiting. She is waiting. We are leaving.\nI — am. He, she, it — is. We, you, they — are.\nThe phone is ringing. — Телефон звонит.\nThe doors are closing. — Двери закрываются."
+      },
+      "exampleIds": [
+        "en-classic-r1:17.02",
+        "en-classic-r1:17.07",
+        "en-classic-r1:17.08"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что ты будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь выбирать am, is или are и добавлять ing к действию.\nИногда буква пропадает: write — writing.\nИногда буква удваивается: put — putting.\nHe is cooking. — Он готовит.\nShe is putting her coat on. — Она надевает пальто."
+      },
+      "exampleIds": [
+        "en-classic-r1:17.05",
+        "en-classic-r1:17.12",
+        "en-classic-r1:17.17"
+      ]
+    }
+  ]
+}

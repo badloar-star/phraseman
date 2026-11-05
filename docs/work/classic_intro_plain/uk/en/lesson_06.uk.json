@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 6,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Питаємо де, коли, що"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся питати з першим словом.\nWhere do you work? — Де ви працюєте?\nЦе означає: в якому місці?\nWhen does the sale end? — Коли закінчується розпродаж?\nЦе означає: о котрій порі?"
+      },
+      "exampleIds": [
+        "en-classic-r1:06.01",
+        "en-classic-r1:06.25"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Нове слово — першим"
+      },
+      "text": {
+        "uk": "Питальне слово ставимо на самий початок.\nПотім Do або Does, потім решта.\nWhat size do you wear? — Який розмір ви носите?\nWhy does the alarm beep? — Чому пищить сигналізація?\nHow much does a ticket cost? — Скільки коштує квиток?\nЗі словом Who слова Do і Does не потрібні.\nWho checks the orders? — Хто перевіряє замовлення?"
+      },
+      "exampleIds": [
+        "en-classic-r1:06.22",
+        "en-classic-r1:06.10",
+        "en-classic-r1:06.13",
+        "en-classic-r1:06.38"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви обиратимете перше слово запитання.\nWhere — місце. When — час.\nWhat і Which — річ. Why — причина.\nHow — спосіб. How many — число.\nHow many people live here? — Скільки людей тут живе?\nHow do I restart the printer? — Як перезапустити принтер?"
+      },
+      "exampleIds": [
+        "en-classic-r1:06.45",
+        "en-classic-r1:06.35"
+      ]
+    }
+  ]
+}

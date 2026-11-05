@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 5,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Спрашиваем о делах"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь задавать вопросы.\nDo you drive? — Вы водите машину?\nЭто значит: вы ездите за рулём?\nDoes she drive? — Она водит машину?\nЭто значит: она ездит за рулём?"
+      },
+      "exampleIds": [
+        "en-classic-r1:05.01",
+        "en-classic-r1:05.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Начните с Do или Does"
+      },
+      "text": {
+        "ru": "Поставьте Do или Does в самое начало.\nПро «я», «вы», «мы», «они» — Do.\nDo you sell stamps? — Вы продаёте марки?\nПро «она», «он» или один предмет — Does.\nDoes the oven work? — Духовка работает?\nПро много предметов, например автобусы, — Do.\nDo the buses run on Sundays? — Автобусы ходят по воскресеньям?\nДальше слово остаётся коротким, без s."
+      },
+      "exampleIds": [
+        "en-classic-r1:05.16",
+        "en-classic-r1:05.26",
+        "en-classic-r1:05.18"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы будете спрашивать о доме, работе и покупках.\nСмотрите, о ком вопрос.\nПотом выберите Do или Does.\nDoes your team start early? — Ваша команда начинает работу рано?\nDo we pay here? — Мы платим здесь?"
+      },
+      "exampleIds": [
+        "en-classic-r1:05.32",
+        "en-classic-r1:05.20"
+      ]
+    }
+  ]
+}

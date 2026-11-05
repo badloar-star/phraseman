@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 24,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "It has happened"
+      },
+      "text": {
+        "en": "Today you say what has already happened.\nAnd it still matters now.\nI have lost my keys.\nSo I cannot get in.\nShe has found her card.\nWe have finished lunch."
+      },
+      "exampleIds": [
+        "en-classic-r1:24.01",
+        "en-classic-r1:24.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Have or has, then the done word"
+      },
+      "text": {
+        "en": "I, you, we and they: have.\nShe, he or one thing: has.\nThen a word like lost, found or finished.\nHe has already paid.\nWe have not ordered yet.\nJust means a moment ago."
+      },
+      "exampleIds": [
+        "en-classic-r1:24.14",
+        "en-classic-r1:24.17"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say what has happened.\nAnd ask about it.\nHave you ever worked nights?\nTo say never, use never.\nI have never driven a van.\nSay yesterday? Then no have."
+      },
+      "exampleIds": [
+        "en-classic-r1:24.21",
+        "en-classic-r1:24.25"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 23,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Things that get done"
+      },
+      "text": {
+        "en": "Today you learn to say what was done to a thing.\nWe name the thing first.\nThe gate is locked at night.\nIt means: someone locks the gate.\nWho does it? We do not say. The gate matters.\nThe rooms are cleaned daily."
+      },
+      "exampleIds": [
+        "en-classic-r1:23.01",
+        "en-classic-r1:23.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Is or are, then a done word"
+      },
+      "text": {
+        "en": "One thing: is. Many things: are.\nThen a word like locked or cleaned.\nThe milk is delivered in the morning.\nThe tickets are sold online.\nFor yesterday, say was or were.\nThe room was booked yesterday."
+      },
+      "exampleIds": [
+        "en-classic-r1:23.11",
+        "en-classic-r1:23.12"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say and ask short sentences.\nPick is, are, was or were.\nTo ask, put that word first.\nIs breakfast included?\nWhen are the bins collected?\nTo say no, add not after it."
+      },
+      "exampleIds": [
+        "en-classic-r1:23.21",
+        "en-classic-r1:23.27"
+      ]
+    }
+  ]
+}

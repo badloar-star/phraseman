@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 25,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что происходило"
+      },
+      "text": {
+        "ru": "Сегодня говорим о том, что происходило в тот момент.\nI was reading. — Я читала.\nShe was driving. — Она ехала за рулём.\nWe were waiting. — Мы ждали.\nThey were packing. — Они собирали вещи.\nКак маленькая сценка."
+      },
+      "exampleIds": [
+        "en-classic-r1:25.01",
+        "en-classic-r1:25.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "was или were, потом слово с ing"
+      },
+      "text": {
+        "ru": "Я, он, она или одна вещь: was.\nТы, мы или они: were.\nПотом добавь ing: reading, waiting.\nI was reading when the phone rang. — Я читала, когда зазвонил телефон.\nОдно длится. Другое случается.\nI dropped my keys while I was running. — Я уронил ключи, пока бежал."
+      },
+      "exampleIds": [
+        "en-classic-r1:25.21",
+        "en-classic-r1:25.26"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь говорить, что делал в тот момент.\nAt six, I was walking home. — В шесть я шёл домой.\nWe were having breakfast at seven. — В семь мы завтракали.\nЧтобы спросить, поставь was или were первым.\nЧтобы сказать «не», добавь not."
+      },
+      "exampleIds": [
+        "en-classic-r1:25.11",
+        "en-classic-r1:25.13"
+      ]
+    }
+  ]
+}

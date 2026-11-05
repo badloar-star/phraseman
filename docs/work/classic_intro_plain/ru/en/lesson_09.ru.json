@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 9,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что где есть"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, что где есть.\nThere is a lift. — Есть лифт.\nЭто значит: лифт здесь.\nThere are stairs. — Есть лестница.\nЭто значит: лестницу можно найти здесь."
+      },
+      "exampleIds": [
+        "en-classic-r1:09.01",
+        "en-classic-r1:09.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "There is, there are"
+      },
+      "text": {
+        "ru": "Один предмет — There is.\nНесколько — There are.\nThere is a toilet upstairs. — Наверху есть туалет.\nThere are eggs in the fridge. — В холодильнике есть яйца.\nЧтобы спросить, поставьте Is или Are в начало.\nAre there lockers at the station? — Есть ли на станции камеры хранения?\nЧтобы сказать «нет», добавьте no.\nThere is no sugar left. — Сахара больше нет."
+      },
+      "exampleIds": [
+        "en-classic-r1:09.07",
+        "en-classic-r1:09.14",
+        "en-classic-r1:09.24",
+        "en-classic-r1:09.31"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы будете говорить, что где есть, и спрашивать об этом.\nА ещё говорить, что чего-то нет.\nСмотрите: один предмет или несколько? Выберите is или are.\nThere is no signal here. — Здесь нет сигнала.\nAre there any blankets? — Есть ли одеяла?"
+      },
+      "exampleIds": [
+        "en-classic-r1:09.37",
+        "en-classic-r1:09.26"
+      ]
+    }
+  ]
+}

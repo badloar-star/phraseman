@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 22,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Називаємо заняття"
+      },
+      "text": {
+        "uk": "Сьогодні ти вчишся називати заняття словом з ing.\nSwimming helps me relax. — Плавання допомагає мені розслабитися.\nCooking takes practice. — Готування потребує практики.\nWaiting outside is not much fun. — Чекати надворі не дуже приємно."
+      },
+      "exampleIds": [
+        "en-classic-r1:22.01",
+        "en-classic-r1:22.03",
+        "en-classic-r1:22.06"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Додай ing"
+      },
+      "text": {
+        "uk": "Додай ing до дії: cook — cooking. work — working.\nІноді літера подвоюється: swim — swimming.\nПотім скажи, яке це заняття.\nReading on the bus makes me dizzy. — Від читання в автобусі паморочиться голова.\nDriving in fog is difficult. — Водити в тумані важко."
+      },
+      "exampleIds": [
+        "en-classic-r1:22.04",
+        "en-classic-r1:22.05"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ти робитимеш"
+      },
+      "text": {
+        "uk": "Після деяких слів ing називає, що ми робимо.\nShe enjoys walking by the river. — Їй подобається гуляти біля річки.\nHe avoids driving at night. — Він уникає їздити вночі.\nThey stopped talking at the door. — Вони перестали розмовляти біля дверей."
+      },
+      "exampleIds": [
+        "en-classic-r1:22.12",
+        "en-classic-r1:22.13",
+        "en-classic-r1:22.15"
+      ]
+    }
+  ]
+}

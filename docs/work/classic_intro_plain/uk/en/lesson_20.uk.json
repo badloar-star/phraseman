@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 20,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "A та an"
+      },
+      "text": {
+        "uk": "Сьогодні ти вчишся двом крихітним словам: a та an.\nI need a pen. — Мені потрібна ручка.\nI need an envelope. — Мені потрібен конверт.\nВони означають «один, якийсь». Українською їх не кажуть."
+      },
+      "exampleIds": [
+        "en-classic-r1:20.01",
+        "en-classic-r1:20.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Яке вибрати"
+      },
+      "text": {
+        "uk": "Бери an, якщо наступне слово починається зі звуку «а», «е», «ай» або «о».\nan appointment — зустріч. an idea — ідея.\nВ інших випадках бери a.\nShe wants a sandwich. — Вона хоче бутерброд.\nТак легше говорити."
+      },
+      "exampleIds": [
+        "en-classic-r1:20.04",
+        "en-classic-r1:20.06",
+        "en-classic-r1:20.07"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ти робитимеш"
+      },
+      "text": {
+        "uk": "Перший раз: a або an.\nДругий раз: the.\nI bought a lamp. The lamp is broken. — Я купив лампу. Лампа зламана.\nThe означає: та сама, яку ми вже знаємо.\nI found a key. The key is rusty. — Я знайшов ключ. Ключ іржавий."
+      },
+      "exampleIds": [
+        "en-classic-r1:20.11",
+        "en-classic-r1:20.12"
+      ]
+    }
+  ]
+}

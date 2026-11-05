@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 24,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Это уже случилось"
+      },
+      "text": {
+        "ru": "Сегодня говорим о том, что уже случилось.\nИ это важно сейчас.\nI have lost my keys. — Я потерял ключи.\nПоэтому я не могу войти.\nShe has found her card. — Она нашла свою карту.\nWe have finished lunch. — Мы закончили обед."
+      },
+      "exampleIds": [
+        "en-classic-r1:24.01",
+        "en-classic-r1:24.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "have или has, потом слово про дело"
+      },
+      "text": {
+        "ru": "Я, ты, мы, они: have.\nОна, он или одна вещь: has.\nПотом слово вроде lost, found или finished.\nHe has already paid. — Он уже заплатил.\nWe have not ordered yet. — Мы ещё не заказали.\nJust значит «только что»."
+      },
+      "exampleIds": [
+        "en-classic-r1:24.14",
+        "en-classic-r1:24.17"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь говорить о том, что случилось.\nИ спрашивать об этом.\nHave you ever worked nights? — Вы когда-нибудь работали по ночам?\nЧтобы сказать «никогда», говори never.\nI have never driven a van. — Я никогда не водил фургон.\nЕсли сказано «вчера», have не нужно."
+      },
+      "exampleIds": [
+        "en-classic-r1:24.21",
+        "en-classic-r1:24.25"
+      ]
+    }
+  ]
+}

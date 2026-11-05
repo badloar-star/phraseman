@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 15,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Чьё это?"
+      },
+      "text": {
+        "ru": "Сегодня ты учишься говорить, чья это вещь.\nThis is my coat. — Это моё пальто.\nThis coat is mine. — Это пальто моё.\nСмысл один, слова разные."
+      },
+      "exampleIds": [
+        "en-classic-r1:15.01",
+        "en-classic-r1:15.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "С вещью или без неё"
+      },
+      "text": {
+        "ru": "Перед вещью: my, your, her, his, our, their.\nMy gloves are wet. — Мои перчатки мокрые.\nYour scarf is on the chair. — Твой шарф на стуле.\nБез вещи: mine, yours, hers, ours, theirs.\nThese seats are ours. — Эти места наши."
+      },
+      "exampleIds": [
+        "en-classic-r1:15.11",
+        "en-classic-r1:15.12",
+        "en-classic-r1:15.08"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что ты будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь выбирать нужное слово.\nВещь называют сразу после него? Бери my, your, his.\nВещь уже названа раньше? Бери mine, yours, hers.\nThis key is hers. — Этот ключ её.\nThese tickets are theirs. — Эти билеты их."
+      },
+      "exampleIds": [
+        "en-classic-r1:15.06",
+        "en-classic-r1:15.10"
+      ]
+    }
+  ]
+}

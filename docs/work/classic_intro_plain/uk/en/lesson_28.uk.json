@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 28,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Себе й одне одного"
+      },
+      "text": {
+        "uk": "Сьогодні вчимо слова на кшталт myself — «себе».\nI cut myself. — Я порізався.\nShe hurt herself. — Вона поранилася.\nHe blamed himself. — Він звинувачував себе.\nЛюдина щось робить, і це повертається до неї ж."
+      },
+      "exampleIds": [
+        "en-classic-r1:28.01",
+        "en-classic-r1:28.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Своє слово для кожного"
+      },
+      "text": {
+        "uk": "Я: myself. Ти: yourself.\nВін: himself. Вона: herself.\nМи: ourselves. Вони: themselves.\nЯкщо людей багато, буде selves.\nWe introduced ourselves. — Ми представилися.\nYou can help yourself. — Пригощайтеся."
+      },
+      "exampleIds": [
+        "en-classic-r1:28.04",
+        "en-classic-r1:28.06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що будеш робити"
+      },
+      "text": {
+        "uk": "Ти будеш казати: я зробив сам.\nI fixed the tap myself. — Я сам полагодив кран.\nShe wrote the letter herself. — Вона сама написала листа.\nІ казати by myself.\nЦе означає «сам, наодинці».\nShe lives by herself. — Вона живе сама."
+      },
+      "exampleIds": [
+        "en-classic-r1:28.21",
+        "en-classic-r1:28.22"
+      ]
+    }
+  ]
+}

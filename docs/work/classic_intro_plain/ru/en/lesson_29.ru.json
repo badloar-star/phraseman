@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 29,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Раньше было так"
+      },
+      "text": {
+        "ru": "Сегодня говорим, как было раньше.\nА теперь уже не так.\nI used to drive to work. — Раньше я ездил на работу на машине.\nThere used to be a factory here. — Здесь раньше был завод.\nТак было, а потом перестало."
+      },
+      "exampleIds": [
+        "en-classic-r1:29.01",
+        "en-classic-r1:29.11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Used to не меняется"
+      },
+      "text": {
+        "ru": "I used to. She used to. They used to.\nПотом говорим, что делали.\nThis street used to be quieter. — Раньше на этой улице было тише.\nЧтобы сказать «не», говорим did not use to.\nI did not use to drink coffee. — Раньше я не пил кофе.\nУ use нет d."
+      },
+      "exampleIds": [
+        "en-classic-r1:29.16",
+        "en-classic-r1:29.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь говорить, что делал раньше.\nShe used to live upstairs. — Раньше она жила наверху.\nI used to work in a warehouse. — Раньше я работал на складе.\nИ спрашивать: Did you use to live near here? — Вы раньше жили неподалёку?\nDid уже показывает, что это было раньше.\nПоэтому у use нет d."
+      },
+      "exampleIds": [
+        "en-classic-r1:29.02",
+        "en-classic-r1:29.06"
+      ]
+    }
+  ]
+}

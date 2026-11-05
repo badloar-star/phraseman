@@ -1,0 +1,48 @@
+{
+  "lang": "en",
+  "lesson": 19,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Where things are"
+      },
+      "text": {
+        "en": "Today you learn to say where things are.\nThe keys are on the shelf.\nThe keys are in the drawer.\nThe bill is under the menu."
+      },
+      "exampleIds": [
+        "en-classic-r1:19.01",
+        "en-classic-r1:19.02",
+        "en-classic-r1:19.07"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Small words show the place"
+      },
+      "text": {
+        "en": "Small words show the place: on, in, under, beside, above, behind.\nThe clock is above the desk.\nMy coat is behind the door.\nOne thing: is. Many things: are.\nThe keys are beside the kettle."
+      },
+      "exampleIds": [
+        "en-classic-r1:19.10",
+        "en-classic-r1:19.08",
+        "en-classic-r1:19.04"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say where places are in town.\nSay the place, then is, then the small word.\nThe pharmacy is opposite the bank.\nThe bakery is next to the library.\nThe car park is behind the hotel."
+      },
+      "exampleIds": [
+        "en-classic-r1:19.21",
+        "en-classic-r1:19.22",
+        "en-classic-r1:19.23"
+      ]
+    }
+  ]
+}

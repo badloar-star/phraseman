@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 4,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что вы не делаете"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить «нет».\nI do not drive. — Я не вожу машину.\nЭто значит: я не езжу за рулём.\nWe do not share a desk. — Мы не сидим за одним столом.\nЭто значит: у каждого из нас свой стол."
+      },
+      "exampleIds": [
+        "en-classic-r1:04.01",
+        "en-classic-r1:04.19"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Do not или does not"
+      },
+      "text": {
+        "ru": "Про «я», «ты», «мы», «они» говорим do not.\nI do not eat meat. — Я не ем мясо.\nПро «она», «он» или один предмет говорим does not.\nShe does not smoke. — Она не курит.\nThe door does not lock. — Дверь не запирается.\nСлово после not остаётся коротким, без s."
+      },
+      "exampleIds": [
+        "en-classic-r1:04.10",
+        "en-classic-r1:04.05",
+        "en-classic-r1:04.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы будете составлять короткие фразы с «не».\nСмотрите, о ком фраза.\nI, we, you, they — do not.\nShe, he или один предмет — does not.\nПотом добавьте слово про действие.\nThe tap does not work. — Кран не работает.\nThe buses do not run today. — Автобусы сегодня не ходят."
+      },
+      "exampleIds": [
+        "en-classic-r1:04.22",
+        "en-classic-r1:04.30"
+      ]
+    }
+  ]
+}

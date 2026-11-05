@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 32,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Всё вместе"
+      },
+      "text": {
+        "ru": "Сегодня используем всё, что выучили.\nIs the small room still available? — Маленькая комната ещё свободна?\nI have already sent you the receipt. — Я уже отправил вам квитанцию.\nКакие-то фразы спрашивают.\nКакие-то говорят, что уже случилось."
+      },
+      "exampleIds": [
+        "en-classic-r1:32.01",
+        "en-classic-r1:32.11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Выбери нужное маленькое слово"
+      },
+      "text": {
+        "ru": "Посмотри, когда это было.\nСейчас, раньше или потом?\nIf the bus is full, we will walk. — Если автобус полон, мы пойдём пешком.\nShe said she could meet us after lunch. — Она сказала, что может встретить нас после обеда.\nУ каждого маленького слова своя работа.\nВыбери то, что подходит."
+      },
+      "exampleIds": [
+        "en-classic-r1:32.21",
+        "en-classic-r1:32.24"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь смешивать вопросы, «было», if и другое.\nWas the deposit included in the total? — Задаток был включён в сумму?\nThat is the hotel where I left my charger. — Это отель, где я оставил зарядку.\nСначала прочитай фразу.\nПотом выбери слово.\nТы это уже умеешь."
+      },
+      "exampleIds": [
+        "en-classic-r1:32.17",
+        "en-classic-r1:32.29"
+      ]
+    }
+  ]
+}

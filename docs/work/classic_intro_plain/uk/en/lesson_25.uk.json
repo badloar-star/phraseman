@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 25,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що відбувалося"
+      },
+      "text": {
+        "uk": "Сьогодні говоримо про те, що відбувалося в той момент.\nI was reading. — Я читала.\nShe was driving. — Вона їхала за кермом.\nWe were waiting. — Ми чекали.\nThey were packing. — Вони збирали речі.\nНіби маленька сценка."
+      },
+      "exampleIds": [
+        "en-classic-r1:25.01",
+        "en-classic-r1:25.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "was або were, потім слово з ing"
+      },
+      "text": {
+        "uk": "Я, він, вона або одна річ: was.\nТи, ми або вони: were.\nПотім додай ing: reading, waiting.\nI was reading when the phone rang. — Я читала, коли задзвонив телефон.\nОдне триває. Інше трапляється.\nI dropped my keys while I was running. — Я впустив ключі, поки біг."
+      },
+      "exampleIds": [
+        "en-classic-r1:25.21",
+        "en-classic-r1:25.26"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що будеш робити"
+      },
+      "text": {
+        "uk": "Ти будеш казати, що робив у той момент.\nAt six, I was walking home. — О шостій я йшов додому.\nWe were having breakfast at seven. — О сьомій ми снідали.\nЩоб запитати, постав was або were першим.\nЩоб сказати «не», додай not."
+      },
+      "exampleIds": [
+        "en-classic-r1:25.11",
+        "en-classic-r1:25.13"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "lang": "en",
+  "lesson": 7,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що у вас є"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся казати, що у вас є.\nI have a ticket. — У мене є квиток.\nЦе означає: квиток зі мною.\nI have a sore throat. — У мене болить горло.\nЦе означає: горло болить."
+      },
+      "exampleIds": [
+        "en-classic-r1:07.01",
+        "en-classic-r1:07.11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Have або has"
+      },
+      "text": {
+        "uk": "Про «я», «ви», «ми», «вони» кажемо have.\nThey have a car. — У них є машина.\nПро «вона», «він» або один предмет кажемо has.\nShe has a ticket. — У неї є квиток.\nThe hotel has a luggage room. — У готелі є камера схову.\nУ запитанні — Do або Does, і знову have.\nDoes she have her passport? — Паспорт у неї з собою?"
+      },
+      "exampleIds": [
+        "en-classic-r1:07.07",
+        "en-classic-r1:07.02",
+        "en-classic-r1:07.48",
+        "en-classic-r1:07.22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви казатимете, що в кого є, і питатимете про це.\nА ще казатимете, чого немає.\nI do not have a booking. — У мене немає бронювання.\nShe does not have her glasses. — У неї немає з собою окулярів.\nDo you have a charger? — У вас є зарядний пристрій?"
+      },
+      "exampleIds": [
+        "en-classic-r1:07.31",
+        "en-classic-r1:07.32",
+        "en-classic-r1:07.21"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 21,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Хтось і щось"
+      },
+      "text": {
+        "uk": "Сьогодні ти вчишся словам для тих, кого або що ти не знаєш.\nSomeone is at the door. — Хтось біля дверей.\nSomething is burning. — Щось горить."
+      },
+      "exampleIds": [
+        "en-classic-r1:21.01",
+        "en-classic-r1:21.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Some, any, no, every"
+      },
+      "text": {
+        "uk": "Some: someone, something, somewhere — хтось, щось, десь.\nУ питанні: anyone, anything, anywhere.\nIs anyone waiting here? — Тут хтось чекає?\nНіхто: nobody, nothing, nowhere.\nNobody answered the phone. — Ніхто не відповів на дзвінок.\nУсі: everyone, everything.\nEveryone has a seat. — У кожного є місце."
+      },
+      "exampleIds": [
+        "en-classic-r1:21.11",
+        "en-classic-r1:21.21",
+        "en-classic-r1:21.33"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ти робитимеш"
+      },
+      "text": {
+        "uk": "Ти казатимеш «ні» лише один раз.\nI did not see anyone downstairs. — Я нікого не бачив унизу.\nВ одному реченні не два «ні».\nSomeone called, but nobody left a message. — Хтось дзвонив, але ніхто не залишив повідомлення.\nEveryone has a seat."
+      },
+      "exampleIds": [
+        "en-classic-r1:21.41",
+        "en-classic-r1:21.46",
+        "en-classic-r1:21.31"
+      ]
+    }
+  ]
+}

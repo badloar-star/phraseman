@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 30,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Which person, thing or place"
+      },
+      "text": {
+        "en": "Today you say which one you mean.\nThe person who called is here.\nThe man who repaired the roof is outside.\nFor a person, use who.\nIt tells which person."
+      },
+      "exampleIds": [
+        "en-classic-r1:30.01",
+        "en-classic-r1:30.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Who, that, where"
+      },
+      "text": {
+        "en": "A person: who.\nA thing: that.\nThe shop that sells maps is closed.\nThe bus that stops here goes to the airport.\nA place: where.\nThis is the cafe where we met."
+      },
+      "exampleIds": [
+        "en-classic-r1:30.07",
+        "en-classic-r1:30.08"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say which one, in one sentence.\nThe book that I borrowed is on the desk.\nThat can go away.\nThe book I borrowed is on the desk.\nThe meaning stays the same."
+      },
+      "exampleIds": [
+        "en-classic-r1:30.11",
+        "en-classic-r1:30.21"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "lang": "en",
+  "lesson": 10,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Могу, стоит, должен"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь трём важным словам.\nCan — вы можете.\nI can swim. — Я умею плавать.\nShould — так лучше.\nWe should leave soon. — Нам стоит скоро уйти.\nMust — выбора нет.\nYou must wear a helmet. — Вы должны надеть шлем."
+      },
+      "exampleIds": [
+        "en-classic-r1:10.01",
+        "en-classic-r1:10.33",
+        "en-classic-r1:10.41"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Слово-помощник и короткое слово"
+      },
+      "text": {
+        "ru": "Эти слова никогда не меняются.\nHe can come today. — Он может приехать сегодня.\nShe should call the office. — Ей следует позвонить в офис.\nДальше слово остаётся коротким, без s.\nЧтобы спросить, поставьте слово-помощник первым.\nCan I sit here? — Можно мне сесть здесь?\nShould I book in advance? — Стоит ли мне бронировать заранее?\nЧтобы сказать «нельзя», добавьте not.\nYou must not touch the cable. — Вы не должны прикасаться к кабелю."
+      },
+      "exampleIds": [
+        "en-classic-r1:10.04",
+        "en-classic-r1:10.35",
+        "en-classic-r1:10.11",
+        "en-classic-r1:10.39",
+        "en-classic-r1:10.44"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы будете вежливо просить о помощи и давать совет.\nCan you say that again? — Можете повторить?\nHave to — так требуют правила.\nWe have to show our tickets. — Мы должны показать наши билеты.\nDo not have to — можно пропустить.\nYou do not have to print the ticket. — Вам не нужно распечатывать билет."
+      },
+      "exampleIds": [
+        "en-classic-r1:10.22",
+        "en-classic-r1:10.42",
+        "en-classic-r1:10.45"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 17,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Right now"
+      },
+      "text": {
+        "en": "Today you learn to say what is happening right now.\nI am waiting.\nIt means: I wait at this moment.\nWe are leaving.\nIt means: we go now."
+      },
+      "exampleIds": [
+        "en-classic-r1:17.01",
+        "en-classic-r1:17.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Am, is, are and ing"
+      },
+      "text": {
+        "en": "Use am, is or are, then a word with ing.\nI am waiting. She is waiting. We are leaving.\nI — am. He, she, it — is. We, you, they — are.\nThe phone is ringing.\nThe doors are closing."
+      },
+      "exampleIds": [
+        "en-classic-r1:17.02",
+        "en-classic-r1:17.07",
+        "en-classic-r1:17.08"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will pick am, is or are, and add ing to the action.\nSometimes a letter goes away: write, writing.\nSometimes a letter is doubled: put, putting.\nHe is cooking.\nShe is putting her coat on."
+      },
+      "exampleIds": [
+        "en-classic-r1:17.05",
+        "en-classic-r1:17.12",
+        "en-classic-r1:17.17"
+      ]
+    }
+  ]
+}

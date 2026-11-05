@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 9,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що де є"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся казати, що де є.\nThere is a lift. — Є ліфт.\nЦе означає: ліфт тут.\nThere are stairs. — Є сходи.\nЦе означає: сходи можна знайти тут."
+      },
+      "exampleIds": [
+        "en-classic-r1:09.01",
+        "en-classic-r1:09.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "There is, there are"
+      },
+      "text": {
+        "uk": "Один предмет — There is.\nКілька — There are.\nThere is a toilet upstairs. — Є туалет нагорі.\nThere are eggs in the fridge. — У холодильнику є яйця.\nЩоб запитати, поставте Is або Are на початок.\nAre there lockers at the station? — Чи є камери схову на станції?\nЩоб сказати «немає», додайте no.\nThere is no sugar left. — Цукру не залишилося."
+      },
+      "exampleIds": [
+        "en-classic-r1:09.07",
+        "en-classic-r1:09.14",
+        "en-classic-r1:09.24",
+        "en-classic-r1:09.31"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви казатимете, що де є, і питатимете про це.\nА ще казатимете, що чогось немає.\nДивіться: один предмет чи кілька? Виберіть is або are.\nThere is no signal here. — Тут немає сигналу.\nAre there any blankets? — Чи є ковдри?"
+      },
+      "exampleIds": [
+        "en-classic-r1:09.37",
+        "en-classic-r1:09.26"
+      ]
+    }
+  ]
+}

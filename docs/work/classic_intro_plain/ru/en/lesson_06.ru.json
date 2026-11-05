@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 6,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Спрашиваем где, когда, что"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь спрашивать с первым словом.\nWhere do you work? — Где вы работаете?\nЭто значит: в каком месте?\nWhen does the sale end? — Когда заканчивается распродажа?\nЭто значит: в какое время?"
+      },
+      "exampleIds": [
+        "en-classic-r1:06.01",
+        "en-classic-r1:06.25"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Новое слово — первым"
+      },
+      "text": {
+        "ru": "Вопросительное слово ставим в самое начало.\nПотом Do или Does, потом остальное.\nWhat size do you wear? — Какой у вас размер?\nWhy does the alarm beep? — Почему пищит сигнализация?\nHow much does a ticket cost? — Сколько стоит билет?\nСо словом Who слова Do и Does не нужны.\nWho checks the orders? — Кто проверяет заказы?"
+      },
+      "exampleIds": [
+        "en-classic-r1:06.22",
+        "en-classic-r1:06.10",
+        "en-classic-r1:06.13",
+        "en-classic-r1:06.38"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы будете выбирать первое слово вопроса.\nWhere — место. When — время.\nWhat и Which — вещь. Why — причина.\nHow — способ. How many — число.\nHow many people live here? — Сколько человек здесь живёт?\nHow do I restart the printer? — Как перезапустить принтер?"
+      },
+      "exampleIds": [
+        "en-classic-r1:06.45",
+        "en-classic-r1:06.35"
+      ]
+    }
+  ]
+}

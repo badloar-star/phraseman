@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 26,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Если что-то случится"
+      },
+      "text": {
+        "ru": "Сегодня учим слово if — «если».\nIf it rains, we will stay inside. — Если пойдёт дождь, мы останемся внутри.\nIf you call, I will answer. — Если позвонишь, я отвечу.\nСначала часть с if. Потом план.\nWill стоит в плане.\nПосле if его не ставим."
+      },
+      "exampleIds": [
+        "en-classic-r1:26.01",
+        "en-classic-r1:26.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "if в начале или в конце"
+      },
+      "text": {
+        "ru": "Можно начать с if.\nIf she asks, I will help. — Если она попросит, я помогу.\nИли начать с плана.\nI will text you if the forecast changes. — Напишу тебе, если прогноз изменится.\nС she, he или одной вещью добавь s.\nHe sees the sign. — Он видит знак."
+      },
+      "exampleIds": [
+        "en-classic-r1:26.11",
+        "en-classic-r1:26.12"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь говорить, что будет, если что-то случится.\nИ спрашивать: Will you wait if I am late? — Вы подождёте, если я опоздаю?\nИногда после if идёт просьба.\nIf you need help, press this button. — Если нужна помощь, нажмите эту кнопку.\nIf you find my pass, let me know. — Если найдёте мой пропуск, дайте знать.\nВ них will нет."
+      },
+      "exampleIds": [
+        "en-classic-r1:26.21",
+        "en-classic-r1:26.23"
+      ]
+    }
+  ]
+}

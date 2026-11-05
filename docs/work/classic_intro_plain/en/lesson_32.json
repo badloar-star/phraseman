@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 32,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Everything together"
+      },
+      "text": {
+        "en": "Today you use everything you learned.\nIs the small room still available?\nI have already sent you the receipt.\nSome sentences ask.\nSome say what has happened."
+      },
+      "exampleIds": [
+        "en-classic-r1:32.01",
+        "en-classic-r1:32.11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Choose the right small word"
+      },
+      "text": {
+        "en": "Look at when it was.\nNow, before, or maybe later?\nIf the bus is full, we will walk.\nShe said she could meet us after lunch.\nEach small word has its job.\nPick the one that fits."
+      },
+      "exampleIds": [
+        "en-classic-r1:32.21",
+        "en-classic-r1:32.24"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will mix questions, the past, if and more.\nWas the deposit included in the total?\nThat is the hotel where I left my charger.\nRead the sentence first.\nThen choose the word.\nYou know this now."
+      },
+      "exampleIds": [
+        "en-classic-r1:32.17",
+        "en-classic-r1:32.29"
+      ]
+    }
+  ]
+}

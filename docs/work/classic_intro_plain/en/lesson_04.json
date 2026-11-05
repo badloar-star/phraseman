@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 4,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying what you do not do"
+      },
+      "text": {
+        "en": "Today you learn to say no.\nI do not drive.\nIt means: I never drive a car.\nWe do not share a desk.\nIt means: each of us has our own desk."
+      },
+      "exampleIds": [
+        "en-classic-r1:04.01",
+        "en-classic-r1:04.19"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Do not, or does not"
+      },
+      "text": {
+        "en": "With I, you, we and they, say do not.\nI do not eat meat.\nWith one other person or one thing, say does not.\nShe does not smoke. The door does not lock.\nThe next word stays short: no s."
+      },
+      "exampleIds": [
+        "en-classic-r1:04.10",
+        "en-classic-r1:04.05",
+        "en-classic-r1:04.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will make short no-sentences.\nLook at who the sentence is about.\nI, we, you, they: do not.\nShe, he or one thing: does not.\nThen add the action word.\nThe tap does not work. The buses do not run today."
+      },
+      "exampleIds": [
+        "en-classic-r1:04.22",
+        "en-classic-r1:04.30"
+      ]
+    }
+  ]
+}

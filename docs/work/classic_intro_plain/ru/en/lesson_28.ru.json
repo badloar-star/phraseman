@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 28,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Себя и друг друга"
+      },
+      "text": {
+        "ru": "Сегодня учим слова вроде myself — «себя».\nI cut myself. — Я порезался.\nShe hurt herself. — Она поранилась.\nHe blamed himself. — Он винил себя.\nЧеловек что-то делает, и это возвращается к нему же."
+      },
+      "exampleIds": [
+        "en-classic-r1:28.01",
+        "en-classic-r1:28.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Своё слово для каждого"
+      },
+      "text": {
+        "ru": "Я: myself. Ты: yourself.\nОн: himself. Она: herself.\nМы: ourselves. Они: themselves.\nЕсли людей много, будет selves.\nWe introduced ourselves. — Мы представились.\nYou can help yourself. — Угощайтесь."
+      },
+      "exampleIds": [
+        "en-classic-r1:28.04",
+        "en-classic-r1:28.06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь говорить: я сделал сам.\nI fixed the tap myself. — Я сам починил кран.\nShe wrote the letter herself. — Она сама написала письмо.\nИ говорить by myself.\nЭто значит «один, сам по себе».\nShe lives by herself. — Она живёт одна."
+      },
+      "exampleIds": [
+        "en-classic-r1:28.21",
+        "en-classic-r1:28.22"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 13,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Зроблю потім"
+      },
+      "text": {
+        "uk": "Сьогодні ти вчишся казати, що зробиш потім.\nI will wait outside. — Я почекаю надворі.\nЦе ще не сталося, це буде потім.\nShe will call later. — Вона подзвонить пізніше."
+      },
+      "exampleIds": [
+        "en-classic-r1:13.01",
+        "en-classic-r1:13.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Одне слово: will"
+      },
+      "text": {
+        "uk": "Постав will перед дією.\nI will wait. She will wait. We will wait.\nСлово will не змінюється: воно однакове для всіх.\nПісля will наступне слово залишається коротким.\nHe will open the gate. — Він відкриє ворота."
+      },
+      "exampleIds": [
+        "en-classic-r1:13.04",
+        "en-classic-r1:13.06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ти робитимеш"
+      },
+      "text": {
+        "uk": "Ти казатимеш, що вирішив зробити або що обіцяєш.\nПодумай: що я зроблю?\nПостав will перед цим.\nWe will split the bill. — Ми поділимо рахунок.\nI will put the kettle on. — Я поставлю чайник."
+      },
+      "exampleIds": [
+        "en-classic-r1:13.17",
+        "en-classic-r1:13.20"
+      ]
+    }
+  ]
+}

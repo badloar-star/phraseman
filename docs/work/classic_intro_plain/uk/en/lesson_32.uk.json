@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 32,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Усе разом"
+      },
+      "text": {
+        "uk": "Сьогодні користуємося всім, що вивчили.\nIs the small room still available? — Маленька кімната ще вільна?\nI have already sent you the receipt. — Я вже надіслав вам квитанцію.\nДеякі фрази питають.\nДеякі кажуть, що вже сталося."
+      },
+      "exampleIds": [
+        "en-classic-r1:32.01",
+        "en-classic-r1:32.11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Обери потрібне маленьке слово"
+      },
+      "text": {
+        "uk": "Подивися, коли це було.\nЗараз, раніше чи потім?\nIf the bus is full, we will walk. — Якщо автобус повний, ми підемо пішки.\nShe said she could meet us after lunch. — Вона сказала, що може зустріти нас після обіду.\nУ кожного маленького слова своя робота.\nОбери те, що пасує."
+      },
+      "exampleIds": [
+        "en-classic-r1:32.21",
+        "en-classic-r1:32.24"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що будеш робити"
+      },
+      "text": {
+        "uk": "Ти будеш змішувати питання, «було», if та інше.\nWas the deposit included in the total? — Завдаток був включений у суму?\nThat is the hotel where I left my charger. — Це готель, де я залишив зарядку.\nСпочатку прочитай фразу.\nПотім обери слово.\nТи це вже вмієш."
+      },
+      "exampleIds": [
+        "en-classic-r1:32.17",
+        "en-classic-r1:32.29"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "lang": "en",
+  "lesson": 10,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Можу, варто, мушу"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся трьох важливих слів.\nCan — ви можете.\nI can swim. — Я вмію плавати.\nShould — так краще.\nWe should leave soon. — Нам слід скоро вирушати.\nMust — вибору немає.\nYou must wear a helmet. — Ви повинні надіти шолом."
+      },
+      "exampleIds": [
+        "en-classic-r1:10.01",
+        "en-classic-r1:10.33",
+        "en-classic-r1:10.41"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Слово-помічник і коротке слово"
+      },
+      "text": {
+        "uk": "Ці слова ніколи не змінюються.\nHe can come today. — Він може приїхати сьогодні.\nShe should call the office. — Їй слід зателефонувати в офіс.\nДалі слово залишається коротким, без s.\nЩоб запитати, поставте слово-помічник першим.\nCan I sit here? — Чи можу я тут сісти?\nShould I book in advance? — Чи варто мені бронювати заздалегідь?\nЩоб сказати «не можна», додайте not.\nYou must not touch the cable. — Ви не повинні торкатися кабелю."
+      },
+      "exampleIds": [
+        "en-classic-r1:10.04",
+        "en-classic-r1:10.35",
+        "en-classic-r1:10.11",
+        "en-classic-r1:10.39",
+        "en-classic-r1:10.44"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви ввічливо проситимете про допомогу й даватимете пораду.\nCan you say that again? — Чи можете ви повторити це?\nHave to — так вимагають правила.\nWe have to show our tickets. — Ми повинні показати наші квитки.\nDo not have to — можна пропустити.\nYou do not have to print the ticket. — Вам не потрібно друкувати квиток."
+      },
+      "exampleIds": [
+        "en-classic-r1:10.22",
+        "en-classic-r1:10.42",
+        "en-classic-r1:10.45"
+      ]
+    }
+  ]
+}

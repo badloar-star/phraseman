@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 15,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Whose is it?"
+      },
+      "text": {
+        "en": "Today you learn to say whose thing it is.\nThis is my coat.\nIt means: the coat is mine.\nThis coat is mine.\nIt means the same, in a different way."
+      },
+      "exampleIds": [
+        "en-classic-r1:15.01",
+        "en-classic-r1:15.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "With the thing, or alone"
+      },
+      "text": {
+        "en": "Before the thing: my, your, her, his, our, their.\nMy gloves are wet.\nYour scarf is on the chair.\nWithout the thing: mine, yours, hers, ours, theirs.\nThese seats are ours."
+      },
+      "exampleIds": [
+        "en-classic-r1:15.11",
+        "en-classic-r1:15.12",
+        "en-classic-r1:15.08"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will pick the right little word.\nIs the thing named right after it? Use my, your, his.\nWas the thing named before? Use mine, yours, hers.\nThis key is hers.\nThese tickets are theirs."
+      },
+      "exampleIds": [
+        "en-classic-r1:15.06",
+        "en-classic-r1:15.10"
+      ]
+    }
+  ]
+}

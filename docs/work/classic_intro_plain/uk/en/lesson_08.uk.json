@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 8,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Кажемо, коли"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся казати, коли щось буває.\nI start at seven. — Я починаю о сьомій.\nЦе означає: сьома година — мій час початку.\nWe meet on Tuesday. — Ми зустрічаємося у вівторок.\nЦе означає: вівторок — наш день."
+      },
+      "exampleIds": [
+        "en-classic-r1:08.01",
+        "en-classic-r1:08.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "At, on, in"
+      },
+      "text": {
+        "uk": "Перед часом ставимо маленьке слово.\nГодина — at: at seven, at noon.\nДень — on: on Monday.\nМісяць або пора року — in: in July, in winter.\nThe gate opens at half past six. — Ворота відчиняються о пів на сьому.\nThe market opens on Saturdays. — Ринок відкривається по суботах.\nThe days are short in winter. — Взимку дні короткі."
+      },
+      "exampleIds": [
+        "en-classic-r1:08.11",
+        "en-classic-r1:08.25",
+        "en-classic-r1:08.31"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви обиратимете маленьке слово для кожного часу.\nГодина — at. День — on. Місяць або пора року — in.\nЗі словами every і tonight маленьке слово не потрібне.\nI work every Monday. — Я працюю щопонеділка.\nThe film starts tonight. — Фільм починається сьогодні ввечері."
+      },
+      "exampleIds": [
+        "en-classic-r1:08.41",
+        "en-classic-r1:08.43"
+      ]
+    }
+  ]
+}

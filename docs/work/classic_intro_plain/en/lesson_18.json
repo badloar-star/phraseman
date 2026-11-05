@@ -1,0 +1,48 @@
+{
+  "lang": "en",
+  "lesson": 18,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Ask, warn, suggest"
+      },
+      "text": {
+        "en": "Today you learn to ask, to warn and to suggest.\nCome this way.\nIt means: follow me.\nClose the window, please."
+      },
+      "exampleIds": [
+        "en-classic-r1:18.01",
+        "en-classic-r1:18.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Start with the action"
+      },
+      "text": {
+        "en": "To ask, start with the action. Do not say you.\nHold the handrail. Watch your step.\nTo say no, start with Do not.\nDo not touch the oven.\nTo suggest, start with Let's.\nLet's wait for the others."
+      },
+      "exampleIds": [
+        "en-classic-r1:18.06",
+        "en-classic-r1:18.07",
+        "en-classic-r1:18.11",
+        "en-classic-r1:18.42"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will choose how to say it.\nTo be polite, add please.\nPlease bring a copy of the receipt.\nTo warn: Do not feed the dog.\nTo suggest: Let's check the address first."
+      },
+      "exampleIds": [
+        "en-classic-r1:18.30",
+        "en-classic-r1:18.18",
+        "en-classic-r1:18.44"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 30,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Какой человек, вещь или место"
+      },
+      "text": {
+        "ru": "Сегодня учимся говорить, о ком или о чём речь.\nThe person who called is here. — Тот, кто звонил, здесь.\nThe man who repaired the roof is outside. — Мужчина, который чинил крышу, снаружи.\nПро человека говорим who.\nОно показывает, о каком человеке речь."
+      },
+      "exampleIds": [
+        "en-classic-r1:30.01",
+        "en-classic-r1:30.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "who, that, where"
+      },
+      "text": {
+        "ru": "Человек: who.\nВещь: that.\nThe shop that sells maps is closed. — Магазин, где продают карты, закрыт.\nThe bus that stops here goes to the airport. — Автобус, который здесь останавливается, едет в аэропорт.\nМесто: where.\nThis is the cafe where we met. — Это кафе, где мы встретились."
+      },
+      "exampleIds": [
+        "en-classic-r1:30.07",
+        "en-classic-r1:30.08"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь говорить, о ком речь, одной фразой.\nThe book that I borrowed is on the desk. — Книга, которую я взял, лежит на столе.\nThat можно убрать.\nThe book I borrowed is on the desk.\nСмысл тот же."
+      },
+      "exampleIds": [
+        "en-classic-r1:30.11",
+        "en-classic-r1:30.21"
+      ]
+    }
+  ]
+}

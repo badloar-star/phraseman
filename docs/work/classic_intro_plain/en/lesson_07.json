@@ -1,0 +1,48 @@
+{
+  "lang": "en",
+  "lesson": 7,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying what you have"
+      },
+      "text": {
+        "en": "Today you learn to say what you have.\nI have a ticket.\nIt means: the ticket is with me.\nI have a sore throat.\nIt means: my throat hurts."
+      },
+      "exampleIds": [
+        "en-classic-r1:07.01",
+        "en-classic-r1:07.11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Have, or has"
+      },
+      "text": {
+        "en": "With I, you, we and they, say have.\nThey have a car.\nWith one other person or one thing, say has.\nShe has a ticket. The hotel has a luggage room.\nTo ask, use Do or Does, and have is short again.\nDoes she have her passport?"
+      },
+      "exampleIds": [
+        "en-classic-r1:07.07",
+        "en-classic-r1:07.02",
+        "en-classic-r1:07.48",
+        "en-classic-r1:07.22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say what people have, and ask about it.\nYou will also say what you do not have.\nI do not have a booking.\nShe does not have her glasses.\nDo you have a charger?"
+      },
+      "exampleIds": [
+        "en-classic-r1:07.31",
+        "en-classic-r1:07.32",
+        "en-classic-r1:07.21"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 27,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "He said that"
+      },
+      "text": {
+        "en": "Today you tell what someone said.\nAnna said she was tired.\nHe said the shop was closed.\nTheir words were before.\nSo am and is become was."
+      },
+      "exampleIds": [
+        "en-classic-r1:27.01",
+        "en-classic-r1:27.04"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "The word steps back"
+      },
+      "text": {
+        "en": "Someone said: I need. You tell: I said I needed.\nSomeone said: I will. You tell: he said he would.\nWe said we wanted two seats.\nHe said he would send a reminder.\nCan becomes could.\nShe said she could wait."
+      },
+      "exampleIds": [
+        "en-classic-r1:27.06",
+        "en-classic-r1:27.22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will tell what people said.\nAfter told, say who first.\nShe told me she was downstairs.\nHe told us the bus was full.\nTo tell a question, use asked.\nShe asked what I needed."
+      },
+      "exampleIds": [
+        "en-classic-r1:27.11",
+        "en-classic-r1:27.12"
+      ]
+    }
+  ]
+}

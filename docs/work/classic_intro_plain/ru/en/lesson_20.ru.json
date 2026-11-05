@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 20,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "A и an"
+      },
+      "text": {
+        "ru": "Сегодня ты учишься двум крошечным словам: a и an.\nI need a pen. — Мне нужна ручка.\nI need an envelope. — Мне нужен конверт.\nОни значат «один, какой-то». По-русски их не говорят."
+      },
+      "exampleIds": [
+        "en-classic-r1:20.01",
+        "en-classic-r1:20.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Какое выбрать"
+      },
+      "text": {
+        "ru": "Бери an, если следующее слово начинается со звука «а», «э», «ай» или «о».\nan appointment — назначенная встреча. an idea — идея.\nВ остальных случаях бери a.\nShe wants a sandwich. — Она хочет бутерброд.\nТак легче говорить."
+      },
+      "exampleIds": [
+        "en-classic-r1:20.04",
+        "en-classic-r1:20.06",
+        "en-classic-r1:20.07"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что ты будешь делать"
+      },
+      "text": {
+        "ru": "Первый раз: a или an.\nВторой раз: the.\nI bought a lamp. The lamp is broken. — Я купил лампу. Лампа сломана.\nThe значит: та самая, которую мы уже знаем.\nI found a key. The key is rusty. — Я нашёл ключ. Ключ ржавый."
+      },
+      "exampleIds": [
+        "en-classic-r1:20.11",
+        "en-classic-r1:20.12"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "lang": "en",
+  "lesson": 7,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что у вас есть"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, что у вас есть.\nI have a ticket. — У меня есть билет.\nЭто значит: билет со мной.\nI have a sore throat. — У меня болит горло.\nЭто значит: горло болит."
+      },
+      "exampleIds": [
+        "en-classic-r1:07.01",
+        "en-classic-r1:07.11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Have или has"
+      },
+      "text": {
+        "ru": "Про «я», «вы», «мы», «они» говорим have.\nThey have a car. — У них есть машина.\nПро «она», «он» или один предмет говорим has.\nShe has a ticket. — У неё есть билет.\nThe hotel has a luggage room. — В отеле есть камера хранения багажа.\nВ вопросе — Do или Does, и снова have.\nDoes she have her passport? — Паспорт у неё с собой?"
+      },
+      "exampleIds": [
+        "en-classic-r1:07.07",
+        "en-classic-r1:07.02",
+        "en-classic-r1:07.48",
+        "en-classic-r1:07.22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы будете говорить, что у кого есть, и спрашивать об этом.\nА ещё говорить, чего нет.\nI do not have a booking. — У меня нет бронирования.\nShe does not have her glasses. — У неё нет с собой очков.\nDo you have a charger? — У вас есть зарядное устройство?"
+      },
+      "exampleIds": [
+        "en-classic-r1:07.31",
+        "en-classic-r1:07.32",
+        "en-classic-r1:07.21"
+      ]
+    }
+  ]
+}

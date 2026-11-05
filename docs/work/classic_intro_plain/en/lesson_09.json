@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 9,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying what is there"
+      },
+      "text": {
+        "en": "Today you learn to say what is in a place.\nThere is a lift.\nIt means: a lift is here.\nThere are stairs.\nIt means: you can find stairs here."
+      },
+      "exampleIds": [
+        "en-classic-r1:09.01",
+        "en-classic-r1:09.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "There is, there are"
+      },
+      "text": {
+        "en": "One thing: There is.\nMore than one: There are.\nThere is a toilet upstairs.\nThere are eggs in the fridge.\nTo ask, put Is or Are first.\nAre there lockers at the station?\nTo say none, add no.\nThere is no sugar left."
+      },
+      "exampleIds": [
+        "en-classic-r1:09.07",
+        "en-classic-r1:09.14",
+        "en-classic-r1:09.24",
+        "en-classic-r1:09.31"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will say what is where, and ask about it.\nYou will also say that there is none.\nLook: one thing or many? Pick is or are.\nThere is no signal here.\nAre there any blankets?"
+      },
+      "exampleIds": [
+        "en-classic-r1:09.37",
+        "en-classic-r1:09.26"
+      ]
+    }
+  ]
+}

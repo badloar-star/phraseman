@@ -1,0 +1,50 @@
+{
+  "lang": "en",
+  "lesson": 10,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Can, should, must"
+      },
+      "text": {
+        "en": "Today you learn three helper words.\nCan: you are able to.\nI can swim.\nShould: it is a good idea.\nWe should leave soon.\nMust: you have no choice.\nYou must wear a helmet."
+      },
+      "exampleIds": [
+        "en-classic-r1:10.01",
+        "en-classic-r1:10.33",
+        "en-classic-r1:10.41"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Small helper word, short word"
+      },
+      "text": {
+        "en": "These words never change.\nHe can come today. She should call the office.\nThe next word stays short: no s.\nTo ask, put the helper word first.\nCan I sit here? Should I book in advance?\nTo say no, add not.\nYou must not touch the cable."
+      },
+      "exampleIds": [
+        "en-classic-r1:10.04",
+        "en-classic-r1:10.35",
+        "en-classic-r1:10.11",
+        "en-classic-r1:10.39",
+        "en-classic-r1:10.44"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will ask for help politely, and give advice.\nCan you say that again?\nHave to means the rules ask you.\nWe have to show our tickets.\nDo not have to means you may skip it.\nYou do not have to print the ticket."
+      },
+      "exampleIds": [
+        "en-classic-r1:10.22",
+        "en-classic-r1:10.42",
+        "en-classic-r1:10.45"
+      ]
+    }
+  ]
+}

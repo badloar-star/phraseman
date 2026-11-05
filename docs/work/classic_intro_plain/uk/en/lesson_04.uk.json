@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 4,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що ви не робите"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся казати «ні».\nI do not drive. — Я не воджу машину.\nЦе означає: я не їжджу за кермом.\nWe do not share a desk. — Ми не сидимо за одним столом.\nЦе означає: у кожного з нас свій стіл."
+      },
+      "exampleIds": [
+        "en-classic-r1:04.01",
+        "en-classic-r1:04.19"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Do not або does not"
+      },
+      "text": {
+        "uk": "Про «я», «ти», «ми», «вони» кажемо do not.\nI do not eat meat. — Я не їм м'яса.\nПро «вона», «він» або один предмет кажемо does not.\nShe does not smoke. — Вона не курить.\nThe door does not lock. — Двері не замикаються.\nСлово після not залишається коротким, без s."
+      },
+      "exampleIds": [
+        "en-classic-r1:04.10",
+        "en-classic-r1:04.05",
+        "en-classic-r1:04.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви складатимете короткі фрази із «не».\nДивіться, про кого фраза.\nI, we, you, they — do not.\nShe, he або один предмет — does not.\nПотім додайте слово про дію.\nThe tap does not work. — Кран не працює.\nThe buses do not run today. — Автобуси сьогодні не курсують."
+      },
+      "exampleIds": [
+        "en-classic-r1:04.22",
+        "en-classic-r1:04.30"
+      ]
+    }
+  ]
+}

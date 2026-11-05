@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 16,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Маленькое слово — новый смысл"
+      },
+      "text": {
+        "ru": "Сегодня ты учишься маленьким словам, которые идут с действием.\nWake up, Tom. — Проснись, Том.\nCome back after the rehearsal. — Вернись после репетиции.\nДва слова вместе значат одно."
+      },
+      "exampleIds": [
+        "en-classic-r1:16.01",
+        "en-classic-r1:16.08"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Get up, get on, get off"
+      },
+      "text": {
+        "ru": "Два слова вместе — одна мысль.\nGet up — встать с постели.\nGet on — сесть в автобус или поезд.\nGet off — выйти из него.\nI get up at seven. — Я встаю в семь.\nShe gets off at the next stop. — Она выходит на следующей остановке."
+      },
+      "exampleIds": [
+        "en-classic-r1:16.02",
+        "en-classic-r1:16.10",
+        "en-classic-r1:16.09"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что ты будешь делать"
+      },
+      "text": {
+        "ru": "Turn on — включить. Turn off — выключить.\nTurn on the lamp. — Включи лампу.\nTurn off the fan. — Выключи вентилятор.\nМожно сказать и так:\nTurn the oven on. — Включи духовку.\nУчи два слова как одно."
+      },
+      "exampleIds": [
+        "en-classic-r1:16.11",
+        "en-classic-r1:16.14",
+        "en-classic-r1:16.12"
+      ]
+    }
+  ]
+}

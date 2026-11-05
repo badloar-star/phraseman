@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 11,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що вже сталося"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся казати, що вже сталося.\nI walked home yesterday. — Я вчора пішов додому пішки.\nЦе означає: я дійшов додому, це вже позаду.\nShe called a taxi. — Вона викликала таксі.\nЦе означає: вона зателефонувала, і це вже зроблено."
+      },
+      "exampleIds": [
+        "en-classic-r1:11.01",
+        "en-classic-r1:11.06"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Додайте ed"
+      },
+      "text": {
+        "uk": "Додайте ed у кінець слова.\nwash — washed: He washed the cups. — Він помив чашки.\nЯкщо слово вже закінчується на e, додайте лише d: arrive — arrived.\nThe train arrived ten minutes late. — Поїзд прибув із запізненням на десять хвилин.\nУ деяких слів остання буква подвоюється: stop — stopped.\nThe driver stopped by the gate. — Водій зупинився біля воріт.\nЯкщо в кінці y, вона стає i: try — tried.\nWe tried a different cable. — Ми спробували інший кабель."
+      },
+      "exampleIds": [
+        "en-classic-r1:11.14",
+        "en-classic-r1:11.30",
+        "en-classic-r1:11.29",
+        "en-classic-r1:11.44"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви казатимете, що люди зробили, питатимете й казатимете «не зробили».\nЩоб запитати, почніть з Did.\nЩоб сказати «не», використайте did not.\nПісля Did і did not слово знову коротке.\nDid the bus arrive on time? — Автобус прибув вчасно?\nThey did not miss the flight. — Вони не пропустили рейс."
+      },
+      "exampleIds": [
+        "en-classic-r1:11.35",
+        "en-classic-r1:11.38"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "lang": "en",
+  "lesson": 19,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Де що лежить"
+      },
+      "text": {
+        "uk": "Сьогодні ти вчишся казати, де що лежить.\nThe keys are on the shelf. — Ключі на полиці.\nThe keys are in the drawer. — Ключі в шухляді.\nThe bill is under the menu. — Рахунок під меню."
+      },
+      "exampleIds": [
+        "en-classic-r1:19.01",
+        "en-classic-r1:19.02",
+        "en-classic-r1:19.07"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Маленькі слова показують місце"
+      },
+      "text": {
+        "uk": "Маленькі слова показують місце: on, in, under, beside, above, behind.\nThe clock is above the desk. — Годинник над столом.\nMy coat is behind the door. — Моє пальто за дверима.\nОдна річ — is. Багато речей — are.\nThe keys are beside the kettle. — Ключі біля чайника."
+      },
+      "exampleIds": [
+        "en-classic-r1:19.10",
+        "en-classic-r1:19.08",
+        "en-classic-r1:19.04"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ти робитимеш"
+      },
+      "text": {
+        "uk": "Ти казатимеш, де що в місті.\nНазви місце, потім is, потім маленьке слово.\nThe pharmacy is opposite the bank. — Аптека навпроти банку.\nThe bakery is next to the library. — Пекарня поруч із бібліотекою.\nThe car park is behind the hotel. — Парковка за готелем."
+      },
+      "exampleIds": [
+        "en-classic-r1:19.21",
+        "en-classic-r1:19.22",
+        "en-classic-r1:19.23"
+      ]
+    }
+  ]
+}

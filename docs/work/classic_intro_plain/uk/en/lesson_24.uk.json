@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 24,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Це вже сталося"
+      },
+      "text": {
+        "uk": "Сьогодні говоримо про те, що вже сталося.\nІ це важливо зараз.\nI have lost my keys. — Я загубив ключі.\nТому я не можу ввійти.\nShe has found her card. — Вона знайшла свою картку.\nWe have finished lunch. — Ми закінчили обід."
+      },
+      "exampleIds": [
+        "en-classic-r1:24.01",
+        "en-classic-r1:24.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "have або has, потім слово про дію"
+      },
+      "text": {
+        "uk": "Я, ти, ми, вони: have.\nВона, він або одна річ: has.\nПотім слово на кшталт lost, found або finished.\nHe has already paid. — Він уже заплатив.\nWe have not ordered yet. — Ми ще не замовили.\nJust означає «щойно»."
+      },
+      "exampleIds": [
+        "en-classic-r1:24.14",
+        "en-classic-r1:24.17"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що будеш робити"
+      },
+      "text": {
+        "uk": "Ти будеш говорити про те, що сталося.\nІ питати про це.\nHave you ever worked nights? — Ви коли-небудь працювали вночі?\nЩоб сказати «ніколи», кажи never.\nI have never driven a van. — Я ніколи не водив фургон.\nЯкщо сказано «вчора», have не потрібне."
+      },
+      "exampleIds": [
+        "en-classic-r1:24.21",
+        "en-classic-r1:24.25"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "lang": "en",
+  "lesson": 2,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що треба знати"
+      },
+      "text": {
+        "uk": "Щоб сказати «не», поставте слово not після am, is або are. I am not ready — я не готовий. She is not ready — вона не готова."
+      },
+      "exampleIds": [
+        "en:02:01"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Як сказати"
+      },
+      "text": {
+        "uk": "Порядок такий: хто — am, is або are — not — стан. We are not late — ми не запізнюємося. They are not here — їх тут немає."
+      },
+      "exampleIds": [
+        "en:02:01",
+        "en:02:06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Часті помилки та приклади"
+      },
+      "text": {
+        "uk": "Помилка: I not am ready. Правильно: I am not ready — not стоїть після am. Приклад: They are not here — їх тут немає."
+      },
+      "exampleIds": [
+        "en:02:08"
+      ]
+    }
+  ]
+}

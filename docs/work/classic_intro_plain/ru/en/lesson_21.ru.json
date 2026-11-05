@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 21,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Кто-то и что-то"
+      },
+      "text": {
+        "ru": "Сегодня ты учишься словам для тех, кого или что ты не знаешь.\nSomeone is at the door. — Кто-то у двери.\nSomething is burning. — Что-то горит."
+      },
+      "exampleIds": [
+        "en-classic-r1:21.01",
+        "en-classic-r1:21.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Some, any, no, every"
+      },
+      "text": {
+        "ru": "Some: someone, something, somewhere — кто-то, что-то, где-то.\nВ вопросе: anyone, anything, anywhere.\nIs anyone waiting here? — Здесь кто-нибудь ждёт?\nНикто: nobody, nothing, nowhere.\nNobody answered the phone. — Никто не ответил на звонок.\nВсе: everyone, everything.\nEveryone has a seat. — У каждого есть место."
+      },
+      "exampleIds": [
+        "en-classic-r1:21.11",
+        "en-classic-r1:21.21",
+        "en-classic-r1:21.33"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что ты будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь говорить «нет» только один раз.\nI did not see anyone downstairs. — Я никого не видел внизу.\nВ одном предложении не два «нет».\nSomeone called, but nobody left a message. — Кто-то звонил, но никто не оставил сообщения.\nEveryone has a seat."
+      },
+      "exampleIds": [
+        "en-classic-r1:21.41",
+        "en-classic-r1:21.46",
+        "en-classic-r1:21.31"
+      ]
+    }
+  ]
+}

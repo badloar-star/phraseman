@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 12,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Words that change a lot"
+      },
+      "text": {
+        "en": "Today you learn words that change in their own way.\nThey do not take ed.\ngo becomes went.\nI went home early.\nbuy becomes bought.\nI bought fresh bread."
+      },
+      "exampleIds": [
+        "en-classic-r1:12.01",
+        "en-classic-r1:12.05"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Learn them in pairs"
+      },
+      "text": {
+        "en": "Each word changes by itself. Learn them in pairs.\ntake, took. find, found.\nWe took the bus home.\nHe found his wallet downstairs.\nA few do not change at all: put, put.\nShe put the parcel by the door."
+      },
+      "exampleIds": [
+        "en-classic-r1:12.03",
+        "en-classic-r1:12.10",
+        "en-classic-r1:12.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will pick the right word, ask, and say no with Did.\nAfter Did and did not, the word is plain again.\nDid he send the photo?\nWe did not find a parking space.\nLook: sent, but after Did it is send."
+      },
+      "exampleIds": [
+        "en-classic-r1:12.33",
+        "en-classic-r1:12.36"
+      ]
+    }
+  ]
+}

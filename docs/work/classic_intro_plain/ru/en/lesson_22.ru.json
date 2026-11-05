@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 22,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Называем занятие"
+      },
+      "text": {
+        "ru": "Сегодня ты учишься называть занятие словом с ing.\nSwimming helps me relax. — Плавание помогает мне расслабиться.\nCooking takes practice. — Готовка требует практики.\nWaiting outside is not much fun. — Ждать на улице не очень приятно."
+      },
+      "exampleIds": [
+        "en-classic-r1:22.01",
+        "en-classic-r1:22.03",
+        "en-classic-r1:22.06"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Добавь ing"
+      },
+      "text": {
+        "ru": "Добавь ing к действию: cook — cooking. work — working.\nИногда буква удваивается: swim — swimming.\nПотом скажи, какое это занятие.\nReading on the bus makes me dizzy. — От чтения в автобусе кружится голова.\nDriving in fog is difficult. — Водить в тумане трудно."
+      },
+      "exampleIds": [
+        "en-classic-r1:22.04",
+        "en-classic-r1:22.05"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что ты будешь делать"
+      },
+      "text": {
+        "ru": "После некоторых слов ing называет, что мы делаем.\nShe enjoys walking by the river. — Ей нравится гулять у реки.\nHe avoids driving at night. — Он не любит ездить ночью.\nThey stopped talking at the door. — Они перестали разговаривать у двери."
+      },
+      "exampleIds": [
+        "en-classic-r1:22.12",
+        "en-classic-r1:22.13",
+        "en-classic-r1:22.15"
+      ]
+    }
+  ]
+}

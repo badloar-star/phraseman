@@ -1,0 +1,48 @@
+{
+  "lang": "en",
+  "lesson": 18,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Просимо, застерігаємо, пропонуємо"
+      },
+      "text": {
+        "uk": "Сьогодні ти вчишся просити, застерігати й пропонувати.\nCome this way. — Проходьте сюди.\nClose the window, please. — Зачиніть вікно, будь ласка.\nНе треба казати «ви»: почни одразу з дії."
+      },
+      "exampleIds": [
+        "en-classic-r1:18.01",
+        "en-classic-r1:18.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Почни з дії"
+      },
+      "text": {
+        "uk": "Прохання починається з дії.\nHold the handrail. — Тримайтеся за поручень.\nWatch your step. — Обережно, під ноги.\nЗаборона починається з Do not.\nDo not touch the oven. — Не торкайтеся духовки.\nПропозиція починається з Let's.\nLet's wait for the others. — Давайте зачекаємо на інших."
+      },
+      "exampleIds": [
+        "en-classic-r1:18.06",
+        "en-classic-r1:18.07",
+        "en-classic-r1:18.11",
+        "en-classic-r1:18.42"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ти робитимеш"
+      },
+      "text": {
+        "uk": "Ти обиратимеш, як це сказати.\nЩоб було ввічливо, додай please.\nPlease bring a copy of the receipt. — Будь ласка, принесіть копію чека.\nЗастереження: Do not feed the dog. — Не годуйте собаку.\nПропозиція: Let's check the address first. — Давайте спочатку перевіримо адресу."
+      },
+      "exampleIds": [
+        "en-classic-r1:18.30",
+        "en-classic-r1:18.18",
+        "en-classic-r1:18.44"
+      ]
+    }
+  ]
+}

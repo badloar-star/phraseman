@@ -1,0 +1,47 @@
+{
+  "lang": "en",
+  "lesson": 11,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что уже случилось"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, что уже случилось.\nI walked home yesterday. — Я вчера шёл домой пешком.\nЭто значит: я дошёл домой, это уже позади.\nShe called a taxi. — Она вызвала такси.\nЭто значит: она позвонила, и это уже сделано."
+      },
+      "exampleIds": [
+        "en-classic-r1:11.01",
+        "en-classic-r1:11.06"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Добавьте ed"
+      },
+      "text": {
+        "ru": "Добавьте ed в конец слова.\nwash — washed: He washed the cups. — Он вымыл чашки.\nЕсли слово уже кончается на e, добавьте только d: arrive — arrived.\nThe train arrived ten minutes late. — Поезд опоздал на десять минут.\nУ некоторых слов последняя буква удваивается: stop — stopped.\nThe driver stopped by the gate. — Водитель остановился у ворот.\nЕсли в конце y, она становится i: try — tried.\nWe tried a different cable. — Мы попробовали другой кабель."
+      },
+      "exampleIds": [
+        "en-classic-r1:11.14",
+        "en-classic-r1:11.30",
+        "en-classic-r1:11.29",
+        "en-classic-r1:11.44"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы будете говорить, что люди сделали, спрашивать и говорить «не сделали».\nЧтобы спросить, начните с Did.\nЧтобы сказать «не», используйте did not.\nПосле Did и did not слово снова короткое.\nDid the bus arrive on time? — Автобус прибыл вовремя?\nThey did not miss the flight. — Они не опоздали на рейс."
+      },
+      "exampleIds": [
+        "en-classic-r1:11.35",
+        "en-classic-r1:11.38"
+      ]
+    }
+  ]
+}

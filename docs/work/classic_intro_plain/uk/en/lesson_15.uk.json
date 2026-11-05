@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 15,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Чиє це?"
+      },
+      "text": {
+        "uk": "Сьогодні ти вчишся казати, чия це річ.\nThis is my coat. — Це моє пальто.\nThis coat is mine. — Це пальто моє.\nЗміст один, слова різні."
+      },
+      "exampleIds": [
+        "en-classic-r1:15.01",
+        "en-classic-r1:15.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "З річчю або без неї"
+      },
+      "text": {
+        "uk": "Перед річчю: my, your, her, his, our, their.\nMy gloves are wet. — Мої рукавички мокрі.\nYour scarf is on the chair. — Твій шарф на стільці.\nБез речі: mine, yours, hers, ours, theirs.\nThese seats are ours. — Ці місця наші."
+      },
+      "exampleIds": [
+        "en-classic-r1:15.11",
+        "en-classic-r1:15.12",
+        "en-classic-r1:15.08"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ти робитимеш"
+      },
+      "text": {
+        "uk": "Ти обиратимеш потрібне слово.\nРіч називають одразу після нього? Бери my, your, his.\nРіч уже названа раніше? Бери mine, yours, hers.\nThis key is hers. — Цей ключ її.\nThese tickets are theirs. — Ці квитки їхні."
+      },
+      "exampleIds": [
+        "en-classic-r1:15.06",
+        "en-classic-r1:15.10"
+      ]
+    }
+  ]
+}

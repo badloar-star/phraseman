@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 14,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Сравниваем две вещи"
+      },
+      "text": {
+        "ru": "Сегодня ты учишься сравнивать две вещи.\nThis bag is lighter. — Эта сумка легче.\nThis room is warmer. — В этой комнате теплее.\nК слову добавили er, и получилось «больше, чем»."
+      },
+      "exampleIds": [
+        "en-classic-r1:14.01",
+        "en-classic-r1:14.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Короткое слово и длинное"
+      },
+      "text": {
+        "ru": "Короткое слово: добавь er.\nlight — lighter. warm — warmer.\nЧтобы сравнить, добавь than.\nTea is cheaper than coffee here. — Здесь чай дешевле кофе.\nДлинное слово: поставь перед ним more.\nThe map is more useful than the list. — Карта полезнее списка."
+      },
+      "exampleIds": [
+        "en-classic-r1:14.11",
+        "en-classic-r1:14.23"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что ты будешь делать"
+      },
+      "text": {
+        "ru": "Ты будешь выбирать, как сравнить.\nКороткое слово? Добавь er.\nДлинное слово? Сначала more.\nПотом than и вторая вещь.\nHer bag is lighter than mine. — Её сумка легче моей."
+      },
+      "exampleIds": [
+        "en-classic-r1:14.13",
+        "en-classic-r1:14.43"
+      ]
+    }
+  ]
+}

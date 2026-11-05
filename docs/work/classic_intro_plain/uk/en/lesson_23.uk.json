@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 23,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що зробили з річчю"
+      },
+      "text": {
+        "uk": "Сьогодні вчимося казати, що зробили з річчю.\nСпочатку називаємо річ.\nThe gate is locked at night. — Ворота замикають на ніч.\nХто замикає, не кажемо. Важливі ворота.\nThe rooms are cleaned daily. — Кімнати прибирають щодня."
+      },
+      "exampleIds": [
+        "en-classic-r1:23.01",
+        "en-classic-r1:23.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "is або are, потім слово про дію"
+      },
+      "text": {
+        "uk": "Одна річ: is. Багато речей: are.\nПотім слово на кшталт locked або cleaned.\nThe milk is delivered in the morning. — Молоко привозять уранці.\nThe tickets are sold online. — Квитки продають онлайн.\nЯкщо це було вчора, кажемо was або were.\nThe room was booked yesterday. — Кімнату забронювали вчора."
+      },
+      "exampleIds": [
+        "en-classic-r1:23.11",
+        "en-classic-r1:23.12"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що будеш робити"
+      },
+      "text": {
+        "uk": "Ти будеш говорити й питати короткі фрази.\nОбирай is, are, was або were.\nЩоб запитати, постав це слово першим.\nIs breakfast included? — Сніданок включено?\nWhen are the bins collected? — Коли вивозять сміття?\nЩоб сказати «не», додай not."
+      },
+      "exampleIds": [
+        "en-classic-r1:23.21",
+        "en-classic-r1:23.27"
+      ]
+    }
+  ]
+}

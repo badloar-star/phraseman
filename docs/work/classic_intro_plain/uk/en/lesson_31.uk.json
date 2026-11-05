@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 31,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Бачив і чув"
+      },
+      "text": {
+        "uk": "Сьогодні говоримо, що ти бачив або чув.\nI saw Tom leave. — Я бачив, як Том пішов.\nI heard Anna laugh. — Я чув, як Анна засміялася.\nПісля saw або heard наступне слово лишається коротким.\nНе leaves і не left."
+      },
+      "exampleIds": [
+        "en-classic-r1:31.01",
+        "en-classic-r1:31.02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "him, her, me і коротке слово"
+      },
+      "text": {
+        "uk": "Можна сказати him, her, me, us або them.\nI saw him drop the key. — Я бачив, як він упустив ключ.\nShe watched me sign the receipt. — Вона дивилася, як я підписую квитанцію.\nХочеш сказати, що це тривало саме тоді?\nДодай ing.\nI saw the driver getting out. — Я бачив, як водій виходив."
+      },
+      "exampleIds": [
+        "en-classic-r1:31.11",
+        "en-classic-r1:31.21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що будеш робити"
+      },
+      "text": {
+        "uk": "Ти будеш казати, що бачив, чув або відчув.\nІ не тільки.\nShe watched me sign the receipt. — Вона дивилася, як я підписую квитанцію.\nWe watched the paint dripping. — Ми дивилися, як крапає фарба.\nLet означає «дозволити».\nThey let me use the printer. — Мені дозволили користуватися принтером."
+      },
+      "exampleIds": [
+        "en-classic-r1:31.13",
+        "en-classic-r1:31.23"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 14,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Comparing two things"
+      },
+      "text": {
+        "en": "Today you learn to compare two things.\nThis bag is lighter.\nIt means: it weighs less.\nThis room is warmer.\nIt means: it is more warm."
+      },
+      "exampleIds": [
+        "en-classic-r1:14.01",
+        "en-classic-r1:14.03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Short word or long word"
+      },
+      "text": {
+        "en": "Short word: add er.\nlight, lighter. warm, warmer.\nTo say which is more, add than.\nTea is cheaper than coffee here.\nLong word: put more before it.\nThe map is more useful than the list."
+      },
+      "exampleIds": [
+        "en-classic-r1:14.11",
+        "en-classic-r1:14.23"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will pick the right way to compare.\nShort word? Add er.\nLong word? Say more first.\nThen add than and the other thing.\nHer bag is lighter than mine."
+      },
+      "exampleIds": [
+        "en-classic-r1:14.13",
+        "en-classic-r1:14.43"
+      ]
+    }
+  ]
+}

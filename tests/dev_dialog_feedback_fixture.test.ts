@@ -41,6 +41,8 @@ describe('dev_dialog_feedback=sent', () => {
     const card = read('components/FeedbackRatingCard.tsx');
     expect(card).toContain("useState<'idle' | 'sent'>(kind === 'dialogue' && isDevDialogFeedbackSent() ? 'sent' : 'idle')");
     // отправка по-прежнему только из обработчика кнопки; начальное состояние её не вызывает
-    expect(card).toContain('if (state === \'sent\' || (message === \'\' && rating === 0)) return;');
+    // зачем (Диспетчер 05.11): с ЗАМКА ВЛАДЕЛЬЦА 25.10 (3ef047d85) пустой отзыв не уходит строже прежнего — нужна буквенная фраза (feedbackBlockReason); «отправленный» по-прежнему ничего не шлёт
+    expect(card).toContain("if (state === 'sent') return;");
+    expect(card).toContain('const blockReason = feedbackBlockReason(message);');
   });
 });

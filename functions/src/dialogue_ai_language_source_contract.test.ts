@@ -47,7 +47,9 @@ describe('dialogue server language isolation source contract', () => {
     const legacy = review.slice(review.indexOf('resolveDialogueTargetBeforeWarmup('));
     expect(legacy.length).toBeGreaterThan(0);
     expect(legacy.indexOf('resolveStableUidForAuth(')).toBeGreaterThan(0);
-    expect(legacy.indexOf('applyTutorMemoryUpdate(')).toBeGreaterThan(0);
+    // зачем (Диспетчер 05.11): память учителя удалена чисткой MAX (e049ad416, «без памяти учителя») — проверять её вызов больше нечего;
+    // порядок «цель → личность → лимит → провайдер» по-прежнему проверяют строки ниже
+    expect(legacy.indexOf('applyTutorMemoryUpdate(')).toBe(-1);
     expect(legacy.indexOf('enforceRateLimit(')).toBeGreaterThan(0);
     expect(legacy.indexOf('fetch(OPENAI_CHAT_URL')).toBeGreaterThan(0);
   });

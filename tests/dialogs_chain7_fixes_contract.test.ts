@@ -12,8 +12,8 @@ describe('«Свободный разговор»: цвета плитки — �
   it('заливка плитки, значок, подписи и значок Plus — токены dialogsHubTokens, без hex и без обводок', () => {
     expect(tools).toContain('backgroundColor: t.tile.bg');
     expect(tools).toContain('color={t.tile.icon}');
-    expect(tools).toContain('backgroundColor: t.plus.bg');
-    expect(tools).toContain('color: t.plus.ink');
+    // зачем (Диспетчер 05.11): с a82a3b220 значок Plus на плитке — общий фирменный PlusMark (одинаковый во всём приложении), а не самодельная плашка из t.plus.*
+    expect(tools).toContain('<PlusMark testID="dialogue-v2-freeform-plus-badge"');
     expect(tools).not.toMatch(/#[0-9A-Fa-f]{3,8}|borderWidth|borderColor/);
   });
 

@@ -98,9 +98,10 @@ describe('Dialogue V2 opening line (server)', () => {
     });
     const body = JSON.parse(String(fetchImpl.mock.calls[0][1]?.body));
     expect(body.messages).toEqual([
-      { role: 'system', content: 'SERVER_AUTHORIZED_DIALOGUE_V2' },
+      // зачем (Диспетчер 05.11): с 39aee17e0 (защита от prompt injection, 28.10) системный текст дополнен правилом про теги, а реплика ученика обёрнута в <learner_message>; порядок «открывающая реплика — первая» прежний
+      { role: 'system', content: expect.stringContaining('SERVER_AUTHORIZED_DIALOGUE_V2') },
       { role: 'assistant', content: JSON.stringify({ replies: [{ personaId: 'mila', text: 'Hi! How are you today?' }] }) },
-      { role: 'user', content: 'Hi! I am fine.' },
+      { role: 'user', content: '<learner_message>Hi! I am fine.</learner_message>' },
     ]);
   });
 
@@ -132,6 +133,7 @@ describe('Dialogue V2 opening line (server)', () => {
       languageBranchMemory: null,
     }, 2_000_000_000_000);
     expect(built.conversation[0]).toEqual({ role: 'assistant', content: DIALOGUE_V2_FREEFORM_OPENINGS[studyTarget] });
-    expect(built.conversation[1]).toEqual({ role: 'user', content: 'Hello there' });
+    // зачем (Диспетчер 05.11): реплика ученика обёрнута в <learner_message> (39aee17e0, защита от prompt injection)
+    expect(built.conversation[1]).toEqual({ role: 'user', content: '<learner_message>Hello there</learner_message>' });
   });
 });

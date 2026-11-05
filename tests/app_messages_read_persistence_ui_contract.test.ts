@@ -20,7 +20,8 @@ describe('app messages read persistence UI contract', () => {
   });
 
   it('keeps unread dots outside the text flow so inbox rows stay centered', () => {
-    expect(inboxSource).toContain('{message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}');
+    // зачем (Диспетчер 05.11): точка непрочитанного осталась вне текста строки; цвет теперь из темы шторки (badgeOnSheet.fill)
+    expect(inboxSource).toContain('{message.unread ? <View pointerEvents="none" style={[styles.unreadDot, { backgroundColor: badgeOnSheet.fill }]} /> : null}');
     expect(inboxSource).toContain("position: 'absolute'");
     // зачем (system_17): точка стоит у левого края строки внутри отступа 22, а не вынесена за край.
     expect(inboxSource).toContain('left: 4');

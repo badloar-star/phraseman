@@ -1,48 +1,26 @@
-// зачем (R109, прямое слово владельца 17.10: «цифры будут СПРАВА от иконки, а не внизу»; эталон cards-section.shadow.html#hub):
-// на плитках хаба Карточек число стоит в верхней строке справа от иконки (22/28, 700, tabular-nums), под ними только название;
-// у «Из видео» слова «наборов» нет; при загрузке на месте числа «…».
+// зачем (R109, слово владельца 17.10: «цифры справа от иконки») — ЗАМЕНЕНО решением владельца 05.11 (~14:45 «Хаб карточек — СПИСКОМ,
+// по уже утверждённому макету», ~20:55 «ХАБ ДЕЛАЕТ КАК МАКЕТ Я ОДОБРИЛ»): в утверждённом списке rev4 у строк чисел нет.
+// Что осталось от R109 и сторожится здесь: число и единица (9 языков) озвучиваются скринридером; «Из видео» — без слова «наборов».
+// Раскладку списка сторожит tests/cards_hub_list_layout_2026_11_05.test.ts.
 import fs from 'fs';
 import path from 'path';
 
 const read = (rel: string): string => fs.readFileSync(path.join(process.cwd(), rel), 'utf8');
 
-describe('хаб Карточек: число справа от иконки', () => {
+describe('хаб Карточек: число строки — только для скринридера', () => {
   const view = read('app/flashcards/CardsHubV2.tsx');
+  const rows = read('app/flashcards/cards_hub_rows.ts');
   const screen = read('app/flashcards/FlashcardsHubScreen.tsx');
 
-  it('верхняя строка: иконка и число в одной строке (row, space-between)', () => {
-    expect(view).toMatch(/tileTop: \{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'/);
-    const top = view.indexOf('<View style={styles.tileTop}>');
-    const icon = view.indexOf('styles.tileIcon', top);
-    const count = view.indexOf('styles.tileCount', top);
-    const title = view.indexOf('styles.tileTitle', top);
-    expect(top).toBeGreaterThan(-1);
-    expect(icon).toBeGreaterThan(top);
-    expect(count).toBeGreaterThan(icon);
-    expect(title).toBeGreaterThan(count); // название — ниже строки с числом
-  });
-
-  it('число 22/28, 700, tabular-nums, цвет основного текста; «…» при загрузке', () => {
-    expect(view).toMatch(/tileCount: \{[^}]*fontSize: 22, lineHeight: 28, fontWeight: '700'[^}]*fontVariant: \['tabular-nums'\]/);
-    expect(view).toContain("{ color: g.text, lineHeight: lh(28) }");
-  });
-
-  it('название 19/25, 700; строки с числом под названием больше нет', () => {
-    expect(view).toMatch(/tileTitle: \{ fontSize: 19, lineHeight: 25, fontWeight: '700' \}/);
-    expect(view).not.toContain("color: g.secondary, lineHeight: lh(19) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.count");
-  });
-
-  it('скринридер: единица в подписи плитки (9 языков), потолок ожидания чисел с логом [CARDS-HUB]', () => {
-    expect(view).toContain("accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.unit ? `${t.unit}: ` : ''}${t.count}`}");
+  it('скринридер: единица в подписи строки (9 языков), при неизвестном числе — только название', () => {
+    expect(rows).toContain("return row.count === '' ? row.title : `${row.title}. ${row.unit ? `${row.unit}: ` : ''}${row.count}`;");
+    expect(view).toContain('accessibilityLabel={cardsHubRowA11yLabel(row)}');
     expect(screen).toContain("ru: 'наборов', uk: 'наборів', en: 'packs', es: 'packs', 'pt-BR': 'pacotes', vi: 'bộ thẻ', id: 'paket', tr: 'paket', pl: 'zestawów'");
     expect(screen).toContain('unit: cardsUnit');
-    expect(view).toContain('CARDS_HUB_COUNT_WAIT_CEILING_MS = 5000');
-    expect(view).toContain('[CARDS-HUB] tile counts still loading');
-    expect(view).toContain("{t.count === '' ? (countsGaveUp ? ' ' : '…') : t.count}");
   });
 
-  it('[LABEL-FIT] название плитки переносится на 2 строки, а не обрезается многоточием', () => {
-    expect(view).toContain('numberOfLines={fs > 1 ? undefined : 2}>{t.title}');
+  it('[LABEL-FIT] название строки переносится на 2 строки, а не обрезается многоточием', () => {
+    expect(view).toContain('numberOfLines={2}>{row.title}');
   });
 
   it('«Из видео»: число без слова «наборов»', () => {

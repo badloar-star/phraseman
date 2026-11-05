@@ -16,9 +16,12 @@ describe('хаб «Карточки» 0/0 без плашки «Начни с г
     }
   });
 
-  it('при 0/0 главная кнопка — «Создать набор» (copy.create) с тем же действием, что «+» в шапке', () => {
-    expect(screen).toContain('? { cta: copy.create, onPress: openCreatePack }');
-    expect(hub).toContain('fresh?: Readonly<{ cta: string; onPress: () => void }>;');
-    expect(hub).toContain("name={fresh ? 'add'");
+  // зачем (владелец 05.11 ~20:55, хаб — СПИСОК по утверждённому макету rev4): главной кнопки в списке нет ни при каком состоянии;
+  // «Создать набор» при 0/0 и всегда — круглый «+» в шапке (то же действие openCreatePack).
+  it('при 0/0 «Создать набор» — «+» в шапке (openCreatePack), плашки нет', () => {
+    expect(screen).toContain('onCreate={openCreatePack}');
+    const plus = hub.indexOf('testID="fc-cards-hub-create-pack"');
+    expect(plus).toBeGreaterThan(-1);
+    expect(hub.slice(plus, plus + 400)).toContain('onPress={onCreate}');
   });
 });

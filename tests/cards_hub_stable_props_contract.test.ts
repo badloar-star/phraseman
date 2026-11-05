@@ -37,13 +37,14 @@ describe('FlashcardsHubScreen: стабильные пропсы CardsHubV2', ()
       expect(m![1]).toContain(dep);
     }
   });
-  // зачем (R1, C4): корень хаба не подписан на размеры окна; высоту читает CardsHubV2, корень отдаёт только сумму вырезов
-  it('корень не читает useWindowDimensions, высоту окна берёт CardsHubV2', () => {
+  // зачем (R1, C4): корень хаба не подписан на размеры окна.
+  // зачем (владелец 05.11, хаб — СПИСОК по макету rev4): список прокручивается и высоту окна не меряет вовсе; строки — memo, сравнение по ссылке строки.
+  it('корень не читает useWindowDimensions; список не меряет высоту окна, строки мемоизированы', () => {
     const hub = fs.readFileSync(path.join(__dirname, '..', 'app', 'flashcards', 'CardsHubV2.tsx'), 'utf8');
     expect(SRC).not.toMatch(/useWindowDimensions|windowHeight/);
-    expect(HUB_TAG).toContain('verticalInsets={insets.top + insets.bottom}');
     expect(HUB_TAG).not.toContain('availableHeight');
-    expect(hub).toMatch(/height: windowHeight\s*\}\s*=\s*useWindowDimensions\(\)/);
-    expect(hub).toContain('windowHeight - verticalInsets - fixed');
+    expect(hub).not.toMatch(/windowHeight/);
+    expect(hub).toContain('const CardsHubListRow = memo(function CardsHubListRow(');
+    expect(hub).toContain('const rows = useMemo(');
   });
 });

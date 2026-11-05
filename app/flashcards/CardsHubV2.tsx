@@ -1,278 +1,183 @@
 /**
- * Хаб «Карточки» — вариант А, утверждённый владельцем 04.10.2026 (макет docs/design/v2-app/cards-section.html, блок «Хаб — вариант А»).
+ * Хаб «Карточки» — СПИСОК по утверждённому макету (владелец 05.11 ~14:45 «Хаб карточек — СПИСКОМ, по уже утверждённому макету»;
+ * ~20:55 «ХАБ ДЕЛАЕТ КАК МАКЕТ Я ОДОБРИЛ»). Эталон: docs/work/golden/approved-rev8/hub-community-approved-rev4.png,
+ * интерактивный макет approved-rev8 (views.js `view === 'cards'`, preview.css `.screen-head`, `.screen-content`, `.row-card`).
  *
- * зачем (владелец: «в приложении запрещены любые различия с одобренными макетами, визуально в точности»):
- * чистый вид без данных и без навигации — всё приходит пропсами из FlashcardsHubScreen. Без прокрутки:
- * шапка (пилюля лимита и «плюс»), заголовок, стопка из трёх карточек с верхним словом, главная кнопка с остатком тренировок
- * и четыре равные плитки (Сохранённые, Мои наборы, Из видео, Сообщество).
- * Анимации — только transform на UI-потоке: лёгкое «парение» верхней карточки (6 с, не крутится при reduceMotion).
+ * Анатомия 1:1 с макетом:
+ *   • шапка `.screen-head` (поля 12/20, зазор 12): круглая «назад» 44, заголовок 23/800 в строку, круглый «+» 44 — «Создать набор»;
+ *   • список `.screen-content` (поля 12/20, зазор 12): пять строк `.row-card` — плашка r18, поля 16, предмет 54×54, название, шеврон;
+ *     порядок и предметы — app/flashcards/cards_hub_rows.ts (Сохранённые, Мои наборы, Из видео, Мои ошибки, Сообщество).
+ * Подписи под названием нет (в макете `<small>` пустой), числа на экране нет — число и единица остаются в подписи для скринридера.
+ * Стопки, главной кнопки «Тренироваться» и пилюли «30/30» в утверждённом макете нет: тренировка запускается из «Сохранённых» и наборов
+ * (их «Тренировать» ведёт сюда с ?train=1 — окно режимов и лимит живут в FlashcardsHubScreen и не тронуты).
+ * Цвета — только токены темы (плашка = PlateFill + тень, без обводок). Без вечных анимаций; нажатие — V2Pressable (scale + .86).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
-import { CardsHubAnimProbe } from './CardsHubAnimProbe';
-import React, { memo, useEffect, useState, useSyncExternalStore } from 'react';
-import { ScrollView, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
-import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
-import { LinearGradient } from '../../components/SafeLinearGradient';
-import { useRuntimeActive } from '../../hooks/use_runtime_active';
-import { isDevAnimationsOff, subscribeDevAnimationsOff } from '../dev_animations_off';
+import { useRouter } from 'expo-router';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useLang } from '../../components/LangContext';
+import { ThemedArtLayers } from '../../components/theme/ThemedArtLayers';
+import { resolveThemedArt, type ThemedArtName } from '../../components/theme/themed_art_registry';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
-import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
+import { useLineScale } from '../../hooks/useLineScale';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import BackGlyph from '../../components/v2/BackGlyph';
 import V2Pressable from '../../components/v2/V2Pressable';
+import { useHubLifecycle } from '../hub_lifecycle_probe';
+import {
+  buildCardsHubRows,
+  cardsHubMistakesTitle,
+  cardsHubRowA11yLabel,
+  CARDS_HUB_MISTAKES_ROUTE,
+  type CardsHubRow,
+  type CardsHubRowInput,
+} from './cards_hub_rows';
 
 export type CardsHubTile = Readonly<{
   id: 'saved' | 'mine' | 'video' | 'community';
   icon: keyof typeof Ionicons.glyphMap;
   title: string;
   count: string;
-  /** Единица для скринридера («наборов», «карточек»): число на плитке без слова, голосом читается «Из видео. наборов: 6». */
+  /** Единица для скринридера («наборов», «карточек»): «Из видео. наборов: 6». */
   unit?: string;
   onPress: () => void;
 }>;
 
-/** Потолок ожидания чисел плиток: дольше — число скрываем (не «…» навсегда). */
-export const CARDS_HUB_COUNT_WAIT_CEILING_MS = 5000;
-
 type Props = Readonly<{
   g: GlassTokens;
   title: string;
-  subtitle: string;
-  limitLabel: string | null;
-  topWord: string;
-  topIpa: string;
-  trainLabel: string;
-  trainLocked: boolean;
   tiles: readonly CardsHubTile[];
-  reduceMotion: boolean;
-  /** Сумма вырезов сверху и снизу: высота под содержимое = высота окна минус они; стопка и плитки сжимаются на невысоких экранах, чтобы не было прокрутки. */
-  verticalInsets: number;
   onBack: () => void;
   onCreate: () => void;
-  onTrain: () => void;
-  trainButtonRef?: React.Ref<View>;
   labels: Readonly<{ back: string; create: string; trainA11y: string }>;
-  /**
-   * Новичок: своих карточек и наборов нет (макет cards-section-extra.js hubNewS). Вместо стопки — стеклянная карточка
-   * «Начните с готового», главная кнопка — «Выбрать набор» (а не тренировка, тренировать пока нечего).
-   */
-  // зачем (макет cards-zero 05.11, владелец: «не такой макет одобрял»): при 0/0 плашки-приглашения нет — одна главная кнопка «Создать набор» на её месте
+  // ── Ниже — пропсы прежнего хаба «стопка + кнопка + плитки». Экран (FlashcardsHubScreen) их ещё передаёт; в списке по
+  // утверждённому макету они не рисуются. зачем оставлены в типе: FlashcardsHubScreen сейчас правит другая сессия — экран
+  // не трогаем, пропсы снимем вместе с ним отдельной правкой.
+  subtitle?: string;
+  limitLabel?: string | null;
+  topWord?: string;
+  topIpa?: string;
+  trainLabel?: string;
+  trainLocked?: boolean;
+  reduceMotion?: boolean;
+  verticalInsets?: number;
+  onTrain?: () => void;
+  trainButtonRef?: React.Ref<View>;
   fresh?: Readonly<{ cta: string; onPress: () => void }>;
 }>;
 
-/** Смешивает цвет темы с тёмным основанием (как color-mix макета: доля темы + тёмный). */
-function mixDark(hex: string, base: string, t: number): string {
-  const c = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
-  const a = c(hex.length >= 7 ? hex : '#888888'); // theme-exempt: запасной серый при битом входе функции смешивания
-  const b = c(base);
-  return `#${a.map((v, i) => Math.round(v * t + b[i]! * (1 - t)).toString(16).padStart(2, '0')).join('')}`;
-}
-
-/** Два цвета темы для градиентов: пятна фона (A, B) — как «--g1/--g2» макета; у светлых тем пятен нет — акцент и кромка. */
-function themePair(g: GlassTokens): readonly [string, string] {
-  // зачем (макет: плитки и карточка идут от первого цвета темы ко второму — зелёный→фиолетовый у «Авроры»):
-  // два цвета темы лежат в пятнах фона bgGlow (A, B, A) — берём их без альфы.
-  const glow = g.bgGlow;
-  if (glow && glow[0] && glow[1] && glow[0].slice(1, 7) !== '000000' && glow[1].slice(1, 7) !== '000000') {
-    return [glow[0].slice(0, 7), glow[1].slice(0, 7)];
-  }
-  const gr = g.accentGradient;
-  if (gr && gr.length >= 2) return [gr[0]!, gr[gr.length - 1]!];
-  return [g.accentGraphic, g.accentBorder]; // зачем (светлый акцент): запасной градиент — графика
-}
-
-// зачем (владелец 12.10, стиль «Тень»): внутренних кромок-фасок (bevel) и колец больше нет — плитки и «Свежий» блок это плашки
-// (PlateFill + plateBoxShadow), карточки стопки — арт с градиентом и внешней тенью, значки — вложенные (nestedBoxShadow).
-/** Градиент плитки-значка: цвет темы 60 % / 32 % в базах темы. */
-const iconGlass = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBaseAlt, 0.32)] as const;
-/** Заливка карточки стопки: 145°, доля цвета темы 45 %/38 % в тёмном — как «.mc.solid» макета. */
-// зачем ([BLEND-AUDIT] 18.10, решение Макетов): первый слой 0,5 → 0,45 — транскрипция 16 italic давала 4,10–4,49 вместо 4,5 в 26 из 230 сочетаний; при 0,45 — 0 из 230, худшее 4,87
-const stackFill = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.45), g.deepBaseAlt, mixDark(b, g.deepBaseAlt, 0.38)] as const;
-const DIAG_START = { x: 0.21, y: 0.09 } as const;
-const DIAG_END = { x: 0.79, y: 0.91 } as const;
-
-const StackCard = ({ g, style, radius, opacity }: { g: GlassTokens; style: StyleProp<ViewStyle>; radius: number; opacity: number }) => {
-  const [a, b] = themePair(g);
-  return (
-    <View pointerEvents="none" style={[styles.stackCard, style, { borderRadius: radius, opacity, boxShadow: plateBoxShadow(g) }]}>
-      <LinearGradient colors={stackFill(g, a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-    </View>
-  );
+/** Запасной значок строки, если у темы нет предмета (origin 'none'). */
+const ROW_FALLBACK_ICON: Readonly<Record<CardsHubRow['id'], keyof typeof Ionicons.glyphMap>> = {
+  saved: 'bookmark-outline',
+  mine: 'layers-outline',
+  video: 'play',
+  mistakes: 'refresh-outline',
+  community: 'people-outline',
 };
 
-function CardsHubV2Inner({
-  g, title, subtitle, limitLabel, topWord, topIpa, trainLabel, trainLocked, tiles, reduceMotion,
-  onBack, onCreate, onTrain, trainButtonRef, labels, verticalInsets, fresh,
-}: Props) {
-  useHubLifecycle('CardsHubV2'); // зачем (координатор 12.10, утечка памяти в хабе; сперва логи)
-  // зачем (Сверка 10.10, светлая тема): заливки стопки и плиток-значков в светлых темах светлые, белый «ink на медиа» на них не читается —
-  // в светлой теме берём текст темы, в тёмных остаётся прежний (mediaInk).
-  const faceInk = g.isLight ? g.text : g.mediaInk;
-  // зачем (таблица docs/phraseman-2.0/evidence/hub_cards_contrast_23_themes.md, решение координатора 14.10): приглушённый цвет подписи
-  // транскрипции на тонированной заливке стопки давал контраст 1.57–5.33 (нечитаемо на всех 23 темах) — берём цвет слова, 4.10–4.49.
-  const faceInkSoft = faceInk;
-  const float = useSharedValue(0);
-  // зачем (координатор 12.10): «парение» стопки (8 dp за 5 с) бесконечное — по приказу владельца 11.10 («хаб утра»); по коду крутится на UI-потоке и стоит вне фокуса/в фоне/при «уменьшить движение».
-  // Для робота — dev-подмена `animations=off` (app/dev_animations_off.ts, только память, в сторе недоступна): uiautomator не доходит до покоя на вечной анимации. Замер кадров — [CARDS-HUB-ANIM].
-  const animationsOffByDev = useSyncExternalStore(subscribeDevAnimationsOff, isDevAnimationsOff, () => false);
-  // зачем (Performance Bible, сторож perf_freeze_contract): бесконечное «парение» живёт только пока экран в фокусе и приложение на переднем плане.
-  const runtimeActive = useRuntimeActive();
-  useEffect(() => {
-    if (reduceMotion || !runtimeActive || animationsOffByDev) return undefined;
-    noteHubSubscription('CardsHubV2.floatLoop', 'on');
-    float.value = withRepeat(withTiming(-8, { duration: 5000, easing: Easing.inOut(Easing.sin) }), -1, true);
-    return () => { float.value = 0; noteHubSubscription('CardsHubV2.floatLoop', 'off'); };
-  }, [animationsOffByDev, float, reduceMotion, runtimeActive]);
-  const floatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: float.value }] }));
-  // зачем (Ревизор 3.13 🟡б): при неудачной загрузке (null) число навсегда оставалось «…». Через потолок ожидания число скрывается (место остаётся), причина — в журнал.
-  const [countsGaveUp, setCountsGaveUp] = useState(false);
-  const pendingCountIds = tiles.filter((t) => t.count === '').map((t) => t.id).join(',');
-  useEffect(() => {
-    if (pendingCountIds === '' || !runtimeActive) { setCountsGaveUp(false); return undefined; }
-    const timer = setTimeout(() => {
-      console.log('[CARDS-HUB] tile counts still loading → numbers hidden', JSON.stringify({ pending: pendingCountIds, ceilingMs: CARDS_HUB_COUNT_WAIT_CEILING_MS, reason: 'count_null_after_ceiling' })); // guard-ok: потолок ожидания чисел
-      setCountsGaveUp(true);
-    }, CARDS_HUB_COUNT_WAIT_CEILING_MS);
-    return () => clearTimeout(timer);
-  }, [pendingCountIds, runtimeActive]);
-  const animProbe = typeof __DEV__ !== 'undefined' && __DEV__
-    ? <CardsHubAnimProbe float={float} active={!reduceMotion && runtimeActive && !animationsOffByDev} />
-    : null;
-  const [a, b] = themePair(g);
-  // зачем (макет 932dp: стопка 250, плитки 150): на невысоких экранах сжимаем стопку и плитки пропорционально, чтобы хаб оставался без прокрутки.
-  const fixed = 4 + 44 + 8 + 46 + 6 + 22 + 26 + 14 + 52 + 20 + 12 + 28; // +28: воздух снизу, как в макете
-  // зачем (R1, C4): высоту окна читаем здесь, а не в корне экрана — смена размера окна/клавиатуры не перерисовывает корень хаба
-  const { fontScale, height: windowHeight } = useWindowDimensions();
-  const rem = Math.max(0, windowHeight - verticalInsets - fixed);
-  const fs = Math.max(1, fontScale);
-  // при крупном шрифте превью-карточке нужно больше места под слово и транскрипцию (до ×1.5), иначе слово режется по высоте
-  const stackH = Math.round(Math.min(250, Math.max(150, rem * 0.42)) * (fs > 1 ? Math.min(fs, 1.5) : 1));
-  const tileH = Math.round(Math.min(150, Math.max(96, (rem - stackH) / 2)));
-  const k = stackH / 250;
-  // зачем (координатор 05.10, «хаб «Карточки» режет текст при системном шрифте 2.0»; сжимать шрифт нельзя): fontSize система масштабирует, а заданный
-  // lineHeight остаётся прежним — строка становится ниже глифов и низ срезается. Масштабируем lineHeight тем же коэффициентом, высоты пилюли/шапки —
-  // в minHeight, подписи плиток и превью — с переносом. При шрифте 1.0 коэффициент 1: вид совпадает с макетом пиксель в пиксель.
-  const lh = (n: number) => (fs === 1 ? n : Math.round(n * fs));
+const ART_SIZE = 54;
 
-  const body = (
-    <View style={styles.root} testID="fc-cards-hub-v2">
-      {animProbe}
-      <View style={[styles.topbar, fs > 1 && { height: undefined, minHeight: 44 }]}>
-        {/* зачем (аудит 22.10, «V2Pressable на всех управляющих элементах»): нажатие — как у всех кнопок 2.0 (вдавливание + .86), а не голый Pressable с opacity .82 */}
-        <V2Pressable testID="fc-cards-hub-back" accessibilityLabel={labels.back} onPress={onBack} hitSlop={8} scaleTo={0.94}
-          style={[styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
-          <BackGlyph size={20} color={g.text} />
-        </V2Pressable>
-        <View style={styles.topRight}>
-          {limitLabel ? (
-            <View testID="fc-cards-hub-limit" style={[styles.pill, fs > 1 && { height: undefined, minHeight: 30, paddingVertical: 2 }, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
-              {/* зачем (координатор 13.10, пилюля «30/30» хаба Карточек): в образце cards-v2 `limPill('copy', '30/30')` — значок «копии», как у настройки тренировки (copy-outline), а не «стопка» albums-outline */}
-              <Ionicons name="copy-outline" size={16} color={g.text} />
-              <Text style={[styles.pillText, { color: g.text, lineHeight: lh(20) }]}>{limitLabel}</Text>
-            </View>
-          ) : null}
-          <V2Pressable testID="fc-cards-hub-create-pack" accessibilityLabel={labels.create} onPress={onCreate} hitSlop={8} scaleTo={0.94}
-            style={[styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
-            <Ionicons name="add" size={22} color={g.text} />
-          </V2Pressable>
+type RowProps = Readonly<{ g: GlassTokens; row: CardsHubRow; tone: 'dark' | 'light'; lh: (n: number) => number }>;
+
+/** Строка `.row-card`: предмет 54, название, шеврон. memo — список не перерисовывается от смены квоты/фокуса экрана. */
+const CardsHubListRow = memo(function CardsHubListRow({ g, row, tone, lh }: RowProps) {
+  const art = resolveThemedArt(row.art as ThemedArtName, tone);
+  return (
+    <V2Pressable
+      testID={`fc-cards-hub-tile-${row.id}`}
+      accessibilityRole="button"
+      accessibilityLabel={cardsHubRowA11yLabel(row)}
+      onPress={row.onPress}
+      scaleTo={0.98}
+      style={[styles.row, { boxShadow: plateBoxShadow(g) }]}
+    >
+      <PlateFill g={g} radius={ROW_RADIUS} />
+      {art.base ? (
+        <ThemedArtLayers source={art.base} accent={art.accent} style={styles.art} />
+      ) : (
+        <View style={[styles.art, styles.artFallback, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}>
+          <Ionicons name={ROW_FALLBACK_ICON[row.id]} size={26} color={g.text} />
         </View>
-      </View>
-
-      <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(46) }]}>{title}</Text>
-      <Text style={[styles.subtitle, { color: g.secondary, lineHeight: lh(22) }]}>{subtitle}</Text>
-
-      {fresh ? null : (
-      <View style={[styles.stack, { height: stackH }]} pointerEvents="box-none">
-        <StackCard g={g} opacity={0.7} radius={28} style={[styles.stackBack2, { height: Math.round(110 * k) }]} />
-        <StackCard g={g} opacity={0.9} radius={28} style={[styles.stackBack1, { top: Math.round(18 * k), height: Math.round(130 * k) }]} />
-        <Reanimated.View style={[styles.stackTop, { top: Math.round(40 * k), height: Math.round(200 * k), boxShadow: plateBoxShadow(g) }, floatStyle]} pointerEvents="none">
-          <LinearGradient colors={stackFill(g, a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-          {/* зачем (hubLimitS): сообщение о лимите длинное — переносится на 2 строки по центру, а не режется многоточием */}
-          <Text style={[styles.topWord, trainLocked && styles.topWordWrap, { color: faceInk, lineHeight: lh(44) }]} numberOfLines={fs > 1 ? undefined : (trainLocked ? 2 : 1)}>{topWord}</Text>
-          {topIpa ? <Text style={[styles.topIpa, { color: faceInkSoft, lineHeight: lh(20) }]} numberOfLines={fs > 1 ? undefined : 1}>{topIpa}</Text> : null}
-        </Reanimated.View>
-      </View>
       )}
+      {/* зачем ([LABEL-FIT]): длинное название переносится на 2 строки, шрифт не ужимаем */}
+      <Text style={[styles.rowTitle, { color: g.text, lineHeight: lh(22) }]} numberOfLines={2}>{row.title}</Text>
+      <BackGlyph size={22} color={g.text} style={styles.chevron} />
+    </V2Pressable>
+  );
+}, (a, b) => a.g === b.g && a.row === b.row && a.tone === b.tone && a.lh === b.lh);
 
-      {/* зачем: V2Pressable ref не отдаёт — trainButtonRef (цель полёта карточки) стоит на обёртке; отступ сверху на ней же, поэтому обёртка = границы самой кнопки */}
-      <View ref={trainButtonRef} collapsable={false} style={styles.ctaOuter}>
-      <V2Pressable testID="fc-cards-hub-train" accessibilityLabel={fresh ? fresh.cta : labels.trainA11y} onPress={fresh ? fresh.onPress : onTrain}
-        scaleTo={0.97}
-        style={[
-          styles.cta,
-          { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) },
-          // зачем (hubLimitS): исчерпанный лимит — кнопка приглушена до .55, как в макете.
-          !fresh && trainLocked ? styles.ctaLocked : null,
-        ]}>
-        <Text style={[styles.ctaText, { color: g.ctaFillInk, lineHeight: lh(22) }]}>{fresh ? fresh.cta : trainLabel}</Text>
-        <View style={styles.ctaIcon}>
-          <Ionicons name={fresh ? 'add' : trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.ctaFillInk} />
-        </View>
-      </V2Pressable>
-      </View>
+function CardsHubV2Inner({ g, title, tiles, onBack, onCreate, labels }: Props) {
+  useHubLifecycle('CardsHubV2'); // зачем (координатор 12.10, утечка памяти в хабе; сперва логи)
+  const router = useRouter();
+  const { lang } = useLang();
+  const lh = useLineScale();
+  const tone: 'dark' | 'light' = g.isLight ? 'light' : 'dark';
 
-      <View style={styles.tiles}>
-        {tiles.map((t) => (
-          <V2Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.unit ? `${t.unit}: ` : ''}${t.count}`} onPress={t.onPress}
-            scaleTo={0.97} outerStyle={[styles.tileOuter, { minHeight: tileH }]}
-            style={[styles.tile, { boxShadow: plateBoxShadow(g) }]}>
-            {/* зачем (Тень 12.10): плитка — плашка (градиент 180° + тень), без фасок и кольца */}
-            <PlateFill g={g} radius={26} />
-            {/* зачем (R109, прямое слово владельца 17.10: «цифры будут СПРАВА от иконки, а не внизу»; эталон cards-section.shadow.html#hub): верхняя строка — иконка слева и число справа (22/28, 700, tabular-nums, по центру иконки), под ней только название. При загрузке на месте числа «…». */}
-            <View style={styles.tileTop}>
-              <View style={[styles.tileIcon, { boxShadow: nestedBoxShadow(g) }]}>
-                <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-                <Ionicons name={t.icon} size={24} color={faceInk} />
-              </View>
-              <Text testID={`fc-cards-hub-tile-count-${t.id}`} style={[styles.tileCount, { color: g.text, lineHeight: lh(28) }]} numberOfLines={1}>{t.count === '' ? (countsGaveUp ? ' ' : '…') : t.count}</Text>
-            </View>
-            {/* зачем ([LABEL-FIT] 18.10): название плитки при 360 dp и fontScale 1,0 шире 122 dp у ru «Сохранённые» (≈104 %), tr, vi, pl, pt-BR — раньше обрезалось многоточием; теперь переносится на 2 строки (плитка minHeight растёт), шрифт не ужимается */}
-            <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 2}>{t.title}</Text>
-          </V2Pressable>
-        ))}
+  // зачем (макет rev4: «Мои ошибки» между «Из видео» и «Сообществом»): строка ведёт туда же, куда плитка Главной; журнал [CARDS-HUB] — откуда открыли.
+  const openMistakes = useCallback(() => {
+    console.log('[CARDS-HUB] row:open', JSON.stringify({ id: 'mistakes', route: CARDS_HUB_MISTAKES_ROUTE })); // guard-ok: вход в «Мои ошибки» из хаба
+    router.push(CARDS_HUB_MISTAKES_ROUTE as never);
+  }, [router]);
+  const mistakesTitle = cardsHubMistakesTitle(lang);
+
+  const rows = useMemo(() => {
+    const inputs: CardsHubRowInput[] = [
+      ...tiles.map((t) => ({ id: t.id, title: t.title, count: t.count, unit: t.unit, onPress: t.onPress })),
+      { id: 'mistakes', title: mistakesTitle, count: '', onPress: openMistakes },
+    ];
+    return buildCardsHubRows(inputs);
+  }, [tiles, mistakesTitle, openMistakes]);
+
+  // зачем (правило «сперва логи»): одна строка на смену состава — какие строки и с каким предметом нарисованы.
+  const rowsKey = rows.map((r) => `${r.id}:${resolveThemedArt(r.art, tone).origin}`).join(',');
+  useEffect(() => {
+    console.log('[CARDS-HUB] list', JSON.stringify({ rows: rowsKey, tone, lang })); // guard-ok: состав списка хаба
+  }, [rowsKey, tone, lang]);
+
+  return (
+    <View style={styles.root} testID="fc-cards-hub-v2">
+      <View style={styles.head}>
+        {/* зачем (аудит 22.10, «V2Pressable на всех управляющих элементах»): нажатие — как у всех кнопок 2.0; вибрация — на управляющей кнопке */}
+        <V2Pressable testID="fc-cards-hub-back" accessibilityRole="button" accessibilityLabel={labels.back} onPress={onBack} hitSlop={8} scaleTo={0.94} withHaptic
+          style={[styles.round, { boxShadow: plateBoxShadow(g) }]}>
+          <PlateFill g={g} radius={ROUND / 2} />
+          <BackGlyph size={22} color={g.text} />
+        </V2Pressable>
+        <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" numberOfLines={1} style={[styles.title, { color: g.text, lineHeight: lh(29) }]}>{title}</Text>
+        <V2Pressable testID="fc-cards-hub-create-pack" accessibilityRole="button" accessibilityLabel={labels.create} onPress={onCreate} hitSlop={8} scaleTo={0.94} withHaptic
+          style={[styles.round, { boxShadow: plateBoxShadow(g) }]}>
+          <PlateFill g={g} radius={ROUND / 2} />
+          <Ionicons name="add" size={24} color={g.text} />
+        </V2Pressable>
       </View>
+      {/* зачем: пять строк — список фиксированный и короткий, FlatList не нужен (лишняя виртуализация); прокрутка — для крупного шрифта и низких экранов */}
+      <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false} testID="fc-cards-hub-list">
+        {rows.map((row) => /* guard-ok: пять фиксированных строк макета, виртуализация не нужна */ <CardsHubListRow key={row.id} g={g} row={row} tone={tone} lh={lh} />)}
+      </ScrollView>
     </View>
   );
-  // зачем: при крупном шрифте хаб не помещается в экран — прокручивается; при 1.0 прежняя разметка без ScrollView (макет без прокрутки)
-  return fs > 1
-    ? <ScrollView contentContainerStyle={styles.scrollGrow} showsVerticalScrollIndicator={false} decelerationRate="fast">{body}</ScrollView>
-    : body;
 }
 
 const CardsHubV2 = memo(CardsHubV2Inner);
 export default CardsHubV2;
 
-// зачем: размеры строго из макета cards-section (замер getBoundingClientRect, 430×932): заголовок 40/46, пилюля 30, кнопки шапки 42, плитка 150 с отступами 18/16.
+const ROUND = 44;
+const ROW_RADIUS = 18;
+
+// зачем: размеры строго из макета approved-rev8 (preview.css): `.screen-head{padding:12px 20px;gap:12px}`, `.icon-button 44`,
+// `.screen-head h2{font-size:23px;font-weight:800}`, `.screen-content{padding:12px 20px;gap:12px}`,
+// `.row-card{gap:12px;padding:16px;border-radius:18px}`, `.row-card img{54×54}`, `.icon 22`.
 const styles = StyleSheet.create({
-  scrollGrow: { flexGrow: 1, paddingBottom: 24 },
-  root: { flex: 1, paddingHorizontal: 20 },
-  topbar: { height: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  topRight: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
-  pill: { height: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
-  title: { marginTop: 8, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
-  subtitle: { marginTop: 6, fontSize: 16, lineHeight: 22, letterSpacing: 0.15 },
-  stack: { height: 250, marginTop: 26 },
-  stackCard: { position: 'absolute', overflow: 'hidden' },
-  stackBack2: { left: 38, right: 38, top: 0, height: 110 },
-  stackBack1: { left: 19, right: 19, top: 18, height: 130 },
-  stackTop: { position: 'absolute', left: 0, right: 0, top: 40, height: 200, borderRadius: 30, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
-  topWord: { fontSize: 36, lineHeight: 44, fontWeight: '700', paddingHorizontal: 16 },
-  topWordWrap: { textAlign: 'center' },
-  topIpa: { marginTop: 8, fontSize: 16, lineHeight: 20, fontStyle: 'italic' },
-  // зачем: текст кнопки не обрезается («осталось 28 и…» на эмуляторе) — меньше боковые поля и перенос строки вместо многоточия; кегль не ужимаем
-  ctaOuter: { marginTop: 14 },
-  cta: { minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingVertical: 8 },
-  ctaLocked: { opacity: 0.55 },
-  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  ctaIcon: { position: 'absolute', right: 12, top: 0, bottom: 0, justifyContent: 'center' },
-  tiles: { marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
-  tileOuter: { width: '48%', flexGrow: 1 },
-  tile: { flex: 1, minHeight: 150, borderRadius: 26, paddingHorizontal: 16, paddingVertical: 18, justifyContent: 'space-between' },
-  // hubNewS `.gl.pad`: 26 от подзаголовка, высота стопки (250 в макете), всё по центру.
-  tileIcon: { width: 52, height: 52, borderRadius: 15, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
-  tileTitle: { fontSize: 19, lineHeight: 25, fontWeight: '700' },
-  tileTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
-  tileCount: { flexShrink: 1, fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'right', fontVariant: ['tabular-nums'] },
+  root: { flex: 1 },
+  head: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 20, paddingVertical: 12 },
+  round: { width: ROUND, height: ROUND, borderRadius: ROUND / 2, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  title: { flex: 1, fontSize: 23, lineHeight: 29, fontWeight: '800', letterSpacing: -0.3 },
+  list: { paddingHorizontal: 20, paddingTop: 12, paddingBottom: 24, gap: 12 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: ROW_RADIUS, minHeight: ART_SIZE + 32 },
+  art: { width: ART_SIZE, height: ART_SIZE },
+  artFallback: { borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
+  rowTitle: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
+  // зачем: шеврон макета `m9 5 7 7-7 7` — зеркало общего «назад» (тот же контур и толщина)
+  chevron: { transform: [{ scaleX: -1 }] },
 });

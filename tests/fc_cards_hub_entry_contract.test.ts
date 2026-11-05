@@ -20,7 +20,8 @@ describe('approved Cards hub entry', () => {
     if (!exists) return;
 
     const hub = fs.readFileSync(hubPath, 'utf8');
-    // зачем (владелец 04.10, хаб А утверждён): хаб — стопка, главная кнопка и четыре равные плитки (CardsHubV2); блока «Лучшее у сообщества» и сегментов больше нет.
+    // зачем (владелец 05.11, хаб — СПИСОК по утверждённому макету rev4): CardsHubV2 рисует пять строк (Сохранённые, Мои наборы, Из видео, Мои ошибки,
+    // Сообщество); стопки и главной кнопки нет — тренировка входит в хаб с ?train=1 из «Сохранённых» и наборов. Блока «Лучшее у сообщества» и сегментов нет.
     expect(hub).toContain('CardsHubV2');
     expect(hub).not.toContain('SavedTopCommunityPacks');
     expect(hub).toContain("pathname: '/flashcards_collection'");
@@ -29,7 +30,8 @@ describe('approved Cards hub entry', () => {
     const view = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'CardsHubV2.tsx'), 'utf8');
     for (const id of ['saved', 'mine', 'video', 'community']) expect(hub).toContain(`id: '${id}'`);
     expect(view).toContain('fc-cards-hub-tile-');
-    expect(view).toContain('fc-cards-hub-train');
+    expect(view).not.toContain('fc-cards-hub-train');
+    expect(hub).toContain('useLocalSearchParams<{ train?: string; deck?: string; cnt?: string }>()');
     expect(hub).not.toContain('<Ionicons name="barbell-outline"');
     expect(hub).not.toContain('FlashcardsTabBar');
   });
@@ -50,9 +52,10 @@ describe('approved Cards hub entry', () => {
     const view = read('app', 'flashcards', 'CardsHubV2.tsx');
 
     expect(hub).toContain('liquidGlassTokens(liquidGlassThemeId)');
+    // зачем (макет rev4): список одноцветный — название и шеврон цветом текста темы, плашка — PlateFill темы; акцентной заливки в строках нет
     expect(view).toContain('g.text');
-    expect(view).toContain('g.secondary');
-    expect(view).toContain('g.accent');
+    expect(view).toContain('<PlateFill g={g}');
+    expect(view).not.toMatch(/backgroundColor: g\.(accent|cta)\b/);
   });
 
   test('mode choice is a bottom sheet (owner 01.10) and setup is a normal full screen', () => {
@@ -94,7 +97,8 @@ describe('approved Cards hub entry', () => {
     expect(hub).not.toContain('disabled={trainingLocked || !trainingEntryReady}');
     expect(hub).toContain("openTrainingPaywall('flashcard_training', 'flashcards_hub_train')");
     expect(hub).toContain("pathname: '/premium_modal', params: { context, source }");
-    expect(read('app', 'flashcards', 'CardsHubV2.tsx')).toContain("trainLocked ? 'lock-closed' : 'arrow-forward'");
+    // зачем (владелец 05.11, список rev4): кнопки тренировки в хабе нет; замок лимита и покупка — в окне режимов (FlashcardsTrainingModeSheet + openTrainingPaywall выше)
+    expect(read('app', 'flashcards', 'CardsHubV2.tsx')).not.toContain('trainLocked ?');
     expect(hub).toContain('if (paywallOpeningRef.current)');
     expect(setup).toContain('loadFcDeckOptions');
     expect(setup).toContain('useFlashcardTrainingQuotaPreview()');

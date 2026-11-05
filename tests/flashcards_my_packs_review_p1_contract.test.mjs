@@ -43,8 +43,8 @@ test('screen-reader exposes open, edit and delete as separate real actions', () 
   assert.doesNotMatch(mine, /accessibilityLabel="qa-fc-my-packs-(back|browse-community)"/);
   // зачем: 0ee956c9e — неизвестное число не озвучивается прочерком: пока count === null, подпись без числа.
   // зачем: плитки хаба рисует CardsHubV2 (макет 2.0); неизвестное число — пустая строка, и подпись тогда без числа.
-  const hubTiles = readFileSync(join(root, 'app/flashcards/CardsHubV2.tsx'), 'utf8');
-  // зачем (координатор 18.10, red-tests): 799956929 добавил единицу для скринридера («Из видео. наборов: 6»); правило прежнее —
+  // зачем (владелец 05.11, хаб — СПИСОК rev4): подпись строки собирает cards_hub_rows.cardsHubRowA11yLabel; правило прежнее —
   // при неизвестном числе (count === '') озвучивается только название.
-  assert.match(hubTiles, /accessibilityLabel=\{t\.count === '' \? t\.title : `\$\{t\.title\}\. \$\{t\.unit \? `\$\{t\.unit\}: ` : ''\}\$\{t\.count\}`\}/);
+  const hubTiles = readFileSync(join(root, 'app/flashcards/cards_hub_rows.ts'), 'utf8');
+  assert.match(hubTiles, /return row\.count === '' \? row\.title : `\$\{row\.title\}\. \$\{row\.unit \? `\$\{row\.unit\}: ` : ''\}\$\{row\.count\}`;/);
 });

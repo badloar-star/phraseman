@@ -10,7 +10,8 @@ const TITLES: ReadonlyArray<readonly [string, string]> = [
   ['components/v2/V2Kit.tsx', 'style={[s.largeTitle,'],
   ['components/cards-grid/CardsKit.tsx', 'style={[styles.title, { color: g.text, lineHeight: lh(46) }]}'],
   ['components/mistakes-panel/PanelKit.tsx', 'style={[styles.title, { color: g.text }]}>{text}'],
-  ['app/flashcards/CardsHubV2.tsx', 'style={[styles.title, { color: g.text, lineHeight: lh(46) }]}'],
+  // зачем (владелец 05.11, хаб — СПИСОК rev4): заголовок 23/800 в строку шапки
+  ['app/flashcards/CardsHubV2.tsx', 'style={[styles.title, { color: g.text, lineHeight: lh(29) }]}'],
   ['app/flashcards/CollectionHeaderV2.tsx', 'testID="fc-collection-title"'],
   ['app/flashcards/PackHeaderV2.tsx', 'testID="fc-collection-title"'],
   ['app/flashcards/CommunityPackPreview.tsx', 'testID="pack-preview-title"'],

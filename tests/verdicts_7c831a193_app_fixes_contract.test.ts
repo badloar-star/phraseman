@@ -53,12 +53,11 @@ describe('повышение ранга (coins-004)', () => {
   });
 });
 
+// зачем (владелец 05.11, хаб — СПИСОК rev4): пилюли «30/30» в шапке хаба больше нет (её нет в утверждённом списке); лимит показывает окно режимов.
 describe('пилюля «30/30» хаба Карточек', () => {
   const src = read('app/flashcards/CardsHubV2.tsx');
-  it('значок «копии» (copy-outline), как в образце `limPill(\'copy\', \'30/30\')` и у настройки тренировки, а не «стопка» albums-outline', () => {
-    const at = src.indexOf('testID="fc-cards-hub-limit"');
-    expect(at).toBeGreaterThan(0);
-    const pill = src.slice(at, at + 900);
-    expect(pill.match(/<Ionicons name="([a-z-]+)" size=\{16\}/)?.[1]).toBe('copy-outline');
+  it('в шапке списка пилюли лимита нет; лимит уходит в окно режимов', () => {
+    expect(src).not.toContain('testID="fc-cards-hub-limit"');
+    expect(read('app/flashcards/FlashcardsHubScreen.tsx')).toMatch(/<FlashcardsTrainingModeSheet\s+limitLabel=\{limitLabel\}/);
   });
 });

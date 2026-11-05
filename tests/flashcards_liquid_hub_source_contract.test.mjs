@@ -538,17 +538,19 @@ test('approved graphite, lavender and marine tokens remain distinct materials', 
 // зачем (владелец 04.10, хаб А утверждён и перенесён 1 в 1 из docs/design/v2-app/cards-section.html): прежние проверки раскладки «библиотека рядами + лента сообщества + сегменты»
 // удалены вместе с самой раскладкой; здесь — сторож утверждённой: четыре равные плитки, стопка, главная кнопка с остатком, без прокрутки и без обводок.
 // зачем: приказ владельца 11.10 — вернуть хаб утра (4 крупные плитки внизу, цвета берутся из темы пользователя)
-test('approved hub A: stack, accent CTA with the monthly remainder and four equal tiles, no scroll, no outlines', () => {
+// зачем (владелец 05.11 ~20:55 «ХАБ ДЕЛАЕТ КАК МАКЕТ Я ОДОБРИЛ»): хаб А (стопка + кнопка + плитки 2×2) заменён утверждённым СПИСКОМ rev4 —
+// пять строк-плашек в одну колонку, без стопки и главной кнопки; раскладку сторожит tests/cards_hub_list_layout_2026_11_05.test.ts.
+test('approved hub list rev4: five rows in one column, routes kept, no stack/CTA, no outlines', () => {
   const hub = readFileSync('app/flashcards/FlashcardsHubScreen.tsx', 'utf8');
   const view = readFileSync('app/flashcards/CardsHubV2.tsx', 'utf8');
+  const rows = readFileSync('app/flashcards/cards_hub_rows.ts', 'utf8');
   for (const id of ['saved', 'mine', 'video', 'community']) assert.match(hub, new RegExp(`id: '${id}'`), `tile ${id}`);
   for (const route of ["'/flashcards_collection'", "'/flashcards_my_packs'", "'/flashcards_packs'", "'/flashcards_video_packs'"]) assert.match(hub, new RegExp(route), `route ${route}`);
-  assert.match(hub, /осталось \$\{trainingRemaining\} из \$\{quotaPreview\.limit\}/, 'CTA shows the remaining monthly sessions');
-  assert.match(view, /fc-cards-hub-train/);
-  assert.match(view, /stackTop/);
-  // зачем (координатор 05.10, FONTSCALE2): при шрифте 1.0 хаб без прокрутки, как в макете; ScrollView разрешён ТОЛЬКО как запасной вариант при крупном системном шрифте
-  assert.doesNotMatch(view, /borderWidth: (?!StyleSheet\.hairlineWidth)/, 'hub A has only 1px hairline edges');
+  assert.match(rows, /CARDS_HUB_ROW_ORDER[^\n]*\['saved', 'mine', 'video', 'mistakes', 'community'\]/);
+  // лимит месяца по-прежнему считается и уходит в окно режимов
+  assert.match(hub, /осталось \$\{trainingRemaining\} из \$\{quotaPreview\.limit\}/);
+  assert.doesNotMatch(view, /fc-cards-hub-train|stackTop/);
+  assert.doesNotMatch(view, /borderWidth|borderColor/, 'list rows are plates without outlines');
   assert.equal((view.match(/<ScrollView/g) ?? []).length, 1, 'one ScrollView only');
-  assert.ok(view.includes('return fs > 1') && view.includes('? <ScrollView'), 'hub A has no scroll at font scale 1.0');
-  assert.match(view, /tiles: \{[^}]*flexWrap: 'wrap'/);
+  assert.doesNotMatch(view, /flexWrap: 'wrap'/, 'one column, not a 2×2 grid');
 });

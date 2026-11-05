@@ -62,13 +62,12 @@ assert.match(setupView, /accessibilityLabel=\{`\$\{deck\.title\}, \$\{deck\.coun
 const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
 assert.match(hub, /primeFlashcardsCollectionCache\(studyTarget\)/);
 assert.match(hub, /catalogLoadState/);
-// зачем (приказ владельца 11.10 — вернуть хаб утра): экран рисует CardsHubV2 — кнопка тренировки 52 высотой, а загрузка каталога решается без спиннера
+// зачем (владелец 05.11, хаб — СПИСОК по утверждённому макету rev4): кнопки тренировки в хабе нет; окно режимов открывается входом ?train=1
+// из «Сохранённых» и наборов, после закрытия фокус возвращается безопасно (ref пуст — findNodeHandle даёт null, фокус не трогаем)
 const hubView = read('app/flashcards/CardsHubV2.tsx');
-// зачем (аудит 22.10, V2Pressable): отступ 14 живёт на обёртке кнопки (ctaOuter), высота 52 — на самой кнопке
-assert.match(hubView, /ctaOuter: \{ marginTop: 14 \}/);
-assert.match(hubView, /cta: \{ minHeight: 52/);
-assert.match(hubView, /fc-cards-hub-train/);
+assert.doesNotMatch(hubView, /fc-cards-hub-train/);
 assert.match(hub, /trainButtonRef/);
+assert.match(hub, /if \(node != null\) AccessibilityInfo\.setAccessibilityFocus\(node\)/);
 assert.match(hub, /AccessibilityInfo\.setAccessibilityFocus/);
 
 const topPacks = read('app/flashcards/SavedTopCommunityPacks.tsx');

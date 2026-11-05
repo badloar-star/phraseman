@@ -1,0 +1,718 @@
+{
+  "schema": "phraseman.classic-irregular-verbs/1",
+  "lang": "it",
+  "formsLayout": [
+    {
+      "key": "inf",
+      "label": {
+        "ru": "Инфинитив",
+        "uk": "Інфінітив"
+      }
+    },
+    {
+      "key": "presente",
+      "label": {
+        "ru": "Настоящее (io / lui)",
+        "uk": "Теперішній (io / lui)"
+      }
+    },
+    {
+      "key": "pp",
+      "label": {
+        "ru": "Причастие прошедшего",
+        "uk": "Дієприкметник минулого"
+      }
+    }
+  ],
+  "lessons": {
+    "1": [
+      {
+        "lemma": "essere",
+        "meaning": {
+          "ru": "быть",
+          "uk": "бути"
+        },
+        "forms": {
+          "inf": "essere",
+          "presente": "io sono / lui è",
+          "pp": "stato"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Самый частый глагол: каждая форма своя. Причастие stato совпадает с stare.",
+          "uk": "Найчастіше дієслово: кожна форма своя. Дієприкметник stato збігається зі stare."
+        },
+        "examples": [
+          "it:01:03",
+          "it:01:04",
+          "it:01:05"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "lemma": "avere",
+        "meaning": {
+          "ru": "иметь",
+          "uk": "мати"
+        },
+        "forms": {
+          "inf": "avere",
+          "presente": "io ho / lui ha",
+          "pp": "avuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Буква «h» не читается: ho, hai, ha, hanno.",
+          "uk": "Літера «h» не читається: ho, hai, ha, hanno."
+        },
+        "examples": [
+          "it:05:11",
+          "it:05:12",
+          "it:05:14"
+        ]
+      },
+      {
+        "lemma": "scegliere",
+        "meaning": {
+          "ru": "выбирать",
+          "uk": "вибирати"
+        },
+        "forms": {
+          "inf": "scegliere",
+          "presente": "io scelgo / lui sceglie",
+          "pp": "scelto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: scelgo, scegli, sceglie.",
+          "uk": "Корінь змінюється: scelgo, scegli, sceglie."
+        },
+        "examples": [
+          "it:05:46",
+          "it:18:48"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "lemma": "piacere",
+        "meaning": {
+          "ru": "нравиться",
+          "uk": "подобатися"
+        },
+        "forms": {
+          "inf": "piacere",
+          "presente": "mi piace / mi piacciono",
+          "pp": "piaciuto"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Нравится то, что подлежащее: piace (один), piacciono (много).",
+          "uk": "Подобається те, що підмет: piace (один), piacciono (багато)."
+        },
+        "examples": [
+          "it:06:12",
+          "it:06:15"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "lemma": "chiudere",
+        "meaning": {
+          "ru": "закрывать",
+          "uk": "зачиняти"
+        },
+        "forms": {
+          "inf": "chiudere",
+          "presente": "io chiudo / lui chiude",
+          "pp": "chiuso"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Причастие неправильное: chiuso.",
+          "uk": "Дієприкметник неправильний: chiuso."
+        },
+        "examples": [
+          "it:07:40",
+          "it:08:24"
+        ]
+      }
+    ],
+    "8": [
+      {
+        "lemma": "stare",
+        "meaning": {
+          "ru": "находиться, чувствовать себя",
+          "uk": "перебувати, почуватися"
+        },
+        "forms": {
+          "inf": "stare",
+          "presente": "io sto / lui sta",
+          "pp": "stato"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Как себя чувствуешь и «идёт процесс»: sto bene, sto leggendo.",
+          "uk": "Як почуваєшся і «триває процес»: sto bene, sto leggendo."
+        },
+        "examples": [
+          "it:08:43",
+          "it:08:46"
+        ]
+      },
+      {
+        "lemma": "aprire",
+        "meaning": {
+          "ru": "открывать",
+          "uk": "відчиняти"
+        },
+        "forms": {
+          "inf": "aprire",
+          "presente": "io apro / lui apre",
+          "pp": "aperto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Причастие неправильное: aperto.",
+          "uk": "Дієприкметник неправильний: aperto."
+        },
+        "examples": [
+          "it:08:27",
+          "it:16:12"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "lemma": "prendere",
+        "meaning": {
+          "ru": "брать",
+          "uk": "брати"
+        },
+        "forms": {
+          "inf": "prendere",
+          "presente": "io prendo / lui prende",
+          "pp": "preso"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Причастие неправильное: preso.",
+          "uk": "Дієприкметник неправильний: preso."
+        },
+        "examples": [
+          "it:09:28",
+          "it:25:03"
+        ]
+      },
+      {
+        "lemma": "mettere",
+        "meaning": {
+          "ru": "класть, надевать",
+          "uk": "класти, одягати"
+        },
+        "forms": {
+          "inf": "mettere",
+          "presente": "io metto / lui mette",
+          "pp": "messo"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Причастие неправильное: messo.",
+          "uk": "Дієприкметник неправильний: messo."
+        },
+        "examples": [
+          "it:09:45",
+          "it:22:14"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "lemma": "andare",
+        "meaning": {
+          "ru": "идти, ехать",
+          "uk": "йти, їхати"
+        },
+        "forms": {
+          "inf": "andare",
+          "presente": "io vado / lui va",
+          "pp": "andato"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Корень меняется: vado, vai, va, andiamo, vanno.",
+          "uk": "Корінь змінюється: vado, vai, va, andiamo, vanno."
+        },
+        "examples": [
+          "it:11:30",
+          "it:11:02",
+          "it:11:06"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "lemma": "volere",
+        "meaning": {
+          "ru": "хотеть",
+          "uk": "хотіти"
+        },
+        "forms": {
+          "inf": "volere",
+          "presente": "io voglio / lui vuole",
+          "pp": "voluto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Вежливо: vorrei — «я хотел бы».",
+          "uk": "Чемно: vorrei — «я хотів би»."
+        },
+        "examples": [
+          "it:12:09",
+          "it:12:44"
+        ]
+      },
+      {
+        "lemma": "bere",
+        "meaning": {
+          "ru": "пить",
+          "uk": "пити"
+        },
+        "forms": {
+          "inf": "bere",
+          "presente": "io bevo / lui beve",
+          "pp": "bevuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Основа удлиняется: bevo, bevi, beve, beviamo.",
+          "uk": "Основа подовжується: bevo, bevi, beve, beviamo."
+        },
+        "examples": [
+          "it:12:21",
+          "it:12:24",
+          "it:12:23"
+        ]
+      },
+      {
+        "lemma": "rimanere",
+        "meaning": {
+          "ru": "оставаться",
+          "uk": "залишатися"
+        },
+        "forms": {
+          "inf": "rimanere",
+          "presente": "io rimango / lui rimane",
+          "pp": "rimasto"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Причастие неправильное: rimasto.",
+          "uk": "Дієприкметник неправильний: rimasto."
+        },
+        "examples": [
+          "it:12:28",
+          "it:12:29"
+        ]
+      }
+    ],
+    "14": [
+      {
+        "lemma": "venire",
+        "meaning": {
+          "ru": "приходить",
+          "uk": "приходити"
+        },
+        "forms": {
+          "inf": "venire",
+          "presente": "io vengo / lui viene",
+          "pp": "venuto"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Корень меняется: vengo, vieni, viene, veniamo, vengono.",
+          "uk": "Корінь змінюється: vengo, vieni, viene, veniamo, vengono."
+        },
+        "examples": [
+          "it:14:03",
+          "it:27:20"
+        ]
+      },
+      {
+        "lemma": "potere",
+        "meaning": {
+          "ru": "мочь",
+          "uk": "могти"
+        },
+        "forms": {
+          "inf": "potere",
+          "presente": "io posso / lui può",
+          "pp": "potuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: posso, puoi, può, possiamo, possono.",
+          "uk": "Корінь змінюється: posso, puoi, può, possiamo, possono."
+        },
+        "examples": [
+          "it:14:02",
+          "it:14:19",
+          "it:14:01"
+        ]
+      },
+      {
+        "lemma": "dovere",
+        "meaning": {
+          "ru": "быть должным",
+          "uk": "бути повинним"
+        },
+        "forms": {
+          "inf": "dovere",
+          "presente": "io devo / lui deve",
+          "pp": "dovuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: devo, devi, deve, dobbiamo, devono.",
+          "uk": "Корінь змінюється: devo, devi, deve, dobbiamo, devono."
+        },
+        "examples": [
+          "it:14:07",
+          "it:14:08",
+          "it:14:10"
+        ]
+      },
+      {
+        "lemma": "sapere",
+        "meaning": {
+          "ru": "знать, уметь",
+          "uk": "знати, вміти"
+        },
+        "forms": {
+          "inf": "sapere",
+          "presente": "io so / lui sa",
+          "pp": "saputo"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: so, sai, sa, sappiamo, sanno.",
+          "uk": "Корінь змінюється: so, sai, sa, sappiamo, sanno."
+        },
+        "examples": [
+          "it:14:44",
+          "it:27:13"
+        ]
+      },
+      {
+        "lemma": "leggere",
+        "meaning": {
+          "ru": "читать",
+          "uk": "читати"
+        },
+        "forms": {
+          "inf": "leggere",
+          "presente": "io leggo / lui legge",
+          "pp": "letto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Причастие letto совпадает со словом «кровать».",
+          "uk": "Дієприкметник letto збігається зі словом «ліжко»."
+        },
+        "examples": [
+          "it:14:40",
+          "it:15:01"
+        ]
+      },
+      {
+        "lemma": "perdere",
+        "meaning": {
+          "ru": "терять",
+          "uk": "губити"
+        },
+        "forms": {
+          "inf": "perdere",
+          "presente": "io perdo / lui perde",
+          "pp": "perso"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Причастие perso (или perduto).",
+          "uk": "Дієприкметник perso (або perduto)."
+        },
+        "examples": [
+          "it:14:39",
+          "it:25:35"
+        ]
+      },
+      {
+        "lemma": "rispondere",
+        "meaning": {
+          "ru": "отвечать",
+          "uk": "відповідати"
+        },
+        "forms": {
+          "inf": "rispondere",
+          "presente": "io rispondo / lui risponde",
+          "pp": "risposto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Причастие неправильное: risposto.",
+          "uk": "Дієприкметник неправильний: risposto."
+        },
+        "examples": [
+          "it:14:33",
+          "it:23:09"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "lemma": "scrivere",
+        "meaning": {
+          "ru": "писать",
+          "uk": "писати"
+        },
+        "forms": {
+          "inf": "scrivere",
+          "presente": "io scrivo / lui scrive",
+          "pp": "scritto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Причастие неправильное: scritto.",
+          "uk": "Дієприкметник неправильний: scritto."
+        },
+        "examples": [
+          "it:15:08",
+          "it:23:08"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "lemma": "fare",
+        "meaning": {
+          "ru": "делать",
+          "uk": "робити"
+        },
+        "forms": {
+          "inf": "fare",
+          "presente": "io faccio / lui fa",
+          "pp": "fatto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: faccio, fai, fa, facciamo, fanno.",
+          "uk": "Корінь змінюється: faccio, fai, fa, facciamo, fanno."
+        },
+        "examples": [
+          "it:16:42",
+          "it:18:28"
+        ]
+      },
+      {
+        "lemma": "tenere",
+        "meaning": {
+          "ru": "держать",
+          "uk": "тримати"
+        },
+        "forms": {
+          "inf": "tenere",
+          "presente": "io tengo / lui tiene",
+          "pp": "tenuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: tengo, tieni, tiene, teniamo, tengono.",
+          "uk": "Корінь змінюється: tengo, tieni, tiene, teniamo, tengono."
+        },
+        "examples": [
+          "it:16:14",
+          "it:25:05"
+        ]
+      }
+    ],
+    "17": [
+      {
+        "lemma": "uscire",
+        "meaning": {
+          "ru": "выходить",
+          "uk": "виходити"
+        },
+        "forms": {
+          "inf": "uscire",
+          "presente": "io esco / lui esce",
+          "pp": "uscito"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Корень меняется: esco, esci, esce, usciamo.",
+          "uk": "Корінь змінюється: esco, esci, esce, usciamo."
+        },
+        "examples": [
+          "it:17:24",
+          "it:31:09"
+        ]
+      }
+    ],
+    "18": [
+      {
+        "lemma": "dire",
+        "meaning": {
+          "ru": "говорить, сказать",
+          "uk": "казати"
+        },
+        "forms": {
+          "inf": "dire",
+          "presente": "io dico / lui dice",
+          "pp": "detto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: dico, dici, dice, diciamo, dicono.",
+          "uk": "Корінь змінюється: dico, dici, dice, diciamo, dicono."
+        },
+        "examples": [
+          "it:18:30",
+          "it:23:33"
+        ]
+      },
+      {
+        "lemma": "vedere",
+        "meaning": {
+          "ru": "видеть",
+          "uk": "бачити"
+        },
+        "forms": {
+          "inf": "vedere",
+          "presente": "io vedo / lui vede",
+          "pp": "visto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Причастие неправильное: visto.",
+          "uk": "Дієприкметник неправильний: visto."
+        },
+        "examples": [
+          "it:18:24",
+          "it:22:01"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "lemma": "cadere",
+        "meaning": {
+          "ru": "падать",
+          "uk": "падати"
+        },
+        "forms": {
+          "inf": "cadere",
+          "presente": "io cado / lui cade",
+          "pp": "caduto"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "В будущем одна «d» исчезает: cadrò.",
+          "uk": "У майбутньому одна «d» зникає: cadrò."
+        },
+        "examples": [
+          "it:19:30",
+          "it:19:27"
+        ]
+      },
+      {
+        "lemma": "salire",
+        "meaning": {
+          "ru": "подниматься",
+          "uk": "підніматися"
+        },
+        "forms": {
+          "inf": "salire",
+          "presente": "io salgo / lui sale",
+          "pp": "salito"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Корень меняется: salgo, sali, sale, saliamo, salgono.",
+          "uk": "Корінь змінюється: salgo, sali, sale, saliamo, salgono."
+        },
+        "examples": [
+          "it:19:25",
+          "it:19:50"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "lemma": "conoscere",
+        "meaning": {
+          "ru": "знать (кого-то)",
+          "uk": "знати (когось)"
+        },
+        "forms": {
+          "inf": "conoscere",
+          "presente": "io conosco / lui conosce",
+          "pp": "conosciuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Знать человека или место; факт — sapere.",
+          "uk": "Знати людину або місце; факт — sapere."
+        },
+        "examples": [
+          "it:20:31",
+          "it:22:04"
+        ]
+      },
+      {
+        "lemma": "piovere",
+        "meaning": {
+          "ru": "идти (о дожде)",
+          "uk": "іти (про дощ)"
+        },
+        "forms": {
+          "inf": "piovere",
+          "presente": "piove",
+          "pp": "piovuto"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Только в 3-м лице: piove — «идёт дождь».",
+          "uk": "Лише в 3-й особі: piove — «йде дощ»."
+        },
+        "examples": [
+          "it:20:23",
+          "it:32:19"
+        ]
+      }
+    ],
+    "23": [
+      {
+        "lemma": "dare",
+        "meaning": {
+          "ru": "давать",
+          "uk": "давати"
+        },
+        "forms": {
+          "inf": "dare",
+          "presente": "io do / lui dà",
+          "pp": "dato"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Буква «à» в 3-м лице: lui dà.",
+          "uk": "Літера «à» у 3-й особі: lui dà."
+        },
+        "examples": [
+          "it:23:17",
+          "it:29:31"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,599 @@
+{
+  "schema": "phraseman.classic-irregular-verbs/1",
+  "lang": "es",
+  "formsLayout": [
+    {
+      "key": "inf",
+      "label": {
+        "ru": "Инфинитив",
+        "uk": "Інфінітив"
+      }
+    },
+    {
+      "key": "presente",
+      "label": {
+        "ru": "Настоящее (yo / él)",
+        "uk": "Теперішній (yo / él)"
+      }
+    },
+    {
+      "key": "preterito",
+      "label": {
+        "ru": "Прошедшее (yo / él)",
+        "uk": "Минулий (yo / él)"
+      }
+    },
+    {
+      "key": "participio",
+      "label": {
+        "ru": "Причастие",
+        "uk": "Дієприкметник"
+      }
+    }
+  ],
+  "lessons": {
+    "1": [
+      {
+        "lemma": "estar",
+        "meaning": {
+          "ru": "быть (сейчас, где)",
+          "uk": "бути (зараз, де)"
+        },
+        "forms": {
+          "inf": "estar",
+          "presente": "estoy / está",
+          "preterito": "estuve / estuvo",
+          "participio": "estado"
+        },
+        "note": {
+          "ru": "Место и состояние: где ты, как ты.",
+          "uk": "Місце і стан: де ти, як ти."
+        },
+        "examples": [
+          "es:01:01",
+          "es:01:02",
+          "es:01:25"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "lemma": "ser",
+        "meaning": {
+          "ru": "быть (постоянно)",
+          "uk": "бути (постійно)"
+        },
+        "forms": {
+          "inf": "ser",
+          "presente": "soy / es",
+          "preterito": "fui / fue",
+          "participio": "sido"
+        },
+        "note": {
+          "ru": "Постоянные свойства: кто ты, какой предмет.",
+          "uk": "Постійні властивості: хто ти, який предмет."
+        },
+        "examples": [
+          "es:04:01",
+          "es:04:45",
+          "es:04:18"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "lemma": "costar",
+        "meaning": {
+          "ru": "стоить",
+          "uk": "коштувати"
+        },
+        "forms": {
+          "inf": "costar",
+          "presente": "cuesto / cuesta",
+          "preterito": "costé / costó",
+          "participio": "costado"
+        },
+        "note": {
+          "ru": "o → ue: cuesta, cuestan.",
+          "uk": "o → ue: cuesta, cuestan."
+        },
+        "examples": [
+          "es:05:39"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "lemma": "haber",
+        "meaning": {
+          "ru": "иметься; вспомогательный",
+          "uk": "бути; допоміжне"
+        },
+        "forms": {
+          "inf": "haber",
+          "presente": "he / ha (hay)",
+          "preterito": "hube / hubo",
+          "participio": "habido"
+        },
+        "note": {
+          "ru": "Помогает строить прошедшее: he comido. «Hay» — «есть, имеется».",
+          "uk": "Допомагає будувати минуле: he comido. «Hay» — «є, існує»."
+        },
+        "examples": [
+          "es:07:21",
+          "es:20:02"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "lemma": "leer",
+        "meaning": {
+          "ru": "читать",
+          "uk": "читати"
+        },
+        "forms": {
+          "inf": "leer",
+          "presente": "leo / lee",
+          "preterito": "leí / leyó",
+          "participio": "leído"
+        },
+        "note": {
+          "ru": "В прошедшем «i» между гласными становится «y»: leyó, leyendo.",
+          "uk": "У минулому «i» між голосними стає «y»: leyó, leyendo."
+        },
+        "examples": [
+          "es:10:15",
+          "es:10:44",
+          "es:10:14"
+        ]
+      },
+      {
+        "lemma": "abrir",
+        "meaning": {
+          "ru": "открывать",
+          "uk": "відчиняти"
+        },
+        "forms": {
+          "inf": "abrir",
+          "presente": "abro / abre",
+          "preterito": "abrí / abrió",
+          "participio": "abierto"
+        },
+        "note": {
+          "ru": "Причастие неправильное: abierto.",
+          "uk": "Дієприкметник неправильний: abierto."
+        },
+        "examples": [
+          "es:10:28",
+          "es:10:31",
+          "es:10:48"
+        ]
+      },
+      {
+        "lemma": "escribir",
+        "meaning": {
+          "ru": "писать",
+          "uk": "писати"
+        },
+        "forms": {
+          "inf": "escribir",
+          "presente": "escribo / escribe",
+          "preterito": "escribí / escribió",
+          "participio": "escrito"
+        },
+        "note": {
+          "ru": "Причастие неправильное: escrito.",
+          "uk": "Дієприкметник неправильний: escrito."
+        },
+        "examples": [
+          "es:10:17",
+          "es:10:27",
+          "es:10:20"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "lemma": "tener",
+        "meaning": {
+          "ru": "иметь",
+          "uk": "мати"
+        },
+        "forms": {
+          "inf": "tener",
+          "presente": "tengo / tiene",
+          "preterito": "tuve / tuvo",
+          "participio": "tenido"
+        },
+        "note": {
+          "ru": "В первом лице: tengo; в 3-м лице e → ie: tiene.",
+          "uk": "У першій особі: tengo; у 3-й особі e → ie: tiene."
+        },
+        "examples": [
+          "es:11:07",
+          "es:11:16",
+          "es:11:22"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "lemma": "poder",
+        "meaning": {
+          "ru": "мочь",
+          "uk": "могти"
+        },
+        "forms": {
+          "inf": "poder",
+          "presente": "puedo / puede",
+          "preterito": "pude / pudo",
+          "participio": "podido"
+        },
+        "note": {
+          "ru": "o → ue под ударением: puedo, puedes, puede.",
+          "uk": "o → ue під наголосом: puedo, puedes, puede."
+        },
+        "examples": [
+          "es:15:48",
+          "es:15:06",
+          "es:15:08"
+        ]
+      },
+      {
+        "lemma": "volver",
+        "meaning": {
+          "ru": "возвращаться",
+          "uk": "повертатися"
+        },
+        "forms": {
+          "inf": "volver",
+          "presente": "vuelvo / vuelve",
+          "preterito": "volví / volvió",
+          "participio": "vuelto"
+        },
+        "note": {
+          "ru": "o → ue под ударением: vuelvo; причастие vuelto.",
+          "uk": "o → ue під наголосом: vuelvo; дієприкметник vuelto."
+        },
+        "examples": [
+          "es:15:40",
+          "es:25:22"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "lemma": "ir",
+        "meaning": {
+          "ru": "идти, ехать",
+          "uk": "йти, їхати"
+        },
+        "forms": {
+          "inf": "ir",
+          "presente": "voy / va",
+          "preterito": "fui / fue",
+          "participio": "ido"
+        },
+        "note": {
+          "ru": "Три разные основы: v-, fu-, i-.",
+          "uk": "Три різні основи: v-, fu-, i-."
+        },
+        "examples": [
+          "es:16:03",
+          "es:16:04",
+          "es:16:49"
+        ]
+      }
+    ],
+    "22": [
+      {
+        "lemma": "hacer",
+        "meaning": {
+          "ru": "делать",
+          "uk": "робити"
+        },
+        "forms": {
+          "inf": "hacer",
+          "presente": "hago / hace",
+          "preterito": "hice / hizo",
+          "participio": "hecho"
+        },
+        "note": {
+          "ru": "В первом лице: hago; причастие hecho.",
+          "uk": "У першій особі: hago; дієприкметник hecho."
+        },
+        "examples": [
+          "es:22:23",
+          "es:22:21",
+          "es:22:30"
+        ]
+      },
+      {
+        "lemma": "venir",
+        "meaning": {
+          "ru": "приходить",
+          "uk": "приходити"
+        },
+        "forms": {
+          "inf": "venir",
+          "presente": "vengo / viene",
+          "preterito": "vine / vino",
+          "participio": "venido"
+        },
+        "note": {
+          "ru": "В первом лице: vengo; e → ie: viene.",
+          "uk": "У першій особі: vengo; e → ie: viene."
+        },
+        "examples": [
+          "es:22:31",
+          "es:22:38",
+          "es:22:34"
+        ]
+      }
+    ],
+    "24": [
+      {
+        "lemma": "empezar",
+        "meaning": {
+          "ru": "начинать",
+          "uk": "починати"
+        },
+        "forms": {
+          "inf": "empezar",
+          "presente": "empiezo / empieza",
+          "preterito": "empecé / empezó",
+          "participio": "empezado"
+        },
+        "note": {
+          "ru": "e → ie: empiezo; в первом лице прошедшего z → c: empecé.",
+          "uk": "e → ie: empiezo; у першій особі минулого z → c: empecé."
+        },
+        "examples": [
+          "es:24:34",
+          "es:28:45"
+        ]
+      },
+      {
+        "lemma": "llover",
+        "meaning": {
+          "ru": "идти (о дожде)",
+          "uk": "іти (про дощ)"
+        },
+        "forms": {
+          "inf": "llover",
+          "presente": "llueve",
+          "preterito": "llovió",
+          "participio": "llovido"
+        },
+        "note": {
+          "ru": "Только в 3-м лице: llueve — «идёт дождь».",
+          "uk": "Лише в 3-й особі: llueve — «йде дощ»."
+        },
+        "examples": [
+          "es:24:34"
+        ]
+      }
+    ],
+    "25": [
+      {
+        "lemma": "cerrar",
+        "meaning": {
+          "ru": "закрывать",
+          "uk": "зачиняти"
+        },
+        "forms": {
+          "inf": "cerrar",
+          "presente": "cierro / cierra",
+          "preterito": "cerré / cerró",
+          "participio": "cerrado"
+        },
+        "note": {
+          "ru": "e → ie под ударением: cierro, cierras, cierra.",
+          "uk": "e → ie під наголосом: cierro, cierras, cierra."
+        },
+        "examples": [
+          "es:25:10",
+          "es:30:07"
+        ]
+      }
+    ],
+    "26": [
+      {
+        "lemma": "dar",
+        "meaning": {
+          "ru": "давать",
+          "uk": "давати"
+        },
+        "forms": {
+          "inf": "dar",
+          "presente": "doy / da",
+          "preterito": "di / dio",
+          "participio": "dado"
+        },
+        "note": {
+          "ru": "В первом лице: doy; прошедшее без ударения: di, dio.",
+          "uk": "У першій особі: doy; минуле без наголосу: di, dio."
+        },
+        "examples": [
+          "es:26:31",
+          "es:31:36"
+        ]
+      },
+      {
+        "lemma": "pedir",
+        "meaning": {
+          "ru": "просить, заказывать",
+          "uk": "просити, замовляти"
+        },
+        "forms": {
+          "inf": "pedir",
+          "presente": "pido / pide",
+          "preterito": "pedí / pidió",
+          "participio": "pedido"
+        },
+        "note": {
+          "ru": "e → i: pido, pides, pide.",
+          "uk": "e → i: pido, pides, pide."
+        },
+        "examples": [
+          "es:26:19",
+          "es:26:37"
+        ]
+      },
+      {
+        "lemma": "mostrar",
+        "meaning": {
+          "ru": "показывать",
+          "uk": "показувати"
+        },
+        "forms": {
+          "inf": "mostrar",
+          "presente": "muestro / muestra",
+          "preterito": "mostré / mostró",
+          "participio": "mostrado"
+        },
+        "note": {
+          "ru": "o → ue под ударением: muestro, muestras.",
+          "uk": "o → ue під наголосом: muestro, muestras."
+        },
+        "examples": [
+          "es:26:21"
+        ]
+      }
+    ],
+    "27": [
+      {
+        "lemma": "ver",
+        "meaning": {
+          "ru": "видеть",
+          "uk": "бачити"
+        },
+        "forms": {
+          "inf": "ver",
+          "presente": "veo / ve",
+          "preterito": "vi / vio",
+          "participio": "visto"
+        },
+        "note": {
+          "ru": "В первом лице: veo; причастие visto.",
+          "uk": "У першій особі: veo; дієприкметник visto."
+        },
+        "examples": [
+          "es:27:44"
+        ]
+      },
+      {
+        "lemma": "salir",
+        "meaning": {
+          "ru": "выходить, уходить",
+          "uk": "виходити"
+        },
+        "forms": {
+          "inf": "salir",
+          "presente": "salgo / sale",
+          "preterito": "salí / salió",
+          "participio": "salido"
+        },
+        "note": {
+          "ru": "В первом лице: salgo; в будущем: saldré.",
+          "uk": "У першій особі: salgo; у майбутньому: saldré."
+        },
+        "examples": [
+          "es:27:41",
+          "es:31:45"
+        ]
+      },
+      {
+        "lemma": "encontrar",
+        "meaning": {
+          "ru": "находить",
+          "uk": "знаходити"
+        },
+        "forms": {
+          "inf": "encontrar",
+          "presente": "encuentro / encuentra",
+          "preterito": "encontré / encontró",
+          "participio": "encontrado"
+        },
+        "note": {
+          "ru": "o → ue под ударением: encuentro, encuentras.",
+          "uk": "o → ue під наголосом: encuentro, encuentras."
+        },
+        "examples": [
+          "es:27:47",
+          "es:27:22"
+        ]
+      }
+    ],
+    "29": [
+      {
+        "lemma": "poner",
+        "meaning": {
+          "ru": "класть, ставить",
+          "uk": "класти, ставити"
+        },
+        "forms": {
+          "inf": "poner",
+          "presente": "pongo / pone",
+          "preterito": "puse / puso",
+          "participio": "puesto"
+        },
+        "note": {
+          "ru": "В первом лице: pongo; причастие puesto.",
+          "uk": "У першій особі: pongo; дієприкметник puesto."
+        },
+        "examples": [
+          "es:29:29"
+        ]
+      }
+    ],
+    "30": [
+      {
+        "lemma": "querer",
+        "meaning": {
+          "ru": "хотеть, любить",
+          "uk": "хотіти, любити"
+        },
+        "forms": {
+          "inf": "querer",
+          "presente": "quiero / quiere",
+          "preterito": "quise / quiso",
+          "participio": "querido"
+        },
+        "note": {
+          "ru": "e → ie под ударением: quiero, quieres, quiere.",
+          "uk": "e → ie під наголосом: quiero, quieres, quiere."
+        },
+        "examples": [
+          "es:30:02",
+          "es:30:11",
+          "es:30:47"
+        ]
+      }
+    ],
+    "31": [
+      {
+        "lemma": "saber",
+        "meaning": {
+          "ru": "знать, уметь",
+          "uk": "знати, вміти"
+        },
+        "forms": {
+          "inf": "saber",
+          "presente": "sé / sabe",
+          "preterito": "supe / supo",
+          "participio": "sabido"
+        },
+        "note": {
+          "ru": "В первом лице: sé (с ударением).",
+          "uk": "У першій особі: sé (з наголосом)."
+        },
+        "examples": [
+          "es:31:05",
+          "es:32:09"
+        ]
+      }
+    ]
+  }
+}

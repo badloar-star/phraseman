@@ -1,0 +1,1290 @@
+{
+  "schema": "phraseman.classic-irregular-verbs/1",
+  "lang": "de",
+  "formsLayout": [
+    {
+      "key": "inf",
+      "label": {
+        "ru": "Инфинитив",
+        "uk": "Інфінітив"
+      }
+    },
+    {
+      "key": "pres3",
+      "label": {
+        "ru": "Настоящее (er/sie/es)",
+        "uk": "Теперішній (er/sie/es)"
+      }
+    },
+    {
+      "key": "praet",
+      "label": {
+        "ru": "Претерит (er/sie/es)",
+        "uk": "Претерит (er/sie/es)"
+      }
+    },
+    {
+      "key": "pp",
+      "label": {
+        "ru": "Партицип II",
+        "uk": "Партицип II"
+      }
+    }
+  ],
+  "lessons": {
+    "1": [
+      {
+        "lemma": "sein",
+        "meaning": {
+          "ru": "быть",
+          "uk": "бути"
+        },
+        "forms": {
+          "inf": "sein",
+          "pres3": "ist",
+          "praet": "war",
+          "pp": "gewesen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Самый частый глагол: меняется в каждой форме.",
+          "uk": "Найчастіше дієслово: змінюється в кожній формі."
+        },
+        "examples": [
+          "de:01:01",
+          "de:01:02",
+          "de:01:10"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "lemma": "kommen",
+        "meaning": {
+          "ru": "приходить",
+          "uk": "приходити"
+        },
+        "forms": {
+          "inf": "kommen",
+          "pres3": "kommt",
+          "praet": "kam",
+          "pp": "gekommen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Гласная меняется: kommen — kam.",
+          "uk": "Голосна змінюється: kommen — kam."
+        },
+        "examples": [
+          "de:04:25",
+          "de:06:11"
+        ]
+      },
+      {
+        "lemma": "lesen",
+        "meaning": {
+          "ru": "читать",
+          "uk": "читати"
+        },
+        "forms": {
+          "inf": "lesen",
+          "pres3": "liest",
+          "praet": "las",
+          "pp": "gelesen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «ie»: du liest, er liest.",
+          "uk": "Голосна змінюється на «ie»: du liest, er liest."
+        },
+        "examples": [
+          "de:04:37",
+          "de:07:31"
+        ]
+      },
+      {
+        "lemma": "trinken",
+        "meaning": {
+          "ru": "пить",
+          "uk": "пити"
+        },
+        "forms": {
+          "inf": "trinken",
+          "pres3": "trinkt",
+          "praet": "trank",
+          "pp": "getrunken"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: trinken — trank — getrunken.",
+          "uk": "Голосна змінюється: trinken — trank — getrunken."
+        },
+        "examples": [
+          "de:04:34",
+          "de:04:39"
+        ]
+      },
+      {
+        "lemma": "beginnen",
+        "meaning": {
+          "ru": "начинаться",
+          "uk": "починатися"
+        },
+        "forms": {
+          "inf": "beginnen",
+          "pres3": "beginnt",
+          "praet": "begann",
+          "pp": "begonnen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: beginnen — begann — begonnen.",
+          "uk": "Голосна змінюється: beginnen — begann — begonnen."
+        },
+        "examples": [
+          "de:04:21",
+          "de:24:20"
+        ]
+      },
+      {
+        "lemma": "schließen",
+        "meaning": {
+          "ru": "закрывать",
+          "uk": "зачиняти"
+        },
+        "forms": {
+          "inf": "schließen",
+          "pres3": "schließt",
+          "praet": "schloss",
+          "pp": "geschlossen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: schließen — schloss — geschlossen.",
+          "uk": "Голосна змінюється: schließen — schloss — geschlossen."
+        },
+        "examples": [
+          "de:04:24",
+          "de:16:17"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "lemma": "haben",
+        "meaning": {
+          "ru": "иметь",
+          "uk": "мати"
+        },
+        "forms": {
+          "inf": "haben",
+          "pres3": "hat",
+          "praet": "hatte",
+          "pp": "gehabt"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "В 2-м и 3-м лице единственного числа выпадает «b»: hast, hat.",
+          "uk": "У 2-й і 3-й особі однини випадає «b»: hast, hat."
+        },
+        "examples": [
+          "de:05:38",
+          "de:05:41",
+          "de:05:42"
+        ]
+      },
+      {
+        "lemma": "bleiben",
+        "meaning": {
+          "ru": "оставаться",
+          "uk": "залишатися"
+        },
+        "forms": {
+          "inf": "bleiben",
+          "pres3": "bleibt",
+          "praet": "blieb",
+          "pp": "geblieben"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "С «sein»: ich bin geblieben.",
+          "uk": "З «sein»: ich bin geblieben."
+        },
+        "examples": [
+          "de:05:37",
+          "de:15:25"
+        ]
+      },
+      {
+        "lemma": "mögen",
+        "meaning": {
+          "ru": "любить, нравиться",
+          "uk": "любити, подобатися"
+        },
+        "forms": {
+          "inf": "mögen",
+          "pres3": "mag",
+          "praet": "mochte",
+          "pp": "gemocht"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Форма «möchte» («хотел бы») — от этого глагола.",
+          "uk": "Форма «möchte» («хотів би») — від цього дієслова."
+        },
+        "examples": [
+          "de:05:39",
+          "de:14:36"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "lemma": "gehen",
+        "meaning": {
+          "ru": "идти",
+          "uk": "йти"
+        },
+        "forms": {
+          "inf": "gehen",
+          "pres3": "geht",
+          "praet": "ging",
+          "pp": "gegangen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Прошедшее время совсем другое: ging, gegangen.",
+          "uk": "Минулий час зовсім інший: ging, gegangen."
+        },
+        "examples": [
+          "de:06:24",
+          "de:12:25"
+        ]
+      },
+      {
+        "lemma": "fahren",
+        "meaning": {
+          "ru": "ехать",
+          "uk": "їхати"
+        },
+        "forms": {
+          "inf": "fahren",
+          "pres3": "fährt",
+          "praet": "fuhr",
+          "pp": "gefahren"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Во 2-м и 3-м лице «a» становится «ä»: du fährst, er fährt.",
+          "uk": "У 2-й і 3-й особі «a» стає «ä»: du fährst, er fährt."
+        },
+        "examples": [
+          "de:06:48",
+          "de:12:37"
+        ]
+      },
+      {
+        "lemma": "heißen",
+        "meaning": {
+          "ru": "называться",
+          "uk": "називатися"
+        },
+        "forms": {
+          "inf": "heißen",
+          "pres3": "heißt",
+          "praet": "hieß",
+          "pp": "geheißen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Прошедшее время: hieß.",
+          "uk": "Минулий час: hieß."
+        },
+        "examples": [
+          "de:06:21",
+          "de:06:22"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "lemma": "nehmen",
+        "meaning": {
+          "ru": "брать",
+          "uk": "брати"
+        },
+        "forms": {
+          "inf": "nehmen",
+          "pres3": "nimmt",
+          "praet": "nahm",
+          "pp": "genommen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Корень меняется: nehme, но nimmst, nimmt.",
+          "uk": "Корінь змінюється: nehme, але nimmst, nimmt."
+        },
+        "examples": [
+          "de:07:21",
+          "de:07:22",
+          "de:07:23"
+        ]
+      },
+      {
+        "lemma": "finden",
+        "meaning": {
+          "ru": "находить",
+          "uk": "знаходити"
+        },
+        "forms": {
+          "inf": "finden",
+          "pres3": "findet",
+          "praet": "fand",
+          "pp": "gefunden"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: finden — fand — gefunden.",
+          "uk": "Голосна змінюється: finden — fand — gefunden."
+        },
+        "examples": [
+          "de:07:47",
+          "de:09:50"
+        ]
+      },
+      {
+        "lemma": "tragen",
+        "meaning": {
+          "ru": "нести, носить",
+          "uk": "нести, носити"
+        },
+        "forms": {
+          "inf": "tragen",
+          "pres3": "trägt",
+          "praet": "trug",
+          "pp": "getragen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Во 2-м и 3-м лице «a» становится «ä»: du trägst, er trägt.",
+          "uk": "У 2-й і 3-й особі «a» стає «ä»: du trägst, er trägt."
+        },
+        "examples": [
+          "de:07:35",
+          "de:07:36",
+          "de:07:34"
+        ]
+      }
+    ],
+    "8": [
+      {
+        "lemma": "essen",
+        "meaning": {
+          "ru": "есть",
+          "uk": "їсти"
+        },
+        "forms": {
+          "inf": "essen",
+          "pres3": "isst",
+          "praet": "aß",
+          "pp": "gegessen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: du isst, er isst.",
+          "uk": "Голосна змінюється на «i»: du isst, er isst."
+        },
+        "examples": [
+          "de:08:22",
+          "de:16:41"
+        ]
+      },
+      {
+        "lemma": "verstehen",
+        "meaning": {
+          "ru": "понимать",
+          "uk": "розуміти"
+        },
+        "forms": {
+          "inf": "verstehen",
+          "pres3": "versteht",
+          "praet": "verstand",
+          "pp": "verstanden"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Основа меняется: verstand, verstanden.",
+          "uk": "Основа змінюється: verstand, verstanden."
+        },
+        "examples": [
+          "de:08:48",
+          "de:16:32"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "lemma": "schreiben",
+        "meaning": {
+          "ru": "писать",
+          "uk": "писати"
+        },
+        "forms": {
+          "inf": "schreiben",
+          "pres3": "schreibt",
+          "praet": "schrieb",
+          "pp": "geschrieben"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Прошедшее время с «ie»: schrieb, geschrieben.",
+          "uk": "Минулий час з «ie»: schrieb, geschrieben."
+        },
+        "examples": [
+          "de:09:47",
+          "de:28:07"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "lemma": "sprechen",
+        "meaning": {
+          "ru": "говорить",
+          "uk": "розмовляти"
+        },
+        "forms": {
+          "inf": "sprechen",
+          "pres3": "spricht",
+          "praet": "sprach",
+          "pp": "gesprochen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: du sprichst, er spricht.",
+          "uk": "Голосна змінюється на «i»: du sprichst, er spricht."
+        },
+        "examples": [
+          "de:10:10",
+          "de:10:06",
+          "de:10:07"
+        ]
+      },
+      {
+        "lemma": "bringen",
+        "meaning": {
+          "ru": "приносить",
+          "uk": "приносити"
+        },
+        "forms": {
+          "inf": "bringen",
+          "pres3": "bringt",
+          "praet": "brachte",
+          "pp": "gebracht"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Смешанный глагол: корень меняется, окончания как у обычных.",
+          "uk": "Змішане дієслово: корінь змінюється, закінчення як у звичайних."
+        },
+        "examples": [
+          "de:10:17",
+          "de:10:18"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "lemma": "stehen",
+        "meaning": {
+          "ru": "стоять",
+          "uk": "стояти"
+        },
+        "forms": {
+          "inf": "stehen",
+          "pres3": "steht",
+          "praet": "stand",
+          "pp": "gestanden"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Основа меняется: stand, gestanden.",
+          "uk": "Основа змінюється: stand, gestanden."
+        },
+        "examples": [
+          "de:11:11",
+          "de:11:13"
+        ]
+      },
+      {
+        "lemma": "liegen",
+        "meaning": {
+          "ru": "лежать",
+          "uk": "лежати"
+        },
+        "forms": {
+          "inf": "liegen",
+          "pres3": "liegt",
+          "praet": "lag",
+          "pp": "gelegen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Прошедшее время: lag, gelegen.",
+          "uk": "Минулий час: lag, gelegen."
+        },
+        "examples": [
+          "de:11:31",
+          "de:25:47"
+        ]
+      },
+      {
+        "lemma": "sitzen",
+        "meaning": {
+          "ru": "сидеть",
+          "uk": "сидіти"
+        },
+        "forms": {
+          "inf": "sitzen",
+          "pres3": "sitzt",
+          "praet": "saß",
+          "pp": "gesessen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Прошедшее время: saß, gesessen.",
+          "uk": "Минулий час: saß, gesessen."
+        },
+        "examples": [
+          "de:11:35",
+          "de:11:10"
+        ]
+      },
+      {
+        "lemma": "schlafen",
+        "meaning": {
+          "ru": "спать",
+          "uk": "спати"
+        },
+        "forms": {
+          "inf": "schlafen",
+          "pres3": "schläft",
+          "praet": "schlief",
+          "pp": "geschlafen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Во 2-м и 3-м лице «a» становится «ä»: du schläfst, er schläft.",
+          "uk": "У 2-й і 3-й особі «a» стає «ä»: du schläfst, er schläft."
+        },
+        "examples": [
+          "de:11:49",
+          "de:24:17"
+        ]
+      },
+      {
+        "lemma": "halten",
+        "meaning": {
+          "ru": "держать",
+          "uk": "тримати"
+        },
+        "forms": {
+          "inf": "halten",
+          "pres3": "hält",
+          "praet": "hielt",
+          "pp": "gehalten"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Во 2-м и 3-м лице «a» становится «ä»: du hältst, er hält.",
+          "uk": "У 2-й і 3-й особі «a» стає «ä»: du hältst, er hält."
+        },
+        "examples": [
+          "de:11:43",
+          "de:24:05"
+        ]
+      },
+      {
+        "lemma": "laufen",
+        "meaning": {
+          "ru": "бежать, идти пешком",
+          "uk": "бігти, іти пішки"
+        },
+        "forms": {
+          "inf": "laufen",
+          "pres3": "läuft",
+          "praet": "lief",
+          "pp": "gelaufen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Во 2-м и 3-м лице «au» становится «äu»: du läufst, er läuft.",
+          "uk": "У 2-й і 3-й особі «au» стає «äu»: du läufst, er läuft."
+        },
+        "examples": [
+          "de:11:29",
+          "de:17:12"
+        ]
+      },
+      {
+        "lemma": "treffen",
+        "meaning": {
+          "ru": "встречать",
+          "uk": "зустрічати"
+        },
+        "forms": {
+          "inf": "treffen",
+          "pres3": "trifft",
+          "praet": "traf",
+          "pp": "getroffen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: du triffst, er trifft.",
+          "uk": "Голосна змінюється на «i»: du triffst, er trifft."
+        },
+        "examples": [
+          "de:11:44",
+          "de:19:35"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "lemma": "steigen",
+        "meaning": {
+          "ru": "подниматься",
+          "uk": "підніматися"
+        },
+        "forms": {
+          "inf": "steigen",
+          "pres3": "steigt",
+          "praet": "stieg",
+          "pp": "gestiegen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Гласная меняется: steigen — stieg — gestiegen.",
+          "uk": "Голосна змінюється: steigen — stieg — gestiegen."
+        },
+        "examples": [
+          "de:12:30",
+          "de:13:41"
+        ]
+      }
+    ],
+    "13": [
+      {
+        "lemma": "rufen",
+        "meaning": {
+          "ru": "звать",
+          "uk": "кликати"
+        },
+        "forms": {
+          "inf": "rufen",
+          "pres3": "ruft",
+          "praet": "rief",
+          "pp": "gerufen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: rufen — rief — gerufen.",
+          "uk": "Голосна змінюється: rufen — rief — gerufen."
+        },
+        "examples": [
+          "de:13:06",
+          "de:13:07",
+          "de:13:10"
+        ]
+      }
+    ],
+    "14": [
+      {
+        "lemma": "helfen",
+        "meaning": {
+          "ru": "помогать",
+          "uk": "допомагати"
+        },
+        "forms": {
+          "inf": "helfen",
+          "pres3": "hilft",
+          "praet": "half",
+          "pp": "geholfen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: du hilfst, er hilft.",
+          "uk": "Голосна змінюється на «i»: du hilfst, er hilft."
+        },
+        "examples": [
+          "de:14:05",
+          "de:23:13"
+        ]
+      },
+      {
+        "lemma": "können",
+        "meaning": {
+          "ru": "мочь, уметь",
+          "uk": "могти, вміти"
+        },
+        "forms": {
+          "inf": "können",
+          "pres3": "kann",
+          "praet": "konnte",
+          "pp": "gekonnt"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Модальный глагол: ich kann, du kannst, er kann.",
+          "uk": "Модальне дієслово: ich kann, du kannst, er kann."
+        },
+        "examples": [
+          "de:14:05",
+          "de:14:06",
+          "de:14:01"
+        ]
+      },
+      {
+        "lemma": "müssen",
+        "meaning": {
+          "ru": "быть должным",
+          "uk": "бути змушеним"
+        },
+        "forms": {
+          "inf": "müssen",
+          "pres3": "muss",
+          "praet": "musste",
+          "pp": "gemusst"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Модальный глагол: ich muss, du musst, er muss.",
+          "uk": "Модальне дієслово: ich muss, du musst, er muss."
+        },
+        "examples": [
+          "de:14:12",
+          "de:14:16",
+          "de:14:11"
+        ]
+      },
+      {
+        "lemma": "dürfen",
+        "meaning": {
+          "ru": "иметь право",
+          "uk": "мати право"
+        },
+        "forms": {
+          "inf": "dürfen",
+          "pres3": "darf",
+          "praet": "durfte",
+          "pp": "gedurft"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Модальный глагол: ich darf, du darfst, er darf.",
+          "uk": "Модальне дієслово: ich darf, du darfst, er darf."
+        },
+        "examples": [
+          "de:14:21",
+          "de:14:25",
+          "de:14:22"
+        ]
+      },
+      {
+        "lemma": "wollen",
+        "meaning": {
+          "ru": "хотеть",
+          "uk": "хотіти"
+        },
+        "forms": {
+          "inf": "wollen",
+          "pres3": "will",
+          "praet": "wollte",
+          "pp": "gewollt"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Модальный глагол: ich will, du willst, er will.",
+          "uk": "Модальне дієслово: ich will, du willst, er will."
+        },
+        "examples": [
+          "de:14:33",
+          "de:14:34",
+          "de:14:35"
+        ]
+      },
+      {
+        "lemma": "sollen",
+        "meaning": {
+          "ru": "следует",
+          "uk": "слід"
+        },
+        "forms": {
+          "inf": "sollen",
+          "pres3": "soll",
+          "praet": "sollte",
+          "pp": "gesollt"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Модальный глагол: в единственном числе окончаний нет: ich soll, er soll.",
+          "uk": "Модальне дієслово: в однині закінчень немає: ich soll, er soll."
+        },
+        "examples": [
+          "de:14:41",
+          "de:14:42",
+          "de:14:43"
+        ]
+      },
+      {
+        "lemma": "anrufen",
+        "meaning": {
+          "ru": "звонить",
+          "uk": "телефонувати"
+        },
+        "forms": {
+          "inf": "anrufen",
+          "pres3": "ruft an",
+          "praet": "rief an",
+          "pp": "angerufen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Приставка «an» отделяется: ich rufe dich an.",
+          "uk": "Префікс «an» відокремлюється: ich rufe dich an."
+        },
+        "examples": [
+          "de:14:32",
+          "de:16:21"
+        ]
+      },
+      {
+        "lemma": "aufstehen",
+        "meaning": {
+          "ru": "вставать",
+          "uk": "вставати"
+        },
+        "forms": {
+          "inf": "aufstehen",
+          "pres3": "steht auf",
+          "praet": "stand auf",
+          "pp": "aufgestanden"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «auf» отделяется: ich stehe auf.",
+          "uk": "Префікс «auf» відокремлюється: ich stehe auf."
+        },
+        "examples": [
+          "de:14:12",
+          "de:17:07"
+        ]
+      },
+      {
+        "lemma": "aussteigen",
+        "meaning": {
+          "ru": "выходить (из транспорта)",
+          "uk": "виходити (з транспорту)"
+        },
+        "forms": {
+          "inf": "aussteigen",
+          "pres3": "steigt aus",
+          "praet": "stieg aus",
+          "pp": "ausgestiegen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «aus» отделяется: ich steige aus.",
+          "uk": "Префікс «aus» відокремлюється: ich steige aus."
+        },
+        "examples": [
+          "de:14:15",
+          "de:17:36"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "lemma": "sehen",
+        "meaning": {
+          "ru": "видеть",
+          "uk": "бачити"
+        },
+        "forms": {
+          "inf": "sehen",
+          "pres3": "sieht",
+          "praet": "sah",
+          "pp": "gesehen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «ie»: du siehst, er sieht.",
+          "uk": "Голосна змінюється на «ie»: du siehst, er sieht."
+        },
+        "examples": [
+          "de:16:20",
+          "de:26:24"
+        ]
+      },
+      {
+        "lemma": "bekommen",
+        "meaning": {
+          "ru": "получать",
+          "uk": "отримувати"
+        },
+        "forms": {
+          "inf": "bekommen",
+          "pres3": "bekommt",
+          "praet": "bekam",
+          "pp": "bekommen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Причастие совпадает с инфинитивом: bekommen.",
+          "uk": "Дієприкметник збігається з інфінітивом: bekommen."
+        },
+        "examples": [
+          "de:16:42",
+          "de:24:23"
+        ]
+      },
+      {
+        "lemma": "vergessen",
+        "meaning": {
+          "ru": "забывать",
+          "uk": "забувати"
+        },
+        "forms": {
+          "inf": "vergessen",
+          "pres3": "vergisst",
+          "praet": "vergaß",
+          "pp": "vergessen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: du vergisst, er vergisst.",
+          "uk": "Голосна змінюється на «i»: du vergisst, er vergisst."
+        },
+        "examples": [
+          "de:16:50"
+        ]
+      },
+      {
+        "lemma": "verlieren",
+        "meaning": {
+          "ru": "терять",
+          "uk": "губити"
+        },
+        "forms": {
+          "inf": "verlieren",
+          "pres3": "verliert",
+          "praet": "verlor",
+          "pp": "verloren"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: verlieren — verlor — verloren.",
+          "uk": "Голосна змінюється: verlieren — verlor — verloren."
+        },
+        "examples": [
+          "de:16:40"
+        ]
+      }
+    ],
+    "17": [
+      {
+        "lemma": "werden",
+        "meaning": {
+          "ru": "становиться",
+          "uk": "ставати"
+        },
+        "forms": {
+          "inf": "werden",
+          "pres3": "wird",
+          "praet": "wurde",
+          "pp": "geworden"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Ещё и вспомогательный глагол для будущего времени и страдательного залога.",
+          "uk": "Ще й допоміжне дієслово для майбутнього часу та пасиву."
+        },
+        "examples": [
+          "de:17:46",
+          "de:28:01"
+        ]
+      },
+      {
+        "lemma": "einschlafen",
+        "meaning": {
+          "ru": "засыпать",
+          "uk": "засинати"
+        },
+        "forms": {
+          "inf": "einschlafen",
+          "pres3": "schläft ein",
+          "praet": "schlief ein",
+          "pp": "eingeschlafen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «ein» отделяется: er schläft ein.",
+          "uk": "Префікс «ein» відокремлюється: er schläft ein."
+        },
+        "examples": [
+          "de:17:10"
+        ]
+      },
+      {
+        "lemma": "einsteigen",
+        "meaning": {
+          "ru": "садиться (в транспорт)",
+          "uk": "сідати (в транспорт)"
+        },
+        "forms": {
+          "inf": "einsteigen",
+          "pres3": "steigt ein",
+          "praet": "stieg ein",
+          "pp": "eingestiegen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «ein» отделяется: wir steigen ein.",
+          "uk": "Префікс «ein» відокремлюється: wir steigen ein."
+        },
+        "examples": [
+          "de:17:21",
+          "de:23:24"
+        ]
+      },
+      {
+        "lemma": "ziehen",
+        "meaning": {
+          "ru": "тянуть, переезжать",
+          "uk": "тягнути, переїжджати"
+        },
+        "forms": {
+          "inf": "ziehen",
+          "pres3": "zieht",
+          "praet": "zog",
+          "pp": "gezogen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: ziehen — zog — gezogen.",
+          "uk": "Голосна змінюється: ziehen — zog — gezogen."
+        },
+        "examples": [
+          "de:17:28",
+          "de:19:06"
+        ]
+      },
+      {
+        "lemma": "fallen",
+        "meaning": {
+          "ru": "падать",
+          "uk": "падати"
+        },
+        "forms": {
+          "inf": "fallen",
+          "pres3": "fällt",
+          "praet": "fiel",
+          "pp": "gefallen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Во 2-м и 3-м лице «a» становится «ä»: du fällst, er fällt.",
+          "uk": "У 2-й і 3-й особі «a» стає «ä»: du fällst, er fällt."
+        },
+        "examples": [
+          "de:17:18",
+          "de:22:30"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "lemma": "gefallen",
+        "meaning": {
+          "ru": "нравиться",
+          "uk": "подобатися"
+        },
+        "forms": {
+          "inf": "gefallen",
+          "pres3": "gefällt",
+          "praet": "gefiel",
+          "pp": "gefallen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Во 2-м и 3-м лице «a» становится «ä»: es gefällt mir.",
+          "uk": "У 2-й і 3-й особі «a» стає «ä»: es gefällt mir."
+        },
+        "examples": [
+          "de:20:48"
+        ]
+      }
+    ],
+    "21": [
+      {
+        "lemma": "laden",
+        "meaning": {
+          "ru": "грузить, заряжать",
+          "uk": "вантажити, заряджати"
+        },
+        "forms": {
+          "inf": "laden",
+          "pres3": "lädt",
+          "praet": "lud",
+          "pp": "geladen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Во 2-м и 3-м лице «a» становится «ä»: er lädt.",
+          "uk": "У 2-й і 3-й особі «a» стає «ä»: er lädt."
+        },
+        "examples": [
+          "de:21:49"
+        ]
+      },
+      {
+        "lemma": "kennen",
+        "meaning": {
+          "ru": "знать (кого-то)",
+          "uk": "знати (когось)"
+        },
+        "forms": {
+          "inf": "kennen",
+          "pres3": "kennt",
+          "praet": "kannte",
+          "pp": "gekannt"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Смешанный глагол: kennen — kannte — gekannt.",
+          "uk": "Змішане дієслово: kennen — kannte — gekannt."
+        },
+        "examples": [
+          "de:21:48",
+          "de:27:25"
+        ]
+      }
+    ],
+    "22": [
+      {
+        "lemma": "wissen",
+        "meaning": {
+          "ru": "знать",
+          "uk": "знати"
+        },
+        "forms": {
+          "inf": "wissen",
+          "pres3": "weiß",
+          "praet": "wusste",
+          "pp": "gewusst"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "В единственном числе: ich weiß, du weißt, er weiß.",
+          "uk": "В однині: ich weiß, du weißt, er weiß."
+        },
+        "examples": [
+          "de:22:01",
+          "de:22:04",
+          "de:22:03"
+        ]
+      },
+      {
+        "lemma": "tun",
+        "meaning": {
+          "ru": "делать",
+          "uk": "робити"
+        },
+        "forms": {
+          "inf": "tun",
+          "pres3": "tut",
+          "praet": "tat",
+          "pp": "getan"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Редкий, но важный: tue, tust, tut; tat; getan.",
+          "uk": "Рідкісне, але важливе: tue, tust, tut; tat; getan."
+        },
+        "examples": [
+          "de:22:48"
+        ]
+      }
+    ],
+    "25": [
+      {
+        "lemma": "geben",
+        "meaning": {
+          "ru": "давать",
+          "uk": "давати"
+        },
+        "forms": {
+          "inf": "geben",
+          "pres3": "gibt",
+          "praet": "gab",
+          "pp": "gegeben"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: gibst, gibt. «Es gibt» значит «есть, имеется».",
+          "uk": "Голосна змінюється на «i»: gibst, gibt. «Es gibt» означає «є, існує»."
+        },
+        "examples": [
+          "de:25:27",
+          "de:29:17"
+        ]
+      }
+    ],
+    "26": [
+      {
+        "lemma": "denken",
+        "meaning": {
+          "ru": "думать",
+          "uk": "думати"
+        },
+        "forms": {
+          "inf": "denken",
+          "pres3": "denkt",
+          "praet": "dachte",
+          "pp": "gedacht"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Смешанный глагол: корень меняется, окончания как у обычных.",
+          "uk": "Змішане дієслово: корінь змінюється, закінчення як у звичайних."
+        },
+        "examples": [
+          "de:26:35"
+        ]
+      }
+    ],
+    "29": [
+      {
+        "lemma": "lassen",
+        "meaning": {
+          "ru": "позволять, оставлять",
+          "uk": "дозволяти, залишати"
+        },
+        "forms": {
+          "inf": "lassen",
+          "pres3": "lässt",
+          "praet": "ließ",
+          "pp": "gelassen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Во 2-м и 3-м лице «a» становится «ä»: du lässt, er lässt.",
+          "uk": "У 2-й і 3-й особі «a» стає «ä»: du lässt, er lässt."
+        },
+        "examples": [
+          "de:29:23"
+        ]
+      }
+    ]
+  }
+}

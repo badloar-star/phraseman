@@ -157,7 +157,9 @@ describe('m08 · подключение к уроку', () => {
   const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8').replace(/\r\n/g, '\n');
   it('без флага — прежнее кольцо с 3 подряд; модули m08 только require при флаге', () => {
     expect(src).toContain("const ComboHeatSlot = comboMomentsOn ? (require('../components/feedback/ComboHeatSlot')");
-    expect(src).toContain(': comboCount >= 3 && (\n            <ComboRing value={comboCount} level={comboLevelFor(comboCount)} size={34} />');
+    // зачем (владелец 05.11, «удалить вот это давно хочу»): кольцо серии и плашка «N подряд» в шапке урока убраны — в шапке их больше не рисуем (логика серии не тронута)
+    expect(src).not.toContain('<ComboRing value={comboCount} level={comboLevelFor(comboCount)} size={34} />');
+    expect(src).not.toContain('<ComboHeatSlot comboCount={comboCount}');
     expect(src).toContain("const ComboMomentLayer = momentsV3 ? (require('../components/feedback/ComboMomentLayer')");
     expect(src).toContain('{ComboMomentLayer ? <ComboMomentLayer comboCount={comboCount} /> : null}');
     expect(src).not.toMatch(/^import .*(ComboHeatSlot|ComboMomentLayer)/m);

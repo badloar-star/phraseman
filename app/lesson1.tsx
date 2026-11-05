@@ -1176,9 +1176,7 @@ const LessonContent = React.memo(function LessonContent({
             />
           </View>
 
-          {ComboHeatSlot ? <ComboHeatSlot comboCount={comboCount} lang={lang} size={34} /> : comboCount >= 3 && (
-            <ComboRing value={comboCount} level={comboLevelFor(comboCount)} size={34} />
-          )}
+          {/* зачем (владелец 05.11, «удалить вот это давно хочу»): красное кольцо серии «16» и плашка «16 in a row» в шапке урока убраны. Логика серии (correctStreakRef, достижения, награда) не тронута — убран только показ. */}
           {/* Stats row — legacy reward toast floats absolutely; row wrap + shrink so ●wrong не режется у края */}
           <View
             style={{

@@ -1,5 +1,5 @@
 {
- "_comment": "Работник А (Ловушки) 05.11: правки EN по семантическому аудиту Ревизора, проход 2 (docs/work/course_quality_1pct/EN_SEMANTIC_PASS2*.{md,json}, HEAD c473219d8). classes — соблазны по КЛАССУ плитки (правило владельца: та же часть речи и роль, правдоподобная ошибка, фраза при подстановке неверна); у плитки класса допустимы только candidates (порядок = приоритет добора), cond nextNoun — следующая плитка существительное/прилагательное/числительное (her/that как определитель). replacements — точечные замены соблазнов (B1: подстановка даёт верную фразу); alt — недостающие верные порядки слов (B3). Подключение: classic_course_pack.mjs (CTX_LANGS). Проход 3 (EN_SEMANTIC_PASS3, 161b67877): классы canQ (Can в начале просьбы — без Might/Could/May), cannot (модальные), indef (everything/anything…), артикль перед причастием; 30 замен B1, 8 добавок B3.",
+ "_comment": "Работник А (Ловушки) 05.11: правки EN по семантическому аудиту Ревизора, проход 2 (docs/work/course_quality_1pct/EN_SEMANTIC_PASS2*.{md,json}, HEAD c473219d8). classes — соблазны по КЛАССУ плитки (правило владельца: та же часть речи и роль, правдоподобная ошибка, фраза при подстановке неверна); у плитки класса допустимы только candidates (порядок = приоритет добора), cond nextNoun — следующая плитка существительное/прилагательное/числительное (her/that как определитель). replacements — точечные замены соблазнов (B1: подстановка даёт верную фразу); alt — недостающие верные порядки слов (B3). Подключение: classic_course_pack.mjs (CTX_LANGS). Проход 3 (EN_SEMANTIC_PASS3, 161b67877): классы canQ (Can в начале просьбы — без Might/Could/May), cannot (модальные), indef (everything/anything…), артикль перед причастием; 30 замен B1, 8 добавок B3. Проход 4 (EN_SEMANTIC_PASS4, a624f0c00): twins — «двойники» верного слова (дают верную фразу в живой речи), tiles — полный набор для плиток, где все соблазны не того класса.",
  "classes": [
   {
    "name": "neg",
@@ -681,6 +681,18 @@
    "position": 4,
    "from": "that",
    "to": "how"
+  },
+  {
+   "id": "en-classic-r1:06.50",
+   "position": 5,
+   "from": "by",
+   "to": "in"
+  },
+  {
+   "id": "en-classic-r1:04.50",
+   "position": 5,
+   "from": "with",
+   "to": "on"
   }
  ],
  "alt": {
@@ -870,6 +882,187 @@
    "add": [
     "The room where we had lunch is now free."
    ]
+  },
+  "en:06:46": {
+   "add": [
+    "How far do you walk every day?"
+   ]
+  },
+  "en:13:19": {
+   "add": [
+    "There'll be a small fee for delivery."
+   ]
+  },
+  "en:14:11": {
+   "add": [
+    "Here, tea is cheaper than coffee.",
+    "Here tea is cheaper than coffee."
+   ]
+  },
+  "en:14:29": {
+   "add": [
+    "Today the weather is worse.",
+    "Today, the weather is worse."
+   ]
+  },
+  "en:03:45": {
+   "add": [
+    "Sometimes I work at home.",
+    "I work at home sometimes."
+   ]
   }
+ },
+ "twins": {
+  "bring": [
+   "take",
+   "get",
+   "carry"
+  ],
+  "take": [
+   "get",
+   "bring",
+   "catch",
+   "grab"
+  ],
+  "put": [
+   "take",
+   "got",
+   "get",
+   "place"
+  ],
+  "answer": [
+   "take",
+   "get",
+   "pick"
+  ],
+  "use": [
+   "take",
+   "get"
+  ],
+  "keep": [
+   "leave",
+   "save",
+   "hold"
+  ],
+  "leave": [
+   "go",
+   "exit"
+  ],
+  "run": [
+   "go"
+  ],
+  "was": [
+   "is"
+  ],
+  "were": [
+   "are"
+  ],
+  "starts": [
+   "is"
+  ],
+  "near": [
+   "at",
+   "by",
+   "beside",
+   "next"
+  ],
+  "outside": [
+   "beside",
+   "near",
+   "by"
+  ]
+ },
+ "tiles": {
+  "en:01:24#3": [
+   "open",
+   "late",
+   "cold",
+   "warm",
+   "empty"
+  ],
+  "en:02:19#3": [
+   "open",
+   "cold",
+   "warm",
+   "ready",
+   "empty"
+  ],
+  "en:17:27#3": [
+   "door",
+   "phone",
+   "alarm",
+   "screen",
+   "bell"
+  ],
+  "en:17:27#4": [
+   "leaving",
+   "waiting",
+   "working",
+   "going",
+   "standing"
+  ],
+  "en:18:13#5": [
+   "leaving",
+   "waiting",
+   "working",
+   "going",
+   "standing"
+  ],
+  "en:18:46#2": [
+   "wait",
+   "stop",
+   "run",
+   "leave",
+   "go"
+  ],
+  "en:23:24#3": [
+   "cleaned",
+   "opened",
+   "found",
+   "sent",
+   "left"
+  ],
+  "en:24:23#3": [
+   "lost",
+   "booked",
+   "seen",
+   "found",
+   "left"
+  ],
+  "en:24:50#2": [
+   "arrived",
+   "stopped",
+   "started",
+   "came",
+   "closed"
+  ],
+  "en:24:39#4": [
+   "Anna",
+   "Ben",
+   "Sam",
+   "Kate",
+   "Lea"
+  ],
+  "en:31:01#2": [
+   "Anna",
+   "Ben",
+   "Sam",
+   "Kate",
+   "Lea"
+  ],
+  "en:24:41#4": [
+   "card",
+   "book",
+   "key",
+   "ticket",
+   "number"
+  ],
+  "en:24:42#5": [
+   "but",
+   "if",
+   "because",
+   "and",
+   "when"
+  ]
  }
 }

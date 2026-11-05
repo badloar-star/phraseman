@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Оформление: два ползунка</title>
+<style>
+/* ───────── PhraseMan 2.0 · «Оформление»: Светлая/Тёмная + Оттенок + Насыщенность + Иконки ─────────
+   зачем (слово владельца через координатора 05.11): заменить ВСЕ темы на «светлая/тёмная + ползунок оттенка + ползунок насыщенности (Plus)»
+   и «покажи макет в точности как в приложении». Главная нарисована по коду: размеры в dp 1:1 (экран 411 × 914, как кадр эмулятора 1080 × 2400 при 2,625),
+   фон сцены — ровно scene-approved.js (порт приложения scene_palette.ts), шапка/панель «Сегодня»/плитки/таббар — по кадрам Сверки.
+   Все цвета считаются из оттенка H и насыщенности S одной функцией tokens() в OKLCH — так же будет в коде. Это макет: тапы и ползунки живые. */
+@font-face { font-family: Inter; src: url(theme_sliders_exact_assets/fonts/Inter-Regular.ttf); font-weight: 400 500; }
+@font-face { font-family: Inter; src: url(theme_sliders_exact_assets/fonts/Inter-SemiBold.ttf); font-weight: 600; }
+@font-face { font-family: Inter; src: url(theme_sliders_exact_assets/fonts/Inter-Bold.ttf); font-weight: 700; }
+@font-face { font-family: Inter; src: url(theme_sliders_exact_assets/fonts/Inter-Black.ttf); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(theme_sliders_exact_assets/Ionicons.ttf); }
+:root { --pg: #101114; --pgx: #E9ECF2; --pgs: #9AA0AE; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --pg: #E7EAF0; --pgx: #15171C; --pgs: #5A6070; } }
+:root[data-theme="light"] { --pg: #E7EAF0; --pgx: #15171C; --pgs: #5A6070; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; background: var(--pg); color: var(--pgx); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.page { max-width: 1500px; margin: 0 auto; padding: 20px 16px 60px; }
+h1 { font-size: 22px; line-height: 28px; margin: 0 0 4px; font-weight: 700; letter-spacing: -.3px; }
+.lead { font-size: 14px; line-height: 20px; color: var(--pgs); margin: 0 0 16px; max-width: 880px; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin: 0 0 20px; }
+.chip { height: 36px; padding: 0 14px; border-radius: 18px; border: 0; background: color-mix(in srgb, var(--pgx) 9%, transparent); color: var(--pgx); font: 600 14px Inter, sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.chip.on { background: var(--pgx); color: var(--pg); }
+.sep { width: 1px; height: 22px; background: color-mix(in srgb, var(--pgx) 18%, transparent); margin: 0 4px; }
+.stage { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; justify-content: center; }
+.cell { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.cap { font-size: 13px; font-weight: 700; color: var(--pgs); display: flex; gap: 8px; align-items: center; }
+.cap b { color: var(--pgx); font-size: 15px; }
+.cap .now { height: 22px; padding: 0 9px; border-radius: 11px; background: var(--pgx); color: var(--pg); font-size: 12px; display: inline-flex; align-items: center; }
+.zwrap { position: relative; }
+.zin { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+
+/* ═════ телефон: 411 × 914 dp ═════ */
+.ph { position: relative; width: 411px; height: 914px; border-radius: 34px; overflow: hidden; background: var(--bg); color: var(--tx); font-family: Inter, system-ui, sans-serif; letter-spacing: -.028em;
+  box-shadow: 0 0 0 7px #000, 0 0 0 8px #2b2d33, 0 30px 70px -20px rgba(0, 0, 0, .55); }
+.ph .scr { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+.sbar { position: absolute; left: 0; right: 0; top: 0; height: 28px; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 0 22px 0 28px; font-size: 14px; font-weight: 600; color: var(--sb); pointer-events: none; }
+.sbar .r { display: flex; gap: 6px; align-items: center; font-size: 15px; }
+.sbar .bat { width: 20px; height: 10px; border-radius: 2.5px; background: currentColor; }
+.gest { position: absolute; left: 50%; bottom: 8px; width: 108px; height: 4px; border-radius: 2px; background: var(--gest); transform: translateX(-50%); z-index: 40; }
+
+/* ── Главная ── */
+/* зачем: кадр сцены 1082 px = 412 dp, а видимый край — 375 dp (984 px кадра): ниже плоский фон под карточкой «Сегодня», как в HomeSceneStage + панель наезжает на сцену */
+.scene { position: absolute; left: 0; top: 0; width: 411px; height: 375px; overflow: hidden; }
+.scene canvas { width: 411px; height: 412px; display: block; }
+.hero { position: absolute; left: 273px; top: 111px; width: 140px; height: 140px; opacity: .96; }
+.glass { background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.hdr { position: absolute; left: 0; right: 0; top: 0; height: 120px; z-index: 5; }
+.pill { position: absolute; top: 68px; height: 38px; border-radius: 19px; display: flex; align-items: center; color: #fff; }
+.pill.s { left: 20px; width: 92px; padding-left: 12px; gap: 7px; }
+.pill.s .io { font-size: 20px; opacity: .75; }
+.pill.s .t { display: flex; flex-direction: column; line-height: 16px; }
+.pill.s .t b { font-size: 15px; font-weight: 700; } .pill.s .t i { font-style: normal; font-size: 13px; opacity: .85; font-weight: 500; }
+.pill.c { left: 121px; width: 123px; padding-left: 7px; }
+.pill.c img { width: 28px; height: 28px; border-radius: 14px; }
+.pill.c b { font-size: 17px; margin-left: 7px; font-weight: 700; }
+.pill.c .dv { width: 1px; height: 22px; background: rgba(255, 255, 255, .3); margin: 0 9px; }
+.pill.c .io { font-size: 19px; } .pill.c .inf { font-size: 19px; margin-left: 3px; font-weight: 700; }
+.bell { position: absolute; left: 292px; top: 65px; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; }
+.avatar { position: absolute; left: 339px; top: 58px; width: 56px; height: 56px; border-radius: 28px; background: conic-gradient(from 200deg, #B567FF, #4FA3FF, #46D6C4, #B567FF); display: flex; align-items: center; justify-content: center; }
+.avatar > i { position: absolute; width: 50px; height: 50px; border-radius: 25px; background: rgba(8, 10, 14, .55); }
+.avatar img { position: relative; width: 46px; height: 46px; border-radius: 23px; }
+.avatar .dm { position: absolute; right: -3px; bottom: -2px; width: 20px; height: 20px; border-radius: 10px; background: #5B6CF0; color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px rgba(0, 0, 0, .25); }
+.cap1 { position: absolute; left: 20px; top: 257px; font-size: 15px; line-height: 20px; color: rgba(255, 255, 255, .9); font-weight: 500; z-index: 4; }
+.ttl { position: absolute; left: 20px; top: 281px; font-size: 31px; line-height: 38px; font-weight: 700; letter-spacing: -1.55px; color: #fff; z-index: 4; text-shadow: 0 2px 16px rgba(0, 0, 0, .25); }
+.cta { position: absolute; left: 20px; width: 371px; top: 331px; height: 50px; border-radius: 25px; background: #fff; color: #121318; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 9px; z-index: 6; box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .45); }
+.cta .io { font-size: 18px; }
+.panel { position: absolute; left: 12px; right: 12px; top: 403px; height: 263px; border-radius: 30px; background: var(--card); box-shadow: var(--shc); padding: 14px 16px 0; z-index: 3; }
+.panel .th { display: flex; align-items: center; justify-content: space-between; height: 29px; margin-bottom: 0; }
+.panel .th b { font-size: 23px; line-height: 29px; font-weight: 700; letter-spacing: -.9px; }
+.panel .th span { font-size: 16px; color: var(--sec); font-weight: 500; }
+.row { position: relative; display: flex; align-items: center; gap: 14px; height: 54px; }
+.row.two { height: 54px; }
+.row + .row::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--hair); }
+.row .ri { width: 36px; height: 36px; border-radius: 12px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 19px; color: var(--tx); flex: none; }
+.row .rt { flex: 1; display: flex; flex-direction: column; justify-content: center; line-height: 21px; }
+.row .rt b { font-size: 17px; font-weight: 700; letter-spacing: -.55px; } .row .rt i { font-style: normal; font-size: 15px; color: var(--sec); line-height: 18px; }
+.row .rc { font-size: 17px; font-weight: 700; color: var(--tx); } .row .rc.ch { font-size: 19px; color: var(--sec); font-weight: 400; }
+.tiles { position: absolute; left: 12px; right: 12px; top: 679px; height: 91px; display: flex; gap: 10px; z-index: 3; }
+.tile { flex: 1; border-radius: 28px; background: var(--card); box-shadow: var(--shc); position: relative; }
+.tile .art { position: absolute; left: 50%; top: 3px; width: 66px; height: 66px; transform: translateX(-50%); }
+.tile .art canvas, .tile .art img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tile b { position: absolute; left: 0; right: 0; bottom: 9px; text-align: center; font-size: 17px; line-height: 21px; font-weight: 700; letter-spacing: -.6px; }
+.phrase { position: absolute; left: 12px; right: 12px; top: 781px; height: 110px; border-radius: 28px; background: var(--card2); z-index: 2; }
+.phrase .art { position: absolute; left: 22px; top: 14px; width: 56px; height: 56px; }
+.phrase .art canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.phrase small { position: absolute; left: 88px; top: 12px; font-size: 15px; color: var(--sec); }
+.phrase b { position: absolute; left: 88px; top: 34px; font-size: 19px; font-weight: 700; }
+.tabbar { position: absolute; left: 12px; right: 12px; bottom: 30px; height: 66px; border-radius: 33px; background: var(--tab); box-shadow: var(--sht); z-index: 20; display: flex; align-items: center; padding: 0 9px; }
+.tabbar .tb { flex: 1; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--sec2); position: relative; }
+.tabbar .tb.on { background: var(--tabsel); color: var(--acc); }
+.refimg { position: absolute; inset: 0; width: 411px; height: 914px; z-index: 50; opacity: 0; pointer-events: none; object-fit: fill; }
+
+/* ── «Оформление» ── */
+.opt { position: absolute; inset: 0; background: var(--bg); }
+.opt .hd { position: absolute; left: 20px; right: 20px; top: 46px; display: flex; align-items: center; gap: 12px; }
+.opt .back { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--shc); display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--tx); }
+.opt .hd h2 { margin: 0; font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; }
+.seg { position: absolute; left: 20px; right: 20px; top: 112px; height: 48px; border-radius: 16px; background: var(--card); box-shadow: var(--shc); padding: 4px; display: flex; }
+.seg .th { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 12px; background: var(--raise); box-shadow: var(--shr); }
+.seg.ready .th { transition: transform .3s cubic-bezier(.2, 1, .3, 1); }
+.seg[data-v="dark"] .th { transform: translateX(100%); }
+.seg button { position: relative; flex: 1; border: 0; background: none; color: var(--sec); font: 700 16px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+.seg button.on { color: var(--tx); }
+.seg button .io { font-size: 18px; }
+.ocard { position: absolute; left: 20px; right: 20px; border-radius: 28px; background: var(--card); box-shadow: var(--shc); padding: 16px 16px 14px; }
+.ocard .ch { display: flex; align-items: center; justify-content: space-between; height: 28px; margin-bottom: 4px; }
+.ocard .ch b { font-size: 20px; font-weight: 700; letter-spacing: -.2px; }
+.plus { height: 24px; padding: 0 9px; border-radius: 12px; background: var(--solid); color: var(--onsolid); font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; gap: 4px; letter-spacing: .2px; }
+.plus .io { font-size: 12px; }
+.sl { margin-top: 10px; }
+.sl .lb { display: flex; justify-content: space-between; align-items: baseline; height: 22px; }
+.sl .lb b { font-size: 16px; font-weight: 700; } .sl .lb span { font-size: 15px; color: var(--sec); font-weight: 500; font-variant-numeric: tabular-nums; }
+.trk { position: relative; height: 34px; margin-top: 6px; touch-action: none; cursor: pointer; }
+.trk .bar { position: absolute; left: 0; right: 0; top: 7px; height: 20px; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(128, 128, 128, .18); }
+.trk .kn { position: absolute; top: 1px; width: 32px; height: 32px; margin-left: -16px; border-radius: 16px; background: #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, .35), 0 0 0 1px rgba(0, 0, 0, .06); display: flex; align-items: center; justify-content: center; }
+.trk .kn i { width: 22px; height: 22px; border-radius: 11px; display: block; }
+.ocard.locked .trk { opacity: .45; }
+.reset { margin-top: 12px; height: 44px; border-radius: 22px; border: 0; width: 100%; background: var(--ctl); color: var(--tx); font: 700 16px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+.reset[disabled] { opacity: .45; cursor: default; }
+.sets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+.set { position: relative; border: 0; border-radius: 22px; background: var(--ctl); height: 118px; padding: 0; cursor: pointer; color: var(--tx); font: 700 14px Inter, sans-serif; }
+.set.on { background: var(--raise); box-shadow: var(--shr), 0 0 0 2px var(--acc); }
+.set { overflow: hidden; }
+.set .ic { position: absolute; left: 0; right: 0; top: 14px; height: 56px; display: flex; justify-content: center; }
+.set .ic span { position: relative; width: 31px; height: 50px; }
+.set .ic span canvas, .set .ic span img { position: absolute; left: -9px; top: 0; width: 50px; height: 50px; }
+.set .nm { position: absolute; left: 0; right: 0; bottom: 10px; text-align: center; font-size: 14px; }
+.set .lk { position: absolute; right: 8px; top: 8px; width: 22px; height: 22px; border-radius: 11px; background: var(--solid); color: var(--onsolid); display: flex; align-items: center; justify-content: center; font-size: 12px; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 262px; border-radius: 30px 30px 0 0; background: var(--card); box-shadow: 0 -20px 60px rgba(0, 0, 0, .35); z-index: 60; transform: translateY(105%); transition: transform .44s cubic-bezier(.2, 1, .3, 1); padding: 22px 20px; }
+.sheet.on { transform: none; }
+.scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .45); z-index: 55; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.scrim.on { opacity: 1; pointer-events: auto; }
+.sheet h3 { margin: 0 0 6px; font-size: 24px; line-height: 30px; letter-spacing: -.4px; }
+.sheet p { margin: 0 0 18px; font-size: 16px; line-height: 22px; color: var(--sec); }
+.sheet .go { height: 54px; border-radius: 27px; border: 0; width: 100%; background: var(--solid); color: var(--onsolid); font: 700 17px Inter, sans-serif; cursor: pointer; }
+.sheet .no { height: 46px; border: 0; background: none; width: 100%; color: var(--sec); font: 700 16px Inter, sans-serif; margin-top: 6px; cursor: pointer; }
+.notes { max-width: 980px; margin: 26px auto 0; color: var(--pgs); font-size: 13px; line-height: 20px; }
+.notes b { color: var(--pgx); }
+.notes code { font-family: ui-monospace, Consolas, monospace; font-size: 12px; background: color-mix(in srgb, var(--pgx) 8%, transparent); padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Оформление: светлая / тёмная + оттенок + насыщенность</h1>
+  <p class="lead">Все цвета обеих Главных и экрана «Оформление» считаются из двух чисел — оттенка и насыщенности — одной функцией в OKLCH. Фон сцены — тот же расчёт, что в приложении (scene_palette.ts). Кастомные иконки цвет не меняют, всё остальное меняет.</p>
+  <div class="bar">
+    <button class="chip on" id="plusBtn">Как с Plus: вкл</button>
+    <span class="sep"></span>
+    <button class="chip" id="refBtn">Наложить кадр приложения</button>
+    <button class="chip" id="evBtn" style="display:none"></button>
+    <span class="sep"></span>
+    <button class="chip" id="pgBtn">Фон страницы: тёмный</button>
+  </div>
+  <div class="stage" id="stage"></div>
+  <div class="notes" id="notes"></div>
+</div>
+<script src="theme_sliders_exact_assets/scene-approved.js"></script>
+<script>
+(() => {
+'use strict';
+const LOG = '[THEME-SLIDERS]';
+const SA = window.SceneApproved; const C = SA.color; const okRgb = C.okRgb; const hex = C.hex;
+const A = 'theme_sliders_exact_assets/';
+/* ───────── значки Ionicons (шрифт приложения) ───────── */
+const CODE = { flame: 'f314', bell: 'f47f', flash: 'f316', play: 'f4c6', chat: 'f213', copy: 'f290', trend: 'f5fb', clip: 'f248', next: 'f23b', home: 'f382', book: 'f1a6', vid: 'f4ce', ppl: 'f4a3', gear: 'f56c', diamond: 'f2a1', lock: 'f3c7', sun: 'f5ae', moon: 'f461', back: 'f229', refresh: 'f514', check: 'f21d', palette: 'f27e' };
+const io = (n) => `<i class="io">&#x${CODE[n]};</i>`;
+/* ───────── состояние ───────── */
+const STD = { H: 250, S: 35 }; // «Стандартный» = сегодняшний вид по умолчанию (оттенок кадров эмулятора, насыщенность accent C ≈ 0,056)
+const st = { ap: 'dark', H: STD.H, S: STD.S, plus: true, set: 'standard', ref: false, pg: 'dark' };
+const SETS = [
+  { id: 'standard', name: 'Стандартные', tint: true },
+  { id: 'aurora', name: 'Аврора', tint: false, dir: 'sets/aurora/home-aurora-' },
+  { id: 'sagePorcelain', name: 'Фарфор', tint: false, dir: 'sets/sagePorcelain/home-sagePorcelain-' },
+];
+/* ───────── ЦВЕТА: одна функция из (оформление, оттенок, насыщенность) — так же будет в коде ───────── */
+const ok = (L, c, h) => hex(okRgb(L, Math.max(0, c), ((h % 360) + 360) % 360));
+const CMAX = 0.16; // насыщенность 100 % = chroma акцента 0,16; стандарт 35 % ≈ 0,056
+function tokens(ap, H, S) {
+  const dark = ap === 'dark'; const s = Math.max(S, 4); const Ca = (s / 100) * CMAX; const k = Math.min(3, s / STD.S);
+  const n = Math.min(0.05, 1);
+  const t = {
+    ap, H, S, Ca, accent: ok(dark ? 0.70 : 0.52, Ca, H), accentTint: ok(dark ? 0.70 : 0.55, Ca, H),
+    bg: dark ? ok(0.175, 0.015 * k, H + 3) : ok(0.952, 0.012 * k, H - 2),
+    card: dark ? ok(0.224, 0.014 * k, H + 3) : ok(0.993, 0.003 * k, H - 2),
+    card2: dark ? ok(0.197, 0.013 * k, H - 2) : ok(0.962, 0.010 * k, H + 3),
+    ctl: dark ? ok(0.30, 0.020 * k, H + 2) : ok(0.925, 0.011 * k, H),
+    raise: dark ? ok(0.31, 0.020 * k, H) : ok(0.985, 0.004 * k, H),
+    tab: dark ? ok(0.215, 0.016 * k, H - 25) : ok(0.922, 0.015 * k, H - 30), tabsel: dark ? ok(0.407, 0.022 * k, H) : ok(0.896, 0.013 * k, H - 10),
+    tx: dark ? '#F7FAFE' : '#16191C', sec: dark ? ok(0.78, 0.016 * k, H) : ok(0.46, 0.018 * k, H), sec2: dark ? ok(0.72, 0.026 * k, H) : ok(0.48, 0.030 * k, H),
+    hair: dark ? 'rgba(255,255,255,.07)' : 'rgba(20,28,40,.08)', solid: dark ? '#F2F6FB' : '#16191C', onsolid: dark ? '#0B0F14' : '#FFFFFF',
+  };
+  t.acc = dark ? ok(0.72, Ca * 1.1, H) : ok(0.50, Ca * 1.2, H);
+  return t;
+}
+const cssVars = (t) => `--bg:${t.bg};--card:${t.card};--card2:${t.card2};--ctl:${t.ctl};--raise:${t.raise};--tab:${t.tab};--tabsel:${t.tabsel};--tx:${t.tx};--sec:${t.sec};--sec2:${t.sec2};--hair:${t.hair};--solid:${t.solid};--onsolid:${t.onsolid};--acc:${t.acc};` +
+  `--sb:${t.ap === 'dark' ? '#fff' : '#fff'};--gest:${t.ap === 'dark' ? 'rgba(255,255,255,.85)' : 'rgba(20,24,30,.7)'};` +
+  (t.ap === 'dark' ? '--shc:0 12px 28px -16px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.05);--sht:0 14px 30px -14px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06);--shr:0 6px 14px -8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)' :
+   '--shc:0 12px 30px -16px rgba(40,60,90,.38),inset 0 1px 0 rgba(255,255,255,.9);--sht:0 14px 30px -14px rgba(40,60,90,.35),inset 0 1px 0 rgba(255,255,255,.8);--shr:0 6px 14px -8px rgba(40,60,90,.3),inset 0 1px 0 #fff');
+/* ───────── сцена: ровно scene-approved.js (тёмное — «Глубокое небо», светлое — «А»), кадр 1080 × 1082 ───────── */
+const W0 = 1080; const H0 = 1082;
+function paintScene(cv, t) {
+  const spec = SA.approved({ accent: t.accent, opaqueCard: t.card }, t.ap, 'home', W0, H0, {});
+  if (t.ap === 'dark') { cv.width = W0 / 2; cv.height = H0 / 2; const g = cv.getContext('2d', { willReadFrequently: true }); g.save(); g.scale(0.5, 0.5); SA.drawSky(g, spec, W0, H0); g.restore(); return spec; }
+  const q = 4; const w = W0 / q; const h = Math.round(H0 / q); cv.width = w; cv.height = h; const g = cv.getContext('2d'); const img = g.createImageData(w, h); const paint = SA.painter(spec.spec, W0, H0);
+  for (let y = 0; y < h; y += 1) for (let x = 0; x < w; x += 1) { const c = paint(x * q + q / 2, y * q + q / 2); const i = (y * w + x) * 4; img.data[i] = c[0]; img.data[i + 1] = c[1]; img.data[i + 2] = c[2]; img.data[i + 3] = 255; }
+  g.putImageData(img, 0, 0); return spec;
+}
+/* ───────── картинки плиток: основа + слой .accent, окрашенный цветом оформления (ThemedArtLayers) ───────── */
+const IMG = {}; const imgOf = (src) => IMG[src] || (IMG[src] = new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => { console.warn(LOG, 'нет картинки', src); res(null); }; im.src = A + src; }));
+async function drawTile(cv, ap, name, tintHex, setId) {
+  const set = SETS.find((x) => x.id === setId) || SETS[0]; cv.width = 192; cv.height = 192; const g = cv.getContext('2d'); g.clearRect(0, 0, 192, 192);
+  const custom = !set.tint && set.dir && ['lessons', 'cards', 'dialogs'].includes(name);
+  const base = await imgOf(custom ? `${set.dir}${name}.webp` : `art/${ap}/${name}.webp`); if (base) g.drawImage(base, 0, 0, 192, 192);
+  if (custom) return; // кастомные иконки — свои цвета, ползунки их не красят
+  const acc = await imgOf(`art/${ap}/${name}.accent.webp`); if (!acc) return;
+  const tmp = document.createElement('canvas'); tmp.width = 192; tmp.height = 192; const tg = tmp.getContext('2d'); tg.drawImage(acc, 0, 0, 192, 192); tg.globalCompositeOperation = 'source-in'; tg.fillStyle = tintHex; tg.fillRect(0, 0, 192, 192); g.drawImage(tmp, 0, 0);
+}
+/* ───────── Главная ───────── */
+const ROWS = [['chat', 'Потренировать диалог', '', '0/1'], ['copy', 'Повторить карточки', 'Не менее 10 слов', '0/10'], ['trend', 'Пройти ступени Пика', '', '0/3'], ['clip', 'Опрос', '1 вопрос · 1 мин', '>']];
+function homeHTML(id) {
+  return `<div class="scr"><div class="scene"><canvas data-sc="${id}"></canvas></div><img class="hero" data-hero="${id}" alt="">
+  <div class="hdr"><div class="pill s glass">${io('flame')}<span class="t"><b>5 дней</b><i>Серия</i></span></div>
+  <div class="pill c glass"><img src="${A}art/coin.webp" alt=""><b>690</b><span class="dv"></span>${io('flash')}<span class="inf">∞</span></div>
+  <div class="bell glass">${io('bell')}</div><div class="avatar"><i></i><img src="${A}art/coin.webp" alt=""><span class="dm">${io('diamond')}</span></div></div>
+  <div class="cap1">Карточки</div><div class="ttl">Все сохранённые</div><div class="cta">${io('play')}Продолжить</div>
+  <div class="panel"><div class="th"><b>Сегодня</b><span>0 из 3</span></div>${ROWS.map(([ic, t, s, c]) => `<div class="row"><div class="ri">${io(ic)}</div><div class="rt"><b>${t}</b>${s ? `<i>${s}</i>` : ''}</div>${c === '>' ? `<div class="rc ch">${io('next')}</div>` : `<div class="rc">${c}</div>`}</div>`).join('')}</div>
+  <div class="tiles">${[['lessons', 'Уроки'], ['cards', 'Карточки'], ['dialogs', 'Диалоги'], ['spire_tile', 'Пик']].map(([k, n]) => `<div class="tile"><div class="art"><canvas data-tile="${k}"></canvas></div><b>${n}</b></div>`).join('')}</div>
+  <div class="phrase"><div class="art"><canvas data-tile="phrase_of_day"></canvas></div><small>Фраза дня</small><b>Начинаем с малого</b></div>
+  <div class="tabbar">${['home', 'book', 'vid', 'ppl', 'gear'].map((n, i) => `<div class="tb${i === 0 ? ' on' : ''}">${io(n)}</div>`).join('')}</div>
+  <div class="sbar"><span>9:41</span><span class="r">${io('flash')}<span class="bat"></span></span></div><div class="gest"></div>
+  <img class="refimg" data-ref="${id}" alt=""></div>`;
+}
+async function renderHome(ph, ap) {
+  const t = tokens(ap, st.H, st.S); ph.style.cssText = cssVars(t); ph.dataset.ap = ap;
+  const spec = paintScene(ph.querySelector('[data-sc]'), t);
+  const hero = ph.querySelector('[data-hero]'); const hs = `${A}art/${ap}/hero.webp`; if (hero.getAttribute('src') !== hs) hero.src = hs;
+  const set = SETS.find((x) => x.id === st.set) || SETS[0];
+  await Promise.all([...ph.querySelectorAll('[data-tile]')].map((cv) => drawTile(cv, ap, cv.dataset.tile, t.accentTint, st.set)));
+  const ref = ph.querySelector('[data-ref]'); ref.src = `${A}ref/home_graphite_${ap}.png`; ref.style.opacity = st.ref ? '0.55' : '0';
+  const g = spec.guard; return { t, spec, set, guard: g };
+}
+/* ───────── «Оформление» ───────── */
+const hueGrad = (ap) => `linear-gradient(90deg,${Array.from({ length: 25 }, (_, i) => `${ok(ap === 'dark' ? 0.70 : 0.62, 0.14, i * 15)} ${(i / 24 * 100).toFixed(1)}%`).join(',')})`;
+const satGrad = (t) => `linear-gradient(90deg,${ok(t.ap === 'dark' ? 0.70 : 0.60, 0.004, t.H)},${ok(t.ap === 'dark' ? 0.70 : 0.60, CMAX, t.H)})`;
+function optHTML() {
+  return `<div class="opt"><div class="hd"><div class="back">${io('back')}</div><h2>Оформление</h2></div>
+  <div class="seg" id="seg"><div class="th"></div><button data-ap="light">${io('sun')}Светлая</button><button data-ap="dark">${io('moon')}Тёмная</button></div>
+  <div class="ocard" id="colorCard" style="top:176px"><div class="ch"><b>Цвет</b><span class="plus" id="plusTag">${io('lock')}Plus</span></div>
+    <div class="sl"><div class="lb"><b>Оттенок</b><span id="hueV"></span></div><div class="trk" id="hueT"><div class="bar" id="hueB"></div><div class="kn" id="hueK"><i></i></div></div></div>
+    <div class="sl"><div class="lb"><b>Насыщенность</b><span id="satV"></span></div><div class="trk" id="satT"><div class="bar" id="satB"></div><div class="kn" id="satK"><i></i></div></div></div>
+    <button class="reset" id="reset">${io('refresh')}Вернуть стандартный</button></div>
+  <div class="ocard" style="top:488px"><div class="ch"><b>Иконки</b><span class="plus" id="plusTag2">${io('lock')}Plus</span></div><div class="sets" id="sets"></div></div>
+  <div class="gest"></div><div class="sbar"><span>9:41</span><span class="r">${io('flash')}<span class="bat"></span></span></div>
+  <div class="scrim" id="scrim"></div><div class="sheet" id="sheet"><h3>Цвет под себя — с Plus</h3><p>Оттенок и насыщенность меняют сцену, фон, карточки и кнопки. Иконки цвет не меняют.</p><button class="go" id="sheetGo">Открыть Plus</button><button class="no" id="sheetNo">Не сейчас</button></div></div>`;
+}
+function renderOpt(ph) {
+  const t = tokens(st.ap, st.H, st.S); ph.style.cssText = cssVars(t); ph.dataset.ap = st.ap; ph.style.setProperty('--sb', st.ap === 'dark' ? '#fff' : '#16191C');
+  const segEl = ph.querySelector('#seg'); segEl.dataset.v = st.ap; requestAnimationFrame(() => segEl.classList.add('ready')); ph.querySelectorAll('#seg button').forEach((b) => b.classList.toggle('on', b.dataset.ap === st.ap));
+  const locked = !st.plus; ph.querySelector('#colorCard').classList.toggle('locked', locked);
+  ph.querySelectorAll('.plus').forEach((p) => { p.style.display = locked ? 'inline-flex' : 'none'; });
+  ph.querySelector('#hueB').style.background = hueGrad(st.ap); ph.querySelector('#satB').style.background = satGrad(t);
+  ph.querySelector('#hueK').style.left = `${(st.H / 360) * 100}%`; ph.querySelector('#satK').style.left = `${st.S}%`;
+  ph.querySelector('#hueK i').style.background = ok(st.ap === 'dark' ? 0.70 : 0.62, 0.14, st.H); ph.querySelector('#satK i').style.background = t.accent;
+  ph.querySelector('#hueV').textContent = `${Math.round(st.H)}°`; ph.querySelector('#satV').textContent = `${Math.round(st.S)} %`;
+  const dirty = Math.round(st.H) !== STD.H || Math.round(st.S) !== STD.S; ph.querySelector('#reset').disabled = !dirty;
+  const sets = ph.querySelector('#sets');
+  if (!sets.dataset.built) { sets.dataset.built = '1'; sets.innerHTML = SETS.map((s) => `<button class="set" data-set="${s.id}"><div class="ic">${['lessons', 'cards', 'dialogs'].map((k) => `<span><canvas data-k="${k}"></canvas></span>`).join('')}</div><span class="nm">${s.name}</span><span class="lk" style="display:none">${io('lock')}</span></button>`).join(''); }
+  sets.querySelectorAll('.set').forEach((b) => { b.classList.toggle('on', b.dataset.set === st.set); b.querySelector('.lk').style.display = locked && b.dataset.set !== 'standard' ? 'flex' : 'none'; });
+  sets.querySelectorAll('.set').forEach((b) => b.querySelectorAll('canvas').forEach((cv) => drawTile(cv, st.ap, cv.dataset.k, t.accentTint, b.dataset.set)));
+}
+/* ───────── сборка страницы ───────── */
+const stage = document.getElementById('stage'); const cells = {};
+function cell(key, title, inner) { const c = document.createElement('div'); c.className = 'cell'; c.innerHTML = `<div class="cap"><b>${title}</b><span class="now" data-now="${key}" style="display:none">сейчас</span></div><div class="zwrap"><div class="zin"><div class="ph" data-ph="${key}">${inner}</div></div></div>`; stage.appendChild(c); cells[key] = c; return c.querySelector('.ph'); }
+const phOpt = cell('opt', 'Оформление', optHTML()); const phL = cell('light', 'Главная · светлая', homeHTML('light')); const phD = cell('dark', 'Главная · тёмная', homeHTML('dark'));
+function fit() {
+  const w = Math.min(window.innerWidth - 32, 1500); const z = w >= 1400 ? 1 : w >= 900 ? Math.min(1, (w - 56) / (411 * 3 + 40)) : Math.min(1, (w - 8) / 411);
+  const z1 = new URLSearchParams(location.search).get('only') ? 1 : z;
+  document.querySelectorAll('.cell').forEach((c) => { const z = z1; const zw = c.querySelector('.zwrap'); const zi = c.querySelector('.zin'); zw.style.width = `${411 * z + 16}px`; zw.style.height = `${914 * z + 16}px`; zi.style.transform = `translate(8px,8px) scale(${z})`; });
+}
+let raf = 0; let last = null;
+async function renderAll() {
+  const a = await renderHome(phL, 'light'); const b = await renderHome(phD, 'dark'); renderOpt(phOpt);
+  document.querySelectorAll('[data-now]').forEach((n) => { n.style.display = n.dataset.now === st.ap ? 'inline-flex' : 'none'; });
+  const cur = st.ap === 'dark' ? b : a; last = { H: st.H, S: st.S, ap: st.ap };
+  console.log(LOG, JSON.stringify({ H: Math.round(st.H), S: Math.round(st.S), ap: st.ap, plus: st.plus, set: st.set, accent: cur.t.accent, sceneTop: C.hex(cur.spec.palette.top), sceneBottom: C.hex(cur.spec.palette.bot), whiteTop: +cur.spec.palette.whiteTop.toFixed(2), seam: +cur.spec.palette.seam.toFixed(2), guard: cur.guard }));
+  const nt = document.getElementById('notes'); if (nt) nt.innerHTML = `<b>Как считается.</b> Из <code>H=${Math.round(st.H)}°</code> и <code>S=${Math.round(st.S)} %</code> функция <code>tokens()</code> в OKLCH даёт акцент <code>${cur.t.accent}</code>, фон <code>${cur.t.bg}</code>, карточку <code>${cur.t.card}</code>, таббар <code>${cur.t.tab}</code>; верх сцены <code>${C.hex(cur.spec.palette.top)}</code>, низ <code>${C.hex(cur.spec.palette.bot)}</code>, белый на верху ${cur.spec.palette.whiteTop.toFixed(1)}:1 (страж ≥ 4,6), шов низа сцены с карточкой ${cur.spec.palette.seam.toFixed(2)} (страж ≥ 1,34 в тёмном). Стандарт = H 250°, S 35 % — сегодняшний вид кадров эмулятора. Кастомные наборы иконок рисуются своими цветами; в макете вместо шести наборов за достижения стоят два набора из прежних макетов (заглушки) — настоящие плитки подставятся, когда будут доступны. Набор иконок меняет только плитки Главной; таббар остаётся стандартным (в кастомных наборах значков таббара нет).`;
+}
+const schedule = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; renderAll(); }); };
+/* ───────── ввод ───────── */
+const sheet = () => { phOpt.querySelector('#scrim').classList.add('on'); phOpt.querySelector('#sheet').classList.add('on'); };
+const closeSheet = () => { phOpt.querySelector('#scrim').classList.remove('on'); phOpt.querySelector('#sheet').classList.remove('on'); };
+function drag(trackId, apply) {
+  const tr = phOpt.querySelector(trackId); let on = false;
+  const move = (e) => { const r = tr.getBoundingClientRect(); const x = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)); apply(x); schedule(); };
+  tr.addEventListener('pointerdown', (e) => { if (!st.plus) { console.log(LOG, 'ползунок заперт без Plus — шторка'); sheet(); return; } on = true; tr.setPointerCapture(e.pointerId); move(e); });
+  tr.addEventListener('pointermove', (e) => { if (on) move(e); }); tr.addEventListener('pointerup', () => { on = false; }); tr.addEventListener('pointercancel', () => { on = false; });
+}
+drag('#hueT', (x) => { st.H = x * 360; }); drag('#satT', (x) => { st.S = Math.max(4, x * 100); });
+phOpt.querySelectorAll('#seg button').forEach((b) => b.addEventListener('click', () => { st.ap = b.dataset.ap; schedule(); }));
+phOpt.querySelector('#reset').addEventListener('click', () => { if (!st.plus) { sheet(); return; } st.H = STD.H; st.S = STD.S; schedule(); });
+phOpt.querySelector('#sets').addEventListener('click', (e) => { const b = e.target.closest('.set'); if (!b) return; if (!st.plus && b.dataset.set !== 'standard') { sheet(); return; } st.set = b.dataset.set; schedule(); });
+phOpt.querySelector('#scrim').addEventListener('click', closeSheet); phOpt.querySelector('#sheetNo').addEventListener('click', closeSheet);
+phOpt.querySelector('#sheetGo').addEventListener('click', () => { st.plus = true; closeSheet(); syncBar(); schedule(); });
+function syncBar() { const p = document.getElementById('plusBtn'); p.textContent = `Как с Plus: ${st.plus ? 'вкл' : 'выкл'}`; p.classList.toggle('on', st.plus); if (!st.plus) { st.H = STD.H; st.S = STD.S; st.set = 'standard'; } }
+document.getElementById('plusBtn').addEventListener('click', () => { st.plus = !st.plus; syncBar(); schedule(); });
+document.getElementById('refBtn').addEventListener('click', (e) => { st.ref = !st.ref; e.currentTarget.classList.toggle('on', st.ref); schedule(); });
+document.getElementById('pgBtn').addEventListener('click', (e) => { st.pg = st.pg === 'dark' ? 'light' : 'dark'; document.documentElement.dataset.theme = st.pg; e.currentTarget.textContent = `Фон страницы: ${st.pg === 'dark' ? 'тёмный' : 'светлый'}`; });
+/* ?only=light|dark|opt — один телефон 1:1 без шапки страницы (для сверки с кадром приложения); &ref=1 — кадр приложения поверх, &H=&S= — стартовые числа */
+const q = new URLSearchParams(location.search);
+if (q.get('H')) st.H = +q.get('H'); if (q.get('S')) st.S = +q.get('S'); if (q.get('ap')) st.ap = q.get('ap'); if (q.get('ref')) st.ref = true;
+if (q.get('only')) { document.querySelectorAll('.cell').forEach((c) => { if (!c.querySelector(`[data-ph="${q.get('only')}"]`)) c.remove(); else c.querySelector('.cap').remove(); }); document.querySelectorAll('.page > h1, .page > .lead, .page > .bar, .page > .notes').forEach((e) => e.remove()); document.querySelector('.page').style.padding = '0'; document.body.style.background = '#000'; }
+window.addEventListener('resize', fit); fit();
+window.__themeSliders = { st, tokens, renderAll, STD };
+const fonts = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+fonts.then(() => renderAll());
+})();
+</script>
+</body>
+</html>

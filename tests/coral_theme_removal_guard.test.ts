@@ -54,7 +54,8 @@ describe('removed Coral theme regression guard', () => {
   it('resolves any stored theme through the whitelist with a graphite fallback', () => {
     const palette = normalizeEol(fs.readFileSync(path.join(ROOT, 'constants', 'liquidGlassThemePalette.ts'), 'utf8'));
     const themeContext = normalizeEol(fs.readFileSync(path.join(ROOT, 'components', 'ThemeContext.tsx'), 'utf8'));
-    expect(palette).toMatch(/export function resolveLiquidGlassTheme[\s\S]{0,200}LIQUID_GLASS_THEME_IDS\.includes\(id[\s\S]{0,80}: 'graphite';/);
+    // зачем (перепривязка 05.11): между сигнатурой и белым списком стоит строка флага ползунков theme_sliders_v1 с комментарием — окно 200 знаков стало тесным; смысл прежний (белый список → graphite)
+    expect(palette).toMatch(/export function resolveLiquidGlassTheme[\s\S]{0,600}LIQUID_GLASS_THEME_IDS\.includes\(id[\s\S]{0,80}: 'graphite';/);
     expect(themeContext).toContain('resolveLiquidGlassTheme(');
     expect(themeContext).toContain("const THEME_STORAGE_KEY = 'liquid_glass_theme';");
   });

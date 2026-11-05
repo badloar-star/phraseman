@@ -46,8 +46,9 @@ describe('итог урока по первым попыткам', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson_complete.tsx'), 'utf8');
     // без квитанции — счёт по прогрессу и всем промахам прохода; с квитанцией — из её снимка (итог не зависит от повторного чтения)
     expect(src).toContain('lessonFirstTryCountsFromProgress(p, peekLessonRunMissCount(lessonId))');
-    expect(src).toContain('setLessonCounts(firstTry ? { correct: firstTry.correct, wrong: firstTry.wrong } : null);');
+    // перепривязка 05.11: помощник всегда возвращает объект (null невозможен), поэтому тернарника «firstTry ? … : null» в экране больше нет — смысл тот же: счёт берётся из модуля первых попыток
+    expect(src).toContain('setLessonCounts({ correct: firstTry.correct, wrong: firstTry.wrong });');
     expect(src).toContain("p.filter(x => x === 'correct' || x === 'replay_correct').length"); // балл — как раньше
-    expect(src).toMatch(/firstTryMistakes: firstTry\?\.wrong/);
+    expect(src).toMatch(/firstTryMistakes: firstTry\??\.wrong/); // перепривязка 05.11: помощник всегда возвращает объект — «?.» в экране не нужен
   });
 });

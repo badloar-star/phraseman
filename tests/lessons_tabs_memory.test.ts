@@ -18,7 +18,9 @@ describe('вкладка «Обучение»: карта V2 по умолчан
 
   it('стартовая страница всегда Classic после решения владельца; журнал [LESSONS-TABS] сохраняет причину', () => {
     expect(src).toContain('useState<"lessons" | "dialogs" | "v2">(() => startLessonsPage(initialPage, presentation, learningV2CanOpen))');
-    expect(src).toContain('→ старт=lessons reason=owner_disabled');
+    // перепривязка 05.11: решение владельца 04.11 (заморозка V2) — стартовая страница берётся из initialPage, а журнал печатает выбранное значение (→ старт=${start}), а не фиксированную причину owner_disabled
+    expect(src).toContain('→ старт=${start}');
+    expect(src).toContain('владелец 04.11, заморозка V2');
     expect(src).toContain('return "lessons";');
     expect(src).toContain('[LESSONS-TABS] вход: presentation=');
   });

@@ -43,7 +43,7 @@ jest.mock("../components/learning-v2/LearningV2Glass", () => ({
   Lv2Chip: "Text",
   Lv2Cta: "Text",
   Lv2Explain: "Lv2Explain",
-  useLv2Glass: () => ({ secondary: "#555", text: "#111", mutedText: "#777", glassEdge: "#ccc", opaqueControl: "#ddd", opaqueCard: "#fff", good: "#080", accent: "#08a", plateFillFrom: "#eeeeee", plateFillTo: "#dddddd" }),
+  useLv2Glass: () => ({ secondary: "#555", text: "#111", mutedText: "#777", glassEdge: "#ccc", opaqueControl: "#ddd", opaqueCard: "#fff", opaqueSheet: "#fafafa", good: "#080", accent: "#08a", plateFillFrom: "#eeeeee", plateFillTo: "#dddddd" }),
 }));
 jest.mock("../hooks/use-haptics", () => ({ hapticError: jest.fn(), hapticLightImpact: jest.fn(), hapticSuccess: jest.fn() }));
 jest.mock("../hooks/useLineScale", () => ({ useScaledTextStyles: (styles: unknown) => styles }));
@@ -332,7 +332,8 @@ test.each([
   expect(screen.getByTestId("learning-v2-mode-feedback-lane")).toBeTruthy();
   expect(feedback).toMatchObject({
     tone: "correct",
-    text: interfaceLocale === "ru" ? "Верно." : "Правильно.",
+    // перепривязка 05.11: вердикт «верно» в RU/UK — с «!» (modules/learning-v2/modes/mode_feedback_v1.tsx CORRECT_VERDICT_BY_LOCALE)
+    text: interfaceLocale === "ru" ? "Верно!" : "Правильно!",
     analysis: null,
     diagnostics: null,
   });

@@ -43,7 +43,7 @@ function Step({ done, num, text, right, testID }: Readonly<{ done: boolean; num:
           : <Text style={{ color: glass.text, fontSize: 14, fontWeight: '700' }}>{num}</Text>}
       </View>
       <Text style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 15, lineHeight: 20, fontWeight: '700' }}>{text}</Text>
-      {right ? <Text style={{ color: done ? glass.accent : glass.secondary, fontSize: 13, fontWeight: '700' }}>{right}</Text> : null}{/* guard-ok: метка прогресса «n из 3» справа в строке — по утверждённому макету v3 (.rt 13/700), не подпись под названием */}
+      {right ? <Text style={{ color: done ? glass.accentTextSafe : glass.secondary, fontSize: 13, fontWeight: '700' }}>{right}</Text> : null}{/* guard-ok: метка прогресса «n из 3» справа в строке — по утверждённому макету v3 (.rt 13/700), не подпись под названием */}
     </View>
   );
 }
@@ -81,7 +81,7 @@ function ReferralLadder({ view, compactFriends = false, code, codeCopied, shareB
           {view.step2Done ? null : (
             <View testID="referral-ladder-bar" style={{ paddingHorizontal: 14, paddingTop: 8, paddingBottom: 2 }}>
               <View style={{ height: 8, borderRadius: 4, backgroundColor: glass.opaqueControl, overflow: 'hidden' }}>
-                <View style={{ width: `${view.progressPct}%`, height: 8, borderRadius: 4, backgroundColor: glass.accent }} />
+                <View style={{ width: `${view.progressPct}%`, height: 8, borderRadius: 4, backgroundColor: glass.accentGraphic }} />
               </View>
             </View>
           )}
@@ -101,8 +101,8 @@ function ReferralLadder({ view, compactFriends = false, code, codeCopied, shareB
           onPress={onCopy}
           style={{ marginTop: 16, marginBottom: 4, minHeight: 52, borderRadius: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: glass.opaqueCard }}
         >
-          <Text style={{ color: glass.accent, fontSize: 20, fontWeight: '700', letterSpacing: 3 }} maxFontSizeMultiplier={1.2}>{code}</Text>
-          <Ionicons name={codeCopied ? 'checkmark' : 'copy-outline'} size={20} color={glass.accent} />
+          <Text style={{ color: glass.accentTextSafe, fontSize: 20, fontWeight: '700', letterSpacing: 3 }} maxFontSizeMultiplier={1.2}>{code}</Text>
+          <Ionicons name={codeCopied ? 'checkmark' : 'copy-outline'} size={20} color={glass.accentTextSafe} />
         </KitTouchable>
       ) : <View style={{ height: 12 }} />}
       <KitTouchable

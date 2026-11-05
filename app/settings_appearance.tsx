@@ -150,7 +150,7 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
                 accessibilityState={{ disabled: !locked && !canReset }}
                 disabled={!locked && !canReset}
                 onPress={onReset}
-                style={[styles.reset, { backgroundColor: glass.opaqueControl, opacity: !locked && !canReset ? 0.45 : 1 }]}
+                style={[styles.reset, { backgroundColor: glass.buttonFill, opacity: !locked && !canReset ? 0.45 : 1 }]}
               >
                 <Text style={[styles.resetText, { color: glass.text }]}>{triLang(lang, T.reset)}</Text>
               </Pressable>

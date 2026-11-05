@@ -49,7 +49,7 @@ function ReferralLadderHowSheet({ visible, onClose, onEnterFriendCode, view }: P
         {ROWS.map((row) => (
           <View key={row.key} testID={`referral-ladder-${row.key}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingHorizontal: 14, borderRadius: 18, backgroundColor: glass.opaqueControl }}>
             <View style={{ width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueCard }}>
-              <Ionicons name={row.icon} size={17} color={glass.accent} />
+              <Ionicons name={row.icon} size={17} color={glass.accentTextSafe} />
             </View>
             <Text style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 15, lineHeight: 20, fontWeight: '700' }}>
               {/* how1 — окно приглашения; how2 — монеты; how5 — срок Plus. У остальных строк нет числовых плейсхолдеров. */}

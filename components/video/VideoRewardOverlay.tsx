@@ -81,7 +81,7 @@ function VideoRewardStoryHostBase() {
           <Pressable accessibilityRole="button" onPress={next} style={[s.cta, { backgroundColor: g.accent }]} testID="video-reward-story-next">
             <Text maxFontSizeMultiplier={1.2} style={[s.ctaText, { color: g.accentInk }]}>{nextLabel}</Text>
           </Pressable>
-          <Pressable accessibilityRole="button" accessibilityLabel="✕" hitSlop={12} onPress={close} style={[s.close, { backgroundColor: g.opaqueControl }]} testID="video-reward-story-close">
+          <Pressable accessibilityRole="button" accessibilityLabel="✕" hitSlop={12} onPress={close} style={[s.close, { backgroundColor: g.buttonFill }]} testID="video-reward-story-close">
             <Ionicons name="close" size={22} color={g.text} />
           </Pressable>
         </Animated.View>

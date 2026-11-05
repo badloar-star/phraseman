@@ -14,6 +14,10 @@ const COLOR = /^(#[0-9a-fA-F]{3,8}|rgba?\(.*\)|hsla?\(.*\)|white|black|red|green
 /** Потолок на 13.10 (замер Темами): файл → число неоправданных хардкод-цветов. Уменьшай при правке, увеличивать нельзя. */
 const CEILING: Readonly<Record<string, number>> = {
   'components/ExamResultPreviewAdminModal.tsx': 27, // окно только для админа
+  // зачем (перепривязка 05.11, фиксируем осознанные остатки новых файлов; потолок только вниз): цвета взяты из УТВЕРЖДЁННЫХ эталонов и пикселей, а не придуманы — темы здесь не переопределяют
+  'components/section_openings/SectionOpeningCeremony.tsx': 11, // «Ранг»: фон #3D4B5F снят с пикселей эталона rev6 (в обеих темах), белые орбиты/дорожка, чёрная тень 25 % (49d08f78f)
+  'components/scene/SceneBackdrop.tsx': 10, // растр сцены: небо/звёзды/силуэты — утверждённый вердикт сцен 29.10 (scene-approved), цвета не из токенов UI
+  'components/dialogs/scene/use_dialogs_scene_theme.ts': 1, // чёрная база подмешивания тени текстовой зоны сцены Диалогов
 };
 
 function listModalFiles(dir: string, out: string[] = []): string[] {

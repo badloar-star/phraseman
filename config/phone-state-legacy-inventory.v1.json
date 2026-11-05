@@ -3352,6 +3352,15 @@
       "importSource": [],
       "legacyMirror": false,
       "sensitivity": "low"
+    },
+    {
+      "prefix": "plus_cloud_confirmed_v1",
+      "domain": "app",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
     }
   ]
 }

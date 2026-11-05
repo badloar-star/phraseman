@@ -31,10 +31,11 @@ describe('D190: зоны «Всех участников» в режиме мо�
 
 describe('D190: текст тура по рубильнику rankBy', () => {
   const vars = { a: 'A', b: 'B', c: 'C', z: 'Z' };
-  it('ступени — прежний текст; монеты — «5 последних по монетам за неделю спускаются» на 9 языках', () => {
+  it('ступени — прежний текст; монеты — «5 лучших поднимаются, 5 последних спускаются» на 9 языках', () => {
     expect(spireGameText('ru', 'tour3Text', vars)).toContain('Нижние 15%');
     setSpireTextRankBy('coins');
-    expect(spireGameText('ru', 'tour3Text', vars)).toContain('5 последних по монетам за неделю спускаются');
+    // зачем: текст тура — утверждённый владельцем (b40d4694f): «5 лучших … поднимаются, 5 последних спускаются»; тест отстал от текста
+    expect(spireGameText('ru', 'tour3Text', vars)).toContain('5 лучших по монетам за неделю поднимаются, 5 последних спускаются');
     for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
       const text = spireGameText(lang, 'tour3Text', vars);
       expect(text).toContain('5');

@@ -1,0 +1,177 @@
+diff --git a/app/profile_card_public.ts b/app/profile_card_public.ts
+index 67c1c10c8..334d6afab 100644
+--- a/app/profile_card_public.ts
++++ b/app/profile_card_public.ts
+@@ -13,6 +13,7 @@ import { withCallableTimeout } from './callable_timeout';
+ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+ import { DebugLogger } from './debug-logger';
+ import { isProfileCardProStyle, type ProfileCardProStyle } from './profile_card_styles';
++import { normalizeShowcase, type ProfileCardShowcase } from '../shared/profile_card_showcase';
+ 
+ const LOG = '[PROFILE-CARD]';
+ const REGION = 'us-central1';
+@@ -26,6 +27,7 @@ export type PublicProfileCard = Readonly<{
+   style: ProfileCardProStyle | null;
+   /** Текст показывается только при pro === true. */
+   bio: string;
++  showcase?: ProfileCardShowcase;
+ }>;
+ 
+ const EMPTY_CARD: PublicProfileCard = Object.freeze({ pro: false, style: null, bio: '' });
+@@ -54,7 +56,7 @@ export function normalizePublicProfileCard(data: Record<string, unknown> | null
+   const rawBio = typeof data.profileCardBio === 'string' ? data.profileCardBio : '';
+   // Сервер уже проверил текст; здесь лишь страховка от старых/чужих записей.
+   const bio = pro ? Array.from(rawBio.replace(/\s+/g, ' ').trim()).slice(0, PROFILE_CARD_BIO_MAX_CHARS).join('') : '';
+-  return Object.freeze({ pro, style, bio });
++  return Object.freeze({ pro, style, bio, ...(data.profileCardShowcase !== undefined ? { showcase: normalizeShowcase(data.profileCardShowcase) } : {}) });
+ }
+ 
+ export function peekPublicProfileCard(uid: string): PublicProfileCard | null {
+@@ -115,7 +117,7 @@ export function loadPublicProfileCardDisk(): Promise<void> {
+         let loaded = 0;
+         for (const [uid, data] of Object.entries(parsed.items)) {
+           // normalizePublicProfileCard принимает поля public_profiles; копия хранит уже нормализованный вид {pro, style, bio}
+-          const card = normalizePublicProfileCard({ profileCardPro: data.pro, profileCardStyle: data.style, profileCardBio: data.bio });
++          const card = normalizePublicProfileCard({ profileCardPro: data.pro, profileCardStyle: data.style, profileCardBio: data.bio, profileCardShowcase: data.showcase });
+           if (!staleCards.has(uid)) { staleCards.set(uid, card); loaded += 1; }
+         }
+         DebugLogger.info(LOG, `чужая визитка: с диска загружено ${loaded} копий за ${Date.now() - startedAt}мс`);
+
+diff --git a/app/public_profile_snapshot.ts b/app/public_profile_snapshot.ts
+index 4d5f268a7..eb7b01774 100644
+--- a/app/public_profile_snapshot.ts
++++ b/app/public_profile_snapshot.ts
+@@ -13,6 +13,9 @@ import { DebugLogger } from './debug-logger';
+ import { readCoinRank } from './coin_rank_state_v1';
+ import { isValidCoinRank } from './coin_rank_table_v1';
+ import { readProfileCardProForProjection } from './profile_card_pro_state_v1';
++import { readShowcasePreference } from './profile_card_showcase_store';
++import { getPersonalProgressSnapshot, hydratePersonalProgress } from './personal_progress_store';
++import { normalizeShowcase } from '../shared/profile_card_showcase';
+ import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+ 
+ export const PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1';
+@@ -226,6 +229,10 @@ async function syncPublicProfileSnapshotUnsafe(
+   // не входит: он пишется только profileCardBioSetMine с серверными проверками.
+   const profileCardProPayload = await readProfileCardProForProjection(coinRankOwner);
+   if (!isCurrentAccountGeneration(accountToken, coinRankOwner)) return;
++  const showcasePreference = await readShowcasePreference(coinRankOwner);
++  if (showcasePreference.showStreak) await hydratePersonalProgress();
++  if (!isCurrentAccountGeneration(accountToken, coinRankOwner)) return;
++  const profileCardShowcase = normalizeShowcase({ ...showcasePreference, streakDays: getPersonalProgressSnapshot().streakCount });
+   // Блоки статистики уровней II+ («Выучено»/«Путь») — денормализуем в публичный
+   // профиль из локального lifetime-кэша, чтобы ЧУЖИЕ карточки могли их показать.
+   // Кэш освежается экраном статистики и модалом собственной карточки; если его ещё
+@@ -247,6 +254,7 @@ async function syncPublicProfileSnapshotUnsafe(
+     aura,
+     ...coinRankPayload,
+     ...profileCardProPayload,
++    profileCardShowcase,
+     ...cardStatsPayload,
+   });
+ 
+@@ -293,6 +301,7 @@ async function syncPublicProfileSnapshotUnsafe(
+     aura,
+     ...coinRankPayload,
+     ...profileCardProPayload,
++    profileCardShowcase,
+     ...cardStatsPayload,
+     displayHash,
+   };
+
+diff --git a/tests/profile_card_public_swr.test.ts b/tests/profile_card_public_swr.test.ts
+index 1f3d4f94d..f5dda761c 100644
+--- a/tests/profile_card_public_swr.test.ts
++++ b/tests/profile_card_public_swr.test.ts
+@@ -21,6 +21,7 @@ jest.mock('react-native', () => ({
+ }));
+ 
+ import {
++  normalizePublicProfileCard,
+   __profileCardPublicTestHooks,
+   fetchPublicProfileCard,
+   loadPublicProfileCardDisk,
+@@ -28,6 +29,15 @@ import {
+   peekPublicProfileCardOrStale,
+ } from '../app/profile_card_public';
+ 
++it('normal cards retain showcase through network and disk without exposing a hidden streak', async () => {
++  const showcase = { awardIds: ['streak_7'], showStreak: false, streakDays: 99 };
++  const expected = { awardIds: ['streak_7'], showStreak: false, streakDays: 0 };
++  expect(normalizePublicProfileCard({ profileCardShowcase: showcase }).showcase).toEqual(expected);
++  diskStore.set('profile_card_public_v1', JSON.stringify({ v: 1, items: { friend: { pro: false, style: null, bio: '', showcase } } }));
++  await loadPublicProfileCardDisk();
++  expect(peekPublicProfileCardOrStale('friend')?.showcase).toEqual(expected);
++});
++
+ const proSnap = (style: string) => ({ exists: true, data: () => ({ profileCardPro: true, profileCardStyle: style, profileCardBio: 'Привет' }) });
+ 
+ beforeEach(() => {
+
+diff --git a/functions/src/public_profile_projection.ts b/functions/src/public_profile_projection.ts
+index 7d018ed4d..fe3023fac 100644
+--- a/functions/src/public_profile_projection.ts
++++ b/functions/src/public_profile_projection.ts
+@@ -6,6 +6,7 @@ import * as admin from 'firebase-admin';
+ import { HttpsError, onCall } from 'firebase-functions/v2/https';
+ import { resolveStableUidForAuth } from './auth_identity';
+ import { HOT_CALLABLE_OPTIONS } from './callable_options';
++import { normalizeShowcase } from '../../shared/profile_card_showcase';
+ import { isLifetimePlanActive, isPremiumAccessActive, isRealPlusActive, isVipActive, realPlusTier, realPlusUntilMs } from './premium_status';
+ type ProfileReason = 'display_change' | 'entitlement_change';
+ 
+@@ -24,6 +25,7 @@ export type PublicProfileProjectionInput = {
+   profileCardPro?: unknown;
+   profileCardStyle?: unknown;
+   profileCardLegendNo?: unknown;
++  profileCardShowcase?: unknown;
+   coinRank?: unknown;
+   displayHash?: unknown;
+   // Explicitly accepted by the type so callers cannot accidentally make these
+@@ -121,6 +123,10 @@ export function buildAuthoritativePublicProfileProjection(
+   };
+ 
+   const legendNo = nonnegativeInt(input.profileCardLegendNo);
++  // Cosmetic selection, never a grant. Omitted by old clients: preserve the saved choice.
++  // Explicit false also removes the publicly displayed count from this object.
++  // Cosmetic local-first progress only: never used for grants or the trusted root streak.
++  if (input.profileCardShowcase !== undefined) projection.profileCardShowcase = normalizeShowcase(input.profileCardShowcase);
+   if (legendNo > 0) projection.profileCardLegendNo = legendNo;
+   const coinRank = validCoinRank(input.coinRank);
+   if (coinRank !== null) projection.coinRank = coinRank;
+
+diff --git a/config/phone-state-legacy-inventory.v1.json b/config/phone-state-legacy-inventory.v1.json
+--- a/config/phone-state-legacy-inventory.v1.json
++++ b/config/phone-state-legacy-inventory.v1.json
+@@ -2778,6 +2778,19 @@
+   ],
+   "prefixRules": [
+     {
++      "prefix": "profile_card_showcase_v1:",
++      "domain": "preferences",
++      "scope": "portable",
++      "reducer": "field_register",
++      "importSource": [
++        "async_storage",
++        "last_sync_snapshot",
++        "cloud_progress"
++      ],
++      "legacyMirror": true,
++      "sensitivity": "personal"
++    },
++    {
+       "prefix": "last_opened_lesson__continue_",
+       "domain": "progress",
+       "scope": "device_only",
+
+diff --git a/jest.rntl.config.cjs b/jest.rntl.config.cjs
+--- a/jest.rntl.config.cjs
++++ b/jest.rntl.config.cjs
+@@ -8,6 +8,7 @@
+   // зачем (03.10): запись про удалённый tests/learning_v2_rune_flight_lifecycle.test.tsx убрана — раннер искал несуществующий файл,
+   // а tests/text_integrity_primitives.test.tsx (сторож «каждая запись существует») из-за этого был красным.
+   testMatch: [
++    '<rootDir>/tests/profile_card_showcase_sheet.test.tsx',
+     '<rootDir>/tests/community_root_tabs.test.tsx',
+     '<rootDir>/tests/community_winner_dialog.test.tsx',
+     '<rootDir>/tests/community_podium_navigation.test.tsx',

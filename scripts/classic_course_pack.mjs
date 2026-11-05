@@ -356,6 +356,18 @@ function scanForbidden(lang, name, node, path = '') {
 // окончанием правильного слова (3 → 2 → 1 знака), того же регистра, по убыванию частоты. Результат детерминирован.
 const LISTS = JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_distractor_lists.json'), 'utf8'));
 const PATCHES = JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_distractor_patches.json'), 'utf8'));
+// зачем (05.11, «курсы ≤1%»): классы слов от spaCy (scripts/classic_pos_export.py) — тот же разбор, что у локального валидатора check_distractors.py;
+// соблазн допускается, только если его класс в изоляции пересекается с классом верной плитки (иначе валидатор помечает pos_mismatch).
+const POS_LEX = existsSync(join(ROOT, 'scripts', 'classic_pos_lexicon.json')) ? JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_pos_lexicon.json'), 'utf8')) : null;
+function spacyReason(ctx, ph, i, d) {
+  const L = ctx.posLex;
+  if (!L) return null;
+  const tc = L.tiles[ph.id]?.[i];
+  if (!tc?.length) return null;
+  const di = L.iso[d] ?? L.iso[d[0].toLowerCase() + d.slice(1)] ?? L.iso[d[0].toUpperCase() + d.slice(1)];
+  if (!di?.length) return null;
+  return tc.some((c) => di.includes(c)) ? null : 'posSpacy';
+}
 const NAME_LANGS = new Set(['en', 'es', 'fr', 'it']);
 const CAT_NAME_LANGS = new Set(['es', 'fr', 'it']); // «имя вместо слова другого типа» — только там, где соблазны-имена не строчные как в EN // в немецком существительные с заглавной, в EN соблазны в архиве все строчные (English, Fridays) — имён по регистру не выделить
 const upperFirst = (t) => t[0] !== t[0].toLowerCase();
@@ -434,14 +446,77 @@ function badReason(lang, ctx, ph, i, d, mine) {
     if (cc && dc !== cc) return 'posClass';
     if (!cc && dc && !ctx.articles.has(c) && !isNum && !isName) return 'posClass';
   }
+  if (!ctx.noTag) { const tr = tagReason(ctx, ph, i, dd) ?? spacyReason(ctx, ph, i, d); if (tr) return tr; }
   if (ctx.adverbOnly && ctx.adverbOnly.words.includes(dd) && !ctx.adverbOnly.allowedFor.includes(c)) return 'posClass';
   if (lang === 'es' && c === 'fuera' && ctx.serForms.has(dd) && !/^(si|que|como|aunque)$/i.test(corrects[i - 1] ?? '')) return 'pos';
   if (ctx.numbers.has(dd) !== isNum || (!ctx.relax && CAT_NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
   const seen = ctx.vocab.get(dd);
   // зачем: «без форм из ещё не пройденных уроков» (Координатор 04.11); допуск +2 урока, иначе в уроках 1–3 не из чего выбирать; числительные не режем
-  if (!isNum && !isName && !dc && !ctx.relax && (seen === undefined || seen > lesson + Math.max(1, 8 - lesson))) return 'unseen';
+  if (!isNum && !isName && !dc && !(ctx.tags && ctx.tags.strictAll.has(dd)) && !ctx.relax && (seen === undefined || seen > lesson + Math.max(1, 8 - lesson))) return 'unseen';
   if (acc.has(keyOf(corrects.map((x, j) => (j === i ? d : x))))) return 'acceptedPhrase';
   if (mine.some((x) => stripP(x) === dd)) return 'duplicate';
+  return null;
+}
+
+// ── грамматическая роль плитки (05.11, «курсы ≤1%»): соблазн той же части речи, что верная плитка ─────────────────────────────────
+// зачем: аудит нашёл системный дефект — существительное «bag» на месте is/are, is/open на месте существительного, «Bus» вместо «Yes».
+// Роль верной плитки определяем по соседу слева в правильной фразе: после артикля/притяжательного — noun; после подлежащего/вспомогательного/to —
+// verb; после связки (EN) — adj (или verb для -ing); сами вспомогательные/местоимения/да-нет — «строгие» классы (меняются только внутри класса).
+// Теги слов собираем по всему курсу (слово → роль, если ≥75% его вхождений в одной роли); неизвестное слово не отвергаем.
+function localRole(lang, T, corrects, i) {
+  const c = stripP(corrects[i]);
+  const p = i > 0 ? stripP(corrects[i - 1]) : '';
+  if (T.aux.has(c)) return 'aux';
+  if (T.subj.has(c)) return 'pron';
+  if (T.yn.has(c)) return 'yn';
+  if (T.closed.has(c)) return null;
+  if (p && T.det.has(p)) return 'noun';
+  if (p && T.copula.has(p)) return /ing$/.test(c) ? 'verb' : 'adj';
+  if (p && (T.subj.has(p) || T.aux.has(p) || p === 'to' || p === 'not' || p === 'no' || p === 'ne')) return 'verb';
+  return null;
+}
+function buildTags(lang, all, articles, closed) {
+  const raw = LISTS.posTags?.[lang];
+  if (!raw) return null;
+  const T = {
+    subj: new Set(raw.subj ?? []), aux: new Set(raw.aux ?? []), copula: new Set(raw.copula ?? []), yn: new Set(raw.yn ?? []), ynFill: raw.yn_fill ?? [],
+    det: new Set([...(raw.det ?? []), ...articles, ...(LISTS.determiners?.[lang] ?? [])]),
+    closed: new Set([...(closed.prep ?? []), ...(closed.conj ?? [])]),
+  };
+  const cnt = new Map();
+  for (const ph of all) {
+    const corrects = ph.tiles.map((t) => t.correct);
+    corrects.forEach((_, i) => {
+      const r = localRole(lang, T, corrects, i);
+      if (!r || !['noun', 'verb', 'adj'].includes(r)) return;
+      const w = stripP(corrects[i]);
+      const m = cnt.get(w) ?? {};
+      m[r] = (m[r] ?? 0) + 1;
+      cnt.set(w, m);
+    });
+  }
+  const tag = new Map();
+  for (const [w, m] of cnt) {
+    const total = Object.values(m).reduce((a, b) => a + b, 0);
+    const [best, n] = Object.entries(m).sort((a, b) => b[1] - a[1])[0];
+    if (n / total >= 0.75) tag.set(w, best);
+  }
+  T.tag = tag;
+  T.strictAll = new Set([...T.aux, ...T.subj, ...T.yn, ...T.ynFill, ...T.det, ...T.closed]);
+  return T;
+}
+function tagReason(ctx, ph, i, dd) {
+  const T = ctx.tags;
+  if (!T) return null;
+  const corrects = ph.tiles.map((t) => t.correct);
+  const role = localRole(ctx.lang, T, corrects, i);
+  if (!role) return null;
+  if (role === 'aux') return T.aux.has(dd) ? null : 'posTag';
+  if (role === 'pron') return T.subj.has(dd) ? null : 'posTag';
+  if (role === 'yn') return T.ynFill.includes(dd) ? null : 'posTag';
+  if (T.strictAll.has(dd)) return 'posTag';
+  const td = T.tag.get(dd);
+  if (td && td !== role) return 'posTag';
   return null;
 }
 
@@ -495,7 +570,7 @@ function buildContext(lang, all) {
   for (const [k, toks] of Object.entries(PATCHES.remove ?? {})) patch.set(k, new Set(toks.map(stripP)));
   if (process.env.DEBUG_NAMES) console.log(`имена ${lang}: ${[...names].filter((n) => /^(He|She|They|We|You|It|The|A|There|This)$/.test(n)).join(',')} всего ${names.size}`);
   return {
-    numbers, names, nameTile, vocab, patch, globalKeys,
+    lang, posLex: POS_LEX?.[lang] ?? null, tags: buildTags(lang, all, new Set(LISTS.articles?.[lang] ?? []), LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }), numbers, names, nameTile, vocab, patch, globalKeys,
     articles: sets(LISTS.articles?.[lang]), synonyms: LISTS.synonyms?.[lang] ?? [], youGroups: LISTS.youGroups?.[lang] ?? [],
     replace: new Map(Object.entries(PATCHES.replace ?? {})), artPairs: LISTS.articlePairs?.[lang] ?? null,
     closed: LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }, adverbOnly: LISTS.adverbOnly?.[lang] ?? null,
@@ -509,9 +584,9 @@ function auditDistractors(lang, all, ctxIn) {
   for (const ph of all) ph.tiles.forEach((tile, i) => {
     const seen = [];
     for (const d of tile.distractors) {
-      if (auditForced.has(`${ph.id}#${i}:${d}`)) { seen.push(d); continue; }
+      if (auditForced.has(`${ph.id}#${i}:${d.toLowerCase()}`)) { seen.push(d); continue; }
       const why = badReason(lang, ctx, ph, i, d, seen);
-      if (why) found[why] = (found[why] ?? 0) + 1;
+      if (why) { found[why] = (found[why] ?? 0) + 1; if (process.env.DEBUG_LEFT) console.log('left', lang, ph.id, i, tile.correct, d, why); }
       seen.push(d);
     }
     if (lang === 'en' && tile.distractors.some((d) => /^i(['’]|$)/.test(d))) found.lowerI = (found.lowerI ?? 0) + 1;
@@ -602,6 +677,20 @@ function fixDistractors(lang, all) {
         const nearRanked = [...near.entries()].sort((a, b) => b[1] - a[1] || (everything.get(b[0]) ?? 0) - (everything.get(a[0]) ?? 0) || (a[0] < b[0] ? -1 : 1));
         // кандидат в нужном регистре: строчное имя собственное (wednesday) → Wednesday, если имя известно
         const asWanted = (c) => (upperWanted && !upperFirst(c) && /^[\p{L}]/u.test(c) ? c[0].toUpperCase() + c.slice(1) : c);
+        // роль плитки (noun/verb/adj/aux/pron/yn): сначала кандидаты той же роли — нет «bag» на месте is и «is» на месте shop
+        if (ctx.tags && kept.length < want) {
+          const T = ctx.tags;
+          const role = localRole(lang, T, ph.tiles.map((t) => t.correct), i);
+          const rolePool = role === 'aux' ? [...T.aux] : role === 'pron' ? [...T.subj] : role === 'yn' ? T.ynFill : role ? [...T.tag.entries()].filter(([, r]) => r === role).map(([w]) => w) : [];
+          const rp = [...rolePool].sort((a, b) => (nearRanked.findIndex(([x]) => x === b) >= 0 ? 1 : 0) - (nearRanked.findIndex(([x]) => x === a) >= 0 ? 1 : 0) || (everything.get(b) ?? 0) - (everything.get(a) ?? 0) || (a < b ? -1 : 1));
+          for (const w of rp) {
+            if (kept.length >= want) break;
+            const c = asWanted(w === 'i' ? 'I' : w);
+            if (tried.has(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
+            tried.add(c);
+            if (!badReason(lang, ctx, ph, i, c, kept)) { kept.push(c); removed.refilled++; removed.rolePool = (removed.rolePool ?? 0) + 1; }
+          }
+        }
         for (const [c0] of nearRanked) {
           const c = asWanted(c0);
           if (kept.length >= want) break;
@@ -633,6 +722,15 @@ function fixDistractors(lang, all) {
             if (!badReason(lang, ctxR, ph, i, c, kept)) { kept.push(c); removed.refilled++; removed.relaxed = (removed.relaxed ?? 0) + 1; }
           }
         }
+        if (kept.length < want) {
+          const ctxN = { ...ctx, relax: true, noTag: true };
+          for (const [c0] of [...everything.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1))) {
+            if (kept.length >= want) break;
+            const c = asWanted(c0);
+            if (kept.some((x) => stripP(x) === stripP(c)) || /^i(['’]|$)/.test(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
+            if (!badReason(lang, ctxN, ph, i, c, kept)) { kept.push(c); removed.refilled++; removed.noTag = (removed.noTag ?? 0) + 1; auditForced.add(`${ph.id}#${i}:${c.toLowerCase()}`); }
+          }
+        }
         if (kept.length < want) { removed.short++; if (shortSamples.length < 6) shortSamples.push(`${ph.id}#${i} ${tile.correct} ${kept.length}/${want}`); }
       }
       // правки соблазнов полного прохода: старый соблазн реально стоит → заменяем новым, который не даёт второй верной фразы (ни у этой фразы, ни в словаре курса)
@@ -643,9 +741,12 @@ function fixDistractors(lang, all) {
         const others = kept.filter((_, j) => j !== at);
         const cand = upperFirst(kept[at]) && !upperFirst(op.with) ? op.with[0].toUpperCase() + op.with.slice(1) : !upperFirst(kept[at]) && upperFirst(op.with) && !ctx.names.has(op.with) ? op.with[0].toLowerCase() + op.with.slice(1) : op.with;
         const why = badReason(lang, { ...ctx, relax: true }, ph, i, cand, others) ?? (ctx.globalKeys.has(keyOf(ph.tiles.map((t, j) => (j === i ? cand : t.correct)))) ? 'globalPhrase' : null);
-        if (why) { auditStats.tileInvalid++; auditStats.invalidReasons[why] = (auditStats.invalidReasons[why] ?? 0) + 1; (auditStats.rejected ??= []).push({ id: ph.id, lang, pos: i, from: op.from, with: cand, why, target: ph.tiles.map((t) => t.correct).join(' '), built: ph.tiles.map((t, j) => (j === i ? cand : t.correct)).join(' '), ru: ph.translations?.ru ?? ph.ru ?? null, alts: ph.alternatives }); continue; }
+        // зачем (05.11): замену дал сильный аудитор и проверил, что фраза неверна; «мягкие» правила генератора (вы-формы, синонимы, род, роль, pos) её не отменяют —
+        // отклоняем только «жёсткое»: вторая верная фраза курса, чужое верное слово, категория, не слово, дубль
+        const HARD = new Set(['globalPhrase', 'otherCorrect', 'nonWord', 'category', 'acceptedPhrase', 'selfCase', 'duplicate']);
+        if (why && HARD.has(why)) { auditStats.tileInvalid++; auditStats.invalidReasons[why] = (auditStats.invalidReasons[why] ?? 0) + 1; (auditStats.rejected ??= []).push({ id: ph.id, lang, pos: i, from: op.from, with: cand, why, target: ph.tiles.map((t) => t.correct).join(' '), built: ph.tiles.map((t, j) => (j === i ? cand : t.correct)).join(' '), ru: ph.translations?.ru ?? ph.ru ?? null, alts: ph.alternatives }); continue; }
         kept[at] = cand;
-        auditForced.add(`${ph.id}#${i}:${cand}`);
+        auditForced.add(`${ph.id}#${i}:${cand.toLowerCase()}`);
         auditStats.tileApplied++;
       }
       // зачем (механический аудит 05.11): у EN первая плитка с заглавной, а соблазны шли строчными — заглавная выдавала верный ответ; первой позиции выравниваем регистр по верной плитке

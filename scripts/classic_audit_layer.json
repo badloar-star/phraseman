@@ -12,6 +12,11 @@
     "position": 2,
     "from": "an",
     "with": "hinter"
+   },
+   {
+    "position": 3,
+    "from": "an",
+    "with": "hinter"
    }
   ],
   "de:12:04": [
@@ -89,6 +94,11 @@
     "position": 7,
     "from": "müssen",
     "with": "dürft"
+   },
+   {
+    "position": 5,
+    "from": "Türen",
+    "with": "Kiste"
    }
   ],
   "de:24:09": [
@@ -152,6 +162,11 @@
     "position": 0,
     "from": "Sind",
     "with": "Seid"
+   },
+   {
+    "position": 4,
+    "from": "gewaschen",
+    "with": "gebacken"
    }
   ],
   "de:29:05": [
@@ -159,6 +174,11 @@
     "position": 0,
     "from": "Haben",
     "with": "Hättest"
+   },
+   {
+    "position": 0,
+    "from": "Haben",
+    "with": "Hast"
    }
   ],
   "de:29:15": [
@@ -183,6 +203,11 @@
     "position": 0,
     "from": "Darf",
     "with": "Dürft"
+   },
+   {
+    "position": 0,
+    "from": "Darf",
+    "with": "Dürfen"
    }
   ],
   "de:29:34": [
@@ -197,6 +222,11 @@
     "position": 0,
     "from": "Haben",
     "with": "Hättest"
+   },
+   {
+    "position": 0,
+    "from": "Haben",
+    "with": "Hätte"
    }
   ],
   "en:04:15": [
@@ -302,6 +332,16 @@
     "position": 3,
     "from": "something",
     "with": "everything"
+   },
+   {
+    "position": 4,
+    "from": "bus",
+    "with": "other"
+   },
+   {
+    "position": 4,
+    "from": "train",
+    "with": "either"
    }
   ],
   "en:21:18": [
@@ -461,6 +501,11 @@
     "position": 5,
     "from": "when",
     "with": "than"
+   },
+   {
+    "position": 4,
+    "from": "ringing",
+    "with": "rung"
    }
   ],
   "en:32:09": [
@@ -611,6 +656,11 @@
     "position": 2,
     "from": "los",
     "with": "mis"
+   },
+   {
+    "position": 2,
+    "from": "los",
+    "with": "la"
    }
   ],
   "es:18:11": [
@@ -737,6 +787,16 @@
     "position": 2,
     "from": "fue",
     "with": "vamos"
+   },
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "en"
    }
   ],
   "es:23:19": [
@@ -807,6 +867,11 @@
     "position": 0,
     "from": "On",
     "with": "Tu"
+   },
+   {
+    "position": 4,
+    "from": "en",
+    "with": "pour"
    }
   ],
   "fr:11:39": [
@@ -863,6 +928,11 @@
     "position": 0,
     "from": "Nous",
     "with": "Ils"
+   },
+   {
+    "position": 6,
+    "from": "est-ce",
+    "with": "l’armoire"
    }
   ],
   "fr:12:01": [
@@ -1057,6 +1127,11 @@
     "position": 1,
     "from": "avons",
     "with": "avez"
+   },
+   {
+    "position": 9,
+    "from": "faut",
+    "with": "devait"
    }
   ],
   "fr:25:39": [
@@ -1064,6 +1139,11 @@
     "position": 0,
     "from": "On",
     "with": "Tu"
+   },
+   {
+    "position": 1,
+    "from": "faut",
+    "with": "devions"
    }
   ],
   "fr:25:49": [
@@ -1071,6 +1151,11 @@
     "position": 0,
     "from": "On",
     "with": "Elles"
+   },
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Il"
    }
   ],
   "fr:26:03": [
@@ -1260,6 +1345,11 @@
     "position": 1,
     "from": "a",
     "with": "aient"
+   },
+   {
+    "position": 2,
+    "from": "le",
+    "with": "des"
    }
   ],
   "fr:31:45": [
@@ -1377,6 +1467,11 @@
     "position": 0,
     "from": "Prende",
     "with": "Prendono"
+   },
+   {
+    "position": 0,
+    "from": "Prende",
+    "with": "Prendo"
    }
   ],
   "it:12:28": [
@@ -1384,6 +1479,11 @@
     "position": 0,
     "from": "C’è",
     "with": "Sono"
+   },
+   {
+    "position": 0,
+    "from": "C’è",
+    "with": "Ha"
    }
   ],
   "it:12:30": [
@@ -1396,6 +1496,16 @@
     "position": 0,
     "from": "C’è",
     "with": "Sei"
+   },
+   {
+    "position": 0,
+    "from": "C’è",
+    "with": "Ha"
+   },
+   {
+    "position": 1,
+    "from": "mela",
+    "with": "rimasto"
    }
   ],
   "it:15:09": [
@@ -1436,6 +1546,11 @@
     "position": 0,
     "from": "Stai",
     "with": "Sono"
+   },
+   {
+    "position": 0,
+    "from": "Stai",
+    "with": "Resto"
    }
   ],
   "it:18:12": [
@@ -1450,6 +1565,11 @@
     "position": 4,
     "from": "in",
     "with": "con"
+   },
+   {
+    "position": 4,
+    "from": "in",
+    "with": "su"
    }
   ],
   "it:22:03": [
@@ -1541,6 +1661,11 @@
     "position": 7,
     "from": "haben",
     "with": "hättest"
+   },
+   {
+    "position": 7,
+    "from": "haben",
+    "with": "hattet"
    }
   ],
   "de:31:48": [
@@ -1731,6 +1856,7776 @@
     "position": 4,
     "from": "andata",
     "with": "rimasta"
+   }
+  ],
+  "de:01:09": [
+   {
+    "position": 0,
+    "from": "Essen",
+    "with": "Du"
+   },
+   {
+    "position": 0,
+    "from": "Offen",
+    "with": "Er"
+   },
+   {
+    "position": 1,
+    "from": "offen",
+    "with": "bist"
+   },
+   {
+    "position": 1,
+    "from": "fertig",
+    "with": "ist"
+   },
+   {
+    "position": 1,
+    "from": "früher",
+    "with": "sind"
+   }
+  ],
+  "de:01:19": [
+   {
+    "position": 0,
+    "from": "Essen",
+    "with": "Du"
+   },
+   {
+    "position": 0,
+    "from": "Offen",
+    "with": "Er"
+   },
+   {
+    "position": 1,
+    "from": "offen",
+    "with": "bist"
+   },
+   {
+    "position": 1,
+    "from": "fertig",
+    "with": "ist"
+   },
+   {
+    "position": 1,
+    "from": "früher",
+    "with": "sind"
+   }
+  ],
+  "de:01:25": [
+   {
+    "position": 0,
+    "from": "Essen",
+    "with": "Du"
+   },
+   {
+    "position": 0,
+    "from": "Offen",
+    "with": "Er"
+   },
+   {
+    "position": 1,
+    "from": "offen",
+    "with": "bist"
+   },
+   {
+    "position": 1,
+    "from": "fertig",
+    "with": "ist"
+   },
+   {
+    "position": 1,
+    "from": "früher",
+    "with": "sind"
+   }
+  ],
+  "de:01:37": [
+   {
+    "position": 3,
+    "from": "bezahlen",
+    "with": "teuer"
+   },
+   {
+    "position": 3,
+    "from": "bezahlt",
+    "with": "gut"
+   },
+   {
+    "position": 3,
+    "from": "brauchen",
+    "with": "neu"
+   }
+  ],
+  "de:01:38": [
+   {
+    "position": 3,
+    "from": "zum",
+    "with": "gut"
+   },
+   {
+    "position": 3,
+    "from": "das",
+    "with": "neu"
+   },
+   {
+    "position": 3,
+    "from": "den",
+    "with": "fertig"
+   }
+  ],
+  "de:01:39": [
+   {
+    "position": 3,
+    "from": "bezahlen",
+    "with": "teuer"
+   },
+   {
+    "position": 3,
+    "from": "bezahlt",
+    "with": "gut"
+   },
+   {
+    "position": 3,
+    "from": "brauchen",
+    "with": "neu"
+   }
+  ],
+  "de:01:45": [
+   {
+    "position": 3,
+    "from": "leise",
+    "with": "kalt"
+   }
+  ],
+  "de:02:07": [
+   {
+    "position": 3,
+    "from": "ich",
+    "with": "alt"
+   },
+   {
+    "position": 3,
+    "from": "es",
+    "with": "kaputt"
+   },
+   {
+    "position": 3,
+    "from": "wir",
+    "with": "schwer"
+   },
+   {
+    "position": 3,
+    "from": "sie",
+    "with": "klein"
+   },
+   {
+    "position": 3,
+    "from": "ihr",
+    "with": "groß"
+   }
+  ],
+  "de:02:08": [
+   {
+    "position": 3,
+    "from": "ich",
+    "with": "alt"
+   },
+   {
+    "position": 3,
+    "from": "es",
+    "with": "kaputt"
+   },
+   {
+    "position": 3,
+    "from": "wir",
+    "with": "schwer"
+   },
+   {
+    "position": 3,
+    "from": "sie",
+    "with": "offen"
+   },
+   {
+    "position": 3,
+    "from": "ihr",
+    "with": "voll"
+   }
+  ],
+  "de:02:09": [
+   {
+    "position": 3,
+    "from": "ich",
+    "with": "alt"
+   },
+   {
+    "position": 3,
+    "from": "es",
+    "with": "kaputt"
+   },
+   {
+    "position": 3,
+    "from": "wir",
+    "with": "teuer"
+   },
+   {
+    "position": 3,
+    "from": "sie",
+    "with": "laut"
+   },
+   {
+    "position": 3,
+    "from": "ihr",
+    "with": "schwer"
+   }
+  ],
+  "de:03:05": [
+   {
+    "position": 0,
+    "from": "Essen",
+    "with": "Du"
+   }
+  ],
+  "de:03:15": [
+   {
+    "position": 0,
+    "from": "Offen",
+    "with": "Du"
+   }
+  ],
+  "de:03:25": [
+   {
+    "position": 0,
+    "from": "Essen",
+    "with": "Du"
+   }
+  ],
+  "de:03:35": [
+   {
+    "position": 0,
+    "from": "Essen",
+    "with": "Du"
+   }
+  ],
+  "de:03:49": [
+   {
+    "position": 0,
+    "from": "Essen",
+    "with": "Du"
+   },
+   {
+    "position": 2,
+    "from": "lernen",
+    "with": "allein"
+   }
+  ],
+  "de:03:34": [
+   {
+    "position": 2,
+    "from": "suchen",
+    "with": "allein"
+   }
+  ],
+  "de:03:44": [
+   {
+    "position": 2,
+    "from": "lernen",
+    "with": "allein"
+   }
+  ],
+  "de:03:38": [
+   {
+    "position": 2,
+    "from": "komme",
+    "with": "um"
+   }
+  ],
+  "de:04:02": [
+   {
+    "position": 0,
+    "from": "Nehmen",
+    "with": "Abend"
+   }
+  ],
+  "de:04:04": [
+   {
+    "position": 0,
+    "from": "Nehmen",
+    "with": "Abend"
+   }
+  ],
+  "de:04:12": [
+   {
+    "position": 0,
+    "from": "Nehmen",
+    "with": "Abend"
+   }
+  ],
+  "de:04:14": [
+   {
+    "position": 0,
+    "from": "Nehmen",
+    "with": "Abend"
+   }
+  ],
+  "de:04:42": [
+   {
+    "position": 0,
+    "from": "Nehmen",
+    "with": "Abend"
+   }
+  ],
+  "de:04:05": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:06": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:07": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:08": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:09": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:15": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:16": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:17": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:18": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:19": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:27": [
+   {
+    "position": 4,
+    "from": "komme",
+    "with": "um"
+   }
+  ],
+  "de:04:36": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   },
+   {
+    "position": 1,
+    "from": "Nehmen",
+    "with": "Abend"
+   }
+  ],
+  "de:04:37": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:38": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:40": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:41": [
+   {
+    "position": 4,
+    "from": "spielen",
+    "with": "zu"
+   }
+  ],
+  "de:04:43": [
+   {
+    "position": 5,
+    "from": "arbeiten",
+    "with": "zu"
+   },
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:45": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:48": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:04:50": [
+   {
+    "position": 0,
+    "from": "Komme",
+    "with": "Um"
+   }
+  ],
+  "de:05:03": [
+   {
+    "position": 0,
+    "from": "Anna",
+    "with": "Bist"
+   },
+   {
+    "position": 0,
+    "from": "Aufzug",
+    "with": "Sind"
+   },
+   {
+    "position": 0,
+    "from": "Bahn",
+    "with": "Ist"
+   },
+   {
+    "position": 0,
+    "from": "Laden",
+    "with": "Habt"
+   }
+  ],
+  "de:05:04": [
+   {
+    "position": 0,
+    "from": "Montag",
+    "with": "Ist"
+   },
+   {
+    "position": 0,
+    "from": "Anna",
+    "with": "Seid"
+   },
+   {
+    "position": 0,
+    "from": "Tom",
+    "with": "Bist"
+   },
+   {
+    "position": 0,
+    "from": "Uhr",
+    "with": "Haben"
+   }
+  ],
+  "de:05:09": [
+   {
+    "position": 0,
+    "from": "Kinder",
+    "with": "Ist"
+   },
+   {
+    "position": 0,
+    "from": "Montag",
+    "with": "Seid"
+   },
+   {
+    "position": 0,
+    "from": "Anna",
+    "with": "Bist"
+   },
+   {
+    "position": 0,
+    "from": "Tom",
+    "with": "Haben"
+   }
+  ],
+  "de:05:33": [
+   {
+    "position": 0,
+    "from": "Ein",
+    "with": "Lernt"
+   },
+   {
+    "position": 0,
+    "from": "Eine",
+    "with": "Lernst"
+   },
+   {
+    "position": 0,
+    "from": "Kein",
+    "with": "Lerne"
+   },
+   {
+    "position": 0,
+    "from": "Keine",
+    "with": "Lernte"
+   },
+   {
+    "position": 0,
+    "from": "Mein",
+    "with": "Wohnen"
+   }
+  ],
+  "de:05:34": [
+   {
+    "position": 0,
+    "from": "Ein",
+    "with": "Wohnt"
+   },
+   {
+    "position": 0,
+    "from": "Eine",
+    "with": "Wohnst"
+   },
+   {
+    "position": 0,
+    "from": "Kein",
+    "with": "Wohne"
+   },
+   {
+    "position": 0,
+    "from": "Keine",
+    "with": "Wohnte"
+   },
+   {
+    "position": 0,
+    "from": "Mein",
+    "with": "Lernen"
+   }
+  ],
+  "de:05:36": [
+   {
+    "position": 0,
+    "from": "Draußen",
+    "with": "Trinkt"
+   },
+   {
+    "position": 0,
+    "from": "Bahn",
+    "with": "Trinkst"
+   },
+   {
+    "position": 0,
+    "from": "Café",
+    "with": "Trinke"
+   },
+   {
+    "position": 0,
+    "from": "Fenster",
+    "with": "Kochen"
+   }
+  ],
+  "de:05:40": [
+   {
+    "position": 0,
+    "from": "Kinder",
+    "with": "Ist"
+   },
+   {
+    "position": 0,
+    "from": "Montag",
+    "with": "Seid"
+   },
+   {
+    "position": 0,
+    "from": "Anna",
+    "with": "Bist"
+   },
+   {
+    "position": 0,
+    "from": "Tom",
+    "with": "Haben"
+   },
+   {
+    "position": 3,
+    "from": "Hört",
+    "with": "Müller"
+   },
+   {
+    "position": 3,
+    "from": "Brauchen",
+    "with": "Schmidt"
+   },
+   {
+    "position": 3,
+    "from": "Türen",
+    "with": "Fischer"
+   }
+  ],
+  "de:05:42": [
+   {
+    "position": 0,
+    "from": "Adresse",
+    "with": "Hast"
+   },
+   {
+    "position": 0,
+    "from": "Brot",
+    "with": "Habt"
+   },
+   {
+    "position": 0,
+    "from": "Büro",
+    "with": "Haben"
+   },
+   {
+    "position": 0,
+    "from": "Eingang",
+    "with": "Ist"
+   }
+  ],
+  "de:05:50": [
+   {
+    "position": 0,
+    "from": "Kinder",
+    "with": "Ist"
+   },
+   {
+    "position": 0,
+    "from": "Montag",
+    "with": "Seid"
+   },
+   {
+    "position": 0,
+    "from": "Anna",
+    "with": "Bist"
+   },
+   {
+    "position": 0,
+    "from": "Tom",
+    "with": "Haben"
+   }
+  ],
+  "de:06:47": [
+   {
+    "position": 2,
+    "from": "lange",
+    "with": "dieser"
+   },
+   {
+    "position": 2,
+    "from": "heißen",
+    "with": "diesen"
+   },
+   {
+    "position": 2,
+    "from": "beginnt",
+    "with": "dieses"
+   },
+   {
+    "position": 2,
+    "from": "heißt",
+    "with": "diesem"
+   },
+   {
+    "position": 2,
+    "from": "schließt",
+    "with": "den"
+   }
+  ],
+  "de:06:49": [
+   {
+    "position": 3,
+    "from": "und",
+    "with": "eine"
+   },
+   {
+    "position": 3,
+    "from": "mit",
+    "with": "einen"
+   },
+   {
+    "position": 3,
+    "from": "für",
+    "with": "einem"
+   },
+   {
+    "position": 3,
+    "from": "ohne",
+    "with": "kein"
+   },
+   {
+    "position": 3,
+    "from": "aber",
+    "with": "einer"
+   }
+  ],
+  "de:06:50": [
+   {
+    "position": 1,
+    "from": "beginnt",
+    "with": "lange"
+   },
+   {
+    "position": 1,
+    "from": "spielt",
+    "with": "spät"
+   },
+   {
+    "position": 1,
+    "from": "öffnet",
+    "with": "vielen"
+   },
+   {
+    "position": 1,
+    "from": "heißt",
+    "with": "oft"
+   },
+   {
+    "position": 1,
+    "from": "dauert",
+    "with": "vieler"
+   }
+  ],
+  "de:07:43": [
+   {
+    "position": 0,
+    "from": "Anna",
+    "with": "Hast"
+   },
+   {
+    "position": 0,
+    "from": "Adresse",
+    "with": "Habt"
+   },
+   {
+    "position": 0,
+    "from": "Brot",
+    "with": "Haben"
+   }
+  ],
+  "de:07:47": [
+   {
+    "position": 1,
+    "from": "bereit",
+    "with": "findest"
+   },
+   {
+    "position": 1,
+    "from": "leise",
+    "with": "findet"
+   },
+   {
+    "position": 1,
+    "from": "allein",
+    "with": "finden"
+   }
+  ],
+  "de:08:47": [
+   {
+    "position": 1,
+    "from": "bereit",
+    "with": "findest"
+   },
+   {
+    "position": 1,
+    "from": "leise",
+    "with": "finden"
+   },
+   {
+    "position": 1,
+    "from": "allein",
+    "with": "suche"
+   }
+  ],
+  "de:09:13": [
+   {
+    "position": 2,
+    "from": "zusammen",
+    "with": "ihrem"
+   },
+   {
+    "position": 2,
+    "from": "haben",
+    "with": "ihre"
+   },
+   {
+    "position": 2,
+    "from": "draußen",
+    "with": "seinen"
+   },
+   {
+    "position": 2,
+    "from": "geschlossen",
+    "with": "ihr"
+   }
+  ],
+  "de:09:15": [
+   {
+    "position": 2,
+    "from": "fährt",
+    "with": "ihren"
+   },
+   {
+    "position": 2,
+    "from": "bin",
+    "with": "ihrem"
+   },
+   {
+    "position": 2,
+    "from": "bist",
+    "with": "seine"
+   },
+   {
+    "position": 2,
+    "from": "ist",
+    "with": "meine"
+   }
+  ],
+  "de:09:19": [
+   {
+    "position": 2,
+    "from": "fährt",
+    "with": "ihren"
+   },
+   {
+    "position": 2,
+    "from": "bin",
+    "with": "ihrem"
+   },
+   {
+    "position": 2,
+    "from": "bist",
+    "with": "seine"
+   },
+   {
+    "position": 2,
+    "from": "ist",
+    "with": "meine"
+   }
+  ],
+  "de:09:21": [
+   {
+    "position": 0,
+    "from": "Braucht",
+    "with": "Unsere"
+   },
+   {
+    "position": 0,
+    "from": "Kostet",
+    "with": "Unseren"
+   },
+   {
+    "position": 0,
+    "from": "Beginnt",
+    "with": "Unserem"
+   },
+   {
+    "position": 0,
+    "from": "Essen",
+    "with": "Unserer"
+   },
+   {
+    "position": 0,
+    "from": "Frage",
+    "with": "Euer"
+   }
+  ],
+  "de:09:22": [
+   {
+    "position": 0,
+    "from": "Frage",
+    "with": "Unser"
+   },
+   {
+    "position": 0,
+    "from": "Öffnest",
+    "with": "Unseren"
+   },
+   {
+    "position": 0,
+    "from": "Bin",
+    "with": "Unserem"
+   },
+   {
+    "position": 0,
+    "from": "Bist",
+    "with": "Unserer"
+   },
+   {
+    "position": 0,
+    "from": "Ist",
+    "with": "Eure"
+   }
+  ],
+  "de:09:23": [
+   {
+    "position": 0,
+    "from": "Braucht",
+    "with": "Unsere"
+   },
+   {
+    "position": 0,
+    "from": "Kostet",
+    "with": "Unseren"
+   },
+   {
+    "position": 0,
+    "from": "Beginnt",
+    "with": "Unserem"
+   },
+   {
+    "position": 0,
+    "from": "Essen",
+    "with": "Unserer"
+   },
+   {
+    "position": 0,
+    "from": "Frage",
+    "with": "Euer"
+   }
+  ],
+  "de:09:24": [
+   {
+    "position": 0,
+    "from": "Frage",
+    "with": "Unser"
+   },
+   {
+    "position": 0,
+    "from": "Öffnest",
+    "with": "Unseren"
+   },
+   {
+    "position": 0,
+    "from": "Bin",
+    "with": "Unserem"
+   },
+   {
+    "position": 0,
+    "from": "Bist",
+    "with": "Unserer"
+   },
+   {
+    "position": 0,
+    "from": "Ist",
+    "with": "Eure"
+   }
+  ],
+  "de:09:26": [
+   {
+    "position": 0,
+    "from": "Bin",
+    "with": "Euren"
+   },
+   {
+    "position": 0,
+    "from": "Bist",
+    "with": "Eurem"
+   },
+   {
+    "position": 0,
+    "from": "Ist",
+    "with": "Eurer"
+   },
+   {
+    "position": 0,
+    "from": "Seid",
+    "with": "Unsere"
+   }
+  ],
+  "de:09:28": [
+   {
+    "position": 0,
+    "from": "Bin",
+    "with": "Euren"
+   },
+   {
+    "position": 0,
+    "from": "Bist",
+    "with": "Eurem"
+   },
+   {
+    "position": 0,
+    "from": "Ist",
+    "with": "Eurer"
+   },
+   {
+    "position": 0,
+    "from": "Seid",
+    "with": "Unsere"
+   },
+   {
+    "position": 2,
+    "from": "unseren",
+    "with": "wartet"
+   },
+   {
+    "position": 2,
+    "from": "meinen",
+    "with": "warte"
+   },
+   {
+    "position": 2,
+    "from": "deinen",
+    "with": "wartest"
+   },
+   {
+    "position": 2,
+    "from": "ihren",
+    "with": "kommen"
+   }
+  ],
+  "de:09:29": [
+   {
+    "position": 0,
+    "from": "Braucht",
+    "with": "Unsere"
+   },
+   {
+    "position": 0,
+    "from": "Kostet",
+    "with": "Unseren"
+   },
+   {
+    "position": 0,
+    "from": "Beginnt",
+    "with": "Unserem"
+   },
+   {
+    "position": 0,
+    "from": "Essen",
+    "with": "Unserer"
+   },
+   {
+    "position": 0,
+    "from": "Frage",
+    "with": "Euer"
+   }
+  ],
+  "de:09:30": [
+   {
+    "position": 0,
+    "from": "Bin",
+    "with": "Euren"
+   },
+   {
+    "position": 0,
+    "from": "Bist",
+    "with": "Eurem"
+   },
+   {
+    "position": 0,
+    "from": "Ist",
+    "with": "Eurer"
+   },
+   {
+    "position": 0,
+    "from": "Seid",
+    "with": "Unsere"
+   }
+  ],
+  "de:09:37": [
+   {
+    "position": 2,
+    "from": "Wir",
+    "with": "Ihre"
+   },
+   {
+    "position": 2,
+    "from": "Ich",
+    "with": "Ihren"
+   },
+   {
+    "position": 2,
+    "from": "Es",
+    "with": "Ihrem"
+   },
+   {
+    "position": 2,
+    "from": "Essen",
+    "with": "Sein"
+   }
+  ],
+  "de:09:38": [
+   {
+    "position": 2,
+    "from": "Fährt",
+    "with": "Ihren"
+   },
+   {
+    "position": 2,
+    "from": "Bin",
+    "with": "Ihrem"
+   },
+   {
+    "position": 2,
+    "from": "Bist",
+    "with": "Deine"
+   },
+   {
+    "position": 2,
+    "from": "Ist",
+    "with": "Seine"
+   }
+  ],
+  "de:09:39": [
+   {
+    "position": 2,
+    "from": "Wir",
+    "with": "Ihre"
+   },
+   {
+    "position": 2,
+    "from": "Ich",
+    "with": "Ihren"
+   },
+   {
+    "position": 2,
+    "from": "Es",
+    "with": "Ihrem"
+   },
+   {
+    "position": 2,
+    "from": "Essen",
+    "with": "Sein"
+   }
+  ],
+  "de:09:40": [
+   {
+    "position": 2,
+    "from": "Fährt",
+    "with": "Ihren"
+   },
+   {
+    "position": 2,
+    "from": "Bin",
+    "with": "Ihrem"
+   },
+   {
+    "position": 2,
+    "from": "Bist",
+    "with": "Deine"
+   },
+   {
+    "position": 2,
+    "from": "Ist",
+    "with": "Seine"
+   }
+  ],
+  "de:09:47": [
+   {
+    "position": 2,
+    "from": "fährt",
+    "with": "ihren"
+   },
+   {
+    "position": 2,
+    "from": "bin",
+    "with": "ihrem"
+   },
+   {
+    "position": 2,
+    "from": "bist",
+    "with": "seine"
+   },
+   {
+    "position": 2,
+    "from": "ist",
+    "with": "meine"
+   },
+   {
+    "position": 3,
+    "from": "Brauchen",
+    "with": "Nummer"
+   }
+  ],
+  "de:09:50": [
+   {
+    "position": 2,
+    "from": "bin",
+    "with": "euren"
+   },
+   {
+    "position": 2,
+    "from": "bist",
+    "with": "eurem"
+   },
+   {
+    "position": 2,
+    "from": "ist",
+    "with": "eurer"
+   },
+   {
+    "position": 2,
+    "from": "seid",
+    "with": "unsere"
+   }
+  ],
+  "de:10:34": [
+   {
+    "position": 2,
+    "from": "essen",
+    "with": "heute"
+   },
+   {
+    "position": 2,
+    "from": "bringe",
+    "with": "oft"
+   },
+   {
+    "position": 2,
+    "from": "diesem",
+    "with": "bald"
+   },
+   {
+    "position": 2,
+    "from": "bringen",
+    "with": "morgen"
+   },
+   {
+    "position": 2,
+    "from": "beginnt",
+    "with": "später"
+   }
+  ],
+  "de:10:35": [
+   {
+    "position": 2,
+    "from": "bringen",
+    "with": "heute"
+   },
+   {
+    "position": 2,
+    "from": "beginnt",
+    "with": "oft"
+   },
+   {
+    "position": 2,
+    "from": "essen",
+    "with": "bald"
+   },
+   {
+    "position": 2,
+    "from": "diesem",
+    "with": "morgen"
+   },
+   {
+    "position": 2,
+    "from": "bringe",
+    "with": "später"
+   }
+  ],
+  "de:10:50": [
+   {
+    "position": 1,
+    "from": "bringen",
+    "with": "dieser"
+   },
+   {
+    "position": 1,
+    "from": "essen",
+    "with": "diesen"
+   },
+   {
+    "position": 1,
+    "from": "bringe",
+    "with": "dieses"
+   },
+   {
+    "position": 1,
+    "from": "beginnt",
+    "with": "diese"
+   },
+   {
+    "position": 1,
+    "from": "gerade",
+    "with": "jedem"
+   }
+  ],
+  "de:11:08": [
+   {
+    "position": 1,
+    "from": "früher",
+    "with": "sitze"
+   },
+   {
+    "position": 1,
+    "from": "kaputt",
+    "with": "sitzen"
+   }
+  ],
+  "de:11:09": [
+   {
+    "position": 1,
+    "from": "früher",
+    "with": "sitze"
+   },
+   {
+    "position": 1,
+    "from": "kaputt",
+    "with": "sitzen"
+   }
+  ],
+  "de:11:10": [
+   {
+    "position": 2,
+    "from": "einen",
+    "with": "sitzt"
+   },
+   {
+    "position": 2,
+    "from": "offen",
+    "with": "sitze"
+   }
+  ],
+  "de:11:23": [
+   {
+    "position": 1,
+    "from": "seinen",
+    "with": "bist"
+   },
+   {
+    "position": 1,
+    "from": "seinem",
+    "with": "sind"
+   },
+   {
+    "position": 1,
+    "from": "seine",
+    "with": "seid"
+   }
+  ],
+  "de:11:24": [
+   {
+    "position": 1,
+    "from": "seinen",
+    "with": "bist"
+   },
+   {
+    "position": 1,
+    "from": "seinem",
+    "with": "sind"
+   },
+   {
+    "position": 1,
+    "from": "seine",
+    "with": "seid"
+   }
+  ],
+  "de:11:26": [
+   {
+    "position": 1,
+    "from": "offen",
+    "with": "bist"
+   },
+   {
+    "position": 1,
+    "from": "fertig",
+    "with": "sind"
+   },
+   {
+    "position": 1,
+    "from": "früher",
+    "with": "ist"
+   }
+  ],
+  "de:11:27": [
+   {
+    "position": 2,
+    "from": "seinen",
+    "with": "ist"
+   },
+   {
+    "position": 2,
+    "from": "seinem",
+    "with": "bist"
+   },
+   {
+    "position": 2,
+    "from": "seine",
+    "with": "seid"
+   }
+  ],
+  "de:11:39": [
+   {
+    "position": 0,
+    "from": "Kinder",
+    "with": "Ist"
+   },
+   {
+    "position": 0,
+    "from": "Montag",
+    "with": "Seid"
+   },
+   {
+    "position": 0,
+    "from": "Anna",
+    "with": "Bist"
+   }
+  ],
+  "de:11:40": [
+   {
+    "position": 3,
+    "from": "in",
+    "with": "hinter"
+   }
+  ],
+  "de:12:33": [
+   {
+    "position": 4,
+    "from": "in",
+    "with": "über"
+   }
+  ],
+  "de:12:37": [
+   {
+    "position": 0,
+    "from": "Ihr",
+    "with": "Fahrt"
+   },
+   {
+    "position": 0,
+    "from": "Ihre",
+    "with": "Fährst"
+   },
+   {
+    "position": 0,
+    "from": "Ihrer",
+    "with": "Fahre"
+   }
+  ],
+  "de:12:49": [
+   {
+    "position": 6,
+    "from": "hängen",
+    "with": "zweiten"
+   },
+   {
+    "position": 6,
+    "from": "stellen",
+    "with": "vierten"
+   },
+   {
+    "position": 6,
+    "from": "laufen",
+    "with": "ersten"
+   },
+   {
+    "position": 6,
+    "from": "bringen",
+    "with": "fünften"
+   },
+   {
+    "position": 6,
+    "from": "stellst",
+    "with": "dritte"
+   }
+  ],
+  "de:15:03": [
+   {
+    "position": 1,
+    "from": "etwas",
+    "with": "pünktlich"
+   }
+  ],
+  "de:15:46": [
+   {
+    "position": 3,
+    "from": "ruhig",
+    "with": "satt"
+   }
+  ],
+  "de:16:17": [
+   {
+    "position": 3,
+    "from": "Türen",
+    "with": "Bahn"
+   }
+  ],
+  "de:16:27": [
+   {
+    "position": 4,
+    "from": "geschrieben",
+    "with": "gekocht"
+   }
+  ],
+  "de:17:02": [
+   {
+    "position": 2,
+    "from": "gekommen",
+    "with": "gesprungen"
+   }
+  ],
+  "de:17:05": [
+   {
+    "position": 2,
+    "from": "gekommen",
+    "with": "gesprungen"
+   }
+  ],
+  "de:17:08": [
+   {
+    "position": 2,
+    "from": "eingestiegen",
+    "with": "früh"
+   },
+   {
+    "position": 2,
+    "from": "gerannt",
+    "with": "gestern"
+   },
+   {
+    "position": 2,
+    "from": "zurückgekommen",
+    "with": "heute"
+   },
+   {
+    "position": 2,
+    "from": "geradelt",
+    "with": "schnell"
+   }
+  ],
+  "de:17:09": [
+   {
+    "position": 3,
+    "from": "gesprungen",
+    "with": "spät"
+   },
+   {
+    "position": 3,
+    "from": "gezogen",
+    "with": "heute"
+   },
+   {
+    "position": 3,
+    "from": "ausgestiegen",
+    "with": "gestern"
+   },
+   {
+    "position": 3,
+    "from": "aufgestanden",
+    "with": "schnell"
+   }
+  ],
+  "de:17:10": [
+   {
+    "position": 2,
+    "from": "niemand",
+    "with": "spät"
+   },
+   {
+    "position": 2,
+    "from": "abgefahren",
+    "with": "früh"
+   },
+   {
+    "position": 2,
+    "from": "umgestiegen",
+    "with": "gestern"
+   },
+   {
+    "position": 2,
+    "from": "eingestiegen",
+    "with": "heute"
+   },
+   {
+    "position": 2,
+    "from": "aufgewacht",
+    "with": "gut"
+   }
+  ],
+  "de:17:24": [
+   {
+    "position": 3,
+    "from": "zurückgekommen",
+    "with": "richtigen"
+   },
+   {
+    "position": 3,
+    "from": "geworden",
+    "with": "neuen"
+   },
+   {
+    "position": 3,
+    "from": "gelaufen",
+    "with": "letzten"
+   },
+   {
+    "position": 3,
+    "from": "aufgestanden",
+    "with": "nächsten"
+   },
+   {
+    "position": 3,
+    "from": "kaputtgegangen",
+    "with": "großen"
+   }
+  ],
+  "de:17:25": [
+   {
+    "position": 2,
+    "from": "aufgewacht",
+    "with": "spät"
+   },
+   {
+    "position": 2,
+    "from": "aufgestanden",
+    "with": "früh"
+   },
+   {
+    "position": 2,
+    "from": "gelaufen",
+    "with": "gestern"
+   },
+   {
+    "position": 2,
+    "from": "falschen",
+    "with": "heute"
+   },
+   {
+    "position": 2,
+    "from": "gezogen",
+    "with": "sofort"
+   }
+  ],
+  "de:17:29": [
+   {
+    "position": 4,
+    "from": "mitkommen",
+    "with": "alte"
+   },
+   {
+    "position": 4,
+    "from": "sagt",
+    "with": "große"
+   },
+   {
+    "position": 4,
+    "from": "zahlen",
+    "with": "kleine"
+   },
+   {
+    "position": 4,
+    "from": "das",
+    "with": "schöne"
+   }
+  ],
+  "de:17:30": [
+   {
+    "position": 3,
+    "from": "sofort",
+    "with": "diese"
+   },
+   {
+    "position": 3,
+    "from": "gut",
+    "with": "nächste"
+   },
+   {
+    "position": 3,
+    "from": "eingeschlafen",
+    "with": "jede"
+   },
+   {
+    "position": 3,
+    "from": "geradelt",
+    "with": "eine"
+   },
+   {
+    "position": 3,
+    "from": "rechtzeitig",
+    "with": "ganze"
+   }
+  ],
+  "de:17:33": [
+   {
+    "position": 2,
+    "from": "aufgestanden",
+    "with": "kurz"
+   },
+   {
+    "position": 2,
+    "from": "gelaufen",
+    "with": "dort"
+   },
+   {
+    "position": 2,
+    "from": "abgefahren",
+    "with": "gestern"
+   },
+   {
+    "position": 2,
+    "from": "eingestiegen",
+    "with": "allein"
+   }
+  ],
+  "de:17:34": [
+   {
+    "position": 3,
+    "from": "eingezogen",
+    "with": "schlecht"
+   },
+   {
+    "position": 3,
+    "from": "ausgestiegen",
+    "with": "spät"
+   },
+   {
+    "position": 3,
+    "from": "geflogen",
+    "with": "sofort"
+   },
+   {
+    "position": 3,
+    "from": "abgefahren",
+    "with": "schnell"
+   }
+  ],
+  "de:17:45": [
+   {
+    "position": 0,
+    "from": "Ausgeschaltet",
+    "with": "Unsere"
+   },
+   {
+    "position": 0,
+    "from": "Braucht",
+    "with": "Unserem"
+   },
+   {
+    "position": 0,
+    "from": "Kostet",
+    "with": "Unseren"
+   },
+   {
+    "position": 0,
+    "from": "Letzte",
+    "with": "Unserer"
+   },
+   {
+    "position": 0,
+    "from": "Angerufen",
+    "with": "Meinem"
+   }
+  ],
+  "de:17:47": [
+   {
+    "position": 5,
+    "from": "gefallen",
+    "with": "kalt"
+   },
+   {
+    "position": 5,
+    "from": "ausgezogen",
+    "with": "warm"
+   },
+   {
+    "position": 5,
+    "from": "gerollt",
+    "with": "heiß"
+   },
+   {
+    "position": 5,
+    "from": "gezogen",
+    "with": "besser"
+   },
+   {
+    "position": 5,
+    "from": "kaputtgegangen",
+    "with": "langweilig"
+   }
+  ],
+  "de:17:50": [
+   {
+    "position": 3,
+    "from": "ausgezogen",
+    "with": "jemand"
+   },
+   {
+    "position": 3,
+    "from": "angekommen",
+    "with": "alle"
+   },
+   {
+    "position": 3,
+    "from": "direkt",
+    "with": "nichts"
+   },
+   {
+    "position": 3,
+    "from": "gestiegen",
+    "with": "etwas"
+   },
+   {
+    "position": 3,
+    "from": "eingezogen",
+    "with": "wer"
+   }
+  ],
+  "de:18:12": [
+   {
+    "position": 5,
+    "from": "euren",
+    "with": "zu"
+   },
+   {
+    "position": 5,
+    "from": "hatten",
+    "with": "kaputt"
+   },
+   {
+    "position": 5,
+    "from": "falschen",
+    "with": "sauber"
+   },
+   {
+    "position": 5,
+    "from": "waren",
+    "with": "nass"
+   }
+  ],
+  "de:18:17": [
+   {
+    "position": 3,
+    "from": "keinen",
+    "with": "zu"
+   },
+   {
+    "position": 3,
+    "from": "euren",
+    "with": "kaputt"
+   },
+   {
+    "position": 3,
+    "from": "hatten",
+    "with": "sauber"
+   },
+   {
+    "position": 3,
+    "from": "falschen",
+    "with": "nass"
+   },
+   {
+    "position": 3,
+    "from": "kein",
+    "with": "schmutzig"
+   }
+  ],
+  "de:18:23": [
+   {
+    "position": 3,
+    "from": "zufrieden",
+    "with": "richtigen"
+   },
+   {
+    "position": 3,
+    "from": "deinen",
+    "with": "neuen"
+   },
+   {
+    "position": 3,
+    "from": "draußen",
+    "with": "alten"
+   },
+   {
+    "position": 3,
+    "from": "euren",
+    "with": "kleinen"
+   },
+   {
+    "position": 3,
+    "from": "offen",
+    "with": "großen"
+   }
+  ],
+  "de:18:27": [
+   {
+    "position": 0,
+    "from": "Ausgeschaltet",
+    "with": "Unsere"
+   },
+   {
+    "position": 0,
+    "from": "Braucht",
+    "with": "Unserem"
+   },
+   {
+    "position": 0,
+    "from": "Kostet",
+    "with": "Unseren"
+   },
+   {
+    "position": 0,
+    "from": "Letzte",
+    "with": "Unserer"
+   },
+   {
+    "position": 0,
+    "from": "Angerufen",
+    "with": "Meinem"
+   }
+  ],
+  "de:18:42": [
+   {
+    "position": 0,
+    "from": "Pünktlich",
+    "with": "Heute"
+   },
+   {
+    "position": 0,
+    "from": "Falschen",
+    "with": "Gestern"
+   },
+   {
+    "position": 0,
+    "from": "Los",
+    "with": "Morgen"
+   },
+   {
+    "position": 0,
+    "from": "Besetzt",
+    "with": "Jetzt"
+   }
+  ],
+  "de:18:44": [
+   {
+    "position": 4,
+    "from": "zufrieden",
+    "with": "nichts"
+   },
+   {
+    "position": 4,
+    "from": "weg",
+    "with": "wenig"
+   },
+   {
+    "position": 4,
+    "from": "offen",
+    "with": "kaum"
+   },
+   {
+    "position": 4,
+    "from": "besetzt",
+    "with": "etwas"
+   },
+   {
+    "position": 4,
+    "from": "falschen",
+    "with": "zu"
+   }
+  ],
+  "de:18:46": [
+   {
+    "position": 3,
+    "from": "kaputt",
+    "with": "wir"
+   },
+   {
+    "position": 3,
+    "from": "genug",
+    "with": "sie"
+   },
+   {
+    "position": 3,
+    "from": "pünktlich",
+    "with": "viele"
+   },
+   {
+    "position": 3,
+    "from": "zufrieden",
+    "with": "beide"
+   },
+   {
+    "position": 3,
+    "from": "offen",
+    "with": "ihr"
+   },
+   {
+    "position": 4,
+    "from": "falschen",
+    "with": "müde"
+   },
+   {
+    "position": 4,
+    "from": "letzte",
+    "with": "traurig"
+   },
+   {
+    "position": 4,
+    "from": "los",
+    "with": "wach"
+   },
+   {
+    "position": 4,
+    "from": "mehr",
+    "with": "krank"
+   }
+  ],
+  "de:18:47": [
+   {
+    "position": 5,
+    "from": "eine",
+    "with": "groß"
+   },
+   {
+    "position": 5,
+    "from": "einem",
+    "with": "hoch"
+   },
+   {
+    "position": 5,
+    "from": "einen",
+    "with": "teuer"
+   },
+   {
+    "position": 5,
+    "from": "einer",
+    "with": "schlimm"
+   },
+   {
+    "position": 5,
+    "from": "meinem",
+    "with": "schwer"
+   }
+  ],
+  "de:18:48": [
+   {
+    "position": 0,
+    "from": "Pünktlich",
+    "with": "Gestern"
+   },
+   {
+    "position": 0,
+    "from": "Falschen",
+    "with": "Damals"
+   },
+   {
+    "position": 0,
+    "from": "Alle",
+    "with": "Heute"
+   },
+   {
+    "position": 0,
+    "from": "Genug",
+    "with": "Dann"
+   },
+   {
+    "position": 0,
+    "from": "Kurz",
+    "with": "Natürlich"
+   }
+  ],
+  "de:18:50": [
+   {
+    "position": 1,
+    "from": "besetzt",
+    "with": "erste"
+   },
+   {
+    "position": 1,
+    "from": "falschen",
+    "with": "nächste"
+   },
+   {
+    "position": 1,
+    "from": "alle",
+    "with": "neue"
+   },
+   {
+    "position": 1,
+    "from": "mehr",
+    "with": "alte"
+   },
+   {
+    "position": 1,
+    "from": "kaputt",
+    "with": "falsche"
+   }
+  ],
+  "de:19:34": [
+   {
+    "position": 3,
+    "from": "im",
+    "with": "zur"
+   }
+  ],
+  "de:19:48": [
+   {
+    "position": 1,
+    "from": "hatte",
+    "with": "hattest"
+   }
+  ],
+  "de:19:50": [
+   {
+    "position": 1,
+    "from": "hattet",
+    "with": "hast"
+   }
+  ],
+  "de:20:25": [
+   {
+    "position": 4,
+    "from": "zum",
+    "with": "vom"
+   },
+   {
+    "position": 4,
+    "from": "beim",
+    "with": "im"
+   }
+  ],
+  "de:20:13": [
+   {
+    "position": 1,
+    "from": "mitkommen",
+    "with": "alte"
+   }
+  ],
+  "de:20:30": [
+   {
+    "position": 1,
+    "from": "mitkommen",
+    "with": "alte"
+   }
+  ],
+  "de:20:40": [
+   {
+    "position": 1,
+    "from": "hast",
+    "with": "grüne"
+   }
+  ],
+  "de:20:42": [
+   {
+    "position": 6,
+    "from": "frage",
+    "with": "deine"
+   }
+  ],
+  "de:21:16": [
+   {
+    "position": 3,
+    "from": "Türen",
+    "with": "Kiste"
+   }
+  ],
+  "de:22:10": [
+   {
+    "position": 4,
+    "from": "Türen",
+    "with": "Kiste"
+   }
+  ],
+  "de:23:10": [
+   {
+    "position": 4,
+    "from": "ist",
+    "with": "werde"
+   }
+  ],
+  "de:23:29": [
+   {
+    "position": 7,
+    "from": "klein",
+    "with": "kleines"
+   }
+  ],
+  "de:23:37": [
+   {
+    "position": 3,
+    "from": "ist",
+    "with": "wirst"
+   }
+  ],
+  "de:24:13": [
+   {
+    "position": 2,
+    "from": "beim",
+    "with": "zum"
+   }
+  ],
+  "de:25:49": [
+   {
+    "position": 2,
+    "from": "an",
+    "with": "unter"
+   }
+  ],
+  "de:26:11": [
+   {
+    "position": 1,
+    "from": "hatte",
+    "with": "bin"
+   }
+  ],
+  "de:26:13": [
+   {
+    "position": 1,
+    "from": "hatte",
+    "with": "ist"
+   }
+  ],
+  "de:26:15": [
+   {
+    "position": 1,
+    "from": "hatte",
+    "with": "ist"
+   }
+  ],
+  "de:27:13": [
+   {
+    "position": 6,
+    "from": "ich",
+    "with": "alt"
+   },
+   {
+    "position": 6,
+    "from": "er",
+    "with": "teuer"
+   },
+   {
+    "position": 6,
+    "from": "es",
+    "with": "kurz"
+   },
+   {
+    "position": 6,
+    "from": "wir",
+    "with": "lang"
+   },
+   {
+    "position": 6,
+    "from": "sie",
+    "with": "schmutzig"
+   }
+  ],
+  "de:27:28": [
+   {
+    "position": 6,
+    "from": "ich",
+    "with": "alt"
+   },
+   {
+    "position": 6,
+    "from": "er",
+    "with": "teuer"
+   },
+   {
+    "position": 6,
+    "from": "es",
+    "with": "dick"
+   },
+   {
+    "position": 6,
+    "from": "wir",
+    "with": "schwer"
+   },
+   {
+    "position": 6,
+    "from": "sie",
+    "with": "kurz"
+   }
+  ],
+  "de:28:12": [
+   {
+    "position": 4,
+    "from": "blockiert",
+    "with": "verkauft"
+   }
+  ],
+  "de:29:32": [
+   {
+    "position": 0,
+    "from": "Dankbar",
+    "with": "Darf"
+   },
+   {
+    "position": 0,
+    "from": "Ruhiges",
+    "with": "Dürft"
+   }
+  ],
+  "de:29:35": [
+   {
+    "position": 0,
+    "from": "Behalten",
+    "with": "Darf"
+   },
+   {
+    "position": 0,
+    "from": "Schön",
+    "with": "Dürft"
+   }
+  ],
+  "de:30:23": [
+   {
+    "position": 0,
+    "from": "Ein",
+    "with": "Könnt"
+   },
+   {
+    "position": 0,
+    "from": "Eine",
+    "with": "Kannst"
+   }
+  ],
+  "de:30:50": [
+   {
+    "position": 0,
+    "from": "Ein",
+    "with": "Könnt"
+   },
+   {
+    "position": 0,
+    "from": "Eine",
+    "with": "Kannst"
+   }
+  ],
+  "de:31:11": [
+   {
+    "position": 2,
+    "from": "meine",
+    "with": "meines"
+   }
+  ],
+  "de:31:21": [
+   {
+    "position": 0,
+    "from": "Als",
+    "with": "Weil"
+   }
+  ],
+  "de:31:22": [
+   {
+    "position": 0,
+    "from": "Als",
+    "with": "Obwohl"
+   }
+  ],
+  "de:31:24": [
+   {
+    "position": 0,
+    "from": "Als",
+    "with": "Weil"
+   }
+  ],
+  "de:31:25": [
+   {
+    "position": 0,
+    "from": "Als",
+    "with": "Obwohl"
+   }
+  ],
+  "de:31:26": [
+   {
+    "position": 0,
+    "from": "Als",
+    "with": "Weil"
+   }
+  ],
+  "de:31:28": [
+   {
+    "position": 0,
+    "from": "Als",
+    "with": "Damit"
+   }
+  ],
+  "de:31:30": [
+   {
+    "position": 0,
+    "from": "Als",
+    "with": "Weil"
+   }
+  ],
+  "de:31:40": [
+   {
+    "position": 8,
+    "from": "vor",
+    "with": "von"
+   }
+  ],
+  "de:31:45": [
+   {
+    "position": 6,
+    "from": "Türen",
+    "with": "Küche"
+   }
+  ],
+  "en:01:02": [
+   {
+    "position": 1,
+    "from": "closed",
+    "with": "does"
+   }
+  ],
+  "en:01:04": [
+   {
+    "position": 1,
+    "from": "bag",
+    "with": "does"
+   }
+  ],
+  "en:01:07": [
+   {
+    "position": 1,
+    "from": "lights",
+    "with": "does"
+   }
+  ],
+  "en:01:09": [
+   {
+    "position": 1,
+    "from": "bag",
+    "with": "does"
+   }
+  ],
+  "en:01:10": [
+   {
+    "position": 1,
+    "from": "bag",
+    "with": "does"
+   }
+  ],
+  "en:01:12": [
+   {
+    "position": 1,
+    "from": "bag",
+    "with": "does"
+   }
+  ],
+  "en:01:17": [
+   {
+    "position": 1,
+    "from": "bag",
+    "with": "does"
+   },
+   {
+    "position": 3,
+    "from": "are",
+    "with": "home"
+   },
+   {
+    "position": 3,
+    "from": "am",
+    "with": "school"
+   },
+   {
+    "position": 3,
+    "from": "do",
+    "with": "lunch"
+   },
+   {
+    "position": 3,
+    "from": "open",
+    "with": "office"
+   }
+  ],
+  "en:01:18": [
+   {
+    "position": 3,
+    "from": "closed",
+    "with": "home"
+   },
+   {
+    "position": 3,
+    "from": "are",
+    "with": "school"
+   },
+   {
+    "position": 3,
+    "from": "am",
+    "with": "lunch"
+   }
+  ],
+  "en:01:20": [
+   {
+    "position": 3,
+    "from": "is",
+    "with": "home"
+   },
+   {
+    "position": 3,
+    "from": "open",
+    "with": "school"
+   },
+   {
+    "position": 3,
+    "from": "am",
+    "with": "lunch"
+   },
+   {
+    "position": 3,
+    "from": "have",
+    "with": "office"
+   }
+  ],
+  "en:01:25": [
+   {
+    "position": 1,
+    "from": "she's",
+    "with": "bank"
+   }
+  ],
+  "en:01:26": [
+   {
+    "position": 1,
+    "from": "isn't",
+    "with": "bank"
+   },
+   {
+    "position": 1,
+    "from": "aren't",
+    "with": "door"
+   },
+   {
+    "position": 1,
+    "from": "he's",
+    "with": "office"
+   },
+   {
+    "position": 2,
+    "from": "bag",
+    "with": "does"
+   }
+  ],
+  "en:01:27": [
+   {
+    "position": 1,
+    "from": "isn't",
+    "with": "banks"
+   },
+   {
+    "position": 1,
+    "from": "aren't",
+    "with": "lights"
+   },
+   {
+    "position": 2,
+    "from": "bag",
+    "with": "does"
+   },
+   {
+    "position": 3,
+    "from": "is",
+    "with": "busy"
+   }
+  ],
+  "en:01:28": [
+   {
+    "position": 2,
+    "from": "bag",
+    "with": "does"
+   }
+  ],
+  "en:01:29": [
+   {
+    "position": 1,
+    "from": "is",
+    "with": "doors"
+   },
+   {
+    "position": 1,
+    "from": "open",
+    "with": "phones"
+   },
+   {
+    "position": 1,
+    "from": "closed",
+    "with": "windows"
+   }
+  ],
+  "en:01:30": [
+   {
+    "position": 1,
+    "from": "is",
+    "with": "doors"
+   },
+   {
+    "position": 1,
+    "from": "open",
+    "with": "phones"
+   },
+   {
+    "position": 1,
+    "from": "am",
+    "with": "windows"
+   },
+   {
+    "position": 1,
+    "from": "have",
+    "with": "keys"
+   },
+   {
+    "position": 3,
+    "from": "a",
+    "with": "up"
+   },
+   {
+    "position": 3,
+    "from": "train",
+    "with": "over"
+   }
+  ],
+  "en:01:31": [
+   {
+    "position": 1,
+    "from": "bag",
+    "with": "does"
+   }
+  ],
+  "en:01:33": [
+   {
+    "position": 1,
+    "from": "bag",
+    "with": "does"
+   }
+  ],
+  "en:01:35": [
+   {
+    "position": 1,
+    "from": "bag",
+    "with": "does"
+   },
+   {
+    "position": 1,
+    "from": "hands",
+    "with": "has"
+   }
+  ],
+  "en:01:36": [
+   {
+    "position": 2,
+    "from": "bag",
+    "with": "has"
+   }
+  ],
+  "en:01:40": [
+   {
+    "position": 2,
+    "from": "bag",
+    "with": "does"
+   }
+  ],
+  "en:01:43": [
+   {
+    "position": 1,
+    "from": "open",
+    "with": "radio"
+   },
+   {
+    "position": 1,
+    "from": "are",
+    "with": "laptop"
+   },
+   {
+    "position": 1,
+    "from": "am",
+    "with": "computer"
+   }
+  ],
+  "en:01:47": [
+   {
+    "position": 1,
+    "from": "is",
+    "with": "feet"
+   },
+   {
+    "position": 1,
+    "from": "open",
+    "with": "ears"
+   },
+   {
+    "position": 1,
+    "from": "am",
+    "with": "legs"
+   },
+   {
+    "position": 1,
+    "from": "have",
+    "with": "arms"
+   }
+  ],
+  "en:01:49": [
+   {
+    "position": 2,
+    "from": "hands",
+    "with": "has"
+   }
+  ],
+  "en:02:01": [
+   {
+    "position": 1,
+    "from": "waiting",
+    "with": "does"
+   }
+  ],
+  "en:02:07": [
+   {
+    "position": 4,
+    "from": "is",
+    "with": "home"
+   },
+   {
+    "position": 4,
+    "from": "waiting",
+    "with": "school"
+   },
+   {
+    "position": 4,
+    "from": "open",
+    "with": "lunch"
+   },
+   {
+    "position": 4,
+    "from": "am",
+    "with": "office"
+   }
+  ],
+  "en:02:09": [
+   {
+    "position": 1,
+    "from": "waiting",
+    "with": "radio"
+   },
+   {
+    "position": 1,
+    "from": "are",
+    "with": "laptop"
+   },
+   {
+    "position": 1,
+    "from": "am",
+    "with": "computer"
+   }
+  ],
+  "en:02:11": [
+   {
+    "position": 0,
+    "from": "Waiting",
+    "with": "Does"
+   }
+  ],
+  "en:02:12": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   }
+  ],
+  "en:02:13": [
+   {
+    "position": 3,
+    "from": "waiting",
+    "with": "home"
+   },
+   {
+    "position": 3,
+    "from": "are",
+    "with": "school"
+   },
+   {
+    "position": 3,
+    "from": "open",
+    "with": "lunch"
+   },
+   {
+    "position": 3,
+    "from": "am",
+    "with": "office"
+   }
+  ],
+  "en:02:14": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   }
+  ],
+  "en:02:15": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   }
+  ],
+  "en:02:16": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   }
+  ],
+  "en:02:17": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   }
+  ],
+  "en:02:19": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   },
+   {
+    "position": 3,
+    "from": "is",
+    "with": "busy"
+   }
+  ],
+  "en:02:20": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   },
+   {
+    "position": 2,
+    "from": "isn't",
+    "with": "bank"
+   },
+   {
+    "position": 2,
+    "from": "aren't",
+    "with": "office"
+   }
+  ],
+  "en:02:21": [
+   {
+    "position": 0,
+    "from": "Bus",
+    "with": "Now"
+   },
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "So"
+   }
+  ],
+  "en:02:22": [
+   {
+    "position": 0,
+    "from": "The",
+    "with": "Not"
+   },
+   {
+    "position": 0,
+    "from": "This",
+    "with": "Now"
+   },
+   {
+    "position": 0,
+    "from": "A",
+    "with": "So"
+   }
+  ],
+  "en:02:23": [
+   {
+    "position": 0,
+    "from": "Bus",
+    "with": "Now"
+   },
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "So"
+   },
+   {
+    "position": 2,
+    "from": "lights",
+    "with": "does"
+   }
+  ],
+  "en:02:24": [
+   {
+    "position": 0,
+    "from": "The",
+    "with": "Not"
+   },
+   {
+    "position": 0,
+    "from": "This",
+    "with": "Now"
+   },
+   {
+    "position": 0,
+    "from": "A",
+    "with": "So"
+   }
+  ],
+  "en:02:25": [
+   {
+    "position": 0,
+    "from": "Bus",
+    "with": "Now"
+   },
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "So"
+   }
+  ],
+  "en:02:26": [
+   {
+    "position": 0,
+    "from": "The",
+    "with": "Not"
+   },
+   {
+    "position": 0,
+    "from": "This",
+    "with": "Now"
+   },
+   {
+    "position": 0,
+    "from": "A",
+    "with": "So"
+   }
+  ],
+  "en:02:27": [
+   {
+    "position": 0,
+    "from": "Bus",
+    "with": "Now"
+   },
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "So"
+   },
+   {
+    "position": 2,
+    "from": "waiting",
+    "with": "does"
+   }
+  ],
+  "en:02:28": [
+   {
+    "position": 0,
+    "from": "The",
+    "with": "Not"
+   },
+   {
+    "position": 0,
+    "from": "This",
+    "with": "Now"
+   },
+   {
+    "position": 0,
+    "from": "A",
+    "with": "So"
+   }
+  ],
+  "en:02:29": [
+   {
+    "position": 0,
+    "from": "Bus",
+    "with": "Now"
+   },
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "So"
+   }
+  ],
+  "en:02:30": [
+   {
+    "position": 0,
+    "from": "The",
+    "with": "Not"
+   },
+   {
+    "position": 0,
+    "from": "This",
+    "with": "Now"
+   },
+   {
+    "position": 0,
+    "from": "A",
+    "with": "So"
+   }
+  ],
+  "en:02:32": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   },
+   {
+    "position": 2,
+    "from": "isn't",
+    "with": "bus"
+   },
+   {
+    "position": 2,
+    "from": "aren't",
+    "with": "train"
+   }
+  ],
+  "en:02:33": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   }
+  ],
+  "en:02:34": [
+   {
+    "position": 3,
+    "from": "room",
+    "with": "safe"
+   },
+   {
+    "position": 3,
+    "from": "phone",
+    "with": "free"
+   },
+   {
+    "position": 3,
+    "from": "train",
+    "with": "ready"
+   },
+   {
+    "position": 3,
+    "from": "bus",
+    "with": "empty"
+   }
+  ],
+  "en:02:37": [
+   {
+    "position": 1,
+    "from": "aren't",
+    "with": "bus"
+   },
+   {
+    "position": 1,
+    "from": "isn't",
+    "with": "train"
+   }
+  ],
+  "en:02:40": [
+   {
+    "position": 2,
+    "from": "bag",
+    "with": "does"
+   },
+   {
+    "position": 4,
+    "from": "phone",
+    "with": "safe"
+   },
+   {
+    "position": 4,
+    "from": "train",
+    "with": "free"
+   },
+   {
+    "position": 4,
+    "from": "bus",
+    "with": "ready"
+   }
+  ],
+  "en:02:42": [
+   {
+    "position": 2,
+    "from": "bag",
+    "with": "next"
+   }
+  ],
+  "en:02:43": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   }
+  ],
+  "en:02:44": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   },
+   {
+    "position": 2,
+    "from": "are",
+    "with": "dining"
+   },
+   {
+    "position": 2,
+    "from": "am",
+    "with": "living"
+   }
+  ],
+  "en:02:46": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Does"
+   },
+   {
+    "position": 2,
+    "from": "is",
+    "with": "feet"
+   },
+   {
+    "position": 2,
+    "from": "open",
+    "with": "ears"
+   },
+   {
+    "position": 2,
+    "from": "waiting",
+    "with": "legs"
+   },
+   {
+    "position": 2,
+    "from": "am",
+    "with": "arms"
+   }
+  ],
+  "en:02:47": [
+   {
+    "position": 2,
+    "from": "waiting",
+    "with": "radio"
+   },
+   {
+    "position": 2,
+    "from": "are",
+    "with": "laptop"
+   },
+   {
+    "position": 2,
+    "from": "am",
+    "with": "computer"
+   },
+   {
+    "position": 3,
+    "from": "a",
+    "with": "up"
+   },
+   {
+    "position": 3,
+    "from": "the",
+    "with": "over"
+   }
+  ],
+  "en:02:50": [
+   {
+    "position": 0,
+    "from": "Bag",
+    "with": "Has"
+   }
+  ],
+  "en:03:28": [
+   {
+    "position": 3,
+    "from": "phone",
+    "with": "badly"
+   },
+   {
+    "position": 3,
+    "from": "desk",
+    "with": "slowly"
+   }
+  ],
+  "en:03:36": [
+   {
+    "position": 3,
+    "from": "have",
+    "with": "bag"
+   },
+   {
+    "position": 3,
+    "from": "does",
+    "with": "laptop"
+   }
+  ],
+  "en:04:24": [
+   {
+    "position": 1,
+    "from": "go",
+    "with": "laptop"
+   },
+   {
+    "position": 1,
+    "from": "wear",
+    "with": "tablet"
+   }
+  ],
+  "en:04:26": [
+   {
+    "position": 1,
+    "from": "drive",
+    "with": "taps"
+   },
+   {
+    "position": 1,
+    "from": "driving",
+    "with": "phones"
+   }
+  ],
+  "en:04:32": [
+   {
+    "position": 4,
+    "from": "coat",
+    "with": "at"
+   },
+   {
+    "position": 4,
+    "from": "gate",
+    "with": "after"
+   }
+  ],
+  "en:04:33": [
+   {
+    "position": 5,
+    "from": "Fuse",
+    "with": "Mondays"
+   },
+   {
+    "position": 5,
+    "from": "Size",
+    "with": "Sundays"
+   }
+  ],
+  "en:04:38": [
+   {
+    "position": 4,
+    "from": "left",
+    "with": "cold"
+   },
+   {
+    "position": 4,
+    "from": "leaves",
+    "with": "hot"
+   }
+  ],
+  "en:04:40": [
+   {
+    "position": 4,
+    "from": "train",
+    "with": "tired"
+   },
+   {
+    "position": 4,
+    "from": "ticket",
+    "with": "cold"
+   }
+  ],
+  "en:04:42": [
+   {
+    "position": 6,
+    "from": "have",
+    "with": "first"
+   },
+   {
+    "position": 6,
+    "from": "has",
+    "with": "next"
+   }
+  ],
+  "en:04:45": [
+   {
+    "position": 6,
+    "from": "Colleague",
+    "with": "Dublin"
+   },
+   {
+    "position": 6,
+    "from": "Bill",
+    "with": "Galway"
+   }
+  ],
+  "en:05:35": [
+   {
+    "position": 2,
+    "from": "got",
+    "with": "getting"
+   },
+   {
+    "position": 5,
+    "from": "has",
+    "with": "box"
+   }
+  ],
+  "en:05:45": [
+   {
+    "position": 1,
+    "from": "am",
+    "with": "nobody"
+   },
+   {
+    "position": 4,
+    "from": "do",
+    "with": "door"
+   }
+  ],
+  "en:05:48": [
+   {
+    "position": 5,
+    "from": "am",
+    "with": "busy"
+   }
+  ],
+  "en:06:25": [
+   {
+    "position": 4,
+    "from": "coat",
+    "with": "start"
+   }
+  ],
+  "en:06:27": [
+   {
+    "position": 5,
+    "from": "package",
+    "with": "letter"
+   }
+  ],
+  "en:06:32": [
+   {
+    "position": 3,
+    "from": "has",
+    "with": "shift"
+   }
+  ],
+  "en:06:38": [
+   {
+    "position": 3,
+    "from": "am",
+    "with": "keys"
+   }
+  ],
+  "en:06:47": [
+   {
+    "position": 3,
+    "from": "night",
+    "with": "morning"
+   }
+  ],
+  "en:07:24": [
+   {
+    "position": 4,
+    "from": "is",
+    "with": "money"
+   },
+   {
+    "position": 4,
+    "from": "send",
+    "with": "cash"
+   },
+   {
+    "position": 4,
+    "from": "are",
+    "with": "tickets"
+   }
+  ],
+  "en:07:30": [
+   {
+    "position": 5,
+    "from": "go",
+    "with": "seat"
+   },
+   {
+    "position": 5,
+    "from": "take",
+    "with": "room"
+   },
+   {
+    "position": 5,
+    "from": "is",
+    "with": "order"
+   }
+  ],
+  "en:07:44": [
+   {
+    "position": 5,
+    "from": "is",
+    "with": "page"
+   },
+   {
+    "position": 5,
+    "from": "are",
+    "with": "stamp"
+   },
+   {
+    "position": 5,
+    "from": "am",
+    "with": "photo"
+   }
+  ],
+  "en:08:04": [
+   {
+    "position": 3,
+    "from": "Keys",
+    "with": "Mondays"
+   },
+   {
+    "position": 3,
+    "from": "Seats",
+    "with": "Sundays"
+   },
+   {
+    "position": 3,
+    "from": "Fuse",
+    "with": "Tuesdays"
+   }
+  ],
+  "en:08:13": [
+   {
+    "position": 3,
+    "from": "get",
+    "with": "two"
+   },
+   {
+    "position": 3,
+    "from": "gets",
+    "with": "three"
+   },
+   {
+    "position": 3,
+    "from": "is",
+    "with": "five"
+   }
+  ],
+  "en:08:25": [
+   {
+    "position": 4,
+    "from": "Seats",
+    "with": "Sundays"
+   },
+   {
+    "position": 4,
+    "from": "Keys",
+    "with": "Fridays"
+   },
+   {
+    "position": 4,
+    "from": "Cooking",
+    "with": "Mondays"
+   }
+  ],
+  "en:08:26": [
+   {
+    "position": 0,
+    "from": "To",
+    "with": "This"
+   },
+   {
+    "position": 0,
+    "from": "At",
+    "with": "That"
+   },
+   {
+    "position": 0,
+    "from": "In",
+    "with": "These"
+   }
+  ],
+  "en:08:30": [
+   {
+    "position": 5,
+    "from": "Keys",
+    "with": "Saturdays"
+   },
+   {
+    "position": 5,
+    "from": "Seats",
+    "with": "Mondays"
+   },
+   {
+    "position": 5,
+    "from": "Trains",
+    "with": "Fridays"
+   }
+  ],
+  "en:08:35": [
+   {
+    "position": 1,
+    "from": "do",
+    "with": "garden"
+   },
+   {
+    "position": 1,
+    "from": "does",
+    "with": "square"
+   },
+   {
+    "position": 1,
+    "from": "have",
+    "with": "street"
+   },
+   {
+    "position": 4,
+    "from": "check",
+    "with": "busy"
+   },
+   {
+    "position": 4,
+    "from": "do",
+    "with": "noisy"
+   },
+   {
+    "position": 4,
+    "from": "checks",
+    "with": "crowded"
+   }
+  ],
+  "en:08:40": [
+   {
+    "position": 3,
+    "from": "do",
+    "with": "walk"
+   },
+   {
+    "position": 3,
+    "from": "understand",
+    "with": "shower"
+   },
+   {
+    "position": 3,
+    "from": "does",
+    "with": "taxi"
+   }
+  ],
+  "en:08:45": [
+   {
+    "position": 4,
+    "from": "tonight",
+    "with": "tomorrow"
+   }
+  ],
+  "en:09:06": [
+   {
+    "position": 3,
+    "from": "in",
+    "with": "under"
+   }
+  ],
+  "en:09:19": [
+   {
+    "position": 2,
+    "from": "know",
+    "with": "dirty"
+   },
+   {
+    "position": 2,
+    "from": "hear",
+    "with": "old"
+   }
+  ],
+  "en:09:21": [
+   {
+    "position": 4,
+    "from": "got",
+    "with": "station"
+   },
+   {
+    "position": 4,
+    "from": "do",
+    "with": "lane"
+   }
+  ],
+  "en:09:25": [
+   {
+    "position": 3,
+    "from": "do",
+    "with": "noisy"
+   },
+   {
+    "position": 3,
+    "from": "has",
+    "with": "big"
+   }
+  ],
+  "en:09:27": [
+   {
+    "position": 5,
+    "from": "have",
+    "with": "luggage"
+   },
+   {
+    "position": 5,
+    "from": "has",
+    "with": "tickets"
+   }
+  ],
+  "en:09:36": [
+   {
+    "position": 3,
+    "from": "collect",
+    "with": "dirty"
+   },
+   {
+    "position": 3,
+    "from": "is",
+    "with": "old"
+   }
+  ],
+  "en:10:16": [
+   {
+    "position": 5,
+    "from": "live",
+    "with": "walk"
+   },
+   {
+    "position": 5,
+    "from": "have",
+    "with": "trip"
+   }
+  ],
+  "en:10:22": [
+   {
+    "position": 2,
+    "from": "don't",
+    "with": "tell"
+   },
+   {
+    "position": 2,
+    "from": "doesn't",
+    "with": "write"
+   }
+  ],
+  "en:11:31": [
+   {
+    "position": 0,
+    "from": "Have",
+    "with": "Was"
+   }
+  ],
+  "en:11:33": [
+   {
+    "position": 0,
+    "from": "Have",
+    "with": "Was"
+   }
+  ],
+  "en:11:34": [
+   {
+    "position": 0,
+    "from": "Has",
+    "with": "Was"
+   }
+  ],
+  "en:11:36": [
+   {
+    "position": 1,
+    "from": "have",
+    "with": "was"
+   }
+  ],
+  "en:11:38": [
+   {
+    "position": 1,
+    "from": "have",
+    "with": "was"
+   }
+  ],
+  "en:12:31": [
+   {
+    "position": 0,
+    "from": "Have",
+    "with": "Was"
+   }
+  ],
+  "en:12:36": [
+   {
+    "position": 1,
+    "from": "have",
+    "with": "was"
+   }
+  ],
+  "en:12:38": [
+   {
+    "position": 1,
+    "from": "has",
+    "with": "was"
+   }
+  ],
+  "en:12:44": [
+   {
+    "position": 1,
+    "from": "have",
+    "with": "was"
+   }
+  ],
+  "en:13:03": [
+   {
+    "position": 3,
+    "from": "some",
+    "with": "much"
+   }
+  ],
+  "en:13:09": [
+   {
+    "position": 4,
+    "from": "do",
+    "with": "door"
+   }
+  ],
+  "en:13:16": [
+   {
+    "position": 4,
+    "from": "go",
+    "with": "door"
+   }
+  ],
+  "en:15:03": [
+   {
+    "position": 0,
+    "from": "Elevator",
+    "with": "Those"
+   }
+  ],
+  "en:15:16": [
+   {
+    "position": 1,
+    "from": "shoes",
+    "with": "socks"
+   }
+  ],
+  "en:15:31": [
+   {
+    "position": 4,
+    "from": "and",
+    "with": "or"
+   }
+  ],
+  "en:15:44": [
+   {
+    "position": 2,
+    "from": "shoes",
+    "with": "socks"
+   }
+  ],
+  "en:15:49": [
+   {
+    "position": 3,
+    "from": "and",
+    "with": "or"
+   }
+  ],
+  "en:16:06": [
+   {
+    "position": 2,
+    "from": "keys",
+    "with": "pulled"
+   }
+  ],
+  "en:16:17": [
+   {
+    "position": 3,
+    "from": "keep",
+    "with": "parcel"
+   }
+  ],
+  "en:16:19": [
+   {
+    "position": 0,
+    "from": "Set",
+    "with": "Sit"
+   }
+  ],
+  "en:16:44": [
+   {
+    "position": 5,
+    "from": "home",
+    "with": "inside"
+   }
+  ],
+  "en:16:48": [
+   {
+    "position": 4,
+    "from": "coat",
+    "with": "since"
+   },
+   {
+    "position": 4,
+    "from": "key",
+    "with": "from"
+   }
+  ],
+  "en:18:11": [
+   {
+    "position": 2,
+    "from": "breakfast",
+    "with": "move"
+   }
+  ],
+  "en:18:12": [
+   {
+    "position": 2,
+    "from": "friday",
+    "with": "use"
+   }
+  ],
+  "en:18:39": [
+   {
+    "position": 3,
+    "from": "keys",
+    "with": "behind"
+   }
+  ],
+  "en:19:04": [
+   {
+    "position": 3,
+    "from": "phone",
+    "with": "behind"
+   },
+   {
+    "position": 3,
+    "from": "address",
+    "with": "under"
+   }
+  ],
+  "en:19:10": [
+   {
+    "position": 3,
+    "from": "moving",
+    "with": "below"
+   },
+   {
+    "position": 3,
+    "from": "do",
+    "with": "behind"
+   }
+  ],
+  "en:19:12": [
+   {
+    "position": 4,
+    "from": "hall",
+    "with": "kitchen"
+   }
+  ],
+  "en:19:26": [
+   {
+    "position": 4,
+    "from": "phone",
+    "with": "behind"
+   },
+   {
+    "position": 4,
+    "from": "address",
+    "with": "under"
+   }
+  ],
+  "en:19:30": [
+   {
+    "position": 3,
+    "from": "moving",
+    "with": "below"
+   },
+   {
+    "position": 3,
+    "from": "do",
+    "with": "behind"
+   }
+  ],
+  "en:19:35": [
+   {
+    "position": 0,
+    "from": "Bus",
+    "with": "Read"
+   },
+   {
+    "position": 0,
+    "from": "Train",
+    "with": "Write"
+   },
+   {
+    "position": 0,
+    "from": "Sugar",
+    "with": "Sign"
+   }
+  ],
+  "en:19:37": [
+   {
+    "position": 5,
+    "from": "is",
+    "with": "box"
+   },
+   {
+    "position": 5,
+    "from": "waiting",
+    "with": "wallet"
+   },
+   {
+    "position": 5,
+    "from": "do",
+    "with": "folder"
+   },
+   {
+    "position": 5,
+    "from": "heard",
+    "with": "drawer"
+   },
+   {
+    "position": 5,
+    "from": "are",
+    "with": "bag"
+   }
+  ],
+  "en:19:38": [
+   {
+    "position": 3,
+    "from": "phone",
+    "with": "behind"
+   },
+   {
+    "position": 3,
+    "from": "address",
+    "with": "under"
+   }
+  ],
+  "en:19:43": [
+   {
+    "position": 4,
+    "from": "moving",
+    "with": "below"
+   },
+   {
+    "position": 4,
+    "from": "do",
+    "with": "behind"
+   }
+  ],
+  "en:20:20": [
+   {
+    "position": 7,
+    "from": "go",
+    "with": "open"
+   },
+   {
+    "position": 7,
+    "from": "keep",
+    "with": "empty"
+   },
+   {
+    "position": 7,
+    "from": "is",
+    "with": "torn"
+   },
+   {
+    "position": 7,
+    "from": "wait",
+    "with": "lost"
+   },
+   {
+    "position": 7,
+    "from": "have",
+    "with": "wet"
+   }
+  ],
+  "en:20:21": [
+   {
+    "position": 4,
+    "from": "check",
+    "with": "office"
+   },
+   {
+    "position": 4,
+    "from": "do",
+    "with": "hotel"
+   },
+   {
+    "position": 4,
+    "from": "does",
+    "with": "station"
+   },
+   {
+    "position": 4,
+    "from": "did",
+    "with": "street"
+   }
+  ],
+  "en:20:25": [
+   {
+    "position": 6,
+    "from": "empty",
+    "with": "broken"
+   }
+  ],
+  "en:20:26": [
+   {
+    "position": 6,
+    "from": "work",
+    "with": "late"
+   },
+   {
+    "position": 6,
+    "from": "gate",
+    "with": "rude"
+   },
+   {
+    "position": 6,
+    "from": "train",
+    "with": "quiet"
+   },
+   {
+    "position": 6,
+    "from": "coat",
+    "with": "busy"
+   },
+   {
+    "position": 6,
+    "from": "bus",
+    "with": "slow"
+   }
+  ],
+  "en:21:21": [
+   {
+    "position": 3,
+    "from": "take",
+    "with": "door"
+   },
+   {
+    "position": 3,
+    "from": "walking",
+    "with": "letter"
+   }
+  ],
+  "en:21:34": [
+   {
+    "position": 3,
+    "from": "phone",
+    "with": "once"
+   },
+   {
+    "position": 3,
+    "from": "gate",
+    "with": "again"
+   }
+  ],
+  "en:21:38": [
+   {
+    "position": 4,
+    "from": "to",
+    "with": "under"
+   }
+  ],
+  "en:21:39": [
+   {
+    "position": 5,
+    "from": "bus",
+    "with": "full"
+   },
+   {
+    "position": 5,
+    "from": "everybody",
+    "with": "double"
+   }
+  ],
+  "en:21:44": [
+   {
+    "position": 3,
+    "from": "phone",
+    "with": "right"
+   },
+   {
+    "position": 3,
+    "from": "bus",
+    "with": "worse"
+   }
+  ],
+  "en:22:20": [
+   {
+    "position": 1,
+    "from": "price",
+    "with": "practised"
+   },
+   {
+    "position": 1,
+    "from": "battery",
+    "with": "practises"
+   }
+  ],
+  "en:22:48": [
+   {
+    "position": 4,
+    "from": "time",
+    "with": "allowed"
+   },
+   {
+    "position": 4,
+    "from": "room",
+    "with": "aside"
+   }
+  ],
+  "en:22:49": [
+   {
+    "position": 1,
+    "from": "bus",
+    "with": "remind"
+   },
+   {
+    "position": 1,
+    "from": "lunch",
+    "with": "mention"
+   }
+  ],
+  "en:22:50": [
+   {
+    "position": 5,
+    "from": "ticket",
+    "with": "than"
+   },
+   {
+    "position": 5,
+    "from": "kitchen",
+    "with": "them"
+   }
+  ],
+  "en:23:12": [
+   {
+    "position": 2,
+    "from": "on",
+    "with": "under"
+   }
+  ],
+  "en:23:14": [
+   {
+    "position": 1,
+    "from": "light",
+    "with": "lamps"
+   }
+  ],
+  "en:23:39": [
+   {
+    "position": 1,
+    "from": "go",
+    "with": "letter"
+   },
+   {
+    "position": 1,
+    "from": "saw",
+    "with": "receipt"
+   }
+  ],
+  "en:23:46": [
+   {
+    "position": 3,
+    "from": "should",
+    "with": "might"
+   }
+  ],
+  "en:24:30": [
+   {
+    "position": 0,
+    "from": "Did",
+    "with": "Were"
+   }
+  ],
+  "en:24:37": [
+   {
+    "position": 6,
+    "from": "go",
+    "with": "card"
+   },
+   {
+    "position": 6,
+    "from": "look",
+    "with": "bike"
+   }
+  ],
+  "en:25:41": [
+   {
+    "position": 0,
+    "from": "When",
+    "with": "Until"
+   }
+  ],
+  "en:25:42": [
+   {
+    "position": 0,
+    "from": "When",
+    "with": "Until"
+   }
+  ],
+  "en:25:48": [
+   {
+    "position": 4,
+    "from": "bags",
+    "with": "until"
+   }
+  ],
+  "en:26:19": [
+   {
+    "position": 8,
+    "from": "keys",
+    "with": "end"
+   }
+  ],
+  "en:26:22": [
+   {
+    "position": 3,
+    "from": "keys",
+    "with": "flash"
+   }
+  ],
+  "en:26:29": [
+   {
+    "position": 3,
+    "from": "keys",
+    "with": "jam"
+   }
+  ],
+  "en:26:46": [
+   {
+    "position": 4,
+    "from": "coat",
+    "with": "after"
+   }
+  ],
+  "en:26:47": [
+   {
+    "position": 4,
+    "from": "seat",
+    "with": "red"
+   }
+  ],
+  "en:26:48": [
+   {
+    "position": 0,
+    "from": "Keys",
+    "with": "So"
+   },
+   {
+    "position": 2,
+    "from": "keys",
+    "with": "so"
+   }
+  ],
+  "en:27:01": [
+   {
+    "position": 3,
+    "from": "is",
+    "with": "being"
+   }
+  ],
+  "en:27:03": [
+   {
+    "position": 5,
+    "from": "is",
+    "with": "be"
+   }
+  ],
+  "en:27:04": [
+   {
+    "position": 4,
+    "from": "is",
+    "with": "be"
+   }
+  ],
+  "en:27:05": [
+   {
+    "position": 3,
+    "from": "is",
+    "with": "been"
+   }
+  ],
+  "en:27:06": [
+   {
+    "position": 3,
+    "from": "need",
+    "with": "needing"
+   }
+  ],
+  "en:27:07": [
+   {
+    "position": 3,
+    "from": "want",
+    "with": "wanting"
+   }
+  ],
+  "en:27:09": [
+   {
+    "position": 3,
+    "from": "has",
+    "with": "having"
+   }
+  ],
+  "en:27:10": [
+   {
+    "position": 3,
+    "from": "has",
+    "with": "having"
+   }
+  ],
+  "en:27:11": [
+   {
+    "position": 4,
+    "from": "is",
+    "with": "been"
+   }
+  ],
+  "en:27:12": [
+   {
+    "position": 5,
+    "from": "is",
+    "with": "be"
+   }
+  ],
+  "en:27:14": [
+   {
+    "position": 4,
+    "from": "need",
+    "with": "needing"
+   }
+  ],
+  "en:27:15": [
+   {
+    "position": 5,
+    "from": "has",
+    "with": "having"
+   }
+  ],
+  "en:27:17": [
+   {
+    "position": 4,
+    "from": "is",
+    "with": "be"
+   }
+  ],
+  "en:27:18": [
+   {
+    "position": 5,
+    "from": "is",
+    "with": "been"
+   }
+  ],
+  "en:27:20": [
+   {
+    "position": 6,
+    "from": "does",
+    "with": "doing"
+   }
+  ],
+  "en:27:32": [
+   {
+    "position": 4,
+    "from": "need",
+    "with": "needing"
+   }
+  ],
+  "en:27:33": [
+   {
+    "position": 5,
+    "from": "closes",
+    "with": "closest"
+   }
+  ],
+  "en:27:34": [
+   {
+    "position": 5,
+    "from": "is",
+    "with": "been"
+   }
+  ],
+  "en:27:35": [
+   {
+    "position": 5,
+    "from": "need",
+    "with": "needing"
+   }
+  ],
+  "en:27:36": [
+   {
+    "position": 4,
+    "from": "have",
+    "with": "having"
+   }
+  ],
+  "en:27:37": [
+   {
+    "position": 4,
+    "from": "want",
+    "with": "wanting"
+   },
+   {
+    "position": 2,
+    "from": "bus",
+    "with": "unless"
+   },
+   {
+    "position": 2,
+    "from": "door",
+    "with": "although"
+   }
+  ],
+  "en:27:38": [
+   {
+    "position": 5,
+    "from": "is",
+    "with": "be"
+   }
+  ],
+  "en:27:45": [
+   {
+    "position": 3,
+    "from": "has",
+    "with": "having"
+   }
+  ],
+  "en:27:47": [
+   {
+    "position": 4,
+    "from": "have",
+    "with": "did"
+   }
+  ],
+  "en:27:50": [
+   {
+    "position": 4,
+    "from": "have",
+    "with": "having"
+   }
+  ],
+  "en:28:46": [
+   {
+    "position": 6,
+    "from": "checked",
+    "with": "parked"
+   }
+  ],
+  "en:29:06": [
+   {
+    "position": 4,
+    "from": "at",
+    "with": "under"
+   }
+  ],
+  "en:29:10": [
+   {
+    "position": 4,
+    "from": "in",
+    "with": "under"
+   },
+   {
+    "position": 4,
+    "from": "on",
+    "with": "into"
+   }
+  ],
+  "en:29:12": [
+   {
+    "position": 6,
+    "from": "at",
+    "with": "into"
+   }
+  ],
+  "en:29:28": [
+   {
+    "position": 6,
+    "from": "any",
+    "with": "these"
+   }
+  ],
+  "en:29:41": [
+   {
+    "position": 4,
+    "from": "and",
+    "with": "or"
+   }
+  ],
+  "en:29:42": [
+   {
+    "position": 5,
+    "from": "and",
+    "with": "or"
+   }
+  ],
+  "en:29:48": [
+   {
+    "position": 7,
+    "from": "and",
+    "with": "or"
+   }
+  ],
+  "en:29:50": [
+   {
+    "position": 6,
+    "from": "at",
+    "with": "under"
+   }
+  ],
+  "en:30:28": [
+   {
+    "position": 7,
+    "from": "is",
+    "with": "being"
+   }
+  ],
+  "en:31:03": [
+   {
+    "position": 5,
+    "from": "out",
+    "with": "in"
+   },
+   {
+    "position": 5,
+    "from": "off",
+    "with": "down"
+   }
+  ],
+  "en:31:18": [
+   {
+    "position": 1,
+    "from": "saw",
+    "with": "sees"
+   }
+  ],
+  "en:31:19": [
+   {
+    "position": 3,
+    "from": "reading",
+    "with": "reads"
+   }
+  ],
+  "en:31:23": [
+   {
+    "position": 5,
+    "from": "on",
+    "with": "of"
+   }
+  ],
+  "en:31:25": [
+   {
+    "position": 4,
+    "from": "vibrate",
+    "with": "vibrates"
+   }
+  ],
+  "en:32:07": [
+   {
+    "position": 7,
+    "from": "jacket",
+    "with": "blanket"
+   },
+   {
+    "position": 4,
+    "from": "vibrating",
+    "with": "vibrates"
+   }
+  ],
+  "en:32:27": [
+   {
+    "position": 4,
+    "from": "is",
+    "with": "been"
+   }
+  ],
+  "en:32:42": [
+   {
+    "position": 7,
+    "from": "was",
+    "with": "been"
+   }
+  ],
+  "en:32:44": [
+   {
+    "position": 2,
+    "from": "was",
+    "with": "been"
+   }
+  ],
+  "en:32:45": [
+   {
+    "position": 3,
+    "from": "was",
+    "with": "been"
+   }
+  ],
+  "es:01:13": [
+   {
+    "position": 1,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:14": [
+   {
+    "position": 1,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:18": [
+   {
+    "position": 1,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:17": [
+   {
+    "position": 1,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:31": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:39": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:34": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:36": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:37": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:33": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:40": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:47": [
+   {
+    "position": 1,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:43": [
+   {
+    "position": 1,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:45": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:48": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:49": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:01:25": [
+   {
+    "position": 0,
+    "from": "Mi",
+    "with": "Estás"
+   }
+  ],
+  "es:01:27": [
+   {
+    "position": 0,
+    "from": "Mi",
+    "with": "Estás"
+   }
+  ],
+  "es:02:21": [
+   {
+    "position": 1,
+    "from": "mi",
+    "with": "estás"
+   }
+  ],
+  "es:02:02": [
+   {
+    "position": 0,
+    "from": "Foto",
+    "with": "Ya"
+   }
+  ],
+  "es:02:03": [
+   {
+    "position": 0,
+    "from": "Foto",
+    "with": "Ya"
+   }
+  ],
+  "es:02:19": [
+   {
+    "position": 0,
+    "from": "Foto",
+    "with": "Ya"
+   }
+  ],
+  "es:02:20": [
+   {
+    "position": 0,
+    "from": "Foto",
+    "with": "Ya"
+   }
+  ],
+  "es:02:23": [
+   {
+    "position": 0,
+    "from": "Foto",
+    "with": "Ya"
+   }
+  ],
+  "es:02:27": [
+   {
+    "position": 0,
+    "from": "Foto",
+    "with": "Ya"
+   }
+  ],
+  "es:02:30": [
+   {
+    "position": 0,
+    "from": "Foto",
+    "with": "Ya"
+   }
+  ],
+  "es:02:06": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:07": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:08": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   },
+   {
+    "position": 1,
+    "from": "cocina",
+    "with": "ya"
+   }
+  ],
+  "es:02:09": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   },
+   {
+    "position": 1,
+    "from": "cocina",
+    "with": "ya"
+   }
+  ],
+  "es:02:10": [
+   {
+    "position": 3,
+    "from": "cocina",
+    "with": "ya"
+   }
+  ],
+  "es:02:13": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   },
+   {
+    "position": 2,
+    "from": "cocina",
+    "with": "ya"
+   }
+  ],
+  "es:02:14": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   },
+   {
+    "position": 2,
+    "from": "cocina",
+    "with": "ya"
+   }
+  ],
+  "es:02:15": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:22": [
+   {
+    "position": 1,
+    "from": "los",
+    "with": "estoy"
+   }
+  ],
+  "es:02:28": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:29": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:31": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   },
+   {
+    "position": 2,
+    "from": "cocina",
+    "with": "ya"
+   }
+  ],
+  "es:02:32": [
+   {
+    "position": 2,
+    "from": "cocina",
+    "with": "ya"
+   }
+  ],
+  "es:02:33": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   },
+   {
+    "position": 2,
+    "from": "cocina",
+    "with": "ya"
+   }
+  ],
+  "es:02:34": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   },
+   {
+    "position": 2,
+    "from": "cocina",
+    "with": "ya"
+   }
+  ],
+  "es:02:35": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:38": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:39": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:40": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:41": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:43": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:44": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:45": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:47": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:48": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:02:49": [
+   {
+    "position": 3,
+    "from": "los",
+    "with": "están"
+   }
+  ],
+  "es:04:17": [
+   {
+    "position": 0,
+    "from": "Café",
+    "with": "Él"
+   },
+   {
+    "position": 0,
+    "from": "Cargador",
+    "with": "Ellas"
+   },
+   {
+    "position": 0,
+    "from": "Móviles",
+    "with": "Ellos"
+   },
+   {
+    "position": 0,
+    "from": "Puerta",
+    "with": "Usted"
+   }
+  ],
+  "es:05:39": [
+   {
+    "position": 0,
+    "from": "Mi",
+    "with": "Cuántos"
+   },
+   {
+    "position": 1,
+    "from": "mi",
+    "with": "cuestan"
+   }
+  ],
+  "es:07:36": [
+   {
+    "position": 3,
+    "from": "quién",
+    "with": "ahora"
+   },
+   {
+    "position": 3,
+    "from": "estamos",
+    "with": "mañana"
+   }
+  ],
+  "es:08:36": [
+   {
+    "position": 2,
+    "from": "aquí",
+    "with": "eres"
+   },
+   {
+    "position": 2,
+    "from": "lejos",
+    "with": "son"
+   },
+   {
+    "position": 2,
+    "from": "cerca",
+    "with": "está"
+   }
+  ],
+  "es:08:39": [
+   {
+    "position": 2,
+    "from": "aquí",
+    "with": "eres"
+   },
+   {
+    "position": 2,
+    "from": "lejos",
+    "with": "son"
+   },
+   {
+    "position": 2,
+    "from": "cerca",
+    "with": "está"
+   }
+  ],
+  "es:09:07": [
+   {
+    "position": 1,
+    "from": "lejos",
+    "with": "francés"
+   }
+  ],
+  "es:09:08": [
+   {
+    "position": 1,
+    "from": "lejos",
+    "with": "francés"
+   }
+  ],
+  "es:09:09": [
+   {
+    "position": 1,
+    "from": "lejos",
+    "with": "francés"
+   }
+  ],
+  "es:09:10": [
+   {
+    "position": 1,
+    "from": "lejos",
+    "with": "francés"
+   }
+  ],
+  "es:09:14": [
+   {
+    "position": 3,
+    "from": "lejos",
+    "with": "francés"
+   }
+  ],
+  "es:09:15": [
+   {
+    "position": 2,
+    "from": "lejos",
+    "with": "francés"
+   }
+  ],
+  "es:09:16": [
+   {
+    "position": 3,
+    "from": "está",
+    "with": "francés"
+   }
+  ],
+  "es:09:17": [
+   {
+    "position": 1,
+    "from": "está",
+    "with": "francés"
+   }
+  ],
+  "es:09:23": [
+   {
+    "position": 1,
+    "from": "lejos",
+    "with": "francés"
+   }
+  ],
+  "es:09:24": [
+   {
+    "position": 1,
+    "from": "está",
+    "with": "francés"
+   }
+  ],
+  "es:09:27": [
+   {
+    "position": 1,
+    "from": "lejos",
+    "with": "francés"
+   }
+  ],
+  "es:09:29": [
+   {
+    "position": 4,
+    "from": "está",
+    "with": "francés"
+   }
+  ],
+  "es:09:30": [
+   {
+    "position": 3,
+    "from": "lejos",
+    "with": "francés"
+   }
+  ],
+  "es:09:34": [
+   {
+    "position": 1,
+    "from": "allí",
+    "with": "buscáis"
+   }
+  ],
+  "es:09:42": [
+   {
+    "position": 2,
+    "from": "está",
+    "with": "francés"
+   }
+  ],
+  "es:09:45": [
+   {
+    "position": 1,
+    "from": "está",
+    "with": "francés"
+   }
+  ],
+  "es:09:50": [
+   {
+    "position": 1,
+    "from": "lejos",
+    "with": "francés"
+   }
+  ],
+  "es:10:38": [
+   {
+    "position": 3,
+    "from": "mochila",
+    "with": "vivo"
+   }
+  ],
+  "es:11:19": [
+   {
+    "position": 3,
+    "from": "con",
+    "with": "sin"
+   }
+  ],
+  "es:14:23": [
+   {
+    "position": 2,
+    "from": "tren",
+    "with": "lavan"
+   }
+  ],
+  "es:14:25": [
+   {
+    "position": 2,
+    "from": "tren",
+    "with": "lavas"
+   }
+  ],
+  "es:15:23": [
+   {
+    "position": 2,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 2,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 2,
+    "from": "libro",
+    "with": "a"
+   },
+   {
+    "position": 2,
+    "from": "número",
+    "with": "con"
+   }
+  ],
+  "es:15:36": [
+   {
+    "position": 5,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 5,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 5,
+    "from": "libro",
+    "with": "a"
+   },
+   {
+    "position": 5,
+    "from": "número",
+    "with": "con"
+   }
+  ],
+  "es:15:46": [
+   {
+    "position": 2,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 2,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 2,
+    "from": "libro",
+    "with": "a"
+   },
+   {
+    "position": 2,
+    "from": "número",
+    "with": "con"
+   }
+  ],
+  "es:16:01": [
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 3,
+    "from": "libro",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "número",
+    "with": "con"
+   }
+  ],
+  "es:16:02": [
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 3,
+    "from": "libro",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "número",
+    "with": "con"
+   }
+  ],
+  "es:16:41": [
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 3,
+    "from": "libro",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "número",
+    "with": "con"
+   }
+  ],
+  "es:15:25": [
+   {
+    "position": 1,
+    "from": "ducha",
+    "with": "puedes"
+   },
+   {
+    "position": 1,
+    "from": "al",
+    "with": "pueden"
+   }
+  ],
+  "es:20:01": [
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 3,
+    "from": "libro",
+    "with": "con"
+   },
+   {
+    "position": 3,
+    "from": "número",
+    "with": "de"
+   }
+  ],
+  "es:20:34": [
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 3,
+    "from": "libro",
+    "with": "con"
+   },
+   {
+    "position": 3,
+    "from": "número",
+    "with": "de"
+   }
+  ],
+  "es:21:01": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:21:02": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:21:32": [
+   {
+    "position": 1,
+    "from": "mis",
+    "with": "los"
+   }
+  ],
+  "es:21:41": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:22:01": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:22:02": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:22:04": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:22:06": [
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:22:07": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:22:09": [
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:22:12": [
+   {
+    "position": 2,
+    "from": "de",
+    "with": "sin"
+   }
+  ],
+  "es:22:28": [
+   {
+    "position": 3,
+    "from": "al",
+    "with": "con"
+   }
+  ],
+  "es:22:35": [
+   {
+    "position": 3,
+    "from": "Lejos",
+    "with": "Luisa"
+   }
+  ],
+  "es:22:37": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:22:44": [
+   {
+    "position": 2,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:22:49": [
+   {
+    "position": 4,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:23:10": [
+   {
+    "position": 0,
+    "from": "Trabajamos",
+    "with": "Trabajas"
+   }
+  ],
+  "es:23:21": [
+   {
+    "position": 0,
+    "from": "Vivimos",
+    "with": "Viven"
+   }
+  ],
+  "es:23:38": [
+   {
+    "position": 1,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   }
+  ],
+  "es:25:09": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "el"
+   }
+  ],
+  "es:25:17": [
+   {
+    "position": 0,
+    "from": "Hotel",
+    "with": "Pasado"
+   }
+  ],
+  "es:25:21": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "el"
+   }
+  ],
+  "es:25:30": [
+   {
+    "position": 0,
+    "from": "Las",
+    "with": "Comía"
+   }
+  ],
+  "es:25:37": [
+   {
+    "position": 3,
+    "from": "para",
+    "with": "sin"
+   }
+  ],
+  "es:25:49": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "el"
+   }
+  ],
+  "es:26:07": [
+   {
+    "position": 0,
+    "from": "Yo",
+    "with": "Nos"
+   }
+  ],
+  "es:26:19": [
+   {
+    "position": 4,
+    "from": "grandes",
+    "with": "el"
+   }
+  ],
+  "es:26:24": [
+   {
+    "position": 4,
+    "from": "grandes",
+    "with": "el"
+   }
+  ],
+  "es:26:37": [
+   {
+    "position": 4,
+    "from": "grandes",
+    "with": "el"
+   }
+  ],
+  "es:26:38": [
+   {
+    "position": 3,
+    "from": "para",
+    "with": "desde"
+   }
+  ],
+  "es:27:45": [
+   {
+    "position": 4,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 4,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 4,
+    "from": "libro",
+    "with": "para"
+   },
+   {
+    "position": 4,
+    "from": "número",
+    "with": "por"
+   }
+  ],
+  "es:28:01": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 1,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 1,
+    "from": "libro",
+    "with": "para"
+   },
+   {
+    "position": 1,
+    "from": "número",
+    "with": "por"
+   }
+  ],
+  "es:28:02": [
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 1,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 1,
+    "from": "libro",
+    "with": "para"
+   },
+   {
+    "position": 1,
+    "from": "número",
+    "with": "por"
+   }
+  ],
+  "es:28:07": [
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "libro",
+    "with": "para"
+   },
+   {
+    "position": 3,
+    "from": "número",
+    "with": "por"
+   }
+  ],
+  "es:28:29": [
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "libro",
+    "with": "para"
+   },
+   {
+    "position": 3,
+    "from": "número",
+    "with": "por"
+   }
+  ],
+  "es:28:33": [
+   {
+    "position": 2,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 2,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 2,
+    "from": "libro",
+    "with": "para"
+   },
+   {
+    "position": 2,
+    "from": "número",
+    "with": "por"
+   }
+  ],
+  "es:29:01": [
+   {
+    "position": 1,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "a"
+   },
+   {
+    "position": 1,
+    "from": "libro",
+    "with": "en"
+   },
+   {
+    "position": 1,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "es:29:02": [
+   {
+    "position": 1,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "a"
+   },
+   {
+    "position": 1,
+    "from": "libro",
+    "with": "en"
+   },
+   {
+    "position": 1,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "es:29:03": [
+   {
+    "position": 2,
+    "from": "Nunca",
+    "with": "Carmen"
+   },
+   {
+    "position": 2,
+    "from": "Quién",
+    "with": "Pablo"
+   },
+   {
+    "position": 2,
+    "from": "Ayer",
+    "with": "Elena"
+   },
+   {
+    "position": 2,
+    "from": "Cuándo",
+    "with": "Marta"
+   }
+  ],
+  "es:29:04": [
+   {
+    "position": 2,
+    "from": "Lejos",
+    "with": "Carmen"
+   },
+   {
+    "position": 2,
+    "from": "Pronto",
+    "with": "Pablo"
+   },
+   {
+    "position": 2,
+    "from": "Quién",
+    "with": "Elena"
+   },
+   {
+    "position": 2,
+    "from": "Nunca",
+    "with": "Marta"
+   }
+  ],
+  "es:29:41": [
+   {
+    "position": 1,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "a"
+   },
+   {
+    "position": 1,
+    "from": "libro",
+    "with": "en"
+   },
+   {
+    "position": 1,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "es:30:05": [
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "libro",
+    "with": "en"
+   },
+   {
+    "position": 3,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "es:30:14": [
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "libro",
+    "with": "en"
+   },
+   {
+    "position": 3,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "es:30:40": [
+   {
+    "position": 5,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 5,
+    "from": "grandes",
+    "with": "a"
+   },
+   {
+    "position": 5,
+    "from": "libro",
+    "with": "en"
+   },
+   {
+    "position": 5,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "es:30:41": [
+   {
+    "position": 3,
+    "from": "coche",
+    "with": "el"
+   },
+   {
+    "position": 3,
+    "from": "grandes",
+    "with": "a"
+   },
+   {
+    "position": 3,
+    "from": "libro",
+    "with": "en"
+   },
+   {
+    "position": 3,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "es:31:20": [
+   {
+    "position": 5,
+    "from": "mis",
+    "with": "lo"
+   }
+  ],
+  "es:32:49": [
+   {
+    "position": 2,
+    "from": "mis",
+    "with": "lo"
+   }
+  ],
+  "es:32:16": [
+   {
+    "position": 4,
+    "from": "grandes",
+    "with": "a"
+   },
+   {
+    "position": 4,
+    "from": "libro",
+    "with": "en"
+   },
+   {
+    "position": 4,
+    "from": "número",
+    "with": "por"
+   },
+   {
+    "position": 4,
+    "from": "otra",
+    "with": "para"
+   }
+  ],
+  "es:32:18": [
+   {
+    "position": 4,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 4,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 4,
+    "from": "libro",
+    "with": "por"
+   },
+   {
+    "position": 4,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "es:32:19": [
+   {
+    "position": 5,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 5,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 5,
+    "from": "libro",
+    "with": "por"
+   },
+   {
+    "position": 5,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "es:32:20": [
+   {
+    "position": 1,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 1,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 1,
+    "from": "libro",
+    "with": "por"
+   },
+   {
+    "position": 1,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "es:32:39": [
+   {
+    "position": 6,
+    "from": "coche",
+    "with": "a"
+   },
+   {
+    "position": 6,
+    "from": "grandes",
+    "with": "en"
+   },
+   {
+    "position": 6,
+    "from": "libro",
+    "with": "por"
+   },
+   {
+    "position": 6,
+    "from": "número",
+    "with": "para"
+   }
+  ],
+  "fr:01:35": [
+   {
+    "position": 3,
+    "from": "près",
+    "with": "fermée"
+   }
+  ],
+  "fr:03:33": [
+   {
+    "position": 5,
+    "from": "quai",
+    "with": "ouverte"
+   },
+   {
+    "position": 5,
+    "from": "maison",
+    "with": "fermées"
+   }
+  ],
+  "fr:03:36": [
+   {
+    "position": 5,
+    "from": "soir",
+    "with": "clair"
+   },
+   {
+    "position": 5,
+    "from": "table",
+    "with": "sombres"
+   }
+  ],
+  "fr:03:42": [
+   {
+    "position": 4,
+    "from": "concert",
+    "with": "ouvertes"
+   },
+   {
+    "position": 4,
+    "from": "soir",
+    "with": "fermés"
+   }
+  ],
+  "fr:03:46": [
+   {
+    "position": 2,
+    "from": "vélo",
+    "with": "seule"
+   },
+   {
+    "position": 2,
+    "from": "train",
+    "with": "seuls"
+   }
+  ],
+  "fr:04:06": [
+   {
+    "position": 2,
+    "from": "pas",
+    "with": "amie"
+   },
+   {
+    "position": 2,
+    "from": "le",
+    "with": "voisin"
+   }
+  ],
+  "fr:05:15": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:05:44": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Je"
+   }
+  ],
+  "fr:06:15": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Tu"
+   }
+  ],
+  "fr:05:32": [
+   {
+    "position": 5,
+    "from": "ticket",
+    "with": "numéro"
+   }
+  ],
+  "fr:06:32": [
+   {
+    "position": 3,
+    "from": "à",
+    "with": "derrière"
+   }
+  ],
+  "fr:07:33": [
+   {
+    "position": 2,
+    "from": "un",
+    "with": "des"
+   },
+   {
+    "position": 2,
+    "from": "le",
+    "with": "ce"
+   }
+  ],
+  "fr:08:15": [
+   {
+    "position": 3,
+    "from": "les",
+    "with": "valise"
+   },
+   {
+    "position": 3,
+    "from": "le",
+    "with": "carte"
+   }
+  ],
+  "fr:09:03": [
+   {
+    "position": 1,
+    "from": "mes",
+    "with": "carte"
+   }
+  ],
+  "fr:09:04": [
+   {
+    "position": 1,
+    "from": "a",
+    "with": "carte"
+   }
+  ],
+  "fr:09:19": [
+   {
+    "position": 3,
+    "from": "école",
+    "with": "sèches"
+   }
+  ],
+  "fr:09:30": [
+   {
+    "position": 1,
+    "from": "table",
+    "with": "cherche"
+   }
+  ],
+  "fr:09:32": [
+   {
+    "position": 3,
+    "from": "parc",
+    "with": "partie"
+   }
+  ],
+  "fr:09:34": [
+   {
+    "position": 3,
+    "from": "valises",
+    "with": "pleine"
+   }
+  ],
+  "fr:09:39": [
+   {
+    "position": 4,
+    "from": "Parapluie",
+    "with": "Paris"
+   }
+  ],
+  "fr:09:45": [
+   {
+    "position": 1,
+    "from": "leur",
+    "with": "cherches"
+   }
+  ],
+  "fr:09:46": [
+   {
+    "position": 1,
+    "from": "école",
+    "with": "donne"
+   }
+  ],
+  "fr:09:49": [
+   {
+    "position": 5,
+    "from": "où",
+    "with": "carte"
+   }
+  ],
+  "fr:10:12": [
+   {
+    "position": 2,
+    "from": "peu",
+    "with": "banc"
+   }
+  ],
+  "fr:10:22": [
+   {
+    "position": 5,
+    "from": "ce",
+    "with": "au"
+   }
+  ],
+  "fr:10:30": [
+   {
+    "position": 4,
+    "from": "jeux",
+    "with": "seul"
+   }
+  ],
+  "fr:10:33": [
+   {
+    "position": 5,
+    "from": "vous",
+    "with": "froide"
+   }
+  ],
+  "fr:10:38": [
+   {
+    "position": 3,
+    "from": "numéro",
+    "with": "peu"
+   }
+  ],
+  "fr:10:47": [
+   {
+    "position": 6,
+    "from": "ici",
+    "with": "coin"
+   }
+  ],
+  "fr:10:48": [
+   {
+    "position": 5,
+    "from": "tiroir",
+    "with": "longue"
+   }
+  ],
+  "fr:11:13": [
+   {
+    "position": 2,
+    "from": "vers",
+    "with": "sous"
+   }
+  ],
+  "fr:11:14": [
+   {
+    "position": 2,
+    "from": "vers",
+    "with": "sous"
+   }
+  ],
+  "fr:11:16": [
+   {
+    "position": 2,
+    "from": "vers",
+    "with": "sous"
+   }
+  ],
+  "fr:12:44": [
+   {
+    "position": 1,
+    "from": "voudrais",
+    "with": "veut"
+   }
+  ],
+  "fr:13:05": [
+   {
+    "position": 1,
+    "from": "sont",
+    "with": "rideau"
+   }
+  ],
+  "fr:13:11": [
+   {
+    "position": 3,
+    "from": "deux",
+    "with": "vieux"
+   }
+  ],
+  "fr:13:13": [
+   {
+    "position": 1,
+    "from": "pleines",
+    "with": "trains"
+   }
+  ],
+  "fr:13:16": [
+   {
+    "position": 3,
+    "from": "photo",
+    "with": "lourdes"
+   }
+  ],
+  "fr:13:18": [
+   {
+    "position": 3,
+    "from": "garage",
+    "with": "pleins"
+   }
+  ],
+  "fr:13:20": [
+   {
+    "position": 1,
+    "from": "bleu",
+    "with": "routes"
+   }
+  ],
+  "fr:13:23": [
+   {
+    "position": 1,
+    "from": "bonnet",
+    "with": "achète"
+   }
+  ],
+  "fr:13:24": [
+   {
+    "position": 1,
+    "from": "soupe",
+    "with": "cherche"
+   },
+   {
+    "position": 3,
+    "from": "habite",
+    "with": "veste"
+   }
+  ],
+  "fr:13:27": [
+   {
+    "position": 1,
+    "from": "soupe",
+    "with": "achètes"
+   }
+  ],
+  "fr:13:28": [
+   {
+    "position": 1,
+    "from": "photo",
+    "with": "achète"
+   }
+  ],
+  "fr:13:29": [
+   {
+    "position": 4,
+    "from": "chaises",
+    "with": "lourd"
+   }
+  ],
+  "fr:13:30": [
+   {
+    "position": 1,
+    "from": "bleu",
+    "with": "serviette"
+   },
+   {
+    "position": 2,
+    "from": "habite",
+    "with": "grise"
+   }
+  ],
+  "fr:13:38": [
+   {
+    "position": 3,
+    "from": "avons",
+    "with": "garage"
+   }
+  ],
+  "fr:13:40": [
+   {
+    "position": 1,
+    "from": "gris",
+    "with": "cherche"
+   }
+  ],
+  "fr:13:42": [
+   {
+    "position": 1,
+    "from": "garage",
+    "with": "pommes"
+   }
+  ],
+  "fr:13:43": [
+   {
+    "position": 3,
+    "from": "manteau",
+    "with": "verte"
+   }
+  ],
+  "fr:13:44": [
+   {
+    "position": 1,
+    "from": "habite",
+    "with": "poires"
+   }
+  ],
+  "fr:13:45": [
+   {
+    "position": 5,
+    "from": "chaussettes",
+    "with": "basse"
+   }
+  ],
+  "fr:13:46": [
+   {
+    "position": 1,
+    "from": "les",
+    "with": "sol"
+   }
+  ],
+  "fr:13:47": [
+   {
+    "position": 3,
+    "from": "boissons",
+    "with": "très"
+   },
+   {
+    "position": 4,
+    "from": "avez",
+    "with": "hautes"
+   }
+  ],
+  "fr:13:48": [
+   {
+    "position": 4,
+    "from": "vélos",
+    "with": "lourdes"
+   }
+  ],
+  "fr:14:03": [
+   {
+    "position": 2,
+    "from": "leur",
+    "with": "partir"
+   }
+  ],
+  "fr:14:12": [
+   {
+    "position": 2,
+    "from": "maintenant",
+    "with": "payer"
+   }
+  ],
+  "fr:14:18": [
+   {
+    "position": 4,
+    "from": "boire",
+    "with": "fenêtre"
+   }
+  ],
+  "fr:14:20": [
+   {
+    "position": 3,
+    "from": "équipe",
+    "with": "fort"
+   }
+  ],
+  "fr:14:24": [
+   {
+    "position": 1,
+    "from": "porte",
+    "with": "dois"
+   }
+  ],
+  "fr:14:25": [
+   {
+    "position": 1,
+    "from": "maintenant",
+    "with": "peut"
+   }
+  ],
+  "fr:14:29": [
+   {
+    "position": 2,
+    "from": "bouton",
+    "with": "déplacer"
+   }
+  ],
+  "fr:14:34": [
+   {
+    "position": 5,
+    "from": "bouton",
+    "with": "ici"
+   }
+  ],
+  "fr:14:35": [
+   {
+    "position": 2,
+    "from": "porte",
+    "with": "dois"
+   }
+  ],
+  "fr:14:46": [
+   {
+    "position": 4,
+    "from": "pouvez",
+    "with": "visite"
+   }
+  ],
+  "fr:14:50": [
+   {
+    "position": 6,
+    "from": "partager",
+    "with": "banque"
+   }
+  ],
+  "fr:15:05": [
+   {
+    "position": 2,
+    "from": "minutes",
+    "with": "restez"
+   }
+  ],
+  "fr:15:09": [
+   {
+    "position": 4,
+    "from": "ranger",
+    "with": "dîner"
+   }
+  ],
+  "fr:15:35": [
+   {
+    "position": 1,
+    "from": "l’accueil",
+    "with": "n’allons"
+   }
+  ],
+  "fr:15:45": [
+   {
+    "position": 5,
+    "from": "rester",
+    "with": "bleu"
+   }
+  ],
+  "fr:15:46": [
+   {
+    "position": 4,
+    "from": "tu",
+    "with": "valise"
+   }
+  ],
+  "fr:15:50": [
+   {
+    "position": 1,
+    "from": "allez-vous",
+    "with": "matin"
+   }
+  ],
+  "fr:16:01": [
+   {
+    "position": 0,
+    "from": "Sur",
+    "with": "Entrez"
+   }
+  ],
+  "fr:16:03": [
+   {
+    "position": 0,
+    "from": "Lait",
+    "with": "Attendez"
+   }
+  ],
+  "fr:16:18": [
+   {
+    "position": 2,
+    "from": "ta",
+    "with": "coin"
+   }
+  ],
+  "fr:16:19": [
+   {
+    "position": 0,
+    "from": "Avez",
+    "with": "Suivez"
+   },
+   {
+    "position": 2,
+    "from": "allons",
+    "with": "panneau"
+   }
+  ],
+  "fr:16:23": [
+   {
+    "position": 3,
+    "from": "allume",
+    "with": "porte"
+   }
+  ],
+  "fr:16:25": [
+   {
+    "position": 3,
+    "from": "regardez",
+    "with": "écran"
+   },
+   {
+    "position": 4,
+    "from": "allons",
+    "with": "verte"
+   }
+  ],
+  "fr:16:33": [
+   {
+    "position": 3,
+    "from": "allume",
+    "with": "passeport"
+   }
+  ],
+  "fr:16:43": [
+   {
+    "position": 0,
+    "from": "Robinet",
+    "with": "Restez"
+   }
+  ],
+  "fr:16:46": [
+   {
+    "position": 2,
+    "from": "suis",
+    "with": "veste"
+   }
+  ],
+  "fr:16:50": [
+   {
+    "position": 5,
+    "from": "une",
+    "with": "canapé"
+   }
+  ],
+  "fr:18:08": [
+   {
+    "position": 3,
+    "from": "le",
+    "with": "aux"
+   },
+   {
+    "position": 3,
+    "from": "un",
+    "with": "les"
+   }
+  ],
+  "fr:18:15": [
+   {
+    "position": 4,
+    "from": "ticket",
+    "with": "badge"
+   }
+  ],
+  "fr:21:07": [
+   {
+    "position": 5,
+    "from": "passait",
+    "with": "dormais"
+   }
+  ],
+  "fr:21:10": [
+   {
+    "position": 1,
+    "from": "sonnette",
+    "with": "parlais"
+   }
+  ],
+  "fr:21:18": [
+   {
+    "position": 1,
+    "from": "magasin",
+    "with": "étions"
+   }
+  ],
+  "fr:21:20": [
+   {
+    "position": 1,
+    "from": "encore",
+    "with": "était"
+   }
+  ],
+  "fr:21:21": [
+   {
+    "position": 8,
+    "from": "ticket",
+    "with": "dossier"
+   }
+  ],
+  "fr:22:05": [
+   {
+    "position": 2,
+    "from": "message",
+    "with": "connaît"
+   }
+  ],
+  "fr:22:42": [
+   {
+    "position": 7,
+    "from": "ticket",
+    "with": "billet"
+   }
+  ],
+  "fr:23:14": [
+   {
+    "position": 4,
+    "from": "jamais",
+    "with": "lettre"
+   }
+  ],
+  "fr:23:17": [
+   {
+    "position": 3,
+    "from": "vas-tu",
+    "with": "conseil"
+   }
+  ],
+  "fr:23:25": [
+   {
+    "position": 6,
+    "from": "ont",
+    "with": "match"
+   }
+  ],
+  "fr:23:28": [
+   {
+    "position": 2,
+    "from": "sel",
+    "with": "lit"
+   }
+  ],
+  "fr:23:32": [
+   {
+    "position": 5,
+    "from": "de",
+    "with": "par"
+   }
+  ],
+  "fr:23:50": [
+   {
+    "position": 4,
+    "from": "vas-tu",
+    "with": "anniversaire"
+   }
+  ],
+  "fr:24:11": [
+   {
+    "position": 4,
+    "from": "mes",
+    "with": "mois"
+   }
+  ],
+  "fr:24:21": [
+   {
+    "position": 2,
+    "from": "peut",
+    "with": "jamais"
+   }
+  ],
+  "fr:24:22": [
+   {
+    "position": 3,
+    "from": "nous",
+    "with": "encore"
+   }
+  ],
+  "fr:24:25": [
+   {
+    "position": 4,
+    "from": "le",
+    "with": "au"
+   }
+  ],
+  "fr:24:39": [
+   {
+    "position": 4,
+    "from": "en",
+    "with": "par"
+   }
+  ],
+  "fr:24:48": [
+   {
+    "position": 3,
+    "from": "vas",
+    "with": "tard"
+   }
+  ],
+  "fr:25:18": [
+   {
+    "position": 2,
+    "from": "on",
+    "with": "je"
+   }
+  ],
+  "fr:25:33": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Tu"
+   }
+  ],
+  "fr:26:33": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elle"
+   }
+  ],
+  "fr:27:08": [
+   {
+    "position": 1,
+    "from": "passes",
+    "with": "passons"
+   }
+  ],
+  "fr:27:28": [
+   {
+    "position": 0,
+    "from": "La",
+    "with": "Les"
+   }
+  ],
+  "fr:27:40": [
+   {
+    "position": 1,
+    "from": "garde",
+    "with": "gardez"
+   }
+  ],
+  "fr:28:03": [
+   {
+    "position": 1,
+    "from": "veux",
+    "with": "voudrions"
+   }
+  ],
+  "fr:28:06": [
+   {
+    "position": 1,
+    "from": "voulez",
+    "with": "voudrions"
+   }
+  ],
+  "fr:28:19": [
+   {
+    "position": 3,
+    "from": "peux",
+    "with": "pouvez"
+   }
+  ],
+  "fr:28:20": [
+   {
+    "position": 1,
+    "from": "peux",
+    "with": "pouvez"
+   }
+  ],
+  "fr:28:42": [
+   {
+    "position": 0,
+    "from": "Avez-vous",
+    "with": "Êtes-vous"
+   }
+  ],
+  "fr:29:13": [
+   {
+    "position": 3,
+    "from": "avait",
+    "with": "ont"
+   }
+  ],
+  "fr:29:32": [
+   {
+    "position": 4,
+    "from": "sera",
+    "with": "suis"
+   }
+  ],
+  "fr:29:43": [
+   {
+    "position": 3,
+    "from": "avait",
+    "with": "ont"
+   }
+  ],
+  "fr:31:04": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Vous"
+   }
+  ],
+  "fr:31:20": [
+   {
+    "position": 2,
+    "from": "a",
+    "with": "aviez"
+   }
+  ],
+  "fr:31:27": [
+   {
+    "position": 4,
+    "from": "dans",
+    "with": "par"
+   }
+  ],
+  "fr:31:29": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Vous"
+   }
+  ],
+  "fr:31:32": [
+   {
+    "position": 1,
+    "from": "on",
+    "with": "elles"
+   }
+  ],
+  "fr:31:38": [
+   {
+    "position": 8,
+    "from": "ai",
+    "with": "aura"
+   }
+  ],
+  "fr:31:47": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Vous"
+   }
+  ],
+  "it:02:25": [
+   {
+    "position": 1,
+    "from": "camera",
+    "with": "finestra"
+   }
+  ],
+  "it:02:34": [
+   {
+    "position": 5,
+    "from": "camera",
+    "with": "porta"
+   }
+  ],
+  "it:02:29": [
+   {
+    "position": 4,
+    "from": "bagni",
+    "with": "sporco"
+   },
+   {
+    "position": 4,
+    "from": "chiavi",
+    "with": "pulita"
+   },
+   {
+    "position": 4,
+    "from": "posti",
+    "with": "puliti"
+   }
+  ],
+  "it:02:46": [
+   {
+    "position": 4,
+    "from": "stanza",
+    "with": "sporche"
+   },
+   {
+    "position": 4,
+    "from": "bagni",
+    "with": "pulito"
+   },
+   {
+    "position": 4,
+    "from": "stazione",
+    "with": "pulita"
+   }
+  ],
+  "it:02:44": [
+   {
+    "position": 4,
+    "from": "borsa",
+    "with": "libero"
+   },
+   {
+    "position": 4,
+    "from": "sorella",
+    "with": "libere"
+   }
+  ],
+  "it:03:20": [
+   {
+    "position": 1,
+    "from": "sala",
+    "with": "fermata"
+   }
+  ],
+  "it:03:38": [
+   {
+    "position": 1,
+    "from": "camera",
+    "with": "fermata"
+   }
+  ],
+  "it:07:05": [
+   {
+    "position": 0,
+    "from": "Lavora",
+    "with": "Lavoro"
+   }
+  ],
+  "it:07:40": [
+   {
+    "position": 0,
+    "from": "Domani",
+    "with": "Chiude"
+   }
+  ],
+  "it:07:47": [
+   {
+    "position": 0,
+    "from": "Presto",
+    "with": "Torna"
+   }
+  ],
+  "it:07:50": [
+   {
+    "position": 0,
+    "from": "Fondo",
+    "with": "Lasci"
+   }
+  ],
+  "it:08:14": [
+   {
+    "position": 1,
+    "from": "casa",
+    "with": "parli"
+   }
+  ],
+  "it:08:17": [
+   {
+    "position": 1,
+    "from": "casa",
+    "with": "ascolti"
+   }
+  ],
+  "it:08:26": [
+   {
+    "position": 1,
+    "from": "banca",
+    "with": "tornano"
+   }
+  ],
+  "it:08:45": [
+   {
+    "position": 1,
+    "from": "banca",
+    "with": "tornano"
+   }
+  ],
+  "it:09:19": [
+   {
+    "position": 4,
+    "from": "padre",
+    "with": "bagnati"
+   },
+   {
+    "position": 4,
+    "from": "pallone",
+    "with": "bagnata"
+   }
+  ],
+  "it:09:32": [
+   {
+    "position": 4,
+    "from": "tavolo",
+    "with": "arrivata"
+   },
+   {
+    "position": 4,
+    "from": "posto",
+    "with": "arrivati"
+   }
+  ],
+  "it:09:34": [
+   {
+    "position": 4,
+    "from": "sta",
+    "with": "vuoto"
+   },
+   {
+    "position": 4,
+    "from": "nella",
+    "with": "vuote"
+   }
+  ],
+  "it:09:39": [
+   {
+    "position": 2,
+    "from": "bicchiere",
+    "with": "vivo"
+   },
+   {
+    "position": 2,
+    "from": "garage",
+    "with": "vivono"
+   }
+  ],
+  "it:09:41": [
+   {
+    "position": 0,
+    "from": "Caffè",
+    "with": "Dove"
+   },
+   {
+    "position": 0,
+    "from": "Accanto",
+    "with": "Cos’è"
+   }
+  ],
+  "it:09:44": [
+   {
+    "position": 0,
+    "from": "Biglietto",
+    "with": "Lasci"
+   },
+   {
+    "position": 0,
+    "from": "Pronto",
+    "with": "Lascia"
+   }
+  ],
+  "it:09:45": [
+   {
+    "position": 0,
+    "from": "Chiavi",
+    "with": "Mette"
+   },
+   {
+    "position": 0,
+    "from": "Qui",
+    "with": "Metto"
+   }
+  ],
+  "it:09:46": [
+   {
+    "position": 0,
+    "from": "Guanti",
+    "with": "Mostra"
+   },
+   {
+    "position": 0,
+    "from": "Vicini",
+    "with": "Mostro"
+   }
+  ],
+  "it:11:12": [
+   {
+    "position": 2,
+    "from": "dalla",
+    "with": "dagli"
+   }
+  ],
+  "it:11:17": [
+   {
+    "position": 0,
+    "from": "Il",
+    "with": "Torni"
+   }
+  ],
+  "it:12:08": [
+   {
+    "position": 1,
+    "from": "bevo",
+    "with": "dell’acqua"
+   }
+  ],
+  "it:12:10": [
+   {
+    "position": 1,
+    "from": "beviamo",
+    "with": "dell’aglio"
+   }
+  ],
+  "it:12:24": [
+   {
+    "position": 0,
+    "from": "Maglione",
+    "with": "Bevo"
+   }
+  ],
+  "it:12:25": [
+   {
+    "position": 0,
+    "from": "Chilo",
+    "with": "Aggiunge"
+   }
+  ],
+  "it:12:26": [
+   {
+    "position": 1,
+    "from": "miele",
+    "with": "aggiungo"
+   }
+  ],
+  "it:12:29": [
+   {
+    "position": 1,
+    "from": "tazza",
+    "with": "rimasto"
+   }
+  ],
+  "it:12:39": [
+   {
+    "position": 2,
+    "from": "poco",
+    "with": "tutto"
+   }
+  ],
+  "it:12:40": [
+   {
+    "position": 2,
+    "from": "miele",
+    "with": "molto"
+   }
+  ],
+  "it:12:44": [
+   {
+    "position": 0,
+    "from": "Suo",
+    "with": "Vuole"
+   }
+  ],
+  "it:12:45": [
+   {
+    "position": 0,
+    "from": "Pesce",
+    "with": "Aggiungo"
+   }
+  ],
+  "it:13:40": [
+   {
+    "position": 0,
+    "from": "Domenica",
+    "with": "Indossi"
+   },
+   {
+    "position": 0,
+    "from": "Stanza",
+    "with": "Indossano"
+   }
+  ],
+  "it:14:35": [
+   {
+    "position": 3,
+    "from": "firmare",
+    "with": "quei"
+   },
+   {
+    "position": 3,
+    "from": "visitare",
+    "with": "quella"
+   },
+   {
+    "position": 4,
+    "from": "nuotare",
+    "with": "telefono"
+   }
+  ],
+  "it:17:41": [
+   {
+    "position": 3,
+    "from": "andare",
+    "with": "sente"
+   }
+  ],
+  "it:22:25": [
+   {
+    "position": 0,
+    "from": "Tua",
+    "with": "Lui"
+   },
+   {
+    "position": 0,
+    "from": "Mia",
+    "with": "Noi"
+   }
+  ],
+  "it:22:26": [
+   {
+    "position": 0,
+    "from": "Vorrei",
+    "with": "Ci"
+   },
+   {
+    "position": 0,
+    "from": "Leggo",
+    "with": "Me"
+   }
+  ],
+  "it:23:14": [
+   {
+    "position": 2,
+    "from": "data",
+    "with": "mando"
+   }
+  ],
+  "it:23:17": [
+   {
+    "position": 2,
+    "from": "l’appuntamento",
+    "with": "l’indirizzo"
+   }
+  ],
+  "it:24:01": [
+   {
+    "position": 4,
+    "from": "vi",
+    "with": "lo"
+   }
+  ],
+  "it:24:04": [
+   {
+    "position": 5,
+    "from": "vi",
+    "with": "le"
+   }
+  ],
+  "it:24:09": [
+   {
+    "position": 1,
+    "from": "vi",
+    "with": "lo"
+   }
+  ],
+  "it:24:10": [
+   {
+    "position": 0,
+    "from": "Vi",
+    "with": "Lo"
+   }
+  ],
+  "it:24:11": [
+   {
+    "position": 0,
+    "from": "Vi",
+    "with": "Le"
+   }
+  ],
+  "it:24:20": [
+   {
+    "position": 2,
+    "from": "vi",
+    "with": "gli"
+   }
+  ],
+  "it:24:42": [
+   {
+    "position": 5,
+    "from": "vi",
+    "with": "lo"
+   }
+  ],
+  "it:24:47": [
+   {
+    "position": 6,
+    "from": "vi",
+    "with": "si"
+   }
+  ],
+  "it:25:11": [
+   {
+    "position": 5,
+    "from": "poco",
+    "with": "pochi"
+   }
+  ],
+  "it:25:16": [
+   {
+    "position": 6,
+    "from": "ciotola",
+    "with": "fetta"
+   }
+  ],
+  "it:25:18": [
+   {
+    "position": 5,
+    "from": "scodella",
+    "with": "fetta"
+   }
+  ],
+  "it:25:30": [
+   {
+    "position": 1,
+    "from": "lo",
+    "with": "gli"
+   }
+  ],
+  "it:26:30": [
+   {
+    "position": 5,
+    "from": "in",
+    "with": "su"
+   }
+  ],
+  "it:27:14": [
+   {
+    "position": 1,
+    "from": "posto",
+    "with": "treno"
+   }
+  ],
+  "it:27:25": [
+   {
+    "position": 1,
+    "from": "chiave",
+    "with": "partirà"
+   }
+  ],
+  "it:27:30": [
+   {
+    "position": 2,
+    "from": "consiglio",
+    "with": "partiranno"
+   }
+  ],
+  "it:27:39": [
+   {
+    "position": 1,
+    "from": "piedi",
+    "with": "lascerai"
+   }
+  ],
+  "it:27:45": [
+   {
+    "position": 1,
+    "from": "riceverà",
+    "with": "pacco"
+   }
+  ],
+  "it:28:03": [
+   {
+    "position": 0,
+    "from": "Domani",
+    "with": "Beve"
+   }
+  ],
+  "it:28:10": [
+   {
+    "position": 3,
+    "from": "tavolo",
+    "with": "museo"
+   }
+  ],
+  "it:28:20": [
+   {
+    "position": 3,
+    "from": "pagare",
+    "with": "piatto"
+   }
+  ],
+  "it:28:33": [
+   {
+    "position": 0,
+    "from": "Taxi",
+    "with": "Potrei"
+   }
+  ],
+  "it:28:35": [
+   {
+    "position": 0,
+    "from": "Tornare",
+    "with": "Potrebbe"
+   }
+  ],
+  "it:28:44": [
+   {
+    "position": 3,
+    "from": "nostro",
+    "with": "tuoi"
+   },
+   {
+    "position": 3,
+    "from": "loro",
+    "with": "vostre"
+   }
+  ],
+  "it:29:09": [
+   {
+    "position": 5,
+    "from": "c’è",
+    "with": "sei"
+   }
+  ],
+  "it:29:18": [
+   {
+    "position": 3,
+    "from": "c’è",
+    "with": "sei"
+   }
+  ],
+  "it:31:05": [
+   {
+    "position": 0,
+    "from": "Barche",
+    "with": "Avevo"
+   }
+  ],
+  "it:31:17": [
+   {
+    "position": 2,
+    "from": "mangiato",
+    "with": "bevuto"
+   }
+  ],
+  "it:31:46": [
+   {
+    "position": 0,
+    "from": "Promesso",
+    "with": "Il vicino"
+   }
+  ],
+  "it:31:50": [
+   {
+    "position": 2,
+    "from": "l’autobus",
+    "with": "di"
+   }
+  ],
+  "it:32:05": [
+   {
+    "position": 5,
+    "from": "pancake",
+    "with": "partire"
+   }
+  ],
+  "it:32:11": [
+   {
+    "position": 1,
+    "from": "buono",
+    "with": "lavorassi"
+   }
+  ],
+  "it:32:12": [
+   {
+    "position": 1,
+    "from": "ancora",
+    "with": "abitassi"
+   }
+  ],
+  "it:32:13": [
+   {
+    "position": 1,
+    "from": "chiudessi",
+    "with": "l’uscita"
+   }
+  ],
+  "it:32:15": [
+   {
+    "position": 3,
+    "from": "giacca",
+    "with": "costerebbe"
+   }
+  ],
+  "it:32:17": [
+   {
+    "position": 2,
+    "from": "usciremmo",
+    "with": "l’uscita"
+   }
+  ],
+  "it:32:25": [
+   {
+    "position": 6,
+    "from": "arriverei",
+    "with": "orari"
+   }
+  ],
+  "it:32:26": [
+   {
+    "position": 1,
+    "from": "posto",
+    "with": "peggio"
+   },
+   {
+    "position": 3,
+    "from": "maglione",
+    "with": "aprissi"
+   }
+  ],
+  "it:32:27": [
+   {
+    "position": 4,
+    "from": "andrei",
+    "with": "alcuni"
+   }
+  ],
+  "it:32:28": [
+   {
+    "position": 6,
+    "from": "casa",
+    "with": "pesante"
+   }
+  ],
+  "it:32:34": [
+   {
+    "position": 7,
+    "from": "arrivasse",
+    "with": "cappotto"
+   }
+  ],
+  "it:32:35": [
+   {
+    "position": 7,
+    "from": "l’uscita",
+    "with": "ordinerebbe"
+   }
+  ],
+  "it:32:36": [
+   {
+    "position": 3,
+    "from": "tuo",
+    "with": "funzionerebbe"
+   }
+  ],
+  "it:32:44": [
+   {
+    "position": 1,
+    "from": "giorno",
+    "with": "proponesse"
+   }
+  ],
+  "it:32:45": [
+   {
+    "position": 3,
+    "from": "buono",
+    "with": "sparirebbe"
+   },
+   {
+    "position": 6,
+    "from": "arrivasse",
+    "with": "dottore"
+   }
+  ],
+  "it:32:46": [
+   {
+    "position": 1,
+    "from": "programma",
+    "with": "promettesse"
+   }
+  ],
+  "it:32:48": [
+   {
+    "position": 8,
+    "from": "l’uscita",
+    "with": "ordinerebbe"
+   },
+   {
+    "position": 9,
+    "from": "arriveremmo",
+    "with": "quell’armadio"
    }
   ]
  },
@@ -2156,43 +10051,51 @@
   },
   "es:13:35": {
    "add": [
-    "¿El baño está libre?"
+    "¿El baño está libre?",
+    "¿Está el baño libre?"
    ],
    "remove": []
   },
   "es:13:36": {
    "add": [
-    "¿La mesa está libre?"
+    "¿La mesa está libre?",
+    "¿Está la mesa libre?"
    ],
    "remove": []
   },
   "es:13:37": {
    "add": [
-    "¿El médico está libre?"
+    "¿El médico está libre?",
+    "¿Está el médico libre?"
    ],
    "remove": []
   },
   "es:13:38": {
    "add": [
-    "¿Las mesas están libres?"
+    "¿Las mesas están libres?",
+    "¿Están las mesas libres?"
    ],
    "remove": []
   },
   "es:13:39": {
    "add": [
-    "¿La médica está libre?"
+    "¿La médica está libre?",
+    "¿Está la médica libre?"
    ],
    "remove": []
   },
   "es:13:40": {
    "add": [
-    "¿Los profesores están libres?"
+    "¿Los profesores están libres?",
+    "¿Están los profesores libres?"
    ],
    "remove": []
   },
   "es:13:41": {
    "add": [
-    "Hoy estamos contentas."
+    "Hoy estamos contentas.",
+    "Estamos contentos hoy.",
+    "Hoy estamos contentos."
    ],
    "remove": []
   },
@@ -2211,7 +10114,9 @@
   "es:13:44": {
    "add": [
     "Hoy estáis contentas.",
-    "Hoy están contentas."
+    "Hoy están contentas.",
+    "Estáis contentos hoy.",
+    "Hoy estáis contentos."
    ],
    "remove": []
   },
@@ -2235,7 +10140,8 @@
   },
   "es:17:29": {
    "add": [
-    "¿Les gusta esta canción?"
+    "¿Les gusta esta canción?",
+    "¿Le gusta esta canción?"
    ],
    "remove": []
   },
@@ -2703,7 +10609,8 @@
   },
   "de:14:48": {
    "add": [
-    "Heute kann ich das Paket nicht abholen."
+    "Heute kann ich das Paket nicht abholen.",
+    "Ich kann heute das Paket nicht abholen."
    ],
    "remove": []
   },
@@ -2737,9 +10644,837 @@
     "La radio stava trasmettendo una canzone quando la corrente è andata via."
    ],
    "remove": []
+  },
+  "de:04:22": {
+   "add": [
+    "Die Arbeit beginnt um neun."
+   ],
+   "remove": []
+  },
+  "de:04:38": {
+   "add": [
+    "Die Kinder spielen am Nachmittag."
+   ],
+   "remove": []
+  },
+  "de:10:46": {
+   "add": [
+    "Ich lerne seit einer Woche Deutsch."
+   ],
+   "remove": []
+  },
+  "en:01:16": {
+   "add": [
+    "You are home.",
+    "You're home."
+   ],
+   "remove": []
+  },
+  "en:02:06": {
+   "add": [
+    "We are not home.",
+    "We aren't home.",
+    "We're not home."
+   ],
+   "remove": []
+  },
+  "en:02:14": {
+   "add": [
+    "Are they home?"
+   ],
+   "remove": []
+  },
+  "en:04:36": {
+   "add": [
+    "I usually don't work late.",
+    "I usually do not work late."
+   ],
+   "remove": []
+  },
+  "en:09:36": {
+   "add": [
+    "There aren't any clean forks.",
+    "There are not any clean forks."
+   ],
+   "remove": []
+  },
+  "en:09:37": {
+   "add": [
+    "There isn't any signal here.",
+    "There is not any signal here."
+   ],
+   "remove": []
+  },
+  "en:09:38": {
+   "add": [
+    "There aren't any lockers on this floor.",
+    "There are not any lockers on this floor."
+   ],
+   "remove": []
+  },
+  "en:09:40": {
+   "add": [
+    "There aren't any trains after midnight.",
+    "There are not any trains after midnight."
+   ],
+   "remove": []
+  },
+  "en:09:43": {
+   "add": [
+    "There is a mistake in my bill.",
+    "There's a mistake in my bill."
+   ],
+   "remove": []
+  },
+  "en:09:44": {
+   "add": [
+    "There is a crack on the screen.",
+    "There's a crack on the screen."
+   ],
+   "remove": []
+  },
+  "en:09:47": {
+   "add": [
+    "Is there room in your bag?",
+    "Is there space in your bag?"
+   ],
+   "remove": []
+  },
+  "en:17:12": {
+   "add": [
+    "She is putting on her coat.",
+    "She's putting on her coat."
+   ],
+   "remove": []
+  },
+  "en:17:17": {
+   "add": [
+    "I am writing the address down.",
+    "I'm writing the address down."
+   ],
+   "remove": []
+  },
+  "en:18:24": {
+   "add": [
+    "Please switch off your phone.",
+    "Switch off your phone, please."
+   ],
+   "remove": []
+  },
+  "en:22:36": {
+   "add": [
+    "Is this button for turning off the screen?"
+   ],
+   "remove": []
+  },
+  "es:04:36": {
+   "add": [],
+   "remove": [
+    "Yo soy el guía.",
+    "Soy el guía."
+   ]
+  },
+  "es:05:23": {
+   "add": [
+    "¿Quién eres tú?"
+   ],
+   "remove": []
+  },
+  "es:05:31": {
+   "add": [
+    "¿Qué es eso?"
+   ],
+   "remove": []
+  },
+  "es:06:10": {
+   "add": [
+    "El abrigo está dentro."
+   ],
+   "remove": []
+  },
+  "es:09:25": {
+   "add": [
+    "Ustedes trabajan en casa.",
+    "Usted trabaja en casa."
+   ],
+   "remove": []
+  },
+  "es:09:26": {
+   "add": [
+    "Ustedes estudian aquí."
+   ],
+   "remove": []
+  },
+  "es:09:27": {
+   "add": [
+    "Ustedes hablan español.",
+    "Usted habla español."
+   ],
+   "remove": []
+  },
+  "es:10:30": {
+   "add": [
+    "Vosotros vivís cerca de la estación.",
+    "Vosotras vivís cerca de la estación.",
+    "Viven cerca de la estación.",
+    "Ustedes viven cerca de la estación.",
+    "Usted vive cerca de la estación."
+   ],
+   "remove": []
+  },
+  "es:12:48": {
+   "add": [
+    "Aquí hay dos mochilas negras."
+   ],
+   "remove": []
+  },
+  "es:13:29": {
+   "add": [
+    "Hoy las tiendas están cerradas."
+   ],
+   "remove": []
+  },
+  "es:14:07": {
+   "add": [
+    "Se levantan temprano."
+   ],
+   "remove": []
+  },
+  "es:14:27": {
+   "add": [
+    "Se lavan las manos."
+   ],
+   "remove": []
+  },
+  "es:17:33": {
+   "add": [
+    "Me gusta hablar en español.",
+    "A mí me gusta hablar en español."
+   ],
+   "remove": []
+  },
+  "es:20:30": {
+   "add": [
+    "Han llevado la bolsa esta semana."
+   ],
+   "remove": []
+  },
+  "es:20:50": {
+   "add": [
+    "¿Han entrado en la oficina hoy?"
+   ],
+   "remove": []
+  },
+  "es:21:45": {
+   "add": [
+    "¿Compró Luis un billete ayer?",
+    "¿Ayer Luis compró un billete?"
+   ],
+   "remove": []
+  },
+  "es:21:49": {
+   "add": [
+    "¿Prepararon mis hermanas la cena ayer?",
+    "¿Ayer mis hermanas prepararon la cena?"
+   ],
+   "remove": []
+  },
+  "es:22:32": {
+   "add": [
+    "Vine desde el aeropuerto en taxi.",
+    "Yo vine desde el aeropuerto en taxi."
+   ],
+   "remove": []
+  },
+  "es:22:39": {
+   "add": [
+    "¿Viniste desde el banco en taxi?",
+    "¿Tú viniste desde el banco en taxi?"
+   ],
+   "remove": []
+  },
+  "es:25:34": {
+   "add": [
+    "Baja el volumen un poco."
+   ],
+   "remove": []
+  },
+  "es:25:38": {
+   "add": [
+    "Abre un poco el grifo."
+   ],
+   "remove": []
+  },
+  "es:26:02": {
+   "add": [
+    "Le escribí a Luis una carta."
+   ],
+   "remove": []
+  },
+  "es:26:04": {
+   "add": [
+    "Les escribí a mis hermanas una carta."
+   ],
+   "remove": []
+  },
+  "es:26:07": {
+   "add": [
+    "Le mandé a mi madre la receta."
+   ],
+   "remove": []
+  },
+  "es:26:09": {
+   "add": [
+    "Les mandé a los clientes la factura."
+   ],
+   "remove": []
+  },
+  "es:26:12": {
+   "add": [
+    "Les di a mis hermanas la llave."
+   ],
+   "remove": []
+  },
+  "es:26:14": {
+   "add": [
+    "Le di a mi hermana una toalla."
+   ],
+   "remove": []
+  },
+  "es:26:17": {
+   "add": [
+    "Les compré a los estudiantes un billete."
+   ],
+   "remove": []
+  },
+  "es:26:19": {
+   "add": [
+    "Le pedí al camarero la cuenta."
+   ],
+   "remove": []
+  },
+  "es:26:22": {
+   "add": [
+    "Le mostré a Ana el mapa."
+   ],
+   "remove": []
+  },
+  "es:26:24": {
+   "add": [
+    "Le mostré al cliente el pedido."
+   ],
+   "remove": []
+  },
+  "es:26:25": {
+   "add": [
+    "Le pasé a Luis la sal."
+   ],
+   "remove": []
+  },
+  "es:26:27": {
+   "add": [
+    "Le mandamos a Luis un mensaje."
+   ],
+   "remove": []
+  },
+  "es:26:29": {
+   "add": [
+    "Les mandamos a los vecinos la receta."
+   ],
+   "remove": []
+  },
+  "es:26:32": {
+   "add": [
+    "Le dimos a mi madre los libros."
+   ],
+   "remove": []
+  },
+  "es:26:33": {
+   "add": [
+    "Les pedí a mis vecinos la lista."
+   ],
+   "remove": []
+  },
+  "es:26:34": {
+   "add": [
+    "Les dimos a los estudiantes los libros."
+   ],
+   "remove": []
+  },
+  "es:26:37": {
+   "add": [
+    "Le pedimos al camarero otra botella."
+   ],
+   "remove": []
+  },
+  "es:26:38": {
+   "add": [
+    "Le compré a mi vecino fruta."
+   ],
+   "remove": []
+  },
+  "es:26:39": {
+   "add": [
+    "Le leímos a Ana la carta."
+   ],
+   "remove": []
+  },
+  "es:26:42": {
+   "add": [
+    "Les escribimos a los estudiantes ayer."
+   ],
+   "remove": []
+  },
+  "es:26:43": {
+   "add": [
+    "Le enseñé a Luis la cuenta."
+   ],
+   "remove": []
+  },
+  "es:26:44": {
+   "add": [
+    "Le escribimos a Luis ayer."
+   ],
+   "remove": []
+  },
+  "es:26:47": {
+   "add": [
+    "Le enseñamos a Ana las fotos."
+   ],
+   "remove": []
+  },
+  "es:26:48": {
+   "add": [
+    "Les devolví a mis vecinos el paraguas."
+   ],
+   "remove": []
+  },
+  "es:26:49": {
+   "add": [
+    "Le enseñamos a mi madre las fotos."
+   ],
+   "remove": []
+  },
+  "es:27:08": {
+   "add": [
+    "La mochila que Ana compró es roja."
+   ],
+   "remove": []
+  },
+  "es:27:18": {
+   "add": [
+    "Las llaves que Ana lleva están en la mesa."
+   ],
+   "remove": []
+  },
+  "es:27:20": {
+   "add": [
+    "Las llaves que Luis me dio están en la mesa."
+   ],
+   "remove": []
+  },
+  "es:27:22": {
+   "add": [
+    "No encuentro el mensaje que Ana mandó."
+   ],
+   "remove": []
+  },
+  "es:27:25": {
+   "add": [
+    "No encuentro el mensaje que Luis busca."
+   ],
+   "remove": []
+  },
+  "es:27:29": {
+   "add": [
+    "¿Dónde está la foto que mi madre busca?"
+   ],
+   "remove": []
+  },
+  "es:27:36": {
+   "add": [
+    "Me gustan las cartas que Ana escribe."
+   ],
+   "remove": []
+  },
+  "es:27:39": {
+   "add": [
+    "Me gusta la canción que Ana canta."
+   ],
+   "remove": []
+  },
+  "es:27:46": {
+   "add": [
+    "¿El bolso que está en la silla es tuyo?"
+   ],
+   "remove": []
+  },
+  "es:27:47": {
+   "add": [
+    "¿El reloj que encontramos es tuyo?"
+   ],
+   "remove": []
+  },
+  "es:27:48": {
+   "add": [
+    "¿El bolso que encontramos es tuyo?"
+   ],
+   "remove": []
+  },
+  "es:27:50": {
+   "add": [
+    "¿El bolso que lleva tu hermana es tuyo?",
+    "¿Es tuyo el bolso que tu hermana lleva?"
+   ],
+   "remove": []
+  },
+  "fr:08:31": {
+   "add": [],
+   "remove": [
+    "Le prix du billet est de combien ?"
+   ]
+  },
+  "fr:11:34": {
+   "add": [
+    "Tu vas en voiture à la gare."
+   ],
+   "remove": []
+  },
+  "fr:11:36": {
+   "add": [
+    "Il va en métro au stade."
+   ],
+   "remove": []
+  },
+  "fr:11:37": {
+   "add": [
+    "Les enfants vont à pied au collège."
+   ],
+   "remove": []
+  },
+  "fr:14:28": {
+   "add": [
+    "Nous devons ranger les chemises sur l’étagère."
+   ],
+   "remove": []
+  },
+  "fr:21:11": {
+   "add": [
+    "Quand nous sommes partis, il pleuvait."
+   ],
+   "remove": []
+  },
+  "fr:21:18": {
+   "add": [
+    "Quand la soupe est arrivée, nous avions faim."
+   ],
+   "remove": []
+  },
+  "it:01:14": {
+   "add": [
+    "Lea è in stazione."
+   ],
+   "remove": []
+  },
+  "it:01:15": {
+   "add": [
+    "Siamo in stazione.",
+    "Noi siamo in stazione."
+   ],
+   "remove": []
+  },
+  "it:01:16": {
+   "add": [
+    "Siete alla stazione.",
+    "Voi siete alla stazione."
+   ],
+   "remove": []
+  },
+  "it:02:07": {
+   "add": [
+    "Non siamo in stazione.",
+    "Noi non siamo in stazione."
+   ],
+   "remove": []
+  },
+  "it:01:29": {
+   "add": [
+    "Sono pronti.",
+    "Loro sono pronti."
+   ],
+   "remove": []
+  },
+  "it:01:31": {
+   "add": [
+    "Le porte sono aperte."
+   ],
+   "remove": []
+  },
+  "it:01:38": {
+   "add": [
+    "La porta è aperta."
+   ],
+   "remove": []
+  },
+  "it:02:21": {
+   "add": [
+    "Le porte non sono aperte."
+   ],
+   "remove": []
+  },
+  "it:02:42": {
+   "add": [
+    "Lei non è ancora in ufficio."
+   ],
+   "remove": []
+  },
+  "it:10:11": {
+   "add": [
+    "C’è una mappa nella borsa."
+   ],
+   "remove": []
+  },
+  "it:10:12": {
+   "add": [
+    "C’è una sciarpa sul letto."
+   ],
+   "remove": []
+  },
+  "it:10:13": {
+   "add": [
+    "C’è un biglietto in tasca."
+   ],
+   "remove": []
+  },
+  "it:10:14": {
+   "add": [
+    "C’è uno schermo sulla scrivania."
+   ],
+   "remove": []
+  },
+  "it:10:16": {
+   "add": [
+    "Ci sono delle pile nel cassetto."
+   ],
+   "remove": []
+  },
+  "it:10:34": {
+   "add": [
+    "Dopo mezzanotte non ci sono treni."
+   ],
+   "remove": []
+  },
+  "it:10:42": {
+   "add": [
+    "C’è un’area giochi per bambini nel parco."
+   ],
+   "remove": []
+  },
+  "it:11:35": {
+   "add": [
+    "Andate in spiaggia in treno?"
+   ],
+   "remove": [
+    "Vai in spiaggia in treno?"
+   ]
+  },
+  "it:11:38": {
+   "add": [
+    "Vado a casa di Lea stasera."
+   ],
+   "remove": []
+  },
+  "it:11:39": {
+   "add": [
+    "Andiamo in municipio domani."
+   ],
+   "remove": []
+  },
+  "it:11:40": {
+   "add": [
+    "Vanno insieme al concerto.",
+    "Loro vanno insieme al concerto."
+   ],
+   "remove": []
+  },
+  "it:11:41": {
+   "add": [
+    "Dove andate dopo la lezione?"
+   ],
+   "remove": [
+    "Dove vai dopo la lezione?"
+   ]
+  },
+  "it:11:46": {
+   "add": [
+    "Andate alla reception o alla biglietteria?"
+   ],
+   "remove": [
+    "Vai alla reception o alla biglietteria?"
+   ]
+  },
+  "it:12:24": {
+   "add": [
+    "Bevete del caffè?"
+   ],
+   "remove": []
+  },
+  "it:13:31": {
+   "add": [
+    "È un giardino piccolo."
+   ],
+   "remove": []
+  },
+  "it:13:32": {
+   "add": [
+    "È un cortile piccolo."
+   ],
+   "remove": []
+  },
+  "it:13:33": {
+   "add": [
+    "Vive in un appartamento grande."
+   ],
+   "remove": []
+  },
+  "it:13:34": {
+   "add": [
+    "Lavora in una grande stanza."
+   ],
+   "remove": []
+  },
+  "it:13:36": {
+   "add": [
+    "Abbiamo un vicino nuovo.",
+    "Noi abbiamo un vicino nuovo."
+   ],
+   "remove": []
+  },
+  "it:13:37": {
+   "add": [
+    "Ha un indirizzo nuovo?",
+    "Hai un indirizzo nuovo?"
+   ],
+   "remove": []
+  },
+  "it:13:38": {
+   "add": [
+    "È un edificio vecchio."
+   ],
+   "remove": []
+  },
+  "it:13:39": {
+   "add": [
+    "È una fotografia vecchia."
+   ],
+   "remove": []
+  },
+  "it:18:14": {
+   "add": [
+    "Abbiamo incartato insieme il regalo.",
+    "Noi abbiamo incartato insieme il regalo."
+   ],
+   "remove": []
+  },
+  "it:18:19": {
+   "add": [
+    "Lui ha lasciato qui il cappotto.",
+    "Ha lasciato qui il cappotto.",
+    "Lui ha lasciato qua il cappotto.",
+    "Ha lasciato qua il cappotto."
+   ],
+   "remove": []
+  },
+  "it:19:15": {
+   "add": [
+    "Mia madre è tornata presto a casa."
+   ],
+   "remove": []
+  },
+  "it:19:16": {
+   "add": [
+    "Mio padre è tornato tardi a casa."
+   ],
+   "remove": []
+  },
+  "it:19:35": {
+   "add": [
+    "L’autobus ieri non è passato."
+   ],
+   "remove": []
+  },
+  "it:19:48": {
+   "add": [
+    "Lea è rimasta tutto il giorno a casa."
+   ],
+   "remove": []
+  },
+  "it:20:24": {
+   "add": [
+    "Tirava un vento forte."
+   ],
+   "remove": []
+  },
+  "it:20:40": {
+   "add": [
+    "Come tornavano i bambini a casa?"
+   ],
+   "remove": []
+  },
+  "it:20:42": {
+   "add": [
+    "Mia zia preparava ogni domenica una crostata."
+   ],
+   "remove": []
+  },
+  "it:20:50": {
+   "add": [
+    "Il mercato vecchio occupava tutta la piazza."
+   ],
+   "remove": []
+  },
+  "it:21:13": {
+   "add": [
+    "La strada era deserta quando è uscito Paolo."
+   ],
+   "remove": []
+  },
+  "it:21:15": {
+   "add": [
+    "Faceva freddo quando si è aperta la porta."
+   ],
+   "remove": []
+  },
+  "it:21:49": {
+   "add": [
+    "I passeggeri aspettavano quando le informazioni sullo schermo sono cambiate."
+   ],
+   "remove": []
+  },
+  "it:30:05": {
+   "add": [
+    "È necessario che partiate."
+   ],
+   "remove": []
+  },
+  "it:31:17": {
+   "add": [
+    "Io avevo già mangiato metà della zuppa."
+   ],
+   "remove": [
+    "Io avevo già bevuto metà della zuppa."
+   ]
+  },
+  "it:32:18": {
+   "add": [
+    "Se avessi la mia bicicletta, arriverei prima a casa.",
+    "Arriverei prima a casa se avessi la mia bicicletta."
+   ],
+   "remove": []
   }
  },
  "target": {
-  "de:21:34": "Wir sind spät dran, weil wir den Zug verpasst haben."
+  "de:21:34": "Wir sind spät dran, weil wir den Zug verpasst haben.",
+  "it:31:17": "Avevo già mangiato metà della zuppa."
  }
 }

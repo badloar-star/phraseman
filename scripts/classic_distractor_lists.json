@@ -2795,5 +2795,148 @@
    "Germania"
   ],
   "de": []
+ },
+ "posTags": {
+  "_comment": "Грамматическая роль плитки (05.11, программа ≤1%): по соседу слева в правильных фразах курса. subj — подлежащие-местоимения (после них глагол), aux/copula — EN вспомогательные и связка (заменяются только на свою группу), det — слова, после которых идёт существительное, yn — да/нет (заменяются на междометия yn_fill).",
+  "en": {
+   "subj": [
+    "i",
+    "you",
+    "he",
+    "she",
+    "it",
+    "we",
+    "they"
+   ],
+   "aux": [
+    "am",
+    "is",
+    "are",
+    "was",
+    "were",
+    "be",
+    "do",
+    "does",
+    "did",
+    "have",
+    "has",
+    "had",
+    "can",
+    "could",
+    "will",
+    "would",
+    "shall",
+    "should",
+    "may",
+    "might",
+    "must",
+    "been",
+    "being"
+   ],
+   "copula": [
+    "am",
+    "is",
+    "are",
+    "was",
+    "were",
+    "be"
+   ],
+   "det": [
+    "my",
+    "your",
+    "his",
+    "her",
+    "its",
+    "our",
+    "their",
+    "this",
+    "that",
+    "these",
+    "those",
+    "some",
+    "any",
+    "no",
+    "every",
+    "each",
+    "another",
+    "much",
+    "many",
+    "few",
+    "several",
+    "all",
+    "both",
+    "two",
+    "three"
+   ],
+   "yn": [
+    "yes",
+    "no"
+   ],
+   "yn_fill": [
+    "maybe",
+    "please",
+    "thanks",
+    "sorry",
+    "hello",
+    "okay",
+    "welcome"
+   ]
+  },
+  "es": {
+   "subj": [
+    "yo",
+    "tú",
+    "él",
+    "ella",
+    "usted",
+    "nosotros",
+    "nosotras",
+    "vosotros",
+    "vosotras",
+    "ellos",
+    "ellas",
+    "ustedes"
+   ],
+   "det": []
+  },
+  "fr": {
+   "subj": [
+    "je",
+    "j’",
+    "tu",
+    "il",
+    "elle",
+    "on",
+    "nous",
+    "vous",
+    "ils",
+    "elles"
+   ],
+   "det": []
+  },
+  "de": {
+   "subj": [
+    "ich",
+    "du",
+    "er",
+    "sie",
+    "es",
+    "wir",
+    "ihr"
+   ],
+   "det": []
+  },
+  "it": {
+   "subj": [
+    "io",
+    "tu",
+    "lui",
+    "lei",
+    "noi",
+    "voi",
+    "loro"
+   ],
+   "det": []
+  }
  }
 }

@@ -10,7 +10,7 @@ const ROOT = path.join(__dirname, '..', 'modules', 'classic-courses');
 const LANGS = fs.existsSync(ROOT) ? fs.readdirSync(ROOT, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name) : [];
 // зачем: лимит из контракта Ядра — ≤ 5 МБ сырого JSON на язык (EN допускается до 6,5)
 const BUDGET_MB: Record<string, number> = { en: 6.5, es: 5, fr: 5, de: 5, it: 5 };
-const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]>; articles?: Record<string, string[]>; synonyms?: Record<string, string[][]>; youGroups?: Record<string, string[][]>; siblingTails?: Record<string, string[]>; timeAdverbs?: Record<string, string[]>; adverbOnly?: Record<string, { words: string[]; allowedFor: string[] }>; closedClasses?: Record<string, { prep: string[]; conj: string[] }>; articlePairs?: Record<string, string[][]> };
+const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]>; articles?: Record<string, string[]>; synonyms?: Record<string, string[][]>; youGroups?: Record<string, string[][]>; siblingTails?: Record<string, string[]>; timeAdverbs?: Record<string, string[]>; adverbOnly?: Record<string, { words: string[]; allowedFor: string[] }>; closedClasses?: Record<string, { prep: string[]; conj: string[] }>; articlePairs?: Record<string, string[][]>; posTags?: Record<string, { subj?: string[]; aux?: string[]; yn?: string[]; yn_fill?: string[]; det?: string[] }>; determiners?: Record<string, string[]> };
 const PATCHES = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_patches.json'), 'utf8')) as { remove: Record<string, string[]>; answers?: Record<string, { remove?: string[] }> };
 // зачем: соблазны, поставленные аудитором (scripts/classic_audit_layer.json), не подчиняются классовым правилам генератора — их проверяет генератор
 // (нет второй верной фразы у этой фразы и в словаре курса); тест оставляет для них только проверки «своё слово / чужое правильное / принимаемая фраза / дубль»
@@ -117,6 +117,9 @@ describe('классические курсы: рантайм-данные', () 
       const strip = (t: string) => t.toLowerCase().replace(/[.,!?;:¿¡]/g, '');
       const lessonOf = (id: string) => { const m = /(\d\d)[.:](\d\d)$/.exec(id)!; return { lesson: Number(m[1]), key: `${m[1]}:${m[2]}` }; };
       const articles = new Set<string>(LISTS.articles?.[lang] ?? []);
+      // зачем: служебные слова той же роли (вспомогательные, подлежащие, да/нет, артикли/притяжательные) генератор подставляет без правила «непройденное»
+      const pt = LISTS.posTags?.[lang];
+      const strictRole = new Set<string>([...(pt?.subj ?? []), ...(pt?.aux ?? []), ...(pt?.yn ?? []), ...(pt?.yn_fill ?? []), ...(pt?.det ?? []), ...(LISTS.determiners?.[lang] ?? []), ...articles]);
       const artPairs = LISTS.articlePairs?.[lang] ?? null;
       const groupHit = (groups: string[][] | undefined, a: string, b: string) => (groups ?? []).some((g) => g.includes(a) && g.includes(b));
       const tails: string[] = LISTS.siblingTails?.[lang] ?? [];
@@ -171,7 +174,7 @@ describe('классические курсы: рантайм-данные', () 
               const seen = vocab.get(dd);
               // зачем: имена и первые плитки (регистр не различает слова и имена) проверяет генератор; тест — для обычных слов внутри фразы
               const closed = new Set<string>([...(LISTS.closedClasses?.[lang]?.prep ?? []), ...(LISTS.closedClasses?.[lang]?.conj ?? [])]);
-              if (i > 0 && tile.correct[0] === tile.correct[0].toLowerCase() && !closed.has(dd) && (seen === undefined || seen > lesson + Math.max(1, 8 - lesson))) bad.unseen.push(where);
+              if (i > 0 && tile.correct[0] === tile.correct[0].toLowerCase() && !closed.has(dd) && !strictRole.has(dd) && (seen === undefined || seen > lesson + Math.max(1, 8 - lesson))) bad.unseen.push(where);
             }
           }
         });

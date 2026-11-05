@@ -5,30 +5,41 @@ type AudioMode = Parameters<typeof setAudioModeAsync>[0];
 
 // expo-audio controls one process-wide native session. Keep transitions in
 // invocation order so a late playback restore cannot overtake a newer capture
-// request. Callers still handle rejection locally because some native drivers
-// own the session themselves.
+// request. Caller-visible native failures resolve as structured outcomes;
+// transitionTail swallows rejection only so later native calls stay ordered.
 let transitionTail: Promise<void> = Promise.resolve();
 const AUDIO_MODE_TRANSITION_TIMEOUT_MS = 1500;
+
+export type ManagedAudioModeOutcome = 'applied' | 'failed' | 'timed_out';
+export type ManagedAudioModeResult = Readonly<{
+  outcome: ManagedAudioModeOutcome;
+}>;
 
 function settleCallerWithinDeadline(
   transition: Promise<void>,
   mode: AudioMode,
   startedAt: number,
-): Promise<void> {
-  return new Promise<void>((resolve, reject) => {
+): Promise<ManagedAudioModeResult> {
+  return new Promise<ManagedAudioModeResult>((resolve) => {
+    let published = false;
+    const publish = (outcome: ManagedAudioModeOutcome): void => {
+      if (published) return;
+      published = true;
+      resolve(Object.freeze({ outcome }));
+    };
     const timeout = setTimeout(() => {
       console.warn(`[SOUND-AUDIT] audio_mode:timeout ${JSON.stringify({ afterMs: Date.now() - startedAt, allowsRecording: mode.allowsRecording ?? null, interruptionMode: mode.interruptionMode ?? null })}`); // guard-ok: нативный переход не ответил — вызывающий не зависает
-      resolve();
+      publish('timed_out');
     }, AUDIO_MODE_TRANSITION_TIMEOUT_MS);
     (timeout as unknown as { unref?: () => void }).unref?.();
     transition.then(
       () => {
         clearTimeout(timeout);
-        resolve();
+        publish('applied');
       },
-      (error: unknown) => {
+      () => {
         clearTimeout(timeout);
-        reject(error);
+        publish('failed');
       },
     );
   });
@@ -48,7 +59,7 @@ export function subscribeManagedAudioMode(listener: () => void): () => void {
   return () => modeListeners.delete(listener);
 }
 
-export function setManagedAudioMode(mode: AudioMode): Promise<void> {
+export function setManagedAudioMode(mode: AudioMode): Promise<ManagedAudioModeResult> {
   const nextRecordingActive = mode.allowsRecording === true;
   if (nextRecordingActive !== recordingActive) {
     recordingActive = nextRecordingActive;

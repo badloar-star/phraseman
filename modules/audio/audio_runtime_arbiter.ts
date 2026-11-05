@@ -4,7 +4,7 @@ import {
 } from '@/app/audio_session_coordinator';
 import {
   acquireAudioActivity,
-  whenAudioActivitySettled,
+  whenAudioActivityReady,
   type AudioActivityLease,
 } from './audio_activity';
 import { voicePlaybackPolicy } from './voice_playback_policy';
@@ -222,10 +222,14 @@ export function claimVideoAudio(stop: () => void, owner = 'video:unknown'): Spok
 }
 
 export async function whenSpokenAudioReady(claim: SpokenAudioClaim): Promise<boolean> {
-  await whenAudioActivitySettled();
-  return claim.isCurrent()
-    && voicePlaybackPolicy.isEnabled()
-    && !getManagedAudioModeSnapshot().recordingActive;
+  const activityReady = await whenAudioActivityReady('spoken');
+  const claimCurrent = claim.isCurrent();
+  const voiceEnabled = voicePlaybackPolicy.isEnabled();
+  const recordingActive = getManagedAudioModeSnapshot().recordingActive;
+  const ready = activityReady && claimCurrent && voiceEnabled && !recordingActive;
+  // зачем (владелец: сперва логи): отказ в готовности озвучки раньше был немым — теперь видно, какое из условий его решило.
+  if (!ready) console.log(`[AUDIO-ARBITER] spoken not ready ${JSON.stringify({ activityReady, claimCurrent, voiceEnabled, recordingActive })}`);
+  return ready;
 }
 
 export function claimRecordingAudio(stop: () => void, owner = 'recording:unknown'): RecordingAudioClaim {
@@ -237,8 +241,13 @@ export function claimAmbientAudio(stop: () => void, owner = 'ambient:unknown'): 
 }
 
 export async function whenRecordingAudioReady(claim: RecordingAudioClaim): Promise<boolean> {
-  await whenAudioActivitySettled();
-  return claim.isCurrent() && getManagedAudioModeSnapshot().recordingActive;
+  const activityReady = await whenAudioActivityReady('recording');
+  const claimCurrent = claim.isCurrent();
+  const recordingActive = getManagedAudioModeSnapshot().recordingActive;
+  const ready = activityReady && claimCurrent && recordingActive;
+  // зачем: тот же разбор причин для записи с микрофона — ранний отказ не должен быть немым.
+  if (!ready) console.log(`[AUDIO-ARBITER] recording not ready ${JSON.stringify({ activityReady, claimCurrent, recordingActive })}`);
+  return ready;
 }
 
 export function stopCurrentSpokenAudio(): void {

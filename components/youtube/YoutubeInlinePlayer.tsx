@@ -15,6 +15,7 @@ import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
 import { forgetYoutubePosition, readYoutubeResumeSec, rememberYoutubePosition } from '../../app/youtube_resume_position';
 import { triLang } from '../../constants/i18n';
 import { setManagedAudioMode } from '../../app/audio_session_coordinator';
+import { reportYoutubeAudioModeOutcome } from '../../app/audio_mode_outcome_diagnostics';
 import { UI_SFX_AUDIO_MODE } from '../../app/audio_playback_mode';
 import { claimVideoAudio, type SpokenAudioClaim } from '../../modules/audio/audio_runtime_arbiter';
 import { useLang } from '../LangContext';
@@ -153,7 +154,7 @@ export default function YoutubeInlinePlayer({
   // режим приложения (тот же, что ставит запуск), иначе озвучка фраз и звуки интерфейса молчат.
   useEffect(() => () => {
     console.log('[VIDEO-PLAYER] закрыт — возвращаю режим звука приложения', JSON.stringify({ videoId }));
-    setManagedAudioMode(UI_SFX_AUDIO_MODE).catch((error: unknown) => {
+    setManagedAudioMode(UI_SFX_AUDIO_MODE).then(reportYoutubeAudioModeOutcome).catch((error: unknown) => {
       console.warn('[VIDEO-PLAYER] режим звука не вернулся', error instanceof Error ? error.message : String(error));
     });
   }, [videoId]);

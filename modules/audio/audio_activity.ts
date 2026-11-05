@@ -3,9 +3,19 @@ import {
   SPOKEN_AUDIO_MODE,
   UI_SFX_AUDIO_MODE,
 } from '@/app/audio_playback_mode';
-import { setManagedAudioMode } from '@/app/audio_session_coordinator';
+import {
+  setManagedAudioMode,
+  type ManagedAudioModeOutcome,
+} from '@/app/audio_session_coordinator';
 
 export type AudioActivityKind = 'spoken' | 'recording';
+export type AudioActivityIntent = 'ui' | AudioActivityKind;
+
+export type AudioActivityTransitionResult = Readonly<{
+  intent: AudioActivityIntent;
+  revision: number;
+  outcome: ManagedAudioModeOutcome;
+}>;
 
 export type AudioActivitySnapshot = Readonly<{
   spokenActive: boolean;
@@ -52,8 +62,13 @@ function leaseTrace(step: string, data: Record<string, unknown>): void {
 
 let spokenLeases = 0;
 let recordingLeases = 0;
-let currentIntent: 'ui' | AudioActivityKind | null = null;
-let activityTail: Promise<void> = Promise.resolve();
+let currentIntent: AudioActivityIntent | null = null;
+let currentIntentRevision = 0;
+let activityTail: Promise<AudioActivityTransitionResult> = Promise.resolve(Object.freeze({
+  intent: 'ui',
+  revision: currentIntentRevision,
+  outcome: 'applied',
+}));
 const listeners = new Set<() => void>();
 /**
  * Живые аренды: нужны предохранителю, диагностике «кто держит звук» и
@@ -83,20 +98,22 @@ function reconcile(): void {
   const nextIntent = recordingLeases > 0 ? 'recording' : spokenLeases > 0 ? 'spoken' : 'ui';
   if (nextIntent === currentIntent) return;
   currentIntent = nextIntent;
+  const revision = ++currentIntentRevision;
   const mode = nextIntent === 'recording'
     ? SPEAKING_RECORDING_AUDIO_MODE
     : nextIntent === 'spoken'
       ? SPOKEN_AUDIO_MODE
       : UI_SFX_AUDIO_MODE;
-  // зачем (2026-09-14, «микрофон ломается после N-й попытки»): смена нативного
-  // аудиорежима — единственное место цепочки, где отказ глотался молча. Пишем
-  // намерение, счётчики аренд и причину отказа; сам отказ по-прежнему не
-  // роняет вызывающего (некоторые нативные драйверы владеют сессией сами).
-  const startedAt = Date.now();
-  console.log('[SPEAK-MIC] audio-mode', JSON.stringify({ intent: nextIntent, spokenLeases, recordingLeases })); // guard-ok: трасса владельца, ≤3 строк на попытку
-  activityTail = setManagedAudioMode(mode).catch((e: unknown) => {
-    console.warn('[SPEAK-MIC] audio-mode:failed', JSON.stringify({ intent: nextIntent, tookMs: Date.now() - startedAt, error: e instanceof Error ? `${e.name}: ${e.message}` : String(e) })); // guard-ok: трасса владельца
-    return undefined;
+  // One immutable marker correlates the caller-visible outcome with the exact
+  // intent revision. A late native settlement cannot rewrite this result.
+  activityTail = setManagedAudioMode(mode).then(({ outcome }) => {
+    const result: AudioActivityTransitionResult = Object.freeze({
+      intent: nextIntent,
+      revision,
+      outcome,
+    });
+    console.log('[SPEAK-MIC] audio-mode:outcome', JSON.stringify(result)); // guard-ok: one bounded transition outcome marker
+    return result;
   });
   listeners.forEach((listener) => listener());
 }
@@ -198,6 +215,15 @@ export function subscribeAudioActivity(listener: () => void): () => void {
 
 export async function whenAudioActivitySettled(): Promise<void> {
   await activityTail;
+}
+
+export async function whenAudioActivityReady(expected: AudioActivityKind): Promise<boolean> {
+  const capturedTransition = activityTail;
+  const result = await capturedTransition;
+  return result.outcome === 'applied'
+    && result.intent === expected
+    && result.intent === currentIntent
+    && result.revision === currentIntentRevision;
 }
 
 export function resetAudioActivityForTests(): void {

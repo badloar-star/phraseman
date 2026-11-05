@@ -39,8 +39,8 @@ describe('audio session coordinator', () => {
     await Promise.resolve();
     expect(nativeSet).toHaveBeenCalledTimes(1);
     finishCapture();
-    await capture;
-    await playback;
+    await expect(capture).resolves.toEqual({ outcome: 'applied' });
+    await expect(playback).resolves.toEqual({ outcome: 'applied' });
 
     expect(nativeSet.mock.calls.map(([mode]) => mode.allowsRecording)).toEqual([true, false]);
   });
@@ -71,18 +71,22 @@ describe('audio session coordinator', () => {
     expect(getManagedAudioModeSnapshot().recordingActive).toBe(true);
     const playback = setManagedAudioMode({ allowsRecording: false });
     expect(getManagedAudioModeSnapshot().recordingActive).toBe(false);
-    await Promise.all([recording, playback]);
+    await expect(recording).resolves.toEqual({ outcome: 'applied' });
+    await expect(playback).resolves.toEqual({ outcome: 'applied' });
     unsubscribe();
 
     expect(observed).toEqual([true, false]);
   });
 
-  it('clears the deadline after a native transition settles', async () => {
+  it('reports applied and failed native outcomes without late deadline warnings', async () => {
     jest.useFakeTimers();
     const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
-    (setAudioModeAsync as jest.Mock).mockResolvedValue(undefined);
+    (setAudioModeAsync as jest.Mock)
+      .mockResolvedValueOnce(undefined)
+      .mockRejectedValueOnce(new Error('native mode rejected'));
 
-    await setManagedAudioMode({ allowsRecording: false });
+    await expect(setManagedAudioMode({ allowsRecording: false })).resolves.toEqual({ outcome: 'applied' });
+    await expect(setManagedAudioMode({ allowsRecording: true })).resolves.toEqual({ outcome: 'failed' });
     await jest.advanceTimersByTimeAsync(2_000);
 
     expect(warn.mock.calls.some(([message]) => String(message).includes('audio_mode:timeout'))).toBe(false);
@@ -104,13 +108,15 @@ describe('audio session coordinator', () => {
     await Promise.resolve();
     const second = setManagedAudioMode({ allowsRecording: false });
     await jest.advanceTimersByTimeAsync(3_000);
-    await Promise.all([first, second]);
+    await expect(first).resolves.toEqual({ outcome: 'timed_out' });
+    await expect(second).resolves.toEqual({ outcome: 'timed_out' });
 
     const callsAtDeadline = nativeSet.mock.calls.length;
     finishFirst();
     for (let index = 0; index < 10; index += 1) await Promise.resolve();
     expect(callsAtDeadline).toBe(1);
     expect(nativeSet).toHaveBeenCalledTimes(2);
+    await expect(first).resolves.toEqual({ outcome: 'timed_out' });
 
     warn.mockRestore();
     jest.useRealTimers();

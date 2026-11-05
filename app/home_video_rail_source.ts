@@ -54,6 +54,21 @@ async function readRailFromDisk(target: LearningLanguageTarget, nowMs: number): 
   }
 }
 
+// зачем (P0 владельца 05.11, «лента НЕ должна пропадать целиком: нет сети — показать кэш»): устаревшая (старше 6 ч) запись непригодна как «свежая», но при сбое сети лучше неё ничего нет —
+// без этого лента исчезала после десяти секунд пустоты (лог эмулятора: disk_stale ageMin=15945 → catch → silent retries exhausted).
+async function readStaleRailFromDisk(target: LearningLanguageTarget): Promise<RailDiskEntry | null> {
+  try {
+    const raw = await AsyncStorage.getItem('home_video_rail_cache_v1');
+    if (!raw) return null;
+    const entry = (JSON.parse(raw) as Partial<Record<string, RailDiskEntry>>)[target];
+    if (!entry || typeof entry.atMs !== 'number' || !entry.result || !Array.isArray(entry.result.videos) || entry.result.videos.length === 0) return null;
+    return entry;
+  } catch (error) {
+    console.warn('[LANG-SURFACE] home_rail:stale_read_failed', { target, reason: error instanceof Error ? error.message : String(error) });
+    return null;
+  }
+}
+
 async function writeRailToDisk(target: LearningLanguageTarget, entry: RailDiskEntry): Promise<void> {
   try {
     const raw = await AsyncStorage.getItem('home_video_rail_cache_v1');
@@ -103,6 +118,20 @@ export async function loadHomeVideoRailForTarget(target: LearningLanguageTarget)
     console.log('[LANG-SURFACE] home_rail:disk_hit — без сети', { target, count: disk.result.videos.length, ageMin: Math.round((Date.now() - disk.atMs) / 60_000) });
     return disk.result;
   }
+  try {
+    return await loadHomeVideoRailFromNetwork(target);
+  } catch (error) {
+    const stale = await readStaleRailFromDisk(target);
+    if (stale) {
+      console.warn('[LANG-SURFACE] home_rail:network_failed → устаревший кэш вместо пустоты', { target, count: stale.result.videos.length, ageMin: Math.round((Date.now() - stale.atMs) / 60_000), reason: error instanceof Error ? error.message : String(error) });
+      return stale.result;
+    }
+    console.warn('[LANG-SURFACE] home_rail:network_failed, кэша нет → ошибка', { target, reason: error instanceof Error ? error.message : String(error) });
+    throw error;
+  }
+}
+
+async function loadHomeVideoRailFromNetwork(target: LearningLanguageTarget): Promise<HomeVideoRailResult> {
   const startedAt = Date.now();
   const client = await import('./youtube_catalog_client');
   const manifest = await client.fetchYoutubeCatalogManifest();

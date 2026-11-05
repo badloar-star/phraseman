@@ -12,7 +12,7 @@ name: 09 phrase of day
 - runFlow:
     file: _dev_state.yaml
     env:
-      LINK: "onboarding=done&plus=off&newbie=on&uiLang=${LANGUI}"
+      LINK: "onboarding=done&plus=off&newbie=on&seen=reset&uiLang=${LANGUI}"
 - tapOn:
     text: "Пропустить|Пропустити|Skip"
     optional: true

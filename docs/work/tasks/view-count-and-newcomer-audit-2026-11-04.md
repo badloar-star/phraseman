@@ -3,7 +3,7 @@
 Governance-ID: TG-286036E863DB
 Governance-ID: TG-D07C6B96A336
 Governance-ID: TG-1378C59FEFDD
-Status: В работе (только чтение, правок кода нет)
+Status: Завершено 05.11 (аудит; звёзды сцены → ≤5 Path, d5e22b877)
 Owner: «5 · ВХОД»
 
 ## Outcome

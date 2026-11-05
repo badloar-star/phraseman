@@ -2,7 +2,7 @@
 
 Governance-ID: TG-3ADA823F057B
 Governance-ID: TG-5F4453567B5D
-Status: В работе
+Status: Завершено 05.11 (b891b651f; лесенка рефералов вынесена в KNOWN_ISSUES)
 Owner: «5 · ВХОД»
 
 ## Outcome

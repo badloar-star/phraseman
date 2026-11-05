@@ -6,7 +6,7 @@ Governance-ID: TG-9692DD06D17A
 Governance-ID: TG-562331384CB9
 Governance-ID: TG-6FADC38C776B
 Governance-ID: TG-F39B7D510280
-Status: В работе
+Status: Завершено 05.11 (V2 скрыт, вход по кнопке «V2» после первого занятия; в HEAD)
 Owner: «5 · ВХОД» (поручение координатора 04.11)
 
 ## Outcome

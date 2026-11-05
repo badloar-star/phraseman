@@ -38,9 +38,11 @@ describe('All participants profile cards', () => {
     for (const member of members) {
       await fireEvent.press(screen.getByTestId(`spire-all-member-${member.uid}`));
       expect(JSON.parse(screen.getByTestId('profile-data').props.children)).toEqual({
+        // зачем (Диспетчер 05.11): в Пике только монеты (d7d530632, слово владельца 05.11) — карточка всегда показывает монеты недели;
+        // уровень подписки участника идёт в карточку отдельным полем (db458f540; нет поля в комнате → null)
         uid: member.uid, name: member.name, isMe: member.isMe,
-        points: rankBy === 'coins' ? member.weekCoins ?? 0 : member.steps,
-        coinRank: member.coinRank ?? null, isPremium: member.isPremium === true,
+        points: member.weekCoins ?? 0,
+        coinRank: member.coinRank ?? null, isPremium: member.isPremium === true, plusTier: null,
       });
       await fireEvent.press(screen.getByTestId('profile-close'));
       expect(screen.queryByTestId('profile-data')).toBeNull();

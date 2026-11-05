@@ -451,6 +451,7 @@
       "<rootDir>/tests/tabs_render_cascade_measure.test.tsx",
       "<rootDir>/tests/tab_focus_tick_context.test.tsx",
       "<rootDir>/tests/stable_safe_area_insets_memo.test.tsx",
+      "<rootDir>/tests/spire_all_members_profile.test.tsx",
       "<rootDir>/tests/registration_prompt_modal_lifecycle.test.ts",
       "<rootDir>/tests/gustav_lesson_runtime_target_isolation.test.ts",
       "<rootDir>/tests/gustav_french_curriculum_contract.test.ts",

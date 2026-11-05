@@ -58,7 +58,8 @@ describe('робот съёмки: поиск прокруткой и стаби
   // (767b8c07f; хаб уже без анимаций — HUB_FREE с animations=off). Скрытое авто-открытие ?train=1 для этих кадров не возвращаем.
   it('ссылки хаба Карточек открывают окно режимов видимым тапом «Тренироваться», как человек', () => {
     const steps = read('scripts/dev_links_r1_steps.py');
-    expect(steps).toContain("add(['cards-002', 'cards-section-032', 'cards-v2-027'], ['wait:2500', 'tap:#fc-cards-hub-train', 'wait:800'], HUB_FREE + '&quota=reset', '/flashcards',");
+    // зачем (Диспетчер 05.11): с хаба-списка rev4 (b67f7566a) окно режимов открывается видимыми тапами «Сохранённые» → «Тренировать»
+    expect(steps).toContain("add(['cards-002', 'cards-section-032', 'cards-v2-027'], ['wait:2500', 'tap:#fc-cards-hub-tile-saved', 'wait:1500', 'tap:#fc-gallery-train', 'wait:800'], HUB_FREE + '&quota=reset', '/flashcards',");
     expect(steps).not.toMatch(/add\(\['cards-002', 'cards-section-032', 'cards-v2-027'\], \[\], HUB_FREE, HUB_TRAIN,/);
     expect(steps).toContain("SETUP + 'truefalse'");
     const cards2 = read('scripts/dev_links_r1_steps_cards2.py');

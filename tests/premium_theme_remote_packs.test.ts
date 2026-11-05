@@ -54,10 +54,12 @@ describe('premium achievement themes', () => {
 
   it('re-resolves mounted home art after a remote pack finishes downloading', () => {
     const context = read('components/ThemeContext.tsx');
-    const scene = read('components/home/v2/scene/HomeScene.tsx');
+    // зачем (Диспетчер 05.11): с компактной сцены Главной f1dd8ecc4 (владелец 04.11, без героя) сцена сама арт темы не резолвит;
+    // догрузку премиум-пака на смонтированной Главной ловит слой движения сцены — подписка на ревизию кэша паков
+    const sceneMotion = read('components/home/v2/scene/PremiumThemeMotion.tsx');
     const themedArt = read('components/theme/ThemedArt.tsx');
     expect(context).toContain('premiumThemePackRev');
-    expect(scene).toMatch(/premiumArtRevision[\s\S]*resolveHomeSceneArt[\s\S]*premiumArtRevision, liquidGlassThemeId/);
+    expect(sceneMotion).toContain('useSyncExternalStore(subscribePremiumThemePackCache, premiumThemePackRevision, premiumThemePackRevision)');
     expect(themedArt).toMatch(/premiumArtRevision[\s\S]*resolveThemedArt[\s\S]*premiumArtRevision, liquidGlassThemeId/);
     expect(context).toContain('loadSelectedPack(attempt + 1)');
   });

@@ -147,17 +147,27 @@ export function getClassicIntroScreens(lessonId: number, lang: ClassicCourseLang
   const phrases = getClassicLessonPhrases(lessonId, lang);
   const find = (id: string): LessonPhrase | undefined => phrases.find((p) => String(p.id) === id || String(p.id).endsWith(`:${id}`) || String(p.id).endsWith(id));
   return (blocks as RawIntroBlock[]).map((block) => {
-    const examples = introExampleIds(block).map(find).filter((p): p is LessonPhrase => !!p).map((p) => ({
-      en: p.english,
-      trRU: p.russian,
-      trUK: p.ukrainian,
-      trES: p.sourceLocales?.es,
-      trPtBr: p.sourceLocales?.['pt-BR'],
-      trVi: p.sourceLocales?.vi,
-      trId: p.sourceLocales?.id,
-      trTr: p.sourceLocales?.tr,
-      trPl: p.sourceLocales?.pl,
-    }));
+    // зачем (решение владельца 05.11, «Читается» под каждым примером вступления): данные готовит Теория — block.sayByLocale = { ru: { "<id фразы>": "…" }, uk: {…} }
+    // (6fa0470af, 217/217 для en); кладём в example.reading, экран рисует строку только для RU/UK и только если запись есть — без пустого места
+    const say = (block.sayByLocale ?? {}) as Record<string, Record<string, unknown> | undefined>;
+    const sayOf = (loc: 'ru' | 'uk', id: string): string | undefined => { const v = say[loc]?.[id]; return typeof v === 'string' && v.trim() ? v.trim() : undefined; };
+    const examples = introExampleIds(block).flatMap((id) => {
+      const p = find(id);
+      if (!p) return [];
+      const reading = { ru: sayOf('ru', id), uk: sayOf('uk', id) };
+      return [{
+        en: p.english,
+        trRU: p.russian,
+        trUK: p.ukrainian,
+        trES: p.sourceLocales?.es,
+        trPtBr: p.sourceLocales?.['pt-BR'],
+        trVi: p.sourceLocales?.vi,
+        trId: p.sourceLocales?.id,
+        trTr: p.sourceLocales?.tr,
+        trPl: p.sourceLocales?.pl,
+        ...(reading.ru || reading.uk ? { reading } : {}),
+      }];
+    });
     return { ...(block as unknown as LessonIntroScreen), examples };
   });
 }

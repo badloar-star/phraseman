@@ -53,3 +53,5 @@ Governance-ID: TG-D980467BC13F (срочно: типы в HEAD — сужени�
 Governance-ID: TG-E62B1E24CB5D (рендер plain-формата теории: classic_theory_plain.ts, ThreeTileChoice stacked, hint для en)
 
 Governance-ID: TG-86DA1598522B (вёрстка: заголовок колонки таблицы форм «AFFIRMATIVE» ломается посреди слова)
+
+Governance-ID: TG-364790768A0A (проверка формулировок на упоминания лишних языков)

@@ -1,0 +1,84 @@
+<title>Все окна Plus</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* раскладка: сверху выбор окна и темы, ниже телефон с окном по образцу «вариант 3», рядом данные места входа */
+:root{--bg:#f4f1f7;--fg:#1c1822;--mut:#645c70;--card:#ffffff;--on:#1c1822;--on-fg:#f4f1f7;--line:rgba(28,24,34,.14)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0d11;--fg:#f3eef6;--mut:#a79fb0;--card:#1a1820;--on:#f3eef6;--on-fg:#0e0d11;--line:rgba(255,255,255,.14);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e0d11;--fg:#f3eef6;--mut:#a79fb0;--card:#1a1820;--on:#f3eef6;--on-fg:#0e0d11;--line:rgba(255,255,255,.14);color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-block:20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:22px;line-height:1.2;margin:0 0 6px;text-wrap:balance}
+.lead{margin:0 0 16px;color:var(--mut);max-width:64ch}
+.ctl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.ctl select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;min-height:44px;max-width:100%}
+.seg{display:flex;gap:8px}
+.seg button{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer;min-height:44px}
+.seg button[aria-pressed="true"]{background:var(--on);color:var(--on-fg);border-color:transparent}
+.seg button:focus-visible,.ctl select:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+.stage{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}
+.info{flex:1 1 260px;min-width:0;max-width:420px}
+.info h2{font-size:16px;margin:0 0 8px}
+.info dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px}
+.info dt{color:var(--mut)}.info dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.info p{color:var(--mut);margin:14px 0 0}
+/* телефон: краски образца «вариант 3» */
+.ph{width:min(360px,100%);aspect-ratio:360/760;border-radius:30px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.28);container-type:inline-size;position:relative}
+.ph[data-m="light"]{--pbg:#e6eef7;--pfg:#16191c;--pmut:#4a5560;--pline:#d0d8e2;--ptile:#fbfdff;--ptileb:#16191c;--pbtn:#d9dfe5;--pbtnfg:#16191c;--pclose:#d3dbe6;--ppill:#d3dbe6}
+.ph[data-m="dark"]{--pbg:#070c11;--pfg:#f7fafe;--pmut:#b8c0c8;--pline:#242b31;--ptile:#171c22;--ptileb:#f7fafe;--pbtn:#262c32;--pbtnfg:#f7fafe;--pclose:#262c32;--ppill:#262c32}
+.sheet{position:absolute;inset:0;background:var(--pbg);color:var(--pfg);padding:5.5cqw 7cqw 0;display:flex;flex-direction:column;font-size:3.6cqw}
+.top{display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:600;font-size:3.5cqw}
+.x{width:9cqw;height:9cqw;border-radius:50%;background:var(--pclose);display:flex;align-items:center;justify-content:center}
+.x svg{width:4cqw;height:4cqw}
+.pill{display:inline-block;margin-top:5cqw;align-self:flex-start;background:var(--ppill);border-radius:999px;padding:1.2cqw 3.2cqw;font-size:3.1cqw;font-weight:600}
+h2.t{font-size:8cqw;line-height:1.08;font-weight:800;margin:4.5cqw 0 0;letter-spacing:-.02em;text-wrap:balance}
+.sub{font-size:4.2cqw;line-height:1.3;margin:2.6cqw 0 0;color:var(--pfg)}
+.rows{margin-top:5cqw}
+.row{display:flex;gap:3cqw;align-items:flex-start;padding:2.6cqw 0;border-bottom:1px solid var(--pline)}
+.row:last-child{border-bottom:0}
+.row svg{width:4.2cqw;height:4.2cqw;margin-top:.6cqw;flex:none}
+.row b{display:block;font-size:4.2cqw}
+.row span{display:block;font-size:3.1cqw;color:var(--pmut);margin-top:.4cqw}
+.note{font-size:3.1cqw;line-height:1.35;margin:3cqw 0 0;color:var(--pfg)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:3cqw;margin-top:4.5cqw}
+.tile{background:var(--ptile);border-radius:4.5cqw;padding:3.4cqw 3.6cqw;min-height:14cqw}
+.tile.sel{box-shadow:inset 0 0 0 .6cqw var(--ptileb)}
+.tile b{display:block;font-size:4.2cqw}
+.tile i{display:block;font-style:normal;font-size:3.1cqw;color:var(--pmut);margin-top:.8cqw}
+.auto{font-size:2.9cqw;line-height:1.3;margin:2.6cqw 0 0;color:var(--pmut)}
+.cta{margin-top:auto;margin-bottom:0;background:var(--pbtn);color:var(--pbtnfg);border-radius:999px;height:12.5cqw;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:4.2cqw}
+.restore{text-align:center;font-size:3.5cqw;margin:3.6cqw 0 2cqw}
+.legal{display:flex;justify-content:center;gap:4cqw;font-size:2.9cqw;color:var(--pmut);padding-bottom:4cqw}
+</style>
+<h1>Все окна Plus</h1>
+<p class="lead">Каждое место, где человек упирается в Plus, в оформлении образца «вариант 3» (одобрен владельцем). Тексты взяты из приложения как есть. Выбери окно, переключай тему.</p>
+<div class="ctl">
+<label for="ctx" class="sr" style="position:absolute;left:-9999px">Окно</label>
+<select id="ctx"></select>
+<div class="seg" role="group" aria-label="Тема"><button type="button" id="m-light" aria-pressed="true">Светлая</button><button type="button" id="m-dark" aria-pressed="false">Тёмная</button></div>
+</div>
+<div class="stage">
+<div class="ph" id="ph" data-m="light"><div class="sheet" id="sheet"></div></div>
+<div class="info"><h2>Где показывается</h2><dl id="meta"></dl><p>Цены на плитках появятся из магазина, здесь пример: ≈ 39,99 € в год и ≈ 7,99 € в месяц.</p></div>
+</div>
+<script>
+var D={"no_energy":{"title":"Энергия закончилась","subtitle":"С Plus она не тратится — занимайся дальше сразу.","benefit":"Занятия без ожидания","pill":"Энергия 0"},"ai_explain":{"title":"Разбор на сегодня закончился","subtitle":"С Plus ИИ объяснит каждую ошибку: что не так и как сказать верно.","benefit":"Разбор каждой ошибки сразу после ответа","pill":"Разбор на сегодня: 0"},"course_after_lesson3":{"title":"Дальше — в Plus","subtitle":"Впереди ещё 29 уроков: от простых фраз до свободного разговора.","benefit":"Весь курс целиком","pill":"Урок 3 закрыт"},"lesson_b1":{"title":"Уровень B1 — в Plus","subtitle":"Продолжай курс с того места, где остановился.","benefit":"Все уроки уровня B1","pill":"Уровень B1 закрыт"},"level_up":{"title":"Новый уровень! Идём дальше?","subtitle":"Plus открывает весь курс — не останавливайся.","benefit":"Весь курс целиком","pill":""},"free_lessons_complete":{"title":"Бесплатные уроки пройдены","subtitle":"Дальше 29 уроков — открой их с Plus.","benefit":"Весь курс целиком","pill":"Бесплатные уроки пройдены"},"notification_upsell":{"title":"Продолжим курс?","subtitle":"Впереди 29 уроков — вернись и открой их с Plus.","benefit":"Весь курс целиком","pill":""},"mistake_practice":{"title":"Ошибки — без лимита","subtitle":"Бесплатно — 1 подход в день. С Plus разбирай сколько нужно.","benefit":"Все ошибки из уроков и карточек в одном месте","pill":"1 из 1 подхода"},"flashcard_limit":{"title":"Место для карточек закончилось","subtitle":"Бесплатно — 50 фраз. С Plus сохраняй сколько хочешь.","benefit":"Безлимит на личную базу карточек","pill":"50 из 50 фраз"},"flashcard_training":{"title":"Тренируйся без пауз","subtitle":"Тренировки без месячного лимита. Без Plus нужна энергия; с Plus она не расходуется.","benefit":"Игровая тренировка сохранённых фраз","pill":""},"flashcard_create":{"title":"Добавь свою фразу","subtitle":"Услышал в сериале или на работе — сохрани, и приложение будет её тренировать.","benefit":"Свои фразы с переводом и озвучкой","pill":""},"pack_create":{"title":"Собери свой набор","subtitle":"Фразы для поездки, работы или сериала — в одном месте.","benefit":"Своя колода под любую задачу","pill":""},"streak":{"title":"Не потеряй серию","subtitle":"Plus защитит её, если пропустишь день.","benefit":"Защита серии даже при пропуске","pill":"Серия 7 дней"},"dialog_limit":{"title":"Ответы в диалогах закончились","subtitle":"Бесплатно — 30 ответов в месяц. С Plus счётчика нет.","benefit":"Все сценарии без месячного лимита","pill":"30 из 30 ответов"},"dialog_locked_level":{"title":"Сценарий откроется позже","subtitle":"Он открывается рангом монеты. Plus откроет все сразу.","benefit":"Ответы в диалогах без месячного лимита","pill":"Сценарий закрыт"},"dialog_analysis":{"title":"Разбор твоей речи","subtitle":"Увидишь, где фраза звучала неестественно и как сказать живее.","benefit":"Разбор на экране завершения","pill":""},"ai_voice_input":{"title":"Отвечай голосом","subtitle":"Бесплатно — 3 реплики голосом в день. С Plus говори сколько хочешь.","benefit":"Микрофон прямо в поле ответа","pill":"3 из 3 реплик"},"speaking":{"title":"Говори вслух сколько нужно","subtitle":"Бесплатно — 3 попытки в день. С Plus повторяй, пока не получится.","benefit":"Произноси фразы вслух — приложение слушает","pill":"3 из 3 попыток"},"mastery":{"title":"Повтори раунд без ограничений","subtitle":"Plus открывает повтор любого раунда без списания монет.","benefit":"Безлимит повторов любого урока","pill":""},"plus_server_refused":{"title":"Не видим твой Plus","subtitle":"Если подписка уже оформлена, восстанови покупку. Это бесплатно.","benefit":"Восстановить покупки — одна кнопка","pill":""},"phrase_workshop":{"title":"Мастерская фраз в Plus","subtitle":"Собирай фразы из пройденных уроков и закрепляй их, сколько хочешь.","benefit":"Мастерская фраз к каждому уроку","pill":""},"combined_lesson":{"title":"Несколько тем в одном уроке","subtitle":"Выбирай темы сам — урок соберётся под тебя.","benefit":"Темы на выбор","pill":""},"stats":{"title":"Посмотри, как идут дела","subtitle":"Год занятий на одном экране: где шло легко, где буксовало.","benefit":"Карта активности: все 365 дней","pill":""},"heatmap":{"title":"Весь год на одном экране","subtitle":"Видно каждый день: где была серия, а где перерыв.","benefit":"365 дней активности","pill":""},"patterns":{"title":"Что забывается чаще всего","subtitle":"Приложение покажет темы, которые не закрепились, и соберёт из них тренировку.","benefit":"Точки роста: что чаще всего проседает","pill":""},"percentiles":{"title":"Ты идёшь лучше, чем думаешь","subtitle":"Твоя серия и темп на фоне других учеников.","benefit":"Твой ранг среди всех учеников","pill":""},"weekly_review":{"title":"Итог недели на одной странице","subtitle":"Что укрепилось, где проседает и с чего начать новую неделю.","benefit":"Личный итог недели","pill":""},"language_add":{"title":"Ещё один язык для занятий","subtitle":"Подключи Plus, чтобы начать курс на другом языке","benefit":"Новый курс на другом языке","pill":""},"avatar_aura":{"title":"Добавь аватару свечение","subtitle":"Аура видна у друзей и в списках — тебя заметят сразу.","benefit":"Аура вокруг аватара","pill":""},"club":{"title":"Занимайся без ограничений","subtitle":"Plus открывает курс, разговоры и тренировки без дневных ограничений.","benefit":"Дополнительные возможности сообщества","pill":""},"onboarding_plan":{"title":"Начни говорить, а не зубрить","subtitle":"Живые фразы, разговоры вслух и повторы того, что забываешь.","benefit":"Весь курс целиком","pill":""},"intro_ended":{"title":"Пробный доступ закончился","subtitle":"Plus вернёт всё: курс, разговоры, тренировки и статистику.","benefit":"Полный доступ возвращается целиком","pill":"Пробный доступ закончился"},"premium_expired":{"title":"Всё на месте — продолжим?","subtitle":"Серия, фразы и уроки никуда не делись. Подключи Plus и продолжай.","benefit":"Продолжаешь ровно с того места, где остановился","pill":"Plus закончился"},"vip_expired":{"title":"Бонусный доступ закончился","subtitle":"Plus вернёт курс, разговоры, тренировки и статистику.","benefit":"Весь курс и практика снова открыты","pill":"Бонусный доступ закончился"},"referral_ended":{"title":"Бонусный доступ закончился","subtitle":"Plus вернёт всё, чем ты пользовался.","benefit":"Всё, чем ты пользовался, снова открыто","pill":"Бонусный доступ закончился"},"winback":{"title":"С возвращением","subtitle":"Выученное на месте. Начни с короткого урока — дальше пойдёт само.","benefit":"Всё открыто с первого дня","pill":""},"home_discount_badge":{"title":"Твоя цена на подписку","subtitle":"Та же подписка — по сниженной цене.","benefit":"Та же подписка, цена ниже","pill":""},"generic":{"title":"Всё приложение целиком","subtitle":"Весь курс, разговоры вслух, тренировки, коллекция фраз и статистика.","benefit":"Говоришь вслух с первого дня","pill":""}};
+var GROUPS=[["Курс и уроки",["course_after_lesson3","free_lessons_complete","lesson_b1","level_up","notification_upsell","language_add","onboarding_plan","combined_lesson","phrase_workshop"]],["Энергия и ИИ",["no_energy","ai_explain","ai_voice_input","speaking","mistake_practice","mastery"]],["Карточки",["flashcard_limit","flashcard_training","flashcard_create","pack_create"]],["Диалоги",["dialog_limit","dialog_locked_level","dialog_analysis"]],["Статистика",["stats","heatmap","patterns","percentiles","weekly_review"]],["Серия и оформление",["streak","avatar_aura","club"]],["Возврат и подписка",["intro_ended","premium_expired","vip_expired","referral_ended","winback","home_discount_badge","plus_server_refused"]],["Общее",["generic"]]];
+var NOTE="В первом выбранном языке уроки 1–3 бесплатны. Для продолжения и дополнительных языков нужен Plus.";
+var CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+var X='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+var sel=document.getElementById("ctx");
+GROUPS.forEach(function(g){var og=document.createElement("optgroup");og.label=g[0];g[1].forEach(function(k){if(!D[k])return;var o=document.createElement("option");o.value=k;o.textContent=D[k].title;og.appendChild(o)});sel.appendChild(og)});
+var mode="light";
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function render(){var k=sel.value,c=D[k];
+var fixed=k==="language_add"?[["Языки на выбор","Дополнительные языки с Plus"],["Курс дальше","Продолжение после урока 3"],["Больше практики","Видео, диалоги и карточки"]]:[[c.benefit,""],["Курс дальше","Продолжение после урока 3"],["Больше практики","Видео, диалоги и карточки"]];
+var rows=fixed.map(function(r){return '<div class="row">'+CHECK+'<div><b>'+esc(r[0])+'</b>'+(r[1]?'<span>'+esc(r[1])+'</span>':'')+'</div></div>'}).join("");
+document.getElementById("sheet").innerHTML='<div class="top"><span class="brand">PhraseMan Plus</span><span class="x">'+X+'</span></div>'+(c.pill?'<span class="pill">'+esc(c.pill)+'</span>':'')+'<h2 class="t">'+esc(c.title)+'</h2><p class="sub">'+esc(c.subtitle)+'</p><div class="rows">'+rows+'</div><p class="note">'+NOTE+'</p><div class="tiles"><div class="tile sel"><b>Год</b><i>≈ 39,99 € в год</i></div><div class="tile"><b>Месяц</b><i>≈ 7,99 € в месяц</i></div></div><p class="auto">Подписка продлевается автоматически. Отменить можно в настройках магазина.</p><div class="cta">Подключить Plus</div><div class="restore">Восстановить покупки</div><div class="legal"><span>Условия</span><span>Конфиденциальность</span></div>';
+document.getElementById("meta").innerHTML='<dt>Ключ в коде</dt><dd>'+esc(k)+'</dd><dt>Пилюля</dt><dd>'+(c.pill?esc(c.pill):"нет")+'</dd><dt>Первая выгода</dt><dd>'+esc(c.benefit)+'</dd>';
+document.getElementById("ph").setAttribute("data-m",mode);
+["light","dark"].forEach(function(m){document.getElementById("m-"+m).setAttribute("aria-pressed",m===mode?"true":"false")});}
+sel.addEventListener("change",render);
+["light","dark"].forEach(function(m){document.getElementById("m-"+m).addEventListener("click",function(){mode=m;render()})});
+render();
+</script>

@@ -1,0 +1,9 @@
+# зачем: вход для флоу на УЖЕ настроенном устройстве (ветеран, любой язык): без смены состояния/онбординга, только запуск и ожидание Главной.
+appId: app.phraseman
+---
+- launchApp:
+    stopApp: true
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
+- extendedWaitUntil:
+    visible: ".*0/10.*|Start lesson 1|Continue lesson 1"
+    timeout: 300000

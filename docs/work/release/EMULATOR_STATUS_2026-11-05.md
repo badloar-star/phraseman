@@ -1,0 +1,25 @@
+# Эмулятор 7 (5560) — статус 05.11 17:30
+
+- Maestro: 01 онбординг, 02 меню урока, 03 Наборы, 06 вкладка Plus, 07 и 08 dev-подписка — прогоны зелёные; флоу закоммичены 7520a5acf (e2e/maestro). Урок 1 до итога: 25/50 шагов, монеты считаются (+3/ответ, +4 при серии ≥16), итог не пройден.
+- [SUB-TIER] после dev_state?set=plus:on,plan:yearly,coinRank:3: step plan=yearly применён («plan memory_only {"plan":"yearly"}»), но SUB-TIER = source=default_plus plan=none productId=none tier=plus. Годовой план не доходит до определителя tier → Ultra не рисуется. Для Входа: dev-ссылка должна класть productId годового продукта в источник tier.
+- Пик монтируется в app/(tabs)/community.tsx (loadSpire → components/spire/SpireHomeScreen), прямого маршрута нет. На coinRank:3 во вкладке «Сообщество» сегменты Friends / Packs / Videos, сегмента Пика нет; вход в ТОП Пика не найден (проверка dev_state set=spire:open не подтверждена — флоу упал на ожидании «DEV-STATE OK»).
+- Кадры: docs/work/release/frames_2026-11-05/e2e_pre/ (plus_tab_1..3, home_newbie_3tiles_video_phrases, b06_*, b07_*, b08_*, b09_01_community). Кадры b07_04/b07_05 и ultra_*.png — dev_moments_preview (хоп), не годятся.
+- Среда: HEAD 8dbfe08d3; 5560 — Pixel_8_fresh (5 ГБ); Metro общий :8081; 5554 выключен ради Maestro; сообщения другим сессиям приостановлены лимитом, этот файл заменяет последнее сообщение.
+
+## 18:25 — ANR на 5560 при двух эмуляторах
+- На хосте одновременно идут 5560 (4,9 ГБ) и 5562 (исполнитель Maestro), свободно ~4 ГБ. Приложение на 5560 повисло: «Phraseman isn't responding» (кадр e2e_pre/peak_try_community.png), мои Maestro-прогоны обрываются без ошибки (два Maestro CLI одновременно делят драйвер на хосте).
+- Для ТОПа Пика: сегмент «Peak» в «Сообществе» требует useSpireTabEnabled() и !peakLocked (community.tsx:67,122); на coinRank:3 он не отображался — проверка dev_state set=spire:open не завершена из-за зависания.
+- Нужно решение: либо один эмулятор (вернуть 5554/5560 по очереди) и один исполнитель Maestro за раз, либо больше памяти.
+
+## 19:00 — Ultra и ТОП Пика (по коммиту 1db420532)
+- [SUB-TIER] после dev_state?set=uiLang:ru,plus:on,plan:yearly,coinRank:3,spire:open: `source=dev plan=yearly productId=none tier=ultra` (18:55:32). Ultra ПОЧИНЕН: на Главной вокруг аватара РУБИНОВО-РОЗОВОЕ кольцо с ✦ и красный шестигранник (кадр e2e_pre/ultra2_home.png, ultra_ru_home.png); у Plus (tier=plus) кольцо синее с бриллиантом (b08_02_home_ultra.png).
+- Вход в Пик: плитка «Пик» на Главной (4-я плитка при ru + spire:open + ранг ≥2); вкладка «Сообщество» показывает «Пик / Друзья / Наборы» (b12_02_peak_scrolled.png). При en Пик закрыт: [SPIRE-GATE] allowed=false reason=ui_lang_not_supported — Пик только для ru/uk.
+- ТОП на ЖИВОЙ вкладке: пустой скелетон («Этаж 1», строки-заглушки, «Играть» серая) — у нового аккаунта нет комнаты на сервере; ТОПа с аурой участников живьём нет. Превью dev_spire_preview?state=room (peak_preview_room_ultra_session.png): ТОП-5 + строка «Ты» с рубиновым кольцом и ✦ — аура Ultra у «Ты» есть, у остальных 5 — нет (в моках без подписки).
+- Замечание по методу: adb input tap на этом эмуляторе не срабатывает (Maestro-драйвер перехватывает ввод), тапы делаю только Maestro; dev-состояние живёт в памяти и сбрасывается при каждой перезагрузке бандла (чужие правки → «Loading from 10.0.2.2:8081»).
+
+## 20:35 — Пункт 1: окна оплаты (пути для Сверки)
+Папка: docs/work/release/frames_2026-11-05/sverka/1-paywalls/ — 10 кадров, ru-интерфейс, устройство 5560 (настроенное, НЕ чистое: серия 5 дн., 1190 монет, курс de, аккаунт Google в панели), Metro HEAD ~ba8a20b1b; ссылка phraseman://premium_modal?context=<ctx>&_dev_state=live, тема переключалась dev_state set=appearance:<light|dark>.
+Файлы: {light,dark}_{language_add, course_after_lesson3, no_energy, generic, premium_expired}.png. Журнал: C:/Temp/claude/b10.log (flow e2e/maestro/10_paywall_windows_en.yaml, зелёный, 8 мин 7 с).
+Находка (глазами, light_language_add и dark_no_energy): окна показывают только заголовок («Ещё один язык для занятий» / «Энергия закончилась»), подпись про автопродление и кнопку «Подключить Ultra»; НЕТ плиток тарифов с ценой, нет «Ввести промокод», нет пробного периода, нет «−58 %»/радио (нижняя 2/3 экрана пустая). Шапка «PhraseMan Ultra» (не Plus). Окно не стандартного вида «Все окна Plus» — Сверке сравнить с макетом; возможно, цены не загрузились без магазина (dev), тогда нужен кадр на магазинной сборке.
+Контекст «другой язык» отдельным именем не найден — взят language_add; «дальше» = course_after_lesson3.
+Устройство: 5560 — перезапущено координатором (~19:56), кадры новичка (ранг 0) на нём не снять без смены состояния.

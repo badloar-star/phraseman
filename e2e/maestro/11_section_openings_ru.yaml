@@ -1,0 +1,196 @@
+appId: app.phraseman
+name: 11 Section openings ru
+---
+- runFlow: _prelude_home_any.yaml
+- openLink: "phraseman://dev_state?set=uiLang:ru,appearance:light"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- startRecording: rec_light_video
+- openLink: "phraseman://dev_moments_preview?state=openings&section=video&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: light_video_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=video&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: light_video_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=video&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: light_video_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=video&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: light_video_p4
+- stopRecording
+- back
+- waitForAnimationToEnd
+- startRecording: rec_light_dialogs
+- openLink: "phraseman://dev_moments_preview?state=openings&section=dialogs&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: light_dialogs_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=dialogs&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: light_dialogs_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=dialogs&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: light_dialogs_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=dialogs&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: light_dialogs_p4
+- stopRecording
+- back
+- waitForAnimationToEnd
+- startRecording: rec_light_peak
+- openLink: "phraseman://dev_moments_preview?state=openings&section=peak&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: light_peak_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=peak&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: light_peak_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=peak&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: light_peak_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=peak&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: light_peak_p4
+- stopRecording
+- back
+- waitForAnimationToEnd
+- startRecording: rec_light_cards
+- openLink: "phraseman://dev_moments_preview?state=openings&section=cards&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: light_cards_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=cards&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: light_cards_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=cards&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: light_cards_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=cards&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: light_cards_p4
+- stopRecording
+- back
+- waitForAnimationToEnd
+- startRecording: rec_light_plus
+- openLink: "phraseman://dev_moments_preview?state=openings&section=plus&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: light_plus_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=plus&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: light_plus_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=plus&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: light_plus_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=plus&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: light_plus_p4
+- stopRecording
+- back
+- waitForAnimationToEnd
+- startRecording: rec_light_rank
+- openLink: "phraseman://dev_moments_preview?state=openings&section=rank&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: light_rank_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=rank&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: light_rank_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=rank&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: light_rank_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=rank&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: light_rank_p4
+- stopRecording
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_state?set=uiLang:ru,appearance:dark"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_moments_preview?state=openings&section=video&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: dark_video_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=video&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: dark_video_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=video&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: dark_video_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=video&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: dark_video_p4
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_moments_preview?state=openings&section=dialogs&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: dark_dialogs_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=dialogs&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: dark_dialogs_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=dialogs&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: dark_dialogs_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=dialogs&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: dark_dialogs_p4
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_moments_preview?state=openings&section=peak&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: dark_peak_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=peak&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: dark_peak_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=peak&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: dark_peak_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=peak&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: dark_peak_p4
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_moments_preview?state=openings&section=cards&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: dark_cards_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=cards&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: dark_cards_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=cards&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: dark_cards_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=cards&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: dark_cards_p4
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_moments_preview?state=openings&section=plus&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: dark_plus_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=plus&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: dark_plus_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=plus&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: dark_plus_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=plus&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: dark_plus_p4
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_moments_preview?state=openings&section=rank&phase=1"
+- waitForAnimationToEnd
+- takeScreenshot: dark_rank_p1
+- openLink: "phraseman://dev_moments_preview?state=openings&section=rank&phase=2"
+- waitForAnimationToEnd
+- takeScreenshot: dark_rank_p2
+- openLink: "phraseman://dev_moments_preview?state=openings&section=rank&phase=3"
+- waitForAnimationToEnd
+- takeScreenshot: dark_rank_p3
+- openLink: "phraseman://dev_moments_preview?state=openings&section=rank&phase=4"
+- waitForAnimationToEnd
+- takeScreenshot: dark_rank_p4
+- back
+- waitForAnimationToEnd

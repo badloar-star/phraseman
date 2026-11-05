@@ -6,9 +6,12 @@
 // без Plus ползунки заперты и ведут в пейвол. Выбор = идентификатор tune:H:S в ThemeContext: превью при перетаскивании (setPreviewLiquidGlassThemeId, без записи),
 // одна запись при отпускании (setLiquidGlassThemeId — локально сразу, на диск и в синк фоном, как у любой темы). Optimistic: вид меняется на каждом шаге до записи.
 // Флаг выключен — экран пустой и сразу возвращает назад (глубокая ссылка не открывает недоделанное). Журнал: [THEME-SLIDERS].
+// зачем (владелец 05.11 ~20:55 «КАК ПО МАКЕТУ»): размеры, значки и подписи — 1:1 с макетом (☀/☾ в сегменте, замок у «Plus», значок у «Вернуть стандартный»,
+// кромка дорожки, 15 px у чисел). Круг «назад» остаётся на общем месте приложения (правило владельца «назад везде в одной точке»), заголовок — под ним.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ScreenGradient from '../components/ScreenGradient';
@@ -109,8 +112,8 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
   const hueGradient = useMemo(() => hueStops(liquidGlassAppearance), [liquidGlassAppearance]);
   const satGradient = useMemo(() => satStops(liquidGlassAppearance, shown.H), [liquidGlassAppearance, shown.H]);
   const segments = useMemo(() => [
-    { key: 'light' as const, label: triLang(lang, T.light) },
-    { key: 'dark' as const, label: triLang(lang, T.dark) },
+    { key: 'light' as const, label: triLang(lang, T.light), icon: 'sunny' as const },
+    { key: 'dark' as const, label: triLang(lang, T.dark), icon: 'moon' as const },
   ], [lang]);
   const hueColor = oklchToHex(liquidGlassAppearance === 'dark' ? 0.7 : 0.62, 0.14, shown.H);
   const accentNow = glass.accentGraphic;
@@ -122,7 +125,7 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
           <ScreenBackZone />
-          <BouncyScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.title, { color: glass.text }]}>{triLang(lang, T.title)}</Text>
             <View style={styles.segment}>
               <V2SegmentedControl segments={segments} value={liquidGlassAppearance} onChange={onAppearance} testID="appearance-segment" />
@@ -130,28 +133,34 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
             <View style={[settingsGlassCardStyle(glass), styles.card]}>
               <View style={styles.cardHead}>
                 <Text style={[styles.cardTitle, { color: glass.text }]}>{triLang(lang, T.color)}</Text>
-                {locked ? <View testID="appearance-plus-tag" style={[styles.plusTag, { backgroundColor: glass.cta }]}><Text style={[styles.plusTagText, { color: glass.ctaInk }]}>Plus</Text></View> : null}
+                {locked ? (
+                  <View testID="appearance-plus-tag" style={[styles.plusTag, { backgroundColor: glass.cta }]}>
+                    <Ionicons name="lock-closed" size={12} color={glass.ctaInk} />
+                    <Text style={[styles.plusTagText, { color: glass.ctaInk }]}>Plus</Text>
+                  </View>
+                ) : null}
               </View>
               <View style={styles.sliderHead}>
                 <Text style={[styles.sliderLabel, { color: glass.text }]}>{triLang(lang, T.hue)}</Text>
                 <Text style={[styles.sliderValue, { color: glass.secondary }]}>{`${shown.H}°`}</Text>
               </View>
-              <TuneSlider testID="appearance-hue" gradient={hueGradient} value={shown.H} max={HUE_MAX} thumbColor={hueColor} label={triLang(lang, T.hue)} valueText={`${shown.H}°`}
+              <TuneSlider testID="appearance-hue" gradient={hueGradient} value={shown.H} max={HUE_MAX} thumbColor={hueColor} edgeColor={glass.line} label={triLang(lang, T.hue)} valueText={`${shown.H}°`}
                 locked={locked} onLockedPress={onLockedPress} onPreview={onHuePreview} onCommit={onHueCommit} />
-              <View style={[styles.sliderHead, styles.sliderGap]}>
+              <View style={styles.sliderHead}>
                 <Text style={[styles.sliderLabel, { color: glass.text }]}>{triLang(lang, T.sat)}</Text>
                 <Text style={[styles.sliderValue, { color: glass.secondary }]}>{`${shown.S} %`}</Text>
               </View>
-              <TuneSlider testID="appearance-saturation" gradient={satGradient} value={shown.S} max={SAT_MAX} thumbColor={accentNow} label={triLang(lang, T.sat)} valueText={`${shown.S} %`}
+              <TuneSlider testID="appearance-saturation" gradient={satGradient} value={shown.S} max={SAT_MAX} thumbColor={accentNow} edgeColor={glass.line} label={triLang(lang, T.sat)} valueText={`${shown.S} %`}
                 locked={locked} onLockedPress={onLockedPress} onPreview={onSatPreview} onCommit={onSatCommit} />
               <Pressable
                 testID="appearance-reset"
                 accessibilityRole="button"
-                accessibilityState={{ disabled: !locked && !canReset }}
-                disabled={!locked && !canReset}
+                accessibilityState={{ disabled: !canReset }}
+                disabled={!canReset}
                 onPress={onReset}
-                style={[styles.reset, { backgroundColor: glass.buttonFill, opacity: !locked && !canReset ? 0.45 : 1 }]}
+                style={[styles.reset, { backgroundColor: glass.buttonFill, opacity: !canReset ? 0.45 : 1 }]}
               >
+                <Ionicons name="refresh" size={17} color={glass.text} />
                 <Text style={[styles.resetText, { color: glass.text }]}>{triLang(lang, T.reset)}</Text>
               </Pressable>
             </View>
@@ -167,15 +176,14 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: 20, paddingBottom: 24 },
   title: { marginTop: 10, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.5 },
   segment: { marginTop: 16 },
-  card: { marginTop: 16, padding: 16, borderRadius: 28 },
-  cardHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 28 },
-  cardTitle: { fontSize: 20, lineHeight: 26, fontWeight: '700' },
-  plusTag: { height: 24, paddingHorizontal: 10, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  plusTagText: { fontSize: 13, lineHeight: 17, fontWeight: '800' },
-  sliderHead: { marginTop: 10, flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' },
-  sliderGap: { marginTop: 8 },
+  card: { marginTop: 16, paddingTop: 16, paddingHorizontal: 16, paddingBottom: 14, borderRadius: 28 },
+  cardHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 28, marginBottom: 4 },
+  cardTitle: { fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
+  plusTag: { height: 24, paddingHorizontal: 9, borderRadius: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
+  plusTagText: { fontSize: 12, lineHeight: 16, fontWeight: '800', letterSpacing: 0.2 },
+  sliderHead: { marginTop: 10, minHeight: 22, flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' },
   sliderLabel: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  sliderValue: { fontSize: 16, lineHeight: 22, fontWeight: '500' },
-  reset: { marginTop: 14, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center' },
+  sliderValue: { fontSize: 15, lineHeight: 22, fontWeight: '500', fontVariant: ['tabular-nums'] },
+  reset: { marginTop: 12, height: 44, borderRadius: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   resetText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
 });

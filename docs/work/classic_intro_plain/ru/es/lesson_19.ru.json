@@ -1,0 +1,30 @@
+{
+  "lang": "es",
+  "lesson": 19,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что мы сегодня учим"
+      },
+      "text": {
+        "ru": "Действие видно прямо сейчас: Estoy leyendo. Теперь читаете вы: Estás leyendo.\nКто делает, показывает первое слово."
+      }
+    },
+    {
+      "kind": "formula",
+      "text": {
+        "ru": "Для «я» — estoy, для «мы» — estamos. Меняется только это первое слово.\nestar для нужного человека + слово на -ando/-iendo.\nEstoy leyendo el libro. — Я сейчас читаю книгу."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Собери со мной"
+      },
+      "text": {
+        "ru": "Пара слов: Estoy cortando.\nКто делает — показывает estar, а что идёт сейчас — слово cortando."
+      }
+    }
+  ]
+}

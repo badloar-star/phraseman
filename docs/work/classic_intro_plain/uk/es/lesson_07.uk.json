@@ -1,0 +1,19 @@
+{
+  "lang": "es",
+  "lesson": 7,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що ми сьогодні вчимо"
+      }
+    },
+    null,
+    {
+      "kind": "practice",
+      "text": {
+        "uk": "Hay завжди однакове — і для одного предмета, і для багатьох.\nHay una llave — є ключ. Hay dos llaves — є два ключі."
+      }
+    }
+  ]
+}

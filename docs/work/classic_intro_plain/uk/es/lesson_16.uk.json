@@ -1,0 +1,33 @@
+{
+  "lang": "es",
+  "lesson": 16,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що ми сьогодні вчимо"
+      },
+      "text": {
+        "uk": "Це ваш план, а не поїздка до готелю: Voy a llamar al hotel.\nПісля voy a назвіть дію, а не місце."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Як це працює"
+      },
+      "text": {
+        "uk": "Учитель і учні говорять про план по-різному: el profesor va…, los estudiantes van… .\nСлово ir змінюється: voy, vas, va, vamos, vais, van.\nВоно не схоже на ir зі словника."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Склади разом зі мною"
+      },
+      "text": {
+        "uk": "Пара слів: Voy a volver.\nЗмінюється ir, потім завжди a, а дія лишається як у словнику: volver."
+      }
+    }
+  ]
+}

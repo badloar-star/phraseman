@@ -1,0 +1,30 @@
+{
+  "lang": "es",
+  "lesson": 15,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что мы сегодня учим"
+      },
+      "text": {
+        "ru": "Могу войти — puedo entrar. Можешь войти — puedes entrar.\nМеняется только poder.\nВторое действие остаётся как в словаре."
+      }
+    },
+    {
+      "kind": "formula",
+      "text": {
+        "ru": "В puedo, puedes, puede, pueden слышно ue. Для «мы» и «вы все» — podemos, podéis. Это всё одно слово poder.\npoder для нужного человека + действие, как в словаре.\nPuedo entrar en la tienda. — Я могу войти в магазин."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Собери со мной"
+      },
+      "text": {
+        "ru": "Пара слов: Puedo abrir.\nМеняется poder, а второе слово остаётся как в словаре: abrir."
+      }
+    }
+  ]
+}

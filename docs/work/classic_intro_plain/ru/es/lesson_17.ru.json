@@ -1,0 +1,17 @@
+{
+  "lang": "es",
+  "lesson": 17,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что мы сегодня учим"
+      },
+      "text": {
+        "ru": "Мне нравится кофе: Me gusta el café. Мне нравятся фотографии: Me gustan las fotos.\nМеняется не «кому», а слово gusta.\nОно подстраивается под фотографии."
+      }
+    },
+    null,
+    null
+  ]
+}

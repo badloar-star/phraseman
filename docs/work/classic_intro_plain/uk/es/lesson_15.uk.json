@@ -1,0 +1,30 @@
+{
+  "lang": "es",
+  "lesson": 15,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що ми сьогодні вчимо"
+      },
+      "text": {
+        "uk": "Можу ввійти — puedo entrar. Можеш увійти — puedes entrar.\nЗмінюється лише poder.\nДруге слово-дія лишається як у словнику."
+      }
+    },
+    {
+      "kind": "formula",
+      "text": {
+        "uk": "У puedo, puedes, puede, pueden чуємо ue. Для «ми» і «ви всі» — podemos, podéis. Це все одне слово poder.\npoder для потрібної людини + дія, як у словнику.\nPuedo entrar en la tienda. — Я можу зайти в магазин."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Склади разом зі мною"
+      },
+      "text": {
+        "uk": "Пара слів: Puedo abrir.\nЗмінюється poder, а друге слово лишається як у словнику: abrir."
+      }
+    }
+  ]
+}

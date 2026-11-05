@@ -1,0 +1,30 @@
+{
+  "lang": "es",
+  "lesson": 20,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что мы сегодня учим"
+      },
+      "text": {
+        "ru": "Звонок уже сделан: he llamado. Звонила Ана: ha llamado.\nКто делал, показывает he или ha.\nСлово llamado не меняется."
+      }
+    },
+    {
+      "kind": "formula",
+      "text": {
+        "ru": "Tengo un libro — у меня есть книга. He leído el libro — я прочитал книгу, дело сделано.\nhe, has, ha, hemos, habéis, han + слово на -ado/-ido, оно не меняется.\nYa he llamado al hotel. — Я уже позвонил в отель."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Собери со мной"
+      },
+      "text": {
+        "ru": "Пара слов: ha comprado.\nМеняется haber (he, has, ha), а comprado остаётся тем же, что бы ни купили."
+      }
+    }
+  ]
+}

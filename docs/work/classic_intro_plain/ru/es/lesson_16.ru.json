@@ -1,0 +1,33 @@
+{
+  "lang": "es",
+  "lesson": 16,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что мы сегодня учим"
+      },
+      "text": {
+        "ru": "У вас план, а не поездка в отель: Voy a llamar al hotel.\nПосле voy a назовите действие, а не место."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Как это устроено"
+      },
+      "text": {
+        "ru": "Учитель и ученики говорят о плане по-разному: el profesor va…, los estudiantes van… .\nСлово ir меняется: voy, vas, va, vamos, vais, van.\nОно не похоже на ir из словаря."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Собери со мной"
+      },
+      "text": {
+        "ru": "Пара слов: Voy a volver.\nМеняется ir, потом всегда a, а действие остаётся как в словаре: volver."
+      }
+    }
+  ]
+}

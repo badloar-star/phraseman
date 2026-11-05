@@ -1,0 +1,17 @@
+{
+  "lang": "es",
+  "lesson": 25,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что мы сегодня учим"
+      },
+      "text": {
+        "ru": "Друг у окна. Abres la ventana сообщает, что он делает; Abre la ventana просит открыть окно.\nОдна буква s меняет смысл всей фразы."
+      }
+    },
+    null,
+    null
+  ]
+}

@@ -33,3 +33,4 @@ A12 (тост «Облако сейчас недоступно») отдельн
 ## Rollback
 
 Убрать вызов `resumeAccountSwitchRecovery` в `AccountLogoutFlow.tsx`.
+Governance-ID: TG-4D0326414D27

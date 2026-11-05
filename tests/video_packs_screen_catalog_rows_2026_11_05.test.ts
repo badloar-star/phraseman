@@ -17,7 +17,9 @@ describe('экран «Из видео»: список строк как утв�
   test('строка catalog: стопка cards.webp, название, «N карточек · длительность», шеврон, без «Добавить»', () => {
     const catalog = row.slice(row.indexOf("variant === 'catalog'"), row.indexOf("variant === 'catalog'") + 600);
     expect(catalog).toContain('<PackCatalogRow');
-    expect(catalog).toContain('duration={duration}');
+    // правка владельца 05.11: в серой строке — дата публикации вместо длительности видео
+    expect(catalog).toContain('formatPackPublishDate(pack.updatedAt, lang)');
+    expect(catalog).not.toContain('duration={duration}');
     expect(catalog).not.toContain('videoAdd');
     expect(packRow).toContain("v2art/dark/cards.webp");
     expect(packRow).toContain('chevron-forward');

@@ -11,8 +11,8 @@ const read = (rel: string): string => fs.readFileSync(path.join(root, rel), 'utf
 const peakFiles = fs.readdirSync(dir).filter((n) => n.endsWith('.tsx'));
 
 describe('экран Пика, вариант B', () => {
-  it('флаг выключен по умолчанию, старый экран остаётся', () => {
-    expect(PEAK_SCREEN_V2_ENABLED).toBe(false);
+  it('флаг включён (релиз 05.11), ветка старого экрана остаётся на откат', () => {
+    expect(PEAK_SCREEN_V2_ENABLED).toBe(true);
     const home = read('components/spire/SpireHomeScreen.tsx');
     expect(home).toContain('peakScreenV2On() ? <PeakScreenSlot');
     // зачем (Ревизор 04.11): экран B подгружается лениво, статического импорта в SpireHomeScreen нет

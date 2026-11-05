@@ -671,13 +671,13 @@ export default function LessonComplete() {
   useEffect(() => {
     if (practiceRunes.hydrating || coinsHydratedLoggedRef.current) return;
     coinsHydratedLoggedRef.current = true;
-    lessonCoinsLog('screen_hydrated', { lessonId, runeCompletionOrdinal, runesShown: practiceRunes.runes, awardPerItem: practiceRunes.breakdown.awardPerItem, credited: practiceRunes.breakdown.creditedItems, waitedMs: Date.now() - coinsMountedAtMsRef.current });
+    lessonCoinsLog('screen_hydrated', { lessonId, runeCompletionOrdinal, runesShown: practiceRunes.runes, awardPerItem: practiceRunes.breakdown?.awardPerItem ?? null, credited: practiceRunes.breakdown?.creditedItems ?? null, waitedMs: Date.now() - coinsMountedAtMsRef.current });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [practiceRunes.hydrating]);
   useEffect(() => {
     if (practiceRunes.hydrating || practiceRunesSettleOnceRef.current) return;
     practiceRunesSettleOnceRef.current = true;
-    lessonCoinsLog('screen_settle_call', { lessonId, runeCompletionOrdinal, runesShown: practiceRunes.runes, awardPerItem: practiceRunes.breakdown.awardPerItem, isWorkshop: isWorkshopCompletion });
+    lessonCoinsLog('screen_settle_call', { lessonId, runeCompletionOrdinal, runesShown: practiceRunes.runes, awardPerItem: practiceRunes.breakdown?.awardPerItem ?? null, isWorkshop: isWorkshopCompletion });
     // зачем (владелец 30.10; координатор: новичок проходит КЛАССИЧЕСКИЙ курс, V2 заморожен): +500 монет за ПЕРВОЕ завершённое занятие — основной путь здесь;
     // один раз на владельца (флаг на устройстве + ключ операции), только «новый», за флагом rank_gates_enabled (first_lesson_bonus.ts)
     void maybeGrantFirstLessonBonus(defaultFirstLessonBonusDeps(() => true /* зачем (координатор 05.11): бонус +500 от ранговых гейтов НЕ зависит — гейты в первой версии выключены, бонус включён; «новый» решает когорта, один раз на владельца */)).catch((error: unknown) => {

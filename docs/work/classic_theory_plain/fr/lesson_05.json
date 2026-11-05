@@ -16,7 +16,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «У меня есть ключ».\nJ’ai une clé. — «У меня есть ключ.»\nЧитается: жэ юн кле́.\nСлово avoir значит «иметь».\nПо-французски говорят «я имею ключ». По-русски — «у меня есть».\nTu as une clé. — «У тебя есть ключ.»\nЧитается: тю а юн кле́.\nElle a un sac. — «У неё есть сумка.»\nЧитается: эль а ён сак.\nIl a un sac. — «У него есть сумка.»\nЧитается: иль а ён сак.\nСлово il значит «он».\nСлово меняется, смотря о ком речь.\n«я» — j’ai, «ты» — as, «она» и «он» — a.",
-        "uk": "Дивіться, як сказати «У мене є ключ».\nJ’ai une clé. — «У мене є ключ.»\nЧитається: же юн кле́.\nСлово avoir означає «мати».\nФранцузькою кажуть «я маю ключ». Українською — «у мене є».\nTu as une clé. — «У тебе є ключ.»\nЧитається: тю а юн кле́.\nElle a un sac. — «У неї є сумка.»\nЧитається: ель а ён сак.\nIl a un sac. — «У нього є сумка.»\nЧитається: іль а ён сак.\nСлово il означає «він».\nСлово змінюється, залежно від того, про кого мова.\n«я» — j’ai, «ти» — as, «вона» і «він» — a.",
+        "uk": "Дивіться, як сказати «У мене є ключ».\nJ’ai une clé. — «У мене є ключ.»\nЧитається: же юн кле́.\nСлово avoir означає «мати».\nФранцузькою кажуть «я маю ключ». Українською — «у мене є».\nTu as une clé. — «У тебе є ключ.»\nЧитається: тю а юн кле́.\nElle a un sac. — «У неї є сумка.»\nЧитається: ель а ен сак.\nIl a un sac. — «У нього є сумка.»\nЧитається: іль а ен сак.\nСлово il означає «він».\nСлово змінюється залежно від того, про кого йдеться.\n«я» — j’ai, «ти» — as, «вона» і «він» — a.",
         "en": "Look at how to say “I have a key”.\nJ’ai une clé. — “I have a key.”\navoir means “to have”.\nIn French you say “I have a key”, as in English.\nTu as une clé. — “You have a key.”\nElle a un sac. — “She has a bag.”\nIl a un sac. — “He has a bag.”\nil means “he”.\nThe word changes with who it is about.\n“I” — j’ai, “you” — as, “she” and “he” — a."
       },
       "examples": [
@@ -38,14 +38,14 @@
           "phraseId": "fr:05:03",
           "say": {
             "ru": "эль а ён сак",
-            "uk": "ель а ён сак"
+            "uk": "ель а ен сак"
           }
         },
         {
           "phraseId": "fr:05:04",
           "say": {
             "ru": "иль а ён сак",
-            "uk": "іль а ён сак"
+            "uk": "іль а ен сак"
           }
         }
       ],
@@ -106,7 +106,7 @@
       },
       "text": {
         "ru": "Теперь «у нас», «у вас» и «у них».\nNous avons un plan. — «У нас есть план.»\nЧитается: ну заво́н ён пла́н.\nСлово plan значит «план».\nVous avez un plan. — «У вас есть план.»\nЧитается: ву заве́ ён пла́н.\nIls ont un billet. — «У них есть билет.»\nЧитается: иль зон ён бийэ́.\nLéa a une carte. — «У Леа есть карта.»\nЧитается: леа́ а юн карт.\nКогда речь о нас, говорят avons. О вас — avez. О них — ont.\nПро Леа говорят a, как про «она».\nВ «ну заво́н», «ву заве́», «иль зон» слышится лёгкое «з».",
-        "uk": "Тепер «у нас», «у вас» і «у них».\nNous avons un plan. — «У нас є план.»\nЧитається: ну заво́н ён пла́н.\nСлово plan означає «план».\nVous avez un plan. — «У вас є план.»\nЧитається: ву заве́ ён пла́н.\nIls ont un billet. — «Вони мають квиток.»\nЧитається: іль зон ён бійе́.\nLéa a une carte. — «Леа має мапу.»\nЧитається: леа́ а юн карт.\nКоли мова про нас, кажуть avons. Про вас — avez. Про них — ont.\nПро Леа кажуть a, як про «вона».\nУ «ну заво́н», «ву заве́», «іль зон» чути легке «з».",
+        "uk": "Тепер «у нас», «у вас» і «у них».\nNous avons un plan. — «У нас є план.»\nЧитається: ну заво́н ен пла́н.\nСлово plan означає «план».\nVous avez un plan. — «У вас є план.»\nЧитається: ву заве́ ен пла́н.\nIls ont un billet. — «Вони мають квиток.»\nЧитається: іль зон ен бійе́.\nLéa a une carte. — «Леа має мапу.»\nЧитається: леа́ а юн карт.\nКоли йдеться про нас, кажуть avons. Про вас — avez. Про них — ont.\nПро Леа кажуть a, як про «вона».\nУ «ну заво́н», «ву заве́», «іль зон» чути легке «з».",
         "en": "Now “we have”, “you have” and “they have”.\nNous avons un plan. — “We have a plan.”\nplan means “plan”.\nVous avez un plan. — “You have a plan.”\nIls ont un billet. — “They have a ticket.”\nLéa a une carte. — “Léa has a card.”\nFor “we” we say avons. For “you” — avez. For “they” — ont.\nFor Léa we say a, as for “she”.\nIn “nou zavon”, “vou zavé”, “il zon” you hear a light “z”."
       },
       "examples": [
@@ -114,21 +114,21 @@
           "phraseId": "fr:05:05",
           "say": {
             "ru": "ну заво́н ён пла́н",
-            "uk": "ну заво́н ён пла́н"
+            "uk": "ну заво́н ен пла́н"
           }
         },
         {
           "phraseId": "fr:05:06",
           "say": {
             "ru": "ву заве́ ён пла́н",
-            "uk": "ву заве́ ён пла́н"
+            "uk": "ву заве́ ен пла́н"
           }
         },
         {
           "phraseId": "fr:05:07",
           "say": {
             "ru": "иль зон ён бийэ́",
-            "uk": "іль зон ён бійе́"
+            "uk": "іль зон ен бійе́"
           }
         },
         {
@@ -196,7 +196,7 @@
       },
       "text": {
         "ru": "Про состояние по-французски говорят «у меня голод».\nJ’ai faim. — «Я голоден.»\nЧитается: жэ фэн.\nСлово faim значит «голод».\nJ’ai soif. — «Мне хочется пить.»\nЧитается: жэ суаф.\nСлово soif значит «жажда».\nNous avons froid. — «Нам холодно.»\nЧитается: ну заво́н фруа́.\nСлово froid значит «холод».\nVous avez chaud. — «Вам жарко.»\nЧитается: ву заве́ шо́.\nСлово chaud значит «жара».\nPaul a peur. — «Поль боится.»\nЧитается: поль а пёр.\nСлово peur значит «страх».\nIls ont sommeil. — «Они хотят спать.»\nЧитается: иль зон сомэ́й.\nСлово sommeil значит «сонливость».",
-        "uk": "Про стан французькою кажуть «у мене голод».\nJ’ai faim. — «Я голодний.»\nЧитається: же фен.\nСлово faim означає «голод».\nJ’ai soif. — «Я хочу пити.»\nЧитається: же суаф.\nСлово soif означає «спрага».\nNous avons froid. — «Нам холодно.»\nЧитається: ну заво́н фруа́.\nСлово froid означає «холод».\nVous avez chaud. — «Вам спекотно.»\nЧитається: ву заве́ шо́.\nСлово chaud означає «жара».\nPaul a peur. — «Пол боїться.»\nЧитається: поль а пёр.\nСлово peur означає «страх».\nIls ont sommeil. — «Вони хочуть спати.»\nЧитається: іль зон соме́й.\nСлово sommeil означає «сонливість».",
+        "uk": "Про стан французькою кажуть «у мене голод».\nJ’ai faim. — «Я голодний.»\nЧитається: же фен.\nСлово faim означає «голод».\nJ’ai soif. — «Я хочу пити.»\nЧитається: же суаф.\nСлово soif означає «спрага».\nNous avons froid. — «Нам холодно.»\nЧитається: ну заво́н фруа́.\nСлово froid означає «холод».\nVous avez chaud. — «Вам спекотно.»\nЧитається: ву заве́ шо́.\nСлово chaud означає «спека».\nPaul a peur. — «Пол боїться.»\nЧитається: поль а пьор.\nСлово peur означає «страх».\nIls ont sommeil. — «Вони хочуть спати.»\nЧитається: іль зон соме́й.\nСлово sommeil означає «сонливість».",
         "en": "For feelings, French says “I have hunger”.\nJ’ai faim. — “I am hungry.”\nfaim means “hunger”.\nJ’ai soif. — “I am thirsty.”\nsoif means “thirst”.\nNous avons froid. — “We are cold.”\nfroid means “cold”.\nVous avez chaud. — “You are hot.”\nchaud means “heat”.\nPaul a peur. — “Paul is afraid.”\npeur means “fear”.\nIls ont sommeil. — “They are sleepy.”\nsommeil means “sleepiness”."
       },
       "examples": [
@@ -232,7 +232,7 @@
           "phraseId": "fr:05:17",
           "say": {
             "ru": "поль а пёр",
-            "uk": "поль а пёр"
+            "uk": "поль а пьор"
           }
         },
         {
@@ -396,7 +396,7 @@
       },
       "text": {
         "ru": "Вопрос: голос в конце идёт вверх, как в уроке 3.\nAvez-vous un stylo ? — «У вас есть ручка?»\nЧитается: авэ́ву ён стило́.\nСлово stylo значит «ручка».\nВ Avez-vous слова меняются местами: «у вас ли».\nIl a son passeport ? — «Его паспорт при нём?»\nЧитается: иль а сон паспо́р.\nСлово passeport значит «паспорт».\nСлово son значит «его».\nVous avez de la monnaie ? — «У вас есть мелочь?»\nЧитается: ву заве́ дё ла моне́.\nСлово monnaie значит «мелочь».\nСлова de la по-русски не говорят.\nJ’ai un rendez-vous. — «У меня назначена встреча.»\nЧитается: жэ ён рандэву́.\nСлово rendez-vous значит «назначенная встреча».",
-        "uk": "Питання: голос у кінці йде вгору, як в уроці 3.\nAvez-vous un stylo ? — «У вас є ручка?»\nЧитається: аве́ву ён стіло́.\nСлово stylo означає «ручка».\nУ Avez-vous слова міняються місцями: «чи у вас».\nIl a son passeport ? — «Його паспорт при ньому?»\nЧитається: іль а сон паспо́р.\nСлово passeport означає «паспорт».\nСлово son означає «його».\nVous avez de la monnaie ? — «У вас є дрібні гроші?»\nЧитається: ву заве́ дё ла моне́.\nСлово monnaie означає «дрібниця».\nСлова de la українською не кажуть.\nJ’ai un rendez-vous. — «У мене призначена зустріч.»\nЧитається: же ён рандеву́.\nСлово rendez-vous означає «призначена зустріч».",
+        "uk": "Питання: голос у кінці йде вгору, як в уроці 3.\nAvez-vous un stylo ? — «У вас є ручка?»\nЧитається: аве́ву ен стіло́.\nСлово stylo означає «ручка».\nУ Avez-vous слова міняються місцями: «чи у вас».\nIl a son passeport ? — «Його паспорт при ньому?»\nЧитається: іль а сон паспо́р.\nСлово passeport означає «паспорт».\nСлово son означає «його».\nVous avez de la monnaie ? — «У вас є дрібні гроші?»\nЧитається: ву заве́ дьо ла моне́.\nСлово monnaie означає «дрібні гроші».\nСлова de la українською не кажуть.\nJ’ai un rendez-vous. — «У мене призначена зустріч.»\nЧитається: же ен рандеву́.\nСлово rendez-vous означає «призначена зустріч».",
         "en": "A question: the voice goes up at the end, as in lesson 3.\nAvez-vous un stylo ? — “Do you have a pen.”\nstylo means “pen”.\nIn Avez-vous the words swap places.\nIl a son passeport ? — “Does he have his passport.”\npasseport means “passport”.\nson means “his”.\nVous avez de la monnaie ? — “Do you have any change.”\nmonnaie means “change”.\nThere is no word for de la in English.\nJ’ai un rendez-vous. — “I have an appointment.”\nrendez-vous means “appointment”."
       },
       "examples": [
@@ -404,7 +404,7 @@
           "phraseId": "fr:05:31",
           "say": {
             "ru": "авэ́ву ён стило́",
-            "uk": "аве́ву ён стіло́"
+            "uk": "аве́ву ен стіло́"
           }
         },
         {
@@ -418,14 +418,14 @@
           "phraseId": "fr:05:37",
           "say": {
             "ru": "ву заве́ дё ла моне́",
-            "uk": "ву заве́ дё ла моне́"
+            "uk": "ву заве́ дьо ла моне́"
           }
         },
         {
           "phraseId": "fr:05:27",
           "say": {
             "ru": "жэ ён рандэву́",
-            "uk": "же ён рандеву́"
+            "uk": "же ен рандеву́"
           }
         }
       ],
@@ -486,7 +486,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «Мне нужна помощь».\nJ’ai besoin d’aide. — «Мне нужна помощь.»\nЧитается: жэ бёзуэ́н дэд.\nСлово besoin значит «нужда».\nСлова d’aide значат «помощь».\nСлова avoir besoin de значат «нуждаться в».\nTu as besoin d’une pause. — «Тебе нужен перерыв.»\nЧитается: тю а бёзуэ́н дюн поз.\nСлово pause значит «перерыв».\nNous avons besoin d’eau. — «Нам нужна вода.»\nЧитается: ну заво́н бёзуэ́н до́.\nСлова d’eau значат «вода».\nElle a besoin de son ordonnance. — «Ей нужен её рецепт.»\nЧитается: эль а бёзуэ́н дё сон ордона́нс.\nСлово ordonnance значит «рецепт врача».",
-        "uk": "Дивіться, як сказати «Мені потрібна допомога».\nJ’ai besoin d’aide. — «Мені потрібна допомога.»\nЧитається: же бёзуе́н дед.\nСлово besoin означає «потреба».\nСлова d’aide означають «допомога».\nСлова avoir besoin de означають «потребувати».\nTu as besoin d’une pause. — «Тобі потрібна перерва.»\nЧитається: тю а бёзуе́н дюн поз.\nСлово pause означає «перерва».\nNous avons besoin d’eau. — «Нам потрібна вода.»\nЧитається: ну заво́н бёзуе́н до́.\nСлова d’eau означають «вода».\nElle a besoin de son ordonnance. — «Їй потрібен її рецепт.»\nЧитається: ель а бёзуе́н дё сон ордона́нс.\nСлово ordonnance означає «рецепт лікаря».",
+        "uk": "Дивіться, як сказати «Мені потрібна допомога».\nJ’ai besoin d’aide. — «Мені потрібна допомога.»\nЧитається: же бьозуе́н дед.\nСлово besoin означає «потреба».\nСлова d’aide означають «допомога».\nСлова avoir besoin de означають «потребувати».\nTu as besoin d’une pause. — «Тобі потрібна перерва.»\nЧитається: тю а бьозуе́н дюн поз.\nСлово pause означає «перерва».\nNous avons besoin d’eau. — «Нам потрібна вода.»\nЧитається: ну заво́н бьозуе́н до́.\nСлова d’eau означають «вода».\nElle a besoin de son ordonnance. — «Їй потрібен її рецепт.»\nЧитається: ель а бьозуе́н дьо сон ордона́нс.\nСлово ordonnance означає «рецепт лікаря».",
         "en": "Look at how to say “I need help”.\nJ’ai besoin d’aide. — “I need help.”\nbesoin means “need”.\nd’aide means “help”.\navoir besoin de means “to need”.\nTu as besoin d’une pause. — “You need a break.”\npause means “break”.\nNous avons besoin d’eau. — “We need water.”\nd’eau means “water”.\nElle a besoin de son ordonnance. — “She needs her prescription.”\nordonnance means “prescription”."
       },
       "examples": [
@@ -494,28 +494,28 @@
           "phraseId": "fr:05:41",
           "say": {
             "ru": "жэ бёзуэ́н дэд",
-            "uk": "же бёзуе́н дед"
+            "uk": "же бьозуе́н дед"
           }
         },
         {
           "phraseId": "fr:05:42",
           "say": {
             "ru": "тю а бёзуэ́н дюн поз",
-            "uk": "тю а бёзуе́н дюн поз"
+            "uk": "тю а бьозуе́н дюн поз"
           }
         },
         {
           "phraseId": "fr:05:44",
           "say": {
             "ru": "ну заво́н бёзуэ́н до́",
-            "uk": "ну заво́н бёзуе́н до́"
+            "uk": "ну заво́н бьозуе́н до́"
           }
         },
         {
           "phraseId": "fr:05:50",
           "say": {
             "ru": "эль а бёзуэ́н дё сон ордона́нс",
-            "uk": "ель а бёзуе́н дё сон ордона́нс"
+            "uk": "ель а бьозуе́н дьо сон ордона́нс"
           }
         }
       ],

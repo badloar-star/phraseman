@@ -16,7 +16,7 @@
       },
       "text": {
         "ru": "Смотрите, как спросить, где что-то находится.\nOù est Paul ? — «Где Поль?»\nЧитается: у э поль.\nСлово où значит «где».\nOù sont les clés ? — «Где ключи?»\nЧитается: у сон лэ кле́.\nКогда вещей несколько, вместо est говорят sont.\nOù est la sortie ? — «Где выход?»\nЧитается: у э ла сорти́.\nOù es-tu ? — «Где ты?»\nЧитается: у э тю.\nСлова tu и vous ставят в конец и соединяют чёрточкой.\nOù travaillez-vous ? — «Где вы работаете?»\nЧитается: у травайе́ ву.",
-        "uk": "Дивіться, як запитати, де щось знаходиться.\nOù est Paul ? — «Де Пол?»\nЧитається: у е поль.\nСлово où означає «де».\nOù sont les clés ? — «Де ключі?»\nЧитається: у сон ле кле́.\nКоли речей кілька, замість est кажуть sont.\nOù est la sortie ? — «Де вихід?»\nЧитається: у е ла сорті́.\nOù es-tu ? — «Де ти?»\nЧитається: у е тю.\nСлова tu і vous ставлять в кінець і з’єднують рискою.\nOù travaillez-vous ? — «Де ви працюєте?»\nЧитається: у травайе́ ву.",
+        "uk": "Дивіться, як запитати, де щось розташоване.\nOù est Paul ? — «Де Пол?»\nЧитається: у е поль.\nСлово où означає «де».\nOù sont les clés ? — «Де ключі?»\nЧитається: у сон ле кле́.\nКоли речей кілька, замість est кажуть sont.\nOù est la sortie ? — «Де вихід?»\nЧитається: у е ла сорті́.\nOù es-tu ? — «Де ти?»\nЧитається: у е тю.\nСлова tu і vous ставлять в кінець і з’єднують рискою.\nOù travaillez-vous ? — «Де ви працюєте?»\nЧитається: у травайе́ ву.",
         "en": "Look at how to ask where something is.\nOù est Paul ? — “Where is Paul?”\noù means “where”.\nOù sont les clés ? — “Where are the keys?”\nWhen there are several things, we say sont instead of est.\nOù est la sortie ? — “Where is the exit?”\nOù es-tu ? — “Where are you?”\nThe words tu and vous go at the end, joined by a dash.\nOù travaillez-vous ? — “Where do you work?”"
       },
       "examples": [
@@ -113,7 +113,7 @@
       },
       "text": {
         "ru": "Смотрите, как спросить «Кто здесь работает?»\nQui travaille ici ? — «Кто здесь работает?»\nЧитается: ки трава́й иси́.\nСлово qui значит «кто».\nQui est là ? — «Кто здесь?»\nЧитается: ки э ла.\nQui prépare le dîner ? — «Кто готовит ужин?»\nЧитается: ки препа́р лё дине́.\nQui cherche un appartement ? — «Кто ищет квартиру?»\nЧитается: ки шэрш ён апартема́н.\nПосле qui слово говорят так же, как про «он»: qui travaille, qui prépare.",
-        "uk": "Дивіться, як запитати «Хто тут працює?»\nQui travaille ici ? — «Хто тут працює?»\nЧитається: кі трава́й ісі́.\nСлово qui означає «хто».\nQui est là ? — «Хто тут?»\nЧитається: ки е ла.\nQui prépare le dîner ? — «Хто готує вечерю?»\nЧитається: кі препа́р лё діне́.\nQui cherche un appartement ? — «Хто шукає квартиру?»\nЧитається: кі шерш ён апартема́н.\nПісля qui слово кажуть так само, як про «він»: qui travaille, qui prépare.",
+        "uk": "Дивіться, як запитати «Хто тут працює?»\nQui travaille ici ? — «Хто тут працює?»\nЧитається: кі трава́й ісі́.\nСлово qui означає «хто».\nQui est là ? — «Хто тут?»\nЧитається: кі е ла.\nQui prépare le dîner ? — «Хто готує вечерю?»\nЧитається: кі препа́р льо діне́.\nQui cherche un appartement ? — «Хто шукає квартиру?»\nЧитається: кі шерш ен апартема́н.\nПісля qui слово кажуть так само, як про «він»: qui travaille, qui prépare.",
         "en": "Look at how to ask “Who works here?”\nQui travaille ici ? — “Who works here?”\nqui means “who”.\nQui est là ? — “Who is there?”\nQui prépare le dîner ? — “Who is making dinner?”\nQui cherche un appartement ? — “Who is looking for an apartment?”\nAfter qui, the word is the same as for “he”: qui travaille, qui prépare."
       },
       "examples": [
@@ -135,14 +135,14 @@
           "phraseId": "fr:08:16",
           "say": {
             "ru": "ки препа́р лё дине́",
-            "uk": "кі препа́р лё діне́"
+            "uk": "кі препа́р льо діне́"
           }
         },
         {
           "phraseId": "fr:08:20",
           "say": {
             "ru": "ки шэрш ён апартема́н",
-            "uk": "кі шерш ён апартема́н"
+            "uk": "кі шерш ен апартема́н"
           }
         }
       ],
@@ -203,7 +203,7 @@
       },
       "text": {
         "ru": "Смотрите, как спросить «Когда?» и «Во сколько?»\nQuand est le concert ? — «Когда концерт?»\nЧитается: кан э лё консэ́р.\nСлово quand значит «когда».\nQuand commence le cours ? — «Когда начинается занятие?»\nЧитается: кан кома́нс лё кур.\nСлово commencer значит «начинать, начинаться». Слово cours значит «занятие, урок».\nÀ quelle heure part le train ? — «Во сколько отправляется поезд?»\nЧитается: а кэль ёр пар лё трэ́н.\nСлова à quelle heure значат «во сколько».\nÀ quelle heure ouvre le musée ? — «Во сколько открывается музей?»\nЧитается: а кэль ёр увр лё мюзе́.",
-        "uk": "Дивіться, як запитати «Коли?» і «О котрій?»\nQuand est le concert ? — «Коли концерт?»\nЧитається: кан е лё консе́р.\nСлово quand означає «коли».\nQuand commence le cours ? — «Коли починається заняття?»\nЧитається: кан кома́нс лё кур.\nСлово commencer означає «починати, починатися». Слово cours означає «заняття, урок».\nÀ quelle heure part le train ? — «О котрій годині відправляється поїзд?»\nЧитається: а кель ёр пар лё тре́н.\nСлова à quelle heure означають «о котрій годині».\nÀ quelle heure ouvre le musée ? — «О котрій годині відкривається музей?»\nЧитається: а кель ёр увр лё мюзе́.",
+        "uk": "Дивіться, як запитати «Коли?» і «О котрій?»\nQuand est le concert ? — «Коли концерт?»\nЧитається: кан е льо консе́р.\nСлово quand означає «коли».\nQuand commence le cours ? — «Коли починається заняття?»\nЧитається: кан кома́нс льо кур.\nСлово commencer означає «починати, починатися». Слово cours означає «заняття, урок».\nÀ quelle heure part le train ? — «О котрій годині відправляється поїзд?»\nЧитається: а кель ер пар льо тре́н.\nСлова à quelle heure означають «о котрій годині».\nÀ quelle heure ouvre le musée ? — «О котрій годині відкривається музей?»\nЧитається: а кель ер увр льо мюзе́.",
         "en": "Look at how to ask “When?” and “What time?”\nQuand est le concert ? — “When is the concert?”\nquand means “when”.\nQuand commence le cours ? — “When does the class start?”\ncommencer means “to begin”. cours means “class, lesson”.\nÀ quelle heure part le train ? — “What time does the train leave?”\nà quelle heure means “at what time”.\nÀ quelle heure ouvre le musée ? — “What time does the museum open?”"
       },
       "examples": [
@@ -211,28 +211,28 @@
           "phraseId": "fr:08:23",
           "say": {
             "ru": "кан э лё консэ́р",
-            "uk": "кан е лё консе́р"
+            "uk": "кан е льо консе́р"
           }
         },
         {
           "phraseId": "fr:08:25",
           "say": {
             "ru": "кан кома́нс лё кур",
-            "uk": "кан кома́нс лё кур"
+            "uk": "кан кома́нс льо кур"
           }
         },
         {
           "phraseId": "fr:08:29",
           "say": {
             "ru": "а кэль ёр пар лё трэ́н",
-            "uk": "а кель ёр пар лё тре́н"
+            "uk": "а кель ер пар льо тре́н"
           }
         },
         {
           "phraseId": "fr:08:27",
           "say": {
             "ru": "а кэль ёр увр лё мюзе́",
-            "uk": "а кель ёр увр лё мюзе́"
+            "uk": "а кель ер увр льо мюзе́"
           }
         }
       ],
@@ -293,7 +293,7 @@
       },
       "text": {
         "ru": "Смотрите, как спросить «Сколько стоит билет?»\nCombien coûte le billet ? — «Сколько стоит билет?»\nЧитается: конбьэ́н кут лё бийэ́.\nСлово combien значит «сколько». Слово coûte значит «стоит».\nCombien coûte la livraison ? — «Сколько стоит доставка?»\nЧитается: конбьэ́н кут ла ливрезо́н.\nСлово la livraison значит «доставка».\nCombien de places voulez-vous ? — «Сколько мест вы хотите?»\nЧитается: конбьэ́н дё плас вуле́ ву.\nСлова combien de значат «сколько» — дальше называют вещь.\nСлово le trajet значит «путь, поездка». Слово temps значит «время».",
-        "uk": "Дивіться, як запитати «Скільки коштує квиток?»\nCombien coûte le billet ? — «Скільки коштує квиток?»\nЧитається: конбье́н кут лё бійе́.\nСлово combien означає «скільки». Слово coûte означає «коштує».\nCombien coûte la livraison ? — «Скільки коштує доставка?»\nЧитається: конбье́н кут ла ліврезо́н.\nСлово la livraison означає «доставка».\nCombien de places voulez-vous ? — «Скільки місць ви хочете?»\nЧитається: конбье́н дё плас вуле́ ву.\nСлова combien de означають «скільки» — далі називають річ.\nСлово le trajet означає «шлях, поїздка». Слово temps означає «час».",
+        "uk": "Дивіться, як запитати «Скільки коштує квиток?»\nCombien coûte le billet ? — «Скільки коштує квиток?»\nЧитається: конбьє́н кут льо бійе́.\nСлово combien означає «скільки». Слово coûte означає «коштує».\nCombien coûte la livraison ? — «Скільки коштує доставка?»\nЧитається: конбьє́н кут ла ліврезо́н.\nСлово la livraison означає «доставка».\nCombien de places voulez-vous ? — «Скільки місць ви хочете?»\nЧитається: конбьє́н дьо плас вуле́ ву.\nСлова combien de означають «скільки» — далі називають річ.\nСлово le trajet означає «шлях, поїздка». Слово temps означає «час».",
         "en": "Look at how to ask “How much is the ticket?”\nCombien coûte le billet ? — “How much is the ticket?”\ncombien means “how much”. coûte means “costs”.\nCombien coûte la livraison ? — “How much is delivery?”\nla livraison means “delivery”.\nCombien de places voulez-vous ? — “How many seats do you want?”\ncombien de means “how many” — then we name the thing.\nCombien de temps dure le trajet ? — “How long does the trip take?”\nle trajet means “trip, way”. temps means “time”."
       },
       "examples": [
@@ -301,28 +301,28 @@
           "phraseId": "fr:08:31",
           "say": {
             "ru": "конбьэ́н кут лё бийэ́",
-            "uk": "конбье́н кут лё бійе́"
+            "uk": "конбьє́н кут льо бійе́"
           }
         },
         {
           "phraseId": "fr:08:33",
           "say": {
             "ru": "конбьэ́н кут ла ливрезо́н",
-            "uk": "конбье́н кут ла ліврезо́н"
+            "uk": "конбьє́н кут ла ліврезо́н"
           }
         },
         {
           "phraseId": "fr:08:34",
           "say": {
             "ru": "конбьэ́н дё плас вуле́ ву",
-            "uk": "конбье́н дё плас вуле́ ву"
+            "uk": "конбьє́н дьо плас вуле́ ву"
           }
         },
         {
           "phraseId": "fr:08:37",
           "say": {
             "ru": "конбьэ́н дё тан дюр лё траже́",
-            "uk": "конбье́н дё тан дюр лё траже́"
+            "uk": "конбьє́н дьо тан дюр льо траже́"
           }
         }
       ],
@@ -466,7 +466,7 @@
       },
       "text": {
         "ru": "Ещё три вопроса. Слово-вопрос стоит в начале.\nPourquoi pars-tu si tôt ? — «Почему ты так рано уходишь?»\nЧитается: пуркуа́ пар тю си то.\nСлово pourquoi значит «почему».\nComment allez-vous ? — «Как у вас дела?»\nЧитается: кома́н але́ ву.\nСлово comment значит «как».\nComment s’appelle cette rue ? — «Как называется эта улица?»\nЧитается: кома́н сапэ́ль сэт рю.\nСлово la rue значит «улица».\nQu’est-ce que tu cherches ? — «Что ты ищешь?»\nЧитается: кэс кё тю шэрш.\nСлова qu’est-ce que значат «что».",
-        "uk": "Ще три питання. Слово-питання стоїть на початку.\nPourquoi pars-tu si tôt ? — «Чому ти так рано йдеш?»\nЧитається: пуркуа́ пар тю сі то.\nСлово pourquoi означає «чому».\nComment allez-vous ? — «Як у вас справи?»\nЧитається: кома́н але́ ву.\nСлово comment означає «як».\nComment s’appelle cette rue ? — «Як називається ця вулиця?»\nЧитається: кома́н сапе́ль сет рю.\nСлово la rue означає «вулиця».\nQu’est-ce que tu cherches ? — «Що ти шукаєш?»\nЧитається: кес кё тю шерш.\nСлова qu’est-ce que означають «що».",
+        "uk": "Ще три питання. Слово-питання стоїть на початку.\nPourquoi pars-tu si tôt ? — «Чому ти так рано йдеш?»\nЧитається: пуркуа́ пар тю сі то.\nСлово pourquoi означає «чому».\nComment allez-vous ? — «Як у вас справи?»\nЧитається: кома́н але́ ву.\nСлово comment означає «як».\nComment s’appelle cette rue ? — «Як називається ця вулиця?»\nЧитається: кома́н сапе́ль сет рю.\nСлово la rue означає «вулиця».\nQu’est-ce que tu cherches ? — «Що ти шукаєш?»\nЧитається: кес кьо тю шерш.\nСлова qu’est-ce que означають «що».",
         "en": "Three more questions. The question word comes first.\nPourquoi pars-tu si tôt ? — “Why are you leaving so early?”\npourquoi means “why”.\nComment allez-vous ? — “How are you?”\ncomment means “how”.\nComment s’appelle cette rue ? — “What is this street called?”\nla rue means “street”.\nQu’est-ce que tu cherches ? — “What are you looking for?”\nqu’est-ce que means “what”."
       },
       "examples": [
@@ -495,7 +495,7 @@
           "phraseId": "fr:08:46",
           "say": {
             "ru": "кэс кё тю шэрш",
-            "uk": "кес кё тю шерш"
+            "uk": "кес кьо тю шерш"
           }
         }
       ],

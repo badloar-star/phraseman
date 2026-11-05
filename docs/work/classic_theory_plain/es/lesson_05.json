@@ -31,7 +31,7 @@
           "phraseId": "es:05:02",
           "say": {
             "ru": "до́нде эста́ А'на",
-            "uk": "до́нде еста́ А'на"
+            "uk": "до́нде еста́ А́на"
           }
         },
         {
@@ -203,7 +203,7 @@
       },
       "text": {
         "ru": "Чтобы спросить «кто», говорят quién.\n¿Quién está aquí? — «Кто здесь?»\nЧитается: кье́н эста́ аки́.\nСлово quién значит «кто». Остальное вы уже знаете.\n¿Quién está en el ascensor? — «Кто в лифте?»\nСлово banco значит «банк».",
-        "uk": "Щоб спитати «хто», кажуть quién.\n¿Quién está aquí? — «Хто тут?»\nЧитається: кье́н еста́ акі́.\nСлово quién означає «хто». Решту ви вже знаєте.\n¿Quién está en el ascensor? — «Хто в ліфті?»\nСлово banco означає «банк».",
+        "uk": "Щоб спитати «хто», кажуть quién.\n¿Quién está aquí? — «Хто тут?»\nЧитається: кьє́н еста́ акі́.\nСлово quién означає «хто». Решту ви вже знаєте.\n¿Quién está en el ascensor? — «Хто в ліфті?»\nСлово banco означає «банк».",
         "en": "To ask “who”, we say quién.\n¿Quién está aquí? — “Who is here?”\nThe word quién means “who”. You already know the rest.\n¿Quién está en el ascensor? — “Who is in the lift?”\nThe word banco means “bank”."
       },
       "examples": [
@@ -211,35 +211,35 @@
           "phraseId": "es:05:11",
           "say": {
             "ru": "кье́н эста́ аки́",
-            "uk": "кье́н еста́ акі́"
+            "uk": "кьє́н еста́ акі́"
           }
         },
         {
           "phraseId": "es:05:12",
           "say": {
             "ru": "кье́н эста́ эн ка́са",
-            "uk": "кье́н еста́ ен ка́са"
+            "uk": "кьє́н еста́ ен ка́са"
           }
         },
         {
           "phraseId": "es:05:17",
           "say": {
             "ru": "кье́н эста́ эн эль асенсо́р",
-            "uk": "кье́н еста́ ен ель асенсо́р"
+            "uk": "кьє́н еста́ ен ель асенсо́р"
           }
         },
         {
           "phraseId": "es:05:19",
           "say": {
             "ru": "кье́н эста́ эн эль ба́ньо",
-            "uk": "кье́н еста́ ен ель ба́ньо"
+            "uk": "кьє́н еста́ ен ель ба́ньо"
           }
         },
         {
           "phraseId": "es:05:42",
           "say": {
             "ru": "кье́н эста́ эн эль ба́нко",
-            "uk": "кье́н еста́ ен ель ба́нко"
+            "uk": "кьє́н еста́ ен ель ба́нко"
           }
         }
       ],
@@ -300,7 +300,7 @@
       },
       "text": {
         "ru": "Чтобы спросить, кто это, говорят quién es.\n¿Quién es él? — «Кто он?»\nЧитается: кье́н эс эль.\n¿Quién es ella? — «Кто она?»\n¿Quién es usted? — «Кто вы?» Слово usted — вежливое «вы».\nО нескольких людях: ¿Quiénes son ellos? — «Кто они?»\nСлово quiénes — это «кто» про нескольких.",
-        "uk": "Щоб спитати, хто це, кажуть quién es.\n¿Quién es él? — «Хто він?»\nЧитається: кье́н ес ель.\n¿Quién es ella? — «Хто вона?»\n¿Quién es usted? — «Хто ви?» Слово usted — ввічливе «ви».\nПро кількох людей: ¿Quiénes son ellos? — «Хто вони?»\nСлово quiénes — це «хто» про кількох.",
+        "uk": "Щоб спитати, хто це, кажуть quién es.\n¿Quién es él? — «Хто він?»\nЧитається: кьє́н ес ель.\n¿Quién es ella? — «Хто вона?»\n¿Quién es usted? — «Хто ви?» Слово usted — ввічливе «ви».\nПро кількох людей: ¿Quiénes son ellos? — «Хто вони?»\nСлово quiénes — це «хто» про кількох.",
         "en": "To ask who someone is, we say quién es.\n¿Quién es él? — “Who is he?”\n¿Quién es ella? — “Who is she?”\n¿Quién es usted? — “Who are you?” The word usted is the polite “you”.\nAbout several people: ¿Quiénes son ellos? — “Who are they?”\nThe word quiénes is “who” about several people."
       },
       "examples": [
@@ -308,35 +308,35 @@
           "phraseId": "es:05:21",
           "say": {
             "ru": "кье́н эс эль",
-            "uk": "кье́н ес ель"
+            "uk": "кьє́н ес ель"
           }
         },
         {
           "phraseId": "es:05:22",
           "say": {
             "ru": "кье́н эс э́йя",
-            "uk": "кье́н ес е́йя"
+            "uk": "кьє́н ес е́йя"
           }
         },
         {
           "phraseId": "es:05:23",
           "say": {
             "ru": "кье́н э́рес",
-            "uk": "кье́н е́рес"
+            "uk": "кьє́н е́рес"
           }
         },
         {
           "phraseId": "es:05:24",
           "say": {
             "ru": "кье́н эс усте́д",
-            "uk": "кье́н ес усте́д"
+            "uk": "кьє́н ес усте́д"
           }
         },
         {
           "phraseId": "es:05:25",
           "say": {
             "ru": "кье́нес сон э́йос",
-            "uk": "кье́нес сон е́йос"
+            "uk": "кьє́нес сон е́йос"
           }
         }
       ],

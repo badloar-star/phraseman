@@ -16,7 +16,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «Я здесь работаю».\nJe travaille ici. — «Я здесь работаю.»\nЧитается: жё трава́й иси́.\nСлово travailler значит «работать». Слово ici значит «здесь».\nTu travailles ici. — «Ты работаешь здесь.»\nЧитается: тю трава́й иси́.\nLéa travaille ici. — «Леа здесь работает.»\nЧитается: леа́ трава́й иси́.\nСлово меняется, смотря о ком речь.\n«я» — travaille, «ты» — travailles, «она» — travaille.\nКонец слова не слышен: travaille и travailles звучат одинаково.",
-        "uk": "Дивіться, як сказати «Я тут працюю».\nJe travaille ici. — «Я тут працюю.»\nЧитається: жё трава́й ісі́.\nСлово travailler означає «працювати». Слово ici означає «тут».\nTu travailles ici. — «Ти працюєш тут.»\nЧитається: тю трава́й ісі́.\nLéa travaille ici. — «Леа тут працює.»\nЧитається: леа́ трава́й ісі́.\nСлово змінюється, залежно від того, про кого мова.\n«я» — travaille, «ти» — travailles, «вона» — travaille.\nКінець слова не чути: travaille і travailles звучать однаково.",
+        "uk": "Дивіться, як сказати «Я тут працюю».\nJe travaille ici. — «Я тут працюю.»\nЧитається: же трава́й ісі́.\nСлово travailler означає «працювати». Слово ici означає «тут».\nTu travailles ici. — «Ти працюєш тут.»\nЧитається: тю трава́й ісі́.\nLéa travaille ici. — «Леа тут працює.»\nЧитається: леа́ трава́й ісі́.\nСлово змінюється залежно від того, про кого йдеться.\n«я» — travaille, «ти» — travailles, «вона» — travaille.\nКінець слова не чути: travaille і travailles звучать однаково.",
         "en": "Look at how to say “I work here”.\nJe travaille ici. — “I work here.”\ntravailler means “to work”. ici means “here”.\nTu travailles ici. — “You work here.”\nLéa travaille ici. — “Léa works here.”\nThe word changes with who it is about.\n“I” — travaille, “you” — travailles, “she” — travaille.\nThe end of the word is silent: travaille and travailles sound the same."
       },
       "examples": [
@@ -24,7 +24,7 @@
           "phraseId": "fr:07:01",
           "say": {
             "ru": "жё трава́й иси́",
-            "uk": "жё трава́й ісі́"
+            "uk": "же трава́й ісі́"
           }
         },
         {
@@ -99,7 +99,7 @@
       },
       "text": {
         "ru": "Теперь «мы работаем», «вы работаете» и «они работают».\nNous travaillons ensemble. — «Мы работаем вместе.»\nЧитается: ну травайо́н анса́нбль.\nСлово ensemble значит «вместе».\nVous travaillez ensemble. — «Вы работаете вместе.»\nЧитается: ву травайе́ анса́нбль.\nIls travaillent dehors. — «Они работают на улице.»\nЧитается: иль трава́й дёо́р.\nСлово ils значит «они». Слово dehors значит «на улице».\nДля «мы» говорят travaillons, для «вы» — travaillez, для «они» — travaillent.\nКонец слова travaillent не слышен.",
-        "uk": "Тепер «ми працюємо», «ви працюєте» і «вони працюють».\nNous travaillons ensemble. — «Ми працюємо разом.»\nЧитається: ну травайо́н анса́нбль.\nСлово ensemble означає «разом».\nVous travaillez ensemble. — «Ви працюєте разом.»\nЧитається: ву травайе́ анса́нбль.\nIls travaillent dehors. — «Вони працюють надворі.»\nЧитається: іль трава́й дёо́р.\nСлово ils означає «вони». Слово dehors означає «надворі».\nДля «ми» кажуть travaillons, для «ви» — travaillez, для «вони» — travaillent.\nКінець слова travaillent не чути.",
+        "uk": "Тепер «ми працюємо», «ви працюєте» і «вони працюють».\nNous travaillons ensemble. — «Ми працюємо разом.»\nЧитається: ну травайо́н анса́нбль.\nСлово ensemble означає «разом».\nVous travaillez ensemble. — «Ви працюєте разом.»\nЧитається: ву травайе́ анса́нбль.\nIls travaillent dehors. — «Вони працюють надворі.»\nЧитається: іль трава́й део́р.\nСлово ils означає «вони». Слово dehors означає «надворі».\nДля «ми» кажуть travaillons, для «ви» — travaillez, для «вони» — travaillent.\nКінець слова travaillent не чути.",
         "en": "Now “we work”, “you work” and “they work”.\nNous travaillons ensemble. — “We work together.”\nensemble means “together”.\nVous travaillez ensemble. — “You work together.”\nIls travaillent dehors. — “They work outside.”\nils means “they”. dehors means “outside”.\nFor “we” we say travaillons, for “you” — travaillez, for “they” — travaillent.\nThe end of travaillent is silent."
       },
       "examples": [
@@ -121,7 +121,7 @@
           "phraseId": "fr:07:06",
           "say": {
             "ru": "иль трава́й дёо́р",
-            "uk": "іль трава́й дёо́р"
+            "uk": "іль трава́й део́р"
           }
         }
       ],
@@ -182,7 +182,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «Я живу в Лионе».\nJ’habite à Lyon. — «Я живу в Лионе.»\nЧитается: жаби́т а лио́н.\nСлово habiter значит «жить». Слово à значит «в».\nПеред habite слово je сокращают: j’habite. Первая буква слова habite не слышна.\nPaul habite près du marché. — «Поль живёт рядом с рынком.»\nЧитается: поль аби́т прэ дю марше́.\nСлова près du значат «рядом с».\nVous habitez en ville. — «Вы живёте в городе.»\nЧитается: ву забите́ ан виль.\nСлова en ville значат «в городе».\nСлово меняется: «я» — habite, «мы» — habitons, «вы» — habitez.\nСлово elles тоже значит «они» — когда речь о женщинах.",
-        "uk": "Дивіться, як сказати «Я живу в Ліоні».\nJ’habite à Lyon. — «Я живу в Ліоні.»\nЧитається: жабі́т а ліо́н.\nСлово habiter означає «жити». Слово à означає «в».\nПеред habite слово je скорочують: j’habite. Перша літера слова habite не чути.\nPaul habite près du marché. — «Поль живе поряд із ринком.»\nЧитається: поль абі́т пре дю марше́.\nСлова près du означають «поряд із».\nVous habitez en ville. — «Ви живете у місті.»\nЧитається: ву забіте́ ан віль.\nСлова en ville означають «у місті».\nСлово змінюється: «я» — habite, «ми» — habitons, «ви» — habitez.\nСлово elles теж означає «вони» — коли мова про жінок.",
+        "uk": "Дивіться, як сказати «Я живу в Ліоні».\nJ’habite à Lyon. — «Я живу в Ліоні.»\nЧитається: жабі́т а ліо́н.\nСлово habiter означає «жити». Слово à означає «в».\nПеред habite слово je скорочують: j’habite. Першу літеру слова habite не чути.\nPaul habite près du marché. — «Поль живе поряд із ринком.»\nЧитається: поль абі́т пре дю марше́.\nСлова près du означають «поряд із».\nVous habitez en ville. — «Ви живете у місті.»\nЧитається: ву забіте́ ан віль.\nСлова en ville означають «у місті».\nСлово змінюється: «я» — habite, «ми» — habitons, «ви» — habitez.\nСлово elles теж означає «вони» — коли йдеться про жінок.",
         "en": "Look at how to say “I live in Lyon”.\nJ’habite à Lyon. — “I live in Lyon.”\nhabiter means “to live”. à means “in”.\nBefore habite, je is shortened: j’habite. The first letter of habite is silent.\nPaul habite près du marché. — “Paul lives near the market.”\nprès du means “near”.\nVous habitez en ville. — “You live in the city.”\nen ville means “in the city”.\nThe word changes: “I” — habite, “we” — habitons, “you” — habitez.\nelles also means “they” — when it is about women."
       },
       "examples": [
@@ -286,7 +286,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «Я слушаю радио».\nJ’écoute la radio. — «Я слушаю радио.»\nЧитается: жеку́т ла радио́.\nСлово écoute значит «слушаю, слушает». Слово la radio значит «радио».\nIl écoute un message. — «Он слушает сообщение.»\nЧитается: иль эку́т ён меса́ж.\nСлово message значит «сообщение».\nNous écoutons de la musique. — «Мы слушаем музыку.»\nЧитается: ну зэкуто́н дё ла мюзи́к.\nСлово меняется: «я» — écoute, «ты» — écoutes, «мы» — écoutons.\nПеред écoute слово je тоже сокращают: j’écoute.",
-        "uk": "Дивіться, як сказати «Я слухаю радіо».\nJ’écoute la radio. — «Я слухаю радіо.»\nЧитається: жеку́т ла радіо́.\nСлово écoute означає «слухаю, слухає». Слово la radio означає «радіо».\nIl écoute un message. — «Він слухає повідомлення.»\nЧитається: іль еку́т ён меса́ж.\nСлово message означає «повідомлення».\nNous écoutons de la musique. — «Ми слухаємо музику.»\nЧитається: ну зекуто́н дё ла мюзі́к.\nСлово змінюється: «я» — écoute, «ти» — écoutes, «ми» — écoutons.\nПеред écoute слово je теж скорочують: j’écoute.",
+        "uk": "Дивіться, як сказати «Я слухаю радіо».\nJ’écoute la radio. — «Я слухаю радіо.»\nЧитається: жеку́т ла радіо́.\nСлово écoute означає «слухаю, слухає». Слово la radio означає «радіо».\nIl écoute un message. — «Він слухає повідомлення.»\nЧитається: іль еку́т ен меса́ж.\nСлово message означає «повідомлення».\nNous écoutons de la musique. — «Ми слухаємо музику.»\nЧитається: ну зекуто́н дьо ла мюзі́к.\nСлово змінюється: «я» — écoute, «ти» — écoutes, «ми» — écoutons.\nПеред écoute слово je теж скорочують: j’écoute.",
         "en": "Look at how to say “I listen to the radio”.\nJ’écoute la radio. — “I listen to the radio.”\nécoute means “listen, listens”. la radio means “the radio”.\nIl écoute un message. — “He listens to a message.”\nmessage means “message”.\nNous écoutons de la musique. — “We listen to music.”\nThe word changes: “I” — écoute, “you” — écoutes, “we” — écoutons.\nBefore écoute, je is shortened too: j’écoute."
       },
       "examples": [
@@ -308,14 +308,14 @@
           "phraseId": "fr:07:19",
           "say": {
             "ru": "иль эку́т ён меса́ж",
-            "uk": "іль еку́т ён меса́ж"
+            "uk": "іль еку́т ен меса́ж"
           }
         },
         {
           "phraseId": "fr:07:20",
           "say": {
             "ru": "ну зэкуто́н дё ла мюзи́к",
-            "uk": "ну зекуто́н дё ла мюзі́к"
+            "uk": "ну зекуто́н дьо ла мюзі́к"
           }
         }
       ],
@@ -376,7 +376,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «Я ищу свои ключи».\nJe cherche mes clés. — «Я ищу свои ключи.»\nЧитается: жё шэрш мэ кле́.\nСлово chercher значит «искать». Слова mes clés значат «мои ключи».\nElle cherche la sortie. — «Она ищет выход.»\nЧитается: эль шэрш ла сорти́.\nNous cherchons un appartement. — «Мы ищем квартиру.»\nЧитается: ну шэршо́н ён апартема́н.\nСлово appartement значит «квартира».\nVous cherchez un hôtel ? — «Вы ищете отель?»\nЧитается: ву шэрше́ ён отэ́ль.\nСлово меняется: «я» — cherche, «мы» — cherchons, «вы» — cherchez.",
-        "uk": "Дивіться, як сказати «Я шукаю свої ключі».\nJe cherche mes clés. — «Я шукаю свої ключі.»\nЧитається: жё шерш ме кле́.\nСлово chercher означає «шукати». Слова mes clés означають «мої ключі».\nElle cherche la sortie. — «Вона шукає вихід.»\nЧитається: ель шерш ла сорті́.\nNous cherchons un appartement. — «Ми шукаємо квартиру.»\nЧитається: ну шершо́н ён апартема́н.\nСлово appartement означає «квартира».\nVous cherchez un hôtel ? — «Ви шукаєте готель?»\nЧитається: ву шерше́ ён оте́ль.\nСлово змінюється: «я» — cherche, «ми» — cherchons, «ви» — cherchez.",
+        "uk": "Дивіться, як сказати «Я шукаю свої ключі».\nJe cherche mes clés. — «Я шукаю свої ключі.»\nЧитається: же шерш ме кле́.\nСлово chercher означає «шукати». Слова mes clés означають «мої ключі».\nElle cherche la sortie. — «Вона шукає вихід.»\nЧитається: ель шерш ла сорті́.\nNous cherchons un appartement. — «Ми шукаємо квартиру.»\nЧитається: ну шершо́н ен апартема́н.\nСлово appartement означає «квартира».\nVous cherchez un hôtel ? — «Ви шукаєте готель?»\nЧитається: ву шерше́ ен оте́ль.\nСлово змінюється: «я» — cherche, «ми» — cherchons, «ви» — cherchez.",
         "en": "Look at how to say “I am looking for my keys”.\nJe cherche mes clés. — “I am looking for my keys.”\nchercher means “to look for”. mes clés means “my keys”.\nElle cherche la sortie. — “She is looking for the exit.”\nNous cherchons un appartement. — “We are looking for an apartment.”\nappartement means “apartment”.\nVous cherchez un hôtel ? — “Are you looking for a hotel?”\nThe word changes: “I” — cherche, “we” — cherchons, “you” — cherchez."
       },
       "examples": [
@@ -384,7 +384,7 @@
           "phraseId": "fr:07:21",
           "say": {
             "ru": "жё шэрш мэ кле́",
-            "uk": "жё шерш ме кле́"
+            "uk": "же шерш ме кле́"
           }
         },
         {
@@ -398,14 +398,14 @@
           "phraseId": "fr:07:25",
           "say": {
             "ru": "ву шэрше́ ён отэ́ль",
-            "uk": "ву шерше́ ён оте́ль"
+            "uk": "ву шерше́ ен оте́ль"
           }
         },
         {
           "phraseId": "fr:07:44",
           "say": {
             "ru": "ну шэршо́н ён апартема́н",
-            "uk": "ну шершо́н ён апартема́н"
+            "uk": "ну шершо́н ен апартема́н"
           }
         }
       ],
@@ -466,7 +466,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «Я готовлю ужин».\nJe prépare le dîner. — «Я готовлю ужин.»\nЧитается: жё препа́р лё дине́.\nСлово préparer значит «готовить». Слово dîner значит «ужин».\nNous préparons les valises. — «Мы собираем чемоданы.»\nЧитается: ну препаро́н лэ вали́з.\nСлова les valises значат «чемоданы». С чемоданами préparer значит «собирать».\nPaul prépare du café. — «Поль варит кофе.»\nЧитается: поль препа́р дю кафе́.\nСлово café значит «кофе».\nСлово меняется: «я» — prépare, «ты» — prépares, «мы» — préparons.",
-        "uk": "Дивіться, як сказати «Я готую вечерю».\nJe prépare le dîner. — «Я готую вечерю.»\nЧитається: жё препа́р лё діне́.\nСлово préparer означає «готувати». Слово dîner означає «вечеря».\nNous préparons les valises. — «Ми пакуємо валізи.»\nЧитається: ну препаро́н ле валі́з.\nСлова les valises означають «валізи». З валізами préparer означає «пакувати».\nPaul prépare du café. — «Пол варить каву.»\nЧитається: поль препа́р дю кафе́.\nСлово café означає «кава».\nСлово змінюється: «я» — prépare, «ти» — prépares, «ми» — préparons.",
+        "uk": "Дивіться, як сказати «Я готую вечерю».\nJe prépare le dîner. — «Я готую вечерю.»\nЧитається: же препа́р льо діне́.\nСлово préparer означає «готувати». Слово dîner означає «вечеря».\nNous préparons les valises. — «Ми пакуємо валізи.»\nЧитається: ну препаро́н ле валі́з.\nСлова les valises означають «валізи». З валізами préparer означає «пакувати».\nPaul prépare du café. — «Пол варить каву.»\nЧитається: поль препа́р дю кафе́.\nСлово café означає «кава».\nСлово змінюється: «я» — prépare, «ти» — prépares, «ми» — préparons.",
         "en": "Look at how to say “I am making dinner”.\nJe prépare le dîner. — “I am making dinner.”\npréparer means “to prepare”. dîner means “dinner”.\nNous préparons les valises. — “We are packing the suitcases.”\nles valises means “the suitcases”. With suitcases, préparer means “to pack”.\nPaul prépare du café. — “Paul is making coffee.”\ncafé means “coffee”.\nThe word changes: “I” — prépare, “you” — prépares, “we” — préparons."
       },
       "examples": [
@@ -474,7 +474,7 @@
           "phraseId": "fr:07:31",
           "say": {
             "ru": "жё препа́р лё дине́",
-            "uk": "жё препа́р лё діне́"
+            "uk": "же препа́р льо діне́"
           }
         },
         {

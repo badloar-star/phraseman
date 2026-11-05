@@ -16,7 +16,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «нет».\nВы уже знаете фразу «Ты здесь.»\nТеперь та же фраза с «не».\nTu n’es pas ici. — «Тебя здесь нет.»\nЧитается: тю нэ па иси́.\nПо-русски «нет» или «не» — одно слово. По-французски нужны два: ne и pas.\nСлово ne значит «не». Слово pas тоже значит «не».\nМежду ними стоит слово «быть, находиться». Вы его уже знаете.\nNe стоит перед ним, pas — после.\nЕсли следующее слово начинается на гласную, ne сокращается и получает апостроф: n’es, n’est, n’êtes.\nПеред suis, sommes, sont ne остаётся целым.\nJe ne suis pas au bureau. — «Меня нет в офисе.»\nЧитается: жё нэ сюи па о бюро́.\nВот ещё одна фраза.\nJe ne suis pas là. — «Меня здесь нет.»\nЧитается: жё нэ сюи па ла́.\nСлово là значит «там» или «здесь, на месте». Когда говорят «меня тут нет», используют là.\nСлово ici значит «здесь».",
-        "uk": "Дивіться, як сказати «ні».\nВи вже знаєте фразу «Ти тут.»\nТепер та сама фраза з «не».\nTu n’es pas ici. — «Тебе тут немає.»\nЧитається: тю не па ісі́.\nУкраїнською «ні» або «не» — одне слово. Французькою потрібні два: ne і pas.\nСлово ne означає «не». Слово pas теж означає «не».\nМіж ними стоїть слово «бути, перебувати». Ви його вже знаєте.\nNe стоїть перед ним, pas — після.\nЯкщо наступне слово починається на голосну, ne скорочується й отримує апостроф: n’es, n’est, n’êtes.\nПеред suis, sommes, sont ne лишається цілим.\nJe ne suis pas au bureau. — «Мене немає в офісі.»\nЧитається: жё не сюі па о бюро́.\nОсь іще одна фраза.\nJe ne suis pas là. — «Мене тут немає.»\nЧитається: жё не сюі па ла́.\nСлово là означає «там» або «тут, на місці». Коли кажуть «мене тут немає», використовують là.\nСлово ici означає «тут».",
+        "uk": "Дивіться, як сказати «ні».\nВи вже знаєте фразу «Ти тут.»\nТепер та сама фраза з «не».\nTu n’es pas ici. — «Тебе тут немає.»\nЧитається: тю не па ісі́.\nУкраїнською «ні» або «не» — одне слово. Французькою потрібні два: ne і pas.\nСлово ne означає «не». Слово pas теж означає «не».\nМіж ними стоїть слово «бути, перебувати». Ви його вже знаєте.\nNe стоїть перед ним, pas — після.\nЯкщо наступне слово починається на голосну, ne скорочується й отримує апостроф: n’es, n’est, n’êtes.\nПеред suis, sommes, sont ne лишається цілим.\nJe ne suis pas au bureau. — «Мене немає в офісі.»\nЧитається: же не сюі па о бюро́.\nОсь іще одна фраза.\nJe ne suis pas là. — «Мене тут немає.»\nЧитається: же не сюі па ла́.\nСлово là означає «там» або «тут, на місці». Коли кажуть «мене тут немає», використовують là.\nСлово ici означає «тут».",
         "en": "Look at how to say “not”.\nYou already know the phrase “You are here.”\nNow the same phrase with “not”.\nTu n’es pas ici. — “You are not here.”\nFrench needs two words: ne and pas.\nne means “not”. pas also means “not”.\nBetween them stands “to be, to be somewhere”.\nYou know that word already.\nne stands before it, pas — after.\nBefore a vowel, ne is shortened with an apostrophe:\nn’es, n’est, n’êtes.\nBefore suis, sommes, sont ne stays whole.\nJe ne suis pas au bureau. — “I am not at the office.”\nHere is one more phrase.\nJe ne suis pas là. — “I am not here.”\nlà means “there” or “here, in place”. When people say “I am not here”,\nthey use là.\nici means “here”."
       },
       "examples": [
@@ -38,14 +38,14 @@
           "phraseId": "fr:02:01",
           "say": {
             "ru": "жё нэ сюи па ла́",
-            "uk": "жё не сюі па ла́"
+            "uk": "же не сюі па ла́"
           }
         },
         {
           "phraseId": "fr:02:06",
           "say": {
             "ru": "жё нэ сюи па о бюро́",
-            "uk": "жё не сюі па о бюро́"
+            "uk": "же не сюі па о бюро́"
           }
         }
       ],
@@ -271,7 +271,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «не готов».\nJe ne suis pas prêt. — «Я не готов.»\nЧитается: жё нэ сюи па прэ́.\nElle n’est pas prête. — «Она не готова.»\nЧитается: эль нэ па прэ́т.\nСлово prêt значит «готов», слово prête — «готова».\nВ конце добавляется ещё одна буква (prêt → prête), и теперь «т» слышно: «прэ́» → «прэ́т».\nNe и pas здесь тоже стоят по бокам: ne suis pas, n’est pas.\nNous ne sommes pas prêts. — «Мы не готовы.»\nЧитается: ну нэ сом па прэ́.\nСлово prêts значит «готовы».",
-        "uk": "Дивіться, як сказати «не готовий».\nJe ne suis pas prêt. — «Я не готовий.»\nЧитається: жё не сюі па пре́.\nElle n’est pas prête. — «Вона не готова.»\nЧитається: ель не па пре́т.\nСлово prêt означає «готовий», слово prête — «готова».\nУ кінці додається ще одна літера (prêt → prête), і тепер «т» чути: «пре́» → «пре́т».\nNe і pas тут теж стоять по боках: ne suis pas, n’est pas.\nNous ne sommes pas prêts. — «Ми не готові.»\nЧитається: ну не сом па пре́.\nСлово prêts означає «готові».",
+        "uk": "Дивіться, як сказати «не готовий».\nJe ne suis pas prêt. — «Я не готовий.»\nЧитається: же не сюі па пре́.\nElle n’est pas prête. — «Вона не готова.»\nЧитається: ель не па пре́т.\nСлово prêt означає «готовий», слово prête — «готова».\nУ кінці додається ще одна літера (prêt → prête), і тепер «т» чути: «пре́» → «пре́т».\nNe і pas тут теж стоять по боках: ne suis pas, n’est pas.\nNous ne sommes pas prêts. — «Ми не готові.»\nЧитається: ну не сом па пре́.\nСлово prêts означає «готові».",
         "en": "Look at how to say “not ready”.\nJe ne suis pas prêt. — “I am not ready.”\nElle n’est pas prête. — “She is not ready.”\nprêt means “ready”, prête — “ready” (about her).\nOne more letter comes at the end (prêt → prête), and now the “t” is heard.\nne and pas stand on both sides here too: ne suis pas, n’est pas.\nNous ne sommes pas prêts. — “We are not ready.”\nprêts means “ready” (several people)."
       },
       "examples": [
@@ -279,7 +279,7 @@
           "phraseId": "fr:02:11",
           "say": {
             "ru": "жё нэ сюи па прэ́",
-            "uk": "жё не сюі па пре́"
+            "uk": "же не сюі па пре́"
           }
         },
         {
@@ -354,7 +354,7 @@
       },
       "text": {
         "ru": "Теперь названия мест и комнат.\nLe couloir n’est pas sombre. — «В коридоре не темно.»\nЧитается: лё кулуа́р нэ па сомбр.\nСлово couloir значит «коридор». Слово sombre значит «тёмный».\nLa chambre n’est pas libre. — «Номер не свободен.»\nЧитается: ла шанбр нэ па либр.\nСлово chambre значит «номер в гостинице». Слово libre значит «свободен».\nНосовой звук: «ан», «он», «эн» говорят в нос, «н» почти не слышно.\nLes enfants ne sont pas dans la salle. — «Детей нет в комнате.»\nЧитается: лэ занфа́н нэ сон па дан ла саль.\nСлово enfants значит «дети». Слово les стоит перед несколькими людьми или вещами.\nПо-русски слова les нет, запоминайте его вместе со словом.\nСлово dans значит «в». Слово salle значит «зал, помещение»; в фразе курса — «в комнате».\nНе путайте с chambre: это «номер в гостинице».\nПеред словом на гласную последняя буква читается как лёгкое «з»: «лэ-з-анфа́н».\nLa pharmacie n’est pas loin. — «Аптека недалеко.»\nЧитается: ла фармаси́ нэ па луэ́н.\nСлово pharmacie значит «аптека». Слово loin значит «далеко», а pas loin — «недалеко».\nLe musée n’est pas ouvert. — «Музей не открыт.»\nЧитается: лё мюзе́ нэ па зувэ́р.\nСлово musée значит «музей». Здесь тоже лёгкое «з»: «па-з-увэ́р».\nСлова la и le по-русски не говорят — запоминайте их вместе с названием.",
-        "uk": "Тепер назви місць і кімнат.\nLe couloir n’est pas sombre. — «Коридор не темний.»\nЧитається: лё кулуа́р не па сомбр.\nСлово couloir означає «коридор». Слово sombre означає «темний».\nLa chambre n’est pas libre. — «Номер не вільний.»\nЧитається: ла шанбр не па лібр.\nСлово chambre означає «номер у готелі». Слово libre означає «вільний».\nНосовий звук: «ан», «он», «ен» кажуть у ніс, «н» майже не чути.\nLes enfants ne sont pas dans la salle. — «Дітей немає в кімнаті.»\nЧитається: ле занфа́н не сон па дан ла саль.\nСлово enfants означає «діти». Слово les стоїть перед кількома людьми або речами.\nУкраїнською слова les немає, запам’ятовуйте його разом зі словом.\nСлово dans означає «в». Слово salle означає «зала, приміщення»; у фразі курсу — «в кімнаті».\nНе плутайте з chambre: це «номер у готелі».\nПеред словом на голосну остання літера читається як легке «з»: «ле-з-анфа́н».\nLa pharmacie n’est pas loin. — «Аптека недалеко.»\nЧитається: ла фармасі́ не па луе́н.\nСлово pharmacie означає «аптека». Слово loin означає «далеко», а pas loin — «недалеко».\nLe musée n’est pas ouvert. — «Музей не відкритий.»\nЧитається: лё мюзе́ не па зуве́р.\nСлово musée означає «музей». Тут теж легке «з»: «па-з-уве́р».\nСлів la і le українською немає — запам’ятовуйте їх разом із назвою.",
+        "uk": "Тепер назви місць і кімнат.\nLe couloir n’est pas sombre. — «Коридор не темний.»\nЧитається: льо кулуа́р не па сомбр.\nСлово couloir означає «коридор». Слово sombre означає «темний».\nLa chambre n’est pas libre. — «Номер не вільний.»\nЧитається: ла шанбр не па лібр.\nСлово chambre означає «номер у готелі». Слово libre означає «вільний».\nНосовий звук: «ан», «он», «ен» кажуть у ніс, «н» майже не чути.\nLes enfants ne sont pas dans la salle. — «Дітей немає в кімнаті.»\nЧитається: ле занфа́н не сон па дан ла саль.\nСлово enfants означає «діти». Слово les стоїть перед кількома людьми або речами.\nУкраїнською слова les немає, запам’ятовуйте його разом зі словом.\nСлово dans означає «в». Слово salle означає «зала, приміщення»; у фразі курсу — «в кімнаті».\nНе плутайте з chambre: це «номер у готелі».\nПеред словом на голосну остання літера читається як легке «з»: «ле-з-анфа́н».\nLa pharmacie n’est pas loin. — «Аптека недалеко.»\nЧитається: ла фармасі́ не па луе́н.\nСлово pharmacie означає «аптека». Слово loin означає «далеко», а pas loin — «недалеко».\nLe musée n’est pas ouvert. — «Музей не відкритий.»\nЧитається: льо мюзе́ не па зуве́р.\nСлово musée означає «музей». Тут теж легке «з»: «па-з-уве́р».\nСлів la і le українською немає — запам’ятовуйте їх разом із назвою.",
         "en": "Now names of places and rooms.\nLe couloir n’est pas sombre. — “The corridor is not dark.”\ncouloir means “corridor”. sombre means “dark”.\nLa chambre n’est pas libre. — “The room is not free.”\nchambre means “hotel room”. libre means “free”.\nNasal sound: “an”, “on”, “en” are said through the nose, the “n” is barely heard.\nLes enfants ne sont pas dans la salle. — “The children are not in the room.”\nenfants means “children”. les stands before several people or things.\nEnglish has no such word here: learn it together with the word.\ndans means “in”. salle means “hall, room”; in the course phrase it is “in the room”.\nDo not mix it up with chambre: that is a “hotel room”.\nBefore a vowel the last letter sounds like a light “z”: “lay-z-anfan”.\nLa pharmacie n’est pas loin. — “The pharmacy is not far.”\npharmacie means “pharmacy”. loin means “far”, and pas loin — “not far”.\nLe musée n’est pas ouvert. — “The museum is not open.”\nmusée means “museum”. A light “z” here too: “pa-z-oovair”.\nla and le have no word in English here — learn them together with the name."
       },
       "examples": [
@@ -362,7 +362,7 @@
           "phraseId": "fr:02:26",
           "say": {
             "ru": "лё кулуа́р нэ па сомбр",
-            "uk": "лё кулуа́р не па сомбр"
+            "uk": "льо кулуа́р не па сомбр"
           }
         },
         {
@@ -390,7 +390,7 @@
           "phraseId": "fr:02:37",
           "say": {
             "ru": "лё мюзе́ нэ па зувэ́р",
-            "uk": "лё мюзе́ не па зуве́р"
+            "uk": "льо мюзе́ не па зуве́р"
           }
         }
       ],
@@ -451,7 +451,7 @@
       },
       "text": {
         "ru": "Теперь вещи и транспорт.\nLes billets ne sont pas sur la table. — «Билетов нет на столе.»\nЧитается: лэ бийэ́ нэ сон па сюр ла табль.\nСлово billets значит «билеты», слово table — «стол». Слово sur значит «на».\nСлово les стоит перед несколькими вещами: les billets. По-русски такого слова нет.\nLe train n’est pas en retard. — «Поезд не опаздывает.»\nЧитается: лё трэ́н нэ па зан рёта́р.\nСлово train значит «поезд», слова en retard — «с опозданием».\nЗдесь тоже лёгкое «з»: «па-з-ан».\nОстальные слова смотрите на карточках: ticket («билет, талон»), vélo («велосипед»), bus («автобус»).",
-        "uk": "Тепер речі і транспорт.\nLes billets ne sont pas sur la table. — «Квитки не на столі.»\nЧитається: ле бійе́ не сон па сюр ла табль.\nСлово billets означає «квитки», слово table — «стіл». Слово sur означає «на».\nСлово les стоїть перед кількома речами: les billets. Українською такого слова немає.\nLe train n’est pas en retard. — «Поїзд не запізнюється.»\nЧитається: лё тре́н не па зан рёта́р.\nСлово train означає «потяг», слова en retard — «із запізненням».\nТут теж легке «з»: «па-з-ан».\nРешту слів дивіться на картках: ticket («квиток, талон»), vélo («велосипед»), bus («автобус»).",
+        "uk": "Тепер речі і транспорт.\nLes billets ne sont pas sur la table. — «Квитки не на столі.»\nЧитається: ле бійе́ не сон па сюр ла табль.\nСлово billets означає «квитки», слово table — «стіл». Слово sur означає «на».\nСлово les стоїть перед кількома речами: les billets. Українською такого слова немає.\nLe train n’est pas en retard. — «Поїзд не запізнюється.»\nЧитається: льо тре́н не па зан рьота́р.\nСлово train означає «потяг», слова en retard — «із запізненням».\nТут теж легке «з»: «па-з-ан».\nРешту слів дивіться на картках: ticket («квиток, талон»), vélo («велосипед»), bus («автобус»).",
         "en": "Now things and transport.\nLes billets ne sont pas sur la table. — “The tickets are not on the table.”\nbillets means “tickets”, table — “table”. sur means “on”.\nles stands before several things: les billets. English has no such word here.\nLe train n’est pas en retard. — “The train is not late.”\ntrain means “train”, en retard — “late”.\nA light “z” here too: “pa-z-an”.\nThe other words are on the cards: ticket, vélo (“bike”), bus."
       },
       "examples": [
@@ -466,28 +466,28 @@
           "phraseId": "fr:02:40",
           "say": {
             "ru": "лё трэ́н нэ па зан рёта́р",
-            "uk": "лё тре́н не па зан рёта́р"
+            "uk": "льо тре́н не па зан рьота́р"
           }
         },
         {
           "phraseId": "fr:02:33",
           "say": {
             "ru": "лё тикэ́ нэ па дан лё сак",
-            "uk": "лё тіке́ не па дан лё сак"
+            "uk": "льо тіке́ не па дан льо сак"
           }
         },
         {
           "phraseId": "fr:02:35",
           "say": {
             "ru": "лё вело́ нэ па дэо́р",
-            "uk": "лё вело́ не па део́р"
+            "uk": "льо вело́ не па део́р"
           }
         },
         {
           "phraseId": "fr:02:31",
           "say": {
             "ru": "лё бюс нэ па луэ́н",
-            "uk": "лё бюс не па луе́н"
+            "uk": "льо бюс не па луе́н"
           }
         }
       ],

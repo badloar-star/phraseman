@@ -885,6 +885,18 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       : `${storeUnavailableReason ?? (offeringsEverLoaded ? 'магазин_ответил_без_плана' : 'магазин_ещё_не_ответил')}`;
     DebugLogger.info('[PAYWALL-PRICE]', `источник=${bothFromStore ? 'store' : 'fallback'} причина=${fallbackReason} цены на плитках: год=${yearlyPrice || '—'}(${yearlyPick.source}) месяц=${monthlyPrice || '—'}(${monthlyPick.source}) справочная=${String(allowReferencePrice)} storeUnavailable=${storeUnavailableReason ?? 'нет'} ever=${String(offeringsEverLoaded)}`);
   }, [allowReferencePrice, monthlyPick.source, monthlyPrice, offeringsEverLoaded, storeUnavailableReason, yearlyPick.source, yearlyPrice]);
+  // зачем (150, риск отказа стора, координатор 05.11): одна строка на смену источника цен — store | fallback | none — и через сколько мс от открытия окна это случилось.
+  // Для ревьюера: цены магазина должны прийти (source=store); fallback — справочная/кэш (платёж всё равно по цене магазина), none — плиток нет и работает тихий повтор.
+  const pricesMountedAtRef = useRef(Date.now());
+  const lastPricesLogRef = useRef('');
+  useEffect(() => {
+    const bothStore = yearlyPick.source === 'store' && monthlyPick.source === 'store';
+    const anyPrice = yearlyPick.source !== 'none' || monthlyPick.source !== 'none';
+    const sourceNow = bothStore ? 'store' : anyPrice ? 'fallback' : 'none';
+    if (lastPricesLogRef.current === sourceNow) return;
+    lastPricesLogRef.current = sourceNow;
+    console.log('[PAYWALL-PRICES]', JSON.stringify({ source: sourceNow, ms: Date.now() - pricesMountedAtRef.current, yearly: yearlyPick.source, monthly: monthlyPick.source, settled: offeringsSettled })); // guard-ok: итог источника цен
+  }, [monthlyPick.source, offeringsSettled, yearlyPick.source]);
   const monthlyPerMonth = storePricePerMonthTrim(packages.monthly);
   // Кнопка Phraseman Pro показывается, когда админ-флаг включён И пакет lifetime
   // реально пришёл из RevenueCat (продукт заведён). В dev-сборке пакета нет —

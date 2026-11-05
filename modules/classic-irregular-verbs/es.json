@@ -1,0 +1,934 @@
+{
+  "schema": "phraseman.classic-irregular-verbs/1",
+  "lang": "es",
+  "formsLayout": [
+    {
+      "key": "inf",
+      "label": {
+        "ru": "Инфинитив",
+        "uk": "Інфінітив"
+      }
+    },
+    {
+      "key": "presente",
+      "label": {
+        "ru": "Настоящее (yo / él)",
+        "uk": "Теперішній (yo / él)"
+      }
+    },
+    {
+      "key": "preterito",
+      "label": {
+        "ru": "Прошедшее (yo / él)",
+        "uk": "Минулий (yo / él)"
+      }
+    },
+    {
+      "key": "participio",
+      "label": {
+        "ru": "Причастие",
+        "uk": "Дієприкметник"
+      }
+    }
+  ],
+  "lessons": {
+    "1": [
+      {
+        "lemma": "estar",
+        "meaning": {
+          "ru": "быть (сейчас, где)",
+          "uk": "бути (зараз, де)",
+          "en": "to be (temporary, location)",
+          "es": "encontrarse; estar en un lugar o estado",
+          "pt-BR": "estar",
+          "vi": "thì, ở (tạm thời, vị trí)",
+          "id": "berada, sedang (sementara)",
+          "tr": "olmak, bulunmak (geçici, yer)",
+          "pl": "być (chwilowo, gdzieś)"
+        },
+        "forms": {
+          "inf": "estar",
+          "presente": "estoy / está",
+          "preterito": "estuve / estuvo",
+          "participio": "estado"
+        },
+        "train": {
+          "base": "estar",
+          "past": "estuve",
+          "pp": "estado"
+        },
+        "note": {
+          "ru": "Место и состояние: где ты, как ты.",
+          "uk": "Місце і стан: де ти, як ти."
+        },
+        "examples": [
+          "es:01:01",
+          "es:01:02",
+          "es:01:25"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "lemma": "ser",
+        "meaning": {
+          "ru": "быть (постоянно)",
+          "uk": "бути (постійно)",
+          "en": "to be (permanent)",
+          "es": "ser (algo permanente: quién o qué es)",
+          "pt-BR": "ser",
+          "vi": "là, thì (bản chất)",
+          "id": "menjadi, adalah (tetap)",
+          "tr": "olmak (kalıcı)",
+          "pl": "być (stale)"
+        },
+        "forms": {
+          "inf": "ser",
+          "presente": "soy / es",
+          "preterito": "fui / fue",
+          "participio": "sido"
+        },
+        "train": {
+          "base": "ser",
+          "past": "fui",
+          "pp": "sido"
+        },
+        "note": {
+          "ru": "Постоянные свойства: кто ты, какой предмет.",
+          "uk": "Постійні властивості: хто ти, який предмет."
+        },
+        "examples": [
+          "es:04:01",
+          "es:04:45",
+          "es:04:18"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "lemma": "costar",
+        "meaning": {
+          "ru": "стоить",
+          "uk": "коштувати",
+          "en": "to cost",
+          "es": "tener un precio",
+          "pt-BR": "custar",
+          "vi": "có giá, tốn",
+          "id": "berharga, berbiaya",
+          "tr": "mal olmak, (fiyatı) olmak",
+          "pl": "kosztować"
+        },
+        "forms": {
+          "inf": "costar",
+          "presente": "cuesto / cuesta",
+          "preterito": "costé / costó",
+          "participio": "costado"
+        },
+        "train": {
+          "base": "costar",
+          "past": "costé",
+          "pp": "costado"
+        },
+        "note": {
+          "ru": "o → ue: cuesta, cuestan.",
+          "uk": "o → ue: cuesta, cuestan."
+        },
+        "examples": [
+          "es:05:39"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "lemma": "haber",
+        "meaning": {
+          "ru": "иметься, быть (есть)",
+          "uk": "існувати, бути (є)",
+          "en": "to exist (there is); auxiliary",
+          "es": "existir; verbo que forma tiempos compuestos",
+          "pt-BR": "haver (existir); verbo auxiliar",
+          "vi": "có (tồn tại); trợ động từ",
+          "id": "ada; kata kerja bantu",
+          "tr": "var olmak; yardımcı fiil",
+          "pl": "istnieć (jest); czasownik posiłkowy"
+        },
+        "forms": {
+          "inf": "haber",
+          "presente": "he / ha (hay)",
+          "preterito": "hube / hubo",
+          "participio": "habido"
+        },
+        "train": {
+          "base": "haber",
+          "past": "hube",
+          "pp": "habido"
+        },
+        "note": {
+          "ru": "Помогает строить прошедшее: he comido. «Hay» — «есть, имеется».",
+          "uk": "Допомагає будувати минуле: he comido. «Hay» — «є, існує»."
+        },
+        "examples": [
+          "es:07:21",
+          "es:20:02"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "lemma": "leer",
+        "meaning": {
+          "ru": "читать",
+          "uk": "читати",
+          "en": "to read",
+          "es": "interpretar un texto escrito",
+          "pt-BR": "ler",
+          "vi": "đọc",
+          "id": "membaca",
+          "tr": "okumak",
+          "pl": "czytać"
+        },
+        "forms": {
+          "inf": "leer",
+          "presente": "leo / lee",
+          "preterito": "leí / leyó",
+          "participio": "leído"
+        },
+        "train": {
+          "base": "leer",
+          "past": "leí",
+          "pp": "leído"
+        },
+        "note": {
+          "ru": "В прошедшем «i» между гласными становится «y»: leyó, leyendo.",
+          "uk": "У минулому «i» між голосними стає «y»: leyó, leyendo."
+        },
+        "examples": [
+          "es:10:15",
+          "es:10:44",
+          "es:10:14"
+        ]
+      },
+      {
+        "lemma": "abrir",
+        "meaning": {
+          "ru": "открывать",
+          "uk": "відчиняти",
+          "en": "to open",
+          "es": "quitar lo que cierra algo",
+          "pt-BR": "abrir",
+          "vi": "mở",
+          "id": "membuka",
+          "tr": "açmak",
+          "pl": "otwierać"
+        },
+        "forms": {
+          "inf": "abrir",
+          "presente": "abro / abre",
+          "preterito": "abrí / abrió",
+          "participio": "abierto"
+        },
+        "train": {
+          "base": "abrir",
+          "past": "abrí",
+          "pp": "abierto"
+        },
+        "note": {
+          "ru": "Особая форма «открыто»: abierto.",
+          "uk": "Особлива форма «відчинено»: abierto."
+        },
+        "examples": [
+          "es:10:28",
+          "es:10:31",
+          "es:10:48"
+        ]
+      },
+      {
+        "lemma": "escribir",
+        "meaning": {
+          "ru": "писать",
+          "uk": "писати",
+          "en": "to write",
+          "es": "poner palabras por escrito",
+          "pt-BR": "escrever",
+          "vi": "viết",
+          "id": "menulis",
+          "tr": "yazmak",
+          "pl": "pisać"
+        },
+        "forms": {
+          "inf": "escribir",
+          "presente": "escribo / escribe",
+          "preterito": "escribí / escribió",
+          "participio": "escrito"
+        },
+        "train": {
+          "base": "escribir",
+          "past": "escribí",
+          "pp": "escrito"
+        },
+        "note": {
+          "ru": "Особая форма «написано»: escrito.",
+          "uk": "Особлива форма «написано»: escrito."
+        },
+        "examples": [
+          "es:10:17",
+          "es:10:27",
+          "es:10:20"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "lemma": "tener",
+        "meaning": {
+          "ru": "иметь",
+          "uk": "мати",
+          "en": "to have",
+          "es": "poseer; haber algo consigo",
+          "pt-BR": "ter",
+          "vi": "có",
+          "id": "memiliki, punya",
+          "tr": "sahip olmak",
+          "pl": "mieć"
+        },
+        "forms": {
+          "inf": "tener",
+          "presente": "tengo / tiene",
+          "preterito": "tuve / tuvo",
+          "participio": "tenido"
+        },
+        "train": {
+          "base": "tener",
+          "past": "tuve",
+          "pp": "tenido"
+        },
+        "note": {
+          "ru": "В первом лице: tengo; в 3-м лице e → ie: tiene.",
+          "uk": "У першій особі: tengo; у 3-й особі e → ie: tiene."
+        },
+        "examples": [
+          "es:11:07",
+          "es:11:16",
+          "es:11:22"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "lemma": "poder",
+        "meaning": {
+          "ru": "мочь",
+          "uk": "могти",
+          "en": "can, to be able to",
+          "es": "tener capacidad o permiso",
+          "pt-BR": "poder",
+          "vi": "có thể",
+          "id": "dapat, bisa",
+          "tr": "-ebilmek, yapabilmek",
+          "pl": "móc"
+        },
+        "forms": {
+          "inf": "poder",
+          "presente": "puedo / puede",
+          "preterito": "pude / pudo",
+          "participio": "podido"
+        },
+        "train": {
+          "base": "poder",
+          "past": "pude",
+          "pp": "podido"
+        },
+        "note": {
+          "ru": "o → ue под ударением: puedo, puedes, puede.",
+          "uk": "o → ue під наголосом: puedo, puedes, puede."
+        },
+        "examples": [
+          "es:15:48",
+          "es:15:06",
+          "es:15:08"
+        ]
+      },
+      {
+        "lemma": "volver",
+        "meaning": {
+          "ru": "возвращаться",
+          "uk": "повертатися",
+          "en": "to return, to come back",
+          "es": "regresar al lugar de origen",
+          "pt-BR": "voltar",
+          "vi": "quay lại, trở về",
+          "id": "kembali",
+          "tr": "dönmek",
+          "pl": "wracać"
+        },
+        "forms": {
+          "inf": "volver",
+          "presente": "vuelvo / vuelve",
+          "preterito": "volví / volvió",
+          "participio": "vuelto"
+        },
+        "train": {
+          "base": "volver",
+          "past": "volví",
+          "pp": "vuelto"
+        },
+        "note": {
+          "ru": "o → ue под ударением: vuelvo; «вернулся» — vuelto.",
+          "uk": "o → ue під наголосом: vuelvo; «повернувся» — vuelto."
+        },
+        "examples": [
+          "es:15:40",
+          "es:25:22"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "lemma": "ir",
+        "meaning": {
+          "ru": "идти, ехать",
+          "uk": "йти, їхати",
+          "en": "to go",
+          "es": "moverse hacia un lugar",
+          "pt-BR": "ir",
+          "vi": "đi",
+          "id": "pergi",
+          "tr": "gitmek",
+          "pl": "iść, jechać"
+        },
+        "forms": {
+          "inf": "ir",
+          "presente": "voy / va",
+          "preterito": "fui / fue",
+          "participio": "ido"
+        },
+        "train": {
+          "base": "ir",
+          "past": "fui",
+          "pp": "ido"
+        },
+        "note": {
+          "ru": "Формы совсем разные: voy, fui, iba.",
+          "uk": "Форми зовсім різні: voy, fui, iba."
+        },
+        "examples": [
+          "es:16:03",
+          "es:16:04",
+          "es:16:49"
+        ]
+      }
+    ],
+    "18": [
+      {
+        "lemma": "recoger",
+        "meaning": {
+          "ru": "собирать, забирать",
+          "uk": "збирати, забирати",
+          "en": "to pick up, to collect",
+          "es": "tomar algo del suelo o de un lugar",
+          "pt-BR": "recolher, pegar",
+          "vi": "nhặt, thu thập, đón",
+          "id": "mengambil, mengumpulkan",
+          "tr": "toplamak, almak",
+          "pl": "zbierać, odbierać"
+        },
+        "forms": {
+          "inf": "recoger",
+          "presente": "recojo / recoge",
+          "preterito": "recogí / recogió",
+          "participio": "recogido"
+        },
+        "train": {
+          "base": "recoger",
+          "past": "recogí",
+          "pp": "recogido"
+        },
+        "note": {
+          "ru": "В первом лице g → j: recojo.",
+          "uk": "У першій особі g → j: recojo."
+        },
+        "examples": [
+          "es:18:22",
+          "es:20:23"
+        ]
+      }
+    ],
+    "22": [
+      {
+        "lemma": "hacer",
+        "meaning": {
+          "ru": "делать",
+          "uk": "робити",
+          "en": "to do, to make",
+          "es": "realizar o fabricar algo",
+          "pt-BR": "fazer",
+          "vi": "làm",
+          "id": "melakukan, membuat",
+          "tr": "yapmak",
+          "pl": "robić"
+        },
+        "forms": {
+          "inf": "hacer",
+          "presente": "hago / hace",
+          "preterito": "hice / hizo",
+          "participio": "hecho"
+        },
+        "train": {
+          "base": "hacer",
+          "past": "hice",
+          "pp": "hecho"
+        },
+        "note": {
+          "ru": "В первом лице: hago; «сделано» — hecho.",
+          "uk": "У першій особі: hago; «зроблено» — hecho."
+        },
+        "examples": [
+          "es:22:23",
+          "es:22:21",
+          "es:22:30"
+        ]
+      },
+      {
+        "lemma": "venir",
+        "meaning": {
+          "ru": "приходить",
+          "uk": "приходити",
+          "en": "to come",
+          "es": "llegar al lugar donde está el que habla",
+          "pt-BR": "vir",
+          "vi": "đến",
+          "id": "datang",
+          "tr": "gelmek",
+          "pl": "przychodzić"
+        },
+        "forms": {
+          "inf": "venir",
+          "presente": "vengo / viene",
+          "preterito": "vine / vino",
+          "participio": "venido"
+        },
+        "train": {
+          "base": "venir",
+          "past": "vine",
+          "pp": "venido"
+        },
+        "note": {
+          "ru": "В первом лице: vengo; e → ie: viene.",
+          "uk": "У першій особі: vengo; e → ie: viene."
+        },
+        "examples": [
+          "es:22:31",
+          "es:22:38",
+          "es:22:34"
+        ]
+      }
+    ],
+    "24": [
+      {
+        "lemma": "empezar",
+        "meaning": {
+          "ru": "начинать",
+          "uk": "починати",
+          "en": "to begin, to start",
+          "es": "comenzar algo",
+          "pt-BR": "começar",
+          "vi": "bắt đầu",
+          "id": "mulai",
+          "tr": "başlamak",
+          "pl": "zaczynać"
+        },
+        "forms": {
+          "inf": "empezar",
+          "presente": "empiezo / empieza",
+          "preterito": "empecé / empezó",
+          "participio": "empezado"
+        },
+        "train": {
+          "base": "empezar",
+          "past": "empecé",
+          "pp": "empezado"
+        },
+        "note": {
+          "ru": "e → ie: empiezo; в первом лице прошедшего z → c: empecé.",
+          "uk": "e → ie: empiezo; у першій особі минулого z → c: empecé."
+        },
+        "examples": [
+          "es:24:34",
+          "es:28:45"
+        ]
+      },
+      {
+        "lemma": "llover",
+        "meaning": {
+          "ru": "идти (о дожде)",
+          "uk": "іти (про дощ)",
+          "en": "to rain",
+          "es": "caer agua de las nubes",
+          "pt-BR": "chover",
+          "vi": "mưa",
+          "id": "hujan",
+          "tr": "yağmur yağmak",
+          "pl": "padać (o deszczu)"
+        },
+        "forms": {
+          "inf": "llover",
+          "presente": "llueve",
+          "preterito": "llovió",
+          "participio": "llovido"
+        },
+        "train": {
+          "base": "llover",
+          "past": "llovió",
+          "pp": "llovido"
+        },
+        "note": {
+          "ru": "Только в 3-м лице: llueve — «идёт дождь».",
+          "uk": "Лише в 3-й особі: llueve — «йде дощ»."
+        },
+        "examples": [
+          "es:24:34"
+        ]
+      }
+    ],
+    "25": [
+      {
+        "lemma": "cerrar",
+        "meaning": {
+          "ru": "закрывать",
+          "uk": "зачиняти",
+          "en": "to close, to shut",
+          "es": "tapar o cerrar algo",
+          "pt-BR": "fechar",
+          "vi": "đóng",
+          "id": "menutup",
+          "tr": "kapatmak",
+          "pl": "zamykać"
+        },
+        "forms": {
+          "inf": "cerrar",
+          "presente": "cierro / cierra",
+          "preterito": "cerré / cerró",
+          "participio": "cerrado"
+        },
+        "train": {
+          "base": "cerrar",
+          "past": "cerré",
+          "pp": "cerrado"
+        },
+        "note": {
+          "ru": "e → ie под ударением: cierro, cierras, cierra.",
+          "uk": "e → ie під наголосом: cierro, cierras, cierra."
+        },
+        "examples": [
+          "es:25:10",
+          "es:30:07"
+        ]
+      }
+    ],
+    "26": [
+      {
+        "lemma": "dar",
+        "meaning": {
+          "ru": "давать",
+          "uk": "давати",
+          "en": "to give",
+          "es": "entregar algo a alguien",
+          "pt-BR": "dar",
+          "vi": "cho, đưa",
+          "id": "memberi",
+          "tr": "vermek",
+          "pl": "dawać"
+        },
+        "forms": {
+          "inf": "dar",
+          "presente": "doy / da",
+          "preterito": "di / dio",
+          "participio": "dado"
+        },
+        "train": {
+          "base": "dar",
+          "past": "di",
+          "pp": "dado"
+        },
+        "note": {
+          "ru": "В первом лице: doy; прошедшее без ударения: di, dio.",
+          "uk": "У першій особі: doy; минуле без наголосу: di, dio."
+        },
+        "examples": [
+          "es:26:31",
+          "es:31:36"
+        ]
+      },
+      {
+        "lemma": "pedir",
+        "meaning": {
+          "ru": "просить, заказывать",
+          "uk": "просити, замовляти",
+          "en": "to ask for, to order",
+          "es": "solicitar algo",
+          "pt-BR": "pedir, pedir (um prato)",
+          "vi": "xin, yêu cầu, gọi (món)",
+          "id": "meminta, memesan",
+          "tr": "istemek, sipariş vermek",
+          "pl": "prosić, zamawiać"
+        },
+        "forms": {
+          "inf": "pedir",
+          "presente": "pido / pide",
+          "preterito": "pedí / pidió",
+          "participio": "pedido"
+        },
+        "train": {
+          "base": "pedir",
+          "past": "pedí",
+          "pp": "pedido"
+        },
+        "note": {
+          "ru": "e → i: pido, pides, pide.",
+          "uk": "e → i: pido, pides, pide."
+        },
+        "examples": [
+          "es:26:19",
+          "es:26:37"
+        ]
+      },
+      {
+        "lemma": "mostrar",
+        "meaning": {
+          "ru": "показывать",
+          "uk": "показувати",
+          "en": "to show",
+          "es": "enseñar algo a alguien",
+          "pt-BR": "mostrar",
+          "vi": "cho xem, trình bày",
+          "id": "menunjukkan",
+          "tr": "göstermek",
+          "pl": "pokazywać"
+        },
+        "forms": {
+          "inf": "mostrar",
+          "presente": "muestro / muestra",
+          "preterito": "mostré / mostró",
+          "participio": "mostrado"
+        },
+        "train": {
+          "base": "mostrar",
+          "past": "mostré",
+          "pp": "mostrado"
+        },
+        "note": {
+          "ru": "o → ue под ударением: muestro, muestras.",
+          "uk": "o → ue під наголосом: muestro, muestras."
+        },
+        "examples": [
+          "es:26:21"
+        ]
+      }
+    ],
+    "27": [
+      {
+        "lemma": "ver",
+        "meaning": {
+          "ru": "видеть",
+          "uk": "бачити",
+          "en": "to see",
+          "es": "percibir con los ojos",
+          "pt-BR": "ver",
+          "vi": "nhìn thấy",
+          "id": "melihat",
+          "tr": "görmek",
+          "pl": "widzieć"
+        },
+        "forms": {
+          "inf": "ver",
+          "presente": "veo / ve",
+          "preterito": "vi / vio",
+          "participio": "visto"
+        },
+        "train": {
+          "base": "ver",
+          "past": "vi",
+          "pp": "visto"
+        },
+        "note": {
+          "ru": "В первом лице: veo; «увидено» — visto.",
+          "uk": "У першій особі: veo; «побачено» — visto."
+        },
+        "examples": [
+          "es:27:44"
+        ]
+      },
+      {
+        "lemma": "salir",
+        "meaning": {
+          "ru": "выходить, уходить",
+          "uk": "виходити",
+          "en": "to go out, to leave",
+          "es": "pasar de dentro a fuera; irse",
+          "pt-BR": "sair",
+          "vi": "đi ra, rời đi",
+          "id": "keluar, pergi",
+          "tr": "çıkmak",
+          "pl": "wychodzić"
+        },
+        "forms": {
+          "inf": "salir",
+          "presente": "salgo / sale",
+          "preterito": "salí / salió",
+          "participio": "salido"
+        },
+        "train": {
+          "base": "salir",
+          "past": "salí",
+          "pp": "salido"
+        },
+        "note": {
+          "ru": "В первом лице: salgo; в будущем: saldré.",
+          "uk": "У першій особі: salgo; у майбутньому: saldré."
+        },
+        "examples": [
+          "es:27:41",
+          "es:31:45"
+        ]
+      },
+      {
+        "lemma": "encontrar",
+        "meaning": {
+          "ru": "находить",
+          "uk": "знаходити",
+          "en": "to find",
+          "es": "hallar algo o a alguien",
+          "pt-BR": "encontrar",
+          "vi": "tìm thấy",
+          "id": "menemukan",
+          "tr": "bulmak",
+          "pl": "znajdować"
+        },
+        "forms": {
+          "inf": "encontrar",
+          "presente": "encuentro / encuentra",
+          "preterito": "encontré / encontró",
+          "participio": "encontrado"
+        },
+        "train": {
+          "base": "encontrar",
+          "past": "encontré",
+          "pp": "encontrado"
+        },
+        "note": {
+          "ru": "o → ue под ударением: encuentro, encuentras.",
+          "uk": "o → ue під наголосом: encuentro, encuentras."
+        },
+        "examples": [
+          "es:27:47",
+          "es:31:20"
+        ]
+      }
+    ],
+    "29": [
+      {
+        "lemma": "poner",
+        "meaning": {
+          "ru": "класть, ставить",
+          "uk": "класти, ставити",
+          "en": "to put, to place",
+          "es": "colocar algo en un lugar",
+          "pt-BR": "pôr, colocar",
+          "vi": "đặt, để",
+          "id": "menaruh, meletakkan",
+          "tr": "koymak",
+          "pl": "kłaść, stawiać"
+        },
+        "forms": {
+          "inf": "poner",
+          "presente": "pongo / pone",
+          "preterito": "puse / puso",
+          "participio": "puesto"
+        },
+        "train": {
+          "base": "poner",
+          "past": "puse",
+          "pp": "puesto"
+        },
+        "note": {
+          "ru": "В первом лице: pongo; «поставлено» — puesto.",
+          "uk": "У першій особі: pongo; «поставлено» — puesto."
+        },
+        "examples": [
+          "es:29:29"
+        ]
+      }
+    ],
+    "30": [
+      {
+        "lemma": "querer",
+        "meaning": {
+          "ru": "хотеть, любить",
+          "uk": "хотіти, любити",
+          "en": "to want, to love",
+          "es": "desear algo; sentir cariño",
+          "pt-BR": "querer",
+          "vi": "muốn, yêu",
+          "id": "ingin, mencintai",
+          "tr": "istemek, sevmek",
+          "pl": "chcieć, kochać"
+        },
+        "forms": {
+          "inf": "querer",
+          "presente": "quiero / quiere",
+          "preterito": "quise / quiso",
+          "participio": "querido"
+        },
+        "train": {
+          "base": "querer",
+          "past": "quise",
+          "pp": "querido"
+        },
+        "note": {
+          "ru": "e → ie под ударением: quiero, quieres, quiere.",
+          "uk": "e → ie під наголосом: quiero, quieres, quiere."
+        },
+        "examples": [
+          "es:30:02",
+          "es:30:11",
+          "es:30:47"
+        ]
+      }
+    ],
+    "31": [
+      {
+        "lemma": "saber",
+        "meaning": {
+          "ru": "знать, уметь",
+          "uk": "знати, вміти",
+          "en": "to know (facts), to know how",
+          "es": "tener conocimiento o habilidad",
+          "pt-BR": "saber",
+          "vi": "biết",
+          "id": "tahu, bisa",
+          "tr": "bilmek",
+          "pl": "wiedzieć, umieć"
+        },
+        "forms": {
+          "inf": "saber",
+          "presente": "sé / sabe",
+          "preterito": "supe / supo",
+          "participio": "sabido"
+        },
+        "train": {
+          "base": "saber",
+          "past": "supe",
+          "pp": "sabido"
+        },
+        "note": {
+          "ru": "В первом лице: sé (с ударением).",
+          "uk": "У першій особі: sé (з наголосом)."
+        },
+        "examples": [
+          "es:31:05",
+          "es:32:09"
+        ]
+      }
+    ]
+  }
+}

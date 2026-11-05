@@ -1,0 +1,299 @@
+{
+  "ser": {
+    "en": "to be (permanent)",
+    "es": "ser (algo permanente: quién o qué es)",
+    "pt-BR": "ser",
+    "vi": "là, thì (bản chất)",
+    "id": "menjadi, adalah (tetap)",
+    "tr": "olmak (kalıcı)",
+    "pl": "być (stale)"
+  },
+  "estar": {
+    "en": "to be (temporary, location)",
+    "es": "encontrarse; estar en un lugar o estado",
+    "pt-BR": "estar",
+    "vi": "thì, ở (tạm thời, vị trí)",
+    "id": "berada, sedang (sementara)",
+    "tr": "olmak, bulunmak (geçici, yer)",
+    "pl": "być (chwilowo, gdzieś)"
+  },
+  "ir": {
+    "en": "to go",
+    "es": "moverse hacia un lugar",
+    "pt-BR": "ir",
+    "vi": "đi",
+    "id": "pergi",
+    "tr": "gitmek",
+    "pl": "iść, jechać"
+  },
+  "tener": {
+    "en": "to have",
+    "es": "poseer; haber algo consigo",
+    "pt-BR": "ter",
+    "vi": "có",
+    "id": "memiliki, punya",
+    "tr": "sahip olmak",
+    "pl": "mieć"
+  },
+  "hacer": {
+    "en": "to do, to make",
+    "es": "realizar o fabricar algo",
+    "pt-BR": "fazer",
+    "vi": "làm",
+    "id": "melakukan, membuat",
+    "tr": "yapmak",
+    "pl": "robić"
+  },
+  "decir": {
+    "en": "to say, to tell",
+    "es": "expresar algo con palabras",
+    "pt-BR": "dizer",
+    "vi": "nói",
+    "id": "mengatakan",
+    "tr": "söylemek",
+    "pl": "mówić, powiedzieć"
+  },
+  "poder": {
+    "en": "can, to be able to",
+    "es": "tener capacidad o permiso",
+    "pt-BR": "poder",
+    "vi": "có thể",
+    "id": "dapat, bisa",
+    "tr": "-ebilmek, yapabilmek",
+    "pl": "móc"
+  },
+  "querer": {
+    "en": "to want, to love",
+    "es": "desear algo; sentir cariño",
+    "pt-BR": "querer",
+    "vi": "muốn, yêu",
+    "id": "ingin, mencintai",
+    "tr": "istemek, sevmek",
+    "pl": "chcieć, kochać"
+  },
+  "venir": {
+    "en": "to come",
+    "es": "llegar al lugar donde está el que habla",
+    "pt-BR": "vir",
+    "vi": "đến",
+    "id": "datang",
+    "tr": "gelmek",
+    "pl": "przychodzić"
+  },
+  "haber": {
+    "en": "to exist (there is); auxiliary",
+    "es": "existir; verbo que forma tiempos compuestos",
+    "pt-BR": "haver (existir); verbo auxiliar",
+    "vi": "có (tồn tại); trợ động từ",
+    "id": "ada; kata kerja bantu",
+    "tr": "var olmak; yardımcı fiil",
+    "pl": "istnieć (jest); czasownik posiłkowy"
+  },
+  "dar": {
+    "en": "to give",
+    "es": "entregar algo a alguien",
+    "pt-BR": "dar",
+    "vi": "cho, đưa",
+    "id": "memberi",
+    "tr": "vermek",
+    "pl": "dawać"
+  },
+  "ver": {
+    "en": "to see",
+    "es": "percibir con los ojos",
+    "pt-BR": "ver",
+    "vi": "nhìn thấy",
+    "id": "melihat",
+    "tr": "görmek",
+    "pl": "widzieć"
+  },
+  "saber": {
+    "en": "to know (facts), to know how",
+    "es": "tener conocimiento o habilidad",
+    "pt-BR": "saber",
+    "vi": "biết",
+    "id": "tahu, bisa",
+    "tr": "bilmek",
+    "pl": "wiedzieć, umieć"
+  },
+  "poner": {
+    "en": "to put, to place",
+    "es": "colocar algo en un lugar",
+    "pt-BR": "pôr, colocar",
+    "vi": "đặt, để",
+    "id": "menaruh, meletakkan",
+    "tr": "koymak",
+    "pl": "kłaść, stawiać"
+  },
+  "salir": {
+    "en": "to go out, to leave",
+    "es": "pasar de dentro a fuera; irse",
+    "pt-BR": "sair",
+    "vi": "đi ra, rời đi",
+    "id": "keluar, pergi",
+    "tr": "çıkmak",
+    "pl": "wychodzić"
+  },
+  "volver": {
+    "en": "to return, to come back",
+    "es": "regresar al lugar de origen",
+    "pt-BR": "voltar",
+    "vi": "quay lại, trở về",
+    "id": "kembali",
+    "tr": "dönmek",
+    "pl": "wracać"
+  },
+  "dormir": {
+    "en": "to sleep",
+    "es": "descansar con los ojos cerrados",
+    "pt-BR": "dormir",
+    "vi": "ngủ",
+    "id": "tidur",
+    "tr": "uyumak",
+    "pl": "spać"
+  },
+  "pedir": {
+    "en": "to ask for, to order",
+    "es": "solicitar algo",
+    "pt-BR": "pedir, pedir (um prato)",
+    "vi": "xin, yêu cầu, gọi (món)",
+    "id": "meminta, memesan",
+    "tr": "istemek, sipariş vermek",
+    "pl": "prosić, zamawiać"
+  },
+  "empezar": {
+    "en": "to begin, to start",
+    "es": "comenzar algo",
+    "pt-BR": "começar",
+    "vi": "bắt đầu",
+    "id": "mulai",
+    "tr": "başlamak",
+    "pl": "zaczynać"
+  },
+  "cerrar": {
+    "en": "to close, to shut",
+    "es": "tapar o cerrar algo",
+    "pt-BR": "fechar",
+    "vi": "đóng",
+    "id": "menutup",
+    "tr": "kapatmak",
+    "pl": "zamykać"
+  },
+  "encontrar": {
+    "en": "to find",
+    "es": "hallar algo o a alguien",
+    "pt-BR": "encontrar",
+    "vi": "tìm thấy",
+    "id": "menemukan",
+    "tr": "bulmak",
+    "pl": "znajdować"
+  },
+  "costar": {
+    "en": "to cost",
+    "es": "tener un precio",
+    "pt-BR": "custar",
+    "vi": "có giá, tốn",
+    "id": "berharga, berbiaya",
+    "tr": "mal olmak, (fiyatı) olmak",
+    "pl": "kosztować"
+  },
+  "llover": {
+    "en": "to rain",
+    "es": "caer agua de las nubes",
+    "pt-BR": "chover",
+    "vi": "mưa",
+    "id": "hujan",
+    "tr": "yağmur yağmak",
+    "pl": "padać (o deszczu)"
+  },
+  "leer": {
+    "en": "to read",
+    "es": "interpretar un texto escrito",
+    "pt-BR": "ler",
+    "vi": "đọc",
+    "id": "membaca",
+    "tr": "okumak",
+    "pl": "czytać"
+  },
+  "traer": {
+    "en": "to bring",
+    "es": "llevar algo hacia donde está el que habla",
+    "pt-BR": "trazer",
+    "vi": "mang đến",
+    "id": "membawa",
+    "tr": "getirmek",
+    "pl": "przynosić"
+  },
+  "conocer": {
+    "en": "to know (a person or place), to meet",
+    "es": "tener trato con alguien o haber estado en un lugar",
+    "pt-BR": "conhecer",
+    "vi": "biết, quen (người, nơi)",
+    "id": "mengenal",
+    "tr": "tanımak, bilmek (kişi, yer)",
+    "pl": "znać (kogoś), poznawać"
+  },
+  "abrir": {
+    "en": "to open",
+    "es": "quitar lo que cierra algo",
+    "pt-BR": "abrir",
+    "vi": "mở",
+    "id": "membuka",
+    "tr": "açmak",
+    "pl": "otwierać"
+  },
+  "escribir": {
+    "en": "to write",
+    "es": "poner palabras por escrito",
+    "pt-BR": "escrever",
+    "vi": "viết",
+    "id": "menulis",
+    "tr": "yazmak",
+    "pl": "pisać"
+  },
+  "mostrar": {
+    "en": "to show",
+    "es": "enseñar algo a alguien",
+    "pt-BR": "mostrar",
+    "vi": "cho xem, trình bày",
+    "id": "menunjukkan",
+    "tr": "göstermek",
+    "pl": "pokazywać"
+  },
+  "entender": {
+    "en": "to understand",
+    "es": "comprender el sentido de algo",
+    "pt-BR": "entender",
+    "vi": "hiểu",
+    "id": "mengerti",
+    "tr": "anlamak",
+    "pl": "rozumieć"
+  },
+  "jugar": {
+    "en": "to play (games, sports)",
+    "es": "divertirse con un juego o deporte",
+    "pt-BR": "jogar",
+    "vi": "chơi (trò chơi, thể thao)",
+    "id": "bermain (permainan, olahraga)",
+    "tr": "oynamak (oyun, spor)",
+    "pl": "grać (w gry, sport)"
+  },
+  "preferir": {
+    "en": "to prefer",
+    "es": "elegir una cosa antes que otra",
+    "pt-BR": "preferir",
+    "vi": "thích hơn",
+    "id": "lebih suka",
+    "tr": "tercih etmek",
+    "pl": "woleć"
+  },
+  "recoger": {
+    "en": "to pick up, to collect",
+    "es": "tomar algo del suelo o de un lugar",
+    "pt-BR": "recolher, pegar",
+    "vi": "nhặt, thu thập, đón",
+    "id": "mengambil, mengumpulkan",
+    "tr": "toplamak, almak",
+    "pl": "zbierać, odbierać"
+  }
+}

@@ -154,6 +154,16 @@
    "note": "Теория урока 1 немецкого: заголовок «First words in German», прогресс «Sections 1/6 · drills 0/12», раздел «I am here» с примерами Ich bin hier / ich bin müde (новый формат «как для ребёнка»). Не заглушка. Замечания: фраза «Russian letters only give the sound approximately» в английском интерфейсе; при прокрутке контент заезжает под строку состояния и кнопку «назад» без затемнения края. Меню урока и список de показывают «Lesson 1» без названия темы (кадры lesson1-menu-de, lessons-list-de-plus).",
    "proposed_by": "3-МАКЕТЫ",
    "confirmed_by": null
+  },
+  "home-rank0-after-b8cd-1001": {
+   "verdict": "diff",
+   "frame": "docs/work/release/frames_2026-11-05/pending/home/home-rank0-after-b8cd2d196__fresh-VIEWED-1001-720x1600-en.png",
+   "compose": "docs/work/release/frames_2026-11-05/pending/compose/home-rank0__rev6-free-0_vs_app-after-b8cd-1001.png",
+   "viewed_by": "3-МАКЕТЫ 10:08 (кадр 10:01 чистого эмулятора, глазами)",
+   "reference": "docs/work/golden/approved-rev8/rev6-home-free-0.png",
+   "note": "Главная ранга 0 после b8cd2d196 близка к макету: одна задача «Complete a lesson 0/1» + ссылка «All tasks» ✅, плитки «Lessons / Saved» ✅, 4 вкладки ✅, пилюля «0 days» одной строкой ✅, блок «Фраза дня» появился ✅. Остаются: (1) «Фраза дня» без перевода строкой и без кнопки озвучки — вместо неё шеврон «›»; (2) шапка героя «0-day streak / Day counted / Next: I am here / Continue lesson 1» вместо «Урок 1 + название урока + Начать»; (3) тема светлая/фиолетовая против тёмного графита макета (сравнение по структуре); (4) подпись в строке задачи «I am here» против «Один шаг в обычном курсе» (🟡). После п.1–2 можно в match_candidate.",
+   "proposed_by": "3-МАКЕТЫ",
+   "confirmed_by": null
   }
  }
 }

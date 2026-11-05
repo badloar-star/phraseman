@@ -41,3 +41,5 @@ Governance-ID: TG-6905F50BF830 (задача Теории 12: wiring слова�
 Governance-ID: TG-2C7DB19BCA1F (слова урока fr/es/de/it из glossary.json: firstLesson==N, без повторов; app/classic_lesson_words.ts, lesson_menu, lesson_words, vocabulary_target_gate)
 
 Governance-ID: TG-0E153B452E14 (план интерактивных заданий теории fr/es/de/it: чтение данных и оценка)
+
+Governance-ID: TG-C44F45024B95 (интерактивные задания теории fr/es/de/it: адаптер ClassicTheory→TheorySection + TheoryLessonView)

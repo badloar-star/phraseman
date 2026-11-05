@@ -4,7 +4,8 @@
 // Два формата файлов: `chapters` (fr/de/it: chapters[{exampleIds,textByLocale}], title, table) и `studio2` (es: localized[locale] с главами,
 // формулой, историей, таблицей). Оба приводятся к одной форме ClassicTheory на нужную локаль интерфейса.
 import { lazyContent } from './content_lazy';
-import { classicCourseActiveFor, getClassicLessonPhrases } from './classic_course_phrases';
+import { classicCourseActiveFor } from './classic_course_phrases';
+import { getRawClassicPhrases, rawPhraseTranslation } from './classic_raw_phrases';
 
 export type ClassicTheoryExample = Readonly<{ target: string; translation: string }>;
 export type ClassicTheorySection = Readonly<{
@@ -55,15 +56,15 @@ export function stripTheoryMarkup(text: string): string {
 }
 
 function examplesFor(target: 'es' | 'fr' | 'de' | 'it', lessonId: number, ids: unknown, locale: string): ClassicTheoryExample[] {
-  const phrases = getClassicLessonPhrases(lessonId, target);
+  const phrases = getRawClassicPhrases(target, lessonId);
   const out: ClassicTheoryExample[] = [];
   for (const raw of arr(ids)) {
     const id = str(raw);
     if (!id) continue;
-    const p = phrases.find((x) => String(x.id) === id || String(x.id).endsWith(`:${id}`) || String(x.id).endsWith(id));
+    const p = phrases.find((x) => x.id === id || x.id.endsWith(`:${id}`));
     if (!p) continue;
-    const translation = str(p.sourceLocales?.[locale]) || str(p.sourceLocales?.en) || str(p.russian);
-    out.push({ target: str(p.english), translation });
+    // зачем: перевод на ЯЗЫК ИНТЕРФЕЙСА (включая английский); раньше en в данных терялся и англоязычный интерфейс получал русский перевод.
+    out.push({ target: p.target, translation: rawPhraseTranslation(p, locale) });
   }
   return out;
 }

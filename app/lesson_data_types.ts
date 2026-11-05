@@ -270,6 +270,8 @@ export type IntroLine = {
 export interface IntroI18nText {
   ru: string;
   uk?: string;
+  /** зачем (05.11): подписи заданий классических курсов есть и на английском — иначе английский интерфейс видел русский. */
+  en?: string;
   es?: string;
   ptBr?: string;
   vi?: string;

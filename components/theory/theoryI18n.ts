@@ -11,6 +11,8 @@ export function introText(txt: IntroI18nText | undefined, lang: Lang): string {
   switch (lang) {
     case 'uk':
       return txt.uk ?? txt.ru;
+    case 'en':
+      return txt.en ?? txt.ru;
     case 'es':
       return txt.es ?? txt.ru;
     case 'pt-BR':

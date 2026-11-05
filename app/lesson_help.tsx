@@ -19,6 +19,9 @@ import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundar
 import { getLessonIntroScreens } from './lesson_data_all';
 import { storageStudyTarget } from './target_storage_keys';
 import { getClassicTheory, type ClassicTheory } from './classic_theory';
+import { getClassicTheoryView } from './classic_theory_view';
+import TheoryLessonView from '../components/theory/TheoryLessonView';
+import { lessonTheorySectionsSeenKey } from './target_storage_keys';
 import type { IntroLine, LessonIntroScreen } from './lesson_data_types';
 import {
   lessonSupportContentAvailableForTarget,
@@ -385,6 +388,24 @@ function LessonHelp() {
     tr: `${lessonId}. dersin teorisi yakında hazır olacak. Pratik yapmaya devam et!`,
     pl: `Teoria do lekcji ${lessonId} pojawi się wkrótce. Ćwicz dalej!`,
   });
+
+  // зачем (владелец 05.11: «как в английском курсе»): «Теория» fr/es/de/it — тот же экран, что у английского (TheoryLessonView): разделы-аккордеон,
+  // примеры из фраз курса и интерактивные задания «Разделы n/m · задания k/N»; задания собираются из theory.json (classic_theory_view.ts).
+  const classicView = isFrenchTarget && frenchTheoryAllowed ? getClassicTheoryView(storageStudyTarget(studyTarget), lessonId, lang) : null;
+  if (classicView) {
+    return (
+      <TheoryLessonView
+        lessonId={lessonId}
+        title={classicView.title}
+        sections={classicView.sections}
+        metrics={classicView.metrics}
+        progressStorageKey={lessonTheorySectionsSeenKey(lessonId, studyTarget)}
+        onBack={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
+        level={null}
+        reportDataId={`classic_theory_${storageStudyTarget(studyTarget)}_${lessonId}`}
+      />
+    );
+  }
 
   return (
     <ScreenGradient>

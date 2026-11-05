@@ -54,7 +54,7 @@ describe('Главная: плитка «Фразы из видео» живёт
   test('название плитки — одно слово из общей таблицы, без пробелов, на всех 9 языках', () => {
     expect(tileBlock).toContain('title: triLang(lang, VIDEO_PHRASES_NAME)');
     expect(Object.keys(VIDEO_PHRASES_NAME).sort()).toEqual(['en', 'es', 'id', 'pl', 'pt-BR', 'ru', 'tr', 'uk', 'vi']);
-    for (const name of Object.values(VIDEO_PHRASES_NAME)) expect(name).toMatch(/^S+$/);
+    for (const name of Object.values(VIDEO_PHRASES_NAME)) expect(name).not.toMatch(/\s/);
     expect(VIDEO_PHRASES_NAME.ru).toBe('Видеофразы');
     expect(VIDEO_PHRASES_NAME.uk).toBe('Відеофрази');
   });

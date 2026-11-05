@@ -5,16 +5,21 @@
 import type { Word } from './lesson_words';
 import { lazyContent } from './content_lazy';
 import { classicCourseActiveFor } from './classic_course_phrases';
+import { scheduleEnglishWordsSwitch } from './en_words_switch';
 
 type Meaning = Readonly<Partial<Record<'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl', string>>>;
 type GlossaryLemma = Readonly<{ lemma: string; meaning: Meaning; firstLesson: number; phraseIds?: readonly string[] }>;
 type Glossary = Readonly<{ lemmas: readonly GlossaryLemma[] }>;
 
-export type ClassicWordsLang = 'es' | 'fr' | 'de' | 'it';
+// зачем (координатор 05.11, пункт 2 плана 150: «в 150 только английский курс, слова — по уроку, только новые, все слова заданий покрыты»):
+// en тоже берёт слова из glossary.json курса (910 лемм, все слова заданий покрыты). Прежний прогресс en переносится по тексту слова
+// (app/en_words_switch.ts), ничего не теряется.
+export type ClassicWordsLang = 'en' | 'es' | 'fr' | 'de' | 'it';
 
 // Статические require — чтобы Metro вшил файлы; грузятся лениво (холодный старт не платит за словари).
 const glossaryOf = lazyContent('classic_glossaries', () => ({
   /* eslint-disable @typescript-eslint/no-require-imports */
+  en: require('../modules/classic-courses/en/glossary.json') as Glossary,
   es: require('../modules/classic-courses/es/glossary.json') as Glossary,
   fr: require('../modules/classic-courses/fr/glossary.json') as Glossary,
   de: require('../modules/classic-courses/de/glossary.json') as Glossary,
@@ -23,7 +28,7 @@ const glossaryOf = lazyContent('classic_glossaries', () => ({
 }));
 
 export function isClassicWordsLang(target: unknown): target is ClassicWordsLang {
-  return target === 'es' || target === 'fr' || target === 'de' || target === 'it';
+  return target === 'en' || target === 'es' || target === 'fr' || target === 'de' || target === 'it';
 }
 
 /** true, если у курса этого языка слова урока берутся из словаря курса (а не из английского банка). */
@@ -36,6 +41,8 @@ const bankCache = new Map<string, Word[]>();
 /** Слова урока N курса `target`: только леммы, впервые встретившиеся в уроке N. Пустой список — слов в уроке нет. */
 export function classicLessonWordBank(target: ClassicWordsLang, lessonId: number): Word[] {
   const cacheKey = `${target}:${lessonId}`;
+  // зачем: первое обращение к словам en запускает перенос прежнего прогресса (один раз за запуск, фоном, ничего не удаляет)
+  if (target === 'en') scheduleEnglishWordsSwitch((id) => classicLessonWordBank('en', id).map((w) => w.en));
   const cached = bankCache.get(cacheKey);
   if (cached) return cached.slice();
   const out: Word[] = [];

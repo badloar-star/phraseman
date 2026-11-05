@@ -1,0 +1,326 @@
+{
+  "être": {
+    "en": "to be",
+    "es": "ser, estar",
+    "pt-BR": "ser, estar",
+    "vi": "là, ở, thì",
+    "id": "menjadi, adalah, berada",
+    "tr": "olmak",
+    "pl": "być"
+  },
+  "avoir": {
+    "en": "to have",
+    "es": "tener, haber",
+    "pt-BR": "ter, haver",
+    "vi": "có",
+    "id": "memiliki, punya",
+    "tr": "sahip olmak",
+    "pl": "mieć"
+  },
+  "aller": {
+    "en": "to go",
+    "es": "ir",
+    "pt-BR": "ir",
+    "vi": "đi",
+    "id": "pergi",
+    "tr": "gitmek",
+    "pl": "iść, jechać"
+  },
+  "faire": {
+    "en": "to do, to make",
+    "es": "hacer",
+    "pt-BR": "fazer",
+    "vi": "làm",
+    "id": "melakukan, membuat",
+    "tr": "yapmak",
+    "pl": "robić"
+  },
+  "pouvoir": {
+    "en": "can, to be able to",
+    "es": "poder",
+    "pt-BR": "poder",
+    "vi": "có thể",
+    "id": "dapat, bisa",
+    "tr": "-ebilmek, yapabilmek",
+    "pl": "móc"
+  },
+  "vouloir": {
+    "en": "to want",
+    "es": "querer",
+    "pt-BR": "querer",
+    "vi": "muốn",
+    "id": "ingin, mau",
+    "tr": "istemek",
+    "pl": "chcieć"
+  },
+  "savoir": {
+    "en": "to know (a fact), to know how to",
+    "es": "saber",
+    "pt-BR": "saber",
+    "vi": "biết",
+    "id": "tahu, bisa",
+    "tr": "bilmek",
+    "pl": "wiedzieć, umieć"
+  },
+  "venir": {
+    "en": "to come",
+    "es": "venir",
+    "pt-BR": "vir",
+    "vi": "đến",
+    "id": "datang",
+    "tr": "gelmek",
+    "pl": "przychodzić"
+  },
+  "voir": {
+    "en": "to see",
+    "es": "ver",
+    "pt-BR": "ver",
+    "vi": "thấy, nhìn",
+    "id": "melihat",
+    "tr": "görmek",
+    "pl": "widzieć"
+  },
+  "prendre": {
+    "en": "to take",
+    "es": "tomar, coger",
+    "pt-BR": "pegar, tomar",
+    "vi": "lấy",
+    "id": "mengambil",
+    "tr": "almak",
+    "pl": "brać"
+  },
+  "dire": {
+    "en": "to say, to tell",
+    "es": "decir",
+    "pt-BR": "dizer",
+    "vi": "nói",
+    "id": "mengatakan",
+    "tr": "söylemek",
+    "pl": "mówić, powiedzieć"
+  },
+  "mettre": {
+    "en": "to put, to put on",
+    "es": "poner",
+    "pt-BR": "pôr, colocar",
+    "vi": "đặt, mặc",
+    "id": "meletakkan, memakai",
+    "tr": "koymak, giymek",
+    "pl": "kłaść, zakładać"
+  },
+  "devoir": {
+    "en": "must, to have to, to owe",
+    "es": "deber",
+    "pt-BR": "dever",
+    "vi": "phải, nợ",
+    "id": "harus, berutang",
+    "tr": "zorunda olmak, borçlu olmak",
+    "pl": "musieć, być winnym"
+  },
+  "falloir": {
+    "en": "to be necessary",
+    "es": "hacer falta, ser necesario",
+    "pt-BR": "ser necessário, precisar",
+    "vi": "cần, phải",
+    "id": "perlu, harus",
+    "tr": "gerekmek",
+    "pl": "trzeba, być potrzebnym"
+  },
+  "partir": {
+    "en": "to leave, to depart",
+    "es": "partir, irse",
+    "pt-BR": "partir, ir embora",
+    "vi": "rời đi, khởi hành",
+    "id": "pergi, berangkat",
+    "tr": "ayrılmak, gitmek",
+    "pl": "wyjeżdżać, odchodzić"
+  },
+  "sortir": {
+    "en": "to go out, to exit",
+    "es": "salir",
+    "pt-BR": "sair",
+    "vi": "đi ra, ra ngoài",
+    "id": "keluar",
+    "tr": "çıkmak",
+    "pl": "wychodzić"
+  },
+  "dormir": {
+    "en": "to sleep",
+    "es": "dormir",
+    "pt-BR": "dormir",
+    "vi": "ngủ",
+    "id": "tidur",
+    "tr": "uyumak",
+    "pl": "spać"
+  },
+  "lire": {
+    "en": "to read",
+    "es": "leer",
+    "pt-BR": "ler",
+    "vi": "đọc",
+    "id": "membaca",
+    "tr": "okumak",
+    "pl": "czytać"
+  },
+  "écrire": {
+    "en": "to write",
+    "es": "escribir",
+    "pt-BR": "escrever",
+    "vi": "viết",
+    "id": "menulis",
+    "tr": "yazmak",
+    "pl": "pisać"
+  },
+  "boire": {
+    "en": "to drink",
+    "es": "beber",
+    "pt-BR": "beber",
+    "vi": "uống",
+    "id": "minum",
+    "tr": "içmek",
+    "pl": "pić"
+  },
+  "connaître": {
+    "en": "to know (a person or place)",
+    "es": "conocer",
+    "pt-BR": "conhecer",
+    "vi": "quen, biết",
+    "id": "mengenal, kenal",
+    "tr": "tanımak",
+    "pl": "znać"
+  },
+  "ouvrir": {
+    "en": "to open",
+    "es": "abrir",
+    "pt-BR": "abrir",
+    "vi": "mở",
+    "id": "membuka",
+    "tr": "açmak",
+    "pl": "otwierać"
+  },
+  "plaire": {
+    "en": "to please, to be liked",
+    "es": "gustar, agradar",
+    "pt-BR": "agradar, gostar",
+    "vi": "làm hài lòng, được thích",
+    "id": "menyenangkan, disukai",
+    "tr": "hoşa gitmek, beğenilmek",
+    "pl": "podobać się"
+  },
+  "recevoir": {
+    "en": "to receive",
+    "es": "recibir",
+    "pt-BR": "receber",
+    "vi": "nhận",
+    "id": "menerima",
+    "tr": "almak, kabul etmek",
+    "pl": "otrzymywać"
+  },
+  "comprendre": {
+    "en": "to understand",
+    "es": "comprender, entender",
+    "pt-BR": "compreender, entender",
+    "vi": "hiểu",
+    "id": "mengerti, memahami",
+    "tr": "anlamak",
+    "pl": "rozumieć"
+  },
+  "tenir": {
+    "en": "to hold",
+    "es": "sostener, tener",
+    "pt-BR": "segurar, manter",
+    "vi": "giữ, cầm",
+    "id": "memegang",
+    "tr": "tutmak",
+    "pl": "trzymać"
+  },
+  "croire": {
+    "en": "to believe, to think",
+    "es": "creer",
+    "pt-BR": "acreditar, crer",
+    "vi": "tin, cho rằng",
+    "id": "percaya, mengira",
+    "tr": "inanmak",
+    "pl": "wierzyć, sądzić"
+  },
+  "pleuvoir": {
+    "en": "to rain",
+    "es": "llover",
+    "pt-BR": "chover",
+    "vi": "mưa",
+    "id": "hujan",
+    "tr": "yağmur yağmak",
+    "pl": "padać (o deszczu)"
+  },
+  "courir": {
+    "en": "to run",
+    "es": "correr",
+    "pt-BR": "correr",
+    "vi": "chạy",
+    "id": "berlari",
+    "tr": "koşmak",
+    "pl": "biegać"
+  },
+  "apprendre": {
+    "en": "to learn, to teach",
+    "es": "aprender",
+    "pt-BR": "aprender",
+    "vi": "học, biết tin",
+    "id": "belajar",
+    "tr": "öğrenmek",
+    "pl": "uczyć się"
+  },
+  "reprendre": {
+    "en": "to take again, to resume",
+    "es": "retomar, volver a tomar",
+    "pt-BR": "retomar, pegar de novo",
+    "vi": "lấy lại, tiếp tục",
+    "id": "mengambil lagi, melanjutkan",
+    "tr": "geri almak, devam etmek",
+    "pl": "brać ponownie, wznawiać"
+  },
+  "conduire": {
+    "en": "to drive, to lead",
+    "es": "conducir",
+    "pt-BR": "dirigir, conduzir",
+    "vi": "lái xe, dẫn",
+    "id": "mengemudi, memimpin",
+    "tr": "sürmek, götürmek",
+    "pl": "prowadzić, jechać (autem)"
+  },
+  "revenir": {
+    "en": "to come back, to return",
+    "es": "volver",
+    "pt-BR": "voltar",
+    "vi": "trở lại",
+    "id": "kembali",
+    "tr": "geri dönmek",
+    "pl": "wracać"
+  },
+  "offrir": {
+    "en": "to give (as a gift), to offer",
+    "es": "regalar, ofrecer",
+    "pt-BR": "presentear, oferecer",
+    "vi": "tặng, mời",
+    "id": "memberi, menawarkan",
+    "tr": "hediye etmek, sunmak",
+    "pl": "ofiarować, oferować"
+  },
+  "peindre": {
+    "en": "to paint",
+    "es": "pintar",
+    "pt-BR": "pintar",
+    "vi": "sơn, vẽ",
+    "id": "mengecat, melukis",
+    "tr": "boyamak, resim yapmak",
+    "pl": "malować"
+  },
+  "asseoir": {
+    "en": "to seat; to sit down (s’asseoir)",
+    "es": "sentar; sentarse",
+    "pt-BR": "sentar; sentar-se",
+    "vi": "cho ngồi; ngồi xuống",
+    "id": "mendudukkan; duduk",
+    "tr": "oturtmak; oturmak",
+    "pl": "sadzać; siadać"
+  }
+}

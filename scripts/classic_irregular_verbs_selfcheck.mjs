@@ -9,7 +9,7 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const lang = process.argv[2];
 if (!['fr', 'es', 'de', 'it'].includes(lang)) { console.error('[IRREG-CHECK] язык fr|es|de|it'); process.exit(2); }
 const file = process.argv.includes('--modules')
-  ? path.join(ROOT, 'modules', 'classic-courses', lang, 'irregular_verbs.json')
+  ? path.join(ROOT, 'modules', 'classic-irregular-verbs', `${lang}.json`)
   : path.join(ROOT, 'docs', 'work', 'irregular_verbs', 'draft', lang, 'irregular_verbs.json');
 const data = JSON.parse(fs.readFileSync(file, 'utf8'));
 const errors = [];

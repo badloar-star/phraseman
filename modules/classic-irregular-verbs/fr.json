@@ -1,0 +1,1222 @@
+{
+  "schema": "phraseman.classic-irregular-verbs/1",
+  "lang": "fr",
+  "formsLayout": [
+    {
+      "key": "inf",
+      "label": {
+        "ru": "Инфинитив",
+        "uk": "Інфінітив"
+      }
+    },
+    {
+      "key": "present",
+      "label": {
+        "ru": "Настоящее (je / il)",
+        "uk": "Теперішній (je / il)"
+      }
+    },
+    {
+      "key": "pc",
+      "label": {
+        "ru": "Прошедшее (passé composé)",
+        "uk": "Минулий (passé composé)"
+      }
+    },
+    {
+      "key": "futur",
+      "label": {
+        "ru": "Будущее (je)",
+        "uk": "Майбутній (je)"
+      }
+    }
+  ],
+  "lessons": {
+    "1": [
+      {
+        "lemma": "être",
+        "meaning": {
+          "ru": "быть",
+          "uk": "бути",
+          "en": "to be",
+          "es": "ser, estar",
+          "pt-BR": "ser, estar",
+          "vi": "là, ở, thì",
+          "id": "menjadi, adalah, berada",
+          "tr": "olmak",
+          "pl": "być"
+        },
+        "forms": {
+          "inf": "être",
+          "present": "je suis / il est",
+          "pc": "j’ai été",
+          "futur": "je serai"
+        },
+        "train": {
+          "base": "être",
+          "past": "suis",
+          "pp": "été"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Самый частый глагол: каждая форма своя.",
+          "uk": "Найчастіше дієслово: кожна форма своя."
+        },
+        "examples": [
+          "fr:01:03",
+          "fr:01:04",
+          "fr:01:05"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "lemma": "avoir",
+        "meaning": {
+          "ru": "иметь",
+          "uk": "мати",
+          "en": "to have",
+          "es": "tener, haber",
+          "pt-BR": "ter, haver",
+          "vi": "có",
+          "id": "memiliki, punya",
+          "tr": "sahip olmak",
+          "pl": "mieć"
+        },
+        "forms": {
+          "inf": "avoir",
+          "present": "j’ai / il a",
+          "pc": "j’ai eu",
+          "futur": "j’aurai"
+        },
+        "train": {
+          "base": "avoir",
+          "past": "ai",
+          "pp": "eu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Помогает строить прошедшее время: j’ai mangé.",
+          "uk": "Допомагає будувати минулий час: j’ai mangé."
+        },
+        "examples": [
+          "fr:05:11",
+          "fr:05:12",
+          "fr:05:04"
+        ]
+      }
+    ],
+    "8": [
+      {
+        "lemma": "aller",
+        "meaning": {
+          "ru": "идти, ехать",
+          "uk": "йти, їхати",
+          "en": "to go",
+          "es": "ir",
+          "pt-BR": "ir",
+          "vi": "đi",
+          "id": "pergi",
+          "tr": "gitmek",
+          "pl": "iść, jechać"
+        },
+        "forms": {
+          "inf": "aller",
+          "present": "je vais / il va",
+          "pc": "je suis allé",
+          "futur": "j’irai"
+        },
+        "train": {
+          "base": "aller",
+          "past": "vais",
+          "pp": "allé"
+        },
+        "aux": "être",
+        "note": {
+          "ru": "Три разные основы: v-, all-, ir-.",
+          "uk": "Три різні основи: v-, all-, ir-."
+        },
+        "examples": [
+          "fr:08:43",
+          "fr:15:02"
+        ]
+      },
+      {
+        "lemma": "faire",
+        "meaning": {
+          "ru": "делать",
+          "uk": "робити",
+          "en": "to do, to make",
+          "es": "hacer",
+          "pt-BR": "fazer",
+          "vi": "làm",
+          "id": "melakukan, membuat",
+          "tr": "yapmak",
+          "pl": "robić"
+        },
+        "forms": {
+          "inf": "faire",
+          "present": "je fais / il fait",
+          "pc": "j’ai fait",
+          "futur": "je ferai"
+        },
+        "train": {
+          "base": "faire",
+          "past": "fais",
+          "pp": "fait"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "С «vous»: vous faites.",
+          "uk": "З «vous»: vous faites."
+        },
+        "examples": [
+          "fr:08:48",
+          "fr:20:21"
+        ]
+      },
+      {
+        "lemma": "vouloir",
+        "meaning": {
+          "ru": "хотеть",
+          "uk": "хотіти",
+          "en": "to want",
+          "es": "querer",
+          "pt-BR": "querer",
+          "vi": "muốn",
+          "id": "ingin, mau",
+          "tr": "istemek",
+          "pl": "chcieć"
+        },
+        "forms": {
+          "inf": "vouloir",
+          "present": "je veux / il veut",
+          "pc": "j’ai voulu",
+          "futur": "je voudrai"
+        },
+        "train": {
+          "base": "vouloir",
+          "past": "veux",
+          "pp": "voulu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Вежливо: je voudrais — «я хотел бы».",
+          "uk": "Чемно: je voudrais — «я хотів би»."
+        },
+        "examples": [
+          "fr:08:34",
+          "fr:25:01"
+        ]
+      },
+      {
+        "lemma": "venir",
+        "meaning": {
+          "ru": "приходить",
+          "uk": "приходити",
+          "en": "to come",
+          "es": "venir",
+          "pt-BR": "vir",
+          "vi": "đến",
+          "id": "datang",
+          "tr": "gelmek",
+          "pl": "przychodzić"
+        },
+        "forms": {
+          "inf": "venir",
+          "present": "je viens / il vient",
+          "pc": "je suis venu",
+          "futur": "je viendrai"
+        },
+        "train": {
+          "base": "venir",
+          "past": "viens",
+          "pp": "venu"
+        },
+        "aux": "être",
+        "note": {
+          "ru": "Корень меняется: viens, venons, viennent.",
+          "uk": "Корінь змінюється: viens, venons, viennent."
+        },
+        "examples": [
+          "fr:08:36",
+          "fr:14:03"
+        ]
+      },
+      {
+        "lemma": "prendre",
+        "meaning": {
+          "ru": "брать",
+          "uk": "брати",
+          "en": "to take",
+          "es": "tomar, coger",
+          "pt-BR": "pegar, tomar",
+          "vi": "lấy",
+          "id": "mengambil",
+          "tr": "almak",
+          "pl": "brać"
+        },
+        "forms": {
+          "inf": "prendre",
+          "present": "je prends / il prend",
+          "pc": "j’ai pris",
+          "futur": "je prendrai"
+        },
+        "train": {
+          "base": "prendre",
+          "past": "prends",
+          "pp": "pris"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Корень меняется: prends, prenons, prennent.",
+          "uk": "Корінь змінюється: prends, prenons, prennent."
+        },
+        "examples": [
+          "fr:08:38",
+          "fr:18:21"
+        ]
+      },
+      {
+        "lemma": "partir",
+        "meaning": {
+          "ru": "уезжать",
+          "uk": "їхати, відʼїжджати",
+          "en": "to leave, to depart",
+          "es": "partir, irse",
+          "pt-BR": "partir, ir embora",
+          "vi": "rời đi, khởi hành",
+          "id": "pergi, berangkat",
+          "tr": "ayrılmak, gitmek",
+          "pl": "wyjeżdżać, odchodzić"
+        },
+        "forms": {
+          "inf": "partir",
+          "present": "je pars / il part",
+          "pc": "je suis parti",
+          "futur": "je partirai"
+        },
+        "train": {
+          "base": "partir",
+          "past": "pars",
+          "pp": "parti"
+        },
+        "aux": "être",
+        "note": {
+          "ru": "Корень меняется: pars, part, partons.",
+          "uk": "Корінь змінюється: pars, part, partons."
+        },
+        "examples": [
+          "fr:08:22",
+          "fr:08:41"
+        ]
+      },
+      {
+        "lemma": "ouvrir",
+        "meaning": {
+          "ru": "открывать",
+          "uk": "відчиняти",
+          "en": "to open",
+          "es": "abrir",
+          "pt-BR": "abrir",
+          "vi": "mở",
+          "id": "membuka",
+          "tr": "açmak",
+          "pl": "otwierać"
+        },
+        "forms": {
+          "inf": "ouvrir",
+          "present": "j’ouvre / il ouvre",
+          "pc": "j’ai ouvert",
+          "futur": "j’ouvrirai"
+        },
+        "train": {
+          "base": "ouvrir",
+          "past": "ouvre",
+          "pp": "ouvert"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Окончания как у глаголов на -er: j’ouvre, tu ouvres.",
+          "uk": "Закінчення як у дієслів на -er: j’ouvre, tu ouvres."
+        },
+        "examples": [
+          "fr:08:27",
+          "fr:15:10"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "lemma": "apprendre",
+        "meaning": {
+          "ru": "учить, узнавать",
+          "uk": "вчити, дізнаватися",
+          "en": "to learn, to teach",
+          "es": "aprender",
+          "pt-BR": "aprender",
+          "vi": "học, biết tin",
+          "id": "belajar",
+          "tr": "öğrenmek",
+          "pl": "uczyć się"
+        },
+        "forms": {
+          "inf": "apprendre",
+          "present": "j’apprends / il apprend",
+          "pc": "j’ai appris",
+          "futur": "j’apprendrai"
+        },
+        "train": {
+          "base": "apprendre",
+          "past": "apprends",
+          "pp": "appris"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Как prendre: apprends, apprenons, appris.",
+          "uk": "Як prendre: apprends, apprenons, appris."
+        },
+        "examples": [
+          "fr:09:40",
+          "fr:14:49"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "lemma": "mettre",
+        "meaning": {
+          "ru": "класть, надевать",
+          "uk": "класти, одягати",
+          "en": "to put, to put on",
+          "es": "poner",
+          "pt-BR": "pôr, colocar",
+          "vi": "đặt, mặc",
+          "id": "meletakkan, memakai",
+          "tr": "koymak, giymek",
+          "pl": "kłaść, zakładać"
+        },
+        "forms": {
+          "inf": "mettre",
+          "present": "je mets / il met",
+          "pc": "j’ai mis",
+          "futur": "je mettrai"
+        },
+        "train": {
+          "base": "mettre",
+          "past": "mets",
+          "pp": "mis"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Форма mis; в «il» только одно «t»: il met.",
+          "uk": "Форма mis; в «il» лише одне «t»: il met."
+        },
+        "examples": [
+          "fr:12:25",
+          "fr:18:29"
+        ]
+      },
+      {
+        "lemma": "boire",
+        "meaning": {
+          "ru": "пить",
+          "uk": "пити",
+          "en": "to drink",
+          "es": "beber",
+          "pt-BR": "beber",
+          "vi": "uống",
+          "id": "minum",
+          "tr": "içmek",
+          "pl": "pić"
+        },
+        "forms": {
+          "inf": "boire",
+          "present": "je bois / il boit",
+          "pc": "j’ai bu",
+          "futur": "je boirai"
+        },
+        "train": {
+          "base": "boire",
+          "past": "bois",
+          "pp": "bu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Корень меняется: bois, buvons, boivent.",
+          "uk": "Корінь змінюється: bois, buvons, boivent."
+        },
+        "examples": [
+          "fr:12:22",
+          "fr:12:24",
+          "fr:12:23"
+        ]
+      }
+    ],
+    "14": [
+      {
+        "lemma": "pouvoir",
+        "meaning": {
+          "ru": "мочь",
+          "uk": "могти",
+          "en": "can, to be able to",
+          "es": "poder",
+          "pt-BR": "poder",
+          "vi": "có thể",
+          "id": "dapat, bisa",
+          "tr": "-ebilmek, yapabilmek",
+          "pl": "móc"
+        },
+        "forms": {
+          "inf": "pouvoir",
+          "present": "je peux / il peut",
+          "pc": "j’ai pu",
+          "futur": "je pourrai"
+        },
+        "train": {
+          "base": "pouvoir",
+          "past": "peux",
+          "pp": "pu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Корень меняется: peux, pouvons, peuvent.",
+          "uk": "Корінь змінюється: peux, pouvons, peuvent."
+        },
+        "examples": [
+          "fr:14:01",
+          "fr:14:03",
+          "fr:14:05"
+        ]
+      },
+      {
+        "lemma": "savoir",
+        "meaning": {
+          "ru": "знать, уметь",
+          "uk": "знати, вміти",
+          "en": "to know (a fact), to know how to",
+          "es": "saber",
+          "pt-BR": "saber",
+          "vi": "biết",
+          "id": "tahu, bisa",
+          "tr": "bilmek",
+          "pl": "wiedzieć, umieć"
+        },
+        "forms": {
+          "inf": "savoir",
+          "present": "je sais / il sait",
+          "pc": "j’ai su",
+          "futur": "je saurai"
+        },
+        "train": {
+          "base": "savoir",
+          "past": "sais",
+          "pp": "su"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Знать факт или уметь что-то делать.",
+          "uk": "Знати факт або вміти щось робити."
+        },
+        "examples": [
+          "fr:14:44",
+          "fr:29:12"
+        ]
+      },
+      {
+        "lemma": "devoir",
+        "meaning": {
+          "ru": "быть должным",
+          "uk": "бути повинним",
+          "en": "must, to have to, to owe",
+          "es": "deber",
+          "pt-BR": "dever",
+          "vi": "phải, nợ",
+          "id": "harus, berutang",
+          "tr": "zorunda olmak, borçlu olmak",
+          "pl": "musieć, być winnym"
+        },
+        "forms": {
+          "inf": "devoir",
+          "present": "je dois / il doit",
+          "pc": "j’ai dû",
+          "futur": "je devrai"
+        },
+        "train": {
+          "base": "devoir",
+          "past": "dois",
+          "pp": "dû"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Корень меняется: dois, devons, doivent.",
+          "uk": "Корінь змінюється: dois, devons, doivent."
+        },
+        "examples": [
+          "fr:14:07",
+          "fr:14:09",
+          "fr:14:10"
+        ]
+      },
+      {
+        "lemma": "falloir",
+        "meaning": {
+          "ru": "нужно, надо",
+          "uk": "потрібно, треба",
+          "en": "to be necessary",
+          "es": "hacer falta, ser necesario",
+          "pt-BR": "ser necessário, precisar",
+          "vi": "cần, phải",
+          "id": "perlu, harus",
+          "tr": "gerekmek",
+          "pl": "trzeba, być potrzebnym"
+        },
+        "forms": {
+          "inf": "falloir",
+          "present": "il faut",
+          "pc": "il a fallu",
+          "futur": "il faudra"
+        },
+        "train": {
+          "base": "falloir",
+          "past": "faut",
+          "pp": "fallu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Только в форме «il»: il faut — «нужно».",
+          "uk": "Лише у формі «il»: il faut — «потрібно»."
+        },
+        "examples": [
+          "fr:14:25",
+          "fr:28:46"
+        ]
+      },
+      {
+        "lemma": "lire",
+        "meaning": {
+          "ru": "читать",
+          "uk": "читати",
+          "en": "to read",
+          "es": "leer",
+          "pt-BR": "ler",
+          "vi": "đọc",
+          "id": "membaca",
+          "tr": "okumak",
+          "pl": "czytać"
+        },
+        "forms": {
+          "inf": "lire",
+          "present": "je lis / il lit",
+          "pc": "j’ai lu",
+          "futur": "je lirai"
+        },
+        "train": {
+          "base": "lire",
+          "past": "lis",
+          "pp": "lu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Форма lu — очень короткая.",
+          "uk": "Форма lu — дуже коротка."
+        },
+        "examples": [
+          "fr:14:40",
+          "fr:18:23"
+        ]
+      },
+      {
+        "lemma": "asseoir",
+        "meaning": {
+          "ru": "сажать; садиться (s’asseoir)",
+          "uk": "садовити; сідати (s’asseoir)",
+          "en": "to seat; to sit down (s’asseoir)",
+          "es": "sentar; sentarse",
+          "pt-BR": "sentar; sentar-se",
+          "vi": "cho ngồi; ngồi xuống",
+          "id": "mendudukkan; duduk",
+          "tr": "oturtmak; oturmak",
+          "pl": "sadzać; siadać"
+        },
+        "forms": {
+          "inf": "s’asseoir",
+          "present": "je m’assieds / il s’assied",
+          "pc": "je me suis assis",
+          "futur": "je m’assiérai"
+        },
+        "train": {
+          "base": "asseoir",
+          "past": "assieds",
+          "pp": "assis"
+        },
+        "aux": "être",
+        "note": {
+          "ru": "Всегда с «se»: s’asseoir — «садиться».",
+          "uk": "Завжди з «se»: s’asseoir — «сідати»."
+        },
+        "examples": [
+          "fr:14:13"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "lemma": "voir",
+        "meaning": {
+          "ru": "видеть",
+          "uk": "бачити",
+          "en": "to see",
+          "es": "ver",
+          "pt-BR": "ver",
+          "vi": "thấy, nhìn",
+          "id": "melihat",
+          "tr": "görmek",
+          "pl": "widzieć"
+        },
+        "forms": {
+          "inf": "voir",
+          "present": "je vois / il voit",
+          "pc": "j’ai vu",
+          "futur": "je verrai"
+        },
+        "train": {
+          "base": "voir",
+          "past": "vois",
+          "pp": "vu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Будущее время с другим корнем: je verrai.",
+          "uk": "Майбутній час з іншим коренем: je verrai."
+        },
+        "examples": [
+          "fr:15:21",
+          "fr:22:01"
+        ]
+      },
+      {
+        "lemma": "sortir",
+        "meaning": {
+          "ru": "выходить",
+          "uk": "виходити",
+          "en": "to go out, to exit",
+          "es": "salir",
+          "pt-BR": "sair",
+          "vi": "đi ra, ra ngoài",
+          "id": "keluar",
+          "tr": "çıkmak",
+          "pl": "wychodzić"
+        },
+        "forms": {
+          "inf": "sortir",
+          "present": "je sors / il sort",
+          "pc": "je suis sorti",
+          "futur": "je sortirai"
+        },
+        "train": {
+          "base": "sortir",
+          "past": "sors",
+          "pp": "sorti"
+        },
+        "aux": "être",
+        "note": {
+          "ru": "Корень меняется: sors, sort, sortons.",
+          "uk": "Корінь змінюється: sors, sort, sortons."
+        },
+        "examples": [
+          "fr:15:31",
+          "fr:19:23"
+        ]
+      },
+      {
+        "lemma": "dormir",
+        "meaning": {
+          "ru": "спать",
+          "uk": "спати",
+          "en": "to sleep",
+          "es": "dormir",
+          "pt-BR": "dormir",
+          "vi": "ngủ",
+          "id": "tidur",
+          "tr": "uyumak",
+          "pl": "spać"
+        },
+        "forms": {
+          "inf": "dormir",
+          "present": "je dors / il dort",
+          "pc": "j’ai dormi",
+          "futur": "je dormirai"
+        },
+        "train": {
+          "base": "dormir",
+          "past": "dors",
+          "pp": "dormi"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Корень меняется: dors, dort, dormons.",
+          "uk": "Корінь змінюється: dors, dort, dormons."
+        },
+        "examples": [
+          "fr:15:30",
+          "fr:26:25"
+        ]
+      },
+      {
+        "lemma": "pleuvoir",
+        "meaning": {
+          "ru": "идти (о дожде)",
+          "uk": "іти (про дощ)",
+          "en": "to rain",
+          "es": "llover",
+          "pt-BR": "chover",
+          "vi": "mưa",
+          "id": "hujan",
+          "tr": "yağmur yağmak",
+          "pl": "padać (o deszczu)"
+        },
+        "forms": {
+          "inf": "pleuvoir",
+          "present": "il pleut",
+          "pc": "il a plu",
+          "futur": "il pleuvra"
+        },
+        "train": {
+          "base": "pleuvoir",
+          "past": "pleut",
+          "pp": "plu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Только в форме «il»: il pleut — «идёт дождь».",
+          "uk": "Лише у формі «il»: il pleut — «йде дощ»."
+        },
+        "examples": [
+          "fr:15:33",
+          "fr:20:23"
+        ]
+      },
+      {
+        "lemma": "conduire",
+        "meaning": {
+          "ru": "водить, вести",
+          "uk": "водити, вести",
+          "en": "to drive, to lead",
+          "es": "conducir",
+          "pt-BR": "dirigir, conduzir",
+          "vi": "lái xe, dẫn",
+          "id": "mengemudi, memimpin",
+          "tr": "sürmek, götürmek",
+          "pl": "prowadzić, jechać (autem)"
+        },
+        "forms": {
+          "inf": "conduire",
+          "present": "je conduis / il conduit",
+          "pc": "j’ai conduit",
+          "futur": "je conduirai"
+        },
+        "train": {
+          "base": "conduire",
+          "past": "conduis",
+          "pp": "conduit"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Во множественном числе появляется «s»: nous conduisons.",
+          "uk": "У множині зʼявляється «s»: nous conduisons."
+        },
+        "examples": [
+          "fr:15:28",
+          "fr:26:24"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "lemma": "plaire",
+        "meaning": {
+          "ru": "нравиться",
+          "uk": "подобатися",
+          "en": "to please, to be liked",
+          "es": "gustar, agradar",
+          "pt-BR": "agradar, gostar",
+          "vi": "làm hài lòng, được thích",
+          "id": "menyenangkan, disukai",
+          "tr": "hoşa gitmek, beğenilmek",
+          "pl": "podobać się"
+        },
+        "forms": {
+          "inf": "plaire",
+          "present": "je plais / il plaît",
+          "pc": "j’ai plu",
+          "futur": "je plairai"
+        },
+        "train": {
+          "base": "plaire",
+          "past": "plais",
+          "pp": "plu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Вежливая просьба: s’il vous plaît.",
+          "uk": "Чемне прохання: s’il vous plaît."
+        },
+        "examples": [
+          "fr:16:21"
+        ]
+      }
+    ],
+    "18": [
+      {
+        "lemma": "dire",
+        "meaning": {
+          "ru": "говорить",
+          "uk": "казати",
+          "en": "to say, to tell",
+          "es": "decir",
+          "pt-BR": "dizer",
+          "vi": "nói",
+          "id": "mengatakan",
+          "tr": "söylemek",
+          "pl": "mówić, powiedzieć"
+        },
+        "forms": {
+          "inf": "dire",
+          "present": "je dis / il dit",
+          "pc": "j’ai dit",
+          "futur": "je dirai"
+        },
+        "train": {
+          "base": "dire",
+          "past": "dis",
+          "pp": "dit"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "С «vous»: vous dites.",
+          "uk": "З «vous»: vous dites."
+        },
+        "examples": [
+          "fr:18:30",
+          "fr:23:33"
+        ]
+      },
+      {
+        "lemma": "écrire",
+        "meaning": {
+          "ru": "писать",
+          "uk": "писати",
+          "en": "to write",
+          "es": "escribir",
+          "pt-BR": "escrever",
+          "vi": "viết",
+          "id": "menulis",
+          "tr": "yazmak",
+          "pl": "pisać"
+        },
+        "forms": {
+          "inf": "écrire",
+          "present": "j’écris / il écrit",
+          "pc": "j’ai écrit",
+          "futur": "j’écrirai"
+        },
+        "train": {
+          "base": "écrire",
+          "past": "écris",
+          "pp": "écrit"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Во множественном числе появляется «v»: nous écrivons.",
+          "uk": "У множині зʼявляється «v»: nous écrivons."
+        },
+        "examples": [
+          "fr:18:26",
+          "fr:23:07"
+        ]
+      },
+      {
+        "lemma": "comprendre",
+        "meaning": {
+          "ru": "понимать",
+          "uk": "розуміти",
+          "en": "to understand",
+          "es": "comprender, entender",
+          "pt-BR": "compreender, entender",
+          "vi": "hiểu",
+          "id": "mengerti, memahami",
+          "tr": "anlamak",
+          "pl": "rozumieć"
+        },
+        "forms": {
+          "inf": "comprendre",
+          "present": "je comprends / il comprend",
+          "pc": "j’ai compris",
+          "futur": "je comprendrai"
+        },
+        "train": {
+          "base": "comprendre",
+          "past": "comprends",
+          "pp": "compris"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Как prendre: comprends, comprenons, compris.",
+          "uk": "Як prendre: comprends, comprenons, compris."
+        },
+        "examples": [
+          "fr:18:35",
+          "fr:29:26"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "lemma": "connaître",
+        "meaning": {
+          "ru": "знать (кого-то)",
+          "uk": "знати (когось)",
+          "en": "to know (a person or place)",
+          "es": "conocer",
+          "pt-BR": "conhecer",
+          "vi": "quen, biết",
+          "id": "mengenal, kenal",
+          "tr": "tanımak",
+          "pl": "znać"
+        },
+        "forms": {
+          "inf": "connaître",
+          "present": "je connais / il connaît",
+          "pc": "j’ai connu",
+          "futur": "je connaîtrai"
+        },
+        "train": {
+          "base": "connaître",
+          "past": "connais",
+          "pp": "connu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Знать человека или место; факт — savoir.",
+          "uk": "Знати людину або місце; факт — savoir."
+        },
+        "examples": [
+          "fr:20:31",
+          "fr:22:04"
+        ]
+      }
+    ],
+    "21": [
+      {
+        "lemma": "courir",
+        "meaning": {
+          "ru": "бежать",
+          "uk": "бігти",
+          "en": "to run",
+          "es": "correr",
+          "pt-BR": "correr",
+          "vi": "chạy",
+          "id": "berlari",
+          "tr": "koşmak",
+          "pl": "biegać"
+        },
+        "forms": {
+          "inf": "courir",
+          "present": "je cours / il court",
+          "pc": "j’ai couru",
+          "futur": "je courrai"
+        },
+        "train": {
+          "base": "courir",
+          "past": "cours",
+          "pp": "couru"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "В будущем времени два «r»: je courrai.",
+          "uk": "У майбутньому часі дві «r»: je courrai."
+        },
+        "examples": [
+          "fr:21:37",
+          "fr:32:11"
+        ]
+      }
+    ],
+    "23": [
+      {
+        "lemma": "offrir",
+        "meaning": {
+          "ru": "дарить, предлагать",
+          "uk": "дарувати, пропонувати",
+          "en": "to give (as a gift), to offer",
+          "es": "regalar, ofrecer",
+          "pt-BR": "presentear, oferecer",
+          "vi": "tặng, mời",
+          "id": "memberi, menawarkan",
+          "tr": "hediye etmek, sunmak",
+          "pl": "ofiarować, oferować"
+        },
+        "forms": {
+          "inf": "offrir",
+          "present": "j’offre / il offre",
+          "pc": "j’ai offert",
+          "futur": "j’offrirai"
+        },
+        "train": {
+          "base": "offrir",
+          "past": "offre",
+          "pp": "offert"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Окончания как у глаголов на -er: j’offre; в прошедшем offert.",
+          "uk": "Закінчення як у дієслів на -er: j’offre; у минулому offert."
+        },
+        "examples": [
+          "fr:23:46"
+        ]
+      }
+    ],
+    "25": [
+      {
+        "lemma": "reprendre",
+        "meaning": {
+          "ru": "брать снова, продолжать",
+          "uk": "брати знову, продовжувати",
+          "en": "to take again, to resume",
+          "es": "retomar, volver a tomar",
+          "pt-BR": "retomar, pegar de novo",
+          "vi": "lấy lại, tiếp tục",
+          "id": "mengambil lagi, melanjutkan",
+          "tr": "geri almak, devam etmek",
+          "pl": "brać ponownie, wznawiać"
+        },
+        "forms": {
+          "inf": "reprendre",
+          "present": "je reprends / il reprend",
+          "pc": "j’ai repris",
+          "futur": "je reprendrai"
+        },
+        "train": {
+          "base": "reprendre",
+          "past": "reprends",
+          "pp": "repris"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Как prendre: reprends, reprenons, repris.",
+          "uk": "Як prendre: reprends, reprenons, repris."
+        },
+        "examples": [
+          "fr:25:36",
+          "fr:31:39"
+        ]
+      }
+    ],
+    "27": [
+      {
+        "lemma": "recevoir",
+        "meaning": {
+          "ru": "получать",
+          "uk": "отримувати",
+          "en": "to receive",
+          "es": "recibir",
+          "pt-BR": "receber",
+          "vi": "nhận",
+          "id": "menerima",
+          "tr": "almak, kabul etmek",
+          "pl": "otrzymywać"
+        },
+        "forms": {
+          "inf": "recevoir",
+          "present": "je reçois / il reçoit",
+          "pc": "j’ai reçu",
+          "futur": "je recevrai"
+        },
+        "train": {
+          "base": "recevoir",
+          "past": "reçois",
+          "pp": "reçu"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Перед «o» и «u» у «ç» есть хвостик: reçois.",
+          "uk": "Перед «o» і «u» у «ç» є хвостик: reçois."
+        },
+        "examples": [
+          "fr:27:37"
+        ]
+      },
+      {
+        "lemma": "revenir",
+        "meaning": {
+          "ru": "возвращаться",
+          "uk": "повертатися",
+          "en": "to come back, to return",
+          "es": "volver",
+          "pt-BR": "voltar",
+          "vi": "trở lại",
+          "id": "kembali",
+          "tr": "geri dönmek",
+          "pl": "wracać"
+        },
+        "forms": {
+          "inf": "revenir",
+          "present": "je reviens / il revient",
+          "pc": "je suis revenu",
+          "futur": "je reviendrai"
+        },
+        "train": {
+          "base": "revenir",
+          "past": "reviens",
+          "pp": "revenu"
+        },
+        "aux": "être",
+        "note": {
+          "ru": "Как venir: reviens, revenons, reviennent.",
+          "uk": "Як venir: reviens, revenons, reviennent."
+        },
+        "examples": [
+          "fr:27:07",
+          "fr:32:46"
+        ]
+      }
+    ],
+    "31": [
+      {
+        "lemma": "peindre",
+        "meaning": {
+          "ru": "красить, рисовать",
+          "uk": "фарбувати, малювати",
+          "en": "to paint",
+          "es": "pintar",
+          "pt-BR": "pintar",
+          "vi": "sơn, vẽ",
+          "id": "mengecat, melukis",
+          "tr": "boyamak, resim yapmak",
+          "pl": "malować"
+        },
+        "forms": {
+          "inf": "peindre",
+          "present": "je peins / il peint",
+          "pc": "j’ai peint",
+          "futur": "je peindrai"
+        },
+        "train": {
+          "base": "peindre",
+          "past": "peins",
+          "pp": "peint"
+        },
+        "aux": "avoir",
+        "note": {
+          "ru": "Во множественном числе появляется «gn»: nous peignons.",
+          "uk": "У множині зʼявляється «gn»: nous peignons."
+        },
+        "examples": [
+          "fr:31:43"
+        ]
+      }
+    ]
+  }
+}

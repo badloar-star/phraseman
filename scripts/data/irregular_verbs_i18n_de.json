@@ -1,0 +1,794 @@
+{
+  "sein": {
+    "en": "to be",
+    "es": "ser, estar",
+    "pt-BR": "ser, estar",
+    "vi": "thì, là",
+    "id": "adalah, ada",
+    "tr": "olmak",
+    "pl": "być"
+  },
+  "haben": {
+    "en": "to have",
+    "es": "tener, haber",
+    "pt-BR": "ter, haver",
+    "vi": "có",
+    "id": "memiliki, punya",
+    "tr": "sahip olmak",
+    "pl": "mieć"
+  },
+  "werden": {
+    "en": "to become",
+    "es": "volverse, llegar a ser",
+    "pt-BR": "tornar-se, ficar",
+    "vi": "trở nên, trở thành",
+    "id": "menjadi",
+    "tr": "olmak, dönüşmek",
+    "pl": "stawać się, zostać"
+  },
+  "kommen": {
+    "en": "to come",
+    "es": "venir",
+    "pt-BR": "vir",
+    "vi": "đến",
+    "id": "datang",
+    "tr": "gelmek",
+    "pl": "przychodzić"
+  },
+  "gehen": {
+    "en": "to go, to walk",
+    "es": "ir, andar",
+    "pt-BR": "ir, andar",
+    "vi": "đi",
+    "id": "pergi, berjalan",
+    "tr": "gitmek, yürümek",
+    "pl": "iść, chodzić"
+  },
+  "fahren": {
+    "en": "to drive, to travel",
+    "es": "ir (en vehículo), conducir",
+    "pt-BR": "ir (de veículo), dirigir",
+    "vi": "đi (bằng xe), lái xe",
+    "id": "berkendara, bepergian",
+    "tr": "gitmek (araçla), sürmek",
+    "pl": "jechać"
+  },
+  "essen": {
+    "en": "to eat",
+    "es": "comer",
+    "pt-BR": "comer",
+    "vi": "ăn",
+    "id": "makan",
+    "tr": "yemek yemek",
+    "pl": "jeść"
+  },
+  "nehmen": {
+    "en": "to take",
+    "es": "tomar, coger",
+    "pt-BR": "pegar, tomar",
+    "vi": "lấy, cầm",
+    "id": "mengambil",
+    "tr": "almak",
+    "pl": "brać"
+  },
+  "geben": {
+    "en": "to give",
+    "es": "dar",
+    "pt-BR": "dar",
+    "vi": "cho, đưa",
+    "id": "memberi",
+    "tr": "vermek",
+    "pl": "dawać"
+  },
+  "sehen": {
+    "en": "to see",
+    "es": "ver",
+    "pt-BR": "ver",
+    "vi": "nhìn thấy",
+    "id": "melihat",
+    "tr": "görmek",
+    "pl": "widzieć"
+  },
+  "lesen": {
+    "en": "to read",
+    "es": "leer",
+    "pt-BR": "ler",
+    "vi": "đọc",
+    "id": "membaca",
+    "tr": "okumak",
+    "pl": "czytać"
+  },
+  "sprechen": {
+    "en": "to speak",
+    "es": "hablar",
+    "pt-BR": "falar",
+    "vi": "nói",
+    "id": "berbicara",
+    "tr": "konuşmak",
+    "pl": "mówić"
+  },
+  "helfen": {
+    "en": "to help",
+    "es": "ayudar",
+    "pt-BR": "ajudar",
+    "vi": "giúp đỡ",
+    "id": "membantu",
+    "tr": "yardım etmek",
+    "pl": "pomagać"
+  },
+  "schreiben": {
+    "en": "to write",
+    "es": "escribir",
+    "pt-BR": "escrever",
+    "vi": "viết",
+    "id": "menulis",
+    "tr": "yazmak",
+    "pl": "pisać"
+  },
+  "finden": {
+    "en": "to find",
+    "es": "encontrar",
+    "pt-BR": "encontrar",
+    "vi": "tìm thấy",
+    "id": "menemukan",
+    "tr": "bulmak",
+    "pl": "znajdować"
+  },
+  "bleiben": {
+    "en": "to stay, to remain",
+    "es": "quedarse",
+    "pt-BR": "ficar, permanecer",
+    "vi": "ở lại",
+    "id": "tinggal, tetap",
+    "tr": "kalmak",
+    "pl": "zostawać"
+  },
+  "stehen": {
+    "en": "to stand",
+    "es": "estar de pie",
+    "pt-BR": "estar em pé",
+    "vi": "đứng",
+    "id": "berdiri",
+    "tr": "ayakta durmak",
+    "pl": "stać"
+  },
+  "liegen": {
+    "en": "to lie (be lying)",
+    "es": "estar tumbado, yacer",
+    "pt-BR": "estar deitado, ficar",
+    "vi": "nằm",
+    "id": "terbaring, berada",
+    "tr": "yatmak, bulunmak",
+    "pl": "leżeć"
+  },
+  "sitzen": {
+    "en": "to sit",
+    "es": "estar sentado",
+    "pt-BR": "estar sentado",
+    "vi": "ngồi",
+    "id": "duduk",
+    "tr": "oturmak",
+    "pl": "siedzieć"
+  },
+  "trinken": {
+    "en": "to drink",
+    "es": "beber",
+    "pt-BR": "beber",
+    "vi": "uống",
+    "id": "minum",
+    "tr": "içmek",
+    "pl": "pić"
+  },
+  "schlafen": {
+    "en": "to sleep",
+    "es": "dormir",
+    "pt-BR": "dormir",
+    "vi": "ngủ",
+    "id": "tidur",
+    "tr": "uyumak",
+    "pl": "spać"
+  },
+  "tragen": {
+    "en": "to carry, to wear",
+    "es": "llevar, cargar",
+    "pt-BR": "carregar, usar",
+    "vi": "mang, mặc",
+    "id": "membawa, memakai",
+    "tr": "taşımak, giymek",
+    "pl": "nosić"
+  },
+  "halten": {
+    "en": "to hold",
+    "es": "sostener, parar",
+    "pt-BR": "segurar, parar",
+    "vi": "giữ, cầm",
+    "id": "memegang",
+    "tr": "tutmak",
+    "pl": "trzymać"
+  },
+  "laden": {
+    "en": "to load, to charge",
+    "es": "cargar",
+    "pt-BR": "carregar",
+    "vi": "chất, sạc",
+    "id": "memuat, mengisi daya",
+    "tr": "yüklemek, şarj etmek",
+    "pl": "ładować"
+  },
+  "heißen": {
+    "en": "to be called",
+    "es": "llamarse",
+    "pt-BR": "chamar-se",
+    "vi": "tên là, được gọi là",
+    "id": "bernama",
+    "tr": "adı ... olmak",
+    "pl": "nazywać się"
+  },
+  "bringen": {
+    "en": "to bring",
+    "es": "traer, llevar",
+    "pt-BR": "trazer, levar",
+    "vi": "mang đến",
+    "id": "membawa",
+    "tr": "getirmek",
+    "pl": "przynosić"
+  },
+  "denken": {
+    "en": "to think",
+    "es": "pensar",
+    "pt-BR": "pensar",
+    "vi": "nghĩ",
+    "id": "berpikir",
+    "tr": "düşünmek",
+    "pl": "myśleć"
+  },
+  "kennen": {
+    "en": "to know (a person or place)",
+    "es": "conocer",
+    "pt-BR": "conhecer",
+    "vi": "biết, quen",
+    "id": "mengenal",
+    "tr": "tanımak",
+    "pl": "znać"
+  },
+  "wissen": {
+    "en": "to know (a fact)",
+    "es": "saber",
+    "pt-BR": "saber",
+    "vi": "biết",
+    "id": "tahu",
+    "tr": "bilmek",
+    "pl": "wiedzieć"
+  },
+  "können": {
+    "en": "can, to be able to",
+    "es": "poder, saber",
+    "pt-BR": "poder, saber",
+    "vi": "có thể, biết",
+    "id": "bisa, dapat",
+    "tr": "-ebilmek",
+    "pl": "móc, umieć"
+  },
+  "müssen": {
+    "en": "must, to have to",
+    "es": "tener que, deber",
+    "pt-BR": "ter que, dever",
+    "vi": "phải",
+    "id": "harus",
+    "tr": "zorunda olmak",
+    "pl": "musieć"
+  },
+  "dürfen": {
+    "en": "may, to be allowed to",
+    "es": "poder, estar permitido",
+    "pt-BR": "poder, ter permissão",
+    "vi": "được phép",
+    "id": "boleh",
+    "tr": "izinli olmak",
+    "pl": "wolno, móc"
+  },
+  "wollen": {
+    "en": "to want",
+    "es": "querer",
+    "pt-BR": "querer",
+    "vi": "muốn",
+    "id": "ingin, mau",
+    "tr": "istemek",
+    "pl": "chcieć"
+  },
+  "sollen": {
+    "en": "should, to be supposed to",
+    "es": "deber, tener que",
+    "pt-BR": "dever",
+    "vi": "nên, phải",
+    "id": "sebaiknya, harus",
+    "tr": "-meli, gerekmek",
+    "pl": "powinien, mieć coś zrobić"
+  },
+  "mögen": {
+    "en": "to like",
+    "es": "gustar, querer",
+    "pt-BR": "gostar",
+    "vi": "thích",
+    "id": "suka",
+    "tr": "sevmek, hoşlanmak",
+    "pl": "lubić"
+  },
+  "tun": {
+    "en": "to do",
+    "es": "hacer",
+    "pt-BR": "fazer",
+    "vi": "làm",
+    "id": "melakukan",
+    "tr": "yapmak",
+    "pl": "robić"
+  },
+  "lassen": {
+    "en": "to let, to leave",
+    "es": "dejar, permitir",
+    "pt-BR": "deixar, permitir",
+    "vi": "để, cho phép",
+    "id": "membiarkan, meninggalkan",
+    "tr": "bırakmak, izin vermek",
+    "pl": "pozwalać, zostawiać"
+  },
+  "rufen": {
+    "en": "to call, to shout",
+    "es": "llamar, gritar",
+    "pt-BR": "chamar, gritar",
+    "vi": "gọi, hét",
+    "id": "memanggil, berteriak",
+    "tr": "çağırmak, bağırmak",
+    "pl": "wołać"
+  },
+  "anrufen": {
+    "en": "to phone, to call",
+    "es": "llamar por teléfono",
+    "pt-BR": "telefonar, ligar",
+    "vi": "gọi điện thoại",
+    "id": "menelepon",
+    "tr": "telefon etmek, aramak",
+    "pl": "dzwonić"
+  },
+  "aufstehen": {
+    "en": "to get up",
+    "es": "levantarse",
+    "pt-BR": "levantar-se",
+    "vi": "thức dậy, đứng dậy",
+    "id": "bangun",
+    "tr": "kalkmak",
+    "pl": "wstawać"
+  },
+  "einschlafen": {
+    "en": "to fall asleep",
+    "es": "quedarse dormido",
+    "pt-BR": "adormecer",
+    "vi": "ngủ thiếp đi",
+    "id": "tertidur",
+    "tr": "uykuya dalmak",
+    "pl": "zasypiać"
+  },
+  "aussteigen": {
+    "en": "to get off, to get out",
+    "es": "bajarse, salir (de un vehículo)",
+    "pt-BR": "descer, sair (de veículo)",
+    "vi": "xuống xe",
+    "id": "turun (dari kendaraan)",
+    "tr": "inmek",
+    "pl": "wysiadać"
+  },
+  "einsteigen": {
+    "en": "to get on, to get in",
+    "es": "subir (a un vehículo)",
+    "pt-BR": "embarcar, entrar (em veículo)",
+    "vi": "lên xe",
+    "id": "naik (ke kendaraan)",
+    "tr": "binmek",
+    "pl": "wsiadać"
+  },
+  "beginnen": {
+    "en": "to begin",
+    "es": "empezar, comenzar",
+    "pt-BR": "começar",
+    "vi": "bắt đầu",
+    "id": "mulai",
+    "tr": "başlamak",
+    "pl": "zaczynać się"
+  },
+  "bekommen": {
+    "en": "to get, to receive",
+    "es": "recibir, conseguir",
+    "pt-BR": "receber, conseguir",
+    "vi": "nhận được",
+    "id": "menerima, mendapatkan",
+    "tr": "almak, elde etmek",
+    "pl": "dostawać"
+  },
+  "vergessen": {
+    "en": "to forget",
+    "es": "olvidar",
+    "pt-BR": "esquecer",
+    "vi": "quên",
+    "id": "lupa",
+    "tr": "unutmak",
+    "pl": "zapominać"
+  },
+  "verlieren": {
+    "en": "to lose",
+    "es": "perder",
+    "pt-BR": "perder",
+    "vi": "mất, thua",
+    "id": "kehilangan, kalah",
+    "tr": "kaybetmek",
+    "pl": "tracić, przegrywać"
+  },
+  "ziehen": {
+    "en": "to pull, to move",
+    "es": "tirar, jalar, mudarse",
+    "pt-BR": "puxar, mudar-se",
+    "vi": "kéo, chuyển nhà",
+    "id": "menarik, pindah",
+    "tr": "çekmek, taşınmak",
+    "pl": "ciągnąć, przeprowadzać się"
+  },
+  "steigen": {
+    "en": "to climb, to rise",
+    "es": "subir, aumentar",
+    "pt-BR": "subir, aumentar",
+    "vi": "leo, tăng lên",
+    "id": "naik, meningkat",
+    "tr": "tırmanmak, yükselmek",
+    "pl": "wspinać się, rosnąć"
+  },
+  "schließen": {
+    "en": "to close, to shut",
+    "es": "cerrar",
+    "pt-BR": "fechar",
+    "vi": "đóng",
+    "id": "menutup",
+    "tr": "kapatmak",
+    "pl": "zamykać"
+  },
+  "laufen": {
+    "en": "to run, to walk",
+    "es": "correr, caminar",
+    "pt-BR": "correr, andar",
+    "vi": "chạy, đi bộ",
+    "id": "berlari, berjalan",
+    "tr": "koşmak, yürümek",
+    "pl": "biegać, chodzić"
+  },
+  "treffen": {
+    "en": "to meet, to hit",
+    "es": "encontrar, quedar con",
+    "pt-BR": "encontrar, acertar",
+    "vi": "gặp, trúng",
+    "id": "bertemu, mengenai",
+    "tr": "buluşmak, isabet etmek",
+    "pl": "spotykać, trafiać"
+  },
+  "gefallen": {
+    "en": "to be pleasing, to like",
+    "es": "gustar",
+    "pt-BR": "agradar, gostar",
+    "vi": "làm hài lòng, được thích",
+    "id": "disukai, menyenangkan",
+    "tr": "hoşuna gitmek",
+    "pl": "podobać się"
+  },
+  "verstehen": {
+    "en": "to understand",
+    "es": "entender, comprender",
+    "pt-BR": "entender, compreender",
+    "vi": "hiểu",
+    "id": "mengerti, memahami",
+    "tr": "anlamak",
+    "pl": "rozumieć"
+  },
+  "fallen": {
+    "en": "to fall",
+    "es": "caer",
+    "pt-BR": "cair",
+    "vi": "rơi, ngã",
+    "id": "jatuh",
+    "tr": "düşmek",
+    "pl": "spadać, upadać"
+  },
+  "ankommen": {
+    "en": "to arrive",
+    "es": "llegar",
+    "pt-BR": "chegar",
+    "vi": "đến nơi",
+    "id": "tiba",
+    "tr": "varmak, gelmek",
+    "pl": "przybywać"
+  },
+  "mitkommen": {
+    "en": "to come along",
+    "es": "venir con, acompañar",
+    "pt-BR": "vir junto",
+    "vi": "đi cùng",
+    "id": "ikut",
+    "tr": "birlikte gelmek",
+    "pl": "przychodzić razem"
+  },
+  "zurückkommen": {
+    "en": "to come back",
+    "es": "volver, regresar",
+    "pt-BR": "voltar, regressar",
+    "vi": "quay lại",
+    "id": "kembali",
+    "tr": "geri gelmek",
+    "pl": "wracać"
+  },
+  "abfahren": {
+    "en": "to depart, to leave",
+    "es": "salir, partir",
+    "pt-BR": "partir, sair",
+    "vi": "khởi hành",
+    "id": "berangkat",
+    "tr": "kalkmak, hareket etmek",
+    "pl": "odjeżdżać"
+  },
+  "losfahren": {
+    "en": "to set off",
+    "es": "ponerse en marcha, salir",
+    "pt-BR": "partir, pôr-se a caminho",
+    "vi": "lên đường",
+    "id": "berangkat",
+    "tr": "yola çıkmak",
+    "pl": "ruszać w drogę"
+  },
+  "verlassen": {
+    "en": "to leave, to abandon",
+    "es": "abandonar, dejar",
+    "pt-BR": "deixar, abandonar",
+    "vi": "rời khỏi, bỏ",
+    "id": "meninggalkan",
+    "tr": "terk etmek, ayrılmak",
+    "pl": "opuszczać"
+  },
+  "ausfallen": {
+    "en": "to be cancelled",
+    "es": "cancelarse, suspenderse",
+    "pt-BR": "ser cancelado",
+    "vi": "bị hủy",
+    "id": "dibatalkan",
+    "tr": "iptal olmak",
+    "pl": "odwoływać się, nie odbyć się"
+  },
+  "unterschreiben": {
+    "en": "to sign",
+    "es": "firmar",
+    "pt-BR": "assinar",
+    "vi": "ký",
+    "id": "menandatangani",
+    "tr": "imzalamak",
+    "pl": "podpisywać"
+  },
+  "umsteigen": {
+    "en": "to change (trains, buses)",
+    "es": "hacer transbordo",
+    "pt-BR": "fazer baldeação",
+    "vi": "chuyển tuyến, đổi xe",
+    "id": "berpindah (kendaraan)",
+    "tr": "aktarma yapmak",
+    "pl": "przesiadać się"
+  },
+  "umziehen": {
+    "en": "to move (house)",
+    "es": "mudarse (de casa)",
+    "pt-BR": "mudar-se (de casa)",
+    "vi": "chuyển nhà",
+    "id": "pindah rumah",
+    "tr": "taşınmak",
+    "pl": "przeprowadzać się"
+  },
+  "mitnehmen": {
+    "en": "to take along",
+    "es": "llevar consigo",
+    "pt-BR": "levar consigo",
+    "vi": "mang theo",
+    "id": "membawa serta",
+    "tr": "yanında götürmek",
+    "pl": "zabierać ze sobą"
+  },
+  "mitbringen": {
+    "en": "to bring along",
+    "es": "traer consigo",
+    "pt-BR": "trazer consigo",
+    "vi": "mang theo (cho ai)",
+    "id": "membawa (untuk seseorang)",
+    "tr": "yanında getirmek",
+    "pl": "przynosić ze sobą"
+  },
+  "aufschreiben": {
+    "en": "to write down",
+    "es": "anotar, apuntar",
+    "pt-BR": "anotar, escrever",
+    "vi": "ghi lại",
+    "id": "menuliskan, mencatat",
+    "tr": "yazıp not etmek",
+    "pl": "zapisywać"
+  },
+  "anfangen": {
+    "en": "to start, to begin",
+    "es": "empezar, comenzar",
+    "pt-BR": "começar",
+    "vi": "bắt đầu",
+    "id": "memulai",
+    "tr": "başlamak",
+    "pl": "zaczynać"
+  },
+  "bitten": {
+    "en": "to ask, to request",
+    "es": "pedir, rogar",
+    "pt-BR": "pedir",
+    "vi": "yêu cầu, nhờ",
+    "id": "meminta",
+    "tr": "rica etmek",
+    "pl": "prosić"
+  },
+  "behalten": {
+    "en": "to keep",
+    "es": "quedarse con, conservar",
+    "pt-BR": "ficar com, manter",
+    "vi": "giữ lại",
+    "id": "menyimpan, mempertahankan",
+    "tr": "saklamak, elinde tutmak",
+    "pl": "zatrzymywać"
+  },
+  "sinken": {
+    "en": "to sink, to fall",
+    "es": "hundirse, bajar",
+    "pt-BR": "afundar, cair",
+    "vi": "chìm, giảm",
+    "id": "tenggelam, turun",
+    "tr": "batmak, düşmek",
+    "pl": "opadać, tonąć"
+  },
+  "ausgehen": {
+    "en": "to go out",
+    "es": "salir (a divertirse), apagarse",
+    "pt-BR": "sair, apagar-se",
+    "vi": "đi chơi, tắt",
+    "id": "keluar (bersenang-senang), padam",
+    "tr": "dışarı çıkmak, sönmek",
+    "pl": "wychodzić, gasnąć"
+  },
+  "fliegen": {
+    "en": "to fly",
+    "es": "volar",
+    "pt-BR": "voar",
+    "vi": "bay",
+    "id": "terbang",
+    "tr": "uçmak",
+    "pl": "latać"
+  },
+  "rennen": {
+    "en": "to run, to race",
+    "es": "correr",
+    "pt-BR": "correr",
+    "vi": "chạy",
+    "id": "berlari",
+    "tr": "koşmak",
+    "pl": "biegać"
+  },
+  "springen": {
+    "en": "to jump",
+    "es": "saltar",
+    "pt-BR": "pular",
+    "vi": "nhảy",
+    "id": "melompat",
+    "tr": "zıplamak",
+    "pl": "skakać"
+  },
+  "hinfallen": {
+    "en": "to fall down",
+    "es": "caerse",
+    "pt-BR": "cair",
+    "vi": "ngã",
+    "id": "jatuh",
+    "tr": "düşmek, yere yıkılmak",
+    "pl": "przewracać się"
+  },
+  "anhalten": {
+    "en": "to stop",
+    "es": "parar, detenerse",
+    "pt-BR": "parar",
+    "vi": "dừng lại",
+    "id": "berhenti",
+    "tr": "durmak",
+    "pl": "zatrzymywać się"
+  },
+  "ablaufen": {
+    "en": "to expire, to run out",
+    "es": "caducar, vencer",
+    "pt-BR": "vencer, expirar",
+    "vi": "hết hạn",
+    "id": "kedaluwarsa, habis",
+    "tr": "süresi dolmak",
+    "pl": "wygasać"
+  },
+  "waschen": {
+    "en": "to wash",
+    "es": "lavar",
+    "pt-BR": "lavar",
+    "vi": "rửa, giặt",
+    "id": "mencuci",
+    "tr": "yıkamak",
+    "pl": "myć, prać"
+  },
+  "backen": {
+    "en": "to bake",
+    "es": "hornear",
+    "pt-BR": "assar",
+    "vi": "nướng (bánh)",
+    "id": "memanggang",
+    "tr": "pişirmek (fırında)",
+    "pl": "piec"
+  },
+  "streichen": {
+    "en": "to paint, to cross out",
+    "es": "pintar, tachar",
+    "pt-BR": "pintar, riscar",
+    "vi": "sơn, gạch bỏ",
+    "id": "mengecat, mencoret",
+    "tr": "boyamak, çizmek",
+    "pl": "malować, skreślać"
+  },
+  "frieren": {
+    "en": "to freeze, to be cold",
+    "es": "tener frío, congelarse",
+    "pt-BR": "sentir frio, congelar",
+    "vi": "lạnh, đóng băng",
+    "id": "kedinginan, membeku",
+    "tr": "üşümek, donmak",
+    "pl": "marznąć"
+  },
+  "schmelzen": {
+    "en": "to melt",
+    "es": "derretirse",
+    "pt-BR": "derreter",
+    "vi": "tan chảy",
+    "id": "meleleh",
+    "tr": "erimek",
+    "pl": "topnieć"
+  },
+  "vergleichen": {
+    "en": "to compare",
+    "es": "comparar",
+    "pt-BR": "comparar",
+    "vi": "so sánh",
+    "id": "membandingkan",
+    "tr": "karşılaştırmak",
+    "pl": "porównywać"
+  },
+  "vermeiden": {
+    "en": "to avoid",
+    "es": "evitar",
+    "pt-BR": "evitar",
+    "vi": "tránh",
+    "id": "menghindari",
+    "tr": "kaçınmak",
+    "pl": "unikać"
+  },
+  "schwimmen": {
+    "en": "to swim",
+    "es": "nadar",
+    "pt-BR": "nadar",
+    "vi": "bơi",
+    "id": "berenang",
+    "tr": "yüzmek",
+    "pl": "pływać"
+  },
+  "verbieten": {
+    "en": "to forbid, to ban",
+    "es": "prohibir",
+    "pt-BR": "proibir",
+    "vi": "cấm",
+    "id": "melarang",
+    "tr": "yasaklamak",
+    "pl": "zabraniać"
+  }
+}

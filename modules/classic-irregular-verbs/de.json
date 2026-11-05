@@ -1,0 +1,3038 @@
+{
+  "schema": "phraseman.classic-irregular-verbs/1",
+  "lang": "de",
+  "formsLayout": [
+    {
+      "key": "inf",
+      "label": {
+        "ru": "Инфинитив",
+        "uk": "Інфінітив"
+      }
+    },
+    {
+      "key": "pres3",
+      "label": {
+        "ru": "Настоящее (er/sie/es)",
+        "uk": "Теперішній (er/sie/es)"
+      }
+    },
+    {
+      "key": "praet",
+      "label": {
+        "ru": "Претерит (er/sie/es)",
+        "uk": "Претерит (er/sie/es)"
+      }
+    },
+    {
+      "key": "pp",
+      "label": {
+        "ru": "Партицип II",
+        "uk": "Партицип II"
+      }
+    }
+  ],
+  "lessons": {
+    "1": [
+      {
+        "lemma": "sein",
+        "meaning": {
+          "ru": "быть",
+          "uk": "бути",
+          "en": "to be",
+          "es": "ser, estar",
+          "pt-BR": "ser, estar",
+          "vi": "thì, là",
+          "id": "adalah, ada",
+          "tr": "olmak",
+          "pl": "być"
+        },
+        "forms": {
+          "inf": "sein",
+          "pres3": "ist",
+          "praet": "war",
+          "pp": "gewesen"
+        },
+        "train": {
+          "base": "sein",
+          "past": "war",
+          "pp": "gewesen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Самый частый глагол: меняется в каждой форме.",
+          "uk": "Найчастіше дієслово: змінюється в кожній формі."
+        },
+        "examples": [
+          "de:01:01",
+          "de:01:02",
+          "de:01:10"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "lemma": "kommen",
+        "meaning": {
+          "ru": "приходить",
+          "uk": "приходити",
+          "en": "to come",
+          "es": "venir",
+          "pt-BR": "vir",
+          "vi": "đến",
+          "id": "datang",
+          "tr": "gelmek",
+          "pl": "przychodzić"
+        },
+        "forms": {
+          "inf": "kommen",
+          "pres3": "kommt",
+          "praet": "kam",
+          "pp": "gekommen"
+        },
+        "train": {
+          "base": "kommen",
+          "past": "kam",
+          "pp": "gekommen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Гласная меняется: kommen — kam.",
+          "uk": "Голосна змінюється: kommen — kam."
+        },
+        "examples": [
+          "de:04:25",
+          "de:06:11"
+        ]
+      },
+      {
+        "lemma": "lesen",
+        "meaning": {
+          "ru": "читать",
+          "uk": "читати",
+          "en": "to read",
+          "es": "leer",
+          "pt-BR": "ler",
+          "vi": "đọc",
+          "id": "membaca",
+          "tr": "okumak",
+          "pl": "czytać"
+        },
+        "forms": {
+          "inf": "lesen",
+          "pres3": "liest",
+          "praet": "las",
+          "pp": "gelesen"
+        },
+        "train": {
+          "base": "lesen",
+          "past": "las",
+          "pp": "gelesen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «ie»: du liest, er liest.",
+          "uk": "Голосна змінюється на «ie»: du liest, er liest."
+        },
+        "examples": [
+          "de:04:37",
+          "de:07:31"
+        ]
+      },
+      {
+        "lemma": "trinken",
+        "meaning": {
+          "ru": "пить",
+          "uk": "пити",
+          "en": "to drink",
+          "es": "beber",
+          "pt-BR": "beber",
+          "vi": "uống",
+          "id": "minum",
+          "tr": "içmek",
+          "pl": "pić"
+        },
+        "forms": {
+          "inf": "trinken",
+          "pres3": "trinkt",
+          "praet": "trank",
+          "pp": "getrunken"
+        },
+        "train": {
+          "base": "trinken",
+          "past": "trank",
+          "pp": "getrunken"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: trinken — trank — getrunken.",
+          "uk": "Голосна змінюється: trinken — trank — getrunken."
+        },
+        "examples": [
+          "de:04:34",
+          "de:04:39"
+        ]
+      },
+      {
+        "lemma": "beginnen",
+        "meaning": {
+          "ru": "начинаться",
+          "uk": "починатися",
+          "en": "to begin",
+          "es": "empezar, comenzar",
+          "pt-BR": "começar",
+          "vi": "bắt đầu",
+          "id": "mulai",
+          "tr": "başlamak",
+          "pl": "zaczynać się"
+        },
+        "forms": {
+          "inf": "beginnen",
+          "pres3": "beginnt",
+          "praet": "begann",
+          "pp": "begonnen"
+        },
+        "train": {
+          "base": "beginnen",
+          "past": "begann",
+          "pp": "begonnen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: beginnen — begann — begonnen.",
+          "uk": "Голосна змінюється: beginnen — begann — begonnen."
+        },
+        "examples": [
+          "de:04:21",
+          "de:24:20"
+        ]
+      },
+      {
+        "lemma": "schließen",
+        "meaning": {
+          "ru": "закрывать",
+          "uk": "зачиняти",
+          "en": "to close, to shut",
+          "es": "cerrar",
+          "pt-BR": "fechar",
+          "vi": "đóng",
+          "id": "menutup",
+          "tr": "kapatmak",
+          "pl": "zamykać"
+        },
+        "forms": {
+          "inf": "schließen",
+          "pres3": "schließt",
+          "praet": "schloss",
+          "pp": "geschlossen"
+        },
+        "train": {
+          "base": "schließen",
+          "past": "schloss",
+          "pp": "geschlossen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: schließen — schloss — geschlossen.",
+          "uk": "Голосна змінюється: schließen — schloss — geschlossen."
+        },
+        "examples": [
+          "de:04:24",
+          "de:16:17"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "lemma": "haben",
+        "meaning": {
+          "ru": "иметь",
+          "uk": "мати",
+          "en": "to have",
+          "es": "tener, haber",
+          "pt-BR": "ter, haver",
+          "vi": "có",
+          "id": "memiliki, punya",
+          "tr": "sahip olmak",
+          "pl": "mieć"
+        },
+        "forms": {
+          "inf": "haben",
+          "pres3": "hat",
+          "praet": "hatte",
+          "pp": "gehabt"
+        },
+        "train": {
+          "base": "haben",
+          "past": "hatte",
+          "pp": "gehabt"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "С du и er выпадает «b»: hast, hat.",
+          "uk": "З du та er випадає «b»: hast, hat."
+        },
+        "examples": [
+          "de:05:38",
+          "de:05:41",
+          "de:05:42"
+        ]
+      },
+      {
+        "lemma": "bleiben",
+        "meaning": {
+          "ru": "оставаться",
+          "uk": "залишатися",
+          "en": "to stay, to remain",
+          "es": "quedarse",
+          "pt-BR": "ficar, permanecer",
+          "vi": "ở lại",
+          "id": "tinggal, tetap",
+          "tr": "kalmak",
+          "pl": "zostawać"
+        },
+        "forms": {
+          "inf": "bleiben",
+          "pres3": "bleibt",
+          "praet": "blieb",
+          "pp": "geblieben"
+        },
+        "train": {
+          "base": "bleiben",
+          "past": "blieb",
+          "pp": "geblieben"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "С «sein»: ich bin geblieben.",
+          "uk": "З «sein»: ich bin geblieben."
+        },
+        "examples": [
+          "de:05:37",
+          "de:15:25"
+        ]
+      },
+      {
+        "lemma": "mögen",
+        "meaning": {
+          "ru": "любить, нравиться",
+          "uk": "любити, подобатися",
+          "en": "to like",
+          "es": "gustar, querer",
+          "pt-BR": "gostar",
+          "vi": "thích",
+          "id": "suka",
+          "tr": "sevmek, hoşlanmak",
+          "pl": "lubić"
+        },
+        "forms": {
+          "inf": "mögen",
+          "pres3": "mag",
+          "praet": "mochte",
+          "pp": "gemocht"
+        },
+        "train": {
+          "base": "mögen",
+          "past": "mochte",
+          "pp": "gemocht"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Форма «möchte» («хотел бы») — от этого глагола.",
+          "uk": "Форма «möchte» («хотів би») — від цього дієслова."
+        },
+        "examples": [
+          "de:05:39",
+          "de:14:36"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "lemma": "gehen",
+        "meaning": {
+          "ru": "идти",
+          "uk": "йти",
+          "en": "to go, to walk",
+          "es": "ir, andar",
+          "pt-BR": "ir, andar",
+          "vi": "đi",
+          "id": "pergi, berjalan",
+          "tr": "gitmek, yürümek",
+          "pl": "iść, chodzić"
+        },
+        "forms": {
+          "inf": "gehen",
+          "pres3": "geht",
+          "praet": "ging",
+          "pp": "gegangen"
+        },
+        "train": {
+          "base": "gehen",
+          "past": "ging",
+          "pp": "gegangen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Прошедшее время совсем другое: ging, gegangen.",
+          "uk": "Минулий час зовсім інший: ging, gegangen."
+        },
+        "examples": [
+          "de:06:24",
+          "de:12:25"
+        ]
+      },
+      {
+        "lemma": "fahren",
+        "meaning": {
+          "ru": "ехать",
+          "uk": "їхати",
+          "en": "to drive, to travel",
+          "es": "ir (en vehículo), conducir",
+          "pt-BR": "ir (de veículo), dirigir",
+          "vi": "đi (bằng xe), lái xe",
+          "id": "berkendara, bepergian",
+          "tr": "gitmek (araçla), sürmek",
+          "pl": "jechać"
+        },
+        "forms": {
+          "inf": "fahren",
+          "pres3": "fährt",
+          "praet": "fuhr",
+          "pp": "gefahren"
+        },
+        "train": {
+          "base": "fahren",
+          "past": "fuhr",
+          "pp": "gefahren"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: du fährst, er fährt.",
+          "uk": "З du та er «a» стає «ä»: du fährst, er fährt."
+        },
+        "examples": [
+          "de:06:48",
+          "de:12:37"
+        ]
+      },
+      {
+        "lemma": "heißen",
+        "meaning": {
+          "ru": "называться",
+          "uk": "називатися",
+          "en": "to be called",
+          "es": "llamarse",
+          "pt-BR": "chamar-se",
+          "vi": "tên là, được gọi là",
+          "id": "bernama",
+          "tr": "adı ... olmak",
+          "pl": "nazywać się"
+        },
+        "forms": {
+          "inf": "heißen",
+          "pres3": "heißt",
+          "praet": "hieß",
+          "pp": "geheißen"
+        },
+        "train": {
+          "base": "heißen",
+          "past": "hieß",
+          "pp": "geheißen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Прошедшее время: hieß.",
+          "uk": "Минулий час: hieß."
+        },
+        "examples": [
+          "de:06:21",
+          "de:06:22"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "lemma": "nehmen",
+        "meaning": {
+          "ru": "брать",
+          "uk": "брати",
+          "en": "to take",
+          "es": "tomar, coger",
+          "pt-BR": "pegar, tomar",
+          "vi": "lấy, cầm",
+          "id": "mengambil",
+          "tr": "almak",
+          "pl": "brać"
+        },
+        "forms": {
+          "inf": "nehmen",
+          "pres3": "nimmt",
+          "praet": "nahm",
+          "pp": "genommen"
+        },
+        "train": {
+          "base": "nehmen",
+          "past": "nahm",
+          "pp": "genommen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Корень меняется: nehme, но nimmst, nimmt.",
+          "uk": "Корінь змінюється: nehme, але nimmst, nimmt."
+        },
+        "examples": [
+          "de:07:21",
+          "de:07:22",
+          "de:07:23"
+        ]
+      },
+      {
+        "lemma": "finden",
+        "meaning": {
+          "ru": "находить",
+          "uk": "знаходити",
+          "en": "to find",
+          "es": "encontrar",
+          "pt-BR": "encontrar",
+          "vi": "tìm thấy",
+          "id": "menemukan",
+          "tr": "bulmak",
+          "pl": "znajdować"
+        },
+        "forms": {
+          "inf": "finden",
+          "pres3": "findet",
+          "praet": "fand",
+          "pp": "gefunden"
+        },
+        "train": {
+          "base": "finden",
+          "past": "fand",
+          "pp": "gefunden"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: finden — fand — gefunden.",
+          "uk": "Голосна змінюється: finden — fand — gefunden."
+        },
+        "examples": [
+          "de:07:47",
+          "de:09:50"
+        ]
+      },
+      {
+        "lemma": "tragen",
+        "meaning": {
+          "ru": "нести, носить",
+          "uk": "нести, носити",
+          "en": "to carry, to wear",
+          "es": "llevar, cargar",
+          "pt-BR": "carregar, usar",
+          "vi": "mang, mặc",
+          "id": "membawa, memakai",
+          "tr": "taşımak, giymek",
+          "pl": "nosić"
+        },
+        "forms": {
+          "inf": "tragen",
+          "pres3": "trägt",
+          "praet": "trug",
+          "pp": "getragen"
+        },
+        "train": {
+          "base": "tragen",
+          "past": "trug",
+          "pp": "getragen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: du trägst, er trägt.",
+          "uk": "З du та er «a» стає «ä»: du trägst, er trägt."
+        },
+        "examples": [
+          "de:07:35",
+          "de:07:36",
+          "de:07:34"
+        ]
+      }
+    ],
+    "8": [
+      {
+        "lemma": "essen",
+        "meaning": {
+          "ru": "есть",
+          "uk": "їсти",
+          "en": "to eat",
+          "es": "comer",
+          "pt-BR": "comer",
+          "vi": "ăn",
+          "id": "makan",
+          "tr": "yemek yemek",
+          "pl": "jeść"
+        },
+        "forms": {
+          "inf": "essen",
+          "pres3": "isst",
+          "praet": "aß",
+          "pp": "gegessen"
+        },
+        "train": {
+          "base": "essen",
+          "past": "aß",
+          "pp": "gegessen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: du isst, er isst.",
+          "uk": "Голосна змінюється на «i»: du isst, er isst."
+        },
+        "examples": [
+          "de:08:22",
+          "de:16:41"
+        ]
+      },
+      {
+        "lemma": "verstehen",
+        "meaning": {
+          "ru": "понимать",
+          "uk": "розуміти",
+          "en": "to understand",
+          "es": "entender, comprender",
+          "pt-BR": "entender, compreender",
+          "vi": "hiểu",
+          "id": "mengerti, memahami",
+          "tr": "anlamak",
+          "pl": "rozumieć"
+        },
+        "forms": {
+          "inf": "verstehen",
+          "pres3": "versteht",
+          "praet": "verstand",
+          "pp": "verstanden"
+        },
+        "train": {
+          "base": "verstehen",
+          "past": "verstand",
+          "pp": "verstanden"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Основа меняется: verstand, verstanden.",
+          "uk": "Основа змінюється: verstand, verstanden."
+        },
+        "examples": [
+          "de:08:48",
+          "de:16:32"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "lemma": "schreiben",
+        "meaning": {
+          "ru": "писать",
+          "uk": "писати",
+          "en": "to write",
+          "es": "escribir",
+          "pt-BR": "escrever",
+          "vi": "viết",
+          "id": "menulis",
+          "tr": "yazmak",
+          "pl": "pisać"
+        },
+        "forms": {
+          "inf": "schreiben",
+          "pres3": "schreibt",
+          "praet": "schrieb",
+          "pp": "geschrieben"
+        },
+        "train": {
+          "base": "schreiben",
+          "past": "schrieb",
+          "pp": "geschrieben"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Прошедшее время с «ie»: schrieb, geschrieben.",
+          "uk": "Минулий час з «ie»: schrieb, geschrieben."
+        },
+        "examples": [
+          "de:09:47",
+          "de:28:07"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "lemma": "sprechen",
+        "meaning": {
+          "ru": "говорить",
+          "uk": "розмовляти",
+          "en": "to speak",
+          "es": "hablar",
+          "pt-BR": "falar",
+          "vi": "nói",
+          "id": "berbicara",
+          "tr": "konuşmak",
+          "pl": "mówić"
+        },
+        "forms": {
+          "inf": "sprechen",
+          "pres3": "spricht",
+          "praet": "sprach",
+          "pp": "gesprochen"
+        },
+        "train": {
+          "base": "sprechen",
+          "past": "sprach",
+          "pp": "gesprochen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: du sprichst, er spricht.",
+          "uk": "Голосна змінюється на «i»: du sprichst, er spricht."
+        },
+        "examples": [
+          "de:10:10",
+          "de:10:06",
+          "de:10:07"
+        ]
+      },
+      {
+        "lemma": "bringen",
+        "meaning": {
+          "ru": "приносить",
+          "uk": "приносити",
+          "en": "to bring",
+          "es": "traer, llevar",
+          "pt-BR": "trazer, levar",
+          "vi": "mang đến",
+          "id": "membawa",
+          "tr": "getirmek",
+          "pl": "przynosić"
+        },
+        "forms": {
+          "inf": "bringen",
+          "pres3": "bringt",
+          "praet": "brachte",
+          "pp": "gebracht"
+        },
+        "train": {
+          "base": "bringen",
+          "past": "brachte",
+          "pp": "gebracht"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Внутри слова меняется, а окончания обычные.",
+          "uk": "Всередині слова змінюється, а закінчення звичайні."
+        },
+        "examples": [
+          "de:10:17",
+          "de:10:18"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "lemma": "stehen",
+        "meaning": {
+          "ru": "стоять",
+          "uk": "стояти",
+          "en": "to stand",
+          "es": "estar de pie",
+          "pt-BR": "estar em pé",
+          "vi": "đứng",
+          "id": "berdiri",
+          "tr": "ayakta durmak",
+          "pl": "stać"
+        },
+        "forms": {
+          "inf": "stehen",
+          "pres3": "steht",
+          "praet": "stand",
+          "pp": "gestanden"
+        },
+        "train": {
+          "base": "stehen",
+          "past": "stand",
+          "pp": "gestanden"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Основа меняется: stand, gestanden.",
+          "uk": "Основа змінюється: stand, gestanden."
+        },
+        "examples": [
+          "de:11:11",
+          "de:11:13"
+        ]
+      },
+      {
+        "lemma": "liegen",
+        "meaning": {
+          "ru": "лежать",
+          "uk": "лежати",
+          "en": "to lie (be lying)",
+          "es": "estar tumbado, yacer",
+          "pt-BR": "estar deitado, ficar",
+          "vi": "nằm",
+          "id": "terbaring, berada",
+          "tr": "yatmak, bulunmak",
+          "pl": "leżeć"
+        },
+        "forms": {
+          "inf": "liegen",
+          "pres3": "liegt",
+          "praet": "lag",
+          "pp": "gelegen"
+        },
+        "train": {
+          "base": "liegen",
+          "past": "lag",
+          "pp": "gelegen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Прошедшее время: lag, gelegen.",
+          "uk": "Минулий час: lag, gelegen."
+        },
+        "examples": [
+          "de:11:31",
+          "de:25:47"
+        ]
+      },
+      {
+        "lemma": "sitzen",
+        "meaning": {
+          "ru": "сидеть",
+          "uk": "сидіти",
+          "en": "to sit",
+          "es": "estar sentado",
+          "pt-BR": "estar sentado",
+          "vi": "ngồi",
+          "id": "duduk",
+          "tr": "oturmak",
+          "pl": "siedzieć"
+        },
+        "forms": {
+          "inf": "sitzen",
+          "pres3": "sitzt",
+          "praet": "saß",
+          "pp": "gesessen"
+        },
+        "train": {
+          "base": "sitzen",
+          "past": "saß",
+          "pp": "gesessen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Прошедшее время: saß, gesessen.",
+          "uk": "Минулий час: saß, gesessen."
+        },
+        "examples": [
+          "de:11:35",
+          "de:11:10"
+        ]
+      },
+      {
+        "lemma": "schlafen",
+        "meaning": {
+          "ru": "спать",
+          "uk": "спати",
+          "en": "to sleep",
+          "es": "dormir",
+          "pt-BR": "dormir",
+          "vi": "ngủ",
+          "id": "tidur",
+          "tr": "uyumak",
+          "pl": "spać"
+        },
+        "forms": {
+          "inf": "schlafen",
+          "pres3": "schläft",
+          "praet": "schlief",
+          "pp": "geschlafen"
+        },
+        "train": {
+          "base": "schlafen",
+          "past": "schlief",
+          "pp": "geschlafen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: du schläfst, er schläft.",
+          "uk": "З du та er «a» стає «ä»: du schläfst, er schläft."
+        },
+        "examples": [
+          "de:11:49",
+          "de:24:17"
+        ]
+      },
+      {
+        "lemma": "halten",
+        "meaning": {
+          "ru": "держать",
+          "uk": "тримати",
+          "en": "to hold",
+          "es": "sostener, parar",
+          "pt-BR": "segurar, parar",
+          "vi": "giữ, cầm",
+          "id": "memegang",
+          "tr": "tutmak",
+          "pl": "trzymać"
+        },
+        "forms": {
+          "inf": "halten",
+          "pres3": "hält",
+          "praet": "hielt",
+          "pp": "gehalten"
+        },
+        "train": {
+          "base": "halten",
+          "past": "hielt",
+          "pp": "gehalten"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: du hältst, er hält.",
+          "uk": "З du та er «a» стає «ä»: du hältst, er hält."
+        },
+        "examples": [
+          "de:11:43",
+          "de:24:05"
+        ]
+      },
+      {
+        "lemma": "laufen",
+        "meaning": {
+          "ru": "бежать, идти пешком",
+          "uk": "бігти, іти пішки",
+          "en": "to run, to walk",
+          "es": "correr, caminar",
+          "pt-BR": "correr, andar",
+          "vi": "chạy, đi bộ",
+          "id": "berlari, berjalan",
+          "tr": "koşmak, yürümek",
+          "pl": "biegać, chodzić"
+        },
+        "forms": {
+          "inf": "laufen",
+          "pres3": "läuft",
+          "praet": "lief",
+          "pp": "gelaufen"
+        },
+        "train": {
+          "base": "laufen",
+          "past": "lief",
+          "pp": "gelaufen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "С du и er «au» становится «äu»: du läufst, er läuft.",
+          "uk": "З du та er «au» стає «äu»: du läufst, er läuft."
+        },
+        "examples": [
+          "de:11:29",
+          "de:17:12"
+        ]
+      },
+      {
+        "lemma": "treffen",
+        "meaning": {
+          "ru": "встречать",
+          "uk": "зустрічати",
+          "en": "to meet, to hit",
+          "es": "encontrar, quedar con",
+          "pt-BR": "encontrar, acertar",
+          "vi": "gặp, trúng",
+          "id": "bertemu, mengenai",
+          "tr": "buluşmak, isabet etmek",
+          "pl": "spotykać, trafiać"
+        },
+        "forms": {
+          "inf": "treffen",
+          "pres3": "trifft",
+          "praet": "traf",
+          "pp": "getroffen"
+        },
+        "train": {
+          "base": "treffen",
+          "past": "traf",
+          "pp": "getroffen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: du triffst, er trifft.",
+          "uk": "Голосна змінюється на «i»: du triffst, er trifft."
+        },
+        "examples": [
+          "de:11:44",
+          "de:19:35"
+        ]
+      },
+      {
+        "lemma": "schwimmen",
+        "meaning": {
+          "ru": "плавать",
+          "uk": "плавати",
+          "en": "to swim",
+          "es": "nadar",
+          "pt-BR": "nadar",
+          "vi": "bơi",
+          "id": "berenang",
+          "tr": "yüzmek",
+          "pl": "pływać"
+        },
+        "forms": {
+          "inf": "schwimmen",
+          "pres3": "schwimmt",
+          "praet": "schwamm",
+          "pp": "geschwommen"
+        },
+        "train": {
+          "base": "schwimmen",
+          "past": "schwamm",
+          "pp": "geschwommen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Гласная меняется: schwimmen — schwamm — geschwommen.",
+          "uk": "Голосна змінюється: schwimmen — schwamm — geschwommen."
+        },
+        "examples": [
+          "de:11:30",
+          "de:14:04"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "lemma": "steigen",
+        "meaning": {
+          "ru": "подниматься",
+          "uk": "підніматися",
+          "en": "to climb, to rise",
+          "es": "subir, aumentar",
+          "pt-BR": "subir, aumentar",
+          "vi": "leo, tăng lên",
+          "id": "naik, meningkat",
+          "tr": "tırmanmak, yükselmek",
+          "pl": "wspinać się, rosnąć"
+        },
+        "forms": {
+          "inf": "steigen",
+          "pres3": "steigt",
+          "praet": "stieg",
+          "pp": "gestiegen"
+        },
+        "train": {
+          "base": "steigen",
+          "past": "stieg",
+          "pp": "gestiegen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Гласная меняется: steigen — stieg — gestiegen.",
+          "uk": "Голосна змінюється: steigen — stieg — gestiegen."
+        },
+        "examples": [
+          "de:12:30",
+          "de:17:38"
+        ]
+      },
+      {
+        "lemma": "springen",
+        "meaning": {
+          "ru": "прыгать",
+          "uk": "стрибати",
+          "en": "to jump",
+          "es": "saltar",
+          "pt-BR": "pular",
+          "vi": "nhảy",
+          "id": "melompat",
+          "tr": "zıplamak",
+          "pl": "skakać"
+        },
+        "forms": {
+          "inf": "springen",
+          "pres3": "springt",
+          "praet": "sprang",
+          "pp": "gesprungen"
+        },
+        "train": {
+          "base": "springen",
+          "past": "sprang",
+          "pp": "gesprungen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Гласная меняется: springen — sprang — gesprungen.",
+          "uk": "Голосна змінюється: springen — sprang — gesprungen."
+        },
+        "examples": [
+          "de:12:29",
+          "de:17:16"
+        ]
+      }
+    ],
+    "13": [
+      {
+        "lemma": "anrufen",
+        "meaning": {
+          "ru": "звонить",
+          "uk": "телефонувати",
+          "en": "to phone, to call",
+          "es": "llamar por teléfono",
+          "pt-BR": "telefonar, ligar",
+          "vi": "gọi điện thoại",
+          "id": "menelepon",
+          "tr": "telefon etmek, aramak",
+          "pl": "dzwonić"
+        },
+        "forms": {
+          "inf": "anrufen",
+          "pres3": "ruft an",
+          "praet": "rief an",
+          "pp": "angerufen"
+        },
+        "train": {
+          "base": "anrufen",
+          "past": "rief an",
+          "pp": "angerufen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Приставка «an» отделяется: ich rufe dich an.",
+          "uk": "Префікс «an» відокремлюється: ich rufe dich an."
+        },
+        "examples": [
+          "de:13:06",
+          "de:13:07",
+          "de:13:10"
+        ]
+      },
+      {
+        "lemma": "aufstehen",
+        "meaning": {
+          "ru": "вставать",
+          "uk": "вставати",
+          "en": "to get up",
+          "es": "levantarse",
+          "pt-BR": "levantar-se",
+          "vi": "thức dậy, đứng dậy",
+          "id": "bangun",
+          "tr": "kalkmak",
+          "pl": "wstawać"
+        },
+        "forms": {
+          "inf": "aufstehen",
+          "pres3": "steht auf",
+          "praet": "stand auf",
+          "pp": "aufgestanden"
+        },
+        "train": {
+          "base": "aufstehen",
+          "past": "stand auf",
+          "pp": "aufgestanden"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «auf» отделяется: ich stehe auf.",
+          "uk": "Префікс «auf» відокремлюється: ich stehe auf."
+        },
+        "examples": [
+          "de:13:01",
+          "de:13:05",
+          "de:13:02"
+        ]
+      },
+      {
+        "lemma": "aussteigen",
+        "meaning": {
+          "ru": "выходить (из транспорта)",
+          "uk": "виходити (з транспорту)",
+          "en": "to get off, to get out",
+          "es": "bajarse, salir (de un vehículo)",
+          "pt-BR": "descer, sair (de veículo)",
+          "vi": "xuống xe",
+          "id": "turun (dari kendaraan)",
+          "tr": "inmek",
+          "pl": "wysiadać"
+        },
+        "forms": {
+          "inf": "aussteigen",
+          "pres3": "steigt aus",
+          "praet": "stieg aus",
+          "pp": "ausgestiegen"
+        },
+        "train": {
+          "base": "aussteigen",
+          "past": "stieg aus",
+          "pp": "ausgestiegen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «aus» отделяется: ich steige aus.",
+          "uk": "Префікс «aus» відокремлюється: ich steige aus."
+        },
+        "examples": [
+          "de:13:43",
+          "de:17:36"
+        ]
+      },
+      {
+        "lemma": "einsteigen",
+        "meaning": {
+          "ru": "садиться (в транспорт)",
+          "uk": "сідати (в транспорт)",
+          "en": "to get on, to get in",
+          "es": "subir (a un vehículo)",
+          "pt-BR": "embarcar, entrar (em veículo)",
+          "vi": "lên xe",
+          "id": "naik (ke kendaraan)",
+          "tr": "binmek",
+          "pl": "wsiadać"
+        },
+        "forms": {
+          "inf": "einsteigen",
+          "pres3": "steigt ein",
+          "praet": "stieg ein",
+          "pp": "eingestiegen"
+        },
+        "train": {
+          "base": "einsteigen",
+          "past": "stieg ein",
+          "pp": "eingestiegen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «ein» отделяется: wir steigen ein.",
+          "uk": "Префікс «ein» відокремлюється: wir steigen ein."
+        },
+        "examples": [
+          "de:13:41",
+          "de:13:42"
+        ]
+      },
+      {
+        "lemma": "ankommen",
+        "meaning": {
+          "ru": "приезжать, прибывать",
+          "uk": "прибувати",
+          "en": "to arrive",
+          "es": "llegar",
+          "pt-BR": "chegar",
+          "vi": "đến nơi",
+          "id": "tiba",
+          "tr": "varmak, gelmek",
+          "pl": "przybywać"
+        },
+        "forms": {
+          "inf": "ankommen",
+          "pres3": "kommt an",
+          "praet": "kam an",
+          "pp": "angekommen"
+        },
+        "train": {
+          "base": "ankommen",
+          "past": "kam an",
+          "pp": "angekommen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «an» отделяется: der Zug kommt an.",
+          "uk": "Префікс «an» відокремлюється: der Zug kommt an."
+        },
+        "examples": [
+          "de:13:35",
+          "de:17:01"
+        ]
+      },
+      {
+        "lemma": "abfahren",
+        "meaning": {
+          "ru": "отправляться (о транспорте)",
+          "uk": "відправлятися",
+          "en": "to depart, to leave",
+          "es": "salir, partir",
+          "pt-BR": "partir, sair",
+          "vi": "khởi hành",
+          "id": "berangkat",
+          "tr": "kalkmak, hareket etmek",
+          "pl": "odjeżdżać"
+        },
+        "forms": {
+          "inf": "abfahren",
+          "pres3": "fährt ab",
+          "praet": "fuhr ab",
+          "pp": "abgefahren"
+        },
+        "train": {
+          "base": "abfahren",
+          "past": "fuhr ab",
+          "pp": "abgefahren"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «ab» отделяется: der Zug fährt ab.",
+          "uk": "Префікс «ab» відокремлюється: der Zug fährt ab."
+        },
+        "examples": [
+          "de:13:32",
+          "de:13:33"
+        ]
+      },
+      {
+        "lemma": "umsteigen",
+        "meaning": {
+          "ru": "делать пересадку",
+          "uk": "пересідати",
+          "en": "to change (trains, buses)",
+          "es": "hacer transbordo",
+          "pt-BR": "fazer baldeação",
+          "vi": "chuyển tuyến, đổi xe",
+          "id": "berpindah (kendaraan)",
+          "tr": "aktarma yapmak",
+          "pl": "przesiadać się"
+        },
+        "forms": {
+          "inf": "umsteigen",
+          "pres3": "steigt um",
+          "praet": "stieg um",
+          "pp": "umgestiegen"
+        },
+        "train": {
+          "base": "umsteigen",
+          "past": "stieg um",
+          "pp": "umgestiegen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «um» отделяется: wir steigen um.",
+          "uk": "Префікс «um» відокремлюється: wir steigen um."
+        },
+        "examples": [
+          "de:13:45",
+          "de:17:23"
+        ]
+      },
+      {
+        "lemma": "mitbringen",
+        "meaning": {
+          "ru": "приносить с собой",
+          "uk": "приносити з собою",
+          "en": "to bring along",
+          "es": "traer consigo",
+          "pt-BR": "trazer consigo",
+          "vi": "mang theo (cho ai)",
+          "id": "membawa (untuk seseorang)",
+          "tr": "yanında getirmek",
+          "pl": "przynosić ze sobą"
+        },
+        "forms": {
+          "inf": "mitbringen",
+          "pres3": "bringt mit",
+          "praet": "brachte mit",
+          "pp": "mitgebracht"
+        },
+        "train": {
+          "base": "mitbringen",
+          "past": "brachte mit",
+          "pp": "mitgebracht"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Приставка «mit» отделяется: ich bringe Brot mit.",
+          "uk": "Префікс «mit» відокремлюється: ich bringe Brot mit."
+        },
+        "examples": [
+          "de:13:26",
+          "de:13:30",
+          "de:13:27"
+        ]
+      },
+      {
+        "lemma": "aufschreiben",
+        "meaning": {
+          "ru": "записывать",
+          "uk": "записувати",
+          "en": "to write down",
+          "es": "anotar, apuntar",
+          "pt-BR": "anotar, escrever",
+          "vi": "ghi lại",
+          "id": "menuliskan, mencatat",
+          "tr": "yazıp not etmek",
+          "pl": "zapisywać"
+        },
+        "forms": {
+          "inf": "aufschreiben",
+          "pres3": "schreibt auf",
+          "praet": "schrieb auf",
+          "pp": "aufgeschrieben"
+        },
+        "train": {
+          "base": "aufschreiben",
+          "past": "schrieb auf",
+          "pp": "aufgeschrieben"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Приставка «auf» отделяется: ich schreibe es auf.",
+          "uk": "Префікс «auf» відокремлюється: ich schreibe es auf."
+        },
+        "examples": [
+          "de:13:49",
+          "de:14:19"
+        ]
+      }
+    ],
+    "14": [
+      {
+        "lemma": "helfen",
+        "meaning": {
+          "ru": "помогать",
+          "uk": "допомагати",
+          "en": "to help",
+          "es": "ayudar",
+          "pt-BR": "ajudar",
+          "vi": "giúp đỡ",
+          "id": "membantu",
+          "tr": "yardım etmek",
+          "pl": "pomagać"
+        },
+        "forms": {
+          "inf": "helfen",
+          "pres3": "hilft",
+          "praet": "half",
+          "pp": "geholfen"
+        },
+        "train": {
+          "base": "helfen",
+          "past": "half",
+          "pp": "geholfen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: du hilfst, er hilft.",
+          "uk": "Голосна змінюється на «i»: du hilfst, er hilft."
+        },
+        "examples": [
+          "de:14:05",
+          "de:23:13"
+        ]
+      },
+      {
+        "lemma": "können",
+        "meaning": {
+          "ru": "мочь, уметь",
+          "uk": "могти, вміти",
+          "en": "can, to be able to",
+          "es": "poder, saber",
+          "pt-BR": "poder, saber",
+          "vi": "có thể, biết",
+          "id": "bisa, dapat",
+          "tr": "-ebilmek",
+          "pl": "móc, umieć"
+        },
+        "forms": {
+          "inf": "können",
+          "pres3": "kann",
+          "praet": "konnte",
+          "pp": "gekonnt"
+        },
+        "train": {
+          "base": "können",
+          "past": "konnte",
+          "pp": "gekonnt"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Без окончания в ich и er: ich kann, du kannst, er kann.",
+          "uk": "Без закінчення в ich та er: ich kann, du kannst, er kann."
+        },
+        "examples": [
+          "de:14:05",
+          "de:14:06",
+          "de:14:01"
+        ]
+      },
+      {
+        "lemma": "müssen",
+        "meaning": {
+          "ru": "быть вынужденным",
+          "uk": "бути змушеним",
+          "en": "must, to have to",
+          "es": "tener que, deber",
+          "pt-BR": "ter que, dever",
+          "vi": "phải",
+          "id": "harus",
+          "tr": "zorunda olmak",
+          "pl": "musieć"
+        },
+        "forms": {
+          "inf": "müssen",
+          "pres3": "muss",
+          "praet": "musste",
+          "pp": "gemusst"
+        },
+        "train": {
+          "base": "müssen",
+          "past": "musste",
+          "pp": "gemusst"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Без окончания в ich и er: ich muss, du musst, er muss.",
+          "uk": "Без закінчення в ich та er: ich muss, du musst, er muss."
+        },
+        "examples": [
+          "de:14:12",
+          "de:14:16",
+          "de:14:11"
+        ]
+      },
+      {
+        "lemma": "dürfen",
+        "meaning": {
+          "ru": "иметь право",
+          "uk": "мати право",
+          "en": "may, to be allowed to",
+          "es": "poder, estar permitido",
+          "pt-BR": "poder, ter permissão",
+          "vi": "được phép",
+          "id": "boleh",
+          "tr": "izinli olmak",
+          "pl": "wolno, móc"
+        },
+        "forms": {
+          "inf": "dürfen",
+          "pres3": "darf",
+          "praet": "durfte",
+          "pp": "gedurft"
+        },
+        "train": {
+          "base": "dürfen",
+          "past": "durfte",
+          "pp": "gedurft"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Без окончания в ich и er: ich darf, du darfst, er darf.",
+          "uk": "Без закінчення в ich та er: ich darf, du darfst, er darf."
+        },
+        "examples": [
+          "de:14:21",
+          "de:14:25",
+          "de:14:22"
+        ]
+      },
+      {
+        "lemma": "wollen",
+        "meaning": {
+          "ru": "хотеть",
+          "uk": "хотіти",
+          "en": "to want",
+          "es": "querer",
+          "pt-BR": "querer",
+          "vi": "muốn",
+          "id": "ingin, mau",
+          "tr": "istemek",
+          "pl": "chcieć"
+        },
+        "forms": {
+          "inf": "wollen",
+          "pres3": "will",
+          "praet": "wollte",
+          "pp": "gewollt"
+        },
+        "train": {
+          "base": "wollen",
+          "past": "wollte",
+          "pp": "gewollt"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Без окончания в ich и er: ich will, du willst, er will.",
+          "uk": "Без закінчення в ich та er: ich will, du willst, er will."
+        },
+        "examples": [
+          "de:14:33",
+          "de:14:34",
+          "de:14:35"
+        ]
+      },
+      {
+        "lemma": "sollen",
+        "meaning": {
+          "ru": "быть должным",
+          "uk": "бути повинним",
+          "en": "should, to be supposed to",
+          "es": "deber, tener que",
+          "pt-BR": "dever",
+          "vi": "nên, phải",
+          "id": "sebaiknya, harus",
+          "tr": "-meli, gerekmek",
+          "pl": "powinien, mieć coś zrobić"
+        },
+        "forms": {
+          "inf": "sollen",
+          "pres3": "soll",
+          "praet": "sollte",
+          "pp": "gesollt"
+        },
+        "train": {
+          "base": "sollen",
+          "past": "sollte",
+          "pp": "gesollt"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Без окончания в ich и er: ich soll, er soll.",
+          "uk": "Без закінчення в ich та er: ich soll, er soll."
+        },
+        "examples": [
+          "de:14:41",
+          "de:14:42",
+          "de:14:43"
+        ]
+      },
+      {
+        "lemma": "mitkommen",
+        "meaning": {
+          "ru": "идти вместе",
+          "uk": "йти разом",
+          "en": "to come along",
+          "es": "venir con, acompañar",
+          "pt-BR": "vir junto",
+          "vi": "đi cùng",
+          "id": "ikut",
+          "tr": "birlikte gelmek",
+          "pl": "przychodzić razem"
+        },
+        "forms": {
+          "inf": "mitkommen",
+          "pres3": "kommt mit",
+          "praet": "kam mit",
+          "pp": "mitgekommen"
+        },
+        "train": {
+          "base": "mitkommen",
+          "past": "kam mit",
+          "pp": "mitgekommen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «mit» отделяется: ich komme mit.",
+          "uk": "Префікс «mit» відокремлюється: ich komme mit."
+        },
+        "examples": [
+          "de:14:06",
+          "de:23:05"
+        ]
+      },
+      {
+        "lemma": "mitnehmen",
+        "meaning": {
+          "ru": "брать с собой",
+          "uk": "брати з собою",
+          "en": "to take along",
+          "es": "llevar consigo",
+          "pt-BR": "levar consigo",
+          "vi": "mang theo",
+          "id": "membawa serta",
+          "tr": "yanında götürmek",
+          "pl": "zabierać ze sobą"
+        },
+        "forms": {
+          "inf": "mitnehmen",
+          "pres3": "nimmt mit",
+          "praet": "nahm mit",
+          "pp": "mitgenommen"
+        },
+        "train": {
+          "base": "mitnehmen",
+          "past": "nahm mit",
+          "pp": "mitgenommen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Приставка «mit» отделяется: ich nehme es mit.",
+          "uk": "Префікс «mit» відокремлюється: ich nehme es mit."
+        },
+        "examples": [
+          "de:14:27",
+          "de:15:24"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "lemma": "unterschreiben",
+        "meaning": {
+          "ru": "подписывать",
+          "uk": "підписувати",
+          "en": "to sign",
+          "es": "firmar",
+          "pt-BR": "assinar",
+          "vi": "ký",
+          "id": "menandatangani",
+          "tr": "imzalamak",
+          "pl": "podpisywać"
+        },
+        "forms": {
+          "inf": "unterschreiben",
+          "pres3": "unterschreibt",
+          "praet": "unterschrieb",
+          "pp": "unterschrieben"
+        },
+        "train": {
+          "base": "unterschreiben",
+          "past": "unterschrieb",
+          "pp": "unterschrieben"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Приставка «unter» не отделяется: ich unterschreibe.",
+          "uk": "Префікс «unter» не відокремлюється: ich unterschreibe."
+        },
+        "examples": [
+          "de:15:35",
+          "de:28:46"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "lemma": "sehen",
+        "meaning": {
+          "ru": "видеть",
+          "uk": "бачити",
+          "en": "to see",
+          "es": "ver",
+          "pt-BR": "ver",
+          "vi": "nhìn thấy",
+          "id": "melihat",
+          "tr": "görmek",
+          "pl": "widzieć"
+        },
+        "forms": {
+          "inf": "sehen",
+          "pres3": "sieht",
+          "praet": "sah",
+          "pp": "gesehen"
+        },
+        "train": {
+          "base": "sehen",
+          "past": "sah",
+          "pp": "gesehen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «ie»: du siehst, er sieht.",
+          "uk": "Голосна змінюється на «ie»: du siehst, er sieht."
+        },
+        "examples": [
+          "de:16:20",
+          "de:26:24"
+        ]
+      },
+      {
+        "lemma": "bekommen",
+        "meaning": {
+          "ru": "получать",
+          "uk": "отримувати",
+          "en": "to get, to receive",
+          "es": "recibir, conseguir",
+          "pt-BR": "receber, conseguir",
+          "vi": "nhận được",
+          "id": "menerima, mendapatkan",
+          "tr": "almak, elde etmek",
+          "pl": "dostawać"
+        },
+        "forms": {
+          "inf": "bekommen",
+          "pres3": "bekommt",
+          "praet": "bekam",
+          "pp": "bekommen"
+        },
+        "train": {
+          "base": "bekommen",
+          "past": "bekam",
+          "pp": "bekommen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "В прошедшем времени форма та же: ich habe bekommen.",
+          "uk": "У минулому часі форма та сама: ich habe bekommen."
+        },
+        "examples": [
+          "de:16:42",
+          "de:24:23"
+        ]
+      },
+      {
+        "lemma": "vergessen",
+        "meaning": {
+          "ru": "забывать",
+          "uk": "забувати",
+          "en": "to forget",
+          "es": "olvidar",
+          "pt-BR": "esquecer",
+          "vi": "quên",
+          "id": "lupa",
+          "tr": "unutmak",
+          "pl": "zapominać"
+        },
+        "forms": {
+          "inf": "vergessen",
+          "pres3": "vergisst",
+          "praet": "vergaß",
+          "pp": "vergessen"
+        },
+        "train": {
+          "base": "vergessen",
+          "past": "vergaß",
+          "pp": "vergessen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: du vergisst, er vergisst.",
+          "uk": "Голосна змінюється на «i»: du vergisst, er vergisst."
+        },
+        "examples": [
+          "de:16:50"
+        ]
+      },
+      {
+        "lemma": "verlieren",
+        "meaning": {
+          "ru": "терять",
+          "uk": "губити",
+          "en": "to lose",
+          "es": "perder",
+          "pt-BR": "perder",
+          "vi": "mất, thua",
+          "id": "kehilangan, kalah",
+          "tr": "kaybetmek",
+          "pl": "tracić, przegrywać"
+        },
+        "forms": {
+          "inf": "verlieren",
+          "pres3": "verliert",
+          "praet": "verlor",
+          "pp": "verloren"
+        },
+        "train": {
+          "base": "verlieren",
+          "past": "verlor",
+          "pp": "verloren"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: verlieren — verlor — verloren.",
+          "uk": "Голосна змінюється: verlieren — verlor — verloren."
+        },
+        "examples": [
+          "de:16:40"
+        ]
+      }
+    ],
+    "17": [
+      {
+        "lemma": "werden",
+        "meaning": {
+          "ru": "становиться",
+          "uk": "ставати",
+          "en": "to become",
+          "es": "volverse, llegar a ser",
+          "pt-BR": "tornar-se, ficar",
+          "vi": "trở nên, trở thành",
+          "id": "menjadi",
+          "tr": "olmak, dönüşmek",
+          "pl": "stawać się, zostać"
+        },
+        "forms": {
+          "inf": "werden",
+          "pres3": "wird",
+          "praet": "wurde",
+          "pp": "geworden"
+        },
+        "train": {
+          "base": "werden",
+          "past": "wurde",
+          "pp": "geworden"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Нужен и для будущего: ich werde gehen, и для «es wird gemacht».",
+          "uk": "Потрібен і для майбутнього: ich werde gehen, і для «es wird gemacht»."
+        },
+        "examples": [
+          "de:17:46",
+          "de:28:01"
+        ]
+      },
+      {
+        "lemma": "einschlafen",
+        "meaning": {
+          "ru": "засыпать",
+          "uk": "засинати",
+          "en": "to fall asleep",
+          "es": "quedarse dormido",
+          "pt-BR": "adormecer",
+          "vi": "ngủ thiếp đi",
+          "id": "tertidur",
+          "tr": "uykuya dalmak",
+          "pl": "zasypiać"
+        },
+        "forms": {
+          "inf": "einschlafen",
+          "pres3": "schläft ein",
+          "praet": "schlief ein",
+          "pp": "eingeschlafen"
+        },
+        "train": {
+          "base": "einschlafen",
+          "past": "schlief ein",
+          "pp": "eingeschlafen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «ein» отделяется: er schläft ein.",
+          "uk": "Префікс «ein» відокремлюється: er schläft ein."
+        },
+        "examples": [
+          "de:17:10"
+        ]
+      },
+      {
+        "lemma": "ziehen",
+        "meaning": {
+          "ru": "тянуть, переезжать",
+          "uk": "тягнути, переїжджати",
+          "en": "to pull, to move",
+          "es": "tirar, jalar, mudarse",
+          "pt-BR": "puxar, mudar-se",
+          "vi": "kéo, chuyển nhà",
+          "id": "menarik, pindah",
+          "tr": "çekmek, taşınmak",
+          "pl": "ciągnąć, przeprowadzać się"
+        },
+        "forms": {
+          "inf": "ziehen",
+          "pres3": "zieht",
+          "praet": "zog",
+          "pp": "gezogen"
+        },
+        "train": {
+          "base": "ziehen",
+          "past": "zog",
+          "pp": "gezogen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: ziehen — zog — gezogen.",
+          "uk": "Голосна змінюється: ziehen — zog — gezogen."
+        },
+        "examples": [
+          "de:17:28",
+          "de:19:06"
+        ]
+      },
+      {
+        "lemma": "fallen",
+        "meaning": {
+          "ru": "падать",
+          "uk": "падати",
+          "en": "to fall",
+          "es": "caer",
+          "pt-BR": "cair",
+          "vi": "rơi, ngã",
+          "id": "jatuh",
+          "tr": "düşmek",
+          "pl": "spadać, upadać"
+        },
+        "forms": {
+          "inf": "fallen",
+          "pres3": "fällt",
+          "praet": "fiel",
+          "pp": "gefallen"
+        },
+        "train": {
+          "base": "fallen",
+          "past": "fiel",
+          "pp": "gefallen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: du fällst, er fällt.",
+          "uk": "З du та er «a» стає «ä»: du fällst, er fällt."
+        },
+        "examples": [
+          "de:17:18",
+          "de:24:38"
+        ]
+      },
+      {
+        "lemma": "zurückkommen",
+        "meaning": {
+          "ru": "возвращаться",
+          "uk": "повертатися",
+          "en": "to come back",
+          "es": "volver, regresar",
+          "pt-BR": "voltar, regressar",
+          "vi": "quay lại",
+          "id": "kembali",
+          "tr": "geri gelmek",
+          "pl": "wracać"
+        },
+        "forms": {
+          "inf": "zurückkommen",
+          "pres3": "kommt zurück",
+          "praet": "kam zurück",
+          "pp": "zurückgekommen"
+        },
+        "train": {
+          "base": "zurückkommen",
+          "past": "kam zurück",
+          "pp": "zurückgekommen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «zurück» отделяется: er kommt zurück.",
+          "uk": "Префікс «zurück» відокремлюється: er kommt zurück."
+        },
+        "examples": [
+          "de:17:27"
+        ]
+      },
+      {
+        "lemma": "losfahren",
+        "meaning": {
+          "ru": "отправиться в путь",
+          "uk": "вирушити в дорогу",
+          "en": "to set off",
+          "es": "ponerse en marcha, salir",
+          "pt-BR": "partir, pôr-se a caminho",
+          "vi": "lên đường",
+          "id": "berangkat",
+          "tr": "yola çıkmak",
+          "pl": "ruszać w drogę"
+        },
+        "forms": {
+          "inf": "losfahren",
+          "pres3": "fährt los",
+          "praet": "fuhr los",
+          "pp": "losgefahren"
+        },
+        "train": {
+          "base": "losfahren",
+          "past": "fuhr los",
+          "pp": "losgefahren"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «los» отделяется: wir fahren los.",
+          "uk": "Префікс «los» відокремлюється: wir fahren los."
+        },
+        "examples": [
+          "de:17:25",
+          "de:24:04"
+        ]
+      },
+      {
+        "lemma": "fliegen",
+        "meaning": {
+          "ru": "летать",
+          "uk": "літати",
+          "en": "to fly",
+          "es": "volar",
+          "pt-BR": "voar",
+          "vi": "bay",
+          "id": "terbang",
+          "tr": "uçmak",
+          "pl": "latać"
+        },
+        "forms": {
+          "inf": "fliegen",
+          "pres3": "fliegt",
+          "praet": "flog",
+          "pp": "geflogen"
+        },
+        "train": {
+          "base": "fliegen",
+          "past": "flog",
+          "pp": "geflogen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Гласная меняется: fliegen — flog — geflogen.",
+          "uk": "Голосна змінюється: fliegen — flog — geflogen."
+        },
+        "examples": [
+          "de:17:14"
+        ]
+      },
+      {
+        "lemma": "rennen",
+        "meaning": {
+          "ru": "бежать",
+          "uk": "бігти",
+          "en": "to run, to race",
+          "es": "correr",
+          "pt-BR": "correr",
+          "vi": "chạy",
+          "id": "berlari",
+          "tr": "koşmak",
+          "pl": "biegać"
+        },
+        "forms": {
+          "inf": "rennen",
+          "pres3": "rennt",
+          "praet": "rannte",
+          "pp": "gerannt"
+        },
+        "train": {
+          "base": "rennen",
+          "past": "rannte",
+          "pp": "gerannt"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Внутри слова меняется, а окончания обычные.",
+          "uk": "Всередині слова змінюється, а закінчення звичайні."
+        },
+        "examples": [
+          "de:17:17"
+        ]
+      },
+      {
+        "lemma": "hinfallen",
+        "meaning": {
+          "ru": "упасть",
+          "uk": "впасти",
+          "en": "to fall down",
+          "es": "caerse",
+          "pt-BR": "cair",
+          "vi": "ngã",
+          "id": "jatuh",
+          "tr": "düşmek, yere yıkılmak",
+          "pl": "przewracać się"
+        },
+        "forms": {
+          "inf": "hinfallen",
+          "pres3": "fällt hin",
+          "praet": "fiel hin",
+          "pp": "hingefallen"
+        },
+        "train": {
+          "base": "hinfallen",
+          "past": "fiel hin",
+          "pp": "hingefallen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «hin» отделяется: er fällt hin.",
+          "uk": "Префікс «hin» відокремлюється: er fällt hin."
+        },
+        "examples": [
+          "de:17:50"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "lemma": "waschen",
+        "meaning": {
+          "ru": "мыть, стирать",
+          "uk": "мити, прати",
+          "en": "to wash",
+          "es": "lavar",
+          "pt-BR": "lavar",
+          "vi": "rửa, giặt",
+          "id": "mencuci",
+          "tr": "yıkamak",
+          "pl": "myć, prać"
+        },
+        "forms": {
+          "inf": "waschen",
+          "pres3": "wäscht",
+          "praet": "wusch",
+          "pp": "gewaschen"
+        },
+        "train": {
+          "base": "waschen",
+          "past": "wusch",
+          "pp": "gewaschen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: du wäschst, er wäscht.",
+          "uk": "З du та er «a» стає «ä»: du wäschst, er wäscht."
+        },
+        "examples": [
+          "de:19:01",
+          "de:19:02",
+          "de:19:04"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "lemma": "gefallen",
+        "meaning": {
+          "ru": "нравиться",
+          "uk": "подобатися",
+          "en": "to be pleasing, to like",
+          "es": "gustar",
+          "pt-BR": "agradar, gostar",
+          "vi": "làm hài lòng, được thích",
+          "id": "disukai, menyenangkan",
+          "tr": "hoşuna gitmek",
+          "pl": "podobać się"
+        },
+        "forms": {
+          "inf": "gefallen",
+          "pres3": "gefällt",
+          "praet": "gefiel",
+          "pp": "gefallen"
+        },
+        "train": {
+          "base": "gefallen",
+          "past": "gefiel",
+          "pp": "gefallen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: es gefällt mir.",
+          "uk": "З du та er «a» стає «ä»: es gefällt mir."
+        },
+        "examples": [
+          "de:20:48"
+        ]
+      }
+    ],
+    "21": [
+      {
+        "lemma": "laden",
+        "meaning": {
+          "ru": "грузить, заряжать",
+          "uk": "вантажити, заряджати",
+          "en": "to load, to charge",
+          "es": "cargar",
+          "pt-BR": "carregar",
+          "vi": "chất, sạc",
+          "id": "memuat, mengisi daya",
+          "tr": "yüklemek, şarj etmek",
+          "pl": "ładować"
+        },
+        "forms": {
+          "inf": "laden",
+          "pres3": "lädt",
+          "praet": "lud",
+          "pp": "geladen"
+        },
+        "train": {
+          "base": "laden",
+          "past": "lud",
+          "pp": "geladen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: er lädt.",
+          "uk": "З du та er «a» стає «ä»: er lädt."
+        },
+        "examples": [
+          "de:21:49"
+        ]
+      },
+      {
+        "lemma": "kennen",
+        "meaning": {
+          "ru": "знать (кого-то)",
+          "uk": "знати (когось)",
+          "en": "to know (a person or place)",
+          "es": "conocer",
+          "pt-BR": "conhecer",
+          "vi": "biết, quen",
+          "id": "mengenal",
+          "tr": "tanımak",
+          "pl": "znać"
+        },
+        "forms": {
+          "inf": "kennen",
+          "pres3": "kennt",
+          "praet": "kannte",
+          "pp": "gekannt"
+        },
+        "train": {
+          "base": "kennen",
+          "past": "kannte",
+          "pp": "gekannt"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Внутри слова меняется: kennen — kannte — gekannt.",
+          "uk": "Всередині слова змінюється: kennen — kannte — gekannt."
+        },
+        "examples": [
+          "de:21:48",
+          "de:27:25"
+        ]
+      },
+      {
+        "lemma": "ausfallen",
+        "meaning": {
+          "ru": "отменяться",
+          "uk": "скасовуватися",
+          "en": "to be cancelled",
+          "es": "cancelarse, suspenderse",
+          "pt-BR": "ser cancelado",
+          "vi": "bị hủy",
+          "id": "dibatalkan",
+          "tr": "iptal olmak",
+          "pl": "odwoływać się, nie odbyć się"
+        },
+        "forms": {
+          "inf": "ausfallen",
+          "pres3": "fällt aus",
+          "praet": "fiel aus",
+          "pp": "ausgefallen"
+        },
+        "train": {
+          "base": "ausfallen",
+          "past": "fiel aus",
+          "pp": "ausgefallen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «aus» отделяется: der Kurs fällt aus.",
+          "uk": "Префікс «aus» відокремлюється: der Kurs fällt aus."
+        },
+        "examples": [
+          "de:21:42",
+          "de:22:44"
+        ]
+      },
+      {
+        "lemma": "umziehen",
+        "meaning": {
+          "ru": "переезжать",
+          "uk": "переїжджати",
+          "en": "to move (house)",
+          "es": "mudarse (de casa)",
+          "pt-BR": "mudar-se (de casa)",
+          "vi": "chuyển nhà",
+          "id": "pindah rumah",
+          "tr": "taşınmak",
+          "pl": "przeprowadzać się"
+        },
+        "forms": {
+          "inf": "umziehen",
+          "pres3": "zieht um",
+          "praet": "zog um",
+          "pp": "umgezogen"
+        },
+        "train": {
+          "base": "umziehen",
+          "past": "zog um",
+          "pp": "umgezogen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «um» отделяется: wir ziehen um.",
+          "uk": "Префікс «um» відокремлюється: wir ziehen um."
+        },
+        "examples": [
+          "de:21:29",
+          "de:26:09"
+        ]
+      },
+      {
+        "lemma": "frieren",
+        "meaning": {
+          "ru": "мёрзнуть, замерзать",
+          "uk": "мерзнути, замерзати",
+          "en": "to freeze, to be cold",
+          "es": "tener frío, congelarse",
+          "pt-BR": "sentir frio, congelar",
+          "vi": "lạnh, đóng băng",
+          "id": "kedinginan, membeku",
+          "tr": "üşümek, donmak",
+          "pl": "marznąć"
+        },
+        "forms": {
+          "inf": "frieren",
+          "pres3": "friert",
+          "praet": "fror",
+          "pp": "gefroren"
+        },
+        "train": {
+          "base": "frieren",
+          "past": "fror",
+          "pp": "gefroren"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: frieren — fror — gefroren.",
+          "uk": "Голосна змінюється: frieren — fror — gefroren."
+        },
+        "examples": [
+          "de:21:03",
+          "de:31:19"
+        ]
+      }
+    ],
+    "22": [
+      {
+        "lemma": "wissen",
+        "meaning": {
+          "ru": "знать",
+          "uk": "знати",
+          "en": "to know (a fact)",
+          "es": "saber",
+          "pt-BR": "saber",
+          "vi": "biết",
+          "id": "tahu",
+          "tr": "bilmek",
+          "pl": "wiedzieć"
+        },
+        "forms": {
+          "inf": "wissen",
+          "pres3": "weiß",
+          "praet": "wusste",
+          "pp": "gewusst"
+        },
+        "train": {
+          "base": "wissen",
+          "past": "wusste",
+          "pp": "gewusst"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "В единственном числе: ich weiß, du weißt, er weiß. (Слово «weiß» может значить и «белый».)",
+          "uk": "В однині: ich weiß, du weißt, er weiß. (Слово «weiß» може означати й «білий».)"
+        },
+        "examples": [
+          "de:22:01",
+          "de:22:04",
+          "de:22:03"
+        ]
+      },
+      {
+        "lemma": "tun",
+        "meaning": {
+          "ru": "делать",
+          "uk": "робити",
+          "en": "to do",
+          "es": "hacer",
+          "pt-BR": "fazer",
+          "vi": "làm",
+          "id": "melakukan",
+          "tr": "yapmak",
+          "pl": "robić"
+        },
+        "forms": {
+          "inf": "tun",
+          "pres3": "tut",
+          "praet": "tat",
+          "pp": "getan"
+        },
+        "train": {
+          "base": "tun",
+          "past": "tat",
+          "pp": "getan"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Редкий, но важный: tue, tust, tut; tat; getan.",
+          "uk": "Рідкісне, але важливе: tue, tust, tut; tat; getan."
+        },
+        "examples": [
+          "de:22:48"
+        ]
+      }
+    ],
+    "23": [
+      {
+        "lemma": "anhalten",
+        "meaning": {
+          "ru": "останавливаться",
+          "uk": "зупинятися",
+          "en": "to stop",
+          "es": "parar, detenerse",
+          "pt-BR": "parar",
+          "vi": "dừng lại",
+          "id": "berhenti",
+          "tr": "durmak",
+          "pl": "zatrzymywać się"
+        },
+        "forms": {
+          "inf": "anhalten",
+          "pres3": "hält an",
+          "praet": "hielt an",
+          "pp": "angehalten"
+        },
+        "train": {
+          "base": "anhalten",
+          "past": "hielt an",
+          "pp": "angehalten"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Приставка «an» отделяется: der Bus hält an.",
+          "uk": "Префікс «an» відокремлюється: der Bus hält an."
+        },
+        "examples": [
+          "de:23:34",
+          "de:24:43"
+        ]
+      }
+    ],
+    "24": [
+      {
+        "lemma": "verlassen",
+        "meaning": {
+          "ru": "покидать",
+          "uk": "залишати",
+          "en": "to leave, to abandon",
+          "es": "abandonar, dejar",
+          "pt-BR": "deixar, abandonar",
+          "vi": "rời khỏi, bỏ",
+          "id": "meninggalkan",
+          "tr": "terk etmek, ayrılmak",
+          "pl": "opuszczać"
+        },
+        "forms": {
+          "inf": "verlassen",
+          "pres3": "verlässt",
+          "praet": "verließ",
+          "pp": "verlassen"
+        },
+        "train": {
+          "base": "verlassen",
+          "past": "verließ",
+          "pp": "verlassen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: er verlässt.",
+          "uk": "З du та er «a» стає «ä»: er verlässt."
+        },
+        "examples": [
+          "de:24:36"
+        ]
+      }
+    ],
+    "25": [
+      {
+        "lemma": "geben",
+        "meaning": {
+          "ru": "давать",
+          "uk": "давати",
+          "en": "to give",
+          "es": "dar",
+          "pt-BR": "dar",
+          "vi": "cho, đưa",
+          "id": "memberi",
+          "tr": "vermek",
+          "pl": "dawać"
+        },
+        "forms": {
+          "inf": "geben",
+          "pres3": "gibt",
+          "praet": "gab",
+          "pp": "gegeben"
+        },
+        "train": {
+          "base": "geben",
+          "past": "gab",
+          "pp": "gegeben"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется на «i»: gibst, gibt. «Es gibt» значит «есть, имеется».",
+          "uk": "Голосна змінюється на «i»: gibst, gibt. «Es gibt» означає «є, існує»."
+        },
+        "examples": [
+          "de:25:27",
+          "de:29:17"
+        ]
+      },
+      {
+        "lemma": "schmelzen",
+        "meaning": {
+          "ru": "таять",
+          "uk": "танути",
+          "en": "to melt",
+          "es": "derretirse",
+          "pt-BR": "derreter",
+          "vi": "tan chảy",
+          "id": "meleleh",
+          "tr": "erimek",
+          "pl": "topnieć"
+        },
+        "forms": {
+          "inf": "schmelzen",
+          "pres3": "schmilzt",
+          "praet": "schmolz",
+          "pp": "geschmolzen"
+        },
+        "train": {
+          "base": "schmelzen",
+          "past": "schmolz",
+          "pp": "geschmolzen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Гласная меняется на «i»: es schmilzt.",
+          "uk": "Голосна змінюється на «i»: es schmilzt."
+        },
+        "examples": [
+          "de:25:39",
+          "de:31:07"
+        ]
+      }
+    ],
+    "26": [
+      {
+        "lemma": "denken",
+        "meaning": {
+          "ru": "думать",
+          "uk": "думати",
+          "en": "to think",
+          "es": "pensar",
+          "pt-BR": "pensar",
+          "vi": "nghĩ",
+          "id": "berpikir",
+          "tr": "düşünmek",
+          "pl": "myśleć"
+        },
+        "forms": {
+          "inf": "denken",
+          "pres3": "denkt",
+          "praet": "dachte",
+          "pp": "gedacht"
+        },
+        "train": {
+          "base": "denken",
+          "past": "dachte",
+          "pp": "gedacht"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Внутри слова меняется, а окончания обычные.",
+          "uk": "Всередині слова змінюється, а закінчення звичайні."
+        },
+        "examples": [
+          "de:26:35"
+        ]
+      },
+      {
+        "lemma": "bitten",
+        "meaning": {
+          "ru": "просить",
+          "uk": "просити",
+          "en": "to ask, to request",
+          "es": "pedir, rogar",
+          "pt-BR": "pedir",
+          "vi": "yêu cầu, nhờ",
+          "id": "meminta",
+          "tr": "rica etmek",
+          "pl": "prosić"
+        },
+        "forms": {
+          "inf": "bitten",
+          "pres3": "bittet",
+          "praet": "bat",
+          "pp": "gebeten"
+        },
+        "train": {
+          "base": "bitten",
+          "past": "bat",
+          "pp": "gebeten"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: bitten — bat — gebeten.",
+          "uk": "Голосна змінюється: bitten — bat — gebeten."
+        },
+        "examples": [
+          "de:26:37",
+          "de:26:38"
+        ]
+      },
+      {
+        "lemma": "vergleichen",
+        "meaning": {
+          "ru": "сравнивать",
+          "uk": "порівнювати",
+          "en": "to compare",
+          "es": "comparar",
+          "pt-BR": "comparar",
+          "vi": "so sánh",
+          "id": "membandingkan",
+          "tr": "karşılaştırmak",
+          "pl": "porównywać"
+        },
+        "forms": {
+          "inf": "vergleichen",
+          "pres3": "vergleicht",
+          "praet": "verglich",
+          "pp": "verglichen"
+        },
+        "train": {
+          "base": "vergleichen",
+          "past": "verglich",
+          "pp": "verglichen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: vergleichen — verglich — verglichen.",
+          "uk": "Голосна змінюється: vergleichen — verglich — verglichen."
+        },
+        "examples": [
+          "de:26:27"
+        ]
+      },
+      {
+        "lemma": "vermeiden",
+        "meaning": {
+          "ru": "избегать",
+          "uk": "уникати",
+          "en": "to avoid",
+          "es": "evitar",
+          "pt-BR": "evitar",
+          "vi": "tránh",
+          "id": "menghindari",
+          "tr": "kaçınmak",
+          "pl": "unikać"
+        },
+        "forms": {
+          "inf": "vermeiden",
+          "pres3": "vermeidet",
+          "praet": "vermied",
+          "pp": "vermieden"
+        },
+        "train": {
+          "base": "vermeiden",
+          "past": "vermied",
+          "pp": "vermieden"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: vermeiden — vermied — vermieden.",
+          "uk": "Голосна змінюється: vermeiden — vermied — vermieden."
+        },
+        "examples": [
+          "de:26:43"
+        ]
+      },
+      {
+        "lemma": "verbieten",
+        "meaning": {
+          "ru": "запрещать",
+          "uk": "забороняти",
+          "en": "to forbid, to ban",
+          "es": "prohibir",
+          "pt-BR": "proibir",
+          "vi": "cấm",
+          "id": "melarang",
+          "tr": "yasaklamak",
+          "pl": "zabraniać"
+        },
+        "forms": {
+          "inf": "verbieten",
+          "pres3": "verbietet",
+          "praet": "verbot",
+          "pp": "verboten"
+        },
+        "train": {
+          "base": "verbieten",
+          "past": "verbot",
+          "pp": "verboten"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: verbieten — verbot — verboten.",
+          "uk": "Голосна змінюється: verbieten — verbot — verboten."
+        },
+        "examples": [
+          "de:26:30"
+        ]
+      }
+    ],
+    "28": [
+      {
+        "lemma": "backen",
+        "meaning": {
+          "ru": "печь",
+          "uk": "пекти",
+          "en": "to bake",
+          "es": "hornear",
+          "pt-BR": "assar",
+          "vi": "nướng (bánh)",
+          "id": "memanggang",
+          "tr": "pişirmek (fırında)",
+          "pl": "piec"
+        },
+        "forms": {
+          "inf": "backen",
+          "pres3": "bäckt",
+          "praet": "backte",
+          "pp": "gebacken"
+        },
+        "train": {
+          "base": "backen",
+          "past": "backte",
+          "pp": "gebacken"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Прошедшее: gebacken, а в рассказе чаще backte.",
+          "uk": "Минуле: gebacken, а в розповіді частіше backte."
+        },
+        "examples": [
+          "de:28:16"
+        ]
+      },
+      {
+        "lemma": "streichen",
+        "meaning": {
+          "ru": "красить, вычёркивать",
+          "uk": "фарбувати, викреслювати",
+          "en": "to paint, to cross out",
+          "es": "pintar, tachar",
+          "pt-BR": "pintar, riscar",
+          "vi": "sơn, gạch bỏ",
+          "id": "mengecat, mencoret",
+          "tr": "boyamak, çizmek",
+          "pl": "malować, skreślać"
+        },
+        "forms": {
+          "inf": "streichen",
+          "pres3": "streicht",
+          "praet": "strich",
+          "pp": "gestrichen"
+        },
+        "train": {
+          "base": "streichen",
+          "past": "strich",
+          "pp": "gestrichen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Гласная меняется: streichen — strich — gestrichen.",
+          "uk": "Голосна змінюється: streichen — strich — gestrichen."
+        },
+        "examples": [
+          "de:28:36"
+        ]
+      }
+    ],
+    "29": [
+      {
+        "lemma": "lassen",
+        "meaning": {
+          "ru": "позволять, оставлять",
+          "uk": "дозволяти, залишати",
+          "en": "to let, to leave",
+          "es": "dejar, permitir",
+          "pt-BR": "deixar, permitir",
+          "vi": "để, cho phép",
+          "id": "membiarkan, meninggalkan",
+          "tr": "bırakmak, izin vermek",
+          "pl": "pozwalać, zostawiać"
+        },
+        "forms": {
+          "inf": "lassen",
+          "pres3": "lässt",
+          "praet": "ließ",
+          "pp": "gelassen"
+        },
+        "train": {
+          "base": "lassen",
+          "past": "ließ",
+          "pp": "gelassen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: du lässt, er lässt.",
+          "uk": "З du та er «a» стає «ä»: du lässt, er lässt."
+        },
+        "examples": [
+          "de:29:23"
+        ]
+      },
+      {
+        "lemma": "anfangen",
+        "meaning": {
+          "ru": "начинать",
+          "uk": "починати",
+          "en": "to start, to begin",
+          "es": "empezar, comenzar",
+          "pt-BR": "começar",
+          "vi": "bắt đầu",
+          "id": "memulai",
+          "tr": "başlamak",
+          "pl": "zaczynać"
+        },
+        "forms": {
+          "inf": "anfangen",
+          "pres3": "fängt an",
+          "praet": "fing an",
+          "pp": "angefangen"
+        },
+        "train": {
+          "base": "anfangen",
+          "past": "fing an",
+          "pp": "angefangen"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "Приставка «an» отделяется: der Film fängt an.",
+          "uk": "Префікс «an» відокремлюється: der Film fängt an."
+        },
+        "examples": [
+          "de:29:28"
+        ]
+      },
+      {
+        "lemma": "behalten",
+        "meaning": {
+          "ru": "оставлять себе",
+          "uk": "залишати собі",
+          "en": "to keep",
+          "es": "quedarse con, conservar",
+          "pt-BR": "ficar com, manter",
+          "vi": "giữ lại",
+          "id": "menyimpan, mempertahankan",
+          "tr": "saklamak, elinde tutmak",
+          "pl": "zatrzymywać"
+        },
+        "forms": {
+          "inf": "behalten",
+          "pres3": "behält",
+          "praet": "behielt",
+          "pp": "behalten"
+        },
+        "train": {
+          "base": "behalten",
+          "past": "behielt",
+          "pp": "behalten"
+        },
+        "aux": "haben",
+        "note": {
+          "ru": "С du и er «a» становится «ä»: er behält.",
+          "uk": "З du та er «a» стає «ä»: er behält."
+        },
+        "examples": [
+          "de:29:42"
+        ]
+      }
+    ],
+    "31": [
+      {
+        "lemma": "sinken",
+        "meaning": {
+          "ru": "опускаться, падать",
+          "uk": "опускатися, падати",
+          "en": "to sink, to fall",
+          "es": "hundirse, bajar",
+          "pt-BR": "afundar, cair",
+          "vi": "chìm, giảm",
+          "id": "tenggelam, turun",
+          "tr": "batmak, düşmek",
+          "pl": "opadać, tonąć"
+        },
+        "forms": {
+          "inf": "sinken",
+          "pres3": "sinkt",
+          "praet": "sank",
+          "pp": "gesunken"
+        },
+        "train": {
+          "base": "sinken",
+          "past": "sank",
+          "pp": "gesunken"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Гласная меняется: sinken — sank — gesunken.",
+          "uk": "Голосна змінюється: sinken — sank — gesunken."
+        },
+        "examples": [
+          "de:31:08"
+        ]
+      },
+      {
+        "lemma": "ausgehen",
+        "meaning": {
+          "ru": "выходить гулять, гаснуть",
+          "uk": "виходити гуляти, гаснути",
+          "en": "to go out",
+          "es": "salir (a divertirse), apagarse",
+          "pt-BR": "sair, apagar-se",
+          "vi": "đi chơi, tắt",
+          "id": "keluar (bersenang-senang), padam",
+          "tr": "dışarı çıkmak, sönmek",
+          "pl": "wychodzić, gasnąć"
+        },
+        "forms": {
+          "inf": "ausgehen",
+          "pres3": "geht aus",
+          "praet": "ging aus",
+          "pp": "ausgegangen"
+        },
+        "train": {
+          "base": "ausgehen",
+          "past": "ging aus",
+          "pp": "ausgegangen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «aus» отделяется: wir gehen aus.",
+          "uk": "Префікс «aus» відокремлюється: wir gehen aus."
+        },
+        "examples": [
+          "de:31:30"
+        ]
+      },
+      {
+        "lemma": "ablaufen",
+        "meaning": {
+          "ru": "истекать",
+          "uk": "спливати",
+          "en": "to expire, to run out",
+          "es": "caducar, vencer",
+          "pt-BR": "vencer, expirar",
+          "vi": "hết hạn",
+          "id": "kedaluwarsa, habis",
+          "tr": "süresi dolmak",
+          "pl": "wygasać"
+        },
+        "forms": {
+          "inf": "ablaufen",
+          "pres3": "läuft ab",
+          "praet": "lief ab",
+          "pp": "abgelaufen"
+        },
+        "train": {
+          "base": "ablaufen",
+          "past": "lief ab",
+          "pp": "abgelaufen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «ab» отделяется: der Pass läuft ab.",
+          "uk": "Префікс «ab» відокремлюється: der Pass läuft ab."
+        },
+        "examples": [
+          "de:31:38"
+        ]
+      }
+    ]
+  }
+}

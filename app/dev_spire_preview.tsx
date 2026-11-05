@@ -28,7 +28,7 @@ import SpireHomeScreen from '../components/spire/SpireHomeScreen';
 import SpireTour from '../components/spire/SpireTour';
 import PeakKitPreview from '../components/spire/peak/PeakKitPreview';
 import PeakScreenPreview from '../components/spire/peak/PeakScreenPreview';
-import { setPeakScreenV2DevOverride } from '../components/spire/peak/peak_screen_flag';
+import { setPeakScreenV2DevOverride, setPeakTourDevOff } from '../components/spire/peak/peak_screen_flag';
 import { getDevAppearance, setDevAppearance } from './dev_appearance_override';
 import { WelcomeGate } from '../components/onboarding/WelcomeGate';
 import { SpireStepLayout } from '../components/spire/SpireStepScreen';
@@ -89,7 +89,7 @@ function StepPreview({ state, exitOpen, overrides }: Readonly<{ state: SpirePrev
 }
 
 function Inner() {
-  const params = useLocalSearchParams<{ appearance?: string; peakB?: string; state?: string; selector?: string; exit?: string; spirePanel?: string; tier?: string; floor?: string; steps?: string; nicks?: string; page?: string; mode?: string }>();
+  const params = useLocalSearchParams<{ tour?: string; appearance?: string; peakB?: string; state?: string; selector?: string; exit?: string; spirePanel?: string; tier?: string; floor?: string; steps?: string; nicks?: string; page?: string; mode?: string }>();
   const { lang } = useLang();
   const fromParam = isSpirePreviewState(params.state) ? params.state : 'room';
   const [state, setState] = useState<SpirePreviewState>(fromParam);
@@ -103,6 +103,7 @@ function Inner() {
     return () => setDevAppearance(previous);
   }, [params.appearance]);
   console.log('[PEAK-B] параметры превью', JSON.stringify({ peakB: params.peakB ?? null, state: params.state ?? null, dev: typeof __DEV__ !== 'undefined' ? __DEV__ : 'нет' })); // guard-ok: диагностика 05.11 (одна строка на рендер превью)
+  setPeakTourDevOff(params.tour === 'off');
   setPeakScreenV2DevOverride(params.peakB === '1' ? true : null); // зачем (Сверка 05.11): ?peakB=1 — живой экран Пика сразу в варианте B, только dev
   const model = useMemo(() => spirePreviewModel(state, overrides), [state, overrides]);
   const step = isSpireStepPreviewState(state);
@@ -127,7 +128,7 @@ function Inner() {
       {/* ?state=peak_tour[&page=1|2|3][&mode=steps] — тот же экран с туром первого входа поверх (утверждён владельцем 04.11); флаг «показан» не трогается */}
       {__DEV__ && params.state === 'peak_screen' ? <PeakScreenPreview lang={lang} rankBy={params.mode === 'steps' ? 'steps' : 'coins'} /> : null}
       {__DEV__ && params.state === 'peak_tour' ? <PeakScreenPreview lang={lang} rankBy={params.mode === 'steps' ? 'steps' : 'coins'} tourPage={params.page === '3' ? 2 : params.page === '2' ? 1 : 0} /> : null}
-      {__DEV__ && state === 'tour' ? <SpireTour lang={lang} visible initialPage={params.page === '3' ? 2 : params.page === '2' ? 1 : 0} onDone={() => undefined} /> : null}
+      {__DEV__ && state === 'tour' && params.peakB !== '1' ? <SpireTour lang={lang} visible initialPage={params.page === '3' ? 2 : params.page === '2' ? 1 : 0} onDone={() => undefined} /> : null}
       {step ? (
         <StepPreview state={state} exitOpen={exitOpen} overrides={overrides} />
       ) : (

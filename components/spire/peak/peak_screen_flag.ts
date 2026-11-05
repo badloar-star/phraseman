@@ -13,6 +13,11 @@ export function setPeakScreenV2DevOverride(value: boolean | null): void {
   devOverride = next;
 }
 /** Включён ли экран Пика B: dev-override, иначе константа PEAK_SCREEN_V2_ENABLED. */
+// зачем (координатор 05.11): ?tour=off в превью Шпиля — чистый кадр B без тура поверх; только dev-превью вызывает setter, в релизе значение всегда false
+let tourDevOff = false;
+export function setPeakTourDevOff(value: boolean): void { tourDevOff = value; }
+export function peakTourDevOff(): boolean { return tourDevOff; }
+
 let lastLogged: boolean | null = null;
 export function peakScreenV2On(): boolean {
   const on = devOverride ?? PEAK_SCREEN_V2_ENABLED;

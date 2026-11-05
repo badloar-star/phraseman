@@ -145,9 +145,10 @@ const s = StyleSheet.create({
   text: { fontSize: 16, lineHeight: 22, fontWeight: '500' },
   textOnly: { fontSize: 19, lineHeight: 26, fontWeight: '600' }, // зачем: карточка только с текстом (заголовков владелец не давал) — текст главный, крупнее и ярче
   buttons: { flexDirection: 'row', alignItems: 'center', gap: 12 }, // зачем (закон владельца 13.10 №35): зазор между кнопками >= 12
-  btn: { minHeight: 50, borderRadius: 25, alignItems: 'center', justifyContent: 'center' },
+  // зачем (кадр peak-b 23:35, координатор): «Далее» схлопывалась в кружок — у кнопок нет собственных боковых полей и минимальной ширины; теперь поля 18 и minWidth, подпись в одну строку не режется
+  btn: { minHeight: 50, borderRadius: 25, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
   ghost: { paddingHorizontal: 18 },
-  main: { flex: 1 },
+  main: { flex: 1, minWidth: 120 },
   btnText: { fontSize: 17, fontWeight: '700' },
 });
 

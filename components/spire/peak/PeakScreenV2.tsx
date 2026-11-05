@@ -15,6 +15,7 @@ import { spireGameText } from '../spire_game_strings';
 import PeakMyCounter from './PeakMyCounter';
 import PeakTopRow from './PeakTopRow';
 import PeakTopSkeleton from './PeakTopSkeleton';
+import { peakTourDevOff } from './peak_screen_flag';
 import PeakStepSheet from './PeakStepSheet';
 import PeakFloorStepper from './PeakFloorStepper';
 import PeakStepChips from './PeakStepChips';
@@ -57,7 +58,8 @@ function measureBlock(ref: React.RefObject<View | null>): Promise<PeakTourRect |
   });
 }
 
-function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, towerProps, onOpenAll, records = null, railHeight, tour = 'auto' }: Props) {
+function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, towerProps, onOpenAll, records = null, railHeight, tour: tourProp }: Props) {
+  const tour = tourProp ?? (peakTourDevOff() ? 'off' : 'auto');
   const p = useSpirePalette();
   const { height, width, fontScale } = useWindowDimensions();
   // зачем (аудит 05.11, экран 375×667 при шрифте ×1,3): в панели справа оставалось ~180 dp, имя сжималось до 2–3 букв — рельса уже, строки крупнее
@@ -110,7 +112,7 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
         <V2Pressable accessibilityRole="button" onPress={openSheet} style={s.floorBtn} testID="peak-floor-title">
           <Text style={[s.floor, { color: p.text }]}>{`${floorWord} ${floor}`}</Text>
         </V2Pressable>
-        <View ref={pillRef} collapsable={false} style={[s.pill, { backgroundColor: p.cardRaised }]}><Text numberOfLines={1} style={[s.pillText, { color: p.text }]}>{pillText}</Text></View>
+        <View ref={pillRef} collapsable={false} style={[s.pill, { backgroundColor: p.cardRaised }]}><Text numberOfLines={2} style={[s.pillText, { color: p.text }]}>{pillText}</Text></View>
         </View>
         <View ref={counterRef} collapsable={false} style={s.counter}><PeakMyCounter lang={lang} me={model.me} rankBy={rankBy} loading={members === null} /></View>
         <View ref={topRef} collapsable={false} testID="peak-top">{members === null ? <PeakTopSkeleton /> : model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} coinSize={PEAK_ROW_COIN_SIZE} />)}</View>
@@ -139,7 +141,8 @@ const s = StyleSheet.create({
   head: { alignSelf: 'flex-start' },
   floorBtn: { minHeight: PEAK_TAP_TARGET, justifyContent: 'center', alignSelf: 'flex-start' },
   floor: { fontSize: 30, lineHeight: 36, fontWeight: '800', letterSpacing: -0.4 },
-  pill: { alignSelf: 'flex-start', minHeight: 36, borderRadius: 18, paddingHorizontal: 14, justifyContent: 'center', marginTop: 2 },
+  // зачем (кадр peak-b 23:35): «Нефрит · до конца неде…» обрезалось в одну строку — пилюля растёт до двух строк (панель справа узкая), паддинг по вертикали
+  pill: { alignSelf: 'flex-start', maxWidth: '100%', minHeight: 36, borderRadius: 18, paddingHorizontal: 14, paddingVertical: 6, justifyContent: 'center', marginTop: 2 },
   pillText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
   counter: { marginTop: 18, marginBottom: 14 },
   group: { fontSize: 15, lineHeight: 20, fontWeight: '700', marginTop: 14, marginBottom: 4, marginLeft: 12 },

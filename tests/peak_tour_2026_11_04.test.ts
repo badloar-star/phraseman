@@ -186,7 +186,8 @@ describe('флаг «тур показан» — один раз на аккау
 describe('проводка и правила вёрстки', () => {
   it('экран Пика: тур по умолчанию «auto» через ворота, окна — от замеренных блоков, на Reduce Motion без входа', () => {
     const screen = read('components/spire/peak/PeakScreenV2.tsx');
-    expect(screen).toContain("tour = 'auto'");
+    // зачем (координатор 05.11): по умолчанию тур 'auto', в dev-превью ?tour=off отключает его для чистого кадра
+    expect(screen).toContain("tourProp ?? (peakTourDevOff() ? 'off' : 'auto')");
     expect(screen).toContain('usePeakTourGate(');
     expect(screen).toContain('<PeakTour');
     expect(screen).toContain('measureInWindow');

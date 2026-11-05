@@ -30,4 +30,24 @@ describe('аудит экрана Пика B', () => {
     expect(skeleton).toContain('PEAK_SKELETON_ROW_HEIGHT = 56');
     expect(skeleton).not.toMatch(/borderWidth|borderColor/);
   });
+
+  it('кнопки тура не схлопываются (поля и minWidth), пилюля лиги переносится на две строки', () => {
+    const tour = read('components/spire/peak/PeakTour.tsx');
+    expect(tour).toMatch(/btn: \{[^}]*paddingHorizontal: 18/);
+    expect(tour).toContain('main: { flex: 1, minWidth: 120 }');
+    const screen = read('components/spire/peak/PeakScreenV2.tsx');
+    expect(screen).toContain('<Text numberOfLines={2} style={[s.pillText');
+    expect(screen).not.toMatch(/adjustsFontSizeToFit/);
+  });
+
+  it('«Мои монеты/Моё место» — крупные цифры без подписей (подписи для диктора), тур отключается ?tour=off', () => {
+    const counter = read('components/spire/peak/PeakMyCounter.tsx');
+    expect(counter).not.toMatch(/label: \{/);
+    expect(counter).toContain("spireGameText(lang, 'placeN', { n: me.place })");
+    expect(counter).toContain('accessibilityLabel=');
+    expect(read('components/spire/peak/PeakScreenV2.tsx')).toContain("tourProp ?? (peakTourDevOff() ? 'off' : 'auto')");
+    expect(read('app/dev_spire_preview.tsx')).toContain("setPeakTourDevOff(params.tour === 'off')");
+    // старый тур (state=tour) при ?peakB=1 не рисуется — вместо него новый (state=peak_tour)
+    expect(read('app/dev_spire_preview.tsx')).toContain("state === 'tour' && params.peakB !== '1'");
+  });
 });

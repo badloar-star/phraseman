@@ -34,6 +34,7 @@ const KNOWN_GUARDS = [
   'tests/owner_locks_spire_2026_10_22.test.ts',
   'tests/owner_locks_peak_coins_only_2026_11_05.test.ts', // 8 · МОМЕНТЫ 05.11 (слово владельца): в Пике только монеты и этажи, ни слова про ступени; режим «по ступеням» недостижим
   'tests/owner_locks_peak_tower_big_players_2026_11_05.test.ts', // 8 · МОМЕНТЫ 05.11 (слово владельца): башня Пика крупная, основание внизу, иконки игроков на башне
+  'tests/owner_locks_video_full_reward_2026_11_05.test.ts', // 8 · МОМЕНТЫ 05.11 (слово владельца): +500 монет за 70 % видео, один раз на ролик, без ×2 и дневного предела
   'tests/owner_locks_rank0_home_2026_11_05.test.ts', // 8 · МОМЕНТЫ 05.11 (слово владельца): ранг 0 — только плитки из макета, замки и для старых пользователей
   'tests/season_wire_contract.test.ts',
   'tests/screen_back_button_contract.test.ts',

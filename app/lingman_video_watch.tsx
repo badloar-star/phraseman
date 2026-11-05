@@ -20,6 +20,8 @@ import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useEffectiveStudyTarget } from './section_language';
 import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
+import { VideoRewardFlash } from '../components/video/VideoRewardOverlay';
+import { useVideoFullWatch } from '../hooks/use_video_full_watch';
 import YoutubeVideoPhrases from '../components/youtube/YoutubeVideoPhrases';
 import { formatViewCount } from '../components/video/formatViewCount';
 import { triLang } from '../constants/i18n';
@@ -75,6 +77,8 @@ export default function LingmanVideoWatchScreen() {
   // Первый кадр: ролик и канал из снимка каталога, иначе — из параметров маршрута.
   const catalog = useMemo(() => peekYoutubeCatalogScreenSnapshot(token), [token]);
   const video = useMemo(() => catalog?.videos.find((item) => item.id === videoId) ?? null, [catalog, videoId]);
+  // зачем (владелец 05.11: «+500 монет за полный просмотр — 70 %»): детектор просмотра, иконка «+500» в плеере; пометка «просмотрено», награда и история — одно событие
+  const { flashKey: rewardFlashKey } = useVideoFullWatch({ videoId: videoId || null, durationSec: video?.durationSec, live: (video as { state?: string } | null)?.state === 'live', active: runtimeActive });
   const channelName = catalog && (!video || catalog.channel.id === video.channelId) ? catalog.channel.displayName : '';
   const title = video?.title || (typeof params.title === 'string' ? params.title : '');
   const startSec = typeof params.startSec === 'string' && Number.isFinite(Number(params.startSec)) ? Number(params.startSec) : undefined;
@@ -253,6 +257,7 @@ export default function LingmanVideoWatchScreen() {
           {videoId && playerOpen ? (
             <YoutubeInlinePlayer videoId={videoId} title={title} active={runtimeActive} presentation="preview" autoPlay={resumeSec === null} startSec={resumeSec ?? startSec} />
           ) : null}
+          <VideoRewardFlash flashKey={rewardFlashKey} />
         </View>
         <WatchProgress videoId={videoId} durationSec={video?.durationSec} trackColor={g.opaqueControl} fillColor={g.accentGraphic} />
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, { paddingBottom: pack ? 132 + insets.bottom : 32 }]} decelerationRate="fast">

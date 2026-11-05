@@ -228,6 +228,7 @@ import { flushPendingProgressEvents } from './progress_events_client';
 import { createDisposableAdoption } from './disposable_adoption';
 import ActionToast from '../components/ActionToast';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
+import { VideoRewardStoryHost } from '../components/video/VideoRewardOverlay';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
 import StreakRiskToastHost from '../components/StreakRiskToastHost';
@@ -4196,6 +4197,8 @@ export default function RootLayout() {
                     <ActionToast />
                     <GlobalLevelUpRewards />
                     <GlobalShardsEarnedHost />
+                    {/* зачем (владелец 05.11: «+500 за полный просмотр видео», история после завершения; макет video_reward): окно-история живёт на корне — переживает закрытие плеера/экрана */}
+                    <VideoRewardStoryHost />
                     <EntitlementExpiredHost />
                     <ReferralWelcomeHost />
                     <StreakRiskToastHost />

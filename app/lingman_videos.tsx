@@ -17,6 +17,8 @@ import YoutubeChannelPickerSheet from '../components/youtube/YoutubeChannelPicke
 import StudyLanguageSheet from '../components/settings/StudyLanguageSheet';
 import YoutubeChannelTabs, { type YoutubeChannelTab } from '../components/youtube/YoutubeChannelTabs';
 import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
+import { VideoRewardFlash } from '../components/video/VideoRewardOverlay';
+import { useVideoFullWatch } from '../hooks/use_video_full_watch';
 import YoutubePlaylistGridCard from '../components/youtube/YoutubePlaylistGridCard';
 import YoutubePremiereHero from '../components/youtube/YoutubePremiereHero';
 import YoutubeVideoGridCard from '../components/youtube/YoutubeVideoGridCard';
@@ -490,6 +492,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const [pages, setPages] = useState(1);
   useEffect(() => { setPages(1); }, [catalog?.channel.id]);
   const allVideos = fullVideos ?? catalog?.videos ?? snapshot?.videos.map(legacyVideoSnapshot) ?? [];
+  // зачем (владелец 05.11: «+500 монет за полный просмотр видео — 70 %»): детектор следит за активным роликом раздела «Видео»; иконка «+500» — поверх экрана в момент награды
+  const activeVideoSnap = activeVideoId ? allVideos.find((item) => item.id === activeVideoId) : undefined;
+  const { flashKey: rewardFlashKey } = useVideoFullWatch({ videoId: activeVideoId, durationSec: activeVideoSnap?.durationSec, live: activeVideoSnap?.state === 'live', active: screenRuntimeActive });
   // зачем (аудит #24, 15.10): снимок экрана видео обрезает плейлисты до 8 — пока полный список не пришёл, показываем снимок, потом все плейлисты канала
   // зачем (Макеты R57, 15.10): плейлист без роликов в сетке не показываем, а счётчик «N видео» берём из реально загруженного списка (у «Метод цепочек» было «6 видео», в списке 2). Пока полный список не пришёл — снимок как есть.
   const playlistsForGrid = useMemo(() => {
@@ -751,6 +756,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           под статус-баром («полоса» ~110 px). Во вкладке виден общий фон вкладок, как на Главной; отдельный экран по-прежнему красит свой. */}
       {inTab ? null : <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />}
       {glassAlertNode}
+      <VideoRewardFlash flashKey={rewardFlashKey} />
       <FeatureIntroEntry id="videos_first_visit" enabled={screenRuntimeActive && !pickerVisible && !studyLanguageSheetVisible && !deepLinkedVideoId && !activeVideoId} />
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={inTab ? ['left', 'right'] : ['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader

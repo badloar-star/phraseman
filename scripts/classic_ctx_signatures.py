@@ -41,8 +41,10 @@ def sig(doc, a, b):
 
 def lower(w): return w.lower()
 
-out = {}
-for lang in ['en', 'es', 'fr', 'de', 'it']:
+# зачем (Координатор 05.11): --langs es,fr,de,it — пересчитать только эти курсы; остальные части файла (en, уже выверенный Ревизором) не трогать
+LANGS = sys.argv[sys.argv.index('--langs') + 1].split(',') if '--langs' in sys.argv else ['en', 'es', 'fr', 'de', 'it']
+out = json.load(io.open(OUT, encoding='utf-8')) if '--langs' in sys.argv and os.path.exists(OUT) else {}
+for lang in LANGS:
     nlp = spacy.load(f'{lang}_core_{"web" if lang == "en" else "news"}_md', disable=['ner'])
     phrases = []
     for n in range(1, 33):

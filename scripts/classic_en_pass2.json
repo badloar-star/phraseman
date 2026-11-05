@@ -1,5 +1,5 @@
 {
- "_comment": "Работник А (Ловушки) 05.11: правки EN по семантическому аудиту Ревизора, проход 2 (docs/work/course_quality_1pct/EN_SEMANTIC_PASS2*.{md,json}, HEAD c473219d8). classes — соблазны по КЛАССУ плитки (правило владельца: та же часть речи и роль, правдоподобная ошибка, фраза при подстановке неверна); у плитки класса допустимы только candidates (порядок = приоритет добора), cond nextNoun — следующая плитка существительное/прилагательное/числительное (her/that как определитель). replacements — точечные замены соблазнов (B1: подстановка даёт верную фразу); alt — недостающие верные порядки слов (B3). Подключение: classic_course_pack.mjs (CTX_LANGS). Проход 3 (EN_SEMANTIC_PASS3, 161b67877): классы canQ (Can в начале просьбы — без Might/Could/May), cannot (модальные), indef (everything/anything…), артикль перед причастием; 30 замен B1, 8 добавок B3. Проход 4 (EN_SEMANTIC_PASS4, a624f0c00): twins — «двойники» верного слова (дают верную фразу в живой речи), tiles — полный набор для плиток, где все соблазны не того класса.",
+ "_comment": "Работник А (Ловушки) 05.11: правки EN по семантическому аудиту Ревизора, проход 2 (docs/work/course_quality_1pct/EN_SEMANTIC_PASS2*.{md,json}, HEAD c473219d8). classes — соблазны по КЛАССУ плитки (правило владельца: та же часть речи и роль, правдоподобная ошибка, фраза при подстановке неверна); у плитки класса допустимы только candidates (порядок = приоритет добора), cond nextNoun — следующая плитка существительное/прилагательное/числительное (her/that как определитель). replacements — точечные замены соблазнов (B1: подстановка даёт верную фразу); alt — недостающие верные порядки слов (B3). Подключение: classic_course_pack.mjs (CTX_LANGS). Проход 3 (EN_SEMANTIC_PASS3, 161b67877): классы canQ (Can в начале просьбы — без Might/Could/May), cannot (модальные), indef (everything/anything…), артикль перед причастием; 30 замен B1, 8 добавок B3. Проход 4 (EN_SEMANTIC_PASS4, a624f0c00): twins — «двойники» верного слова (дают верную фразу в живой речи), tiles — полный набор для плиток, где все соблазны не того класса. langs (Ревизор SEMANTIC_ES_DE_IT 05.11): правила других языков — rules nameOnly/detOnly/nounOnly, classes, twins.",
  "classes": [
   {
    "name": "neg",
@@ -1064,5 +1064,191 @@
    "and",
    "when"
   ]
+ },
+ "langs": {
+  "de": {
+   "rules": {
+    "nameOnly": true,
+    "detOnly": true,
+    "nounOnly": true
+   },
+   "classes": [
+    {
+     "name": "refl",
+     "tiles": [
+      "euch",
+      "uns",
+      "dich",
+      "mich",
+      "sich",
+      "dir",
+      "mir"
+     ],
+     "sig": [
+      "NOM/"
+     ],
+     "candidates": [
+      "euch",
+      "uns",
+      "dich",
+      "mich",
+      "sich",
+      "dir",
+      "mir",
+      "ihn",
+      "ihm",
+      "ihnen"
+     ]
+    },
+    {
+     "name": "neg",
+     "tiles": [
+      "nicht"
+     ],
+     "candidates": [
+      "auch",
+      "leider",
+      "zusammen",
+      "allein",
+      "viel",
+      "gern",
+      "sehr",
+      "nur",
+      "so",
+      "doch",
+      "ja",
+      "wirklich",
+      "gut"
+     ]
+    },
+    {
+     "name": "zu",
+     "tiles": [
+      "zu"
+     ],
+     "candidates": [
+      "um",
+      "mit",
+      "nach",
+      "in",
+      "auf",
+      "an",
+      "vor",
+      "für",
+      "von",
+      "bei",
+      "aus"
+     ]
+    }
+   ],
+   "twins": {
+    "wohl": [
+     "gut"
+    ],
+    "am": [
+     "beim"
+    ],
+    "blockiert": [
+     "gesperrt"
+    ]
+   }
+  },
+  "it": {
+   "rules": {
+    "nameOnly": true,
+    "detOnly": true
+   },
+   "classes": [
+    {
+     "name": "seiV",
+     "tiles": [
+      "sei"
+     ],
+     "sig": [
+      "V/Fin",
+      "V/"
+     ],
+     "candidates": [
+      "sono",
+      "siamo",
+      "siete",
+      "è",
+      "hai",
+      "ho"
+     ]
+    },
+    {
+     "name": "seiFirst",
+     "tiles": [
+      "sei"
+     ],
+     "cond": "first",
+     "candidates": [
+      "sono",
+      "siamo",
+      "siete",
+      "è",
+      "hai",
+      "ho"
+     ]
+    },
+    {
+     "name": "seiNum",
+     "tiles": [
+      "sei"
+     ],
+     "sig": [
+      "NUM/"
+     ],
+     "candidates": [
+      "tanti",
+      "pochi",
+      "molti",
+      "alcuni",
+      "troppi"
+     ]
+    },
+    {
+     "name": "partitive",
+     "tiles": [
+      "dei",
+      "degli",
+      "delle",
+      "del",
+      "della",
+      "dello"
+     ],
+     "cond": "nextNoun",
+     "candidates": [
+      "questi",
+      "queste",
+      "alcuni",
+      "alcune",
+      "molti",
+      "molte",
+      "pochi",
+      "poche",
+      "tutti",
+      "tutte",
+      "quei",
+      "quelle"
+     ]
+    }
+   ],
+   "twins": {
+    "stanza": [
+     "camera"
+    ],
+    "deserta": [
+     "vuota"
+    ],
+    "verrà": [
+     "arriverà"
+    ],
+    "bere": [
+     "prendere"
+    ]
+   }
+  }
  }
 }

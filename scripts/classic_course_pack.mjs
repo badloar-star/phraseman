@@ -129,6 +129,7 @@ const translationNormalized = { n: 0 };
 // слой правок полного прохода (scripts/classic_audit_apply.mjs): соблазны (tiles), допустимые ответы (alt), целевые фразы (target)
 const AUDIT_PATH = join(ROOT, 'scripts', 'classic_audit_layer.json');
 const AUDIT = existsSync(AUDIT_PATH) ? JSON.parse(readFileSync(AUDIT_PATH, 'utf8')) : { tiles: {}, alt: {}, target: {} };
+const TILE_BANS = new Map(); // 'id#позиция' → слова, запрещённые только этой плитке (добор правок слоя аудита)
 const auditForced = new Set(); // 'id#позиция:слово' — соблазны, поставленные аудитором (на них не действуют классовые правила генератора)
 const auditStats = { tileApplied: 0, tileAbsent: 0, tileInvalid: 0, altAdded: 0, altRemoved: 0, targetApplied: 0, targetSkipped: 0, invalidReasons: {} };
 const tokenizeLine = (str) => str.replace(/[¿¡?!.,;:«»"]/g, ' ').split(/\s+/).filter(Boolean);
@@ -429,8 +430,8 @@ const POS_LEX = existsSync(join(ROOT, 'scripts', 'classic_pos_lexicon.json')) ? 
 // «gare» на месте «en», «Waiting» на месте «Take». Подписи из РАЗБОРА В КОНТЕКСТЕ (scripts/classic_ctx_signatures.py): подпись верной плитки
 // в своей фразе обязана входить в подписи кандидата (как он стоит в курсе), плюс точечные запреты подстановок. Языки — CTX_LANGS.
 const CTX_SIG = existsSync(join(ROOT, 'scripts', 'classic_ctx_signatures.json')) ? JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_ctx_signatures.json'), 'utf8')) : null;
-// зачем: в 150 идёт английский (Диспетчер 05.11); es/fr/de/it — после проверки en; выключить: CLASSIC_CTX_LANGS=""
-const CTX_LANGS = new Set((process.env.CLASSIC_CTX_LANGS ?? 'en').split(',').filter(Boolean));
+// зачем: en (Диспетчер 05.11) + de/it (Координатор 05.11: системные шаблоны Ревизора SEMANTIC_ES_DE_IT чинятся классами); es/fr — позже; выключить: CLASSIC_CTX_LANGS=""
+const CTX_LANGS = new Set((process.env.CLASSIC_CTX_LANGS ?? 'en,de,it').split(',').filter(Boolean));
 function ctxReason(ctx, ph, i, d) {
   const S = ctx.ctxSig;
   if (!S) return null;
@@ -455,12 +456,38 @@ if (PASS2 && CTX_LANGS.has('en')) {
   for (const [k, v] of Object.entries(PASS2.alt ?? {})) { const cur = (AUDIT.alt ??= {})[k] ?? { add: [], remove: [] }; AUDIT.alt[k] = { add: [...(cur.add ?? []), ...(v.add ?? [])], remove: [...(cur.remove ?? []), ...(v.remove ?? [])] }; nAlt += (v.add ?? []).length; }
   console.log(`[DISTR-PASS2] en: классов ${PASS2.classes?.length ?? 0}, замен ${nRep}, альтернатив ${nAlt}`);
 } else console.log(`[DISTR-PASS2] не применяется: файл ${PASS2 ? 'есть' : 'нет'}, CTX_LANGS=${[...CTX_LANGS]}`);
-// класс плитки (или null): совпадение по слову + условие (nextNoun — следующая плитка сущ./прил./числ.; nom — плитка в роли местоимения)
+// зачем (Ревизор SEMANTIC_ES_DE_IT 05.11, Координатор: «корень в генераторе — чини классами»): правила других языков — PASS2.langs[lang]
+// (classes / twins / tiles / replacements / alt / rules); английская часть файла не меняется.
+for (const lg of Object.keys(PASS2?.langs ?? {})) {
+  if (!CTX_LANGS.has(lg)) continue;
+  const LP = PASS2.langs[lg]; let nRep = 0, nAlt = 0;
+  for (const r of LP.replacements ?? []) { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); const k = `${lg}:${m[1]}:${m[2]}`; ((PATCHES.replace ??= {})[k] ??= []).push({ from: r.from, to: r.to, position: r.position }); (PATCHES.remove ??= {})[k] = [...(PATCHES.remove[k] ?? []), r.from]; nRep++; }
+  for (const [k, v] of Object.entries(LP.alt ?? {})) { const cur = (AUDIT.alt ??= {})[k] ?? { add: [], remove: [] }; AUDIT.alt[k] = { add: [...(cur.add ?? []), ...(v.add ?? [])], remove: [...(cur.remove ?? []), ...(v.remove ?? [])] }; nAlt += (v.add ?? []).length; }
+  console.log(`[DISTR-PASS2] ${lg}: классов ${LP.classes?.length ?? 0}, правил ${Object.keys(LP.rules ?? {}).join('/') || '—'}, замен ${nRep}, альтернатив ${nAlt}`);
+}
+// зачем (Координатор 06.11, «смысловые правки es в уроках 17–32», порог Fable ≤15%): точечные правки соблазнов (замена слова на позиции) и допустимых ответов (alt add/remove)
+// из своих файлов docs/work/classic_semantic_layer_<lang>_*.json — формат: {"replacements":[{"id":"es:19:05","position":1,"from":"x","to":"y"}],"alt":{"es:19:05":{"add":[],"remove":[]}}}.
+// Файлы не пересекаются с scripts/classic_en_pass2.json (Ловушки) и classic_es_semantic_patch.mjs (Глаголы); применяются поверх PASS2.
+{
+  const dir = join(ROOT, 'docs', 'work');
+  for (const f of readdirSync(dir).filter((n) => /^classic_semantic_layer_[a-z]{2}_.*\.json$/.test(n)).sort()) {
+    const lg = f.split('_')[3];
+    const L = JSON.parse(readFileSync(join(dir, f), 'utf8')); let nRep = 0, nAlt = 0;
+    for (const r of L.replacements ?? []) { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); const k = `${lg}:${m[1]}:${m[2]}`; ((PATCHES.replace ??= {})[k] ??= []).push({ from: r.from, to: r.to, position: r.position }); (PATCHES.remove ??= {})[k] = [...((PATCHES.remove ??= {})[k] ?? []), r.from]; nRep++; }
+    for (const [k, v] of Object.entries(L.alt ?? {})) { const cur = (AUDIT.alt ??= {})[k] ?? { add: [], remove: [] }; AUDIT.alt[k] = { add: [...(cur.add ?? []), ...(v.add ?? [])], remove: [...(cur.remove ?? []), ...(v.remove ?? [])] }; nAlt += (v.add ?? []).length + (v.remove ?? []).length; }
+    console.log(`[SEMANTIC-LAYER] ${f}: замен ${nRep}, правок alt ${nAlt}`);
+  }
+}
+const passFor = (lang) => (lang === 'en' ? PASS2 : PASS2?.langs?.[lang] ?? null);
+// класс плитки (или null): совпадение по слову + условие (nextNoun — следующая плитка сущ./прил./числ.; nom — плитка в роли местоимения;
+// first — первая плитка; sig — подпись плитки из списка cl.sig)
 function tileClass(ctx, ph, i) {
-  if (!PASS2 || ctx.lang !== 'en' || !ctx.ctxSig) return null;
+  const P = passFor(ctx.lang);
+  if (!P || !ctx.ctxSig) return null;
   const c = stripP(ph.tiles[i].correct);
   const sig = ctx.ctxSig.tiles[ph.id] ?? [];
-  for (const cl of PASS2.classes ?? []) {
+  for (const cl of P.classes ?? []) {
+    if (cl.sig && !cl.sig.includes(sig[i] ?? '')) continue;
     if (!cl.tiles.includes(c)) continue;
     // зачем (проход 3): артикль перед причастием-определением («a blocked nose», «a driving licence») — тоже определитель
     const nounLike = ['N/', 'A/', 'NUM/', ...(['a', 'an', 'the'].includes(c) ? ['V/Part', 'V/Ger'] : [])];
@@ -474,12 +501,25 @@ function tileClass(ctx, ph, i) {
   return null;
 }
 function classReason(ctx, ph, i, d) {
-  if (!PASS2 || ctx.lang !== 'en' || !ctx.ctxSig) return null;
-  // сокращения (he's, hasn't, I'll) — только на плитке-сокращении: на месте «not»/«to»/«Please» они отсеиваются по виду
-  if (/['’]/.test(d) && !/['’]/.test(ph.tiles[i].correct)) return 'contraction';
+  const P = passFor(ctx.lang);
+  if (!P || !ctx.ctxSig) return null;
+  // сокращения (he's, hasn't, I'll) — только на плитке-сокращении: на месте «not»/«to»/«Please» они отсеиваются по виду (только en: в fr/it апостроф — обычная элизия)
+  if (ctx.lang === 'en' && /['’]/.test(d) && !/['’]/.test(ph.tiles[i].correct)) return 'contraction';
   // зачем (перемер 4, Ревизор): «двойники» — слово того же класса, которое в живой речи заменяет верное (take/get вместо bring, at вместо near)
-  // и даёт верную фразу; запрещены для этого верного слова во всех фразах (PASS2.twins: верное → список)
-  if (PASS2.twins?.[stripP(ph.tiles[i].correct)]?.includes(stripP(d))) return 'twin';
+  // и даёт верную фразу; запрещены для этого верного слова во всех фразах (twins: верное → список)
+  if (P.twins?.[stripP(ph.tiles[i].correct)]?.includes(stripP(d))) return 'twin';
+  // правила языка (Ревизор SEMANTIC_ES_DE_IT): имя → только имена; артикль перед сущ. → только артикли/определители; de: сущ. → только существительные курса
+  const R = P.rules ?? {};
+  const tile = ph.tiles[i];
+  const sig = ctx.ctxSig.tiles[ph.id] ?? [];
+  const cap = (w) => w[0].toUpperCase() + w.slice(1);
+  if (R.nameOnly && ctx.nameTile.get(tile) === true && !ctx.names.has(cap(d))) return 'nameOnly';
+  if (R.detOnly && ctx.articles.has(stripP(tile.correct)) && ['N/', 'A/', 'NUM/'].includes(sig[i + 1] ?? '')
+    && !ctx.articles.has(stripP(d)) && !(LISTS.determiners?.[ctx.lang] ?? []).includes(stripP(d))) return 'detOnly';
+  // зачем: существительное курса (верная плитка с заглавной не в начале фразы) ИЛИ слово, которое по разбору бывает только существительным (Käse, Obst —
+  // ловушки Вступлений DE/IT); глагол с заглавной («Warten», «Kaufst») не проходит — у него в подписях есть V/
+  const nounish = (w) => ctx.courseNouns?.has(cap(w)) || ((ctx.ctxSig.words[w.toLowerCase()] ?? []).includes('N/') && !(ctx.ctxSig.words[w.toLowerCase()] ?? []).some((x) => x.startsWith('V/')));
+  if (R.nounOnly && i > 0 && upperFirst(tile.correct) && sig[i] === 'N/' && ctx.nameTile.get(tile) !== true && !nounish(d)) return 'nounOnly';
   const cl = tileClass(ctx, ph, i);
   return cl && !cl.candidates.includes(stripP(d)) ? 'classOnly' : null;
 }
@@ -552,6 +592,7 @@ function badReason(lang, ctx, ph, i, d, mine) {
   if (dd === c) return 'selfCase';
   if (corrects.some((x, j) => j !== i && stripP(x) === dd)) return 'otherCorrect';
   if (ctx.patch.get(`${lang}:${key}`)?.has(dd)) return 'patch';
+  if (TILE_BANS.get(`${ph.id}#${i}`)?.has(dd)) return 'patch'; // «from» правки слоя аудита, уже заменённое на этой плитке (Ловушки 05.11)
   // артикль: где язык различает род/число, запрещена только пара «тот же род и число, другая определённость» (el↔un, la↔una), прочие артикли — заведомо неверные соблазны
   if (ctx.articles.has(c) && ctx.articles.has(dd) && (!ctx.artPairs || ctx.artPairs.some(([a, b]) => (a === c && b === dd) || (a === dd && b === c)))) return 'article';
   if (sameGroup(ctx.synonyms, c, dd)) return 'synonym';
@@ -700,7 +741,10 @@ function buildContext(lang, all) {
   for (const [k, toks] of Object.entries(PATCHES.remove ?? {})) patch.set(k, new Set(toks.map(stripP)));
   if (process.env.DEBUG_NAMES) console.log(`имена ${lang}: ${[...names].filter((n) => /^(He|She|They|We|You|It|The|A|There|This)$/.test(n)).join(',')} всего ${names.size}`);
   return {
-    lang, posLex: POS_LEX?.[lang] ?? null, ctxSig: CTX_LANGS.has(lang) ? CTX_SIG?.[lang] ?? null : null, tags: buildTags(lang, all, new Set(LISTS.articles?.[lang] ?? []), LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }), numbers, names, nameTile, vocab, patch, globalKeys,
+    lang, posLex: POS_LEX?.[lang] ?? null, ctxSig: CTX_LANGS.has(lang) ? CTX_SIG?.[lang] ?? null : null,
+    // зачем (de, правило nounOnly): существительные курса — плитки с заглавной НЕ в начале фразы и подписью N/ (глагол «Warten» в начале фразы сюда не попадает)
+    courseNouns: new Set(all.flatMap((p) => p.tiles.filter((t, k) => k > 0 && upperFirst(t.correct) && CTX_SIG?.[lang]?.tiles?.[p.id]?.[k] === 'N/').map((t) => t.correct))),
+    tags: buildTags(lang, all, new Set(LISTS.articles?.[lang] ?? []), LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }), numbers, names, nameTile, vocab, patch, globalKeys,
     articles: sets(LISTS.articles?.[lang]), synonyms: LISTS.synonyms?.[lang] ?? [], youGroups: LISTS.youGroups?.[lang] ?? [],
     replace: new Map(Object.entries(PATCHES.replace ?? {})), artPairs: LISTS.articlePairs?.[lang] ?? null,
     closed: LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }, adverbOnly: LISTS.adverbOnly?.[lang] ?? null,
@@ -752,7 +796,7 @@ function fixDistractors(lang, all) {
       const rep = ctx.replace.get(`${lang}:${phraseNumbers(ph.id).key}`) ?? [];
       // зачем (перемер 4): плитка, где весь набор соблазнов не того класса (причастие с сущ., имя с предметами), получает список целиком
       // (PASS2.tiles «en:LL:NN#i»); слова проходят только жёсткие проверки сторожа, остальное добирает обычный добор
-      const ov = lang === 'en' && ctx.ctxSig ? PASS2?.tiles?.[`${lang}:${phraseNumbers(ph.id).key}#${i}`] : null;
+      const ov = ctx.ctxSig ? passFor(lang)?.tiles?.[`${lang}:${phraseNumbers(ph.id).key}#${i}`] : null; // зачем: наборы плиток — для любого языка с подписями
       for (const w of ov ?? []) {
         if (kept.length >= want) break;
         const why = badReason(lang, { ...ctx, noTag: true, ctxSig: null }, ph, i, w, kept);
@@ -791,6 +835,22 @@ function fixDistractors(lang, all) {
         // зачем: сторож курса (tests/classic_courses_pack) не делает исключений для патча Ревизора — синонимы, числительные и непройденные тоже жёсткие
         if (why && ['otherCorrect', 'acceptedPhrase', 'selfCase', 'duplicate', 'nonWord', 'patch', 'synonym', 'category', 'unseen', 'article', 'youForm', 'genderPair'].includes(why)) { removed.revRejected = (removed.revRejected ?? 0) + 1; console.log(`[DISTR-REV-PATCH] отклонено ${ph.id}#${i} ${r.from}→${to}: ${why}`); continue; }
         kept.push(to); auditForced.add(`${ph.id}#${i}:${to.toLowerCase()}`); removed.revFilled = (removed.revFilled ?? 0) + 1;
+      }
+      // зачем (Ловушки 05.11, de/it): правки слоя аудита «from → with» (Вступления DE/IT, 45e3c4f7a) привязаны к прежнему добору — при новых правилах
+      // «from» в списке может не оказаться, и правка теряется (Käse/Obst у «Brot», ein/einen у «eine»). Поэтому «with» — первый кандидат добора
+      // (жёсткие проверки сторожа). Только для языков с подписями кроме en: английский выверен Ревизором и не меняется.
+      if (lang !== 'en' && ctx.ctxSig) for (const op of AUDIT.tiles?.[`${lang}:${phraseNumbers(ph.id).key}`] ?? []) {
+        if (kept.length >= want || op.position !== i) continue;
+        const w = i === 0 && upperFirst(tile.correct) ? op.with[0].toUpperCase() + op.with.slice(1) : op.with;
+        if (kept.some((x) => stripP(x) === stripP(w))) continue;
+        // те же жёсткие правила, что у правок слоя аудита ниже (сторож курса делает для слоя аудита исключение по «непройденному» и мягким правилам)
+        const why = badReason(lang, { ...ctx, relax: true, noTag: true, ctxSig: null }, ph, i, w, kept) ?? (ctx.globalKeys.has(keyOf(ph.tiles.map((t, j) => (j === i ? w : t.correct)))) ? 'globalPhrase' : null);
+        if (why && ['globalPhrase', 'otherCorrect', 'nonWord', 'category', 'acceptedPhrase', 'selfCase', 'duplicate'].includes(why)) { console.log(`[DISTR-AUDIT-FILL] отклонено ${ph.id}#${i} ${op.from}→${w}: ${why}`); continue; }
+        // «from» уже стоит (из архива) — меняем на месте, иначе правка ниже заменит его ещё раз и даст дубль; «from» запрещаем добору этой фразы
+        const at = kept.findIndex((x) => stripP(x) === stripP(op.from));
+        if (at >= 0) kept[at] = w; else kept.push(w);
+        { const tk = `${ph.id}#${i}`; if (!TILE_BANS.has(tk)) TILE_BANS.set(tk, new Set()); TILE_BANS.get(tk).add(stripP(op.from)); } // только эта плитка: в других плитках фразы слово может быть законным
+        auditForced.add(`${ph.id}#${i}:${w.toLowerCase()}`); removed.auditFilled = (removed.auditFilled ?? 0) + 1;
       }
       // зачем (PASS2): плитка класса добирает сначала кандидатов своего класса по порядку — без классов «в изоляции» (noTag), но с «непройденным» и B1
       {

@@ -32,17 +32,18 @@ export const BackButton = memo(function BackButton({ g, onPress, label }: Readon
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   return (
-    <Pressable
+    // зачем (ТОП-20 №5, 05.11): кнопка «назад» — на KitTouchable (вдавливание кита + Reduce Motion), а не голый Pressable с мгновенным pressed
+    <KitTouchable
       testID="mp-back"
       accessibilityRole="button"
       accessibilityLabel={label}
       hitSlop={8}
       onPress={onPress}
       // зачем (Сверка mistakes-panel-007, cards-glass.css .ph .rb): круглая кнопка — стекло 7 % поверх шапки, а не сплошной тёмный круг.
-      style={({ pressed }) => [styles.back, { backgroundColor: glassButtonFill(g) }, pressed && styles.pressed]}>
+      style={[styles.back, { backgroundColor: glassButtonFill(g) }]}>
       <BackGlyph size={20} color={g.text} />
       <GlassRim radius={21} />
-    </Pressable>
+    </KitTouchable>
   );
 });
 
@@ -95,15 +96,15 @@ export const FilterChips = memo(function FilterChips({ g, chips, activeId, onCha
       {/* guard-ok: лента из 3–5 коротких чипов, виртуализация не нужна */ chips.map((chip) => {
         const on = chip.id === activeId;
         return (
-          <Pressable
+          <KitTouchable
             key={chip.id}
             testID={`${testIDPrefix}-${chip.id}`}
             accessibilityRole="tab"
             accessibilityState={{ selected: on }}
             onPress={() => onChange(chip.id)}
-            style={({ pressed }) => [styles.chip, { backgroundColor: on ? g.accent : g.hairlineSoft }, pressed && styles.pressed]}>
+            style={[styles.chip, { backgroundColor: on ? g.accent : g.hairlineSoft }]}>
             <Text style={[styles.chipText, { color: on ? g.accentInk : g.secondary }]}>{chip.label}</Text>
-          </Pressable>
+          </KitTouchable>
         );
       })}
     </ScrollView>

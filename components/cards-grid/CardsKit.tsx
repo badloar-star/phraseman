@@ -11,7 +11,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useRef, useState } from 'react';
-import { Animated, Dimensions, InteractionManager, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
+import { Animated, Dimensions, InteractionManager, StyleSheet, Text, TextInput, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
@@ -166,9 +166,9 @@ export const KitSearchField = memo(function KitSearchField({ g, value, onChangeT
         style={[styles.searchInput, { color: g.text }]}
       />
       {value.length > 0 ? (
-        <Pressable accessibilityRole="button" accessibilityLabel={clearLabel} hitSlop={10} onPress={() => onChangeText('')}>
+        <KitTouchable accessibilityRole="button" accessibilityLabel={clearLabel} hitSlop={10} onPress={() => onChangeText('')}>
           <Ionicons name="close" size={18} color={g.secondary} />
-        </Pressable>
+        </KitTouchable>
       ) : null}
     </View>
   );

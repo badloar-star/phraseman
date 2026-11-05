@@ -52,8 +52,11 @@ describe('dev study target language guard', () => {
     await setDevStudyTargetLang('it', 'ru');
     expect(await getDevStudyTargetLang('ru')).toBe('it');
 
+    // зачем (P0 06.11, D188): целевой язык НЕ откатывается на 'en' из-за языка интерфейса — раньше es при интерфейсе es/en молча становился en.
     await setDevStudyTargetLang('es', 'es');
-    expect(await getDevStudyTargetLang('ru')).toBe('en');
+    expect(await getDevStudyTargetLang('ru')).toBe('es');
+    await setDevStudyTargetLang('es', 'en');
+    expect(await getDevStudyTargetLang('en')).toBe('es');
   });
 
   it('keeps study target labels source-language-only, without French UI translation', () => {

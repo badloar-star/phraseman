@@ -68,10 +68,6 @@ export function studyTargetLabelForSourceUiLang(
   return (SOURCE_UI_STUDY_TARGET_LABELS[uiLang] ?? SOURCE_UI_STUDY_TARGET_LABELS.en)[target];
 }
 
-function isAllowedForUiLang(value: unknown, uiLang: Lang): value is StudyTargetLang {
-  return typeof value === 'string' && (devStudyTargetsForUiLang(uiLang) as readonly string[]).includes(value);
-}
-
 export async function getDevStudyTargetLang(uiLang: Lang): Promise<StudyTargetLang> {
   return getStoredStudyTarget(uiLang);
 }
@@ -80,7 +76,11 @@ export async function setDevStudyTargetLang(
   target: StudyTargetLang,
   uiLang: Lang,
 ): Promise<void> {
-  await setStoredStudyTarget(isAllowedForUiLang(target, uiLang) ? target : 'en', uiLang);
+  // зачем (🔴 P0 06.11 «выбор языка на онбординге не меняет курс», журнал Сверки [ONBOARD-LANG]: через 0,7 с после записи es второй писатель вернул en):
+  // прежде здесь недопустимый для языка ИНТЕРФЕЙСА target молча заменялся на 'en' — при английском интерфейсе испанский откатывался в английский.
+  // D188 (владелец 14.10): все языки изучения доступны при ЛЮБОМ языке интерфейса; setStoredStudyTarget сам сводит непроизводственное значение к 'en'.
+  console.log(`[ONBOARD-LANG] dev_set target=${String(target)} ui=${uiLang} (без подмены на en)`); // guard-ok: ветка и значение, которое её решило
+  await setStoredStudyTarget(target, uiLang);
 }
 
 /**

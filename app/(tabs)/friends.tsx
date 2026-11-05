@@ -80,7 +80,7 @@ import { devFriendsDemoData, isDevFriendsDemoOn } from '../dev_friends_demo';
 import { isDevOverlaysOff } from '../dev_overlays_off';
 import { acquireInviteCodeShared, invalidateInviteCodeShared } from '../invite_code_singleton';
 import { isPremiumProgressActive, isVipProgressActive } from '../premium_progress';
-import { isPlusProfile, readPlusUntilMs } from '../../components/plus/plus_ring_spec';
+import { isPlusProfile, plusTierOfProfile, readPlusUntilMs } from '../../components/plus/plus_ring_spec';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
 import {
   startFriendsTabSwrPrime,
@@ -237,6 +237,8 @@ interface FriendProfile {
   isPlus?: boolean | null;
   /** Срок Plus в мс: 0 = бессрочно, null/нет = Plus нет. */
   plusUntilMs?: number | null;
+  /** Уровень подписки друга (plusTier сервера): 'ultra' — годовая; нет/null — как Plus. */
+  plusTier?: 'plus' | 'ultra' | null;
   avatar: string;
   frame: string;
   aura?: string;
@@ -438,6 +440,7 @@ function mergePublicFriendProfiles(
     // зачем: isPlus и срок берём парой из одного источника — иначе срок от старого профиля и флаг от нового дали бы чужой Plus
     isPlus: (primary.isPlus !== undefined ? primary : secondary).isPlus,
     plusUntilMs: (primary.isPlus !== undefined ? primary : secondary).plusUntilMs,
+    plusTier: (primary.isPlus !== undefined ? primary : secondary).plusTier,
     avatar: primary.avatar || secondary.avatar,
     frame: primary.frame || secondary.frame,
     aura: primary.aura ?? secondary.aura,
@@ -465,6 +468,7 @@ function profileFromLeaderboardDoc(uid: string, data: Record<string, unknown>): 
     isLifetime: data.isLifetime === true,
     isPlus: data.isPlus === true,
     plusUntilMs: readPlusUntilMs(data.plusUntilMs),
+    plusTier: data.plusTier === 'ultra' ? 'ultra' : data.plusTier === 'plus' ? 'plus' : null,
     avatar,
     frame,
     profileCardLevel,
@@ -485,6 +489,7 @@ function profileFromBatchRecord(rec: FriendProfileBatchRecord): FriendProfile {
     isLifetime: rec.isLifetime,
     isPlus: rec.isPlus === true,
     plusUntilMs: readPlusUntilMs(rec.plusUntilMs),
+    plusTier: rec.plusTier === 'ultra' ? 'ultra' : rec.plusTier === 'plus' ? 'plus' : null,
     avatar: rec.avatar,
     frame: rec.frame,
     aura: rec.aura,
@@ -2860,6 +2865,7 @@ export default function FriendsTabScreen() {
                   friendName={profile.name}
                   coinRank={profile.coinRank ?? null}
                   isPlus={isPlusProfile(profile)}
+                  plusTier={plusTierOfProfile(profile)}
                   daysTogether={together?.days ?? null}
                   onOpenProfile={openProfileByUid}
                   onOpenDetails={openFriendSheetByUid}

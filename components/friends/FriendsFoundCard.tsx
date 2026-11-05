@@ -5,7 +5,7 @@ import { useLang } from '../LangContext';
 import { StreakChainIcon } from '../StreakChainIcon';
 import { useTheme } from '../ThemeContext';
 import { FriendsCard, FriendsCoin, FriendsGlassButton, FriendsRoundButton, useFriendsGlass } from './FriendsGlassKit';
-import { isPlusProfile } from '../plus/plus_ring_spec';
+import { isPlusProfile, plusTierOfProfile } from '../plus/plus_ring_spec';
 import { FlowText } from '../text-integrity';
 import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
 
@@ -23,6 +23,8 @@ export type FriendsFoundProfile = {
   /** Настоящий Plus и срок (Ядро 22.10) — кольцо по isPlusProfile. */
   isPlus?: boolean | null;
   plusUntilMs?: number | null;
+  /** Уровень подписки (plusTier сервера): 'ultra' — годовая; нет — Plus. */
+  plusTier?: 'plus' | 'ultra' | null;
   coinRank?: number | null;
 };
 
@@ -48,7 +50,7 @@ export default function FriendsFoundCard({ profile, onAdd, onClose, isAdding }: 
       style={{ flexDirection: 'column', alignItems: 'stretch', gap: 14, padding: 14, marginTop: 2 }}
     >
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-        <FriendsCoin coinRank={profile.coinRank} name={profile.name} size={48} glass={glass} plus={isPlusProfile(profile)} />
+        <FriendsCoin coinRank={profile.coinRank} name={profile.name} size={48} glass={glass} plus={isPlusProfile(profile)} plusTier={plusTierOfProfile(profile)} />
         <View style={{ flex: 1, minWidth: 0 }}>
           {/* зачем (владелец 22.10): золотое имя у друзей убрано — Plus теперь показывает кольцо у аватара (isPlusProfile); имя обычного цвета, без градиента */}
           <FlowText testID="friends-found-name" provenance="user" style={{ color: glass.text, fontSize: nameSize, lineHeight: 22 * textScale, fontWeight: '700' }}>{profile.name}</FlowText>

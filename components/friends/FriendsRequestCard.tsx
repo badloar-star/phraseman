@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
 import { FriendsCard, FriendsCoin, FriendsGlassButton, useFriendsGlass } from './FriendsGlassKit';
-import { isPlusProfile } from '../plus/plus_ring_spec';
+import { isPlusProfile, plusTierOfProfile } from '../plus/plus_ring_spec';
 import { FlowText } from '../text-integrity';
 
 // зачем (владелец 2026-09-29): карточка входящей заявки 1 в 1 по макету community.html#COM-04
@@ -19,6 +19,8 @@ export type FriendsRequestProfile = {
   /** Настоящий Plus и срок (Ядро 22.10) — кольцо по isPlusProfile. */
   isPlus?: boolean | null;
   plusUntilMs?: number | null;
+  /** Уровень подписки (plusTier сервера): 'ultra' — годовая; нет — Plus. */
+  plusTier?: 'plus' | 'ultra' | null;
   coinRank?: number | null;
 };
 
@@ -50,7 +52,7 @@ function FriendsRequestCard({ profile, onAccept, onDecline }: {
       style={{ flexDirection: 'column', alignItems: 'stretch', gap: 12, padding: 14 }}
     >
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-        <FriendsCoin coinRank={profile.coinRank} name={profile.name} size={44} glass={glass} plus={isPlusProfile(profile)} />
+        <FriendsCoin coinRank={profile.coinRank} name={profile.name} size={44} glass={glass} plus={isPlusProfile(profile)} plusTier={plusTierOfProfile(profile)} />
         <View style={{ flex: 1, minWidth: 0 }}>
           {/* зачем (владелец 22.10): золотое имя у друзей убрано — Plus теперь показывает кольцо у аватара (isPlusProfile); имя обычного цвета, без градиента */}
           <FlowText testID="friends-request-name" provenance="user" style={{ color: glass.text, fontSize: nameSize, lineHeight: 21 * textScale, fontWeight: '700' }}>{profile.name}</FlowText>

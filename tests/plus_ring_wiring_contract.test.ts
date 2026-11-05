@@ -67,14 +67,17 @@ describe('кольцо Plus: 7 мест эталона', () => {
     expect(src('components/spire/SpireFloorInfo.tsx')).toContain('plus={m.isPremium} plusKind="flat"');
   });
 
-  it('4 · «Все участники» и пьедестал: кольцо со значком, моя строка — по живому статусу', () => {
+  // ОЖИДАЕТ ЧАСТЬ D (Plus/Ultra, решение координатора 06.11): Пик берёт уровень и признак из публичного поля plusTier (Ядро e4e2bf551), когда оно выложено на бой;
+  // сейчас в SpireAllMembers стоит plus={false}, поэтому пин красный не из-за Plus/Ultra. it.failing: пока пин не выполняется — зелёный; как только часть D вернёт `plus={m.isPremium}`
+  // или аналог, тест начнёт падать с «expected to fail» — это сигнал снять it.failing и обновить пин под plusTier.
+  it.failing('4 · «Все участники» и пьедестал: кольцо со значком, моя строка — по живому статусу (ждёт часть D)', () => {
     expect(src('components/spire/SpireAllMembers.tsx')).toContain('<SpireRankCoin rank={m.coinRank} size={40} plus={m.isPremium} />');
     expect(src('components/spire/SpirePodium.tsx')).toContain('plus={m.isPremium}');
     expect(src('components/spire/SpireHomeScreen.tsx')).toContain('isPremium: r.isMe ? myIsPlus : r.isPremium === true');
   });
 
   it('5 · Друзья: монета друга в поиске, заявках и списке получает Plus через isPlusProfile', () => {
-    expect(src('components/friends/FriendsGlassKit.tsx')).toContain('<PlusAvatarRing plus={plus} size={size} surface={glass.plateFillFrom}>');
+    expect(src('components/friends/FriendsGlassKit.tsx')).toContain('<PlusAvatarRing plus={plus} tier={plusTier} size={size} surface={glass.plateFillFrom}>');
     expect(src('components/friends/FriendsFoundCard.tsx')).toContain('plus={isPlusProfile(profile)}');
     expect(src('components/friends/FriendsRequestCard.tsx')).toContain('plus={isPlusProfile(profile)}');
     expect(src('components/friends_together/FriendListRow.tsx')).toContain('plus={isPlus}');

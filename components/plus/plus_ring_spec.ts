@@ -5,7 +5,7 @@
 //
 // Цвет Plus ОДИНАКОВЫЙ во всех темах (решение владельца): это знак статуса, а не часть темы, поэтому токены темы тут не участвуют.
 
-import type { SubscriptionTier } from '../../app/subscription_tier';
+import { tierFromPublicField, type SubscriptionTier } from '../../app/subscription_tier';
 
 /** Угловой градиент от 200°: #8E7CFF → #6FA8FF → #7FE0D8 → #C69BFF → #8E7CFF (замкнут). */
 export const PLUS_RING_COLORS = ['#8E7CFF', '#6FA8FF', '#7FE0D8', '#C69BFF', '#8E7CFF'] as const; // theme-exempt: знак Plus — один цвет во всех темах
@@ -220,6 +220,8 @@ export const PLUS_RING_A11Y = 'Plus';
 export const PLUS_RENEWAL_GRACE_MS = 72 * 60 * 60 * 1000;
 
 export type PlusProfileFields = Readonly<{
+  /** Публичный уровень подписки (plusTier сервера): 'ultra' — годовая, всё остальное/нет поля — Plus. */
+  plusTier?: unknown;
   /** Настоящий Plus сервера: покупка (в т.ч. пожизненная), выдача админом, VIP. Вводный 72-часовой доступ даёт false. */
   isPlus?: boolean | null;
   /** 0 = бессрочно; число — срок в мс; null/нет поля = срока нет, то есть Plus нет. */
@@ -233,6 +235,11 @@ export type PlusProfileFields = Readonly<{
  * plusUntilMs = null или нет поля при isPlus=true — срока нет, считаем «Plus нет» (сервер всегда пишет оба поля вместе).
  * Самому себе кольцо даёт useIsPlus (isPremium || isVip || isPro из PremiumContext) — этот путь не меняется.
  */
+/** Уровень подписки по публичному профилю другого человека: только plusTier === 'ultra' даёт Ultra; нет поля (сервер ещё не выложен/старый ответ) → Plus. */
+export function plusTierOfProfile(p: PlusProfileFields | null | undefined): SubscriptionTier {
+  return tierFromPublicField(p?.plusTier);
+}
+
 export function isPlusProfile(p: PlusProfileFields | null | undefined, nowMs: number = Date.now()): boolean {
   if (p?.isPlus !== true) return false;
   const until = p.plusUntilMs;

@@ -11,7 +11,7 @@ describe('гейты по умолчанию выключены', () => {
   it('rank_gates_enabled ВКЛ по умолчанию (слово владельца 05.11 06:08), section_openings_enabled выключен; Пульт переключает значением', () => {
     applyRemoteConfigSnapshot({});
     expect(getRemoteBool('rank_gates_enabled')).toBe(true);
-    expect(getRemoteBool('rank_gates_existing_users')).toBe(true);
+    expect(getRemoteBool('rank_gates_existing_users')).toBe(false); // старые пользователи не теряют доступ: замки только «новым», пока Пульт не включит
     expect(getRemoteBool('section_openings_enabled')).toBe(false);
     applyRemoteConfigSnapshot({ bools: { rank_gates_enabled: false, section_openings_enabled: true } });
     expect(getRemoteBool('rank_gates_enabled')).toBe(false);

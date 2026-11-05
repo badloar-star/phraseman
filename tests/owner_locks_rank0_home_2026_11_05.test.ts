@@ -1,5 +1,5 @@
 // ЗАМОК ВЛАДЕЛЬЦА 05.11 06:08 («Ранг 0 а у меня всё доступно»): на ранге 0 Главная показывает только плитки из утверждённого макета (Уроки / Сохранённые), остальное открывается по рангам;
-// замки действуют и на старых пользователей (kill-switch — Пульт rank_gates_existing_users). Реестр docs/work/OWNER_LOCKS.md, строка 05.11. Макет: docs/work/golden/approved-rev8 (rev6-home-free-0.png, OWNER-STATE-MAPPING.md).
+// замки действуют на «новых»; на старых — только если Пульт включил rank_gates_existing_users (по умолчанию выкл). Реестр docs/work/OWNER_LOCKS.md, строка 05.11. Макет: docs/work/golden/approved-rev8 (rev6-home-free-0.png, OWNER-STATE-MAPPING.md).
 // Ослабить можно только по новому слову владельца: правка этого файла + строки реестра + KNOWN_GUARDS в tests/owner_locks_registry.test.cjs.
 import { applyRemoteConfigSnapshot, getRemoteBool } from '../app/remote_flags';
 import { decideForUser } from '../app/rank_gate_decision';
@@ -11,10 +11,10 @@ const base = { gatesEnabled: true, rank: 0, plusActive: false, plusResolved: tru
 describe('ЗАМОК ВЛАДЕЛЬЦА 05.11 — ранг 0: только плитки из макета', () => {
   afterEach(() => { applyRemoteConfigSnapshot({}); });
 
-  it('ранговые замки включены по умолчанию и действуют на старых пользователей', () => {
+  it('ранговые замки включены по умолчанию; на старых действуют только когда Пульт включил rank_gates_existing_users (по умолчанию выкл — старые не теряют доступ)', () => {
     applyRemoteConfigSnapshot({});
     expect(getRemoteBool('rank_gates_enabled')).toBe(true);
-    expect(getRemoteBool('rank_gates_existing_users')).toBe(true);
+    expect(getRemoteBool('rank_gates_existing_users')).toBe(false);
   });
 
   it('ранг 0: видео, диалоги, Пик и хаб карточек закрыты; «Сохранённые», свои карточки, практика, друзья и наборы открыты', () => {

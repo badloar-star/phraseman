@@ -1,0 +1,808 @@
+diff --git a/app/lesson_irregular_verbs.tsx b/app/lesson_irregular_verbs.tsx
+index 15779c095..e9a82b293 100644
+--- a/app/lesson_irregular_verbs.tsx
++++ b/app/lesson_irregular_verbs.tsx
+@@ -41,7 +41,9 @@ import { pluralWord } from '../constants/plural';
+ import { verbLearnedDoneTitle, verbFormsSubtitle } from './feedback/feedback_i18n';
+ import { MOTION_SCALE } from '../constants/motion';
+ import { loadSettings } from './settings_edu';
+-import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb, acceptedFormsFor, portionsForVerbs } from './irregular_verbs_data';
++import { IrregularVerb, acceptedFormsFor, portionsForVerbs } from './irregular_verbs_data';
++import { allIrregularVerbsFor, irregularVerbsForLesson } from './irregular_verbs_for_target';
++import { classicVerbsSlotCaptions, classicVerbsSpeechLanguage } from './classic_irregular_verbs';
+ import { buildIrregularVerbOptions, ensureCompleteIrregularVerbOptions } from './irregular_verb_options';
+ import { irregularVerbPortionProgress } from './irregular_verb_portion_progress';
+ import VerbLetterBank from '../components/VerbLetterBank';
+@@ -205,10 +207,17 @@ const IRREGULAR_VERB_ES_BY_BASE: Record<string, string> = {
+ 
+ function irregularVerbTranslation(verb: IrregularVerb, lang: Lang): string {
+   if (lang === 'uk') return verb.uk;
++  // зачем (владелец 05.11: глаголы курсов fr/es/de/it): у них перевод ru/uk + английский для остальных 7 языков интерфейса
++  if (verb.classicCourse) return lang === 'ru' ? verb.ru : (verb.en || verb.ru);
+   if (lang === 'es') return verb.es || IRREGULAR_VERB_ES_BY_BASE[verb.base] || verb.base;
+   return verb.ru;
+ }
+ 
++/** Голос озвучки формы: язык курса глагола (fr-FR / es-ES / de-DE / it-IT), у английского списка — en-US. */
++function verbSpeechLanguage(verb: IrregularVerb | undefined): string {
++  return verb?.classicCourse ? classicVerbsSpeechLanguage(verb.classicCourse) : 'en-US';
++}
++
+ /**
+  * Русские (и локализованные) подписи-времена под английскими формами глагола.
+  * По просьбе пользователя: под base/past/pp — время по-русски, плюс отдельная
+@@ -216,12 +225,18 @@ function irregularVerbTranslation(verb: IrregularVerb, lang: Lang): string {
+  * Формы: base = настоящее/инфинитив, past = прошедшее, pp = причастие.
+  * Возвращаем подписи для колонок base/past/pp и строку будущего (will + base).
+  */
+-function verbTenseCaptions(lang: Lang): {
++function verbTenseCaptions(lang: Lang, course?: IrregularVerb['classicCourse']): {
+   present: string;
+   pastT: string;
+   participle: string;
+   future: (base: string) => string;
+ } {
++  // зачем (владелец 05.11: глаголы fr/es/de/it): у курса свои три формы (fr/it: инфинитив → настоящее → причастие;
++  // es/de: инфинитив → прошедшее → причастие) — подписи под ячейками по смыслу формы курса, а не английские V1/V2/V3.
++  if (course) {
++    const c = classicVerbsSlotCaptions(course, lang);
++    return { present: c.base, pastT: c.past, participle: c.pp, future: (base) => base };
++  }
+   // зачем: единый переводчик проекта вместо if-лестницы (сторож i18n +
+   // недостающие 5 языков раньше молча откатывались на русский).
+   const present = triLang(lang, { ru: 'настоящее', uk: 'теперішнє', en: 'present', es: 'presente', 'pt-BR': 'presente', vi: 'hiện tại', id: 'sekarang', tr: 'şimdiki', pl: 'teraźniejszy' });
+@@ -520,7 +535,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
+     setFeedbackCorrect(isCorrect);
+     setPhase('feedback');
+ 
+-    if (voiceOut) speakAudio(word, speechRate, { language: 'en-US' });
++    if (voiceOut) speakAudio(word, speechRate, { language: verbSpeechLanguage(verb) });
+ 
+     if (isCorrect) {
+       runCorrectRef.current += 1;
+@@ -549,7 +564,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
+             canonicalTarget: correct,
+             sourceMeaning: verb.ru,
+             // зачем (репорт 13.10 «Находить — found»): в «Моих ошибках» не было видно, какая форма спрашивается (прошлое/причастие/основная)
+-            sourcePrompt: `${irregularVerbTranslation(verb, lang)} — ${form === 'past' ? verbTenseCaptions(lang).pastT : form === 'pp' ? verbTenseCaptions(lang).participle : verbTenseCaptions(lang).present}`,
++            sourcePrompt: `${irregularVerbTranslation(verb, lang)} — ${form === 'past' ? verbTenseCaptions(lang, verb.classicCourse).pastT : form === 'pp' ? verbTenseCaptions(lang, verb.classicCourse).participle : verbTenseCaptions(lang, verb.classicCourse).present}`,
+             lessonId: String(lessonId ?? 0),
+             distractors: activeOptions,
+           },
+@@ -650,7 +665,10 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
+   });
+ 
+   // Зрелый глагол → собираем форму из букв (воспроизведение), новый → 4 кнопки (узнавание).
+-  const recallActive = !!activeVerb && isRecallVerb(activeVerb.base);
++  // зачем (глаголы de 05.11): у отделяемых глаголов форма из двух слов (rief an) — из букв её не собрать без пробела-плитки,
++  // поэтому такие формы всегда спрашиваем кнопками.
++  const activeAnswer = activeVerb ? (activeForm === 'past' ? activeVerb.past : activeForm === 'pp' ? activeVerb.pp : activeVerb.base) : '';
++  const recallActive = !!activeVerb && isRecallVerb(activeVerb.base) && !/\s/.test(activeAnswer);
+   const activeAcceptedForms = useMemo(
+     () => activeVerb ? acceptedFormsFor(activeVerb, activeForm) : [],
+     [activeVerb, activeForm],
+@@ -753,7 +771,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
+     { key: 'pp',   value: verb.pp,   isTarget: form === 'pp'   },
+   ];
+ 
+-  const tc = verbTenseCaptions(lang);
++  const tc = verbTenseCaptions(lang, verb.classicCourse);
+   const tenseByKey: Record<FormKey, string> = { base: tc.present, past: tc.pastT, pp: tc.participle };
+   const feedbackTint = phase === 'feedback' ? (feedbackCorrect ? t.correct : t.wrong) : null;
+   const hintText = phase === 'answering'
+@@ -994,6 +1012,9 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
+   const scrollX = useRef(new Animated.Value(0)).current;
+   const [containerW, setContainerW] = useState(0);
+   const sv = stringsForLang(lang).verbs;
++  // зачем (владелец 05.11: глаголы fr/es/de/it): шапка таблицы — названия форм курса, а не английские base/past/participle
++  const tableCourse = allVerbs[0]?.classicCourse;
++  const head = tableCourse ? classicVerbsSlotCaptions(tableCourse, lang) : { base: sv.base, past: sv.past, pp: sv.pp };
+   const cardW = containerW - 32;
+   const canScroll = cardW > 0 && TABLE_W > cardW;
+   const thumbW = canScroll ? Math.max(40, (cardW / TABLE_W) * (cardW - 32)) : 0;
+@@ -1021,9 +1042,9 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
+       >
+         <View style={{ minWidth: TABLE_W - 28 }}>
+           <View style={{ flexDirection: 'row', paddingTop: 6, paddingBottom: 10 }}>
+-            <Text style={[headStyle, { width: COL.base }]}>{sv.base}</Text>
+-            <Text style={[headStyle, { width: COL.past }]}>{sv.past}</Text>
+-            <Text style={[headStyle, { width: COL.pp }]}>{sv.pp}</Text>
++            <Text style={[headStyle, { width: COL.base }]}>{head.base}</Text>
++            <Text style={[headStyle, { width: COL.past }]}>{head.past}</Text>
++            <Text style={[headStyle, { width: COL.pp }]}>{head.pp}</Text>
+             <Text style={[headStyle, { width: COL.tr }]}>{sv.tr}</Text>
+             <View style={{ width: COL.save }} />
+           </View>
+@@ -1037,21 +1058,21 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
+                 style={{ flexDirection: 'row', alignItems: 'center', minHeight: 48, paddingVertical: 4, borderTopWidth: rowIdx === 0 ? 0 : StyleSheet.hairlineWidth /* guard-ok */, borderTopColor: glass.line }}
+               >
+                 <TouchableOpacity
+-                  onPress={() => speakAudio(verb.base, undefined, { language: 'en-US' })}
++                  onPress={() => speakAudio(verb.base, undefined, { language: verbSpeechLanguage(verb) })}
+                   activeOpacity={0.6}
+                   style={{ width: COL.base, minHeight: 44, justifyContent: 'center' }}
+                 >
+                   <Text style={{ color: formColor, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{verb.base}</Text>
+                 </TouchableOpacity>
+                 <TouchableOpacity
+-                  onPress={() => speakAudio(verb.past, undefined, { language: 'en-US' })}
++                  onPress={() => speakAudio(verb.past, undefined, { language: verbSpeechLanguage(verb) })}
+                   activeOpacity={0.6}
+                   style={{ width: COL.past, minHeight: 44, justifyContent: 'center' }}
+                 >
+                   <Text style={{ color: formColor, fontSize: 16, lineHeight: 21 }}>{verb.past}</Text>
+                 </TouchableOpacity>
+                 <TouchableOpacity
+-                  onPress={() => speakAudio(verb.pp, undefined, { language: 'en-US' })}
++                  onPress={() => speakAudio(verb.pp, undefined, { language: verbSpeechLanguage(verb) })}
+                   activeOpacity={0.6}
+                   style={{ width: COL.pp, minHeight: 44, justifyContent: 'center' }}
+                 >
+@@ -1174,8 +1195,16 @@ function LessonIrregularVerbs() {
+   const lessonId = parseInt(id || '1', 10);
+   const frenchIrregularBlocked = !vocabularyContentAvailableForTarget(studyTarget, 'irregular_verbs');
+   const irregularStorageKey = irregularVerbsGlobalKey(studyTarget);
+-  const allVerbs = frenchIrregularBlocked ? [] : (IRREGULAR_VERBS_BY_LESSON[lessonId] || []);
+-  const allVerbsFlat: IrregularVerb[] = frenchIrregularBlocked ? [] : Object.values(IRREGULAR_VERBS_BY_LESSON).flat();
++  // зачем (владелец 05.11: глаголы es/fr/de/it «по урокам, только новые»): список урока и пул вариантов — из списка своего курса
++  // (английский / modules/classic-courses/<lang>/irregular_verbs.json); пул мемоизирован, чтобы не пересобирать массив на каждый кадр.
++  const allVerbs = useMemo(
++    () => (frenchIrregularBlocked ? [] : irregularVerbsForLesson(studyTarget, lessonId)),
++    [frenchIrregularBlocked, studyTarget, lessonId],
++  );
++  const allVerbsFlat: IrregularVerb[] = useMemo(
++    () => (frenchIrregularBlocked ? [] : allIrregularVerbsFor(studyTarget)),
++    [frenchIrregularBlocked, studyTarget],
++  );
+ 
+   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
+   useEffect(() => {
+diff --git a/app/lesson_menu.tsx b/app/lesson_menu.tsx
+index ad05177dc..60f7e190e 100644
+--- a/app/lesson_menu.tsx
++++ b/app/lesson_menu.tsx
+@@ -37,7 +37,7 @@ import fk from './feedback/feedback_kit';
+ import { LESSONS_WITH_WORDS, lessonWordCount, lessonWordKeys } from './lesson_words';
+ import { classicLessonWordCount, classicLessonWordKeys, classicWordsActiveFor } from './classic_lesson_words';
+ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+-import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
++import { irregularVerbsForLesson, lessonHasIrregularVerbs } from './irregular_verbs_for_target';
+ import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
+ import { vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
+ import CircularProgress from '../components/CircularProgress';
+@@ -246,13 +246,15 @@ function parseWordsLearned(lessonId: number, wordsRaw: string | null, studyTarge
+   }
+ }
+ 
+-function parseIrregularLearned(lessonId: number, irregularRaw: string | null): number {
+-  if (!LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) return 0;
++function parseIrregularLearned(lessonId: number, irregularRaw: string | null, studyTarget?: RuntimeStudyTarget): number {
++  // зачем (владелец 05.11: глаголы es/fr/de/it): список урока — по курсу (английский / свой у fr-es-de-it / пусто)
++  const lessonVerbs = irregularVerbsForLesson(studyTarget, lessonId);
++  if (lessonVerbs.length === 0) return 0;
+   try {
+     const counts: Record<string, number> = irregularRaw ? JSON.parse(irregularRaw) : {};
+-    const lessonVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] ?? [];
+     return lessonVerbs.filter(v => (counts[v.base] ?? 0) >= 3).length;
+-  } catch {
++  } catch (error: unknown) {
++    console.warn('[CLASSIC-VERBS] menu counts parse failed', lessonId, error instanceof Error ? error.message : String(error)); // guard-ok: причина 0 выученных
+     return 0;
+   }
+ }
+@@ -314,7 +316,7 @@ export async function prefetchLessonMenuCache(
+     lessonMenuCacheById[lessonMenuCacheKey(id, studyTarget)] = {
+       ...parseProgress(freshestProgressRaw(id, map[progressKey] ?? null, studyTarget), map[bestScoreKey] ?? null),
+       wordsLearned: parseWordsLearned(id, map[wordsKey] ?? null, studyTarget),
+-      irregularLearned: parseIrregularLearned(id, map[irregularKey] ?? null),
++      irregularLearned: parseIrregularLearned(id, map[irregularKey] ?? null, studyTarget),
+       prepositionAnswered: prep.answered,
+       prepositionTotal: prep.total,
+       theoryProgressPct: parseTheoryMenuProgress(map[theorySectionsKey] ?? null),
+@@ -440,6 +442,8 @@ function LessonMenu() {
+   // зачем (владелец 05.11: «нигде не должно быть никаких заглушек»): пункт без данных целевого языка скрыт, а не подписан текстом-заглушкой.
+   const targetVocabularyAvailable = vocabularyContentAvailableForTarget(studyTarget, 'lesson_words');
+   const targetVerbsAvailable = vocabularyContentAvailableForTarget(studyTarget, 'irregular_verbs');
++  // зачем (владелец 05.11: глаголы es/fr/de/it «по урокам, только новые»): число глаголов урока — из списка своего курса
++  const lessonVerbCount = irregularVerbsForLesson(studyTarget, lessonId).length;
+   const menuStorageTarget = storageStudyTarget(studyTarget);
+   const menuClassicWords = classicWordsActiveFor(menuStorageTarget) ? menuStorageTarget : null;
+   const wordsTotal = menuClassicWords ? classicLessonWordCount(menuClassicWords, lessonId) : (LESSONS_WITH_WORDS.has(lessonId) ? lessonWordCount(lessonId) : 0);
+@@ -895,13 +899,9 @@ function LessonMenu() {
+         setWordsLearned(learned);
+       } catch { setWordsLearned(0); }
+     });
+-    if (LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) {
++    if (lessonHasIrregularVerbs(studyTarget, lessonId)) {
+       AsyncStorage.getItem(irregularKey).then(saved => {
+-        try {
+-          const counts: Record<string,number> = saved ? JSON.parse(saved) : {};
+-          const lessonVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] ?? [];
+-          setIrregularLearned(lessonVerbs.filter(v => (counts[v.base] ?? 0) >= 3).length);
+-        } catch { setIrregularLearned(0); }
++        setIrregularLearned(parseIrregularLearned(lessonId, saved, studyTarget));
+       });
+     }
+     AsyncStorage.getItem(prepositionProgressKey).then(saved => {
+@@ -1122,12 +1122,12 @@ function LessonMenu() {
+     },
+     {
+       testID: 'lesson-menu-irregular-verbs',
+-      hidden: !targetVerbsAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
++      hidden: !targetVerbsAvailable || lessonVerbCount === 0,
+       // зачем (Сверка learn-020, макет learn.html B2): «Неправильные глаголы» (ru); остальные языки — прежние строки
+       label: triLang(lang, { ru: 'Неправильные глаголы', uk: s.lessonMenu.verbs, en: s.lessonMenu.verbs, es: s.lessonMenu.verbs, 'pt-BR': s.lessonMenu.verbs, vi: s.lessonMenu.verbs, id: s.lessonMenu.verbs, tr: s.lessonMenu.verbs, pl: s.lessonMenu.verbs }),
+-      sub: LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)
++      sub: lessonVerbCount > 0
+         ? (() => {
+-            const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
++            const total = lessonVerbCount;
+             return total > 0
+               ? triLang(lang, {
+                   ru: `${irregularLearned}/${total}\u00A0глаголов`,
+@@ -1166,13 +1166,13 @@ function LessonMenu() {
+       // зачем (Сверка learn-020, learn.html menuRow): значки строк по макету — глаголы «swap», предлоги «key», теория «list».
+       icon: 'swap-horizontal-outline' as const,
+       pct: (() => {
+-        if (!LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) return undefined;
+-        const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
++        if (lessonVerbCount === 0) return undefined;
++        const total = lessonVerbCount;
+         return total > 0 ? Math.round(irregularLearned / total * 100) : undefined;
+       })(),
+       onPress: () => {
+         hapticTap();
+-        if (LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) {
++        if (lessonVerbCount > 0) {
+           if (!navOnce(`lesson_menu:irregular:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — один экран глаголов
+           router.push({ pathname: '/lesson_irregular_verbs', params: { id: lessonId } });
+         }
+diff --git a/app/vocabulary_target_gate.ts b/app/vocabulary_target_gate.ts
+index 2ea3158e1..cfa019049 100644
+--- a/app/vocabulary_target_gate.ts
++++ b/app/vocabulary_target_gate.ts
+@@ -3,6 +3,7 @@ import { triLang, type Lang } from '../constants/i18n';
+ import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
+ import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+ import { classicWordsActiveFor } from './classic_lesson_words';
++import { classicVerbsActiveFor } from './classic_irregular_verbs';
+ 
+ export type VocabularyGateSurface = 'lesson_words' | 'irregular_verbs' | 'preposition_drill';
+ 
+@@ -41,8 +42,11 @@ export function vocabularyContentAvailableForTarget(
+   // английские слова под чужим курсом. Пока словарь курса не подключён к этим экранам — для не-английских целей закрыто (тихий возврат).
+   const target = storageStudyTarget(studyTarget);
+   if (target === 'en') return true;
+-  // зачем (владелец 05.11: «слова — во все курсы всех языков»): «Слова урока» fr/es/de/it берутся из glossary.json курса; неправильные глаголы
+-  // и предлоги для них скрыты, пока нет своих списков (английский список не подставляется никогда).
++  // зачем (владелец 05.11: «слова — во все курсы всех языков»): «Слова урока» fr/es/de/it берутся из glossary.json курса.
++  // зачем (владелец 05.11: «неправильные глаголы и аналог для es/fr/de/it — в 150, по урокам, только новые»): у глаголов теперь свой список
++  // курса (modules/classic-courses/<lang>/irregular_verbs.json, app/classic_irregular_verbs.ts). Предлоги — по-прежнему скрыты
++  // (своего списка нет). Английский список под чужим курсом не подставляется никогда.
++  if (surface === 'irregular_verbs') return classicVerbsActiveFor(target);
+   return surface === 'lesson_words' && classicWordsActiveFor(target);
+ }
+ 
+diff --git a/scripts/classic_irregular_verbs_build.mjs b/scripts/classic_irregular_verbs_build.mjs
+index d8b9bd354..6fd4552ff 100644
+--- a/scripts/classic_irregular_verbs_build.mjs
++++ b/scripts/classic_irregular_verbs_build.mjs
+@@ -38,6 +38,39 @@ function wordsOf(text) {
+     .map(({ w }) => w.toLowerCase());
+ }
+ 
++// зачем (аудит 05.11: в de все «ich rufe dich an» засчитывались глаголу rufen, а это anrufen — урок «звонить» уезжал на урок позже):
++// немецкая отделяемая приставка стоит в КОНЦЕ части предложения. Если форма базового глагола (rufe) и в конце той же части стоит приставка
++// (an), а в словаре есть составной глагол (anrufen), форма засчитывается составному.
++const SEP_PARTICLES = ['an', 'auf', 'ein', 'aus', 'mit', 'ab', 'zu', 'vor', 'nach', 'weg', 'zurück', 'los', 'fern', 'um'];
++const lemmas = new Map(dict.VERBS.map((v) => [v.lemma, v]));
++const sepByBase = new Map(); // базовая лемма → [{ particle, verb }]
++if (lang === 'de') {
++  for (const verb of dict.VERBS) {
++    const p = SEP_PARTICLES.find((x) => verb.lemma.startsWith(x) && lemmas.has(verb.lemma.slice(x.length)));
++    if (!p) continue;
++    const base = verb.lemma.slice(p.length);
++    if (!sepByBase.has(base)) sepByBase.set(base, []);
++    sepByBase.get(base).push({ particle: p, verb });
++  }
++}
++function clauseTail(text, word) {
++  for (const clause of String(text).split(/[,.!?;:]+/u)) {
++    const ws = clause.split(/[^\p{L}]+/u).filter(Boolean).map((w) => w.toLowerCase());
++    if (ws.includes(word)) return ws[ws.length - 1];
++  }
++  return null;
++}
++function verbsForWord(word, text) {
++  const out = [];
++  for (const verb of byForm.get(word) ?? []) {
++    const sep = sepByBase.get(verb.lemma);
++    const tail = sep ? clauseTail(text, word) : null;
++    const hit = sep?.find((s) => s.particle === tail);
++    out.push(hit ? hit.verb : verb);
++  }
++  return out;
++}
++
+ // лемма → { first: N, hits: [{ id, form, len, lesson }] }
+ const found = new Map();
+ for (const f of files) {
+@@ -45,7 +78,7 @@ for (const f of files) {
+   for (const phrase of lesson.phrases) {
+     const seen = new Set();
+     for (const word of wordsOf(phrase.target)) {
+-      for (const verb of byForm.get(word) ?? []) {
++      for (const verb of verbsForWord(word, phrase.target)) {
+         const key = `${verb.lemma}|${word}`;
+         if (seen.has(key)) continue;
+         seen.add(key);
+@@ -76,13 +109,30 @@ function pickExamples(hits, first) {
+   return chosen.map((h) => h.id);
+ }
+ 
++// зачем (владелец 05.11: глаголы es/fr/de/it «по образцу английского»): английский тренажёр спрашивает три формы base → past → pp.
++// train — три формы курса для этих ячеек (см. TRAIN_OVERRIDES в irregular_verbs_meaning_en.mjs), meaning.en — перевод для 7 языков интерфейса.
++const { MEANING_EN, TRAIN_OVERRIDES } = await import(pathToFileURL(path.join(ROOT, 'scripts', 'data', 'irregular_verbs_meaning_en.mjs')).href);
++const firstPart = (s) => String(s ?? '').split(' / ')[0].trim();
++function trainOf(verb) {
++  const f = verb.forms;
++  let past;
++  let pp;
++  if (lang === 'fr') { past = firstPart(f.present).replace(/^(je |j[’']|il )/u, ''); pp = String(f.pc).trim().split(/\s+/u).pop(); }
++  else if (lang === 'es') { past = firstPart(f.preterito); pp = f.participio; }
++  else if (lang === 'de') { past = f.praet; pp = f.pp; }
++  else { past = firstPart(f.presente).replace(/^io /u, ''); pp = f.pp; }
++  return { base: f.inf, past, pp, ...(TRAIN_OVERRIDES[lang]?.[verb.lemma] ?? {}) };
++}
++
+ const lessons = {};
+ const report = { lang, verbsInDict: dict.VERBS.length, matched: 0, absent: [], perLesson: {} };
+ for (const verb of dict.VERBS) {
+   const o = found.get(verb.lemma);
+   if (!o) { report.absent.push(verb.lemma); continue; }
+   report.matched += 1;
+-  const entry = { lemma: verb.lemma, meaning: verb.meaning, forms: verb.forms, ...(verb.aux ? { aux: verb.aux } : {}), note: verb.note, examples: pickExamples(o.hits, o.first) };
++  const en = MEANING_EN[lang]?.[verb.lemma];
++  if (!en) { console.error(`[IRREG-BUILD] нет английского перевода для ${lang}:${verb.lemma}`); process.exit(3); }
++  const entry = { lemma: verb.lemma, meaning: { ...verb.meaning, en }, forms: verb.forms, train: trainOf(verb), ...(verb.aux ? { aux: verb.aux } : {}), note: verb.note, examples: pickExamples(o.hits, o.first) };
+   (lessons[o.first] ??= []).push(entry);
+ }
+ for (const key of Object.keys(lessons)) report.perLesson[key] = lessons[key].map((e) => e.lemma);
+diff --git a/tests/classic_no_stubs_contract.test.ts b/tests/classic_no_stubs_contract.test.ts
+index 7ad51d780..4b07426b1 100644
+--- a/tests/classic_no_stubs_contract.test.ts
++++ b/tests/classic_no_stubs_contract.test.ts
+@@ -6,6 +6,7 @@ import path from 'path';
+ 
+ import { lessonSupportContentAvailableForTarget } from '../app/lesson_support_target_gate';
+ import { vocabularyContentAvailableForTarget } from '../app/vocabulary_target_gate';
++import { CLASSIC_IRREGULAR_VERBS_ENABLED } from '../app/classic_irregular_verbs';
+ import { classicLessonWordBank } from '../app/classic_lesson_words';
+ import { getClassicTheory } from '../app/classic_theory';
+ 
+@@ -57,15 +58,16 @@ describe('classic courses: no stubs, no English source for a non-English course'
+     expect(menu).not.toMatch(/unavailable: (?!boolean)/);
+     expect(menu).not.toContain('soonOpen');
+     expect(menu).toContain('hidden: !targetVocabularyAvailable || !lessonHasWords');
+-    expect(menu).toContain('hidden: !targetVerbsAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)');
++    expect(menu).toContain('hidden: !targetVerbsAvailable || lessonVerbCount === 0');
+     expect(menu).toContain('hidden: !targetHasPrepositionDrill,');
+     expect(menu).toContain('classicLessonWordCount');
+     expect(menu).toContain('targetTheoryUnavailable ||');
+   });
+ 
+-  it.each(TARGETS)('%s: words come from the course glossary; verbs, prepositions and cheat sheet of the English source are closed', (target) => {
++  it.each(TARGETS)('%s: words and irregular verbs come from the course itself; prepositions and cheat sheet of the English source are closed', (target) => {
+     expect(vocabularyContentAvailableForTarget(target, 'lesson_words')).toBe(true);
+-    expect(vocabularyContentAvailableForTarget(target, 'irregular_verbs')).toBe(false);
++    // зачем (владелец 05.11: глаголы es/fr/de/it в 150): свой список курса — раздел открыт
++    expect(vocabularyContentAvailableForTarget(target, 'irregular_verbs')).toBe(CLASSIC_IRREGULAR_VERBS_ENABLED);
+     expect(vocabularyContentAvailableForTarget(target, 'preposition_drill')).toBe(false);
+     expect(lessonSupportContentAvailableForTarget(target, 'lesson_hint', 1)).toBe(false);
+   });
+diff --git a/tests/gustav_french_lesson_entry_points_gate.test.ts b/tests/gustav_french_lesson_entry_points_gate.test.ts
+index 1ce27c17b..53b30a562 100644
+--- a/tests/gustav_french_lesson_entry_points_gate.test.ts
++++ b/tests/gustav_french_lesson_entry_points_gate.test.ts
+@@ -71,7 +71,7 @@ describe('Gustav French lesson entry point gate', () => {
+       source.indexOf("testID: 'lesson-menu-irregular-verbs'"),
+       source.indexOf("testID: 'lesson-menu-prepositions'"),
+     );
+-    expect(verbsSlice).toContain('hidden: !targetVerbsAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)');
++    expect(verbsSlice).toContain('hidden: !targetVerbsAvailable || lessonVerbCount === 0');
+     expect(verbsSlice).not.toContain('unavailable:');
+     expect(verbsSlice).not.toContain("setSoonOpen('verbs')");
+ 
+diff --git a/tests/irregular_verbs_selected_audio_contract.test.ts b/tests/irregular_verbs_selected_audio_contract.test.ts
+index 75be4b2f0..b686460e2 100644
+--- a/tests/irregular_verbs_selected_audio_contract.test.ts
++++ b/tests/irregular_verbs_selected_audio_contract.test.ts
+@@ -13,7 +13,9 @@ describe('irregular verbs selected-option audio', () => {
+ 
+     expect(start).toBeGreaterThanOrEqual(0);
+     expect(end).toBeGreaterThan(start);
+-    expect(handler).toContain("speakAudio(word, speechRate, { language: 'en-US' })");
+-    expect(handler).not.toContain("speakAudio(correct, speechRate, { language: 'en-US' })");
++    expect(handler).toContain('speakAudio(word, speechRate, { language: verbSpeechLanguage(verb) })');
++    expect(handler).not.toContain('speakAudio(correct, speechRate');
++    // зачем (владелец 05.11: глаголы fr/es/de/it): голос — язык курса глагола, у английского списка по-прежнему en-US
++    expect(source).toContain("verb?.classicCourse ? classicVerbsSpeechLanguage(verb.classicCourse) : 'en-US'");
+   });
+ });
+diff --git a/app/irregular_verbs_data.ts b/app/irregular_verbs_data.ts
+index 81ad473c6..d49580e16 100644
+--- a/app/irregular_verbs_data.ts
++++ b/app/irregular_verbs_data.ts
+@@ -19,6 +19,10 @@ export interface IrregularVerb {
+   tr: string;
+   pl: string;
+   sourceLocales?: IrregularVerbSourceLocaleMap;
++  /** Английский перевод (только у глаголов курсов fr/es/de/it — для языков интерфейса без своего перевода). */
++  en?: string;
++  /** Курс, из которого глагол (fr/es/de/it). Нет поля — английский список. */
++  classicCourse?: 'es' | 'fr' | 'de' | 'it';
+ }
+ 
+ /** Все допустимые ответы для целевой формы глагола (включая варианты). */
+diff --git a/app/classic_irregular_verbs.ts b/app/classic_irregular_verbs.ts
+new file mode 100644
+index 000000000..799ec64d1
+--- /dev/null
++++ b/app/classic_irregular_verbs.ts
+@@ -0,0 +1,118 @@
++// classic_irregular_verbs.ts — «Неправильные глаголы» классических курсов fr/es/de/it.
++// зачем (владелец 05.11: «Неправильные глаголы и аналог для es/fr/de/it — в 150, по урокам, только новые в уроке, без повторов, по образцу
++// английского»): данные лежат в modules/classic-courses/<lang>/irregular_verbs.json (сборщик scripts/classic_irregular_verbs_build.mjs —
++// глагол попадает в урок, где ВПЕРВЫЕ встретилась его форма во фразах курса). Здесь они превращаются в тот же тип IrregularVerb, что у
++// английского экрана, — экран и меню работают без второй копии логики. Три ячейки тренажёра base → past → pp получают формы курса из
++// поля `train` (fr: инфинитив / настоящее / причастие; es: инфинитив / прошедшее / причастие; de: инфинитив / претерит / Partizip II;
++// it: инфинитив / настоящее / причастие) и свои подписи. Английский список под чужим курсом не подставляется никогда.
++import { triLang, type Lang } from '../constants/i18n';
++import { lazyContent } from './content_lazy';
++import { classicCourseActiveFor } from './classic_course_phrases';
++import type { IrregularVerb } from './irregular_verbs_data';
++
++export type ClassicVerbsLang = 'es' | 'fr' | 'de' | 'it';
++
++type Meaning = Readonly<Partial<Record<'ru' | 'uk' | 'en', string>>>;
++type RawEntry = Readonly<{
++  lemma: string;
++  meaning: Meaning;
++  train: Readonly<{ base: string; past: string; pp: string }>;
++  examples?: readonly string[];
++}>;
++type RawFile = Readonly<{ schema: string; lang: string; lessons: Readonly<Record<string, readonly RawEntry[]>> }>;
++
++// Статические require — Metro вшивает файлы; выполняются лениво (холодный старт не платит).
++const filesOf = lazyContent('classic_irregular_verbs', () => ({
++  /* eslint-disable @typescript-eslint/no-require-imports */
++  es: require('../modules/classic-courses/es/irregular_verbs.json') as RawFile,
++  fr: require('../modules/classic-courses/fr/irregular_verbs.json') as RawFile,
++  de: require('../modules/classic-courses/de/irregular_verbs.json') as RawFile,
++  it: require('../modules/classic-courses/it/irregular_verbs.json') as RawFile,
++  /* eslint-enable @typescript-eslint/no-require-imports */
++}));
++
++export function isClassicVerbsLang(target: unknown): target is ClassicVerbsLang {
++  return target === 'es' || target === 'fr' || target === 'de' || target === 'it';
++}
++
++// зачем (слово владельца 05.11 через диспетчера: «в 150 только английский курс, глаголы es/fr/de/it — до 2.1.1, экономим лимит»):
++// данные и подключение готовы, но раздел для fr/es/de/it выключен — в 150 всё как раньше (пункт меню скрыт). Включить в 2.1.1: true.
++export const CLASSIC_IRREGULAR_VERBS_ENABLED = false;
++
++/** true — у курса свой список неправильных глаголов и раздел можно показывать. */
++export function classicVerbsActiveFor(target: unknown): target is ClassicVerbsLang {
++  return CLASSIC_IRREGULAR_VERBS_ENABLED && isClassicVerbsLang(target) && classicCourseActiveFor(target);
++}
++
++function toVerb(e: RawEntry, course: ClassicVerbsLang): IrregularVerb {
++  const ru = e.meaning.ru ?? e.lemma;
++  const en = e.meaning.en ?? e.lemma;
++  return {
++    base: e.train.base,
++    past: e.train.past,
++    pp: e.train.pp,
++    ru,
++    uk: e.meaning.uk ?? ru,
++    en,
++    // зачем: для 6 языков интерфейса без своего перевода — английский (решение владельца 05.11, как у теории в 150)
++    es: en,
++    'pt-BR': en,
++    vi: en,
++    id: en,
++    tr: en,
++    pl: en,
++    classicCourse: course,
++  };
++}
++
++const byLessonCache = new Map<ClassicVerbsLang, Record<number, IrregularVerb[]>>();
++
++/** Глаголы курса по урокам: в уроке N — только глаголы, впервые встретившиеся в уроке N. Пустой объект — файла нет или он битый. */
++export function classicIrregularVerbsByLesson(course: ClassicVerbsLang): Record<number, IrregularVerb[]> {
++  const cached = byLessonCache.get(course);
++  if (cached) return cached;
++  const out: Record<number, IrregularVerb[]> = {};
++  try {
++    const file = filesOf()[course];
++    if (!file || file.schema !== 'phraseman.classic-irregular-verbs/1') {
++      console.warn('[CLASSIC-VERBS] schema mismatch', course, file?.schema); // guard-ok: причина пустого раздела
++    } else {
++      const seen = new Set<string>();
++      for (const [key, list] of Object.entries(file.lessons ?? {})) {
++        const lessonId = Number(key);
++        if (!Number.isInteger(lessonId) || !Array.isArray(list)) continue;
++        // зачем (владелец 05.11: «только новые в уроке, без повторов»): лемма, уже встреченная раньше, второй раз не показывается
++        const verbs = list.filter((e) => {
++          const k = e.lemma.toLocaleLowerCase();
++          if (seen.has(k)) return false;
++          seen.add(k);
++          return true;
++        }).map((e) => toVerb(e, course));
++        if (verbs.length > 0) out[lessonId] = verbs;
++      }
++    }
++  } catch (error: unknown) {
++    console.warn('[CLASSIC-VERBS] load failed', course, error instanceof Error ? error.message : String(error)); // guard-ok: причина пустого раздела
++  }
++  byLessonCache.set(course, out);
++  return out;
++}
++
++/** Озвучка форм — голосом языка курса (у английского экрана — en-US). */
++export function classicVerbsSpeechLanguage(course: ClassicVerbsLang): string {
++  return { fr: 'fr-FR', es: 'es-ES', de: 'de-DE', it: 'it-IT' }[course];
++}
++
++const INFINITIVE = { ru: 'инфинитив', uk: 'інфінітив', en: 'infinitive', es: 'infinitivo', 'pt-BR': 'infinitivo', vi: 'nguyên mẫu', id: 'infinitif', tr: 'mastar', pl: 'bezokolicznik' } as const;
++const PRESENT = { ru: 'настоящее', uk: 'теперішнє', en: 'present', es: 'presente', 'pt-BR': 'presente', vi: 'hiện tại', id: 'sekarang', tr: 'şimdiki', pl: 'teraźniejszy' } as const;
++const PAST = { ru: 'прошлое', uk: 'минуле', en: 'past', es: 'pasado', 'pt-BR': 'passado', vi: 'quá khứ', id: 'lampau', tr: 'geçmiş', pl: 'przeszły' } as const;
++const PARTICIPLE = { ru: 'причастие', uk: 'дієприкметник', en: 'participle', es: 'participio', 'pt-BR': 'particípio', vi: 'phân từ', id: 'partisip', tr: 'ortaç', pl: 'imiesłów' } as const;
++
++/** Подписи трёх ячеек тренажёра (base / past / pp) на языке интерфейса — по смыслу формы курса. */
++export function classicVerbsSlotCaptions(course: ClassicVerbsLang, lang: Lang): { base: string; past: string; pp: string } {
++  const second = course === 'fr' || course === 'it' ? PRESENT : PAST;
++  return { base: triLang(lang, INFINITIVE), past: triLang(lang, second), pp: triLang(lang, PARTICIPLE) };
++}
++
++/* expo-router route shim: модуль лежит в app/ — без этого роутер ругается на файл без экрана */
++export default function __ClassicIrregularVerbsRouteShim() { return null; }
+diff --git a/app/irregular_verbs_for_target.ts b/app/irregular_verbs_for_target.ts
+new file mode 100644
+index 000000000..1f4ad9214
+--- /dev/null
++++ b/app/irregular_verbs_for_target.ts
+@@ -0,0 +1,33 @@
++// irregular_verbs_for_target.ts — какой список неправильных глаголов показывать для выбранного курса.
++// зачем (владелец 05.11: глаголы es/fr/de/it — в 150, по образцу английского): меню урока и экран глаголов раньше брали английский список
++// напрямую; теперь английский курс получает прежний IRREGULAR_VERBS_BY_LESSON, курсы fr/es/de/it — свой список из modules/classic-courses,
++// любой другой курс — пусто (раздел скрыт, английские глаголы под чужим курсом не показываются никогда).
++import { IRREGULAR_VERBS_BY_LESSON, type IrregularVerb } from './irregular_verbs_data';
++import { classicIrregularVerbsByLesson, classicVerbsActiveFor } from './classic_irregular_verbs';
++import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
++
++const EMPTY: Readonly<Record<number, IrregularVerb[]>> = Object.freeze({});
++
++export function irregularVerbsByLessonFor(studyTarget?: RuntimeStudyTarget): Readonly<Record<number, IrregularVerb[]>> {
++  const target = storageStudyTarget(studyTarget);
++  if (target === 'en') return IRREGULAR_VERBS_BY_LESSON;
++  if (classicVerbsActiveFor(target)) return classicIrregularVerbsByLesson(target);
++  return EMPTY;
++}
++
++export function irregularVerbsForLesson(studyTarget: RuntimeStudyTarget, lessonId: number): IrregularVerb[] {
++  return irregularVerbsByLessonFor(studyTarget)[lessonId] ?? [];
++}
++
++/** Есть ли в уроке хоть один новый неправильный глагол (иначе пункт меню скрыт). */
++export function lessonHasIrregularVerbs(studyTarget: RuntimeStudyTarget, lessonId: number): boolean {
++  return irregularVerbsForLesson(studyTarget, lessonId).length > 0;
++}
++
++/** Все глаголы курса подряд — пул правдоподобных неверных вариантов для тренажёра. */
++export function allIrregularVerbsFor(studyTarget?: RuntimeStudyTarget): IrregularVerb[] {
++  return Object.values(irregularVerbsByLessonFor(studyTarget)).flat();
++}
++
++/* expo-router route shim */
++export default function __IrregularVerbsForTargetRouteShim() { return null; }
+diff --git a/scripts/data/irregular_verbs_meaning_en.mjs b/scripts/data/irregular_verbs_meaning_en.mjs
+new file mode 100644
+index 000000000..e05ffbc7b
+--- /dev/null
++++ b/scripts/data/irregular_verbs_meaning_en.mjs
+@@ -0,0 +1,51 @@
++// зачем (владелец 05.11: «Неправильные глаголы» es/fr/de/it — в 150, по образцу английского): экран глаголов показывает перевод на языке
++// интерфейса. ru/uk лежат в словарях irregular_verbs_<lang>.mjs; для остальных 7 языков интерфейса — английский перевод (решение владельца
++// 05.11: в 150 для es/pt-BR/vi/id/tr/pl допустим английский текст). Сборщик кладёт его в meaning.en.
++export const MEANING_EN = {
++  fr: {
++    'être': 'to be', avoir: 'to have', aller: 'to go', faire: 'to do, to make', pouvoir: 'can, to be able', vouloir: 'to want',
++    savoir: 'to know (how)', venir: 'to come', voir: 'to see', prendre: 'to take', dire: 'to say', mettre: 'to put, to put on',
++    devoir: 'must, to have to', falloir: 'to be necessary', partir: 'to leave', sortir: 'to go out', dormir: 'to sleep', lire: 'to read',
++    'écrire': 'to write', boire: 'to drink', 'connaître': 'to know (someone)', ouvrir: 'to open', plaire: 'to please, to like',
++    recevoir: 'to receive', comprendre: 'to understand', tenir: 'to hold', croire: 'to believe', pleuvoir: 'to rain', courir: 'to run',
++  },
++  es: {
++    ser: 'to be (permanent)', estar: 'to be (state, place)', ir: 'to go', tener: 'to have', hacer: 'to do, to make', decir: 'to say, to tell',
++    poder: 'can, to be able', querer: 'to want, to love', venir: 'to come', haber: 'to have (auxiliary); there is', dar: 'to give', ver: 'to see',
++    saber: 'to know (how)', poner: 'to put', salir: 'to go out, to leave', volver: 'to return', dormir: 'to sleep', pedir: 'to ask for, to order',
++    empezar: 'to begin', cerrar: 'to close', encontrar: 'to find', costar: 'to cost', llover: 'to rain', leer: 'to read', traer: 'to bring',
++    conocer: 'to know (someone)', abrir: 'to open', escribir: 'to write', mostrar: 'to show', entender: 'to understand', jugar: 'to play',
++    preferir: 'to prefer',
++  },
++  de: {
++    sein: 'to be', haben: 'to have', werden: 'to become', kommen: 'to come', gehen: 'to go', fahren: 'to drive, to ride', essen: 'to eat',
++    nehmen: 'to take', geben: 'to give', sehen: 'to see', lesen: 'to read', sprechen: 'to speak', helfen: 'to help', schreiben: 'to write',
++    finden: 'to find', bleiben: 'to stay', stehen: 'to stand', liegen: 'to lie (be lying)', sitzen: 'to sit', trinken: 'to drink',
++    schlafen: 'to sleep', tragen: 'to carry, to wear', halten: 'to hold, to stop', laden: 'to load, to charge', 'heißen': 'to be called',
++    bringen: 'to bring', denken: 'to think', kennen: 'to know (someone)', wissen: 'to know (a fact)', 'können': 'can, to be able',
++    'müssen': 'must, to have to', 'dürfen': 'may, to be allowed', wollen: 'to want', sollen: 'should, to be supposed to',
++    'mögen': 'to like', tun: 'to do', lassen: 'to let, to leave', rufen: 'to call', anrufen: 'to phone', aufstehen: 'to get up',
++    einschlafen: 'to fall asleep', aussteigen: 'to get off', einsteigen: 'to get on', beginnen: 'to begin', bekommen: 'to get, to receive',
++    vergessen: 'to forget', verlieren: 'to lose', ziehen: 'to pull, to move', steigen: 'to climb, to rise', 'schließen': 'to close',
++    laufen: 'to run, to walk', treffen: 'to meet', gefallen: 'to please, to like', verstehen: 'to understand', fallen: 'to fall',
++  },
++  it: {
++    essere: 'to be', avere: 'to have', andare: 'to go', fare: 'to do, to make', stare: 'to stay, to feel', dare: 'to give', venire: 'to come',
++    volere: 'to want', potere: 'can, to be able', dovere: 'must, to have to', dire: 'to say, to tell', uscire: 'to go out', bere: 'to drink',
++    vedere: 'to see', sapere: 'to know (how)', rimanere: 'to remain', scrivere: 'to write', leggere: 'to read', prendere: 'to take',
++    mettere: 'to put, to put on', chiudere: 'to close', aprire: 'to open', conoscere: 'to know (someone)', cadere: 'to fall', perdere: 'to lose',
++    piovere: 'to rain', piacere: 'to please, to like', tenere: 'to hold', salire: 'to go up, to get on', rispondere: 'to answer',
++    scegliere: 'to choose',
++  },
++};
++
++// зачем: тренажёр английского экрана спрашивает ровно три ОДНОСЛОВНЫЕ формы (V1 → V2 → V3) и собирает их из букв. Для других курсов
++// берём три самые нужные формы языка: fr — инфинитив / настоящее (je) / причастие; es — инфинитив / прошедшее (yo) / причастие;
++// de — инфинитив / претерит (er) / Partizip II; it — инфинитив / настоящее (io) / причастие. Здесь — только исключения из правила
++// автоматического вывода в сборщике (безличные глаголы и формы, которые нельзя вывести из строки forms).
++export const TRAIN_OVERRIDES = {
++  fr: { falloir: { past: 'faut' }, pleuvoir: { past: 'pleut' } },
++  es: { llover: { past: 'llovió' }, haber: { past: 'hube' } },
++  de: {},
++  it: { piacere: { past: 'piace' }, piovere: { past: 'piove' } },
++};
+diff --git a/tests/classic_irregular_verbs_data.test.ts b/tests/classic_irregular_verbs_data.test.ts
+new file mode 100644
+index 000000000..e46ee54f6
+--- /dev/null
++++ b/tests/classic_irregular_verbs_data.test.ts
+@@ -0,0 +1,136 @@
++// зачем (владелец 05.11: «Неправильные глаголы и аналог для es/fr/de/it — в 150, по урокам, ТОЛЬКО новые в уроке, без повторов, по образцу
++// английского»): сторож данных modules/classic-courses/<lang>/irregular_verbs.json и их подключения к экрану/меню.
++// Падает, если глагол повторяется в двух уроках, урок вне 1–32, глагол стоит не в том уроке, где впервые встретился во фразах,
++// нет перевода ru/uk/en, форма тренажёра пустая или из нескольких слов там, где её нужно собирать из букв, или раздел снова закрыт.
++import fs from 'node:fs';
++import path from 'node:path';
++
++import { CLASSIC_IRREGULAR_VERBS_ENABLED, classicIrregularVerbsByLesson, classicVerbsSlotCaptions, classicVerbsSpeechLanguage } from '../app/classic_irregular_verbs';
++import { irregularVerbsForLesson, allIrregularVerbsFor } from '../app/irregular_verbs_for_target';
++import { IRREGULAR_VERBS_BY_LESSON } from '../app/irregular_verbs_data';
++import { vocabularyContentAvailableForTarget } from '../app/vocabulary_target_gate';
++
++const ROOT = path.join(__dirname, '..');
++const COURSES = ['fr', 'es', 'de', 'it'] as const;
++
++type Entry = { lemma: string; meaning: Record<string, string>; train: { base: string; past: string; pp: string }; examples: string[] };
++type File = { schema: string; lang: string; lessons: Record<string, Entry[]> };
++
++function readFile(lang: string): File {
++  return JSON.parse(fs.readFileSync(path.join(ROOT, 'modules', 'classic-courses', lang, 'irregular_verbs.json'), 'utf8')) as File;
++}
++
++function phrasesOf(lang: string): Map<string, { lesson: number; target: string }> {
++  const dir = path.join(ROOT, 'modules', 'classic-courses', lang);
++  const out = new Map<string, { lesson: number; target: string }>();
++  for (const f of fs.readdirSync(dir).filter((x) => /^lessons-\d+\.json$/.test(x))) {
++    const lesson = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as { lesson: number; phrases: { id: string; target: string }[] };
++    for (const p of lesson.phrases) out.set(p.id, { lesson: lesson.lesson, target: p.target });
++  }
++  return out;
++}
++
++const STUB = /(^|[^\p{L}])(пока|скоро|todo|tbd|заглушк\p{L}*|незабаром|поки що)([^\p{L}]|$)/iu;
++
++describe.each(COURSES)('%s: неправильные глаголы курса', (lang) => {
++  const file = readFile(lang);
++  const phrases = phrasesOf(lang);
++  const entries = Object.entries(file.lessons).flatMap(([lesson, list]) => list.map((e) => ({ lesson: Number(lesson), e })));
++
++  it('схема и язык файла', () => {
++    expect(file.schema).toBe('phraseman.classic-irregular-verbs/1');
++    expect(file.lang).toBe(lang);
++    expect(entries.length).toBeGreaterThan(0);
++  });
++
++  it('нет повторов между уроками: каждая лемма — ровно в одном уроке 1–32', () => {
++    const seen = new Map<string, number>();
++    const repeats: string[] = [];
++    for (const { lesson, e } of entries) {
++      expect([e.lemma, Number.isInteger(lesson) && lesson >= 1 && lesson <= 32]).toEqual([e.lemma, true]);
++      const k = e.lemma.toLocaleLowerCase();
++      if (seen.has(k)) repeats.push(`${e.lemma}: уроки ${seen.get(k)} и ${lesson}`);
++      seen.set(k, lesson);
++    }
++    expect(repeats).toEqual([]);
++  });
++
++  it('только новые в уроке: первый пример глагола — из его же урока, ни один пример не раньше урока глагола', () => {
++    const wrong: string[] = [];
++    for (const { lesson, e } of entries) {
++      expect([e.lemma, e.examples.length >= 1 && e.examples.length <= 3]).toEqual([e.lemma, true]);
++      const ex = e.examples.map((id) => phrases.get(id));
++      if (ex.some((p) => !p)) wrong.push(`${e.lemma}: пример не найден ${e.examples.join(',')}`);
++      if (ex[0] && ex[0].lesson !== lesson) wrong.push(`${e.lemma}@${lesson}: первый пример из урока ${ex[0].lesson}`);
++      if (ex.some((p) => p && p.lesson < lesson)) wrong.push(`${e.lemma}@${lesson}: глагол встречался раньше`);
++    }
++    expect(wrong).toEqual([]);
++  });
++
++  it('переводы ru/uk/en есть, без заглушек; английский без кириллицы', () => {
++    const bad: string[] = [];
++    for (const { e } of entries) {
++      for (const l of ['ru', 'uk', 'en']) {
++        const t = String(e.meaning?.[l] ?? '').trim();
++        if (!t || STUB.test(t)) bad.push(`${e.lemma}.${l}`);
++      }
++      if (/[Ѐ-ӿ]/u.test(e.meaning.en ?? '')) bad.push(`${e.lemma}.en кириллица`);
++    }
++    expect(bad).toEqual([]);
++  });
++
++  it('три формы тренажёра заполнены; несколько слов — только у отделяемых немецких глаголов', () => {
++    const bad: string[] = [];
++    for (const { e } of entries) {
++      for (const k of ['base', 'past', 'pp'] as const) {
++        const v = String(e.train?.[k] ?? '').trim();
++        if (!v) bad.push(`${e.lemma}.${k} пусто`);
++        if (/\s/u.test(v) && !(lang === 'de' && k === 'past')) bad.push(`${e.lemma}.${k}="${v}"`);
++      }
++      if (e.train.base !== e.lemma) bad.push(`${e.lemma}: инфинитив тренажёра ${e.train.base}`);
++    }
++    expect(bad).toEqual([]);
++  });
++
++  it('переходник читает тот же список: урок = файл, английские глаголы не подмешаны', () => {
++    const byLesson = classicIrregularVerbsByLesson(lang);
++    for (const [lesson, list] of Object.entries(file.lessons)) {
++      const verbs = byLesson[Number(lesson)] ?? [];
++      expect([lesson, verbs.map((v) => v.base)]).toEqual([lesson, list.map((e) => e.train.base)]);
++      expect(verbs.every((v) => v.classicCourse === lang)).toBe(true);
++    }
++    const englishBases = new Set(Object.values(IRREGULAR_VERBS_BY_LESSON).flat().map((v) => `${v.base}|${v.past}|${v.pp}`));
++    expect(Object.values(byLesson).flat().filter((v) => englishBases.has(`${v.base}|${v.past}|${v.pp}`))).toEqual([]);
++  });
++
++  it('раздел в приложении открыт ровно тогда, когда включён флаг (150 — выключен, слово владельца 05.11)', () => {
++    expect(vocabularyContentAvailableForTarget(lang, 'irregular_verbs')).toBe(CLASSIC_IRREGULAR_VERBS_ENABLED);
++    if (!CLASSIC_IRREGULAR_VERBS_ENABLED) {
++      // выключено — меню и экран не видят ни одного глагола курса (пункт скрыт, английский список не подставлен)
++      expect(allIrregularVerbsFor(lang)).toEqual([]);
++      return;
++    }
++    for (const [lesson, list] of Object.entries(file.lessons)) {
++      expect([lesson, irregularVerbsForLesson(lang, Number(lesson)).map((v) => v.base)]).toEqual([lesson, list.map((e) => e.train.base)]);
++    }
++    // урок без новых глаголов — пусто (пункт меню скрыт), а не текст-заглушка
++    for (let lesson = 1; lesson <= 32; lesson += 1) {
++      if (!file.lessons[String(lesson)]) expect(irregularVerbsForLesson(lang, lesson)).toEqual([]);
++    }
++  });
++
++  it('подписи форм и голос — свои у курса', () => {
++    expect(classicVerbsSpeechLanguage(lang)).toBe({ fr: 'fr-FR', es: 'es-ES', de: 'de-DE', it: 'it-IT' }[lang]);
++    const ru = classicVerbsSlotCaptions(lang, 'ru');
++    expect(ru.base).toBe('инфинитив');
++    expect(ru.pp).toBe('причастие');
++    expect(ru.past).toBe(lang === 'fr' || lang === 'it' ? 'настоящее' : 'прошлое');
++  });
++});
++
++describe('английский курс не изменился', () => {
++  it('для en — прежний список, для неизвестного курса — пусто', () => {
++    expect(irregularVerbsForLesson('en', 3)).toBe(IRREGULAR_VERBS_BY_LESSON[3]);
++    expect(irregularVerbsForLesson('en', 3).some((v) => v.classicCourse)).toBe(false);
++  });
++});

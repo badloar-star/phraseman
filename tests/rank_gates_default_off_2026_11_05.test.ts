@@ -8,14 +8,14 @@ const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), '
 describe('гейты по умолчанию выключены', () => {
   afterEach(() => { applyRemoteConfigSnapshot({}); });
 
-  it('rank_gates_enabled ВКЛ по умолчанию (слово владельца 05.11 06:08), section_openings_enabled выключен; Пульт переключает значением', () => {
+  it('rank_gates_enabled ВКЛ по умолчанию (слово владельца 05.11 06:08), section_openings_enabled ВКЛ (слово владельца 05.11 ~15:00, 9f52de909); Пульт переключает значением', () => {
     applyRemoteConfigSnapshot({});
     expect(getRemoteBool('rank_gates_enabled')).toBe(true);
     expect(getRemoteBool('rank_gates_existing_users')).toBe(false); // старые пользователи не теряют доступ: замки только «новым», пока Пульт не включит
-    expect(getRemoteBool('section_openings_enabled')).toBe(false);
-    applyRemoteConfigSnapshot({ bools: { rank_gates_enabled: false, section_openings_enabled: true } });
-    expect(getRemoteBool('rank_gates_enabled')).toBe(false);
     expect(getRemoteBool('section_openings_enabled')).toBe(true);
+    applyRemoteConfigSnapshot({ bools: { rank_gates_enabled: false, section_openings_enabled: false } });
+    expect(getRemoteBool('rank_gates_enabled')).toBe(false);
+    expect(getRemoteBool('section_openings_enabled')).toBe(false);
   });
 
   it('Пульт показывает тумблер «Главная по рангам» выключенным по умолчанию', () => {
@@ -50,7 +50,8 @@ describe('dev-принуждение флагов для E2E Сверки (бе�
     expect(m.getRemoteBool('referral_ladder_enabled')).toBe(false);
   });
   it('без переменной и в стор-релизе принуждения нет', () => {
-    expect(load({}).getRemoteBool('section_openings_enabled')).toBe(false);
-    expect(load({ force: 'section_openings_enabled', store: '1' }).getRemoteBool('section_openings_enabled')).toBe(false);
+    // зачем (05.11 ~15:00): section_openings_enabled теперь ВКЛ по умолчанию, поэтому принуждение проверяем на флаге, выключенном по умолчанию
+    expect(load({}).getRemoteBool('referral_ladder_enabled')).toBe(false);
+    expect(load({ force: 'referral_ladder_enabled', store: '1' }).getRemoteBool('referral_ladder_enabled')).toBe(false);
   });
 });

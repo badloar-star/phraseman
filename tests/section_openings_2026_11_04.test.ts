@@ -187,11 +187,18 @@ describe('тексты: 9 языков, 6 окон', () => {
 });
 
 describe('подключение и запреты', () => {
-  it('флаг section_openings_enabled: объявлен, по умолчанию ВЫКЛ, принимается из снимка Пульта', () => {
+  it('флаг section_openings_enabled: объявлен, по умолчанию ВКЛ (слово владельца 05.11 ~15:00), принимается из снимка Пульта', () => {
     const flags = read('app/remote_flags.ts');
     expect(flags).toContain("| 'section_openings_enabled'");
-    expect(flags).toMatch(/section_openings_enabled: false,/u);
+    expect(flags).toMatch(/section_openings_enabled: true,/u);
     expect(flags.match(/'section_openings_enabled'/gu)?.length).toBeGreaterThanOrEqual(2);
+  });
+  it('хост пишет решение в журнал [SECTION-OPENING] с причиной (показан/не показан)', () => {
+    const host = read('modules/section_openings/use_section_opening_host.ts');
+    expect(host).toContain("console.log(LOG, 'decision', line)");
+    for (const reason of ['flag_off', 'rank_gates_off', 'verdict_pending', 'access_pending', 'nothing_queued', 'overlay_blocked', 'shown']) {
+      expect(host).toContain(`'${reason}'`);
+    }
   });
   it('хост: пока флаг или ранговые гейты выключены — ничего не решает и не помечает; вердикт «новый» из readRankGateUserVerdict', () => {
     const host = read('modules/section_openings/use_section_opening_host.ts');

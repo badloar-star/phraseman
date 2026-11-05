@@ -1745,7 +1745,7 @@ export function SpeakingPanel({
     const holdMs = holdStartedAtRef.current ? stopAt - holdStartedAtRef.current : null;
     if (!wavUri) {
       // Ничего не записалось (слишком коротко / сбой записи) — не 0%, а «не расслышал».
-      setNoSpeechKind(reportHoldNoSpeech('no_wav', { holdMs, firstAudioMs: holdFirstAudioMsRef.current, platform: Platform.OS }));
+      setNoSpeechKind(reportHoldNoSpeech('no_wav', { holdMs, firstAudioMs: holdFirstAudioMsRef.current, capture: rec.diagnostics?.(), platform: Platform.OS }));
       // зачем (Ревизор → координатор 29.10): короткий тап по микрофону — не ошибка. Подсказка «Удерживайте, пока говорите» остаётся (kind 'short'),
       // но без звука ошибки и без вибрации ошибки — лёгкий хаптик. Если держали долго, а записи нет — это настоящий сбой записи: прежний звук и хаптик, подпись «не успел разобрать».
       const tapOnly = isSpeakingTapHold(holdMs);
@@ -1781,7 +1781,7 @@ export function SpeakingPanel({
     const text = (verdict?.transcript ?? '').trim();
     if (!text) {
       const judgeReason = verdict ? 'empty_transcript' : lastNeuralJudgeNullReasonV1()?.reason ?? 'no_verdict';
-      setNoSpeechKind(reportHoldNoSpeech(judgeReason, { holdMs, firstAudioMs: holdFirstAudioMsRef.current, judgeMs: Date.now() - judgeAt, targetWords: targetText.trim().split(/\s+/u).filter(Boolean).length, platform: Platform.OS }));
+      setNoSpeechKind(reportHoldNoSpeech(judgeReason, { holdMs, firstAudioMs: holdFirstAudioMsRef.current, capture: rec.diagnostics?.(), judgeMs: Date.now() - judgeAt, targetWords: targetText.trim().split(/\s+/u).filter(Boolean).length, platform: Platform.OS }));
       setStatus('no_speech'); playNoSpeech();
       hapticError();
       return;

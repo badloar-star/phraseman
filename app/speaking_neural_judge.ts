@@ -300,8 +300,9 @@ export async function judgeWithNeuralEngine(input: {
       translate: false,
       // Ничего похожего на prompt/цель судье не передаём — в этом весь смысл.
     });
-    const timeout = new Promise<null>((resolve) =>
-      setTimeout(() => {
+    let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
+    const timeout = new Promise<null>((resolve) => {
+      timeoutHandle = setTimeout(() => {
         try {
           job.stop?.();
         } catch (e) {
@@ -310,9 +311,11 @@ export async function judgeWithNeuralEngine(input: {
     }
         timedOut = true;
         resolve(null);
-      }, NEURAL_JUDGE_TIMEOUT_MS),
-    );
-    const outcome = await Promise.race([job.promise, timeout]);
+      }, NEURAL_JUDGE_TIMEOUT_MS);
+    });
+    const outcome = await Promise.race([job.promise, timeout]).finally(() => {
+      if (timeoutHandle !== undefined) clearTimeout(timeoutHandle);
+    });
     const transcript = String(outcome?.result ?? '').trim();
     if (!transcript) return judgeNull(timedOut ? 'timeout' : 'empty_transcript', startedAt, { timeoutMs: NEURAL_JUDGE_TIMEOUT_MS, targetWords: input.targetText.trim().split(/\s+/u).filter(Boolean).length });
     const controlScore = neuralControlScore(input.targetText, transcript);

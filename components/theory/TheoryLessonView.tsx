@@ -255,6 +255,9 @@ export default function TheoryLessonView({
   // зачем (владелец 22.10: теория Learning V2 = 1:1 этот экран): из эпизода экран открывается на разделе текущей главы —
   // прокручиваем к нему один раз, когда известны координаты карточки разделов и строки раздела.
   const scrollRef = useRef<ScrollView>(null);
+  // зачем (замечание Макетов 05.11: «текст теории заезжает под статус-бар и кнопку назад при прокрутке»): верх экрана растворяет текст в цвет фона (копия полотна, шва нет) — только после прокрутки, в покое заголовок не затемняется
+  const topFadeScrollY = useRef(new Animated.Value(0)).current;
+  const onTopFadeScroll = useCallback((e: { nativeEvent: { contentOffset: { y: number } } }) => { topFadeScrollY.setValue(e.nativeEvent.contentOffset.y); }, [topFadeScrollY]);
   const wrapYRef = useRef<number | null>(null);
   const sectionYRef = useRef<number | null>(null);
   const scrolledRef = useRef(false);
@@ -656,9 +659,9 @@ export default function TheoryLessonView({
   const headerTop = screenBackTop(insets.top);
 
   return (
-    <ScreenGradient>
+    <ScreenGradient topFade={{ scrollY: topFadeScrollY, screen: 'lesson_theory' }}>
       <View style={styles.root}>
-        <BouncyScrollView ref={scrollRef} decelerationRate="fast"
+        <BouncyScrollView ref={scrollRef} decelerationRate="fast" onScroll={onTopFadeScroll}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={[
             styles.scrollContent,

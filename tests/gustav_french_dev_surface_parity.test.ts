@@ -43,7 +43,7 @@ describe('Gustav French dev surface parity', () => {
     // зачем (владелец 05.11: «нигде не должно быть никаких заглушек»): раньше тест требовал саму заглушку (frenchAuxiliarySourceGated).
     // Новый контракт: пункт без данных целевого языка скрыт (hidden), заглушки-подписи нет, английский источник не подставляется.
     expect(lessonMenu).toContain("const targetVocabularyAvailable = vocabularyContentAvailableForTarget(studyTarget, 'lesson_words')");
-    expect(lessonMenu).toContain('hidden: !targetVocabularyAvailable || !LESSONS_WITH_WORDS.has(lessonId)');
+    expect(lessonMenu).toContain('hidden: !targetVocabularyAvailable || !lessonHasWords');
     expect(lessonMenu).not.toContain('frenchAuxiliarySourceGated');
     expect(lessonMenu).not.toContain('hideEnglishOnlyAuxiliary');
   });

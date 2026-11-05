@@ -2,6 +2,7 @@ import { ruUkPlus } from '../constants/i18n_ru_uk_plus';
 import { triLang, type Lang } from '../constants/i18n';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { classicWordsActiveFor } from './classic_lesson_words';
 
 export type VocabularyGateSurface = 'lesson_words' | 'irregular_verbs' | 'preposition_drill';
 
@@ -38,9 +39,11 @@ export function vocabularyContentAvailableForTarget(
 ): boolean {
   // зачем (классические курсы 04.11): банки слов, неправильные глаголы и предлоги — ТОЛЬКО английские; в уроках es/fr/de/it они показали бы
   // английские слова под чужим курсом. Пока словарь курса не подключён к этим экранам — для не-английских целей закрыто (тихий возврат).
-  if (storageStudyTarget(studyTarget) !== 'en') return false;
-  void surface;
-  return true;
+  const target = storageStudyTarget(studyTarget);
+  if (target === 'en') return true;
+  // зачем (владелец 05.11: «слова — во все курсы всех языков»): «Слова урока» fr/es/de/it берутся из glossary.json курса; неправильные глаголы
+  // и предлоги для них скрыты, пока нет своих списков (английский список не подставляется никогда).
+  return surface === 'lesson_words' && classicWordsActiveFor(target);
 }
 
 export function vocabularyContentGateForTarget(

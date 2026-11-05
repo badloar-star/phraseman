@@ -35,6 +35,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import fk from './feedback/feedback_kit';
 // зачем (холодный старт 04.10): счётчик и ключи слов — по запросу урока, а не таблицами при импорте.
 import { LESSONS_WITH_WORDS, lessonWordCount, lessonWordKeys } from './lesson_words';
+import { classicLessonWordCount, classicLessonWordKeys, classicWordsActiveFor } from './classic_lesson_words';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
 import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
@@ -226,11 +227,17 @@ function parseProgress(
   };
 }
 
-function parseWordsLearned(lessonId: number, wordsRaw: string | null): number {
+// зачем (владелец 05.11): слова fr/es/de/it считаются по словарю курса (только новые леммы урока), английские — по прежнему банку.
+function wordKeysForTarget(lessonId: number, studyTarget?: RuntimeStudyTarget): Set<string> | undefined {
+  const target = storageStudyTarget(studyTarget);
+  return classicWordsActiveFor(target) ? classicLessonWordKeys(target, lessonId) : lessonWordKeys(lessonId);
+}
+
+function parseWordsLearned(lessonId: number, wordsRaw: string | null, studyTarget?: RuntimeStudyTarget): number {
   try {
     if (!wordsRaw) return 0;
     const counts: Record<string, number> = JSON.parse(wordsRaw);
-    const validKeys = lessonWordKeys(lessonId);
+    const validKeys = wordKeysForTarget(lessonId, studyTarget);
     return validKeys
       ? Object.entries(counts).filter(([k, c]) => c >= 3 && validKeys.has(k)).length
       : Object.values(counts).filter(c => c >= 3).length;
@@ -306,7 +313,7 @@ export async function prefetchLessonMenuCache(
     const prep = parsePrepositionAnswered(id, map[prepositionProgressKey] ?? null, studyTarget);
     lessonMenuCacheById[lessonMenuCacheKey(id, studyTarget)] = {
       ...parseProgress(freshestProgressRaw(id, map[progressKey] ?? null, studyTarget), map[bestScoreKey] ?? null),
-      wordsLearned: parseWordsLearned(id, map[wordsKey] ?? null),
+      wordsLearned: parseWordsLearned(id, map[wordsKey] ?? null, studyTarget),
       irregularLearned: parseIrregularLearned(id, map[irregularKey] ?? null),
       prepositionAnswered: prep.answered,
       prepositionTotal: prep.total,
@@ -432,6 +439,10 @@ function LessonMenu() {
   const cachedMenu = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
   // зачем (владелец 05.11: «нигде не должно быть никаких заглушек»): пункт без данных целевого языка скрыт, а не подписан текстом-заглушкой.
   const targetVocabularyAvailable = vocabularyContentAvailableForTarget(studyTarget, 'lesson_words');
+  const targetVerbsAvailable = vocabularyContentAvailableForTarget(studyTarget, 'irregular_verbs');
+  const menuClassicWords = classicWordsActiveFor(storageStudyTarget(studyTarget)) ? storageStudyTarget(studyTarget) : null;
+  const wordsTotal = menuClassicWords ? classicLessonWordCount(menuClassicWords, lessonId) : (LESSONS_WITH_WORDS.has(lessonId) ? lessonWordCount(lessonId) : 0);
+  const lessonHasWords = wordsTotal > 0;
   const targetTheoryUnavailable = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
   const targetHasPrepositionDrill = hasLessonPrepositionDrillForTarget(lessonId, studyTarget);
 
@@ -875,7 +886,7 @@ function LessonMenu() {
           }
           if (migrated) AsyncStorage.setItem(wordsKey, JSON.stringify(counts));
         }
-        const validKeys = lessonWordKeys(lessonId);
+        const validKeys = wordKeysForTarget(lessonId, studyTarget);
         const learned = validKeys
           ? Object.entries(counts).filter(([k, c]) => c >= 3 && validKeys.has(k)).length
           : Object.values(counts).filter(c => c >= 3).length;
@@ -1052,12 +1063,12 @@ function LessonMenu() {
     },
     {
       testID: 'lesson-menu-words',
-      hidden: !targetVocabularyAvailable || !LESSONS_WITH_WORDS.has(lessonId),
+      hidden: !targetVocabularyAvailable || !lessonHasWords,
       // зачем (Сверка learn-020, макет learn.html B): в русском интерфейсе строка называется «Слова урока» (в остальных языках прежние названия — подсказка ниже ссылается на них)
       label: triLang(lang, { ru: 'Слова урока', uk: s.lessonMenu.vocab, en: s.lessonMenu.vocab, es: s.lessonMenu.vocab, 'pt-BR': s.lessonMenu.vocab, vi: s.lessonMenu.vocab, id: s.lessonMenu.vocab, tr: s.lessonMenu.vocab, pl: s.lessonMenu.vocab }),
-      sub: LESSONS_WITH_WORDS.has(lessonId)
+      sub: lessonHasWords
         ? (() => {
-            const total = lessonWordCount(lessonId);
+            const total = wordsTotal;
             if (total > 0) {
               return triLang(lang, {
                 ru: `${wordsLearned}/${total}\u00A0слов`,
@@ -1096,12 +1107,12 @@ function LessonMenu() {
           }),
       icon: 'book-outline' as const,
       pct: (() => {
-        if (!LESSONS_WITH_WORDS.has(lessonId)) return undefined;
-        const total = lessonWordCount(lessonId);
+        if (!lessonHasWords) return undefined;
+        const total = wordsTotal;
         return total > 0 ? Math.round(wordsLearned / total * 100) : undefined;
       })(),
       onPress: () => {
-        if (LESSONS_WITH_WORDS.has(lessonId)) {
+        if (lessonHasWords) {
           if (!navOnce(`lesson_menu:words:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — один экран слов
           router.push({ pathname: '/lesson_words', params: { id: lessonId, tab: 'train' } });
         }
@@ -1109,7 +1120,7 @@ function LessonMenu() {
     },
     {
       testID: 'lesson-menu-irregular-verbs',
-      hidden: !targetVocabularyAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
+      hidden: !targetVerbsAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
       // зачем (Сверка learn-020, макет learn.html B2): «Неправильные глаголы» (ru); остальные языки — прежние строки
       label: triLang(lang, { ru: 'Неправильные глаголы', uk: s.lessonMenu.verbs, en: s.lessonMenu.verbs, es: s.lessonMenu.verbs, 'pt-BR': s.lessonMenu.verbs, vi: s.lessonMenu.verbs, id: s.lessonMenu.verbs, tr: s.lessonMenu.verbs, pl: s.lessonMenu.verbs }),
       sub: LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)

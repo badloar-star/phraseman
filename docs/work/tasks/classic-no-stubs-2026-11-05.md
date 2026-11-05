@@ -37,3 +37,5 @@ Out of scope: данные слов/глаголов/теории целевых
 
 Governance-ID: TG-D2FB9300227B (коммит P0 «заглушки классики» после перезапуска; затем подключение слов glossary.json)
 Governance-ID: TG-6905F50BF830 (задача Теории 12: wiring словаря/теории из json)
+
+Governance-ID: TG-2C7DB19BCA1F (слова урока fr/es/de/it из glossary.json: firstLesson==N, без повторов; app/classic_lesson_words.ts, lesson_menu, lesson_words, vocabulary_target_gate)

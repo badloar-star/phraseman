@@ -69,6 +69,8 @@ import {
 } from './target_storage_keys';
 import { vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
 import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_runtime';
+import { classicLessonWordBank, classicWordsActiveFor } from './classic_lesson_words';
+import { ttsLocaleForStudyTarget } from './phrase_target_utils';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import AnimatedCountUpText from '../components/AnimatedCountUpText';
@@ -3018,7 +3020,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     const wordEn = current.word.en;
     // Результат ответа в момент выбора: успех на верном, ошибка на неверном.
     // [FeedbackKit] fk.correct/fk.wrong дают тот же haptic + тёплый «дин-дон»/мягкий «туп».
-    if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
+    if (voiceOut) speakAudio(wordEn, speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
     if (isRight) {
       runCorrectRef.current += 1;
       fk.verdict({ correct: true });
@@ -3436,6 +3438,7 @@ export function WordList({ words, learnedCounts, lang, lessonId, onStartTraining
   const [speakingWord, setSpeakingWord] = useState<string | null>(null);
   const highlightTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current); }, []);
+  const { studyTarget: listStudyTarget } = useStudyTarget();
   const speakWord = useCallback((word: string) => {
     hapticTap();
     // Новый тап — сбрасываем прошлый таймер (иначе он снимет подсветку у нового слова).
@@ -3445,11 +3448,11 @@ export function WordList({ words, learnedCounts, lang, lessonId, onStartTraining
     // Страховка: подсветка гаснет максимум через 2.5 с, даже если onDone не придёт.
     highlightTimerRef.current = setTimeout(done, 2500);
     speakAudio(word, undefined, {
-      language: 'en-US',
+      language: ttsLocaleForStudyTarget(listStudyTarget),
       // onDone может прийти раньше таймера — гасим сразу и чистим таймер.
       onDone: () => { if (highlightTimerRef.current) { clearTimeout(highlightTimerRef.current); highlightTimerRef.current = null; } done(); },
     });
-  }, [speakAudio]);
+  }, [speakAudio, listStudyTarget]);
 
   return (
     <View style={{ flex:1 }}>
@@ -3593,7 +3596,9 @@ function LessonWords() {
   const lessonId = parseInt(id || '1', 10);
   const initialTab = (Array.isArray(tabParam) ? tabParam[0] : tabParam) === 'list' ? 'list' : null;
   const frenchVocabularyBlocked = !vocabularyContentAvailableForTarget(studyTarget, 'lesson_words');
-  const isFrenchLessonWords = storageStudyTarget(studyTarget) === 'fr';
+  const classicWordsTarget = classicWordsActiveFor(storageStudyTarget(studyTarget)) ? storageStudyTarget(studyTarget) : null;
+  // зачем (владелец 05.11): у курса со словарём (glossary.json) слова берутся оттуда, без удалённой загрузки французского банка.
+  const isFrenchLessonWords = storageStudyTarget(studyTarget) === 'fr' && !classicWordsTarget;
   const frenchSourceLocale = lang === 'uk' ? 'uk' : 'ru';
   const [frenchRemoteWords, setFrenchRemoteWords] = useState<Word[] | null>(null);
   useEffect(() => {
@@ -3616,10 +3621,11 @@ function LessonWords() {
   const words = useMemo(
     () => {
       if (frenchVocabularyBlocked) return [];
+      if (classicWordsTarget) return prioritizeQaFocusWords(classicLessonWordBank(classicWordsTarget, lessonId), qaFocusWords);
       if (isFrenchLessonWords) return prioritizeQaFocusWords(frenchRemoteWords ?? [], qaFocusWords);
       return prioritizeQaFocusWords(lessonWordBank(lessonId), qaFocusWords);
     },
-    [frenchRemoteWords, frenchVocabularyBlocked, isFrenchLessonWords, lessonId, qaFocusWords],
+    [classicWordsTarget, frenchRemoteWords, frenchVocabularyBlocked, isFrenchLessonWords, lessonId, qaFocusWords],
   );
   const storageKey = lessonWordsKey(lessonId, studyTarget);
   const ws = s.words;

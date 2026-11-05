@@ -5,7 +5,7 @@ import {
   isFrenchLessonIntroApproved,
 } from './french_content_source_gate';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
-import { classicCourseActiveFor, getClassicIntroScreens } from './classic_course_phrases';
+import { getClassicTheory } from './classic_theory';
 
 export type LessonSupportGateSurface = 'lesson_theory' | 'lesson_hint';
 
@@ -51,7 +51,8 @@ export function lessonSupportContentAvailableForTarget(
   const target = storageStudyTarget(studyTarget);
   if (target === 'en') return true;
   if (surface !== 'lesson_theory' || lessonId == null) return false;
-  if (classicCourseActiveFor(target) && (getClassicIntroScreens(lessonId, target)?.length ?? 0) > 0) return true;
+  // зачем (владелец 05.11): теория fr/es/de/it — их theory.json (главы + примеры); вступление урока (intro.json) теорией не подменяется.
+  if (getClassicTheory(target, lessonId, 'ru')) return true;
   return target === 'fr' && isFrenchLessonIntroApproved(lessonId);
 }
 

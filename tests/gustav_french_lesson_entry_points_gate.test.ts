@@ -63,7 +63,7 @@ describe('Gustav French lesson entry point gate', () => {
       source.indexOf("testID: 'lesson-menu-words'"),
       source.indexOf("testID: 'lesson-menu-irregular-verbs'"),
     );
-    expect(wordsSlice).toContain('hidden: !targetVocabularyAvailable || !LESSONS_WITH_WORDS.has(lessonId)');
+    expect(wordsSlice).toContain('hidden: !targetVocabularyAvailable || !lessonHasWords');
     expect(wordsSlice).not.toContain('unavailable:');
     expect(wordsSlice).not.toContain("setSoonOpen('vocab')");
 
@@ -71,7 +71,7 @@ describe('Gustav French lesson entry point gate', () => {
       source.indexOf("testID: 'lesson-menu-irregular-verbs'"),
       source.indexOf("testID: 'lesson-menu-prepositions'"),
     );
-    expect(verbsSlice).toContain('hidden: !targetVocabularyAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)');
+    expect(verbsSlice).toContain('hidden: !targetVerbsAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)');
     expect(verbsSlice).not.toContain('unavailable:');
     expect(verbsSlice).not.toContain("setSoonOpen('verbs')");
 

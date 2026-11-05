@@ -18,6 +18,7 @@ import type { Theme } from '../constants/theme';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { getLessonIntroScreens } from './lesson_data_all';
 import { storageStudyTarget } from './target_storage_keys';
+import { getClassicTheory, type ClassicTheory } from './classic_theory';
 import type { IntroLine, LessonIntroScreen } from './lesson_data_types';
 import {
   lessonSupportContentAvailableForTarget,
@@ -256,6 +257,25 @@ function introExampleTranslation(example: any, lang: Lang): string {
   return primaryTranslation;
 }
 
+// зачем (владелец 05.11): «Теория» курса fr/es/de/it = его theory.json — главы, примеры из фраз курса, таблица форм; тексты на языке интерфейса.
+function renderClassicTheory(theory: ClassicTheory, t: Theme, f: any): React.ReactNode[] {
+  const nodes: React.ReactNode[] = [];
+  theory.lead.forEach((text, i) => nodes.push(<Body key={`ct-lead-${i}`} t={t} f={f} text={text} />));
+  theory.sections.forEach((section, i) => {
+    if (section.title) nodes.push(<Section key={`ct-title-${i}`} t={t} f={f} title={section.title} />);
+    nodes.push(<Body key={`ct-body-${i}`} t={t} f={f} text={section.body} />);
+    if (section.note) nodes.push(<Tip key={`ct-note-${i}`} t={t} f={f} text={section.note} />);
+    section.examples.slice(0, 4).forEach((example, j) => {
+      nodes.push(<Example key={`ct-ex-${i}-${j}`} t={t} f={f} eng={example.target} rus={example.translation} />);
+    });
+  });
+  theory.table.forEach(([left, right], i) => nodes.push(<Body key={`ct-table-${i}`} t={t} f={f} text={`${left} — ${right}`} />));
+  if (theory.wrong) nodes.push(<Warn key="ct-wrong" t={t} f={f} text={theory.wrong} />);
+  if (theory.right) nodes.push(<Tip key="ct-right" t={t} f={f} text={theory.right} />);
+  if (theory.strategy) nodes.push(<Tip key="ct-strategy" t={t} f={f} text={theory.strategy} />);
+  return nodes;
+}
+
 function renderFrenchTheoryFromIntroScreens(
   screens: LessonIntroScreen[],
   t: Theme,
@@ -333,9 +353,10 @@ function LessonHelp() {
   const renderLegacyAsUk = legacyLang === 'uk';
   const renderSpanishTheory = legacyLang === 'es' && theory ? hasSpanishTheoryContent(theory) : false;
   const showSpanishTheoryNotice = legacyLang === 'es' && !isFrenchTarget && theory ? !hasSpanishTheoryContent(theory) : false;
-  const frenchTheoryTitle = frenchTheoryScreens?.[0]
+  const classicTheory = isFrenchTarget ? getClassicTheory(storageStudyTarget(studyTarget), lessonId, lang) : null;
+  const frenchTheoryTitle = classicTheory?.title || (frenchTheoryScreens?.[0]
     ? introTitleForUi(frenchTheoryScreens[0], lang)
-    : undefined;
+    : undefined);
   // зачем (владелец 05.11): прямой переход на /lesson_help при курсе без своей теории не показывает ни английский текст, ни заглушку — возвращает в меню урока.
   useEffect(() => {
     if (!isFrenchTarget || frenchTheoryAllowed) return;
@@ -439,7 +460,9 @@ function LessonHelp() {
               text="La teoría detallada está, por ahora, solo en ruso o en ucraniano; los ejemplos en inglés no cambian. Poco a poco añadiremos estas explicaciones también en español." /* i18n-ok: подсказка показывается только при испанском интерфейсе (showSpanishTheoryNotice) */
             />
           ) : null}
-          {isFrenchTarget && frenchTheoryScreens?.length ? (
+          {isFrenchTarget && classicTheory ? (
+            renderClassicTheory(classicTheory, tg, f)
+          ) : isFrenchTarget && frenchTheoryScreens?.length ? (
             renderFrenchTheoryFromIntroScreens(frenchTheoryScreens, tg, lang, f)
           ) : isFrenchTarget ? (
             // зачем: теории целевого языка нет — экран закрывается эффектом выше (пункт в меню скрыт), заглушку-текст не рисуем

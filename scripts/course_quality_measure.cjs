@@ -53,7 +53,8 @@ function measure() {
         if (norm(corr.join(' ')) !== norm(p.target)) e('phrases', 'P3_плитки≠цель');
         // зачем: у en (старый формат) поля accepted нет — проверка только там, где оно есть
         if (Array.isArray(p.accepted) && !p.accepted.some((a) => norm(a.join(' ')) === norm(corr.join(' ')))) e('phrases', 'P4_accepted_без_верного');
-        const key = norm(p.target);
+        // зачем (Переводчик 05.11): «утверждение ↔ вопрос» (Estás en casa. / ¿Estás en casa?) — не дубль; знак вопроса различает фразы
+        const key = String(p.target).toLowerCase().replace(/[.,!;:]/g, '').replace(/s+/g, ' ').trim();
         if (targets.has(key)) e('phrases', 'P5_дубль_цели'); else targets.set(key, p.id);
         if (STUB.test(JSON.stringify(p))) e('phrases', 'P6_заглушка');
         for (const t of p.tiles) {

@@ -249,7 +249,7 @@ describe('dev-вход для Сверки и память', () => {
   it('dev_moments_preview: state=openings&section&phase&reduce; ничего не пишет и не трогает хост, хранилище и арбитр', () => {
     const route = read('app/dev_moments_preview.tsx');
     expect(route).toContain("'announcements', 'openings'] as const;");
-    expect(route).toContain("{state === 'openings' ? <SectionOpeningStudio key={key} lang={lang} section={params.section} phase={params.phase} reduce={params.reduce} /> : null}");
+    expect(route).toContain("{state === 'openings' ? <SectionOpeningStudio key={key} lang={lang} section={params.section} phase={params.phase} reduce={params.reduce} queue={params.queue} /> : null}");
     expect(route).toContain('if (!ENABLE_DEV_TOOLS || IS_STORE_RELEASE) return <Redirect href="/" />;');
     const studio = read('components/section_openings/SectionOpeningStudio.tsx');
     expect(studio).not.toMatch(/section_opening_store|use_section_opening_host|OverlayArbiter|AsyncStorage|noteSectionOpeningShown/u);

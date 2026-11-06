@@ -96,7 +96,7 @@ const int = (raw: string | undefined, fallback: number, min: number, max: number
 };
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string; n?: string; goals?: string; study?: string; wait?: string; frame?: string; settle?: string; long?: string; section?: string; phase?: string; reduce?: string }>();
+  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string; n?: string; goals?: string; study?: string; wait?: string; frame?: string; settle?: string; long?: string; section?: string; phase?: string; reduce?: string; queue?: string }>();
   const { lang } = useLang();
   const fromParam: PreviewState = isState(params.state) ? params.state : 'promo';
   const [state, setState] = useState<PreviewState>(fromParam);
@@ -172,7 +172,7 @@ function Inner() {
         {/* зачем (Сайт 28.10: гейт 36 объявлений против макета): конвейер Сверки открывает state=announcements&frame=<design>&long=0|1&settle=1 */}
         {state === 'announcements' ? <AnnouncementV2Studio key={key} lang={lang} frame={params.frame} long={params.long === '1'} settle={params.settle === '1'} /> : null}
         {/* зачем (координатор 04.11: «Открытие разделов» для Сверки): state=openings&section=rank|video|dialogs|peak|cards|plus&phase=1..4&reduce=0|1 — окно без роста ранга и без отметки «показано» */}
-        {state === 'openings' ? <SectionOpeningStudio key={key} lang={lang} section={params.section} phase={params.phase} reduce={params.reduce} /> : null}
+        {state === 'openings' ? <SectionOpeningStudio key={key} lang={lang} section={params.section} phase={params.phase} reduce={params.reduce} queue={params.queue} /> : null}
         {params.selector === '1' ? (
           <View style={s.bar} pointerEvents="box-none">
             {STATES.map((st) => (

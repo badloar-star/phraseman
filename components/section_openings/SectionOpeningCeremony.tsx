@@ -10,7 +10,7 @@
 // ═════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
-import { Image } from 'expo-image';
+import { Image, type ImageRef } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -19,6 +19,7 @@ import Animated, {
 import type { Lang } from '../../constants/i18n';
 import { hapticMediumImpact, hapticSuccess } from '../../hooks/use-haptics';
 import { SECTION_OPENING_HERO } from '../../modules/section_openings/section_opening_assets';
+import { getPrewarmedHero } from '../../modules/section_openings/section_opening_prewarm';
 import { sectionOpeningCopy, sectionOpeningHome, sectionOpeningOverline, sectionOpeningSkip } from '../../modules/section_openings/section_opening_strings';
 import { SECTION_OPENING_PHASE_ANCHORS, type SectionOpeningId } from '../../modules/section_openings/section_opening_core';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
@@ -97,7 +98,7 @@ type SharedProgress = ReturnType<typeof useSharedValue<number>>;
  * Герой и арт вынесены в мемо-слои: родитель больше не перерисовывается на 82 % (кнопка оживает внутри CtaBlock), поэтому expo-image не перезагружает картинки
  * (Сверка 20:41: на финале p4 герой и арт пропадали — совпадало по времени с перерисовкой на CTA; политика кэша «none» перезагружала источник).
  */
-const HeroLayer = memo(function HeroLayer({ source, box, animated, onLog }: Readonly<{ source: ImageSourcePropType; box: object; animated: object; onLog: (what: string, ok: boolean, detail?: string) => void }>) {
+const HeroLayer = memo(function HeroLayer({ source, box, animated, onLog }: Readonly<{ source: ImageSourcePropType | ImageRef; box: object; animated: object; onLog: (what: string, ok: boolean, detail?: string) => void }>) {
   return (
     <Animated.View style={[styles.hero, box, animated]}>
       <Image source={source} style={[styles.heroImage, styles.heroGlow]} contentFit="contain" tintColor="#FFFFFF" blurRadius={10} accessible={false} />
@@ -188,25 +189,45 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
     if (reduced || freezeAt !== undefined || progress.value >= 1) return;
     pausedRef.current = true;
     cancelAnimation(progress);
-  }, [freezeAt, progress, reduced]);
+    console.log('[STORY-GESTURE]', 'hold_start', JSON.stringify({ id, segmentIndex, progress: Math.round(progress.value * 100) / 100 })); // guard-ok: удержание = пауза таймлайна
+  }, [freezeAt, id, progress, reduced, segmentIndex]);
   const holdEnd = useCallback(() => {
     if (!pausedRef.current) return;
     pausedRef.current = false;
+    console.log('[STORY-GESTURE]', 'hold_end', JSON.stringify({ id, segmentIndex, progress: Math.round(progress.value * 100) / 100 })); // guard-ok: конец удержания, таймлайн продолжается
     run(progress.value);
-  }, [progress, run]);
+  }, [id, progress, run, segmentIndex]);
+  // зачем (координатор 06.11, п.3 OTA1): тап справа НИКОГДА не закрывает историю — человек не увидел бы кнопку и потерял бы действие. По макету история ждёт кнопку: тап справа
+  // 1) недосмотренный кадр — доводит до финала (кнопка появилась); 2) на финале не последнего кадра — следующий кадр; 3) на последнем/единственном кадре — ничего (закрыть можно «Пропустить»/«На главную»/свайпом вниз)
   const tapNext = useCallback(() => {
-    if (progress.value < 1 && !reduced && freezeAt === undefined) { cancelAnimation(progress); progress.value = 1; return; }
-    console.log('[SECTION-OPENING]', 'story_tap_next', JSON.stringify({ id, segmentIndex, segments })); // guard-ok: тап «дальше» на финале кадра = следующий кадр или закрытие
-    onSkip();
+    if (progress.value < 1 && !reduced && freezeAt === undefined) {
+      cancelAnimation(progress); progress.value = 1;
+      console.log('[STORY-GESTURE]', 'tap_next', JSON.stringify({ id, segmentIndex, segments, action: 'finish_frame' })); // guard-ok: тап справа
+      return;
+    }
+    if (segmentIndex < segments - 1) {
+      console.log('[STORY-GESTURE]', 'tap_next', JSON.stringify({ id, segmentIndex, segments, action: 'next_frame' })); // guard-ok: тап справа
+      onSkip();
+      return;
+    }
+    console.log('[STORY-GESTURE]', 'tap_next', JSON.stringify({ id, segmentIndex, segments, action: 'noop_last_frame' })); // guard-ok: последний кадр — тап не закрывает
   }, [freezeAt, id, onSkip, progress, reduced, segmentIndex, segments]);
   const tapPrev = useCallback(() => {
-    if (segmentIndex > 0 && onPrev?.() === true) return; // зачем (координатор 05.11): тап слева — ПРЕДЫДУЩИЙ кадр истории
+    if (segmentIndex > 0 && onPrev?.() === true) { // зачем (координатор 05.11): тап слева — ПРЕДЫДУЩИЙ кадр истории
+      console.log('[STORY-GESTURE]', 'tap_prev', JSON.stringify({ id, segmentIndex, segments, action: 'prev_frame' })); // guard-ok: тап слева
+      return;
+    }
+    console.log('[STORY-GESTURE]', 'tap_prev', JSON.stringify({ id, segmentIndex, segments, action: 'restart_frame' })); // guard-ok: тап слева на первом кадре
     if (reduced || freezeAt !== undefined) return;
     cancelAnimation(progress);
     run(0);
-  }, [freezeAt, onPrev, progress, reduced, run, segmentIndex]);
+  }, [freezeAt, id, onPrev, progress, reduced, run, segmentIndex, segments]);
+  const swipeClose = useCallback(() => {
+    console.log('[STORY-GESTURE]', 'swipe_down_close', JSON.stringify({ id, segmentIndex, segments })); // guard-ok: свайп вниз закрывает кадр
+    onSkip();
+  }, [id, onSkip, segmentIndex, segments]);
   const swipeDown = Gesture.Pan().activeOffsetY(24).failOffsetX([-30, 30]).onEnd((event) => {
-    if (event.translationY > 90) runOnJS(onSkip)();
+    if (event.translationY > 90) runOnJS(swipeClose)();
   });
 
   // ── герой: ключи motion макета — невидим до 12 %, к 48 % на месте (opacity 0→1, сдвиг/поворот/масштаб из `starts`) ──
@@ -361,7 +382,7 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
             <ArtLayer source={art} box={artBox} animated={artStyle} onLog={logImage} />
           ) : null}
           {/* герой: белое свечение вдоль силуэта (drop-shadow макета) — тот же кадр белым цветом, размытый, под героем; круга НЕТ */}
-          <HeroLayer source={HERO[id]} box={heroBox} animated={heroStyle} onLog={logImage} />
+          <HeroLayer source={getPrewarmedHero(id) ?? HERO[id]} box={heroBox} animated={heroStyle} onLog={logImage} />
         </View>
         <Animated.View style={[styles.copy, copyStyle]}>
           <Text style={[styles.overline, { color: ink }]} maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{sectionOpeningOverline(lang, id)}</Text>

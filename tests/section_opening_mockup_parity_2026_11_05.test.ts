@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { sectionOpeningHome, sectionOpeningOverline } from '../modules/section_openings/section_opening_strings';
+import { parseOpeningQueue } from '../modules/section_openings/section_opening_queue';
 import { SECTION_OPENING_IDS } from '../modules/section_openings/section_opening_core';
 
 const src = fs.readFileSync(path.join(__dirname, '..', 'components/section_openings/SectionOpeningCeremony.tsx'), 'utf8').replace(/\r\n/g, '\n');
@@ -81,12 +82,23 @@ describe('окно «Открытие раздела» = макет approved-rev
     expect(src).toContain('hero_wait_ms');
     const prewarm = fs.readFileSync(path.join(__dirname, '..', 'modules/section_openings/section_opening_prewarm.ts'), 'utf8');
     expect(prewarm).toContain('export async function prewarmSectionOpeningAssets');
-    expect(prewarm).toContain("Image.prefetch(uri, 'memory-disk')");
+    expect(prewarm).toContain('Image.loadAsync(SECTION_OPENING_HERO[id]');
+    expect(prewarm).toContain('export function getPrewarmedHero');
     expect(prewarm).toContain("'prewarm_failed'");
     const slots = fs.readFileSync(path.join(__dirname, '..', 'components/home/home_moment_slots.tsx'), 'utf8');
     expect(slots).toContain('InteractionManager.runAfterInteractions');
     expect(slots).toContain('section_opening_prewarm');
     const assets = fs.readFileSync(path.join(__dirname, '..', 'modules/section_openings/section_opening_assets.ts'), 'utf8');
     for (const id of SECTION_OPENING_IDS) expect(assets).toContain(`${id}: require(`);
+  });
+  // зачем (координатор 06.11, OTA1): жесты истории проверяются на dev-маршруте с очередью, каждый жест пишет [STORY-GESTURE]; тап справа на последнем/единственном кадре НЕ закрывает историю
+  it('жесты истории: журнал [STORY-GESTURE], правый тап не закрывает последний кадр, dev-очередь rank,video,dialogs', () => {
+    for (const marker of ["'tap_next'", "'tap_prev'", "'hold_start'", "'hold_end'", "'swipe_down_close'", "action: 'noop_last_frame'", "action: 'next_frame'", "action: 'finish_frame'", "action: 'prev_frame'", "action: 'restart_frame'"]) expect(src).toContain(marker);
+    expect(src).toContain('runOnJS(swipeClose)()');
+    expect(src).toContain('getPrewarmedHero(id) ?? HERO[id]');
+    expect(parseOpeningQueue('rank,video,dialogs')).toEqual(['rank', 'video', 'dialogs']);
+    expect(parseOpeningQueue('rank, nope ,plus')).toEqual(['rank', 'plus']);
+    expect(parseOpeningQueue(undefined)).toEqual([]);
+    expect(parseOpeningQueue('rank,video,dialogs,peak,cards,plus,rank,video')).toHaveLength(6);
   });
 });

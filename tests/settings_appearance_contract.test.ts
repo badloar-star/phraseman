@@ -45,9 +45,19 @@ describe('settings_appearance: контракт', () => {
     expect((src.match(/edgeColor=\{glass\.line\}/g) ?? []).length).toBe(2);
     expect(src).toContain("sliderValue: { fontSize: 15, lineHeight: 22, fontWeight: '500', fontVariant: ['tabular-nums'] }");
     expect(src).toContain('reset: { marginTop: 12, height: 44, borderRadius: 22');
-    expect(src).toContain('card: { marginTop: 16, paddingTop: 16, paddingHorizontal: 16, paddingBottom: 14, borderRadius: 28 }');
+    expect(src).toContain('card: { marginTop: 16, paddingTop: 16, paddingHorizontal: 16, paddingBottom: 14, borderRadius: 28,');
     expect(slider).toContain('const ROW_H = 34;');
     expect(slider).toContain('hitSlop({ top: HIT_SLOP_V, bottom: HIT_SLOP_V })');
+  });
+  // зачем (🔴 координатор 05.11, кадр 5562): карточка «Цвет» брала стиль СТРОКИ настроек (flexDirection: 'row') — всё вставало в одну строку,
+  // дорожки получали ширину 0, тап не доходил. Карточка обязана быть колонкой, дорожки — на всю ширину; раскладка и тапы — в журнале.
+  it('карточка «Цвет» — колонка, дорожки во всю ширину; журнал layout/touch', () => {
+    expect(src).toContain("card: { marginTop: 16, paddingTop: 16, paddingHorizontal: 16, paddingBottom: 14, borderRadius: 28, flexDirection: 'column', alignItems: 'stretch', gap: 0, minHeight: 0 }");
+    expect(src).toMatch(/settingsGlassCardStyle\(glass\), styles\.card\]/);
+    expect(src).toContain("trackWrap: { alignSelf: 'stretch' }");
+    for (const part of ["'card'", "'hue_head'", "'hue_track'", "'saturation_head'", "'saturation_track'", "'reset'"]) expect(src).toContain(`logLayout(${part})`);
+    expect(src).toContain("console.log(LOG, 'touch'");
+    expect(src).toContain("onLockedPress('plus_tag')");
   });
   it('ползунок: заперт без Plus (Pressable вместо жеста), доступность adjustable', () => {
     expect(slider).toContain('locked ? <Pressable');

@@ -10,7 +10,7 @@
 // кромка дорожки, 15 px у чисел). Круг «назад» остаётся на общем месте приложения (правило владельца «назад везде в одной точке»), заголовок — под ним.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -101,13 +101,22 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
   const [plusSheet, setPlusSheet] = useState(false);
   const paywallTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (paywallTimerRef.current) clearTimeout(paywallTimerRef.current); }, []);
-  const onLockedPress = useCallback(() => {
-    console.log(LOG, 'lock_tap', 'ползунок заперт без Plus — шторка', JSON.stringify({ plus: hasPremiumAccess, sheetOpen: plusSheet })); // guard-ok: причина перехода
+  const onLockedPress = useCallback((target: string = 'reset') => {
+    console.log(LOG, 'touch', JSON.stringify({ target, locked: !hasPremiumAccess, plus: hasPremiumAccess })); // guard-ok: одна строка на тап (координатор 05.11: «тап не открывает шторку»)
+    console.log(LOG, 'lock_tap', 'ползунок заперт без Plus — шторка', JSON.stringify({ target, plus: hasPremiumAccess, sheetOpen: plusSheet })); // guard-ok: причина перехода
     if (plusSheet) return;
     void hapticTap();
     setPlusSheet(true);
     console.log(LOG, 'sheet_open', JSON.stringify({ source: 'appearance_tune' })); // guard-ok: одна строка на показ
   }, [hasPremiumAccess, plusSheet]);
+  const onHueLocked = useCallback(() => onLockedPress('hue'), [onLockedPress]);
+  const onSatLocked = useCallback(() => onLockedPress('saturation'), [onLockedPress]);
+  // зачем (🔴 координатор 05.11, кадр 5562: вся карточка «Цвет» в одну строку, дорожек нет): геометрия частей карточки — в журнал, чтобы
+  // поломку раскладки было видно без кадра. Одна строка на каждую раскладку части (не на кадр).
+  const logLayout = useCallback((part: string) => (e: LayoutChangeEvent) => {
+    const { x, y, width, height } = e.nativeEvent.layout;
+    console.log(LOG, 'layout', JSON.stringify({ part, x: Math.round(x), y: Math.round(y), w: Math.round(width), h: Math.round(height) })); // guard-ok: раскладка части, не кадр
+  }, []);
   const onSheetPlus = useCallback(() => {
     console.log(LOG, 'sheet_cta', JSON.stringify({ to: 'paywall', context: 'generic', source: 'appearance_tune', delayMs: KIT_MOTION.sheetMs })); // guard-ok: одна строка на нажатие
     setPlusSheet(false);
@@ -153,34 +162,40 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
             <View style={styles.segment}>
               <V2SegmentedControl segments={segments} value={liquidGlassAppearance} onChange={onAppearance} testID="appearance-segment" />
             </View>
-            <View style={[settingsGlassCardStyle(glass), styles.card]}>
+            {/* зачем (🔴 05.11): settingsGlassCardStyle — стиль СТРОКИ настроек (flexDirection: 'row', центр, gap 14, minHeight); карточке «Цвет» нужна колонка, как в макете */}
+            <View onLayout={logLayout('card')} style={[settingsGlassCardStyle(glass), styles.card]}>
               <View style={styles.cardHead}>
                 <Text style={[styles.cardTitle, { color: glass.text }]}>{triLang(lang, T.color)}</Text>
                 {locked ? (
-                  <View testID="appearance-plus-tag" style={[styles.plusTag, { backgroundColor: glass.cta }]}>
+                  <Pressable testID="appearance-plus-tag" accessibilityRole="button" accessibilityLabel="Plus" hitSlop={10} onPress={() => onLockedPress('plus_tag')} style={[styles.plusTag, { backgroundColor: glass.cta }]}>
                     <Ionicons name="lock-closed" size={12} color={glass.ctaInk} />
                     <Text style={[styles.plusTagText, { color: glass.ctaInk }]}>Plus</Text>
-                  </View>
+                  </Pressable>
                 ) : null}
               </View>
-              <View style={styles.sliderHead}>
+              <View onLayout={logLayout('hue_head')} style={styles.sliderHead}>
                 <Text style={[styles.sliderLabel, { color: glass.text }]}>{triLang(lang, T.hue)}</Text>
                 <Text style={[styles.sliderValue, { color: glass.secondary }]}>{`${shown.H}°`}</Text>
               </View>
-              <TuneSlider testID="appearance-hue" gradient={hueGradient} value={shown.H} max={HUE_MAX} thumbColor={hueColor} edgeColor={glass.line} label={triLang(lang, T.hue)} valueText={`${shown.H}°`}
-                locked={locked} onLockedPress={onLockedPress} onPreview={onHuePreview} onCommit={onHueCommit} />
-              <View style={styles.sliderHead}>
+              <View onLayout={logLayout('hue_track')} style={styles.trackWrap}>
+                <TuneSlider testID="appearance-hue" gradient={hueGradient} value={shown.H} max={HUE_MAX} thumbColor={hueColor} edgeColor={glass.line} label={triLang(lang, T.hue)} valueText={`${shown.H}°`}
+                  locked={locked} onLockedPress={onHueLocked} onPreview={onHuePreview} onCommit={onHueCommit} />
+              </View>
+              <View onLayout={logLayout('saturation_head')} style={styles.sliderHead}>
                 <Text style={[styles.sliderLabel, { color: glass.text }]}>{triLang(lang, T.sat)}</Text>
                 <Text style={[styles.sliderValue, { color: glass.secondary }]}>{`${shown.S} %`}</Text>
               </View>
-              <TuneSlider testID="appearance-saturation" gradient={satGradient} value={shown.S} max={SAT_MAX} thumbColor={accentNow} edgeColor={glass.line} label={triLang(lang, T.sat)} valueText={`${shown.S} %`}
-                locked={locked} onLockedPress={onLockedPress} onPreview={onSatPreview} onCommit={onSatCommit} />
+              <View onLayout={logLayout('saturation_track')} style={styles.trackWrap}>
+                <TuneSlider testID="appearance-saturation" gradient={satGradient} value={shown.S} max={SAT_MAX} thumbColor={accentNow} edgeColor={glass.line} label={triLang(lang, T.sat)} valueText={`${shown.S} %`}
+                  locked={locked} onLockedPress={onSatLocked} onPreview={onSatPreview} onCommit={onSatCommit} />
+              </View>
               <Pressable
                 testID="appearance-reset"
                 accessibilityRole="button"
                 accessibilityState={{ disabled: !canReset }}
                 disabled={!canReset}
                 onPress={onReset}
+                onLayout={logLayout('reset')}
                 style={[styles.reset, { backgroundColor: glass.buttonFill, opacity: !canReset ? 0.45 : 1 }]}
               >
                 <Ionicons name="refresh" size={17} color={glass.text} />
@@ -200,7 +215,8 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: 20, paddingBottom: 24 },
   title: { marginTop: 10, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.5 },
   segment: { marginTop: 16 },
-  card: { marginTop: 16, paddingTop: 16, paddingHorizontal: 16, paddingBottom: 14, borderRadius: 28 },
+  card: { marginTop: 16, paddingTop: 16, paddingHorizontal: 16, paddingBottom: 14, borderRadius: 28, flexDirection: 'column', alignItems: 'stretch', gap: 0, minHeight: 0 },
+  trackWrap: { alignSelf: 'stretch' },
   cardHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 28, marginBottom: 4 },
   cardTitle: { fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
   plusTag: { height: 24, paddingHorizontal: 9, borderRadius: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },

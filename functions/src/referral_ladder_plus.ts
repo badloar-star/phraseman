@@ -108,15 +108,21 @@ export function ladderPushTokenHash(token: unknown): string | null {
 
 export type LadderPlusEligibility = Readonly<{
   status: 'eligible' | 'waiting' | 'not_eligible';
-  reason: 'same_device' | 'two_days_device_different' | 'two_days_device_unknown' | 'days_missing';
+  // зачем (слово владельца 06.11): Plus за друга — один пройденный урок любого курса; прежние причины two_days_* / days_missing остаются в старых строках приглашений
+  reason: 'same_device' | 'lesson_device_different' | 'lesson_device_unknown' | 'lesson_missing' | 'two_days_device_different' | 'two_days_device_unknown' | 'days_missing';
 }>;
 
 /**
  * Засчитывается ли друг для ступеней Plus.
- * not_eligible — навсегда (то же устройство); waiting — ждём второй день; eligible — идёт в счёт Plus.
+ * not_eligible — навсегда (то же устройство); waiting — ждём первый пройденный урок; eligible — идёт в счёт Plus.
+ * зачем (владелец 06.11: «для Plus другу нужно просто пройти 1 урок (обычный, старый курс); условие заниматься в новом курсе убрать»): раньше требовались итоги Learning V2 в 2 разных
+ * серверных дня — а V2 скрыт у большинства, Plus за друзей был почти недостижим. Теперь условие — ≥1 урок ЛЮБОГО курса, посчитанный сервером тем же источником, что монеты
+ * (contestLessonsCompleted). Защита от накрутки та же, что у монет (серверный счётчик уроков) плюс проверка другого устройства.
  */
 export function decideLadderPlusEligibility(input: Readonly<{
   refereeProgress: Readonly<Record<string, unknown>> | undefined;
+  /** Пройденные уроки друга по серверному источнику монет (contestLessonsCompleted: классика + V2). */
+  refereeLessonsCompleted: number;
   refereeTokenHash: string | null;
   refereeApplyTokenHash: string | null;
   referrerTokenHash: string | null;
@@ -125,9 +131,9 @@ export function decideLadderPlusEligibility(input: Readonly<{
   if (referrer && (referrer === input.refereeTokenHash || referrer === input.refereeApplyTokenHash)) {
     return { status: 'not_eligible', reason: 'same_device' };
   }
-  if (!hasTwoServerDays(input.refereeProgress)) return { status: 'waiting', reason: 'days_missing' };
+  if (!(input.refereeLessonsCompleted >= 1)) return { status: 'waiting', reason: 'lesson_missing' };
   const known = Boolean(referrer && (input.refereeTokenHash || input.refereeApplyTokenHash));
-  return { status: 'eligible', reason: known ? 'two_days_device_different' : 'two_days_device_unknown' };
+  return { status: 'eligible', reason: known ? 'lesson_device_different' : 'lesson_device_unknown' };
 }
 
 export type LadderPlusClaim = Readonly<{

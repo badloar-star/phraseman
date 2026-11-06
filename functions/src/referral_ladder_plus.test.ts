@@ -75,24 +75,31 @@ describe('лесенка C — засчитывается ли друг для P
   });
 
   it('то же устройство (текущий токен или токен при вводе кода) — навсегда не для Plus', () => {
-    expect(decideLadderPlusEligibility({ refereeProgress: twoDays, refereeTokenHash: h('A'), refereeApplyTokenHash: null, referrerTokenHash: h('A') }))
+    expect(decideLadderPlusEligibility({ refereeProgress: twoDays, refereeLessonsCompleted: 5, refereeTokenHash: h('A'), refereeApplyTokenHash: null, referrerTokenHash: h('A') }))
       .toEqual({ status: 'not_eligible', reason: 'same_device' });
-    expect(decideLadderPlusEligibility({ refereeProgress: twoDays, refereeTokenHash: h('B'), refereeApplyTokenHash: h('A'), referrerTokenHash: h('A') }).status)
+    expect(decideLadderPlusEligibility({ refereeProgress: twoDays, refereeLessonsCompleted: 5, refereeTokenHash: h('B'), refereeApplyTokenHash: h('A'), referrerTokenHash: h('A') }).status)
       .toBe('not_eligible');
   });
 
-  it('нет второго дня — ждём; два дня и разные токены — засчитан', () => {
-    expect(decideLadderPlusEligibility({ refereeProgress: {}, refereeTokenHash: h('B'), refereeApplyTokenHash: null, referrerTokenHash: h('A') }))
-      .toEqual({ status: 'waiting', reason: 'days_missing' });
-    expect(decideLadderPlusEligibility({ refereeProgress: twoDays, refereeTokenHash: h('B'), refereeApplyTokenHash: null, referrerTokenHash: h('A') }))
-      .toEqual({ status: 'eligible', reason: 'two_days_device_different' });
+  // зачем (слово владельца 06.11): Plus за друга — один пройденный урок любого курса, без «двух серверных дней» и без Learning V2
+  it('нет уроков — ждём; один обычный урок и разные токены — засчитан', () => {
+    expect(decideLadderPlusEligibility({ refereeProgress: {}, refereeLessonsCompleted: 0, refereeTokenHash: h('B'), refereeApplyTokenHash: null, referrerTokenHash: h('A') }))
+      .toEqual({ status: 'waiting', reason: 'lesson_missing' });
+    expect(decideLadderPlusEligibility({ refereeProgress: { lessons_completed: 1 }, refereeLessonsCompleted: 1, refereeTokenHash: h('B'), refereeApplyTokenHash: null, referrerTokenHash: h('A') }))
+      .toEqual({ status: 'eligible', reason: 'lesson_device_different' });
   });
 
-  it('токена нет у кого-то — «неизвестно», засчитан по двум дням (решение координатора 29.10)', () => {
-    expect(decideLadderPlusEligibility({ refereeProgress: twoDays, refereeTokenHash: null, refereeApplyTokenHash: null, referrerTokenHash: h('A') }))
-      .toEqual({ status: 'eligible', reason: 'two_days_device_unknown' });
-    expect(decideLadderPlusEligibility({ refereeProgress: twoDays, refereeTokenHash: h('B'), refereeApplyTokenHash: null, referrerTokenHash: null }))
-      .toEqual({ status: 'eligible', reason: 'two_days_device_unknown' });
+  it('двух серверных дней больше не требуется: прогресс без меток дней, но с уроком — засчитан', () => {
+    expect(hasTwoServerDays({ lessons_completed: 1 })).toBe(false);
+    expect(decideLadderPlusEligibility({ refereeProgress: { lessons_completed: 1 }, refereeLessonsCompleted: 1, refereeTokenHash: h('B'), refereeApplyTokenHash: null, referrerTokenHash: h('A') }).status)
+      .toBe('eligible');
+  });
+
+  it('токена нет у кого-то — «неизвестно», засчитан по уроку (решение координатора 29.10)', () => {
+    expect(decideLadderPlusEligibility({ refereeProgress: {}, refereeLessonsCompleted: 1, refereeTokenHash: null, refereeApplyTokenHash: null, referrerTokenHash: h('A') }))
+      .toEqual({ status: 'eligible', reason: 'lesson_device_unknown' });
+    expect(decideLadderPlusEligibility({ refereeProgress: {}, refereeLessonsCompleted: 2, refereeTokenHash: h('B'), refereeApplyTokenHash: null, referrerTokenHash: null }))
+      .toEqual({ status: 'eligible', reason: 'lesson_device_unknown' });
   });
 });
 

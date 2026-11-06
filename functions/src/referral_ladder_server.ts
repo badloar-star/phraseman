@@ -125,8 +125,11 @@ function ladderPlusStep(input: Readonly<{
   statsPatch: Record<string, unknown>;
   claimTier: number | null;
 }> {
+  const refereeProgress = (input.refereeData?.progress ?? {}) as Record<string, unknown>;
+  const refereeLessonsCompleted = contestLessonsCompleted(refereeProgress);
   const eligibility = decideLadderPlusEligibility({
-    refereeProgress: (input.refereeData?.progress ?? {}) as Record<string, unknown>,
+    refereeProgress,
+    refereeLessonsCompleted,
     refereeTokenHash: ladderPushTokenHash(input.refereeData?.expoPushToken),
     refereeApplyTokenHash: typeof input.att.ladderPushTokenHashAtApply === 'string' ? input.att.ladderPushTokenHashAtApply : null,
     referrerTokenHash: ladderPushTokenHash(input.referrerData?.expoPushToken),
@@ -139,6 +142,8 @@ function ladderPlusStep(input: Readonly<{
     nowMs: input.nowMs,
     friendsPerTier: LADDER_FRIENDS_PER_TIER,
   });
+  // зачем (слово владельца 06.11, логи сперва): каждое решение по другу для Plus — кто, сколько уроков, откуда число, итог и причина
+  console.log('[REFERRAL-PLUS]', JSON.stringify({ tag: input.tag, lessonsCompleted: refereeLessonsCompleted, source: 'contestLessonsCompleted', status: eligibility.status, reason: eligibility.reason, plusEligibleTotalBefore: input.stats.plusEligibleTotal }));
   console.log(`${LADDER_C_LOG} plus_step ${input.tag} eligibility=${eligibility.status} reason=${eligibility.reason} eligibleTotal=${input.stats.plusEligibleTotal}->${plusEligibleTotal} claimed=${input.stats.plusTierClaimed} granted=${input.stats.plusTiersGranted} claim=${claim.reason} claimTier=${claim.claimTier ?? 'none'} dueTiers=${claim.dueTiers} cooldownLeftMs=${claim.cooldownLeftMs}`);
   const statsPatch: Record<string, unknown> = { plusEligibleTotal };
   if (claim.claimTier !== null) {
@@ -432,6 +437,21 @@ export async function retryReferralLadderForReferrer(db: admin.firestore.Firesto
     if (preClaim.claimTier !== null) {
       const claimed = await claimLadderPlusTier(db, referrerUid);
       if (claimed !== null) await grantLadderPlusTier(db, referrerUid, claimed, claimed * LADDER_FRIENDS_PER_TIER);
+    }
+    // (3) зачем (владелец 06.11): друзья, ждавшие второго серверного дня (waiting / days_missing), могли уже пройти урок — пересчёт по новому условию «1 урок»; не больше 5 за заход, 1 запрос
+    const plusWaiting = await db.collection('referral_attributions')
+      .where('referrerStableId', '==', referrerUid)
+      .where('ladderPlus', '==', 'waiting')
+      .limit(5)
+      .get();
+    console.log('[REFERRAL-PLUS]', JSON.stringify({ tag, step: 'recount_waiting', found: plusWaiting.size }));
+    for (const doc of plusWaiting.docs) {
+      try {
+        const recount = await processLadderPlusEligibility(db, doc.id, 'list_retry');
+        console.log('[REFERRAL-PLUS]', JSON.stringify({ tag, step: 'recount_result', referee: ladderLogId(doc.id), status: recount.status, claimTier: recount.claimTier }));
+      } catch (error) {
+        console.warn('[REFERRAL-PLUS]', JSON.stringify({ tag, step: 'recount_failed', referee: ladderLogId(doc.id), reason: error instanceof Error ? error.message.slice(0, 160) : String(error) }));
+      }
     }
     const monthCounted = stats.months[ladderMonthKey(Date.now())] ?? 0;
     if (monthCounted >= LADDER_MAX_FRIENDS_PER_MONTH) return;

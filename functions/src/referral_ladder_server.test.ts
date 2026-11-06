@@ -63,3 +63,41 @@ describe('referral_ladder_server — чистая часть', () => {
     expect('referralLastReward' in buildAccessProjection({}, 10)).toBe(false);
   });
 });
+
+// зачем (слово владельца 06.11): Plus за друга — один пройденный урок любого курса (источник тот же, что у монет)
+describe('лесенка C — Plus за друга по одному уроку', () => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { decideLadderPlusEligibility, ladderPushTokenHash } = require('./referral_ladder_plus') as typeof import('./referral_ladder_plus');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { contestLessonsCompleted } = require('./community_month_tally') as typeof import('./community_month_tally');
+  const fs = require('node:fs') as typeof import('node:fs');
+  const path = require('node:path') as typeof import('node:path');
+
+  const decide = (progress: Record<string, unknown>) => decideLadderPlusEligibility({
+    refereeProgress: progress,
+    refereeLessonsCompleted: contestLessonsCompleted(progress),
+    refereeTokenHash: ladderPushTokenHash('ExponentPushToken[B]'),
+    refereeApplyTokenHash: null,
+    referrerTokenHash: ladderPushTokenHash('ExponentPushToken[A]'),
+  });
+
+  it('обычный «старый» урок засчитывает друга для Plus (V2 и два дня не нужны)', () => {
+    expect(decide({ lessons_completed: 1 })).toMatchObject({ status: 'eligible', reason: 'lesson_device_different' });
+    expect(decide({ completed_lessons: ['l1'] })).toMatchObject({ status: 'eligible' });
+  });
+
+  it('без уроков друг ждёт (waiting / lesson_missing), с первым уроком переход 0 → ≥1 запускает пересчёт', () => {
+    expect(decide({})).toEqual({ status: 'waiting', reason: 'lesson_missing' });
+    expect(ladderLessonTransition({}, { lessons_completed: 1 })).toBe(true);
+  });
+
+  it('ждавшие друзья пересчитываются при заходе пригласившего: запрос waiting, до 5, с журналом [REFERRAL-PLUS]', () => {
+    const src = fs.readFileSync(path.join(__dirname, 'referral_ladder_server.ts'), 'utf8');
+    expect(src).toContain(".where('ladderPlus', '==', 'waiting')");
+    expect(src).toContain('.limit(5)');
+    expect(src).toContain("step: 'recount_waiting'");
+    expect(src).toContain("processLadderPlusEligibility(db, doc.id, 'list_retry')");
+    expect(src).toContain("'[REFERRAL-PLUS]'");
+    expect(src).toContain("source: 'contestLessonsCompleted'");
+  });
+});

@@ -21,6 +21,7 @@ import ContentWrap from '../components/ContentWrap';
 import { settingsGlassCardStyle } from '../components/settings/SettingsGlassRows';
 import { TuneSlider } from '../components/settings/TuneSlider';
 import { AppearancePlusSheet } from '../components/settings/AppearancePlusSheet';
+import { createTunePerf, type TunePerf } from '../components/settings/tune_perf_log';
 import { KIT_MOTION } from '../constants/motionHybrid';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
@@ -60,11 +61,12 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
   const { lang } = useLang();
   const { liquidGlassThemeId, liquidGlassAppearance, setLiquidGlassAppearance, setLiquidGlassThemeId, setPreviewLiquidGlassThemeId } = useTheme();
   const { hasPremiumAccess } = usePremium();
-  const glass = liquidGlassTokens(liquidGlassThemeId);
   // Применённая настройка: из темы-идентификатора; старая тема (до миграции) показывается как стандарт — ничего не выдумываем.
   const applied: ThemeTune = parseThemeTuneId(liquidGlassThemeId) ?? THEME_TUNE_STANDARD;
   const [draft, setDraft] = useState<ThemeTune | null>(null);
   const shown = draft ?? applied;
+  // зачем (06.11): во время жеста экран красится локально по черновику — остальное приложение не перерисовывается до отпускания
+  const glass = liquidGlassTokens(draft ? themeTuneId(draft) : liquidGlassThemeId);
   const locked = !hasPremiumAccess;
 
   useEffect(() => {
@@ -77,24 +79,49 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
       safeRouterBack(router, '/(tabs)/settings' as never);
     }
   }, [router]);
-  // зачем: превью не должно пережить уход с экрана посреди жеста — возвращаем применённую тему
+  // зачем: прежний предпросмотр через ThemeContext (если остался от старой версии экрана) снимается при уходе; новый предпросмотр — локальный
   useEffect(() => () => setPreviewLiquidGlassThemeId(null), [setPreviewLiquidGlassThemeId]);
 
-  const preview = useCallback((next: ThemeTune) => {
-    setDraft(next);
-    setPreviewLiquidGlassThemeId(themeTuneId(next));
-  }, [setPreviewLiquidGlassThemeId]);
+  // зачем (🔴 владелец 06.11 «лаги ползунков»): замер жеста — [THEME-SLIDERS] perf одной строкой на жест (components/settings/tune_perf_log.ts)
+  const perfRef = useRef<TunePerf | null>(null);
+  if (perfRef.current === null) {
+    perfRef.current = createTunePerf({
+      now: () => performance.now(),
+      raf: (cb) => { requestAnimationFrame(cb); },
+      log: (summary) => console.log(LOG, 'perf', JSON.stringify(summary)), // guard-ok: одна строка на жест
+    });
+  }
+  perfRef.current.render();
+  // зачем (🔴 владелец 06.11, TestFlight 150: «ужасные лаги при прокрутке ползунков»; замер [THEME-SLIDERS] perf до правки — каждый шаг ползунка
+  // менял ThemeContext (setPreviewLiquidGlassThemeId) и перерисовывал ВСЁ приложение): во время жеста бегунок едет на UI-потоке (TuneSlider), а
+  // предпросмотр — только ЛОКАЛЬНО на этом экране (draft → glass карточки, числа, дорожки), не чаще 1 раза за кадр (requestAnimationFrame).
+  // ThemeContext и диск — ОДИН раз при отпускании (commit → setLiquidGlassThemeId; запись на диск — фоном в persister ThemeContext).
+  const pendingRef = useRef<ThemeTune | null>(null);
+  const rafRef = useRef<number | null>(null);
+  useEffect(() => () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current); }, []);
+  const preview = useCallback((next: ThemeTune, target: string) => {
+    perfRef.current?.preview(target);
+    pendingRef.current = next;
+    if (rafRef.current !== null) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      const n = pendingRef.current;
+      if (n) setDraft(n);
+    });
+  }, []);
   const commit = useCallback((next: ThemeTune, why: string) => {
     const id = themeTuneId(next);
     console.log(LOG, 'commit', JSON.stringify({ why, from: String(liquidGlassThemeId), to: id, appearance: liquidGlassAppearance })); // guard-ok: одна строка на запись
-    setPreviewLiquidGlassThemeId(null);
+    if (rafRef.current !== null) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
+    pendingRef.current = null;
     setDraft(null);
     setLiquidGlassThemeId(id);
+    perfRef.current?.end(why, true);
   }, [liquidGlassAppearance, liquidGlassThemeId, setLiquidGlassThemeId, setPreviewLiquidGlassThemeId]);
 
-  const onHuePreview = useCallback((H: number) => preview(normalizeThemeTune({ H, S: shown.S })), [preview, shown.S]);
+  const onHuePreview = useCallback((H: number) => preview(normalizeThemeTune({ H, S: shown.S }), 'hue'), [preview, shown.S]);
   const onHueCommit = useCallback((H: number) => commit(normalizeThemeTune({ H, S: shown.S }), 'hue'), [commit, shown.S]);
-  const onSatPreview = useCallback((S: number) => preview(normalizeThemeTune({ H: shown.H, S })), [preview, shown.H]);
+  const onSatPreview = useCallback((S: number) => preview(normalizeThemeTune({ H: shown.H, S }), 'saturation'), [preview, shown.H]);
   const onSatCommit = useCallback((S: number) => commit(normalizeThemeTune({ H: shown.H, S }), 'saturation'), [commit, shown.H]);
   // зачем (координатор 05.11 ~22:20, «КАК ПО МАКЕТУ»): запертый ползунок/сброс без Plus сначала поднимает шторку макета «Цвет под себя — с Plus»,
   // в окно оплаты ведёт только её кнопка. Оплата открывается после ухода шторки (KIT_MOTION.sheetMs), чтобы Modal не перекрывал экран оплаты.

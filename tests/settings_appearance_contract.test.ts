@@ -18,10 +18,21 @@ describe('settings_appearance: контракт', () => {
     expect(src).toContain('if (locked) { onLockedPress(); return; }');
     expect(src).not.toMatch(/V2SegmentedControl[^\n]*locked/);
   });
-  it('превью при жесте без записи, одна запись при отпускании, превью снимается при уходе', () => {
-    expect(src).toContain('setPreviewLiquidGlassThemeId(themeTuneId(next))');
-    expect(src).toContain('setLiquidGlassThemeId(id);');
+  // зачем (🔴 владелец 06.11, TestFlight 150: «ужасные лаги ползунков»): во время жеста ThemeContext не трогается вообще — предпросмотр локальный
+  // (draft → glass этого экрана), не чаще 1 раза за кадр; ThemeContext и диск — один раз при отпускании.
+  it('жест: предпросмотр только локально и не чаще кадра; ThemeContext — один раз при отпускании', () => {
+    const previewBody = src.slice(src.indexOf('const preview = useCallback'), src.indexOf('const commit = useCallback'));
+    expect(previewBody).not.toContain('setPreviewLiquidGlassThemeId');
+    expect(previewBody).not.toContain('setLiquidGlassThemeId');
+    expect(previewBody).toContain('requestAnimationFrame(');
+    expect(previewBody).toContain('if (rafRef.current !== null) return;');
+    const commitBody = src.slice(src.indexOf('const commit = useCallback'), src.indexOf('const onHuePreview'));
+    expect((commitBody.match(/setLiquidGlassThemeId\(id\);/g) ?? []).length).toBe(1);
+    expect(commitBody).toContain('cancelAnimationFrame(rafRef.current)');
+    expect(src).toContain('const glass = liquidGlassTokens(draft ? themeTuneId(draft) : liquidGlassThemeId);');
+    expect((src.match(/setPreviewLiquidGlassThemeId\(/g) ?? []).length).toBe(1); // только снятие старого превью при уходе
     expect(src).toContain('useEffect(() => () => setPreviewLiquidGlassThemeId(null)');
+    expect(src).toContain("log: (summary) => console.log(LOG, 'perf', JSON.stringify(summary))");
   });
   it('журнал [THEME-SLIDERS]: вход, запись, запертый ползунок, смена оформления', () => {
     for (const marker of ["'screen'", "'commit'", 'ползунок заперт без Plus', "'appearance'"]) expect(src).toContain(marker);

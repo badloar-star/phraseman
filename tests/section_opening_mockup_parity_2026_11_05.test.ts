@@ -54,9 +54,11 @@ describe('окно «Открытие раздела» = макет approved-rev
   it('история: сегменты очереди, тап справа/слева, удержание = пауза, свайп вниз = закрыть; CTA и хаптик привязаны к прогрессу, а не к таймеру', () => {
     expect(src).toContain('segments = 1, segmentIndex = 0');
     expect(src).toContain('i < segmentIndex');
-    expect(src).toContain('testID="section-opening-tap-prev"');
-    expect(src).toContain('testID="section-opening-tap-next"');
-    expect(src).toContain('onLongPress={holdStart}');
+    expect(src).toContain('testID="section-opening-gesture-zone"');
+    expect(src).toContain('Gesture.Race(');
+    expect(src).toContain('Gesture.LongPress().minDuration(180)');
+    expect(src).toContain('Gesture.Tap().maxDistance(15)');
+    expect(src).toContain("build: 'gestures-v3'");
     expect(src).toContain('cancelAnimation(progress)');
     expect(src).toContain('Gesture.Pan()');
     expect(src).toContain('event.translationY > 90');

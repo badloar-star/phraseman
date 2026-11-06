@@ -142,7 +142,7 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   const progress = useSharedValue(reduced ? 1 : freezeAt ?? 0);
   const from = HERO_FROM[id];
   useEffect(() => {
-    console.log('[SECTION-OPENING]', 'mount', JSON.stringify({ id, lang, freezeAt: freezeAt ?? null, reduced, forceReduced: forceReduced === true, segments, segmentIndex, isDark })); // guard-ok: вход в историю
+    console.log('[SECTION-OPENING]', 'mount', JSON.stringify({ build: 'gestures-v3', id, lang, freezeAt: freezeAt ?? null, reduced, forceReduced: forceReduced === true, segments, segmentIndex, isDark })); // guard-ok: вход в историю
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: одна строка на показ
   }, []);
 
@@ -226,9 +226,17 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
     console.log('[STORY-GESTURE]', 'swipe_down_close', JSON.stringify({ id, segmentIndex, segments })); // guard-ok: свайп вниз закрывает кадр
     onSkip();
   }, [id, onSkip, segmentIndex, segments]);
-  const swipeDown = Gesture.Pan().activeOffsetY(24).failOffsetX([-30, 30]).onEnd((event) => {
-    if (event.translationY > 90) runOnJS(swipeClose)();
-  });
+  // зачем (проверка 79df7911d на 5562: жесты не писали журнал, свайп вниз сработал как тап вправо — обычные нажатия RN и жесты RNGH спорили за касание): ВСЕ жесты истории — одним набором RNGH
+  // на отдельной подложке под кнопками (тап слева/справа, удержание, свайп вниз; побеждает первый сработавший): кнопки остаются обычными нажатиями и тап по ним историю не листает
+  const handleTap = useCallback((x: number) => { if (x < windowW * 0.35) tapPrev(); else tapNext(); }, [tapNext, tapPrev, windowW]);
+  const logTouch = useCallback((x: number, y: number) => { console.log('[STORY-GESTURE]', 'touch_begin', JSON.stringify({ id, x: Math.round(x), y: Math.round(y) })); /* guard-ok: касание дошло до подложки жестов */ }, [id]);
+  const storyGesture = useMemo(() => Gesture.Race(
+    Gesture.Pan().activeOffsetY(24).failOffsetX([-30, 30]).onEnd((event) => {
+      if (event.translationY > 90) runOnJS(swipeClose)();
+    }),
+    Gesture.LongPress().minDuration(180).maxDistance(15).onStart(() => { runOnJS(holdStart)(); }).onFinalize(() => { runOnJS(holdEnd)(); }),
+    Gesture.Tap().maxDistance(15).onBegin((event) => { runOnJS(logTouch)(event.x, event.y); }).onEnd((event, success) => { if (success) runOnJS(handleTap)(event.x); }),
+  ), [handleTap, holdEnd, holdStart, logTouch, swipeClose]);
 
   // ── герой: ключи motion макета — невидим до 12 %, к 48 % на месте (opacity 0→1, сдвиг/поворот/масштаб из `starts`) ──
   const heroStyle = useAnimatedStyle(() => ({
@@ -351,7 +359,6 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   const skip = () => { console.log('[SECTION-OPENING]', 'skip_tap', JSON.stringify({ id })); /* guard-ok: тап Skip / «На главную» */ onSkip(); };
   return (
     <MomentFullScreen testID={`section-opening-${id}`}>
-      <GestureDetector gesture={swipeDown}>
       {/* зачем (Сверка 20:41: «мятный оттенок сверху вместо ровного фона»; макет .opening{background:var(--bg)} — ровный фон): плоский цвет фона темы поверх градиента MomentFullScreen */}
       <View style={[styles.root, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 24 }, { backgroundColor: isRank ? RANK_BG : p.bg }]} accessibilityViewIsModal>
         {/* зачем (история): полоска по числу кадров очереди — пройденные полные, текущий заполняется по таймлайну, будущие пустые */}
@@ -363,11 +370,10 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
           ))}
         </View>
         {/* зоны касаний истории под всем остальным: слева ≈35 % — кадр с начала, справа — дальше; удержание — пауза */}
-        <View style={StyleSheet.absoluteFill}>
-          <Pressable style={styles.zoneLeft} onPress={tapPrev} onLongPress={holdStart} delayLongPress={180} onPressOut={holdEnd} accessible={false} testID="section-opening-tap-prev" />
-          <Pressable style={styles.zoneRight} onPress={tapNext} onLongPress={holdStart} delayLongPress={180} onPressOut={holdEnd} accessible={false} testID="section-opening-tap-next" />
-        </View>
-        <View style={styles.top}>
+        <GestureDetector gesture={storyGesture}>
+          <View style={StyleSheet.absoluteFill} collapsable={false} testID="section-opening-gesture-zone" />
+        </GestureDetector>
+        <View style={styles.top} pointerEvents="box-none">
           <Text style={[styles.label, { color: ink }]} maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{copy.label}</Text>
           <V2Button label={sectionOpeningSkip(lang)} variant="secondary" size="small" onPress={skip} testID="section-opening-skip" />
         </View>
@@ -384,14 +390,13 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
           {/* герой: белое свечение вдоль силуэта (drop-shadow макета) — тот же кадр белым цветом, размытый, под героем; круга НЕТ */}
           <HeroLayer source={getPrewarmedHero(id) ?? HERO[id]} box={heroBox} animated={heroStyle} onLog={logImage} />
         </View>
-        <Animated.View style={[styles.copy, copyStyle]}>
+        <Animated.View style={[styles.copy, copyStyle]} pointerEvents="box-none">
           <Text style={[styles.overline, { color: ink }]} maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{sectionOpeningOverline(lang, id)}</Text>
           <Text style={[styles.title, { color: ink }]} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{copy.title}</Text>
           <Text style={[styles.body, { color: ink }]} maxFontSizeMultiplier={BODY_MAX_FONT_SCALE}>{copy.body}</Text>
           <CtaBlock progress={progress} initialReady={reduced || (freezeAt ?? 0) >= COPY_FULL} label={copy.cta} homeLabel={sectionOpeningHome(lang)} ink={ink} onCta={onCta} onHome={skip} />
         </Animated.View>
       </View>
-      </GestureDetector>
     </MomentFullScreen>
   );
 });
@@ -404,8 +409,6 @@ const styles = StyleSheet.create({
   // макет: `.story-progress` left/right 22, высота 2, под статус-баром; заливка едет transform: scaleX от левого края
   segments: { position: 'absolute', left: 22, right: 22, height: 2, flexDirection: 'row', gap: 4 },
   segment: { flex: 1, height: 2, overflow: 'hidden' },
-  zoneLeft: { position: 'absolute', left: 0, top: 0, bottom: 0, width: '35%' },
-  zoneRight: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '65%' },
   barFill: { height: 2, transformOrigin: 'left' },
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, paddingLeft: 22, paddingRight: 16 },
   label: { fontSize: 11, fontWeight: '600', letterSpacing: 1.6, paddingVertical: 4, paddingHorizontal: 8, marginLeft: -8 },

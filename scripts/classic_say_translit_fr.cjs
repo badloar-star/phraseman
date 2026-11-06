@@ -3,6 +3,9 @@
 // (лиэзон, немое e, носовые, ударение только на последнем слоге слов из двух и более слогов). Французская орфография не фонетична, поэтому правила дают только черновик (~60–70 % слов
 // верно): каждый результат просматривается глазами, исключения лежат в словаре docs/work/classic_say_fr/words.json (слово → чтение) и в правках целых фраз docs/work/classic_say_fr/phrases.json.
 // Украинское чтение выводится из русского правилом ruToUk (э→е, и→і, ё→е/ьо, ы→и), как в готовых чтениях Теории.
+// СОГЛАШЕНИЕ О ТРАНСКРИПЦИИ (Координатор 06.11 по третьей выборке Ревизора): закрытое [e] → ru/uk «е» (les/des/et/mes/ses/tes/ces = ле/де/е/ме/се/те, j'ai = же, -er/-ez);
+// открытое [ɛ] → «э» (est, mais, c'est = сэ, -ais/-ait, réception = ресэпсьо́н); беглое e (schwa) в ne/ce/le/de/que/me/se/te → ru «ё» (нё, сё, лё…), uk «ьо» (ньо, сьо, льо…);
+// six/dix перед паузой — «сис/дис». Новые слова в docs/work/classic_say_fr/words.json пишем по этому соглашению.
 // Использование: const { translitFr, ruToUk } = require('./classic_say_translit_fr.cjs'); translitFr('Où habites-tu ?', words) → 'у аби́т тю'.
 
 const ACUTE = '́';
@@ -157,6 +160,8 @@ function translitFr(text, words = {}) {
     else if (/^c[’']est$/.test(prev) && VOWEL_START.test(toks[i].toLowerCase()) && !/^(h)/i.test(toks[i])) reading = 'т' + reading;
     // зачем (Ревизор 06.11, повторная выборка, класс 1): обязательный лиэзон «предлог/определитель/прилагательное + гласная» — «дан зён», «гран тапартёма́н», «ён нами», «пти́ тами»
     else if ((LIAISON_CONS[prev] || /^[jn][’']en$/.test(prev)) && VOWEL_START.test(toks[i].toLowerCase()) && !/^(h)/i.test(toks[i]) && !/^(et|ou)$/i.test(toks[i])) reading = (LIAISON_CONS[prev] || 'н') + reading; // j'en ai → «жан не»
+    // зачем (Ревизор 06.11, твёрдый случай): six/dix перед паузой (в конце фразы) читаются с [s] — «сис», «дис» (fr:25:14)
+    if (i === toks.length - 1 && /^(six|dix)$/i.test(toks[i])) reading = toks[i].toLowerCase() === 'six' ? 'сис' : 'дис';
     out.push(reading);
   }
   return out.join(' ');

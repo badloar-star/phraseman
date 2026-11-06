@@ -42,8 +42,8 @@ import { spireOpenLiveGate, type SpireLiveGate } from './spire_live_gate';
 import { spireEstimateStepBudgetMs, spireRememberStepBudget } from './spire_step_budget';
 import { spirePeekStepAttempt } from './spire_local_store';
 import { spireEnsureWeekPack, type SpirePackLoad } from './spire_pack_client';
-import type { SpireRoomLoad } from './spire_room_client';
-import { useSpireRoomSync } from './use_spire_room_sync';
+import { spireSyncRoom, type SpireRoomLoad } from './spire_room_client';
+import { spireMergeRoomLoad, useSpireRoomSync } from './use_spire_room_sync';
 import { spireFirstFrameRoom, spirePeekFirstFrameIds, spirePeekFirstFrameRoomLoad } from './spire_load_trace';
 import { publishSpirePositionFeed } from './spire_position_feed';
 import { useSpireOwnerEpoch } from './spire_owner_epoch';
@@ -236,12 +236,28 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
       return;
     }
     if (!ids) { DebugLogger.info(LOG, 'блок no_identity'); setOutcome(null); setStartBlock('no_identity'); return; }
-    if (tier === null || !room) { DebugLogger.info(LOG, `блок no_tier ${String(tier)}`); setOutcome(null); setStartBlock('no_tier'); return; }
     startingRef.current = true;
     setStarting(true);
     setStartBlock(null);
     setRejectNotice(false);
     setOutcome(null);
+    // зачем (владелец 06.11, TestFlight 150): «Играть» доступна сразу, даже если комната ещё не пришла — по нажатию добираем комнату
+    // (кэш или вход в сеть; параллельный вызов экрана склеивается в spireSyncRoom) и стартуем. Замок двойного тапа уже взят выше.
+    let startTier = tier;
+    if (startTier === null || !room) {
+      const syncAt = Date.now();
+      console.log('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'tap_without_room', lang, tier, hasRoom: room !== null && room !== undefined })); // guard-ok: ветка решения
+      const load = await spireSyncRoom(gate, { uid: ids.uid, stableId: ids.stableId, lang });
+      console.log('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'tap_sync', status: load.status, reason: load.reason, hasRoom: load.room !== null, tier: load.room?.tier ?? null, ms: Date.now() - syncAt })); // guard-ok: итог добора
+      setRoomLoad((cur) => spireMergeRoomLoad(cur, load, { uid: ids.uid, lang }));
+      startTier = load.room?.tier ?? weekRef.current?.tier ?? null;
+      if (startTier === null || !load.room) {
+        startingRef.current = false;
+        setStarting(false);
+        if (load.status === 'offline') { DebugLogger.info(LOG, `блок pack_offline: комната не пришла (reason=${load.reason})`); setOutcome(null); setStartBlock('pack_offline'); return; }
+        DebugLogger.info(LOG, `блок no_tier после добора комнаты: status=${load.status} reason=${load.reason}`); setOutcome(null); setStartBlock('no_tier'); return; }
+    }
+    const stepTier = startTier;
     const weekKey = spireCurrentWeekKey(Date.now());
     const cur = weekRef.current && weekRef.current.weekKey === weekKey ? weekRef.current : null;
     const floor = cur?.floor ?? 1;
@@ -252,7 +268,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
     const prepId = `${weekKey}:${floor}:${stepInFloor + 1}:${Date.now()}`;
     prepIdRef.current = prepId;
     const startedAt = Date.now();
-    setPending({ prepId, ctx: { lang, weekKey, tier, floor, stepInFloor, stepNumber }, budgetMs: spireEstimateStepBudgetMs(config.timer, floor, tier) });
+    setPending({ prepId, ctx: { lang, weekKey, tier: stepTier, floor, stepInFloor, stepNumber }, budgetMs: spireEstimateStepBudgetMs(config.timer, floor, stepTier) });
     DebugLogger.info(LOG, `game: ступень открыта сразу (Готовим…) prep=${prepId} — пакет догружаем`);
     const stillMine = (where: string): boolean => {
       if (prepIdRef.current === prepId) return true;
@@ -265,7 +281,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
       setStartBlock(block);
     };
     try {
-      const packLoad: SpirePackLoad = await spireEnsureWeekPack(gate, { lang, tier, weekId: weekKey });
+      const packLoad: SpirePackLoad = await spireEnsureWeekPack(gate, { lang, tier: stepTier, weekId: weekKey });
       if (!stillMine('pack')) return;
       if (!packLoad.pack) {
         failStart(packLoad.status === 'offline' ? 'pack_offline' : 'pack_missing', `пакета нет: status=${packLoad.status} reason=${packLoad.reason}`);
@@ -275,16 +291,16 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
       if (!stillMine('attempt')) return;
       const pick = spirePickStepPlan(packLoad.pack, {
         floor, step: stepInFloor + 1, attempt,
-        budgetMs: (kinds) => spireStepBudgetMs(config.timer, floor, kinds, tier), // зачем (владелец 17.10): шкала «база × лига × этаж»
+        budgetMs: (kinds) => spireStepBudgetMs(config.timer, floor, kinds, stepTier), // зачем (владелец 17.10): шкала «база × лига × этаж»
       });
       if (!pick) {
         failStart('pack_missing', `в пакете нет ступени этаж=${floor} ступень=${stepInFloor + 1}`);
         return;
       }
-      spireRememberStepBudget(floor, pick.plan.budgetMs, { tier, tasks: pick.tasks }); // [SPIRE-TIME]
+      spireRememberStepBudget(floor, pick.plan.budgetMs, { tier: stepTier, tasks: pick.tasks }); // [SPIRE-TIME]
       const runId = `${weekKey}:${floor}:${stepInFloor + 1}:${attempt}:${Date.now()}`;
       DebugLogger.info(LOG, `game: открываем ступень этаж=${floor} ступень=${stepInFloor + 1} попытка=${attempt} пакет=${packLoad.source} за ${Date.now() - startedAt} мс (бюджет ${pick.plan.budgetMs} мс)`);
-      setSession({ pick, ctx: { lang, weekKey, tier, floor, stepInFloor, stepNumber }, attempt, runId });
+      setSession({ pick, ctx: { lang, weekKey, tier: stepTier, floor, stepInFloor, stepNumber }, attempt, runId });
       setPending(null);
     } catch (error) {
       if (!stillMine('error')) return;

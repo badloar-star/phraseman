@@ -12,7 +12,9 @@ import { useEffect, useRef } from 'react';
 
 import type { SpireConfigDoc } from '../../modules/spire/config_contract';
 import { peekSpireConfig, warmSpireConfigFromDisk } from '../spire_config_client';
-import { peekSpireRoom, spireReadRoomCache, type SpireRoomLoad } from './spire_room_client';
+import { peekSpireRoom, spireReadRoomCache, spireSyncRoom, type SpireRoomLoad } from './spire_room_client';
+import { spireOpenLiveGate } from './spire_live_gate';
+import { getStableId } from '../stable_id';
 import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
 import type { SpireLang } from '../../modules/spire/report_queue';
 import { getCanonicalUserId } from '../user_id_policy';
@@ -143,12 +145,36 @@ export async function warmSpireRoomFromDisk(studyTarget: unknown): Promise<'warm
     const fresh = room !== null && room.weekId === spireCurrentWeekKey(Date.now());
     spireLoadMark('week:warm', { found: week !== null, weekKey: week?.weekKey ?? null, floor: week?.floor ?? null, stepInFloor: week?.stepInFloor ?? null });
     console.log('[SPIRE]', '[SPIRE-LOAD]', 'room:warm', JSON.stringify({ result: fresh ? 'warmed' : 'none', lang, weekId: room?.weekId ?? null, members: room?.members.length ?? null, ms: Date.now() - startedAt })); // guard-ok: итог прогрева
+    console.log('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'disk', lang, fresh, cachedWeek: room?.weekId ?? null, currentWeek: spireCurrentWeekKey(Date.now()), members: room?.members.length ?? null, ms: Date.now() - startedAt })); // guard-ok: что нашлось на диске
     // зачем (вариант (в) плиток Главной, координатор 17.10): бейдж места на плитке «Пик» — из этой же копии, без сети
     if (fresh && room) void import('./spire_home_place').then((m) => m.refreshSpireHomePlace(uid, lang, room));
+    // зачем (владелец 06.11, TestFlight 150: «при открытии Пика пишет „Играть недоступна" и ищет комнату — пусть ищется ЗАРАНЕЕ»):
+    // копии этой недели нет (новая неделя) — входим в комнату сейчас, пока человек на Главной; на входе в Пик комната уже в кэше.
+    // 💸 Только тем, кто уже играл (есть копия прошлой недели): новичок без Пика сеть не тратит. spireSyncRoom сам склеивает
+    // параллельные вызовы и не ходит в сеть при свежем кэше (TTL комнаты) — не чаще раза за TTL, без опроса.
+    if (!fresh && room) void warmSpireRoomFromNetwork(uid, lang, 'home_first_frame');
+    else if (!fresh) console.log('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'net_skip', why: 'Пик ещё не открывали (копии нет) — сеть не тратим', lang })); // guard-ok: ранний выход
     return fresh ? 'warmed' : 'none';
   } catch (error: unknown) {
     console.warn('[SPIRE]', '[SPIRE-LOAD]', 'room:warm_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
     return 'none';
+  }
+}
+
+/** Вход в комнату недели в фоне (прогрев с Главной). Ворота Пика те же, что у экрана: вкладка включена и конфиг enabled. */
+async function warmSpireRoomFromNetwork(uid: string, lang: SpireLang, why: string): Promise<void> {
+  const startedAt = Date.now();
+  try {
+    await warmSpireConfigFromDisk();
+    const gate = spireOpenLiveGate(peekSpireConfig(), 'home_room_warm');
+    if (!gate) { console.log('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'net_skip', why: 'ворота Пика закрыты (вкладка/конфиг)', lang })); return; } // guard-ok: ранний выход
+    const stableId = await getStableId();
+    if (!stableId) { console.log('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'net_skip', why: 'нет stableId', lang })); return; } // guard-ok: ранний выход
+    console.log('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'net_start', why, lang })); // guard-ok: старт входа в комнату
+    const load = await spireSyncRoom(gate, { uid, stableId, lang });
+    console.log('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'net_done', status: load.status, reason: load.reason, weekId: load.room?.weekId ?? null, members: load.room?.members.length ?? null, tier: load.room?.tier ?? null, ms: Date.now() - startedAt })); // guard-ok: итог
+  } catch (error: unknown) {
+    console.warn('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'net_failed', error: error instanceof Error ? error.message : String(error), ms: Date.now() - startedAt })); // guard-ok: catch пишет причину
   }
 }
 

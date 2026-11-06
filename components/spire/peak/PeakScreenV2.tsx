@@ -22,6 +22,9 @@ import { spireTimeLeft } from '../spire_tower_model';
 import { spireWeekStartMs } from '../../../modules/spire/residents';
 import PeakMyCounter from './PeakMyCounter';
 import PeakTopRow from './PeakTopRow';
+import SpirePlayerCard from '../scene/SpirePlayerCard';
+import type { PlayerInfo } from '../../PlayerProfileModal';
+import type { PeakRow } from '../../../modules/spire/peak_model';
 import PeakTopSkeleton from './PeakTopSkeleton';
 import { peakTourDevOff } from './peak_screen_flag';
 import PeakStepSheet from './PeakStepSheet';
@@ -85,6 +88,15 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   // зачем (владелец 05.11 ~19:15: «монета абсолютно во всех местах обязана соответствовать рангу строго»; аудит RANK_COIN_AUDIT): ранг в документе комнаты пишется только при входе —
   // пустой кэш давал бронзу, после повышения монета устаревала. У своей строки берём ТЕКУЩИЙ ранг (useMyCoinRank из экрана Пика), ранга ещё нет — значение комнаты. 0 новых чтений.
   const myRank = towerProps.myCoinRank;
+  // зачем (владелец 06.11, TestFlight 150: «юзеры в топе должны быть кликабельны ВСЕ — по нажатию визитка»): та же визитка, что в «Все участники»
+  // (SpirePlayerCard → PlayerProfileModal). Открывается сразу по тапу из данных строки, без сети; V2Pressable даёт отклик нажатия.
+  const [player, setPlayer] = useState<PlayerInfo | null>(null);
+  const openRow = useCallback((row: PeakRow) => {
+    console.log('[PEAK-PROFILE]', JSON.stringify({ event: 'open', isMe: row.isMe, place: row.place, coinRank: row.coinRank })); // guard-ok: тап по строке ТОП, без имени и uid
+    setPlayer({ uid: row.uid, name: row.name, isMe: row.isMe, points: row.weekCoins, coinRank: row.coinRank, isPremium: row.isPremium, plusTier: row.plusTier });
+  }, []);
+  const closePlayer = useCallback(() => setPlayer(null), []);
+  const myName = useMemo(() => (members ?? []).find((m) => m.isMe)?.name ?? '', [members]);
   const model = useMemo(() => buildPeakModel((members ?? []).map((m) => ({ ...m, weekCoins: m.weekCoins ?? 0, ...(m.isMe && myRank !== null ? { coinRank: myRank } : null) })), rankBy), [members, rankBy, myRank]);
   // зачем (тур первого входа): окна затемнения считаются от измеренных блоков; меряем только когда тур показывается (в обычной жизни — ноль работы)
   const headRef = useRef<View>(null);
@@ -146,14 +158,14 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
         <View ref={topRef} collapsable={false} testID="peak-top" style={s.topWrap}>
           {/* зачем (макет): слева от зоны повышения — зелёная вертикальная линия; номеров и стрелок в строках нет */}
           {members !== null && upRows > 0 ? <View pointerEvents="none" style={[s.upLine, { backgroundColor: p.correct, height: upRows * PEAK_ROW_HEIGHT - 12 }]} testID="peak-up-line" /> : null}
-          {members === null ? <PeakTopSkeleton /> : model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} coinSize={PEAK_ROW_COIN_SIZE} />)}
+          {members === null ? <PeakTopSkeleton /> : model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} coinSize={PEAK_ROW_COIN_SIZE} onPress={openRow} />)}
           {/* зачем (макет): шестая строка — «я» с кольцом на монете сразу под топ-5; если я уже в топ-5, кольцо у моей строки */}
-          {members !== null && meRow && !meInTop ? <PeakTopRow key={`me-${meRow.uid}`} lang={lang} row={meRow} coinSize={PEAK_ROW_COIN_SIZE} /> : null}
+          {members !== null && meRow && !meInTop ? <PeakTopRow key={`me-${meRow.uid}`} lang={lang} row={meRow} coinSize={PEAK_ROW_COIN_SIZE} onPress={openRow} /> : null}
         </View>
         {model.summiters.length > 0 ? (
           <View testID="peak-summiters">
             <Text style={[s.group, { color: p.textSecondary }]}>{spireGameText(lang, 'peakReachedTop')}</Text>
-            {model.summiters.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} coinSize={PEAK_ROW_COIN_SIZE} />)}
+            {model.summiters.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} coinSize={PEAK_ROW_COIN_SIZE} onPress={openRow} />)}
           </View>
         ) : null}
         <V2Pressable accessibilityRole="button" onPress={onOpenAll} style={[s.all, { backgroundColor: p.control }]} testID="peak-all-button">
@@ -163,6 +175,7 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
         </V2Pressable>
       </View>
       {tourOn ? <PeakTourFull lang={lang} initialPage={forcedPage ?? 0} onDone={finishTour} /> : null}
+      <SpirePlayerCard player={player} myName={myName} onClose={closePlayer} />
       <PeakStepSheet lang={lang} visible={sheetOpen} title={`${floorWord} ${sheetFloor} · ${sheetStep}`} record={record} onClose={() => setSheetOpen(false)} stepper={stepper} />
     </View>
   );

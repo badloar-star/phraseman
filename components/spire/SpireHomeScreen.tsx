@@ -282,7 +282,7 @@ export default function SpireHomeScreen() {
   if (!unlocked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем (правило владельца 18.10): без сети и кэша — спокойная фраза замка, не «Нет интернета»
   if (game.roomLoad?.status === 'paused' && !game.roomLoad.room) return <View style={s.root}><SpireLockedState lang={lang} /></View>;
 
-  const climbReady = game.live && game.tier !== null && game.session === null && game.pending === null;
+  const climbReady = game.live && game.session === null && game.pending === null; // зачем (владелец 06.11, TF 150): «Играть» не ждёт комнату — нажатие само её добирает (use_spire_game.startStep)
   return (
     <View style={s.root} testID="spire-home">
       <ScrollView
@@ -361,7 +361,7 @@ export default function SpireHomeScreen() {
             onLater={game.dismissOutcome}
           />
         ) : (
-          <SpireClimbDock lang={lang} ready={climbReady} busy={game.starting} premium={hasPremiumAccess} block={game.startBlock ?? (roomCeilingPassed && !climbReady ? 'no_tier' : null)} onClimb={climb} summit={summit} scene={scene !== null} searching={scene?.decision.state === 'search'} />
+          <SpireClimbDock lang={lang} ready={climbReady} busy={game.starting} premium={hasPremiumAccess} block={game.startBlock ?? (roomCeilingPassed && !climbReady ? 'no_tier' : null)} onClimb={climb} summit={summit} scene={scene !== null} searching={game.starting && !game.roomLoad?.room} />
         )}
       </View>
       {momentsV3 ? <Suspense fallback={null}><SpireMomentsLayer lang={lang} outcome={momentOutcome ? game.outcome : null} coins={config.coins} coinRank={myCoinRank} busy={game.starting} stepActive={game.session !== null || game.pending !== null || (game.outcome !== null && !momentOutcome)} climbClosed={summit} onClimb={climb} onLater={game.dismissOutcome} /></Suspense> : null}

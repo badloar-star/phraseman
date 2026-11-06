@@ -1,17 +1,20 @@
-// зачем (Сверка 05.11, premium_expired: overflow 55 уводил под шапку заголовок первой выгоды): прокрутка «до конца» вычитает нижний отступ содержимого (30) — наверх уходит отступ, а не строка текста.
+// зачем (Fable/координатор 06.11, EN-кадры 360 dp: overflow 60/136): автопрокрутка «к концу» прятала верх списка — в generic не было первой выгоды, во второй строка выглядела наложением.
+// Теперь окно оплаты ВСЕГДА открывается на offset 0 (без scrollTo), шрифты не ужимаются; не влезает — обычная прокрутка, кнопка оплаты в доке видна всегда. Журнал [PAYWALL-FIT] несёт initialOffset.
 import { readSource } from './helpers/read_source';
 
-describe('окно оплаты: подгон прокрутки не режет верхнюю строку', () => {
-  it('переполнение считается минус нижний отступ содержимого', () => {
-    const s = readSource('components/paywall/PaywallPlus.tsx');
-    expect(s).toContain('const FIT_BOTTOM_SLACK = 28;');
-    expect(s).toContain('const overflow = Math.max(0, Math.round(contentH - viewportH - FIT_BOTTOM_SLACK));');
-    expect(s).toContain('scrollContent: { paddingTop: 18, paddingHorizontal: 24, paddingBottom: 30 }');
+describe('окно оплаты: список стоит сверху при открытии', () => {
+  const src = readSource('components/paywall/PaywallPlus.tsx');
+  const block = src.slice(src.indexOf('export function PaywallPlusScroll'), src.indexOf('const S = StyleSheet.create'));
+  it('нет автопрокрутки к концу и нет поправки на отступ', () => {
+    expect(block).not.toContain('scrollTo(');
+    expect(block).not.toContain('FIT_BOTTOM_SLACK');
+    expect(block).not.toContain('scroll_to_end');
   });
-  it('арифметика: premium_expired (контент 381, окно 326) → прокрутка 27, а не 55', () => {
-    const offset = (content: number, viewport: number) => Math.max(0, Math.round(content - viewport - 28));
-    expect(offset(381, 326)).toBe(27);
-    expect(offset(360, 326)).toBe(6);
-    expect(offset(326, 326)).toBe(0);
+  it('журнал: initialOffset 0 и действие scrollable_from_top / fits', () => {
+    expect(block).toContain('initialOffset: 0');
+    expect(block).toContain("action: overflow > 0 ? 'scrollable_from_top' : 'fits'");
+  });
+  it('шрифты не ужимаются: в блоке нет adjustsFontSizeToFit', () => {
+    expect(block).not.toContain('adjustsFontSizeToFit');
   });
 });

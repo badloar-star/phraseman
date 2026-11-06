@@ -49,6 +49,9 @@ import { useVideoFavorites } from '../hooks/use_video_favorites';
 import { actionToastTri, emitAppEvent } from './events';
 import { hapticTap } from '../hooks/use-haptics';
 import BackGlyph from '../components/v2/BackGlyph';
+import { VideoRewardProgress } from '../components/video/VideoRewardProgress'; // зачем (владелец 06.11): шкала «до +500» под плеером
+import { videoRewardRowVisible } from './video_reward_progress';
+import { useVideoFullRewarded } from '../hooks/use_video_full_rewarded';
 
 const LOG = '[VIDEO-SCREEN]';
 
@@ -78,7 +81,10 @@ export default function LingmanVideoWatchScreen() {
   const catalog = useMemo(() => peekYoutubeCatalogScreenSnapshot(token), [token]);
   const video = useMemo(() => catalog?.videos.find((item) => item.id === videoId) ?? null, [catalog, videoId]);
   // зачем (владелец 05.11: «+500 монет за полный просмотр — 70 %»): детектор просмотра, иконка «+500» в плеере; пометка «просмотрено», награда и история — одно событие
-  const { flashKey: rewardFlashKey } = useVideoFullWatch({ videoId: videoId || null, durationSec: video?.durationSec, live: (video as { state?: string } | null)?.state === 'live', active: runtimeActive });
+  const { flashKey: rewardFlashKey, progressPct: rewardProgressPct } = useVideoFullWatch({ videoId: videoId || null, durationSec: video?.durationSec, live: (video as { state?: string } | null)?.state === 'live', active: runtimeActive });
+  // зачем (владелец 06.11): строка «+500 · 42 %» — пока награда за ролик не получена; получена прямо сейчас на этом экране — остаётся «Засчитано»; live/короткие — progressPct=null, строки нет
+  const rewardedIds = useVideoFullRewarded();
+  const rewardRowVisible = videoRewardRowVisible({ percent: rewardProgressPct, rewardedBefore: rewardedIds.has(videoId), grantedNow: rewardFlashKey > 0 });
   const channelName = catalog && (!video || catalog.channel.id === video.channelId) ? catalog.channel.displayName : '';
   const title = video?.title || (typeof params.title === 'string' ? params.title : '');
   const startSec = typeof params.startSec === 'string' && Number.isFinite(Number(params.startSec)) ? Number(params.startSec) : undefined;
@@ -163,6 +169,8 @@ export default function LingmanVideoWatchScreen() {
   const copy = {
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
     save: triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
+    rewardDone: triLang(lang, { ru: 'Засчитано', uk: 'Зараховано', en: 'Counted', es: 'Contado', 'pt-BR': 'Contado', vi: 'Đã tính', id: 'Tercatat', tr: 'Sayıldı', pl: 'Zaliczone' }),
+    rewardLabel: triLang(lang, { ru: 'Награда за просмотр', uk: 'Нагорода за перегляд', en: 'Watch reward', es: 'Recompensa por ver', 'pt-BR': 'Recompensa por assistir', vi: 'Phần thưởng xem video', id: 'Hadiah menonton', tr: 'İzleme ödülü', pl: 'Nagroda za oglądanie' }),
     unsave: triLang(lang, { ru: 'Убрать отметку «Нравится»', uk: 'Прибрати позначку «Подобається»', en: 'Remove like', es: 'Quitar Me gusta', 'pt-BR': 'Remover gostei', vi: 'Bỏ thích', id: 'Batal suka', tr: 'Beğeniyi kaldır', pl: 'Usuń polubienie' }),
   };
   const meta = [channelName, formatRelativeVideoDate(video?.publishedAt, lang), formatViewCount(video?.viewCount, lang)].filter(Boolean).join(' · ');
@@ -260,6 +268,9 @@ export default function LingmanVideoWatchScreen() {
           <VideoRewardFlash flashKey={rewardFlashKey} />
         </View>
         <WatchProgress videoId={videoId} durationSec={video?.durationSec} trackColor={g.opaqueControl} fillColor={g.accentGraphic} />
+        {rewardRowVisible && rewardProgressPct !== null ? (
+          <VideoRewardProgress percent={rewardProgressPct} doneLabel={copy.rewardDone} progressLabel={copy.rewardLabel} colors={{ text: g.text, secondary: g.secondary, track: g.opaqueControl, fill: g.accentGraphic }} />
+        ) : null}
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, { paddingBottom: pack ? 132 + insets.bottom : 32 }]} decelerationRate="fast">
           {title ? <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text> : null}
           {meta ? <Text style={[styles.meta, { color: g.secondary }]}>{meta}</Text> : null}

@@ -1,22 +1,3 @@
-  // зачем (координатор 06.11, 🔴 блокер: «старт истории ждёт hero 2,5–11 с»): таймлайн стартует, когда герой загружен, но НЕ ПОЗЖЕ потолка 300 мс; hero_wait_ms пишется в журнал (null — потолок сработал раньше картинки)
-  const mountAtRef = React.useRef(Date.now());
-  const startedRef = React.useRef(false);
-  const begin = useCallback((reason: string, heroWaitMs: number | null) => {
-    if (startedRef.current) return;
-    startedRef.current = true;
-    console.log('[SECTION-OPENING]', 'start', JSON.stringify({ id, reason, hero_wait_ms: heroWaitMs, since_mount_ms: Date.now() - mountAtRef.current })); // guard-ok: старт таймлайна и что его решило
-    run(0);
-  }, [id, run]);
-  const logImage = useCallback((what: string, ok: boolean, detail?: string) => {
-    const waited = Date.now() - mountAtRef.current;
-    (ok ? console.log : console.warn)('[SECTION-OPENING]', ok ? 'image_loaded' : 'image_failed', JSON.stringify({ id, what, detail: detail ?? null, ...(what === 'hero' ? { hero_wait_ms: waited } : {}) })); // guard-ok: загрузка/сбой картинки
-    if (what === 'hero' && !reduced && freezeAt === undefined) begin(ok ? 'hero_loaded' : 'hero_failed', waited);
-  }, [begin, freezeAt, id, reduced]);
-  useEffect(() => {
-    if (reduced || freezeAt !== undefined) return undefined;
-    const ceiling = setTimeout(() => begin('ceiling_300ms', null), HERO_WAIT_CEILING_MS);
-    return () => { clearTimeout(ceiling); cancelAnimation(progress); };
-  }, [begin, freezeAt, progress, reduced]);
 // ═════════════════════════════════════════════════════════════════
 // SectionOpeningCeremony.tsx — праздничное окно «Открытие раздела» (одобренный макет approved-rev8: openings.js / openings.css / motion.js / preview.css, кадры rev8-unlock-*, rev6-unlock-rank-cta).
 //
@@ -175,11 +156,25 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
     progress.value = fromValue;
     progress.value = withTiming(1, { duration: SECTION_OPENING_DURATION_MS * (1 - fromValue), easing: Easing.linear });
   }, [progress]);
+  // зачем (координатор 06.11, 🔴 блокер: «старт истории ждёт hero 2,5–11 с»): таймлайн стартует, когда герой загружен, но НЕ ПОЗЖЕ потолка 300 мс; hero_wait_ms пишется в журнал (null — потолок сработал раньше картинки)
+  const mountAtRef = React.useRef(Date.now());
+  const startedRef = React.useRef(false);
+  const begin = useCallback((reason: string, heroWaitMs: number | null) => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    console.log('[SECTION-OPENING]', 'start', JSON.stringify({ id, reason, hero_wait_ms: heroWaitMs, since_mount_ms: Date.now() - mountAtRef.current })); // guard-ok: старт таймлайна и что его решило
+    run(0);
+  }, [id, run]);
+  const logImage = useCallback((what: string, ok: boolean, detail?: string) => {
+    const waited = Date.now() - mountAtRef.current;
+    (ok ? console.log : console.warn)('[SECTION-OPENING]', ok ? 'image_loaded' : 'image_failed', JSON.stringify({ id, what, detail: detail ?? null, ...(what === 'hero' ? { hero_wait_ms: waited } : {}) })); // guard-ok: загрузка/сбой картинки
+    if (what === 'hero' && !reduced && freezeAt === undefined) begin(ok ? 'hero_loaded' : 'hero_failed', waited);
+  }, [begin, freezeAt, id, reduced]);
   useEffect(() => {
     if (reduced || freezeAt !== undefined) return undefined;
-    run(0);
-    return () => cancelAnimation(progress);
-  }, [freezeAt, progress, reduced, run]);
+    const ceiling = setTimeout(() => begin('ceiling_300ms', null), HERO_WAIT_CEILING_MS);
+    return () => { clearTimeout(ceiling); cancelAnimation(progress); };
+  }, [begin, freezeAt, progress, reduced]);
   useAnimatedReaction(
     () => progress.value,
     (value, previous) => {

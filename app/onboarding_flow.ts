@@ -4,7 +4,6 @@ export type OnboardingStepId =
   | 'niceToMeet'
   | 'source'
   | 'language'
-  | 'level'
   | 'promise'
   | 'improve'
   | 'notifications'
@@ -33,7 +32,7 @@ export const ONBOARDING_ENABLED_STEPS_TEXT_KEY = 'onboarding_enabled_steps_v1';
 // Флоу ровно по скриншотам Bevel (владелец, 2026-08-17): «privacy» — экран-сейф
 // (предложение входа), «niceToMeet» — приветствие по имени, «promise» — график
 // роста на весь экран, «improve» — зачем анонимная статистика, «source» —
-// откуда узнал, язык — отдельным отключаемым блоком (language+level), пока не
+// откуда узнал, язык — отдельным отключаемым блоком (language), пока не
 // добавлены языки, «notifications» — макет телефона с пушем, затем ОБЯЗАТЕЛЬНЫЙ
 // «name» (согласия и возраст), честное «trialReminder» и цены. Онбординг
 // завершает пейвол (любой из его выходов), а не «name» — поэтому финал
@@ -57,7 +56,6 @@ export const ONBOARDING_STEP_CATALOG: readonly {
   { id: 'improve', label: 'Помоги улучшить', description: 'Зачем нужна анонимная статистика — перед вопросом об источнике.' },
   { id: 'source', label: 'Источник', description: 'Откуда пользователь узнал о приложении.' },
   { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка (включён в коде по D126).' },
-  { id: 'level', label: 'Уровень', description: 'Уровень выбранного языка (выключен в коде).' },
   { id: 'notifications', label: 'Уведомления', description: 'Предложение включить уведомления с макетом пуша.' },
   {
     id: 'name',
@@ -82,7 +80,7 @@ const KNOWN_STEP_IDS = new Set<OnboardingStepId>(ALL_STEP_IDS);
 // onboardingParseEnabled в admin/v2/legacy.html.
 //
 // Набор = ВСЕ id, которых не знал последний РЕЛИЗНЫЙ каталог (welcome, source,
-// language, level, notifications, onboardingPaywall, name). Панель тумблеров в
+// language, notifications, onboardingPaywall, name; шаг уровня удалён навсегда 06.11). Панель тумблеров в
 // админке живёт с 12.07 — если список хоть раз публиковался, в нём нет ни одного
 // экрана из добавленных позже, а не только niceToMeet от 17.08.
 export const ONBOARDING_STEPS_DEFAULT_ON: readonly OnboardingStepId[] = [
@@ -156,18 +154,13 @@ export function explainEnabledOnboardingSteps(raw: string | null | undefined): O
 export function resolveEnabledOnboardingOrder(
   remotelyEnabled: readonly OnboardingStepId[],
   showLanguageStep: boolean,
-  // зачем: D126 (владелец 2026-09-30) — «только включаем экран с выбором языка»,
-  // уровень остаётся выключенным. Раньше один рубильник глушил оба экрана;
-  // теперь уровень — отдельный. Дефолт = showLanguageStep, чтобы старые вызовы
-  // с двумя аргументами вели себя как прежде (блок целиком).
-  showLevelStep: boolean = showLanguageStep,
 ): OnboardingStepId[] {
   const enabled = new Set(remotelyEnabled);
   enabled.add(MANDATORY_ONBOARDING_STEP);
   // Локальные рубильники сильнее админки: выключенный в коде экран не
   // показывается, даже если в remote_config он включён.
   if (!showLanguageStep) enabled.delete('language');
-  if (!showLevelStep) enabled.delete('level');
+  // шаг уровня удалён навсегда (слово владельца 06.11): в списке из удалённого конфига 'level' игнорируется — его нет в каталоге
   return ALL_STEP_IDS.filter((id) => enabled.has(id));
 }
 

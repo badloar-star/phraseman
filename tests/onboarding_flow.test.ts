@@ -76,22 +76,21 @@ describe('configurable onboarding flow', () => {
   });
 
   it('applies local product availability after remote config', () => {
-    // Рубильник глушит ВЕСЬ языковой блок — и выбор языка, и уровень.
-    expect(resolveEnabledOnboardingOrder(['welcome', 'language', 'level', 'name'], false)).toEqual([
+    // Рубильник глушит языковой блок; level из старого списка админки игнорируется (шаг уровня удалён навсегда, слово владельца 06.11).
+    expect(resolveEnabledOnboardingOrder(['welcome', 'language', 'level' as OnboardingStepId, 'name'], false)).toEqual([
       'welcome',
       'name',
     ]);
-    expect(resolveEnabledOnboardingOrder(['welcome', 'language', 'level', 'name'], true)).toEqual([
+    expect(resolveEnabledOnboardingOrder(['welcome', 'language', 'level' as OnboardingStepId, 'name'], true)).toEqual([
       'welcome',
       'language',
-      'level',
       'name',
     ]);
   });
 
-  it('D126: language step on, level step off — language is followed by notifications', () => {
+  it('шаг уровня удалён навсегда: язык сразу перед уведомлениями', () => {
     const remote = parseEnabledOnboardingSteps(null); // пусто = всё включено
-    const order = resolveEnabledOnboardingOrder(remote, true, false);
+    const order = resolveEnabledOnboardingOrder(remote, true);
     expect(order).toContain('language');
     expect(order).not.toContain('level');
     expect(order.slice(order.indexOf('source'), order.indexOf('notifications') + 1)).toEqual([
@@ -99,26 +98,23 @@ describe('configurable onboarding flow', () => {
       'language',
       'notifications',
     ]);
-    // «Выбрать язык» просит 'level' → уводит на уведомления.
-    expect(resolveOnboardingStep(order, 'level', 'current-or-forward')).toBe('notifications');
+    // сохранённый удалённый шаг level (старая сессия) уводится на уведомления ещё до resolve — normalizedStoredStep в CleanOnboarding (сторож: onboarding_level_step_absent_forever_2026_11_06)
     expect(resolveOnboardingStep(order, 'language', 'forward')).toBe('notifications');
     // Назад с уведомлений — на язык, с языка — на источник.
     expect(resolveOnboardingStep(order, 'notifications', 'backward')).toBe('language');
     expect(resolveOnboardingStep(order, 'language', 'backward')).toBe('source');
-    // Прогресс: язык стоит сразу перед уведомлениями, всего шагов на один меньше, чем с уровнем.
-    const withLevel = resolveEnabledOnboardingOrder(remote, true, true);
+    // Прогресс: язык стоит сразу перед уведомлениями
     expect(getOnboardingProgress(order, 'notifications').progress)
       .toBe(getOnboardingProgress(order, 'language').progress + 1);
-    expect(getOnboardingProgress(order, 'language').total).toBe(getOnboardingProgress(withLevel, 'language').total - 1);
   });
 
   it('D126: a saved admin list without the language id keeps the step hidden (reported to owner)', () => {
     // Язык НЕ входит в ONBOARDING_STEPS_DEFAULT_ON: старый опубликованный список
     // без 'language' держит экран выключенным до переключения галочки в админке.
     const legacySaved = parseEnabledOnboardingSteps(JSON.stringify(['welcome', 'source', 'notifications', 'name']));
-    expect(resolveEnabledOnboardingOrder(legacySaved, true, false)).not.toContain('language');
+    expect(resolveEnabledOnboardingOrder(legacySaved, true)).not.toContain('language');
     const marked = parseEnabledOnboardingSteps(JSON.stringify(['welcome', 'source', 'language', 'name', ONBOARDING_STEPS_CATALOG_MARK]));
-    expect(resolveEnabledOnboardingOrder(marked, true, false)).toEqual(['welcome', 'source', 'language', 'name']);
+    expect(resolveEnabledOnboardingOrder(marked, true)).toEqual(['welcome', 'source', 'language', 'name']);
   });
 
   it('forces the full local catalog only for the explicit QA runtime', () => {

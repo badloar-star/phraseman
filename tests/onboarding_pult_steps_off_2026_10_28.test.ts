@@ -24,7 +24,8 @@ describe('Пульт: выключенный раздел онбординга �
   it('список из Пульта применяется: выключенные шаги не входят в маршрут', () => {
     applyRemoteConfigSnapshot({ texts: { onboarding_enabled_steps_v1: PULT_28_10 } }, { source: 'network', fetchedAtMs: 1 });
     const steps = getEnabledOnboardingSteps();
-    expect(steps).toEqual(['welcome', 'privacy', 'niceToMeet', 'promise', 'language', 'level', 'notifications', 'name']);
+    // 06.11: level в старом списке Пульта игнорируется — шаг уровня удалён навсегда
+    expect(steps).toEqual(['welcome', 'privacy', 'niceToMeet', 'promise', 'language', 'notifications', 'name']);
     for (const off of ['improve', 'source', 'trialReminder', 'onboardingPaywall']) expect(steps).not.toContain(off);
   });
 

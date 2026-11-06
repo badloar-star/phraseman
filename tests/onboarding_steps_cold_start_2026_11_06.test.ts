@@ -35,7 +35,7 @@ describe('список шагов на холодном старте', () => {
     const cfg = fakeConfig(true, ADMIN_LIST);
     const plan = await awaitOnboardingStepsList(cfg.deps);
     expect(plan).toMatchObject({ source: 'ready_immediately', waitedMs: 0 });
-    expect(plan.steps).toEqual(['welcome', 'language', 'level', 'name']);
+    expect(plan.steps).toEqual(['welcome', 'language', 'name']); // level из старого списка игнорируется (шаг уровня удалён навсегда, 06.11)
   });
 
   it('свежая установка: пока нет ответа — ждём; список админки пришёл → только шаги админки (не все 12)', async () => {
@@ -47,9 +47,9 @@ describe('список шагов на холодном старте', () => {
     const plan = await pending;
     expect(plan.source).toBe('arrived_while_waiting');
     expect(plan.waitedMs).toBe(3_000);
-    expect(plan.steps).toEqual(['welcome', 'language', 'level', 'name']);
-    // и итоговый порядок с рубильниками кода (уровень выключен в коде): welcome → language → name
-    expect(resolveEnabledOnboardingOrder(plan.steps, true, false)).toEqual(['welcome', 'language', 'name']);
+    expect(plan.steps).toEqual(['welcome', 'language', 'name']);
+    // и итоговый порядок с рубильником кода: welcome → language → name
+    expect(resolveEnabledOnboardingOrder(plan.steps, true)).toEqual(['welcome', 'language', 'name']);
     expect(cfg.listenerCount()).toBe(0);
   });
 

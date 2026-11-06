@@ -65,12 +65,12 @@ describe('онбординг — исходник', () => {
     expect(src).not.toContain('barStyle="dark-content"');
     expect(src).toContain("barStyle={P.isLight ? 'dark-content' : 'light-content'}");
   });
-  it('экран уровня включён', () => {
-    expect(src).toContain('const SHOW_ONBOARDING_LEVEL_STEP = true;');
+  it('экрана уровня нет (удалён навсегда, слово владельца 06.11)', () => {
+    expect(src).not.toContain('SHOW_ONBOARDING_LEVEL_STEP');
   });
   it('ответ экрана уровня уходит в серверную статистику: лениво, фоном, level = null при пропуске; белый список журнала активности не расширен', () => {
-    expect(src).toContain("import('../app/onboarding_level_stats')");
-    expect(src).toContain('m.recordOnboardingLevelAnswer({ level: level ?? null, target: studyTarget })');
+    expect(src).not.toContain('onboarding_level_stats');
+    expect(src).not.toContain('recordOnboardingLevelAnswer');
     expect(src).toContain("writeToFirestore: action === 'onboarding_source_select',");
   });
   it('вход: на экране текста про долгий вход нет, диктору - «Входим…» и состояние busy на всех четырёх кнопках входа', () => {

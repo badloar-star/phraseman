@@ -7,9 +7,8 @@ describe('clean onboarding copy contract', () => {
   it('keeps target-language copy dynamic without restoring old localized plan-choice helpers', () => {
     const source = fs.readFileSync(path.join(ROOT, 'components', 'CleanOnboarding.tsx'), 'utf8');
 
-    // зачем (координатор 12.10): название языка и реакция на уровень берутся из таблицы на 9 языках (clean_onboarding_options.ts)
-    expect(source).toContain('languageSentenceName(oc, studyTarget)');
-    expect(source).toContain('levelReaction(oc, level, studyTarget)');
+    // зачем (координатор 12.10): название языка берётся из таблицы на 9 языках (clean_onboarding_options.ts); реакции на уровень нет — шаг уровня удалён навсегда (06.11)
+    expect(source).not.toContain('levelReaction');
     // зачем 2026-08-16: reactionForGoal ушёл вместе с экраном выбора цели —
     // анкета плана удалена. Реакция на УРОВЕНЬ осталась и остаётся динамической.
     expect(source).not.toContain('reactionForGoal');

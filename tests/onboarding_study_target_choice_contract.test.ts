@@ -23,7 +23,6 @@ describe('clean onboarding study-target and order contract', () => {
       "'welcome'",
       "'privacy'",
       "'source'",
-      "'level'",
       "'promise'",
       "'notifications'",
       "'trialReminder'",
@@ -36,10 +35,9 @@ describe('clean onboarding study-target and order contract', () => {
     // D126 (владелец 2026-09-30): экран выбора языка включён, уровень — нет.
     // Рубильники раздельные, чтобы уровень не вернулся «прицепом» к языку.
     expect(source).toContain('const SHOW_ONBOARDING_LANGUAGE_STEP = true');
-    // зачем (координатор 15.10 к сборке 16.10, решение владельца): экран уровня включён и рисуется в цветах темы.
-    expect(source).toContain('const SHOW_ONBOARDING_LEVEL_STEP = true');
+    // 06.11 (слово владельца): шага уровня нет навсегда — ни флага, ни ключа (сторож: onboarding_level_step_absent_forever_2026_11_06)
+    expect(source).not.toContain('SHOW_ONBOARDING_LEVEL_STEP');
     expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language'] as const) : [])");
-    expect(source).toContain("...(SHOW_ONBOARDING_LEVEL_STEP ? (['level'] as const) : [])");
     // D164 (вариант А, владелец 12.10): при английском интерфейсе экран языка обязателен — админка его не выключит; иначе порядок прежний.
     expect(source).toContain('languageRequired ? withRequiredLanguageStep(remoteEnabledSteps) : remoteEnabledSteps,');
     expect(source).toContain('SHOW_ONBOARDING_LANGUAGE_STEP || languageRequired,');
@@ -85,7 +83,7 @@ describe('clean onboarding study-target and order contract', () => {
     expect(source).toContain('ensureEnglishStudyTarget');
     expect(source).toContain('LANGUAGE_OPTIONS');
     expect(source).toContain('testID="onboarding-language-continue"');
-    expect(source).toContain('LEVEL_OPTIONS');
+    expect(source).not.toContain('LEVEL_OPTIONS'); // шаг уровня удалён навсегда (слово владельца 06.11)
     // Анкета плана удалена вместе с планами — её наборы не должны вернуться.
     expect(source).not.toContain('GOAL_OPTIONS');
     expect(source).not.toContain('MINUTE_OPTIONS');

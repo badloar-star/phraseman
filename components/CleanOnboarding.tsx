@@ -80,7 +80,7 @@ import { ONBOARDING_COMPLETED_AT_KEY } from '../app/fresh_install_gate';
 import { recordPrimaryCourseLanguageAtOnboarding } from '../app/course_language_access';
 import { fill, onboardingCopy, OnboardingCopyProvider, useOnboardingCopy, useOnboardingLang, type OnboardingCopyKey } from './onboarding/clean_onboarding_copy';
 import { formatOnboardingDateLong, formatOnboardingLockDate, onboardingDaysWord } from './onboarding/clean_onboarding_dates';
-import { languageNameOf, languageSentenceName, levelReaction, levelTitleOf, sourceTitle } from './onboarding/clean_onboarding_options';
+import { languageNameOf, sourceTitle } from './onboarding/clean_onboarding_options';
 import { enableSmartDailyReminder, requestNotificationPermissionWithFallback } from '../app/notifications';
 import {
   readOnboardingNotificationChoice,
@@ -183,7 +183,6 @@ export type CleanOnboardingStep =
   | 'niceToMeet'
   | 'source'
   | 'language'
-  | 'level'
   | 'promise'
   | 'improve'
   | 'notifications'
@@ -240,7 +239,7 @@ function onboardingSwitchedSignInAgainText(lang: Lang): string {
 // уже есть», остальной онбординг не трогается. Поэтому рубильник разделён: выбор
 // языка включён, экран уровня остаётся выключенным (после языка сразу уведомления).
 const SHOW_ONBOARDING_LANGUAGE_STEP = true;
-const SHOW_ONBOARDING_LEVEL_STEP = true;
+// зачем (слово владельца 06.11, TestFlight 150: «экран уровня УДАЛИТЬ, чтобы больше НИКОГДА не возвращался»): шага уровня в онбординге нет — ни экрана, ни флага, ни ключа шага. Сторож: tests/onboarding_level_step_absent_forever_2026_11_06.test.ts, замок в docs/work/OWNER_LOCKS.md.
 // Флоу ровно по скриншотам Bevel (владелец, 2026-08-17): welcome → privacy (сейф:
 // вход и «данные не передаются») → niceToMeet (приветствие по имени) → promise
 // (график на весь экран) → improve → source → блок языка (выключен, пока язык
@@ -262,7 +261,6 @@ export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'improve',
   'source',
   ...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language'] as const) : []),
-  ...(SHOW_ONBOARDING_LEVEL_STEP ? (['level'] as const) : []),
   'notifications',
   'name',
   'trialReminder',
@@ -280,13 +278,14 @@ const FLOW_VERSION_KEY = 'onboarding_flow_version_v1';
 const STEP_KEY = 'onboarding_step';
 const DONE_KEY = 'onboarding_done';
 const DISCOVERY_SOURCE_KEY = 'onboarding_discovery_source';
-const PLAN_LEVEL_KEY = 'onboarding_plan_level';
 const PLAN_BILLING_KEY = 'onboarding_plan_billing';
 const LEGAL_ACCEPTED_KEY = 'onboarding_terms_privacy_accepted_v1';
 const ANALYTICS_HELP_KEY = 'onboarding_analytics_help_v1';
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 type DiscoverySource = 'tiktok' | 'store' | 'social' | 'youtube' | 'google' | 'friends' | 'other';
 type LevelChoice = 'a0' | 'a1' | 'a2' | 'b1' | 'b2';
+// уровень по умолчанию — тот, что ставился при прежнем пропуске шага (шаг уровня удалён навсегда)
+const ONBOARDING_DEFAULT_LEVEL: LevelChoice = 'a2';
 type AgeAnswer = 'yes' | 'no' | null;
 
 type Option<T extends string | number> = {
@@ -326,14 +325,6 @@ const LANGUAGE_OPTIONS: LanguageOption[] = [
   languageOption('it', 'Italian', 'pizza-outline', ONBOARDING_ASSETS.languageIt),
 ];
 
-const LEVEL_OPTIONS: Option<LevelChoice>[] = [
-  { id: 'a0', title: 'I am starting from zero', icon: 'bar-chart-outline' },
-  { id: 'a1', title: 'I know a few words', icon: 'bar-chart-outline' },
-  { id: 'a2', title: 'I can hold a simple conversation', icon: 'bar-chart-outline' },
-  { id: 'b1', title: 'I can talk about familiar topics', icon: 'bar-chart-outline' },
-  { id: 'b2', title: 'I can discuss almost anything', icon: 'bar-chart-outline' },
-];
-
 // зачем (вариант А): при интерфейсе, где английский не язык изучения, экран выбора языка обязателен — админка его не выключит,
 // иначе человек остался бы без языка изучения (тихий английский по умолчанию для него запрещён).
 function withRequiredLanguageStep(steps: readonly OnboardingStepId[]): readonly OnboardingStepId[] {
@@ -346,7 +337,8 @@ function normalizedStoredStep(value: string | null): CleanOnboardingStep | null 
   // Выключенный в коде экран → сохранённый шаг едет на соседа справа (D126:
   // уровень выключен отдельно от языка).
   if (!SHOW_ONBOARDING_LANGUAGE_STEP && value === 'language') return 'notifications';
-  if (!SHOW_ONBOARDING_LEVEL_STEP && value === 'level') return 'notifications';
+  // Остановился на удалённом шаге уровня в прошлой сессии — едет на соседа справа (уведомления).
+  if (value === 'level') return 'notifications';
   if ((CLEAN_ONBOARDING_ORDER as readonly string[]).includes(value ?? '')) return value as CleanOnboardingStep;
   return null;
 }
@@ -2570,7 +2562,6 @@ function CleanOnboarding({
   const [appleAvailable, setAppleAvailable] = useState<boolean | null>(peekAppleSignInAvailability);
   const [source, setSource] = useState<DiscoverySource | null>(null);
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
-  const [level, setLevel] = useState<LevelChoice | null>(null);
   const [notificationBusy, setNotificationBusy] = useState(false);
   const [notificationChoice, setNotificationChoice] = useState<OnboardingNotificationChoice | null>(null);
   const [paywallBusy, setPaywallBusy] = useState(false);
@@ -2702,7 +2693,7 @@ function CleanOnboarding({
     if (authError) AccessibilityInfo.announceForAccessibility(authError);
   }, [authError]);
 
-  const selectedLevel = level ?? 'a2';
+  const selectedLevel: LevelChoice = ONBOARDING_DEFAULT_LEVEL;
   const {
     selected: selectedBillingPlan,
     selectPlan: selectBillingPlan,
@@ -2740,11 +2731,14 @@ function CleanOnboarding({
       return resolveEnabledOnboardingOrder(
         languageRequired ? withRequiredLanguageStep(remoteEnabledSteps) : remoteEnabledSteps,
         SHOW_ONBOARDING_LANGUAGE_STEP || languageRequired,
-        SHOW_ONBOARDING_LEVEL_STEP,
       );
     },
     [remoteEnabledSteps, lang],
   );
+  // зачем (слово владельца 06.11, шаг уровня удалён навсегда): список шагов онбординга на старте и при смене — по нему видно, что шага уровня в потоке нет
+  useEffect(() => {
+    console.log('[ONBOARDING]', JSON.stringify({ steps: enabledOrder, count: enabledOrder.length })); // guard-ok: итоговый список шагов
+  }, [enabledOrder]);
 
   // зачем (вопрос владельца 06.11 «показываются экраны, которые я отключил в админке» + пропажа экрана языка на Pixel_8_fresh): итоговый порядок шагов
   // и откуда он взялся — список Пульта, рубильники кода (язык/уровень) и QA-режим; пишется при каждом изменении, logcat -c перед тапом его больше не стирает.
@@ -2790,7 +2784,6 @@ function CleanOnboarding({
     const order = resolveEnabledOnboardingOrder(
       languageRequired ? withRequiredLanguageStep(plan.steps) : plan.steps,
       SHOW_ONBOARDING_LANGUAGE_STEP || languageRequired,
-      SHOW_ONBOARDING_LEVEL_STEP,
     );
     console.log(`[ONB-FLAGS] route: source=${plan.source} waitedMs=${plan.waitedMs} list=${plan.steps.join(',')} final=${order.join(',')} ui=${lang}`); // guard-ok: источник, ожидание и итоговый порядок
     setRemoteEnabledSteps([...plan.steps]);
@@ -2939,14 +2932,12 @@ function CleanOnboarding({
       setRestored(true);
       return () => { active = false; };
     }
-    AsyncStorage.multiGet([FLOW_VERSION_KEY, STEP_KEY, ONBOARDING_REQUESTED_STUDY_TARGET_KEY, PLAN_LEVEL_KEY, DISCOVERY_SOURCE_KEY])
+    AsyncStorage.multiGet([FLOW_VERSION_KEY, STEP_KEY, ONBOARDING_REQUESTED_STUDY_TARGET_KEY, DISCOVERY_SOURCE_KEY])
       .then((rows) => {
         if (!active) return;
         const map = new Map(rows);
         const savedTarget = SHOW_ONBOARDING_LANGUAGE_STEP ? map.get(ONBOARDING_REQUESTED_STUDY_TARGET_KEY) : 'en';
         if (LANGUAGE_OPTIONS.some((item) => item.id === savedTarget)) setStudyTarget(savedTarget as StudyTarget);
-        const savedLevel = map.get(PLAN_LEVEL_KEY);
-        if (LEVEL_OPTIONS.some((item) => item.id === savedLevel)) setLevel(savedLevel as LevelChoice);
         const savedSource = map.get(DISCOVERY_SOURCE_KEY);
         if (DISCOVERY_OPTIONS.some((item) => item.id === savedSource)) setSource(savedSource as DiscoverySource);
         const savedStep = normalizedStoredStep(map.get(STEP_KEY) ?? null);
@@ -3481,12 +3472,6 @@ function CleanOnboarding({
     // Макет Bevel: выбор не переводит дальше — дальше ведёт кнопка «Продолжить».
   }, []);
 
-  const chooseLevel = useCallback((next: LevelChoice) => {
-    setLevel(next);
-    void AsyncStorage.setItem(PLAN_LEVEL_KEY, next).catch(noteSwallowedHandler('CleanOnboarding:useCallback.setItem'));
-    trackOnboarding('onboarding_plan_level_select', { level: next });
-  }, []);
-
   const continueAfterNotificationDialog = useCallback(() => {
     InteractionManager.runAfterInteractions(() => go('name'));
   }, [go]);
@@ -3911,13 +3896,6 @@ function CleanOnboarding({
       if (analyticsAllowed) {
         trackOnboarding('onboarding_complete', { level: selectedLevel, target: studyTarget });
       }
-      // зачем (Ядро/координатор 15.10): ответ экрана уровня уходит в серверную статистику админки один раз на человека, фоном и без ожидания сети;
-      // level = null, если экран уровня пропущен (считается в «доле пропустивших»). Согласие, метку «уже отправлено» и отложенную отправку держит сам модуль.
-      void import('../app/onboarding_level_stats')
-        .then((m) => m.recordOnboardingLevelAnswer({ level: level ?? null, target: studyTarget }))
-        .catch((error: unknown) => {
-          console.warn(`[ONB-LEVEL] import_failed reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя подключения
-        });
       // PM-049: приветственная награда и её шторка удалены; первый вход
       // завершается без бонусной выдачи.
       if (authCompletionRef.current.doneCalled) {
@@ -3939,7 +3917,7 @@ function CleanOnboarding({
     } finally {
       finishingRef.current = false;
     }
-  }, [lang, level, notificationChoice, onDone, selectedLevel, studyTarget]);
+  }, [lang, notificationChoice, onDone, selectedLevel, studyTarget]);
   const completeOnboardingRef = useRef(completeOnboarding);
   completeOnboardingRef.current = completeOnboarding;
 
@@ -4304,9 +4282,8 @@ function CleanOnboarding({
       step="language"
       title={oc.languageQuestion}
       onBack={back}
-      // зачем: D126 — просим 'level', но он выключен (SHOW_ONBOARDING_LEVEL_STEP),
-      // и resolve уводит на следующий включённый шаг — уведомления.
-      footer={<PrimaryButton label={oc.languagePick} onPress={() => go('level')} disabled={!isStudyTargetAllowedForUi(studyTarget, lang)} testID="onboarding-language-continue" />}
+      // зачем: шага уровня нет (удалён навсегда, слово владельца 06.11) — после языка сразу уведомления
+      footer={<PrimaryButton label={oc.languagePick} onPress={() => go('notifications')} disabled={!isStudyTargetAllowedForUi(studyTarget, lang)} testID="onboarding-language-continue" />}
     >
       <View style={styles.optionList}>
         {LANGUAGE_OPTIONS.filter((item) => isStudyTargetAllowedForUi(item.id, lang) && isCourseVisibleOnOnboarding(item.id)).map((item) => (
@@ -4315,28 +4292,6 @@ function CleanOnboarding({
             option={{ ...item, title: languageNameOf(oc, item.id), native: languageNameOf(oc, item.id) }}
             selected={studyTarget === item.id}
             onPress={() => { void chooseStudyTarget(item.id); }}
-          />
-        ))}
-      </View>
-    </ScreenFrame>
-  );
-
-  const renderLevel = () => (
-    <ScreenFrame
-      step="level"
-      title={level ? levelReaction(oc, level, studyTarget) : fill(oc.levelQuestion, { lang: languageSentenceName(oc, studyTarget) })}
-      onBack={back}
-      footer={<PrimaryButton label={oc.continue} onPress={() => go('notifications')} disabled={!level} testID="onboarding-level-continue" />}
-    >
-      <View style={styles.optionList}>
-        {LEVEL_OPTIONS.map((item) => (
-          <OptionCard
-            key={item.id}
-            option={{ ...item, title: levelTitleOf(oc, item.id) }}
-            selected={level === item.id}
-            testID={`onboarding-level-${item.id}`}
-            onPress={() => chooseLevel(item.id)}
-            showIcon
           />
         ))}
       </View>
@@ -4833,7 +4788,6 @@ function CleanOnboarding({
       case 'niceToMeet': return renderNiceToMeet();
       case 'source': return renderSource();
       case 'language': return renderLanguage();
-      case 'level': return renderLevel();
       case 'promise': return renderPromise();
       case 'improve': return renderImprove();
       case 'notifications': return renderNotifications();

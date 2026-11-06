@@ -1,5 +1,7 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { runOnJS } from 'react-native-reanimated';
 import type { Lang } from '../../constants/i18n';
 import { WELCOME_DIM_FALLBACK, WELCOME_DIM_OPACITY } from './welcome_dim';
 import { nextWelcomeAction, visibleReply, welcomeReplies, welcomeUi } from './welcomeCopy';
@@ -30,6 +32,7 @@ export function ApprovedWelcome({homeBackdrop,selectedLanguage,lang='ru',active,
   const [step,setStep]=useState(0);
   const [count,setCount]=useState(0);
   const [exiting,setExiting]=useState(false);
+  const [paused,setPaused]=useState(false);
   const replies=useMemo(()=>welcomeReplies(selectedLanguage,lang),[selectedLanguage,lang]);
   const ui=useMemo(()=>welcomeUi(lang),[lang]);
   const reply=replies[step];
@@ -66,23 +69,56 @@ export function ApprovedWelcome({homeBackdrop,selectedLanguage,lang='ru',active,
     return ()=>animation.stop();
   },[step,reply.body,active,reducedMotion,length,speech]);
   useEffect(()=>{
-    if(!active||reducedMotion||exiting||count>=length)return;
+    if(!active||reducedMotion||exiting||paused||count>=length)return;
     const timer=setTimeout(()=>setCount(value=>Math.min(value+1,length)),20);
     return ()=>clearTimeout(timer);
-  },[active,reducedMotion,exiting,count,length]);
+  },[active,reducedMotion,exiting,paused,count,length]);
 
   const text=visibleReply(reply,count);
   const coinPosition=reply.coinAfter;
   const showCoin=coinPosition!==null&&count>=coinPosition;
   const advance=()=>{if(exiting||!active)return;const next=nextWelcomeAction(step);if(next.start)setExiting(true);else setStep(next.step);};
+  // зачем (владелец 06.11, TestFlight 150: «приветствие … должно быть в ИСТОРИИ, а не сразу на Главной»): приветствие — история из 3 кадров: сегментная полоска сверху, тап справа/слева, удержание — пауза набора текста,
+  // свайп вниз — закрыть («Пропустить» навсегда, как и было). Тап справа на последнем кадре НЕ запускает урок и не закрывает — только кнопка «Начать занятие» (как у историй открытия). Журнал — [WELCOME-STORY].
+  const storyLog=(event:string,extra:Record<string,unknown>={})=>console.log('[WELCOME-STORY]',event,JSON.stringify({step,count,length,...extra})); // guard-ok: жест истории приветствия
+  const tapNext=()=>{
+    if(exiting||!active)return;
+    if(count<length){setCount(length);storyLog('tap_next',{action:'finish_text'});return;}
+    if(step<2){setStep(step+1);storyLog('tap_next',{action:'next_frame'});return;}
+    storyLog('tap_next',{action:'noop_last_frame'});
+  };
+  const tapPrev=()=>{
+    if(exiting||!active)return;
+    if(step>0){setStep(step-1);storyLog('tap_prev',{action:'prev_frame'});return;}
+    setCount(0);storyLog('tap_prev',{action:'restart_frame'});
+  };
+  const handleTap=(x:number)=>{if(x<width*0.35)tapPrev();else tapNext();};
+  const holdStart=()=>{if(exiting||!active)return;setPaused(true);storyLog('hold_start');};
+  const holdEnd=()=>{setPaused((was)=>{if(was)storyLog('hold_end');return false;});};
+  const swipeClose=()=>{if(exiting||!active)return;storyLog('swipe_down_close');onSkip();};
+  const storyGesture=useMemo(()=>Gesture.Race(
+    Gesture.Pan().activeOffsetY(24).failOffsetX([-30,30]).onEnd((event)=>{if(event.translationY>90)runOnJS(swipeClose)();}),
+    Gesture.LongPress().minDuration(180).maxDistance(15).onStart(()=>{runOnJS(holdStart)();}).onFinalize(()=>{runOnJS(holdEnd)();}),
+    Gesture.Tap().maxDistance(15).onEnd((event,success)=>{if(success)runOnJS(handleTap)(event.x);}),
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: обработчики читают текущие step/count через замыкание, набор жестов пересоздаётся при их смене
+  ),[step,count,length,exiting,active,width]);
+  useEffect(()=>{if(active)console.log('[WELCOME-STORY]','show',JSON.stringify({steps:3,language:selectedLanguage,lang}));},[active]); // guard-ok: показ истории приветствия
   return <View style={styles.root} accessibilityViewIsModal={active}>
     <View style={StyleSheet.absoluteFill} pointerEvents={active?'none':'auto'} accessibilityElementsHidden={active} importantForAccessibility={active?'no-hide-descendants':'auto'}>{homeBackdrop}</View>
     {active&&<>
     {/* зачем (владелец 05.11, «96 без свечения»): плотная пелена тона темы вместо блюра и полупрозрачного градиента; свечения за Лингман нет */}
     <View testID="welcome-dim" style={[StyleSheet.absoluteFill,{backgroundColor:dimColor,opacity:WELCOME_DIM_OPACITY}]} pointerEvents="none" />
-    <View style={[styles.top,{paddingTop:safeTop+8}]}><Pressable accessibilityRole="button" accessibilityLabel={ui.skip} onPress={onSkip} disabled={exiting} style={styles.skip}><Text style={styles.skipText}>{ui.skip}</Text></Pressable></View>
-    <View style={[styles.composition,{minHeight:Math.min(420,Math.max(0,height-safeTop-safeBottom-155))}]}>
-      <Animated.View testID="welcome-character" style={[styles.characterStage,heroStyle]}>
+    {/* зачем (история): сегментная полоска по кадрам приветствия — пройденные полные, текущий заполняется набором текста */}
+    <View style={[styles.segments,{top:safeTop+2}]} pointerEvents="none" testID="welcome-story-progress">
+      {[0,1,2].map(index=><View key={index} style={styles.segment}>{index<step?<View style={styles.segmentFull} />:index===step?<View style={[styles.segmentFull,{width:`${Math.round((length>0?count/length:1)*100)}%`}]} />:null}</View>)}
+    </View>
+    {/* жесты истории — одним набором на подложке под кнопками (тап слева/справа, удержание, свайп вниз) */}
+    <GestureDetector gesture={storyGesture}>
+      <View style={StyleSheet.absoluteFill} collapsable={false} testID="welcome-story-gesture-zone" />
+    </GestureDetector>
+    <View style={[styles.top,{paddingTop:safeTop+8}]} pointerEvents="box-none"><Pressable accessibilityRole="button" accessibilityLabel={ui.skip} onPress={onSkip} disabled={exiting} style={styles.skip}><Text style={styles.skipText}>{ui.skip}</Text></Pressable></View>
+    <View pointerEvents="box-none" style={[styles.composition,{minHeight:Math.min(420,Math.max(0,height-safeTop-safeBottom-155))}]}>
+      <Animated.View testID="welcome-character" pointerEvents="none" style={[styles.characterStage,heroStyle]}>
         <Image source={character} resizeMode="contain" style={{width:Math.min(213,width*.64),height:Math.min(520,height*.64),transform:[{translateX:10}]}} accessibilityIgnoresInvertColors accessibilityLabel={ui.character} />
       </Animated.View>
       <Animated.View style={[styles.speech,{opacity:speech,transform:[{translateY:speech.interpolate({inputRange:[0,1],outputRange:[8,0]})}]}]}>
@@ -90,8 +126,7 @@ export function ApprovedWelcome({homeBackdrop,selectedLanguage,lang='ru',active,
         <Pressable accessibilityRole="button" accessibilityLabel={ui.showAll} onPress={()=>setCount(length)}><Text style={styles.body}>{showCoin?<>{text.slice(0,coinPosition)}<MyRankCoin testID="welcome-inline-coin" style={styles.coin} accessibilityElementsHidden />{text.slice(coinPosition)}</>:text}</Text></Pressable>
       </Animated.View>
     </View>
-    <View style={[styles.footer,{paddingBottom:safeBottom+20}]}>
-      <View style={styles.dots} accessibilityElementsHidden>{[0,1,2].map(index=><View key={index} style={[styles.dot,index<=step&&styles.dotDone]} />)}</View>
+    <View style={[styles.footer,{paddingBottom:safeBottom+20}]} pointerEvents="box-none">
       <Pressable accessibilityRole="button" disabled={exiting} onPress={advance} style={styles.primary}><Text style={styles.primaryText}>{step===2?ui.start:ui.next}</Text></Pressable>
       <Text style={styles.hint}>{ui.hint}</Text>
     </View>
@@ -103,5 +138,5 @@ const styles=StyleSheet.create({
   root:{...StyleSheet.absoluteFillObject,justifyContent:'space-between'},top:{alignItems:'flex-end',paddingHorizontal:20},skip:{minHeight:48,justifyContent:'center',paddingHorizontal:14,borderRadius:18,backgroundColor:'#ffffff18'},skipText:{fontSize:13,color:'#fff'},
   composition:{flex:1,flexDirection:'row',alignItems:'center',paddingRight:24},characterStage:{width:'41%',alignItems:'center',justifyContent:'center',alignSelf:'stretch'},
   speech:{width:'59%',paddingLeft:8,paddingVertical:20,alignSelf:'center'},title:{fontSize:26,lineHeight:30.16,fontWeight:'800',letterSpacing:-.6,marginTop:12,marginBottom:16,color:'#fff',textShadowColor:'#0008',textShadowRadius:18,textShadowOffset:{width:0,height:2}},body:{fontSize:17,lineHeight:25.5,minHeight:230,color:'#fff',textShadowColor:'#0008',textShadowRadius:10,textShadowOffset:{width:0,height:1}},coin:{width:25,height:25},
-  footer:{paddingHorizontal:20},dots:{flexDirection:'row',gap:7,marginVertical:20},dot:{flex:1,height:4,borderRadius:4,backgroundColor:'#ffffff3b'},dotDone:{backgroundColor:'#fff'},primary:{height:52,borderRadius:26,backgroundColor:'#fff',alignItems:'center',justifyContent:'center'},primaryText:{color:'#181c24',fontSize:16,fontWeight:'700'},hint:{textAlign:'center',color:'#ffffffb8',fontSize:11,marginTop:14},
+  footer:{paddingHorizontal:20,paddingTop:20},segments:{position:'absolute',left:22,right:22,height:2,flexDirection:'row',gap:4},segment:{flex:1,height:2,backgroundColor:'#ffffff3b',overflow:'hidden'},segmentFull:{height:2,backgroundColor:'#fff'},primary:{height:52,borderRadius:26,backgroundColor:'#fff',alignItems:'center',justifyContent:'center'},primaryText:{color:'#181c24',fontSize:16,fontWeight:'700'},hint:{textAlign:'center',color:'#ffffffb8',fontSize:11,marginTop:14},
 });

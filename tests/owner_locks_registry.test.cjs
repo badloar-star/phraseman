@@ -81,6 +81,7 @@ const KNOWN_GUARDS = [
   'tests/dialog_say_hints_2026_10_24.test.ts',
   'tests/stories_viewer_owner_locks_2026_10_24.test.ts',
   'tests/owner_locks_light_theme_2026_10_24.test.ts', // 9 · САЙТ 24.10: стандартная тема одна — светлая
+  'tests/owner_locks_welcome_story_2026_11_06.test.ts', // 8 · МОМЕНТЫ 06.11 (слово владельца, TestFlight 150): приветствие новичка — формат истории (3 сегмента, жесты), не модал на Главной
 ];
 
 // Любой способ выключить тест по тексту файла: jest (skip/x*/todo/only) и node:test ({ skip }, { todo }, t.skip()).

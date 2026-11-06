@@ -98,6 +98,7 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
       const [verdict, shown] = await Promise.all([readRankGateUserVerdict(), AsyncStorage.getItem(welcomeB3ShownKey(owner))]);
       const show = shouldShowWelcome({ isNew: verdict.isNew, alreadyShown: shown !== null });
       const retryInMs = show ? null : nextWelcomeRetryDelayMs(verdict.reason, attempt);
+      console.log('[WELCOME-STORY]', 'show_decision', JSON.stringify({ condition: show ? 'new_user_not_shown_yet' : verdict.isNew ? 'already_shown' : 'not_new_user', show, isNew: verdict.isNew, reason: verdict.reason, alreadyShown: shown !== null, attempt })); // guard-ok: условие показа истории приветствия (владелец 06.11: приветствие — только формат истории)
       console.log('[WELCOME-B3]', JSON.stringify({ show, isNew: verdict.isNew, reason: verdict.reason, alreadyShown: shown !== null, attempt, retryInMs })); // guard-ok: одна строка на проверку
       if (cancelled) return;
       if (show) { setWants(true); return; }
@@ -117,6 +118,7 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
   // «показано» отмечаем сразу при закрытии любым способом — повтор не нужен
   const close = useCallback((how: 'skip' | 'start') => {
     console.log('[WELCOME-B3]', JSON.stringify({ event: how, slot: 'released' })); // guard-ok: одна строка на выход
+    console.log('[WELCOME-STORY]', how === 'skip' ? 'skip' : 'finish', JSON.stringify({ how, persistedForever: !force, force })); // guard-ok: история приветствия закрыта; «Пропустить» = навсегда, «Начать занятие» = finish
     setWants(false);
     if (force) return;
     if (!owner) {

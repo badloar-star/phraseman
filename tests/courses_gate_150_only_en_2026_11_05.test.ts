@@ -20,10 +20,10 @@ const root = path.join(__dirname, '..');
 const read = (rel: string) => fs.readFileSync(path.join(root, rel), 'utf8');
 
 describe('150: выбор курса по языкам', () => {
-  test('в 150 только английский (решение владельца 05.11 и вердикт Fable 06.11): es/fr/de/it выключены, английский виден всегда', () => {
-    expect(COURSE_LANGUAGE_ENABLED).toEqual({ es: false, fr: false, de: false, it: false });
+  test('в 150 включены все четыре языка (слово владельца 06.11 утро: «должны быть доступны ВСЕ»), английский виден всегда', () => {
+    expect(COURSE_LANGUAGE_ENABLED).toEqual({ es: true, fr: true, de: true, it: true });
     expect(isCourseLanguageEnabled('en')).toBe(true);
-    for (const code of ['es', 'fr', 'de', 'it']) expect(isCourseLanguageEnabled(code)).toBe(false);
+    for (const code of ['es', 'fr', 'de', 'it']) expect(isCourseLanguageEnabled(code)).toBe(true);
   });
 
   test('при включённых языках в выборе все пять курсов', () => {
@@ -57,15 +57,14 @@ describe('150: выбор курса по языкам', () => {
     expect(isCourseLanguageEnabled('xx')).toBe(false);
   });
 
-  test('язык НОВОГО набора в 150: только английский и «без языка»; уже выбранный язык остаётся в списке', () => {
+  test('язык НОВОГО набора: при включённых языках виден весь список, «без языка» остаётся', () => {
     const choices = ['en', 'fr', 'de', 'es', 'it', 'none'] as const;
-    expect(visiblePackChoicesForNewPack(choices, 'en')).toEqual(['en', 'none']);
-    expect(visiblePackChoicesForNewPack(choices, 'de')).toEqual(['en', 'de', 'none']);
+    expect(visiblePackChoicesForNewPack(choices, 'en')).toEqual(choices);
   });
 
   test('человек с прогрессом в es/de/it/fr не теряет курс: активный остаётся видимым, остальные скрыты, ничего не бросает', () => {
     for (const active of ['es', 'fr', 'de', 'it'] as const) {
-      const d = decideVisibleCourseTargets(ALL, { activeTarget: active });
+      const d = decideVisibleCourseTargets(ALL, { table: NONE, activeTarget: active }); // зачем: механизм при выключенных языках (в 150 они включены — см. замок 06.11)
       expect(d.visible).toEqual(['en', active]);
       expect(d.keptForActive).toEqual([active]);
       expect(d.hidden).toEqual(ALL.filter((c) => c !== 'en' && c !== active));

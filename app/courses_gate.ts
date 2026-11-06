@@ -16,12 +16,12 @@ export type HideableCourseLanguage = 'es' | 'fr' | 'de' | 'it';
 export const COURSE_LANGUAGE_ENABLED: Readonly<Record<HideableCourseLanguage, boolean>> = Object.freeze({
   // зачем (слово владельца 05.11 через координатора: «тут должны быть все языки»; замер Ревизора: все ≤15 % ошибок, условие 779d869eb):
   // в 150 включены все четыре. Если Эмулятор найдёт, что урок 1 какого-то языка не проходится, выключить именно его одной строкой.
-  // зачем (владелец 05.11 + вердикт Fable 06.11): в 150 только английский курс; es/fr/de/it гасятся ТОЛЬКО в предложении курса, данные и прогресс не трогаются,
-  // активный не-английский курс человека остаётся (decideVisibleCourseTargets). Вернуть язык = одна строка true по команде координатора.
-  es: false,
-  fr: false,
-  de: false,
-  it: false,
+  // зачем (владелец 06.11 утро, TestFlight 150: «на онбординге доступен только английский, а должны быть доступны ВСЕ; в разделе выбора изучаемого языка то же самое») — отменяет «только EN» 05.11.
+  // Качество по Ревизору: DE 3,0 %, ES 7,3 %, IT 10,8 %, FR 20,0 % — владелец сказал «все», включены все четыре. Скрыть язык = одна строка false по его слову.
+  es: true,
+  fr: true,
+  de: true,
+  it: true,
 });
 
 const LOG = '[COURSE-GATE] [COURSES-GATE] [COURSES-HIDDEN]'; // зачем: два имени одной строкой — диспетчер просил [COURSES-GATE], координатор [COURSES-HIDDEN]
@@ -55,14 +55,20 @@ export function visibleCourseTargets<T extends string>(all: readonly T[], active
   const signature = `${surface}|${decision.visible.join(',')}|${String(activeTarget ?? '')}`;
   if (signature !== lastLoggedSignature) {
     lastLoggedSignature = signature;
-    console.log(LOG, JSON.stringify({ surface, active: activeTarget ?? null, visible: decision.visible, hidden: decision.hidden, keptForActive: decision.keptForActive }));
+    console.log(LOG, JSON.stringify({ surface, active: activeTarget ?? null, offered: decision.visible, visible: decision.visible, hidden: decision.hidden, keptForActive: decision.keptForActive }));
   }
   return decision.visible;
 }
 
 /** Показывать ли этот курс на онбординге: активного курса там ещё нет, поэтому видны только включённые языки. */
+const onboardingOffered = new Set<string>();
 export function isCourseVisibleOnOnboarding(target: string): boolean {
   const visible = isCourseLanguageEnabled(target);
+  // зачем (владелец 06.11): видно, какие курсы реально предложены на онбординге — одна строка при каждом новом составе
+  if (visible && !onboardingOffered.has(target)) {
+    onboardingOffered.add(target);
+    console.log(LOG, JSON.stringify({ surface: 'onboarding', offered: [...onboardingOffered] }));
+  }
   if (!visible) {
     const signature = `onboarding|hide|${target}`;
     if (signature !== lastLoggedSignature) {
@@ -85,4 +91,5 @@ export function visiblePackChoicesForNewPack<T extends string>(all: readonly T[]
 
 export function __resetCoursesGateLogForTests(): void {
   lastLoggedSignature = '';
+  onboardingOffered.clear();
 }

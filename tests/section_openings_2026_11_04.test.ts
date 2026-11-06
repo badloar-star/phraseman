@@ -260,7 +260,8 @@ describe('dev-вход для Сверки и память', () => {
     expect(slots).toContain('if (!sectionOpening.current) { totalRef.current = 0; return null; }'); // слот без окна = null (+ сброс счётчика кадров истории)
     expect(slots).toContain("lazy(() => import('../section_openings/SectionOpeningCeremony')");
     const ceremony = read('components/section_openings/SectionOpeningCeremony.tsx');
-    expect(ceremony.match(/cachePolicy="none"/gu)?.length).toBe(3); // герой + его свечение + арт раздела
+    // зачем (координатор 06.11, блокер «пустая история»): картинки героя/арта теперь из прогретого кэша (section_opening_prewarm), политика кэша «none» убрана
+    expect(ceremony.match(/cachePolicy="none"/gu) ?? []).toEqual([]);
     expect(ceremony).toContain('useReducedMotion() || forceReduced === true');
   });
   it('мотивы макета: апертура «Видео», пузыри «Диалогов», ступени «Пика», веер «Карточек»', () => {

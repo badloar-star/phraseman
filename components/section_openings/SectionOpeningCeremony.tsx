@@ -1,3 +1,22 @@
+  // зачем (координатор 06.11, 🔴 блокер: «старт истории ждёт hero 2,5–11 с»): таймлайн стартует, когда герой загружен, но НЕ ПОЗЖЕ потолка 300 мс; hero_wait_ms пишется в журнал (null — потолок сработал раньше картинки)
+  const mountAtRef = React.useRef(Date.now());
+  const startedRef = React.useRef(false);
+  const begin = useCallback((reason: string, heroWaitMs: number | null) => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    console.log('[SECTION-OPENING]', 'start', JSON.stringify({ id, reason, hero_wait_ms: heroWaitMs, since_mount_ms: Date.now() - mountAtRef.current })); // guard-ok: старт таймлайна и что его решило
+    run(0);
+  }, [id, run]);
+  const logImage = useCallback((what: string, ok: boolean, detail?: string) => {
+    const waited = Date.now() - mountAtRef.current;
+    (ok ? console.log : console.warn)('[SECTION-OPENING]', ok ? 'image_loaded' : 'image_failed', JSON.stringify({ id, what, detail: detail ?? null, ...(what === 'hero' ? { hero_wait_ms: waited } : {}) })); // guard-ok: загрузка/сбой картинки
+    if (what === 'hero' && !reduced && freezeAt === undefined) begin(ok ? 'hero_loaded' : 'hero_failed', waited);
+  }, [begin, freezeAt, id, reduced]);
+  useEffect(() => {
+    if (reduced || freezeAt !== undefined) return undefined;
+    const ceiling = setTimeout(() => begin('ceiling_300ms', null), HERO_WAIT_CEILING_MS);
+    return () => { clearTimeout(ceiling); cancelAnimation(progress); };
+  }, [begin, freezeAt, progress, reduced]);
 // ═════════════════════════════════════════════════════════════════
 // SectionOpeningCeremony.tsx — праздничное окно «Открытие раздела» (одобренный макет approved-rev8: openings.js / openings.css / motion.js / preview.css, кадры rev8-unlock-*, rev6-unlock-rank-cta).
 //
@@ -18,6 +37,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import type { Lang } from '../../constants/i18n';
 import { hapticMediumImpact, hapticSuccess } from '../../hooks/use-haptics';
+import { SECTION_OPENING_HERO } from '../../modules/section_openings/section_opening_assets';
 import { sectionOpeningCopy, sectionOpeningHome, sectionOpeningOverline, sectionOpeningSkip } from '../../modules/section_openings/section_opening_strings';
 import { SECTION_OPENING_PHASE_ANCHORS, type SectionOpeningId } from '../../modules/section_openings/section_opening_core';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
@@ -34,6 +54,8 @@ export const SECTION_OPENING_DURATION_MS = 3600;
 /** Текст виден с 61 %, CTA активен с 82 % (copy.inert макета). */
 const COPY_FROM = 0.61;
 const COPY_FULL = 0.82;
+/** Потолок ожидания героя: анимация стартует, когда картинка готова, но не позже чем через 300 мс (координатор 06.11); дальше картинка проявляется по готовности. */
+const HERO_WAIT_CEILING_MS = 300;
 /** Размер героя макета: `--hero-size` 150 × 1.1 = 165 px, не шире 65 % сцены. */
 const HERO_W = 165;
 /** Точки таймлайна для журнала: якоря макета 15 / 43 / 60 % и CTA 82 %, конец 100 %. */
@@ -45,14 +67,8 @@ const PHASE_LOG_MARKS = [0.15, 0.43, 0.6, 0.82, 1] as const;
 /** Искры макета: 14 штук, позиции `left: 12+(n*37)%78 %`, `top: 8+(n*23)%83 %`. */
 const SPARKS = Array.from({ length: 14 }, (_, n) => ({ left: `${12 + (n * 37) % 78}%`, top: `${8 + (n * 23) % 83}%` } as const));
 
-const HERO: Readonly<Record<SectionOpeningId, ImageSourcePropType>> = {
-  rank: require('../../assets/images/v2/section_openings/rank.webp'),
-  video: require('../../assets/images/v2/section_openings/video.webp'),
-  dialogs: require('../../assets/images/v2/section_openings/dialogs.webp'),
-  peak: require('../../assets/images/v2/section_openings/peak.webp'),
-  cards: require('../../assets/images/v2/section_openings/cards.webp'),
-  plus: require('../../assets/images/v2/section_openings/plus.webp'),
-};
+/** Герои окон — общий список с прогревом (section_opening_assets). */
+const HERO = SECTION_OPENING_HERO;
 /** Арт раздела макета (`V.art(f.art)`): видео — intro_videos, Пик — spire_tile; у «Ранга» своя монета, у диалогов/карточек/Plus арта НЕТ. */
 const ART_SLOT: Readonly<Partial<Record<SectionOpeningId, string>>> = { video: 'intro_videos', peak: 'spire_tile' };
 /** Откуда герой выезжает — `starts` макета: rank/video/dialogs/peak/cards/plus (px, градусы, масштаб). */
@@ -103,8 +119,8 @@ type SharedProgress = ReturnType<typeof useSharedValue<number>>;
 const HeroLayer = memo(function HeroLayer({ source, box, animated, onLog }: Readonly<{ source: ImageSourcePropType; box: object; animated: object; onLog: (what: string, ok: boolean, detail?: string) => void }>) {
   return (
     <Animated.View style={[styles.hero, box, animated]}>
-      <Image source={source} style={[styles.heroImage, styles.heroGlow]} contentFit="contain" tintColor="#FFFFFF" blurRadius={10} cachePolicy="none" accessible={false} />
-      <Image source={source} style={styles.heroImage} contentFit="contain" cachePolicy="none" accessible={false} onLoad={() => onLog('hero', true)} onError={(e) => onLog('hero', false, String((e as { error?: unknown }).error ?? ''))} />
+      <Image source={source} style={[styles.heroImage, styles.heroGlow]} contentFit="contain" tintColor="#FFFFFF" blurRadius={10} accessible={false} />
+      <Image source={source} style={styles.heroImage} contentFit="contain" accessible={false} onLoad={() => onLog('hero', true)} onError={(e) => onLog('hero', false, String((e as { error?: unknown }).error ?? ''))} />
     </Animated.View>
   );
 });
@@ -112,7 +128,7 @@ const HeroLayer = memo(function HeroLayer({ source, box, animated, onLog }: Read
 const ArtLayer = memo(function ArtLayer({ source, box, animated, onLog }: Readonly<{ source: ImageSourcePropType; box: object; animated: object; onLog: (what: string, ok: boolean, detail?: string) => void }>) {
   return (
     <Animated.View style={[box, animated]}>
-      <Image source={source} style={styles.artImage} contentFit="contain" cachePolicy="none" accessible={false} onLoad={() => onLog('art', true)} onError={(e) => onLog('art', false, String((e as { error?: unknown }).error ?? ''))} />
+      <Image source={source} style={styles.artImage} contentFit="contain" accessible={false} onLoad={() => onLog('art', true)} onError={(e) => onLog('art', false, String((e as { error?: unknown }).error ?? ''))} />
     </Animated.View>
   );
 });
@@ -152,7 +168,6 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   const pausedRef = React.useRef(false);
   // зачем (владелец 05.11; Сверка 20:41: на финале p4 пропадали элементы — СПЕРВА ЛОГИ): вход, значения решения и каждая фаза таймлайна пишутся в [SECTION-OPENING] — видно, дошёл ли прогресс до 100 % и что отрисовано
   const logPhase = useCallback((at: number) => { console.log('[SECTION-OPENING]', 'phase', JSON.stringify({ id, at, ctaReady: at >= COPY_FULL })); /* guard-ok: фазы таймлайна */ }, [id]);
-  const logImage = useCallback((what: string, ok: boolean, detail?: string) => { (ok ? console.log : console.warn)('[SECTION-OPENING]', ok ? 'image_loaded' : 'image_failed', JSON.stringify({ id, what, detail: detail ?? null })); /* guard-ok: загрузка/сбой картинки */ }, [id]);
 
   // зачем (владелец 05.11 «ЭТО ИСТОРИЯ»): таймлайн можно ставить на паузу (удержание) и перематывать (тап) — поэтому CTA и хаптик «Праздник» привязаны к самому прогрессу
   // (useAnimatedReaction), а не к setTimeout: после паузы они сработают в нужной точке (макет: CTA оживает на 82 %, праздник на 60 %)

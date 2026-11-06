@@ -8,7 +8,7 @@
 // окна грузятся лениво и монтируются только по слоту.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { Suspense, lazy, memo, useEffect, useRef } from 'react';
-import { Modal } from 'react-native';
+import { InteractionManager, Modal } from 'react-native';
 
 import type { Lang } from '../../constants/i18n';
 import { useSpireWeekMoment } from '../../app/spire/use_spire_week_moment';
@@ -100,6 +100,15 @@ type SectionOpeningSlotProps = Readonly<{
 
 export const HomeSectionOpeningSlot = memo(function HomeSectionOpeningSlot({ lang, active, onNavigate }: SectionOpeningSlotProps) {
   const sectionOpening = useSectionOpeningHost(active);
+  // зачем (координатор 06.11, 🔴 блокер «пустая история»): героев окон (6 × ~44 КБ) и арты прогреваем в простое после первого экрана Главной — к показу они уже в кэше; один раз за запуск
+  useEffect(() => {
+    const task = InteractionManager.runAfterInteractions(() => {
+      void import('../../modules/section_openings/section_opening_prewarm').then((m) => m.prewarmSectionOpeningAssets()).catch((error: unknown) => {
+        console.warn('[SECTION-OPENING]', 'prewarm_import_failed', error instanceof Error ? error.message : String(error)); // guard-ok: сбой прогрева не мешает показу
+      });
+    });
+    return () => task.cancel();
+  }, []);
   // зачем (владелец 05.11 «ЭТО ИСТОРИЯ»): сегменты полоски = вся очередь этой «истории» (Ранг · Видео · Диалоги); число кадров запоминаем с первого показа, текущий = всего − осталось
   const totalRef = useRef(0);
   if (!sectionOpening.current) { totalRef.current = 0; return null; }

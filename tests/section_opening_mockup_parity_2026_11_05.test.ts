@@ -73,4 +73,20 @@ describe('окно «Открытие раздела» = макет approved-rev
     expect(slots).toContain('onPrev={() => sectionOpening.back()}');
     expect(src).toContain('segmentIndex > 0 && onPrev?.() === true');
   });
+  // зачем (координатор 06.11, 🔴 блокер сборки: старт истории ждал героя 2,5–11 с): прогрев в простое, потолок ожидания 300 мс, журнал hero_wait_ms
+  it('старт истории: прогрев героев, потолок ожидания 300 мс, журнал hero_wait_ms', () => {
+    expect(src).toContain('HERO_WAIT_CEILING_MS = 300');
+    expect(src).toContain("begin('ceiling_300ms', null)");
+    expect(src).toContain("begin(ok ? 'hero_loaded' : 'hero_failed', waited)");
+    expect(src).toContain('hero_wait_ms');
+    const prewarm = fs.readFileSync(path.join(__dirname, '..', 'modules/section_openings/section_opening_prewarm.ts'), 'utf8');
+    expect(prewarm).toContain('export async function prewarmSectionOpeningAssets');
+    expect(prewarm).toContain("Image.prefetch(uri, 'memory-disk')");
+    expect(prewarm).toContain("'prewarm_failed'");
+    const slots = fs.readFileSync(path.join(__dirname, '..', 'components/home/home_moment_slots.tsx'), 'utf8');
+    expect(slots).toContain('InteractionManager.runAfterInteractions');
+    expect(slots).toContain('section_opening_prewarm');
+    const assets = fs.readFileSync(path.join(__dirname, '..', 'modules/section_openings/section_opening_assets.ts'), 'utf8');
+    for (const id of SECTION_OPENING_IDS) expect(assets).toContain(`${id}: require(`);
+  });
 });

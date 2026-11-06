@@ -16,13 +16,15 @@ export type HideableCourseLanguage = 'es' | 'fr' | 'de' | 'it';
 export const COURSE_LANGUAGE_ENABLED: Readonly<Record<HideableCourseLanguage, boolean>> = Object.freeze({
   // зачем (слово владельца 05.11 через координатора: «тут должны быть все языки»; замер Ревизора: все ≤15 % ошибок, условие 779d869eb):
   // в 150 включены все четыре. Если Эмулятор найдёт, что урок 1 какого-то языка не проходится, выключить именно его одной строкой.
-  es: true,
-  fr: true,
-  de: true,
-  it: true,
+  // зачем (владелец 05.11 + вердикт Fable 06.11): в 150 только английский курс; es/fr/de/it гасятся ТОЛЬКО в предложении курса, данные и прогресс не трогаются,
+  // активный не-английский курс человека остаётся (decideVisibleCourseTargets). Вернуть язык = одна строка true по команде координатора.
+  es: false,
+  fr: false,
+  de: false,
+  it: false,
 });
 
-const LOG = '[COURSES-GATE] [COURSES-HIDDEN]'; // зачем: два имени одной строкой — диспетчер просил [COURSES-GATE], координатор [COURSES-HIDDEN]
+const LOG = '[COURSE-GATE] [COURSES-GATE] [COURSES-HIDDEN]'; // зачем: два имени одной строкой — диспетчер просил [COURSES-GATE], координатор [COURSES-HIDDEN]
 const ALWAYS_VISIBLE = 'en';
 const COURSE_CODES = ['en', 'es', 'fr', 'de', 'it'] as const;
 

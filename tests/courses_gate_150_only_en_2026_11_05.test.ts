@@ -15,18 +15,19 @@ import {
 
 const ALL = ['en', 'es', 'fr', 'de', 'it'] as const;
 const NONE: Readonly<Record<HideableCourseLanguage, boolean>> = { es: false, fr: false, de: false, it: false };
+const ALL_ON: Readonly<Record<HideableCourseLanguage, boolean>> = { es: true, fr: true, de: true, it: true };
 const root = path.join(__dirname, '..');
 const read = (rel: string) => fs.readFileSync(path.join(root, rel), 'utf8');
 
 describe('150: выбор курса по языкам', () => {
-  test('в 150 включены все четыре языка (решение владельца 05.11), английский виден всегда', () => {
-    expect(COURSE_LANGUAGE_ENABLED).toEqual({ es: true, fr: true, de: true, it: true });
+  test('в 150 только английский (решение владельца 05.11 и вердикт Fable 06.11): es/fr/de/it выключены, английский виден всегда', () => {
+    expect(COURSE_LANGUAGE_ENABLED).toEqual({ es: false, fr: false, de: false, it: false });
     expect(isCourseLanguageEnabled('en')).toBe(true);
-    for (const code of ['es', 'fr', 'de', 'it']) expect(isCourseLanguageEnabled(code)).toBe(true);
+    for (const code of ['es', 'fr', 'de', 'it']) expect(isCourseLanguageEnabled(code)).toBe(false);
   });
 
   test('при включённых языках в выборе все пять курсов', () => {
-    const d = decideVisibleCourseTargets(ALL, { activeTarget: 'en' });
+    const d = decideVisibleCourseTargets(ALL, { table: ALL_ON, activeTarget: 'en' });
     expect(d.visible).toEqual(ALL);
     expect(d.hidden).toEqual([]);
   });
@@ -56,9 +57,20 @@ describe('150: выбор курса по языкам', () => {
     expect(isCourseLanguageEnabled('xx')).toBe(false);
   });
 
-  test('язык НОВОГО набора: при включённых языках виден весь список, «без языка» остаётся', () => {
+  test('язык НОВОГО набора в 150: только английский и «без языка»; уже выбранный язык остаётся в списке', () => {
     const choices = ['en', 'fr', 'de', 'es', 'it', 'none'] as const;
-    expect(visiblePackChoicesForNewPack(choices, 'en')).toEqual(choices);
+    expect(visiblePackChoicesForNewPack(choices, 'en')).toEqual(['en', 'none']);
+    expect(visiblePackChoicesForNewPack(choices, 'de')).toEqual(['en', 'de', 'none']);
+  });
+
+  test('человек с прогрессом в es/de/it/fr не теряет курс: активный остаётся видимым, остальные скрыты, ничего не бросает', () => {
+    for (const active of ['es', 'fr', 'de', 'it'] as const) {
+      const d = decideVisibleCourseTargets(ALL, { activeTarget: active });
+      expect(d.visible).toEqual(['en', active]);
+      expect(d.keptForActive).toEqual([active]);
+      expect(d.hidden).toEqual(ALL.filter((c) => c !== 'en' && c !== active));
+    }
+    expect(() => decideVisibleCourseTargets(ALL, { activeTarget: 'xx' })).not.toThrow();
   });
 
   test('три места выбора идут через шлюз: настройки/шторка, онбординг, новый набор', () => {
@@ -78,6 +90,7 @@ describe('150: выбор курса по языкам', () => {
 
   test('журнал несёт оба имени и объясняет решение', () => {
     const gate = read('app/courses_gate.ts');
+    expect(gate).toContain('[COURSE-GATE]');
     expect(gate).toContain('[COURSES-GATE]');
     expect(gate).toContain('[COURSES-HIDDEN]');
     expect(gate).toContain('hidden');

@@ -1,6 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect, useMemo, useState } from 'react';
-import { useRouter } from 'expo-router';
 import {
   Modal,
   ScrollView,
@@ -749,7 +748,6 @@ function ActivityHeatmap365() {
     status: initialSnapshot ? 'ready' : 'loading',
     stale: initialSnapshot?.stale ?? false,
   }));
-  const router = useRouter();
 
   const currentSnapshot = loadState.target === studyTarget
     ? loadState
@@ -793,6 +791,8 @@ function ActivityHeatmap365() {
 
   const days = currentSnapshot.analytics?.days ?? [];
   const yearModel = useMemo(() => buildCanonicalYear(days), [days]);
+  // зачем (владелец 06.11: «Год → сразу сетка месяцев»): тап по полоске открывает MonthExplorerModal, без экрана /year_activity
+  const [monthOpen, setMonthOpen] = useState<string | null>(null);
   const hasActivity = days.some((day) => day.active && !day.future);
   // зачем (владелец 01.10): никаких «Загружаем/Данные недоступны/Пока нет данных» —
   // сетка рисуется сразу из локальных данных, пустые дни — просто пустые клетки.
@@ -805,9 +805,19 @@ function ActivityHeatmap365() {
         model={yearModel}
         statusText={statusText}
         onOpenMonth={() => {
-          console.log(`[YEAR-ACTIVITY] тап по полоске → /year_activity (studyTarget=${studyTarget}, дней в кэше=${days.length})`); // guard-ok: действие пользователя
-          router.push('/year_activity' as never);
+          const current = yearModel.monthKeys[yearModel.monthKeys.length - 1] ?? null;
+          console.log(`[STATS-PERIOD] open {from: 'year_strip', to: '${current}'}`); // guard-ok: действие пользователя, одна строка на тап
+          setMonthOpen(current);
         }}
+      />
+      {/* зачем (владелец 06.11): месяцы открываются сразу по тапу на полоску года, без промежуточного экрана /year_activity */}
+      <MonthExplorerModal
+        days={days}
+        monthKeys={yearModel.monthKeys}
+        monthKey={monthOpen}
+        visible={monthOpen !== null}
+        onMonthChange={setMonthOpen}
+        onClose={() => setMonthOpen(null)}
       />
     </View>
   );

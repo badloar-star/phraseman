@@ -2329,7 +2329,20 @@ async function prepareSupportReplyOperation(
           grounded: !holdingDraft,
           holding: holdingDraft,
         });
-      if (!generatedReady) throw new HttpsError('failed-precondition', 'support_quality_not_customer_ready');
+      if (!generatedReady) {
+        // зачем (логи сперва, 06.11): какое из условий готовности сорвало ревью — состояние, обоснованность, версии политики/инструкций или текст письма; без значений текста письма
+        logger.warn('[SUPPORT-REVIEW] not_customer_ready', {
+          messageDocId: input.messageDocId,
+          validState, autoReplyState: String(message.autoReply?.state ?? ''), grounded: message.autoReply?.grounded === true, holdingDraft,
+          policyOk: message.draftPolicyVersion === SUPPORT_AUTO_POLICY_VERSION,
+          schemaOk: message.draftInstructionsSchemaVersion === currentInstructions.schemaVersion,
+          promptOk: message.draftInstructionsPromptVersion === currentInstructions.promptVersion,
+          revisionOk: message.draftInstructionsRevision === currentInstructions.revision,
+          fingerprintOk: message.draftInstructionsFingerprint === currentInstructions.fingerprint,
+          textReady: supportReplyIsCustomerReady({ reply: payload.finalText, issue: supportIssueText(message), grounded: !holdingDraft, holding: holdingDraft }),
+        });
+        throw new HttpsError('failed-precondition', 'support_quality_not_customer_ready');
+      }
     } else if (message.draftOrigin !== 'owner_manual') {
       throw new HttpsError('failed-precondition', 'draft_origin_unconfirmed_save_before_sending');
     }
@@ -3819,6 +3832,8 @@ async function prepareSupportTelegramReview(input: {
     if (!finalized) return 'stale';
     return 'awaiting_approval';
   } catch (error) {
+    // зачем (логи сперва, 06.11): исключение при подготовке ревью — вот почему разбор «останавливается до Telegram»; раньше причина уходила только в код ошибки документа
+    logger.warn('[SUPPORT-REVIEW] prepare_failed', { messageDocId: input.messageDocId, errorCode: supportAutoErrorCode(error), message: error instanceof Error ? error.message.slice(0, 200) : String(error).slice(0, 200), preparedOperationId: preparedOperationId || null });
     const inheritedPreparedOperationId = !preparedOperationId && input.doc.replyGate?.state === 'prepared'
       ? input.doc.replyGate.operationId
       : '';
@@ -3981,6 +3996,8 @@ async function generateSaveAndDispatchAutoReply(input: {
 
   if (council.kind === 'attention') {
     const transient = council.reason === 'model_unavailable' || council.reason.startsWith('auto_repair_budget_');
+    // зачем (логи сперва, 06.11): совет вернул «внимание» — причина и временная ли она (retry) или нужна рука владельца
+    logger.info('[SUPPORT-REVIEW] council_attention', { messageDocId: input.messageDocId, reason: council.reason, transient });
     const settled = await settleSupportAutoReplyClaimWithoutDraft({
       db: input.db,
       messageDocId: input.messageDocId,
@@ -4019,6 +4036,7 @@ async function generateSaveAndDispatchAutoReply(input: {
     reason: council.reason,
     knowledgeFingerprint: council.knowledgeFingerprint,
   });
+  logger.info('[SUPPORT-REVIEW] telegram_review_state', { messageDocId: input.messageDocId, reviewState: String(reviewState), grounded: council.grounded, holding: council.kind === 'holding', reason: council.reason });
   if (reviewState === 'attention_required') return 'attention_required';
   if (reviewState === 'exhausted') return 'exhausted';
   if (reviewState === 'retry') return 'retry';
@@ -6737,7 +6755,9 @@ export const supportInboxOnNewMail = onDocumentCreated(
     const systemActor: SupportAdminContext = { actorUid: 'jarvis_support_triage', role: 'admin' };
     // Технический спам (рассылки/автоответы) classifyEmail уже пометил при
     // приёме — не тратим LLM-вызов на то, что и так не должно попасть в очередь.
+    logger.info('[SUPPORT-REVIEW] enter', { messageDocId, mailCategory: doc.mailCategory ?? null, status: doc.status ?? null });
     if (doc.mailCategory === 'automated') {
+      logger.info('[SUPPORT-REVIEW] early_exit', { messageDocId, reason: 'automated_mail' });
       await claimInitialSupportTriageDecision({
         db, messageDocId, nowMs, decision: 'automated', actor: systemActor,
         expectedStatusRevision: Number(doc.statusRevision ?? 0),
@@ -6824,10 +6844,13 @@ export const supportInboxOnNewMail = onDocumentCreated(
       });
       const pass = String(GMAIL_SUPPORT_APP_PASSWORD.value() || process.env.GMAIL_SUPPORT_APP_PASSWORD || '').trim();
       let ownerAlertText = SUPPORT_OWNER_ALERT_RETRY_TEXT;
+      // зачем (логи сперва, координатор 06.11: премиум-разбор письма, по данным Диспетчера, останавливается до Telegram): какое условие решило, идёт ли генерация черновика/ревью
+      logger.info('[SUPPORT-REVIEW] gate', { messageDocId, triageWon, hasUsableBody: hasUsableBody(doc), appPasswordPresent: pass.length > 0, willGenerate: Boolean(triageWon && hasUsableBody(doc) && pass) });
       if (triageWon && hasUsableBody(doc) && pass) {
         const generation = await generateSaveAndDispatchAutoReply({
           db, messageDocId, doc: { ...doc, triageState: 'kept' }, apiKey, appPassword: pass, nowMs,
         });
+        logger.info('[SUPPORT-REVIEW] generation', { messageDocId, outcome: String(generation) });
         if (generation === 'attention_required') {
           const current = await db.collection(INBOX_COLLECTION).doc(messageDocId).get();
           const currentDoc = current.data() as SupportInboxDoc | undefined;
@@ -6841,11 +6864,13 @@ export const supportInboxOnNewMail = onDocumentCreated(
       await deliverSupportOwnerAlert({
         db, messageDocId, botToken: ADMIN_ALERT_BOT_TOKEN.value(), text: ownerAlertText, nowMs,
       });
+      logger.info('[SUPPORT-REVIEW] owner_alert_delivered', { messageDocId, attentionRequired: ownerAlertText !== SUPPORT_OWNER_ALERT_RETRY_TEXT });
     } catch (error) {
       if (error instanceof Error && error.message === 'support_owner_notification_failed') throw error;
       // Триаж не должен молча проглотить письмо: любая непредвиденная ошибка —
       // отправляем как есть, без черновика, лучше лишнее уведомление, чем тишина.
       logger.error('support_inbox_triage: unexpected failure, notifying plainly', { errorCode: supportAutoErrorCode(error) });
+      logger.error('[SUPPORT-REVIEW] catch', { messageDocId, errorCode: supportAutoErrorCode(error), message: error instanceof Error ? error.message.slice(0, 160) : String(error).slice(0, 160) });
       await deliverSupportOwnerAlert({
         db, messageDocId, botToken: ADMIN_ALERT_BOT_TOKEN.value(), text: SUPPORT_OWNER_ALERT_RETRY_TEXT, nowMs,
       });

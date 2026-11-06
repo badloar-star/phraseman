@@ -60,6 +60,13 @@
     }
   },
   "submit": {
+    "internal": {
+      "android": {
+        "serviceAccountKeyPath": "./service-account.json",
+        "track": "internal",
+        "releaseStatus": "draft"
+      }
+    },
     "production": {
       "android": {
         "serviceAccountKeyPath": "./service-account.json",

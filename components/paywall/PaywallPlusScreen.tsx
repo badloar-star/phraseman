@@ -40,6 +40,7 @@ import { COPY, pick } from './PaywallPlusCopy';
 import { paywallContextHeadline, paywallEntryFactsFromParams } from '../../app/paywall_context_headline';
 import { PaywallTierScope } from './paywall_tier_context';
 import { PAYWALL_V3_CTA } from '../../app/paywall_language_add_copy';
+import { SUBSCRIPTION_TIER_NAME } from '../../app/subscription_tier';
 import { PAYWALL_V3_AUTO_RENEW, PAYWALL_V3_CTA_TRIAL, paywallV3Rows } from '../../app/paywall_v3_rows';
 import { paywallV3Body } from '../../app/paywall_language_add_copy';
 import { onAppEvent } from '../../app/events';
@@ -259,6 +260,14 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   // зачем (макет: «Начать бесплатно» при пробном периоде, иначе «Подключить Plus»; решения владельца 05.11: цена — на плитках, пробный — показывать, если доступен): со скидкой стора кнопка остаётся с честным текстом цены
   const selectedTrial = p.selected === 'monthly' ? monthlyTrialDays : yearlyTrialDays;
   const selectedPromo = p.selected === 'monthly' ? monthlyPromo : yearlyPromo;
+  // зачем (150, координатор 06.11): цена выбранного плана — строкой в нижней панели над кнопкой («Ultra · Год — €39,99 в год»), из того же источника, что плитки (промо → цена магазина → справочная «≈»)
+  const planPriceShown = selectedPromo?.promoPriceString || (p.selected === 'monthly' ? (p.monthlyPrice ? `${p.monthlyPriceSource === 'reference' ? '≈ ' : ''}${p.monthlyPrice}` : '') : (p.yearlyPrice ? `${p.yearlyPriceSource === 'reference' ? '≈ ' : ''}${p.yearlyPrice}` : ''));
+  const planLine = labelReady && planPriceShown
+    ? `${p.selected === 'monthly' ? `${SUBSCRIPTION_TIER_NAME.plus} · ${pick(lang, COPY.month)}` : `${SUBSCRIPTION_TIER_NAME.ultra} · ${pick(lang, COPY.year)}`} — ${planPriceShown} ${pick(lang, p.selected === 'monthly' ? COPY.perMonth : COPY.perYear)}`
+    : '';
+  useEffect(() => {
+    console.log('[PAYWALL-FIT]', JSON.stringify({ priceInDock: planLine || null, plan: p.selected, ready: labelReady })); // guard-ok: цена выбранного плана в нижней панели
+  }, [planLine, p.selected, labelReady]);
   const cta = paywallPlusCtaCopy(lang, {
     selected: p.selected, yearlyPrice: p.yearlyPrice, monthlyPrice: p.monthlyPrice, yearlyTrialDays, monthlyTrialDays,
     yearlyPromo, monthlyPromo,
@@ -337,7 +346,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                 </Text>
               ) : null}
             </PaywallPlusScroll>
-            <PaywallPlusDockSwitch serverRefused={serverRefused} onLater={() => p.handleClose('close', 'x')} lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady && selectedPromo ? cta.label : selectedTrial ? (PAYWALL_V3_CTA_TRIAL[lang] ?? PAYWALL_V3_CTA_TRIAL.en) : (PAYWALL_V3_CTA[lang] ?? PAYWALL_V3_CTA.en)} fine={selectedTrial || selectedPromo ? cta.fine : (PAYWALL_V3_AUTO_RENEW[lang] ?? PAYWALL_V3_AUTO_RENEW.en)}
+            <PaywallPlusDockSwitch planLine={planLine} serverRefused={serverRefused} onLater={() => p.handleClose('close', 'x')} lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady && selectedPromo ? cta.label : selectedTrial ? (PAYWALL_V3_CTA_TRIAL[lang] ?? PAYWALL_V3_CTA_TRIAL.en) : (PAYWALL_V3_CTA[lang] ?? PAYWALL_V3_CTA.en)} fine={selectedTrial || selectedPromo ? cta.fine : (PAYWALL_V3_AUTO_RENEW[lang] ?? PAYWALL_V3_AUTO_RENEW.en)}
               notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}
               onPress={() => { void p.handlePurchase(); }}
               // зачем (R1_PAYWALL_UX, координатор 12.10): «Восстановить» не зависит от цен — раньше она молча не нажималась всё время загрузки цен (до потолка 12 с),

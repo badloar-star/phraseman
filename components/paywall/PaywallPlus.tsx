@@ -208,8 +208,10 @@ export function paywallPlusCtaCopy(lang: Lang, args: {
   };
 }
 
-export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, label, fine, notice, purchasing, disabled, bottomInset, onPress, restoring, restoreVisible, restoreDisabled, onRestore, promoVisible, promoDisabled, onPromo }: {
+export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, label, fine, planLine, notice, purchasing, disabled, bottomInset, onPress, restoring, restoreVisible, restoreDisabled, onRestore, promoVisible, promoDisabled, onPromo }: {
   lang: Lang; g: GlassTokens; state: PaywallPlusState; label: string; fine: string; notice: boolean;
+  /** Строка выбранного плана с ценой и периодом над кнопкой («Ultra · Год — €39,99 в год»): цена рядом с кнопкой на экране без прокрутки (требование сторов). */
+  planLine?: string;
   purchasing: boolean; disabled: boolean; bottomInset: number; onPress: () => void;
   restoring: boolean; restoreVisible: boolean; restoreDisabled: boolean; onRestore: () => void;
   promoVisible: boolean; promoDisabled: boolean; onPromo: () => void;
@@ -225,6 +227,8 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
   return (
     <View style={[S.dock, { paddingBottom: Math.max(bottomInset, 16) }]} onLayout={logPaywallLayout('dock', S.dock)}>
       {/* макет «Все окна Plus»: строка про автопродление — над кнопкой */}
+      {/* зачем (150, координатор 06.11: список теперь с offset 0 — плитки могут быть ниже края окна; цена обязана быть рядом с кнопкой): план + цена + период из того же источника, что плитки */}
+      {planLine ? <Text testID="paywall-plan-line" style={[S.planLine, { color: g.text }]}>{planLine}</Text> : null}
       <Text testID="paywall-fine" onLayout={logPaywallLayout('dock_fine', S.fine)} style={[S.fine, { color: g.text }]}>{fineText}</Text>
       {/* Вариант C: плоская кнопка активной темы, без декоративного свечения/3D. */}
       <V2Pressable
@@ -364,5 +368,6 @@ const S = StyleSheet.create({
   dock: { paddingTop: 14, paddingHorizontal: 24 },
   cta: { minHeight: 54, borderRadius: 28, paddingHorizontal: 20, paddingVertical: 12, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   ctaText: { fontSize: 15, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
+  planLine: { marginBottom: 6, fontSize: 15, lineHeight: 21, fontWeight: '700', textAlign: 'left', fontVariant: ['tabular-nums'] },
   fine: { marginBottom: 10, fontSize: 13, lineHeight: 18, textAlign: 'left', fontVariant: ['tabular-nums'] },
 });

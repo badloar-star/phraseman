@@ -734,7 +734,9 @@ export default function ReferralsScreen() {
             ? sunsetCopy.drainTitle
             : L('Награда за друга', 'Нагорода за друга', 'Reward for a friend', 'Recompensa por amigo', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego')}
           onClose={() => safeRouterBack(router, closeFallback as any)}
-          accessory={referralUiVisible ? (
+          // зачем (слово владельца 06.11, TestFlight 150): при лесенке значок «?» открывал тот же лист, что кнопка «Как это работает» в карточке — дубль; кнопка остаётся, значок убран.
+          // Без лесенки (режим рулетки) значок — единственный вход в «как это работает», там он сохраняется.
+          accessory={referralUiVisible && !ladderShown ? (
             <TapScale
               testID="referrals-roulette-about"
               accessibilityRole="button"

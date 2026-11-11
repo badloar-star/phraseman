@@ -84,6 +84,7 @@ import {
 import { DebugLogger, swallowError } from './debug-logger';
 import { releaseReason } from './release_reason'; // зачем (координатор 13.10): DebugLogger.warn в релизе молчит — код причины уходит в журнал обращения
 import { withPurchaseFlow } from './purchase_flow_activity';
+import { confirmRestoreOwnerOnServer, restoreOwnerNotConfirmedToast } from './restore_owner_confirmation';
 import { LOAD_GATE_ATTEMPTS, LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import {
   hydratePaywallPriceCache,
@@ -1705,6 +1706,24 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       const info = restoreResult.value;
       const activeSubscriptions = info.activeSubscriptions ?? [];
       if (revenueCatCustomerInfoHasPremiumAccess(info)) {
+        // зачем (U23, владелец 09.11 «подписка только на исходном аккаунте»): после «Восстановить покупки» RevenueCat может отдать
+        // чужую подписку любому аккаунту на этом телефоне. Доступ записываем только если сервер подтвердил владельца. «Проверить статус»
+        // (mode=check) сюда не входит: он не восстанавливает покупки магазина, а читает состояние своей же свежей оплаты.
+        if (mode === 'restore') {
+          const ownerCheck = await confirmRestoreOwnerOnServer(operationAccount.stableId, `paywall:${source}`);
+          if (!isOperationAccountCurrent()) {
+            releaseReason('restore_purchase', 'stale_account', 'blocked');
+            DebugLogger.warn('[PAYWALL]', `restore: аккаунт сменился за время проверки владельца (${ownerCheck.ms} мс, вердикт=${ownerCheck.verdict}) — результат отброшен`);
+            emitAppEvent('action_toast', restoreAccountChangedToast());
+            return;
+          }
+          if (ownerCheck.verdict !== 'confirmed') {
+            releaseReason('restore_purchase', ownerCheck.verdict === 'not_confirmed' ? 'owner_not_confirmed' : 'owner_check_failed', 'blocked');
+            DebugLogger.warn('[PAYWALL]', `restore: магазин вернул активную подписку, но сервер не подтвердил владельца (вердикт=${ownerCheck.verdict}, ${ownerCheck.ms} мс) — доступ НЕ записан, тост «Plus только на исходном аккаунте»`);
+            emitAppEvent('action_toast', restoreOwnerNotConfirmedToast());
+            return;
+          }
+        }
         const metadata = revenueCatPremiumMetadata(info);
         // Дефолт-эвристика на случай пустого productId: lifetime (non-consumable) живёт
         // в entitlements.active с productIdentifier, поэтому обычно productId заполнен и

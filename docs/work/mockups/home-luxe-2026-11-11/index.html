@@ -639,7 +639,10 @@ async function drawTile(cv, ap, tint) {
   if (cv.dataset.key !== key) return; // поздний ответ не затирает свежий цвет
   cv.width = 192; cv.height = 192; const c = cv.getContext('2d'); if (base) c.drawImage(base, 0, 0, 192, 192);
   if (!acc) return;
-  const tmp = document.createElement('canvas'); tmp.width = 192; tmp.height = 192; const tg = tmp.getContext('2d'); tg.drawImage(acc, 0, 0, 192, 192); tg.globalCompositeOperation = 'source-in'; tg.fillStyle = tint; tg.fillRect(0, 0, 192, 192); c.drawImage(tmp, 0, 0);
+  const tmp = document.createElement('canvas'); tmp.width = 192; tmp.height = 192; const tg = tmp.getContext('2d'); tg.drawImage(acc, 0, 0, 192, 192);
+  // зачем (владелец, круг 10: «сделай так, чтобы Пик-корона не красилась под цвет темы»): у короны Пика слой .accent кладётся как нарисован, без перекраски в цвет темы
+  if (name !== 'spire_tile') { tg.globalCompositeOperation = 'source-in'; tg.fillStyle = tint; tg.fillRect(0, 0, 192, 192); }
+  c.drawImage(tmp, 0, 0);
 }
 
 /* ───────── отрисовка ───────── */

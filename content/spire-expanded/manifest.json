@@ -7,7 +7,7 @@
   "langs": {
     "en": {
       "tasks": 350,
-      "sha256": "aabf6d8f50a3ba2be53775fba6cf9f68b04ee476cadb7b48977b46446c51ac83",
+      "sha256": "c3971c7b55238aabd2975ed33550d63d98a046c2e5a288db140425a0db2b3dd0",
       "formats": {
         "classify_function": 28,
         "context_choice": 35,
@@ -25,7 +25,7 @@
     },
     "es": {
       "tasks": 300,
-      "sha256": "0d4dab29254d76ecfde40b84184d8db0f89fcc4801c74eca56a2383867c46135",
+      "sha256": "9f48d2f1b3b7b780e791e55de3adb8fbb6c27a26c201c6778e752459569b74f3",
       "formats": {
         "classify_function": 24,
         "context_choice": 30,
@@ -43,7 +43,7 @@
     },
     "de": {
       "tasks": 300,
-      "sha256": "354a99fae7d31c226a5991444c3f7c0dba56ada42b26348b498db15a22d07a94",
+      "sha256": "b8d2ea0cc1ed05eaf54eaffc5af70688fd2a3de56e1e037f42d920c68eeb4350",
       "formats": {
         "classify_function": 24,
         "context_choice": 30,
@@ -61,7 +61,7 @@
     },
     "fr": {
       "tasks": 300,
-      "sha256": "7e6d8da5c6965a7a0ca16020b346eb63fb365f4dc0f1cfdcbcead6b4c7c47e62",
+      "sha256": "3e0e3727f7bb2721b8008733c3071f23db31ced201b6d970f7dfc9b6193d4c95",
       "formats": {
         "classify_function": 24,
         "context_choice": 30,
@@ -79,7 +79,7 @@
     },
     "it": {
       "tasks": 300,
-      "sha256": "0ab52aa0c198b8eb6e6f5987b89046dba192a926883b311c312a02e32f92f7ec",
+      "sha256": "1d35afc1145d917f66ae5f8ff7396b9dc5594b7f25e3e9ace441a41455c1d8ae",
       "formats": {
         "classify_function": 24,
         "context_choice": 30,
@@ -346,5 +346,10 @@
       "accepted": 50
     }
   ],
-  "rejected": []
+  "rejected": [],
+  "independentReview": {
+    "date": "2026-11-11",
+    "report": "docs/work/tasks/peak-pool-independent-review-2026-11-11.md",
+    "note": "tasks.jsonl правились после импорта; sources[].sha256 описывают файлы автора ДО вычитки. Не запускать import_peak_expanded_pool.mjs поверх без переноса правок."
+  }
 }

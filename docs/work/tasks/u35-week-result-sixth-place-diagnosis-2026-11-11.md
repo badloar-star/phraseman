@@ -122,3 +122,17 @@ Technical debt: Contain — коммит только своих кусков с
 Verification: `npm --prefix functions test -- --runInBand` по 8 файлам (журнал, правило, кошелёк, ранжирование, монеты уроков, закрытие недели) через светофор; сухой прогон `bash scripts/deploy_from_clean_head.sh --only "functions:default:levelSpinStarGrant,…"`.
 
 Rollback: вернуть условие `cls === 'earn'` для недельного счётчика и три ожидания тестов; выложить те же функции заново. Уже накопленные недельные суммы не пересчитываются.
+
+## Дополнение 5 — выкладка отложена (11.11, слово владельца в этой сессии: «может вместе всё выложим, когда все сессии доделают свою работу?»)
+
+Governance-ID: TG-8EC25CCE1D50
+Status: код в истории (c04d5c451, 36d75737f), на бой НЕ выложено. Выкладка — общим пакетом, когда сессии закончат.
+
+Что уйдёт в прод вместе с U35 при выкладке `levelSpinStarGrant`, `referralSpin`, `communitySyncPackRuneSale`, `communityMonthClaimReward` (по `git log` с 05.11 для их модулей):
+- U35 — недельный счёт Пика растят все монеты за действия (`stars_week_policy.ts`, `stars_ledger.ts`);
+- U33/U34 (a0b010fc6) — ответы кошелька и уроков несут недельный снимок `starsWeek`;
+- d8a0a685a — удаление Learning V2: из кошелька убраны источники `chapterexam_` и `lessontogether_` (старые сборки, которые их шлют, получат отказ), из журнала — причины `learning_v2_*`.
+Не найдено: имя функции, начисляющей бонус «лесенки» приглашений (`referral_ladder_server.ts` — без собственного экспорта).
+
+Сухой прогон 11.11 (`scripts/deploy_from_clean_head.sh`, без `--execute`), HEAD 09dd6a6e9: сверка «бой vs HEAD» — OK; сборка functions и паритет рантайма — OK; `firebase --dry-run` — отказ сервиса Google «Cloud Runtime Config is currently experiencing issues» (не код). Повтор остановлен по решению владельца.
+Не проверено: повторный прогон тестов после правки `level_spin_star_grant.test.ts:171`; тесты на состоянии HEAD после d8a0a685a.

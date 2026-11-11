@@ -997,6 +997,13 @@ function ReleasedTabLayout() {
   const mountedTabsRef = useRef(mountedTabs);
   mountedTabsRef.current = mountedTabs;
   const scheduledMountsRef = useRef<Map<number, CancelableTask>>(new Map());
+  const settingsModulePrewarmRef = useRef<CancelableTask | null>(null);
+  // This is event-owned rather than render-owned: a frozen tab layout can retain a
+  // stale render after native-stack blur, while useFocusEffect cleanup still runs.
+  const backgroundPremountActiveRef = useRef(false);
+  // зачем (F19): причина ('tabs_blur' / 'app_background' / 'tabs_focus' / 'app_active') уходит в журнал [TABS-PREMOUNT] — по одной строке видно, кто остановил очередь и кто её вернул.
+  const backgroundPremountCancelRef = useRef<(reason?: string) => void>(() => {});
+  const backgroundPremountResumeRef = useRef<(reason?: string) => void>(() => {});
   const foregroundMountsRef = useRef<Set<number>>(new Set());
   // зачем (координатор 18.10, трасса 8ab4178b8): премаунт соседей шёл ПОСЛЕ тапа и отнимал JS-поток у выбранной вкладки (лаг до 1,17 с, шапка Настроек на +2,0 с).
   // До этой отметки (монтаж выбранной вкладки + её первые кадры + запас) фоновые шаги не начинаются.
@@ -1091,14 +1098,15 @@ function ReleasedTabLayout() {
   const lastTouchAtRef = useRef(0);
 
   const scheduleMount = useCallback((idx: number) => {
-    if (idx < 0 || mountedTabsRef.current.has(idx) || scheduledMountsRef.current.has(idx)) return;
+    if (idx < 0 || !backgroundPremountActiveRef.current || AppState.currentState !== 'active' || mountedTabsRef.current.has(idx) || scheduledMountsRef.current.has(idx)) return;
 
     const enqueuedAt = Date.now();
     let cancelled = false;
     let inner: CancelableTask | null = null;
     let finishStep: (() => void) | null = null;
     // запись нужна сразу: по ней mountNow отменяет шаг (тап), а повторный scheduleMount видит «уже в очереди»
-    scheduledMountsRef.current.set(idx, { cancel: () => { cancelled = true; inner?.cancel?.(); finishStep?.(); } });
+    const scheduledTask: CancelableTask = { cancel: () => { cancelled = true; inner?.cancel?.(); finishStep?.(); } };
+    scheduledMountsRef.current.set(idx, scheduledTask);
 
     premountChainRef.current = premountChainRef.current.then(() => new Promise<void>((resolve) => {
       const startedAt = Date.now();
@@ -1107,6 +1115,7 @@ function ReleasedTabLayout() {
       const finish = (outcome: string, extra?: Record<string, number | string>) => {
         if (done) return;
         done = true;
+        if (scheduledMountsRef.current.get(idx) === scheduledTask) scheduledMountsRef.current.delete(idx);
         if (guard) clearTimeout(guard);
         console.log('[TABS-PREMOUNT] step', JSON.stringify({ idx, outcome, queuedMs: startedAt - enqueuedAt, totalMs: Date.now() - startedAt, ...extra })); // guard-ok: замер шага премаунта (СПЕРВА ЛОГИ), 4 строки за запуск
         resolve();
@@ -1114,9 +1123,9 @@ function ReleasedTabLayout() {
       finishStep = () => finish('cancelled');
       // охранный таймер: цепочка не должна зависнуть, если кадр не придёт (фон, заморозка)
       guard = setTimeout(() => finish('guard_timeout'), BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS);
-      if (cancelled || mountedTabsRef.current.has(idx)) {
-        scheduledMountsRef.current.delete(idx);
-        finish(cancelled ? 'cancelled' : 'already_mounted');
+      if (cancelled || !backgroundPremountActiveRef.current || AppState.currentState !== 'active' || mountedTabsRef.current.has(idx)) {
+        if (scheduledMountsRef.current.get(idx) === scheduledTask) scheduledMountsRef.current.delete(idx);
+        finish(cancelled ? 'cancelled' : 'inactive_or_mounted');
         return;
       }
       const quietStartedAt = Date.now();
@@ -1128,14 +1137,20 @@ function ReleasedTabLayout() {
         if (done) return;
         const workStartedAt = Date.now();
         inner = scheduleIdleTask(() => {
+        // зачем (F19): шаг уже закрыт (отмена уходом в урок или охранный таймер) — опоздавший idle-вызов не должен монтировать вкладку за спиной новой очереди
+        if (cancelled || done) return;
+        if (!backgroundPremountActiveRef.current || AppState.currentState !== 'active') { finish('inactive', quiet); return; }
         // шаг уже ждал idle, а человек тем временем открыл вкладку — уступаем ей и возвращаемся к ожиданию тишины
         if (Date.now() < foregroundBusyUntilRef.current) {
           console.log('[TABS-PREMOUNT] deferred', JSON.stringify({ idx, reason: 'foreground_tab_mounting', stage: 'idle_ready', foregroundMounts: [...foregroundMountsRef.current], busyLeftMs: Math.max(0, foregroundBusyUntilRef.current - Date.now()) })); // guard-ok: ранний выход шага премаунта
           setTimeout(pollQuiet, BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS);
           return;
         }
-        scheduledMountsRef.current.delete(idx);
-        if (AppState.currentState !== 'active') { finish('app_inactive', quiet); return; }
+        const sinceTouchMs = lastTouchAtRef.current === 0 ? BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS : Date.now() - lastTouchAtRef.current;
+        if (Date.now() < foregroundBusyUntilRef.current || sinceTouchMs < BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS) {
+          setTimeout(pollQuiet, BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS);
+          return;
+        }
         const idleWaitMs = Date.now() - workStartedAt;
         // зачем: та же мина, что была в mountNow — прогрев стоял УСЛОВИЕМ премаунта.
         // Аудит показал: это главный путь при старте (BACKGROUND_TAB_PREMOUNT_ORDER),
@@ -1143,11 +1158,16 @@ function ReleasedTabLayout() {
         // пополняется, а запись о задаче уже стёрта строкой выше: повторной попытки
         // не будет никогда, вкладка навсегда остаётся пустым плейсхолдером.
         // Прогрев — оптимизация, а не разрешение показать экран.
-        const prewarmAt = Date.now();
-        if (idx !== 0) prewarmDeferredTabScreen(idx);
-        const prewarmMs = Date.now() - prewarmAt;
         requestAnimationFrame(() => {
-          if (AppState.currentState !== 'active') { finish('app_inactive', { ...quiet, idleWaitMs, prewarmMs }); return; }
+          if (cancelled || done) return;
+          if (!backgroundPremountActiveRef.current || AppState.currentState !== 'active') { finish('inactive', { ...quiet, idleWaitMs }); return; }
+          if (Date.now() < foregroundBusyUntilRef.current) {
+            setTimeout(pollQuiet, BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS);
+            return;
+          }
+          const prewarmAt = Date.now();
+          if (idx !== 0) prewarmDeferredTabScreen(idx);
+          const prewarmMs = Date.now() - prewarmAt;
           const commitAt = Date.now();
           setVisitedTabs((prev) => addVisitedTab(prev, idx));
           setMountedTabs((prev) => addVisitedTab(prev, idx));
@@ -1162,9 +1182,9 @@ function ReleasedTabLayout() {
       // «тихое окно»: опрос каждые 200 мс — касание ≥ 1,2 с назад И лаг таймера ≤ 80 мс; иначе ждём до потолка 8 с
       const pollQuiet = () => {
         if (done) return;
-        if (cancelled || mountedTabsRef.current.has(idx)) {
-          scheduledMountsRef.current.delete(idx);
-          finish(cancelled ? 'cancelled' : 'already_mounted', { quietWaitMs: Date.now() - quietStartedAt });
+        if (cancelled || !backgroundPremountActiveRef.current || AppState.currentState !== 'active' || mountedTabsRef.current.has(idx)) {
+          if (scheduledMountsRef.current.get(idx) === scheduledTask) scheduledMountsRef.current.delete(idx);
+          finish(cancelled ? 'cancelled' : 'inactive_or_mounted', { quietWaitMs: Date.now() - quietStartedAt });
           return;
         }
         const now = Date.now();
@@ -1200,11 +1220,21 @@ function ReleasedTabLayout() {
     }));
   }, []);
 
-  useEffect(() => () => {
+  backgroundPremountCancelRef.current = (reason = 'unknown') => {
+    // зачем (F19, СПЕРВА ЛОГИ): строка только когда реально было что отменять — иначе каждый уход с вкладок шумел бы в журнале
+    const pending = { steps: [...scheduledMountsRef.current.keys()], timers: backgroundPremountTimersRef.current.length, settingsPrewarm: settingsModulePrewarmRef.current !== null };
+    if (pending.steps.length > 0 || pending.timers > 0 || pending.settingsPrewarm) console.log('[TABS-PREMOUNT] pause', JSON.stringify({ reason, ...pending, mounted: [...mountedTabsRef.current] })); // guard-ok: отмена очереди премаунта логирует причину
     scheduledMountsRef.current.forEach((task) => task.cancel?.());
     scheduledMountsRef.current.clear();
     backgroundPremountTimersRef.current.forEach((timer) => clearTimeout(timer));
     backgroundPremountTimersRef.current = [];
+    settingsModulePrewarmRef.current?.cancel?.();
+    settingsModulePrewarmRef.current = null;
+    backgroundPremountStartedRef.current = false;
+  };
+
+  useEffect(() => () => {
+    backgroundPremountCancelRef.current('tabs_unmount');
   }, []);
 
   // До paint: pathname + segments, чтобы индекс не отставал и TabSlider не кадрил старый слайд.
@@ -1285,16 +1315,30 @@ function ReleasedTabLayout() {
   }, [mountNow, pageLayout, pathname, segments, studyTarget]);
 
   useFocusEffect(useCallback(() => {
+    backgroundPremountActiveRef.current = true;
+    backgroundPremountResumeRef.current('tabs_focus');
     // зачем (координатор 14.10, [PAYWALL-CLOSE-FREEZE]): вернулся ли фокус группе вкладок после закрытия пейвола (только dev).
     if (__DEV__) console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} tabs focus`); // guard-ok: временная трассировка
     noteBackStep('tabs_focus_tick'); // зачем ([BACK-BTN] 18.10): фокус вернулся группе вкладок — сейчас вырастет focusTick и перерисуется Главная
     setFocusTick(tick => tick + 1);
-    return () => { if (__DEV__) console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} tabs blur`); }; // guard-ok: временная трассировка
+    return () => {
+      backgroundPremountActiveRef.current = false;
+      backgroundPremountCancelRef.current('tabs_blur');
+      if (__DEV__) console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} tabs blur`);
+    }; // guard-ok: временная трассировка
   }, []));
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (state) => {
+      if (state === 'active') backgroundPremountResumeRef.current('app_active');
+      else backgroundPremountCancelRef.current(`app_${state}`);
+    });
+    return () => subscription.remove();
+  }, []);
 
   const scheduleBackgroundPremount = useCallback(() => {
     if (!ENABLE_BACKGROUND_TAB_PREMOUNT || backgroundPremountStartedRef.current) return;
-    if (AppState.currentState !== 'active') return;
+    if (!backgroundPremountActiveRef.current || AppState.currentState !== 'active') return;
     backgroundPremountStartedRef.current = true;
 
     BACKGROUND_TAB_PREMOUNT_ORDER.forEach((idx, order) => {
@@ -1313,6 +1357,7 @@ function ReleasedTabLayout() {
 
   useEffect(() => {
     if (!ENABLE_BACKGROUND_TAB_PREMOUNT) return;
+    backgroundPremountResumeRef.current = () => {};
     let fallbackTimer: ReturnType<typeof setTimeout> | null = null;
     let afterPaintTimer: ReturnType<typeof setTimeout> | null = null;
     let cancelled = false;
@@ -1333,20 +1378,48 @@ function ReleasedTabLayout() {
       void whenOnboardingSettled('tabs_premount').then((outcome) => {
         console.log('[LESSONS-REBUILD] premount_release', JSON.stringify({ reason, outcome, heldMs: Date.now() - requestedAt, cancelled })); // guard-ok: итог ожидания онбординга
         if (cancelled) return;
-        // зачем (координатор 18.10, путь до «Настроек» ~2,3 с: ~0,7 с синхронной загрузки модуля в момент тапа): модуль «Настроек» грузим
-        // заранее, в простое после первого кадра Главной — только require, без монтажа экрана (монтаж остаётся за премаунтом/тапом).
+        // зачем (F19): уход в урок отменял прогрев модуля «Настроек» вместе с очередью, а возврат поднимал только очередь вкладок —
+        // прогрев пропадал до первого тапа (~0,7 с синхронной загрузки на тапе). Теперь он взводится и при старте, и при каждом возврате, пока модуль не загружен.
+        // зачем (координатор 18.10, путь до «Настроек» ~2,3 с): только require в простое после первого кадра Главной, без монтажа экрана (монтаж остаётся за тапом).
         // В релизе (Hermes-байткод) загрузка заметно дешевле, чем в dev-бандле, — журнал покажет цену на устройстве.
-        if (!mountedTabsRef.current.has(4)) {
-          scheduleIdleTask(() => {
+        const armSettingsModulePrewarm = (why: string) => {
+          const skip = cancelled ? 'effect_cancelled'
+            : mountedTabsRef.current.has(4) ? 'already_mounted'
+            : deferredSettingsScreen !== null ? 'module_loaded'
+            : settingsModulePrewarmRef.current !== null ? 'already_armed'
+            : !backgroundPremountActiveRef.current ? 'tabs_blurred'
+            : AppState.currentState !== 'active' ? `app_${AppState.currentState}`
+            : null;
+          if (skip !== null) {
+            // «уже загружено» — штатный тихий случай на каждом возврате, в журнал не пишем
+            if (skip !== 'module_loaded' && skip !== 'already_mounted') console.log('[TABS-PREWARM] settings module arm_skip', JSON.stringify({ why, skip })); // guard-ok: ранний выход логирует причину
+            return;
+          }
+          settingsModulePrewarmRef.current = scheduleIdleTask(() => {
+            settingsModulePrewarmRef.current = null;
             if (cancelled || mountedTabsRef.current.has(4)) {
               console.log('[TABS-PREWARM] settings module skip', JSON.stringify({ reason: cancelled ? 'cancelled' : 'already_mounted' })); // guard-ok: ранний выход логирует причину
+              return;
+            }
+            const sinceTouchMs = lastTouchAtRef.current === 0 ? BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS : Date.now() - lastTouchAtRef.current;
+            if (!backgroundPremountActiveRef.current || AppState.currentState !== 'active' || Date.now() < foregroundBusyUntilRef.current || sinceTouchMs < BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS) {
+              // зачем (F19): раньше этот выход был немой — прогрев терялся без следа; повтор — при следующем возврате на вкладки
+              console.log('[TABS-PREWARM] settings module skip', JSON.stringify({ reason: 'not_quiet', tabsActive: backgroundPremountActiveRef.current, appState: AppState.currentState, busyLeftMs: foregroundBusyUntilRef.current - Date.now(), sinceTouchMs })); // guard-ok: ранний выход логирует причину
               return;
             }
             const at = Date.now();
             const ok = prewarmDeferredTabScreen(4);
             console.log('[TABS-PREWARM] settings module', JSON.stringify({ ok, ms: Date.now() - at, sinceRequestMs: at - requestedAt })); // guard-ok: одна строка на старт
           }, SETTINGS_MODULE_PREWARM_IDLE_TIMEOUT_MS);
-        }
+        };
+        backgroundPremountResumeRef.current = (why = 'unknown') => {
+          // строка только пока есть несделанная работа: после загрузки «Уроков» и модуля «Настроек» возврат на вкладки молчит
+          const tabsPending = BACKGROUND_TAB_PREMOUNT_ORDER.some((idx) => !mountedTabsRef.current.has(idx));
+          if (tabsPending || deferredSettingsScreen === null) console.log('[TABS-PREMOUNT] resume', JSON.stringify({ reason: why, tabsActive: backgroundPremountActiveRef.current, appState: AppState.currentState, startedAlready: backgroundPremountStartedRef.current, mounted: [...mountedTabsRef.current], settingsLoaded: deferredSettingsScreen !== null })); // guard-ok: возврат очереди премаунта
+          armSettingsModulePrewarm(why);
+          scheduleBackgroundPremount();
+        };
+        armSettingsModulePrewarm(reason);
         scheduleBackgroundPremount();
       });
     };
@@ -1362,6 +1435,9 @@ function ReleasedTabLayout() {
       });
       return () => {
         cancelled = true;
+        backgroundPremountResumeRef.current = () => {};
+        settingsModulePrewarmRef.current?.cancel?.();
+        settingsModulePrewarmRef.current = null;
         if (afterPaintTimer) clearTimeout(afterPaintTimer);
       };
     }
@@ -1370,6 +1446,9 @@ function ReleasedTabLayout() {
     fallbackTimer = setTimeout(() => startPremount('fallback_timer_non_home_start'), BACKGROUND_TAB_PREMOUNT_FALLBACK_MS);
     return () => {
       cancelled = true;
+      backgroundPremountResumeRef.current = () => {};
+      settingsModulePrewarmRef.current?.cancel?.();
+      settingsModulePrewarmRef.current = null;
       if (fallbackTimer) clearTimeout(fallbackTimer);
       if (afterPaintTimer) clearTimeout(afterPaintTimer);
       sub.remove();

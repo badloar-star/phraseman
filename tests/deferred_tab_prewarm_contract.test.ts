@@ -35,7 +35,10 @@ describe('background tab pre-mount contract', () => {
     expect(source).toContain("guard = setTimeout(() => finish('guard_timeout'), BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS)");
     expect(source).toContain("console.log('[TABS-PREMOUNT] step'");
     // отмена тапом (mountNow) и дедупликация сохранены: запись о шаге ставится сразу
-    expect(source).toContain('scheduledMountsRef.current.set(idx, { cancel: () => { cancelled = true; inner?.cancel?.(); finishStep?.(); } });');
+    // F19: запись хранится по ссылке (scheduledTask) — отменённый уходом в урок старый шаг, дойдя до своей очереди, не стирает запись нового шага той же вкладки
+    expect(source).toContain('const scheduledTask: CancelableTask = { cancel: () => { cancelled = true; inner?.cancel?.(); finishStep?.(); } };');
+    expect(source).toContain('scheduledMountsRef.current.set(idx, scheduledTask);');
+    expect(source).toContain('if (scheduledMountsRef.current.get(idx) === scheduledTask) scheduledMountsRef.current.delete(idx);');
   });
 
   // зачем (координатор 13.10, замер Сверки f0d559796): коммиты премаунта идут блоками ≥1 с в окне +5…+12 с; шаг ждёт «тихое окно» (нет касаний, нет лага цикла событий), потолок 8 с — премаунт всё равно случится.

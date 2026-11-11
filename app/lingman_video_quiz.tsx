@@ -12,6 +12,7 @@
  * (app/section_language.ts), отдельной регистрации не нужно.
  *
  * Видов вопроса два: «как это сказать» и «что это значит». Вопроса «на слух» нет — владелец 11.11: «что сказал профессор — не надо».
+ */
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';

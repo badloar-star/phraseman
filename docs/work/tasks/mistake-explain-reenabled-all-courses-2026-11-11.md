@@ -1,0 +1,48 @@
+# Task packet: ИИ-разбор ошибок снова включён, все пять курсов, быстрый первый ответ, политика
+
+Governance-ID: TG-2054E0E8F6B7
+Status: In progress
+Owner: сессия «ИИ-объяснение ошибок» (11.11)
+Related epic/enabler: слово владельца 11.11 — «Да, включить»; «проследи чтобы оно работало для всех языковых курсов»; «разбор промаха готовится очень долго»; «Да, поправить» политику.
+
+## Outcome
+
+Ученик любого из пяти курсов (EN/ES/FR/DE/IT) нажимает «Разобрать мой ответ» и получает разбор на языке интерфейса про фразу своего курса. Первый разбор после паузы не ждёт 20+ секунд. Политика конфиденциальности не утверждает, что функции нет.
+
+Мера успеха: в журнале телефона `[AI-EXPLAIN] call:server_answered totalMs` — единицы секунд при прогретом сервере; в журнале сервера `[EXPLAIN-MISTAKE] request` присланный и понятый язык курса совпадают.
+
+## Scope
+
+In scope:
+- `app/mistake_explain_flag.ts` — флаг true (сделано, fe64eb897).
+- `functions/src/ai_language_contract.ts`, `functions/src/mistake_explain.ts`, `functions/src/mistake_hub_advice.ts` — пять языков курса (сделано, fe64eb897, fab74b64b; выложено 11.11).
+- `app/use_mistake_explain.ts`, `app/ai_mistake_explain_client.ts`, `app/ai_callable_resilience.ts` — ранний прогрев и ожидание идущего прогрева перед запросом; журналы длительности.
+- `app/legal/privacy_policy_en*.json`, `legal/privacy_policy_en*.json`, сторож `tests/legal_document_liquid_glass_source_contract.test.mjs` — §11 без оговорки «до 2.0.0», дата.
+
+Out of scope: `minInstances` функции (решение владельца — 0, сторож `ai_functions_warm_instance_contract`); ускорение серверной цепочки до вызова ИИ; `app/lesson1.tsx`; разбор «по полям» (другая сессия); выкладка политики на сайт.
+
+## Architecture
+
+Без смены границ. Факты журнала сервера (вызов 16:17 UTC, 22,9 с): прогрев и запрос пришли с разницей 1,6 с и разбудили два инстанса; холодный старт ≈ 11 с, чтения до ИИ на холодном инстансе ≈ 6,7 с, генерация 3,4 с.
+
+Правка: (1) прогрев уходит при показе фразы, а не в момент ошибки — только при включённом флаге, сети и данном согласии, не чаще раза в 9 минут (TTL в `warmAiFunction`); (2) настоящий запрос сперва дожидается идущего прогрева (`pendingAiWarm`), чтобы попасть на проснувшийся инстанс. Инвариант: прогрев бесплатен на сервере (выход до Firestore и ИИ) и никогда не бросает.
+
+## Security and privacy
+
+Прогрев не несёт данных ученика (`warmupPing: true`). Новых данных не собирается. Включение функции возвращает передачу ответа ученика провайдеру ИИ — политика §11 приводится в соответствие. Согласие на ИИ-разбор по-прежнему спрашивается до первого вызова.
+
+## Technical debt
+
+- Contain: холодный старт остаётся для тех, кто ещё не давал согласия, и после 15 минут простоя; виден в журнале `[AI-WARM]`. Выход — решение владельца о тёплом инстансе.
+- Accept temporarily: ≈ 6 с серверных чтений до ИИ на холодном инстансе; владелец — сессия ядра функций, пересмотр после замеров `totalMs` на прогретом сервере.
+
+## Verification
+
+- `npm run test:one -- tests/mistake_explain_disabled_contract.test.ts tests/use_mistake_explain_bundle_state.test.ts`
+- `cd functions && npx jest src/ai_language_contract.test.ts src/mistake_explain.test.ts`
+- сторож политики: `node --test tests/legal_document_liquid_glass_source_contract.test.mjs`
+- вручную: ошибка в уроке → «Разобрать мой ответ»; журнал телефона `[AI-WARM]`, `[AI-EXPLAIN] call:*`.
+
+## Rollback
+
+Флаг `MISTAKE_EXPLAIN_ENABLED = false` гасит карточку, согласие, прогрев и вызовы. Клиентские правки прогрева откатываются `git revert` без потери данных. Политика — `git revert` коммита с текстом.

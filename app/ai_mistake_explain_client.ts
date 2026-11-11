@@ -3,7 +3,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { EXPLAIN_CALLABLE_TIMEOUT_MS, withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
-import { warmAiFunction, withAiCallableRetry, aiAttemptTimeoutMs } from './ai_callable_resilience';
+import { pendingAiWarm, warmAiFunction, withAiCallableRetry, aiAttemptTimeoutMs } from './ai_callable_resilience';
 import { getNetStatus } from './net_status';
 import {
   coerceMistakeBreakdown,
@@ -172,6 +172,15 @@ export async function callExplainMistake(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'explainMistake',
     );
+    // зачем (владелец 11.11: «разбор готовится очень долго»): если сервер ещё просыпается от прогрева, ждём его,
+    // а не шлём запрос параллельно — иначе Cloud Run будит второй инстанс, и ждать приходится дольше.
+    const startedAtMs = Date.now();
+    const warming = pendingAiWarm('explainMistake');
+    if (warming) {
+      await warming;
+      console.log(`[AI-EXPLAIN] call:waited_for_warm ms=${Date.now() - startedAtMs}`); // guard-ok: видно, сколько ждали прогрев
+    }
+    const callStartedAtMs = Date.now();
     // зачем: холодный старт (minInstances: 0) изредка отбивается Cloud Run как
     // «no available instance». Повтор идемпотентен: неудавшийся разбор ничего
     // не списал (серверный кап считается уже после входа в тело функции).
@@ -184,6 +193,7 @@ export async function callExplainMistake(
       ),
       { label: 'explainMistake', onRetryStart: options?.onRetryStart },
     );
+    console.log(`[AI-EXPLAIN] call:server_answered ms=${Date.now() - callStartedAtMs} totalMs=${Date.now() - startedAtMs} fromCache=${res.data.fromCache === true} variant=${variant}`); // guard-ok: длительность платного вызова
     const breakdown = variant === 'full' ? coerceMistakeBreakdown(res.data.breakdown) : null;
     if (res.data.ok && res.data.text.trim()) {
       const cacheWrites: Promise<void>[] = [

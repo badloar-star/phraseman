@@ -17,6 +17,7 @@ import {
   withAiCallableRetry,
   shouldWarmNow,
   warmAiFunction,
+  pendingAiWarm,
   __resetAiWarmStateForTests,
 } from '../app/ai_callable_resilience';
 
@@ -238,5 +239,31 @@ describe('warmAiFunction', () => {
     expect(ping).toHaveBeenCalledTimes(1);
     pending.forEach((res) => res());
     await Promise.all([first, second]);
+  });
+});
+
+// зачем (владелец 11.11: «разбор промаха готовится очень долго»): запрос, ушедший пока прогрев ещё будит сервер,
+// запускал второй холодный инстанс. Клиент ждёт идущий прогрев — этот помощник отдаёт его и НЕ запускает новый.
+describe('pendingAiWarm — идущий прогрев', () => {
+  it('нет прогрева — null, новый не запускается', () => {
+    expect(pendingAiWarm('explainMistake')).toBeNull();
+  });
+
+  it('пока прогрев идёт — отдаёт его; после завершения — снова null', async () => {
+    let finish!: () => void;
+    const ping = jest.fn(() => new Promise<void>((resolve) => { finish = resolve; }));
+    void warmAiFunction('explainMistake', ping, 1_000);
+    const pending = pendingAiWarm('explainMistake');
+    expect(pending).not.toBeNull();
+    expect(pendingAiWarm('explainPhrase')).toBeNull();
+    finish();
+    await pending;
+    expect(pendingAiWarm('explainMistake')).toBeNull();
+    expect(ping).toHaveBeenCalledTimes(1);
+  });
+
+  it('упавший прогрев не бросает ожидающему запросу', async () => {
+    void warmAiFunction('explainMistake', () => Promise.reject(new Error('no available instance')), 1_000);
+    await expect(pendingAiWarm('explainMistake')).resolves.toBeUndefined();
   });
 });

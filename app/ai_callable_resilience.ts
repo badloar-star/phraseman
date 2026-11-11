@@ -186,6 +186,17 @@ export function shouldWarmNow(
 }
 
 /**
+ * Прогрев, который идёт ПРЯМО СЕЙЧАС (или null). Не запускает новый.
+ *
+ * зачем (владелец 11.11, журнал сервера 16:17): настоящий запрос, ушедший, пока прогрев ещё будит сервер,
+ * запускал ВТОРОЙ холодный инстанс и ждал его целиком (23 с). Дождавшись прогрева, запрос попадает на уже
+ * проснувшийся инстанс. Никогда не бросает — warmAiFunction глотает свои ошибки.
+ */
+export function pendingAiWarm(key: string): Promise<void> | null {
+  return warmInFlight.get(key) ?? null;
+}
+
+/**
  * Будит инстанс Cloud Run ЗАРАНЕЕ — до того, как пользователь нажмёт кнопку.
  *
  * зачем: владелец отказался платить за постоянно тёплый инстанс, но хочет
@@ -210,9 +221,15 @@ export function warmAiFunction(
   // проверку TTL и разбудили инстанс дважды.
   lastWarmAtMs.set(key, nowMs);
 
+  const startedAtMs = Date.now();
   const run = ping()
-    .then(() => undefined)
-    .catch(() => {
+    .then(() => {
+      // зачем (владелец 11.11, «разбор готовится долго»): видно, сколько занял прогрев — холодный старт это или тёплый ответ.
+      console.log(`[AI-WARM] ${key} ok ms=${Date.now() - startedAtMs}`); // guard-ok: длительность прогрева нужна и в релизе
+      return undefined;
+    })
+    .catch((error: unknown) => {
+      console.log(`[AI-WARM] ${key} failed ms=${Date.now() - startedAtMs} code=${String((error as { code?: unknown })?.code ?? 'unknown')}`); // guard-ok: проглоченная ошибка прогрева пишет причину
       // Прогрев провалился (нет сети, App Check не готов) — молча забываем.
       // Метку НЕ откатываем: при отсутствии сети повторные попытки бессмысленны
       // и только жгли бы батарею; следующий шанс придёт после TTL.

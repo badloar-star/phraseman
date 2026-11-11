@@ -361,6 +361,16 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     warmExplainMistake();
   }, [active, netStatus, phraseKey]);
 
+  // зачем (владелец 11.11: «разбор промаха готовится очень долго»; журнал сервера 16:17 — из 23 с около 11 с ушло на
+  // холодный старт, а прогрев «в момент ошибки» опоздал: тап пришёл через секунду и разбудил ВТОРОЙ инстанс).
+  // Будим сервер РАНЬШЕ — при показе фразы, пока человек ещё собирает ответ. Только тем, кто уже согласился на
+  // ИИ-разбор (остальным он не понадобится), и не чаще раза в 9 минут (TTL внутри warmAiFunction) — счёт не растёт.
+  useEffect(() => {
+    if (!MISTAKE_EXPLAIN_ENABLED || !phraseKey) return;
+    if (getNetStatus() !== 'online' || !isAiExplainConsentGranted()) return;
+    warmExplainMistake();
+  }, [phraseKey]);
+
   // Сторож размонтажа. Проверки phraseKeyRef ловят СМЕНУ фразы, но не уход с
   // экрана: при размонтировании ref сохраняет прежнее значение, условие пройдёт,
   // и поздний onRetryStart дёрнул бы setState на мёртвом компоненте.

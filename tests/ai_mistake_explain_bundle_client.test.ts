@@ -30,6 +30,7 @@ jest.mock('../app/explain_callable_timeout', () => ({
 
 jest.mock('../app/ai_callable_resilience', () => ({
   warmAiFunction: jest.fn(async () => undefined),
+  pendingAiWarm: () => null, // зачем (11.11): клиент перед запросом дожидается идущего прогрева; в тесте прогрева нет
   withAiCallableRetry: <T>(call: (attempt: 1 | 2) => Promise<T>) => call(1),
   aiAttemptTimeoutMs: (baseMs: number) => baseMs,
 }));

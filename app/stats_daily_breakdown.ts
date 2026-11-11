@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { streakCalendarShortWeekdays } from '../constants/streak_stats_i18n';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import type { Lang } from '../constants/i18n';
-import { syncToCloud } from './cloud_sync';
+import { markCloudSyncPending, syncToCloud } from './cloud_sync';
 import { statsDailyBreakdownKey, type RuntimeStudyTarget } from './target_storage_keys';
 import {
   captureAccountGeneration,
@@ -179,6 +179,41 @@ function buildLifetimePathChartDateRange(todayStr: string): string[] {
 
 
 
+// зачем (владелец 11.11, аудит «подлагивания на Android и слабых устройствах»): bumpStatsDaily зовётся на КАЖДУЮ выученную
+// фразу/слово прямо из ответа в уроке. Раньше он сразу звал syncToCloud(), а тот при паузе 5+ минут с прошлой отправки
+// запускал полную сверку немедленно — в том же кадре, где играет анимация ответа (чтение ~90 ключей, разбор и сборка снимка).
+// Теперь отправка просится после короткой тишины: пока человек отвечает подряд, такт не стартует. Частоту отправок
+// по-прежнему решает сам syncToCloud (окно 5 минут) — чтений/записей в облако больше не становится.
+const STATS_SYNC_QUIET_MS = 4_000;
+/** Потолок ожидания: при непрерывных ответах отправка не откладывается бесконечно. */
+const STATS_SYNC_MAX_WAIT_MS = 60_000;
+let statsSyncTimer: ReturnType<typeof setTimeout> | null = null;
+let statsSyncFirstRequestAt = 0;
+
+function runDeferredStatsSync(): void {
+  statsSyncTimer = null;
+  statsSyncFirstRequestAt = 0;
+  syncToCloud().catch(noteSwallowedHandler('stats_daily_breakdown:deferred_sync'));
+}
+
+function requestStatsSyncAfterQuiet(): void {
+  // В jest таймер остался бы открытым хвостом, а syncToCloud там и так выходит сразу — оставляем прежний прямой вызов.
+  if (typeof process !== 'undefined' && process.env?.JEST_WORKER_ID) {
+    void syncToCloud();
+    return;
+  }
+  // Флаг ставим СРАЗУ: уход в фон в окне ожидания не теряет отправку — фоновый flush видит pending.
+  markCloudSyncPending();
+  const now = Date.now();
+  if (statsSyncTimer) {
+    if (now - statsSyncFirstRequestAt >= STATS_SYNC_MAX_WAIT_MS - STATS_SYNC_QUIET_MS) return;
+    clearTimeout(statsSyncTimer);
+  } else {
+    statsSyncFirstRequestAt = now;
+  }
+  statsSyncTimer = setTimeout(runDeferredStatsSync, STATS_SYNC_QUIET_MS);
+}
+
 /** Увеличить счётчик за сегодняшнюю дату (UTC‑день). */
 export async function bumpStatsDaily(
   metric: StatsDailyMetric,
@@ -220,7 +255,7 @@ export async function bumpStatsDaily(
       // ignore
       DebugLogger.error('stats_daily_breakdown:committed', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  if (isCurrentAccountGeneration(operationToken)) void syncToCloud();
+  if (isCurrentAccountGeneration(operationToken)) requestStatsSyncAfterQuiet();
 }
 
 function randIntInclusive(min: number, max: number): number {

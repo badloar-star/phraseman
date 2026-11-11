@@ -14,6 +14,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useReduceMotion } from '../../hooks/use_reduce_motion'; // зачем (UX-волна 2, 04.11): один гейт Reduce Motion на все конфетти (VictoryBurst, онбординг, награды)
 import { PixelRatio, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { isLowPowerEffective } from '../../app/flashcards/low_power';
 import Animated, {
   cancelAnimation,
   Easing,
@@ -26,6 +27,8 @@ import Animated, {
 
 const DEFAULT_COLORS = ['#FFD27A', '#FFE9B8', '#36E6A0', '#FF9EC4', '#7CC8FF']; // theme-exempt: палитра конфетти — праздничная иллюстрация
 const HARD_CAP = 120;
+/** Потолок частиц на слабом устройстве: праздник остаётся, анимированных узлов втрое меньше. */
+const LOW_POWER_CAP = 36;
 
 // Детерминированный псевдослучай (паттерн DialogVictoryCelebration) —
 // стабилен при ремаунте, без Math.random в рендере.
@@ -112,8 +115,12 @@ export function ConfettiBurst({
   const reduceMotion = useReduceMotion();
 
   // Слабые устройства: половина частиц (эвристика по плотности пикселей).
+  // зачем (владелец 11.11, аудит скорости): у слабых Android плотность экрана ≥2, поэтому одна эта эвристика на них не
+  // срабатывала и они получали все 120 анимированных частиц (конец онбординга — первая длинная сессия). Добавлен общий
+  // признак слабого устройства (память <3 ГБ или тумблер «Упрощённые эффекты») — тот же, что отключает 3D-флип карточек.
   const effectiveCount = useMemo(() => {
     const capped = Math.min(HARD_CAP, Math.max(1, Math.floor(count)));
+    if (isLowPowerEffective()) return Math.min(capped, LOW_POWER_CAP);
     return PixelRatio.get() < 2 ? Math.max(1, Math.floor(capped / 2)) : capped;
   }, [count]);
 

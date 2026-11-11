@@ -13,6 +13,7 @@ import type { PaywallPlan } from '../../../app/paywall_purchase';
 import type { StorePromoPricing } from '../../../app/premium_store_promo_display';
 import { SUBSCRIPTION_TIER_NAME, type SubscriptionTier } from '../../../app/subscription_tier';
 import { useReduceMotion } from '../../../hooks/use_reduce_motion';
+import { useRuntimeActive } from '../../../hooks/use_runtime_active';
 import { LinearGradient } from '../../SafeLinearGradient';
 import V2Pressable from '../../v2/V2Pressable';
 import { paywallPriceFontSize, paywallPriceLineHeight } from '../paywall_price_font';
@@ -46,8 +47,13 @@ const NO_TRIAL = LP('без пробного', 'без пробного', 'no fr
 const Sheen = memo(function Sheen({ width }: { width: number }) {
   const reduceMotion = useReduceMotion();
   const run = useRef(new Animated.Value(0)).current;
+  // зачем (владелец 11.11, аудит скорости): блик крутился вечно, даже когда поверх пейвола открыт другой экран или приложение
+  // свёрнуто — окно продолжало перерисовываться и греть телефон. Сам блик и его тайминги из макета не меняются: он просто
+  // стоит, пока экран не на переднем плане, и стартует заново (с той же задержкой) при возврате.
+  const active = useRuntimeActive();
   useEffect(() => {
-    if (reduceMotion || width <= 0) return undefined;
+    if (reduceMotion || width <= 0 || !active) return undefined;
+    run.setValue(0);
     const loop = Animated.loop(Animated.sequence([
       Animated.timing(run, { toValue: 1, duration: SHEEN_RUN_MS, easing: Easing.bezier(0.23, 1, 0.32, 1), useNativeDriver: true }),
       Animated.delay(SHEEN_CYCLE_MS - SHEEN_RUN_MS),
@@ -55,7 +61,7 @@ const Sheen = memo(function Sheen({ width }: { width: number }) {
     ]));
     const start = setTimeout(() => loop.start(), SHEEN_DELAY_MS);
     return () => { clearTimeout(start); loop.stop(); };
-  }, [reduceMotion, run, width]);
+  }, [active, reduceMotion, run, width]);
   if (reduceMotion || width <= 0) return null;
   return (
     <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { transform: [{ translateX: run.interpolate({ inputRange: [0, 1], outputRange: [-width * 1.2, width * 1.2] }) }] }]}>

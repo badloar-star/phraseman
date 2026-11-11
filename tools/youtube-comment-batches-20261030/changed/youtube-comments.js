@@ -1,0 +1,330 @@
+/* Owner-guided YouTube workflow. No publishing without exact approval. */
+(()=>{'use strict';
+const S={rows:[],channels:[],topics:[],feedback:{topics:[],analyzed:0},feedbackChannel:'',feedbackKind:'',feedbackCategory:'',feedbackActive:null,ownerInstructions:'',knowledge:{},queue:{},view:'drafts',filter:'',query:'',selected:new Set(),edits:new Map(),discardedEdits:new Map(),answers:new Map(),active:null,page:0,batchSize:50,cursor:null,nextCursor:null,pageCursors:[null],pageFilter:'',loadKey:null,requestId:0,scanQueue:[],scanFilter:null,epoch:0,refreshing:false,refreshCancel:false,generation:null,busy:false,running:false,cancel:false,loaded:false,loading:null,message:'Загружаем сохранённые каналы…',error:false,channelErrors:new Map(),scope:null,verifiedAt:0,cacheAt:0,toneDraft:null,scanRunning:false,scanCancel:false,rowBusy:new Set(),rowVersions:new Map(),storageWarning:''};
+const BATCH_SIZES=[10,20,30,40,50,100];
+function normalizeReplyDashes(text){return text.replace(/[\p{Dash_Punctuation}\u2212]/gu,'-');}
+const authResult=new URLSearchParams(window.location.search).get('youtubeAuth');const authFeedback=authResult==='connected'?'Постоянный доступ сохранён. Повторный вход для этого канала не требуется.':authResult==='wrong_channel'?'Выбран другой канал Google. Существующие подключения сохранены - выберите нужный канал.':authResult==='authorization_failed'?'Google не завершил подключение. Попробуйте ещё раз; прежние подключения сохранены.':'';
+const labels={draft:'Черновик',approved:'Одобрен',sending:'Отправляется',sent:'Отправлен',uncertain:'Проверить отправку'};let panel,content;let opening=null,queueRunId=0;
+let operation='',loadErrorMessage=null,replyFilter='all';
+const n=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
+const b=(text,fn,kind='secondary',disabled=false)=>{const e=n('button',text,'yt-button yt-button--'+kind);e.type='button';e.onclick=fn;e.disabled=disabled;e.title=text;return e;};
+const name=id=>S.channels.find(c=>c.id===id)?.title||id;
+const eligible=r=>!r.ownComment&&!r.skipReply&&r.canReply!==false;
+const ready=t=>!!(t&&t.questions.length===t.answers?.length&&t.answers.every(a=>a.trim()));
+const visible=()=>S.rows.filter(r=>(replyFilter!=='prepared'||!!r.reply?.text?.trim())&&(!S.filter||r.configId===S.filter)&&(!S.query||`${r.author} ${r.text} ${r.reply?.text||''}`.toLowerCase().includes(S.query.toLowerCase())));
+const pending=r=>eligible(r)&&!['approved','sending','sent','uncertain'].includes(r.reply?.status)&&!r.reply?.text?.trim();
+const selected=()=>visible().filter(r=>S.selected.has(r.id)&&eligible(r));
+// The cache is a viewing aid. Approval and delivery always use the server's revisions.
+const CACHE_PREFIX='pm.youtube-comments.v2:',CACHE_TTL=7*86400000,DRAFT_TTL=30*86400000,FRESH_MS=60000,CACHE_MAX=1500000,DRAFT_MAX=250000;
+const accountScope=()=>{const c=window.__pmAdminCore,uid=c?.auth?.currentUser?.uid;if(window.__pmAdminAuthReady===false)return null;return uid?encodeURIComponent(c.app?.options?.projectId||window.location.origin||'admin')+':'+encodeURIComponent(uid):null;};
+const sessionScope=()=>S.scope+':'+S.epoch;
+const pick=(value,keys)=>Object.fromEntries(keys.filter(key=>value?.[key]!==undefined).map(key=>[key,value[key]]));
+const isPlaceholder=text=>/(?:NEEDS_REVIEW|НЕЕДС_REVIEW)/i.test(String(text||''));
+const canApprove=r=>eligible(r)&&r.reply?.status==='draft'&&!!r.reply.text?.trim()&&!r.needsReview&&!r.localError&&!isPlaceholder(r.reply.text);
+const rowBlocked=id=>S.running||S.rowBusy.has(id)||(S.busy&&operation!=='generate');
+function pruneStorage(storage){
+ const entries=[],keys=[];for(let i=0;i<storage.length;i++){const key=storage.key(i);if(key?.startsWith(CACHE_PREFIX))keys.push(key);}
+ for(const key of keys){try{const entry=JSON.parse(storage.getItem(key)),ttl=key.endsWith(':drafts')?DRAFT_TTL:CACHE_TTL;if(!entry.at||Date.now()-entry.at>ttl)storage.removeItem(key);else entries.push({key,at:entry.at});}catch{storage.removeItem(key);}}
+ // At most three account snapshots and three sets of local edits on this browser.
+ for(const suffix of [':snapshot',':drafts'])entries.filter(e=>e.key.endsWith(suffix)).sort((a,b)=>b.at-a.at).slice(3).forEach(e=>storage.removeItem(e.key));
+}
+function writeStorage(suffix,data,max){
+ if(!S.scope)return;try{const storage=window.localStorage,json=JSON.stringify({version:2,at:Date.now(),...data});if(json.length>max)throw Error('size');pruneStorage(storage);storage.setItem(CACHE_PREFIX+S.scope+suffix,json);pruneStorage(storage);S.storageWarning='';return true;}catch{S.storageWarning='Не удалось сохранить копию в этом браузере. Сохраните важные правки на сервере до закрытия вкладки.';return false;}
+}
+function readStorage(scope,suffix,ttl){
+ try{const storage=window.localStorage,key=CACHE_PREFIX+scope+suffix,raw=storage.getItem(key);if(!raw)return null;const value=JSON.parse(raw);if(value.version!==2||!Number.isFinite(value.at)||Date.now()-value.at>ttl||value.at>Date.now()+60000){storage.removeItem(key);return null;}return value;}catch{return null;}
+}
+function persistDrafts(){return writeStorage(':drafts',{edits:[...S.edits],discardedEdits:[...S.discardedEdits],answers:[...S.answers],toneDraft:S.toneDraft},DRAFT_MAX);}
+function persistSnapshot(){
+ if(!S.loaded||!S.scope)return;
+ const rows=S.rows.map(r=>({...pick(r,['id','configId','channelId','videoId','commentId','parentId','author','text','ownComment','skipReply','canReply','needsReview','topicId','feedbackVersion','sentId','sentAt','generatingUntil']),replyDiscard:r.replyDiscard?pick(r.replyDiscard,['operationId','clearedRevision','restoredRevision','at']):undefined,reply:r.reply?{...pick(r.reply,['status','text','revision']),approval:r.reply.approval?pick(r.reply.approval,['uid','at']):undefined}:undefined}));
+ const channels=S.channels.map(c=>pick(c,['id','title','youtubeChannelId','authorization']));
+ const topics=S.topics.map(t=>pick(t,['id','title','summary','questions','answers']));
+ const feedback={analyzed:S.feedback.analyzed||0,topics:(S.feedback.topics||[]).map(t=>({...pick(t,['id','title','kind','category','count','channels']),examples:(t.examples||[]).map(e=>pick(e,['configId','videoId','commentId','text']))}))};
+ writeStorage(':snapshot',{rows,channels,topics,feedback,ownerInstructions:S.ownerInstructions,knowledge:{global:S.knowledge.global||''},queue:pick(S.queue,['lastChannelId']),batchSize:S.batchSize,cursor:S.cursor,nextCursor:S.nextCursor,page:S.page,pageCursors:S.pageCursors,filter:S.pageFilter,scanQueue:S.scanQueue,scanFilter:S.scanFilter},CACHE_MAX);
+}
+function ensureAccount(){
+ const scope=accountScope();if(scope===S.scope)return false;
+ if(S.scope)persistDrafts();S.epoch++;S.scope=scope;S.rows=[];S.channels=[];S.topics=[];S.feedback={topics:[],analyzed:0};S.ownerInstructions='';S.knowledge={};S.queue={};S.edits.clear();S.discardedEdits.clear();S.answers.clear();S.selected.clear();S.rowBusy.clear();S.rowVersions.clear();S.toneDraft=null;S.active=null;S.page=0;S.batchSize=50;S.cursor=null;S.nextCursor=null;S.pageCursors=[null];S.pageFilter='';S.loadKey=null;S.requestId++;S.scanQueue=[];S.scanFilter=null;S.filter='';S.feedbackChannel='';S.query='';S.loaded=false;S.loading=null;S.verifiedAt=0;S.cacheAt=0;S.running=false;S.busy=false;S.scanRunning=false;S.scanCancel=true;S.cancel=true;S.refreshCancel=true;S.refreshing=false;S.generation=null;S.channelErrors.clear();S.storageWarning='';operation='';opening=null;queueRunId++;
+ if(scope){const draft=readStorage(scope,':drafts',DRAFT_TTL);if(draft){S.edits=new Map((Array.isArray(draft.edits)?draft.edits:[]).filter(e=>Array.isArray(e)&&typeof e[0]==='string'&&typeof e[1]?.text==='string'));S.discardedEdits=new Map((Array.isArray(draft.discardedEdits)?draft.discardedEdits:[]).filter(e=>Array.isArray(e)&&typeof e[0]==='string'&&typeof e[1]?.operationId==='string'&&typeof e[1]?.edit?.text==='string'));S.answers=new Map((Array.isArray(draft.answers)?draft.answers:[]).filter(e=>Array.isArray(e)&&typeof e[0]==='string'&&Array.isArray(e[1])));S.toneDraft=typeof draft.toneDraft==='string'?draft.toneDraft:null;}
+ const cached=readStorage(scope,':snapshot',CACHE_TTL);if(cached&&Array.isArray(cached.rows)&&Array.isArray(cached.channels)){for(const key of ['rows','channels','topics','feedback','ownerInstructions','knowledge','queue'])if(cached[key]!==undefined)S[key]=cached[key];S.batchSize=BATCH_SIZES.includes(cached.batchSize)?cached.batchSize:50;S.rows=S.rows.slice(0,S.batchSize);S.filter=typeof cached.filter==='string'?cached.filter:'';S.pageFilter=S.filter;S.cursor=cached.cursor||null;S.nextCursor=cached.nextCursor||null;S.page=Number.isInteger(cached.page)&&cached.page>=0?cached.page:0;S.pageCursors=Array.isArray(cached.pageCursors)&&cached.pageCursors.length<=200?cached.pageCursors:[null];S.scanQueue=Array.isArray(cached.scanQueue)?cached.scanQueue.slice(0,300):[];S.scanFilter=cached.scanFilter??null;S.loaded=true;S.cacheAt=cached.at;S.active=S.rows[0]?.id;S.message='Показаны сохранённые комментарии. Проверяем обновления…';}else S.message='Загружаем сохранённые каналы…';}else S.message='Войдите в админку, чтобы открыть комментарии.';
+ S.error=false;return true;
+}
+function touchRow(id){S.rowVersions.set(id,(S.rowVersions.get(id)||0)+1);}
+function applyReplyResult(id,result){const row=S.rows.find(r=>r.id===id);if(!row)return;if(result.reply)row.reply=result.reply;if(Object.prototype.hasOwnProperty.call(result,'replyDiscard')){if(result.replyDiscard)row.replyDiscard=result.replyDiscard;else delete row.replyDiscard;}if(typeof result.needsReview==='boolean')row.needsReview=result.needsReview;if(typeof result.skipped==='boolean')row.skipReply=result.skipped;row.localError='';}
+async function rowAction(id,fn){
+ ensureAccount();if(rowBlocked(id))return;const scope=sessionScope();S.rowBusy.add(id);touchRow(id);render();
+ try{if(!S.loaded||!S.verifiedAt)await load(true,id);if(scope!==sessionScope())return;const row=S.rows.find(r=>r.id===id);if(!row)throw Error('Комментарий больше не найден. Обновите список.');await fn(row,scope);}
+ catch(e){if(scope===sessionScope())say(human(e),true);}
+ finally{if(scope===sessionScope()){S.rowBusy.delete(id);touchRow(id);persistSnapshot();persistDrafts();render();}}
+}
+async function saveDraft(id,text,revision){
+ const edit=S.edits.get(id),result=await call('save',{id,text:normalizeReplyDashes(text),revision});if(!result.reply)throw Error('Сервер не подтвердил сохранение черновика. Обновите список перед повтором.');applyReplyResult(id,result);touchRow(id);
+ if(S.edits.get(id)===edit)S.edits.delete(id);persistDrafts();
+ if(typeof result.needsReview!=='boolean'){try{await load(true,id);}catch{say('Черновик сохранён. Не удалось обновить статус проверки; обновите список перед одобрением.',true);return;}}
+ say('Черновик сохранён. Перед отправкой его нужно одобрить.');
+}
+function discardEdits(id){if(!S.edits.has(id))return;if(!window.confirm('Отменить несохранённые правки этого ответа? Сохранённый черновик останется.'))return;S.edits.delete(id);persistDrafts();render();}
+function human(e){const raw=String(e?.message||e);const messages={reply_dashes_require_save:'В старом одобренном ответе есть длинное тире. Нажмите «Отменить одобрение и изменить», затем снова одобрите ответ: тире заменятся на короткий дефис (-).',reply_skipped_by_owner_rules:'По правилам владельца ответ на этот комментарий пропускается.',feedback_running:'Анализ уже выполняется в другой вкладке. Дождитесь окончания и обновите данные.',feedback_invalid:'ИИ вернул неполный разбор. Готовые результаты сохранены; повторите анализ.',feedback_failed:'Не удалось получить разбор ИИ. Повторите обработку новых комментариев.',feedback_storage_limit:'Достигнут лимит аналитики. Ранее сохранённые обращения не потеряны.',youtube_consent_required:'Один раз разрешите постоянный доступ в разделе «Каналы». После этого он обновляется автоматически.',youtube_refresh_running:'Доступ к каналу сейчас обновляется. Повторите через несколько секунд.',youtube_read_budget:'Лимит обновления комментариев временно исчерпан. Уже загруженные комментарии доступны.',channel_refresh_running:'Канал уже обновляется в другой вкладке. Сохранённые комментарии доступны.',channel_read_limit:'Достигнут лимит обновления канала за минуту. Повторите чуть позже.',wrong_channel:'Google выбрал другой канал. Для отправки выберите нужный канал; просмотр комментариев не требует подключения.',wrong_youtube_channel:'Доступ выдан другому каналу. Отправка остановлена.',youtube_http_403:'YouTube не разрешил чтение: проверьте доступ серверного ключа и квоту.',knowledge_size_limit:'База правил слишком большая. Сократите длинные ответы категорий: текущие правила сохранены без изменений.',too_many_categories:'Получилось слишком много категорий. Уточните группы вопросов перед продолжением.',duplicate_reply_rewrite:'Такой ответ уже использовался. Напишите индивидуальный ответ - одинаковые тексты запрещены.',owner_guidance_required:'Сначала ответьте на вопросы этой категории в базе ответов.',generation_in_progress:'Этот ответ уже готовится. Дождитесь завершения.',draft_changed_reload:'Ответ изменился в другой вкладке. Обновите список.',queue_wait:'Другая отправка ещё выполняется или не закончилась пауза.',delivery_still_running:'Запрос ещё выполняется. Проверить результат можно через три минуты.',delivery_uncertain_reconcile_before_retry:'Результат отправки не подтверждён. Очередь остановлена; автоматического повтора нет.',owner_approval_required:'Одобрять и запускать ответы может только владелец.',analysis_incomplete_retry:'Разбор вопросов получился неполным. Повторите анализ.',connection_save_failed:'Не удалось сохранить подключение. Повторите подключение канала.',topic_changed_reload:'Вопросы категории изменились. Обновите их перед сохранением.'};for(const [code,text]of Object.entries(messages))if(raw.includes(code))return text;return raw;}
+function say(text,error=false){S.message=text;S.error=error;const e=panel?.querySelector('.yt-notice');if(e){e.textContent=text;e.dataset.error=String(error);}}
+async function call(op,data={}){const c=window.__pmAdminCore,scope=accountScope(),epoch=S.epoch;if(!scope||!c?.auth?.currentUser)throw Error('Войдите в админку, чтобы загрузить каналы.');const result=(await c.httpsCallable(c.functionsUs,'adminYoutubeComments',{timeout:120000})({op,...data})).data;if(scope!==accountScope()||epoch!==S.epoch){ensureAccount();throw Error('Аккаунт изменился. Откройте комментарии заново.');}return result;}
+async function token(id,interactive=false){if(!window.pmYoutubeAuth?.getToken)throw Error('Подключение YouTube ещё загружается. Повторите через несколько секунд.');return window.pmYoutubeAuth.getToken(id,interactive);}
+const batchKey=()=>JSON.stringify([S.epoch,S.batchSize,S.filter,S.cursor]);
+const batchBlocked=()=>S.busy||S.running||S.scanRunning||S.refreshing||S.rowBusy.size>0||!!S.loading;
+
+const removableDraft = row => !!row.reply?.text?.trim() && ['draft','approved'].includes(row.reply.status) && !row.sentId && !row.sentAt;
+const restorableDraft = row => !!row.replyDiscard?.operationId && row.reply?.status === 'draft' && !row.reply.text?.trim() && row.reply.revision === row.replyDiscard.clearedRevision;
+function recoverLocalUndo(){
+ for(const row of S.rows){const local=S.discardedEdits.get(row.id),receipt=row.replyDiscard;
+  const edit=S.edits.get(row.id);
+  if(local&&receipt?.operationId===local.operationId&&restorableDraft(row)&&edit&&edit.text===local.edit.text&&edit.revision===local.edit.revision)S.edits.delete(row.id);
+  if(local&&receipt?.operationId===local.operationId&&receipt.restoredRevision===row.reply?.revision&&!S.edits.has(row.id)){
+   S.edits.set(row.id,{...local.edit,revision:row.reply.revision});S.discardedEdits.delete(row.id);
+  }
+ }
+}
+async function bulkDrafts(restore=false){
+ ensureAccount();if(batchBlocked())return;
+ if(!S.verifiedAt){try{await load(true);}catch{say('Сначала обновите порцию: результат предыдущего действия пока не подтверждён.',true);return;}if(batchBlocked())return;}
+ const rows=S.rows.filter(restore?(row=>restorableDraft(row)&&!S.edits.has(row.id)):removableDraft).slice(0,S.batchSize);if(!rows.length)return;
+ const editsBefore=new Map(rows.map(row=>[row.id,S.edits.get(row.id)]));
+ const scope=sessionScope(),operationId=restore?null:crypto.randomUUID(),items=rows.map(row=>({id:row.id,revision:row.reply.revision,...(restore?{operationId:row.replyDiscard.operationId}:{})}));
+ const op=restore?'restoreDrafts':'clearDrafts';S.busy=true;operation=op;
+ for(const row of rows){S.rowBusy.add(row.id);touchRow(row.id);if(!restore&&S.edits.has(row.id))S.discardedEdits.set(row.id,{operationId,edit:{...S.edits.get(row.id)}});}
+ if(!persistDrafts()&&!restore&&rows.some(row=>editsBefore.has(row.id)&&editsBefore.get(row.id))){
+  for(const row of rows){S.rowBusy.delete(row.id);touchRow(row.id);}S.busy=false;operation='';
+  say('Не удалось сохранить копию локальных правок. Ответы не удалены. Сохраните правки на сервере или освободите место в браузере.',true);render();return;
+ }
+ say(restore?'Восстанавливаем ответы этой порции…':'Удаляем подготовленные ответы этой порции…');render();
+ let uncertain=false;
+ try{
+  const result=await call(op,{items,...(!restore?{operationId}:{})});if(scope!==sessionScope())return;
+  if(!Array.isArray(result.items)||result.items.length!==items.length||new Set(result.items.map(x=>x.id)).size!==items.length||result.items.some(x=>!items.some(y=>y.id===x.id)))throw Error('Сервер не подтвердил результат для всей порции.');
+  let applied=0;const skipped=[];
+  for(const item of result.items){
+   if(!['cleared','alreadyCleared','restored','alreadyRestored'].includes(item.status)){skipped.push(item);continue;}
+   applyReplyResult(item.id,item);touchRow(item.id);S.selected.delete(item.id);applied++;
+   if(restore)recoverLocalUndo();
+   else if(S.edits.get(item.id)===editsBefore.get(item.id))S.edits.delete(item.id);
+  }
+  const reasons=[...new Set(skipped.map(item=>({delivery_locked:'отправлены или отправляются',generation_in_progress:'ещё генерируются',draft_changed_reload:'изменились в другой вкладке',no_draft:'уже пустые',missing:'не найдены',undo_expired:'уже изменены после удаления',duplicate_reply_rewrite:'ответ уже использован'}[item.reason]||item.reason)))];
+  say(`${restore?'Восстановлено':'Удалено'} ${applied} ответов этой порции.${restore?' Восстановленные ответы нужно одобрить заново.':' Можно отменить удаление или подготовить новые ответы.'}${skipped.length?` Пропущено ${skipped.length}: ${reasons.join(', ')}. Обновите порцию.`:''}`,!!skipped.length);
+ }catch(e){if(scope===sessionScope()){uncertain=true;S.verifiedAt=0;say('Не удалось подтвердить результат. Проверяем сохранённое состояние…',true);}}
+ finally{if(scope===sessionScope()){for(const item of items){S.rowBusy.delete(item.id);touchRow(item.id);}S.busy=false;operation='';persistSnapshot();persistDrafts();render();}}
+ if(uncertain&&scope===sessionScope()){
+  try{await load(true);if(scope!==sessionScope())return;let confirmed=0;
+   if(!restore)for(const item of items){const row=S.rows.find(x=>x.id===item.id);if(row&&restorableDraft(row)&&row.replyDiscard.operationId===operationId){if(S.edits.get(item.id)===editsBefore.get(item.id))S.edits.delete(item.id);S.selected.delete(item.id);confirmed++;}}
+   else recoverLocalUndo();
+   persistDrafts();say(`Состояние обновлено.${!restore?` Подтверждено удаление ${confirmed} ответов.`:''} Проверьте порцию перед повтором.`,true);render();
+  }catch{if(scope===sessionScope())say('Результат пока не подтверждён. Обновите порцию перед повтором; локальные правки сохранены.',true);}
+ }
+}
+function clearDraftControls(root){
+ const count=S.rows.filter(removableDraft).length,undo=S.rows.filter(row=>restorableDraft(row)&&!S.edits.has(row.id)).length;
+ const box=n('div',undefined,'yt-actions yt-clear-drafts');
+ box.append(b(`Удалить подготовленные (${count})`,()=>bulkDrafts(false),'secondary',batchBlocked()||!count));
+ if(undo)box.append(b(`Отменить удаление (${undo})`,()=>bulkDrafts(true),'quiet',batchBlocked()));
+ box.append(n('span','Для всей загруженной порции. Удаление можно отменить до изменения ответа.','yt-muted'));root.append(box);
+}
+
+async function refreshRow(id){
+ const scope=sessionScope(),result=await call('row',{id});if(scope!==sessionScope())return;const index=S.rows.findIndex(r=>r.id===id);if(index<0)return;
+ if(!result.row||result.row.id!==id)throw Error('Сервер не вернул комментарий. Обновите порцию.');
+ const previous=S.rows[index],next=result.row;if(Number(previous.reply?.revision||0)>Number(next.reply?.revision||0))return;
+ S.rows[index]={...next,localError:previous.localError||''};touchRow(id);persistSnapshot();render();
+}
+async function load(fresh=false,acceptBusy=null){
+ ensureAccount();if(acceptBusy&&S.loaded)return refreshRow(acceptBusy);
+ const key=batchKey();if(S.loading&&S.loadKey===key)return S.loading;
+ const epoch=S.epoch,requestId=++S.requestId,versions=new Map(S.rowVersions),limit=S.batchSize,channelId=S.filter,cursor=S.cursor;
+ const promise=(async()=>{const snapshot=await call('workspace',{cursor,limit,...(channelId?{channelId}:{})});
+ if(epoch!==S.epoch||requestId!==S.requestId||key!==batchKey())return{status:'superseded',source:'youtube-comments'};
+ if(!Array.isArray(snapshot.rows)||snapshot.rows.length>limit)throw Error('Сервер не подтвердил ограничение порции. Обновите страницу после обновления сервера.');
+ const current=new Map(S.rows.map(r=>[r.id,r]));S.rows=snapshot.rows.map(r=>{const previous=current.get(r.id);if(!previous)return r;if(S.rowBusy.has(r.id)||(versions.get(r.id)||0)!==(S.rowVersions.get(r.id)||0))return previous;if(Number(previous.reply?.revision||0)>Number(r.reply?.revision||0))return{...r,reply:previous.reply,needsReview:previous.needsReview,localError:previous.localError};return{...r,localError:previous.localError||''};});
+ recoverLocalUndo();persistDrafts();S.nextCursor=snapshot.cursor||null;S.pageFilter=channelId;S.selected=new Set([...S.selected].filter(id=>S.rows.some(r=>r.id===id)));
+ S.channels=snapshot.channels||[];S.topics=snapshot.topics||[];S.feedback=snapshot.feedback||{topics:[],analyzed:0};S.ownerInstructions=snapshot.ownerInstructions||'';S.knowledge=snapshot.knowledge||{};S.queue=snapshot.queue||{};S.loaded=true;S.verifiedAt=Date.now();S.cacheAt=S.verifiedAt;
+ if(/^(Загружаем сохранённые каналы|Показаны сохранённые комментарии|Загружаем порцию)/.test(S.message)||(loadErrorMessage&&S.message===loadErrorMessage)){S.message=`Загружено ${S.rows.length} из ${limit} комментариев. Остальные - по кнопке «Следующая порция».`;S.error=false;}loadErrorMessage=null;
+ if(!S.rows.some(r=>r.id===S.active))S.active=S.rows[0]?.id;persistSnapshot();render();return{status:'fresh',source:'youtube-comments',fetchedAt:S.verifiedAt,message:S.rows.length+' комментариев'};
+ })().catch(e=>{if(epoch===S.epoch&&requestId===S.requestId){loadErrorMessage=(S.loaded?'Предыдущая порция сохранена. Не удалось загрузить новую: ':'')+human(e);say(loadErrorMessage,true);render();}throw e;}).finally(()=>{if(S.loading===promise){S.loading=null;S.loadKey=null;render();}});S.loading=promise;S.loadKey=key;render();return promise;
+}
+async function changeBatch({size=S.batchSize,channelId=S.filter,direction=0}={}){
+ ensureAccount();if(batchBlocked()||!BATCH_SIZES.includes(size))return;
+ const scope=sessionScope(),before={batchSize:S.batchSize,filter:S.filter,cursor:S.cursor,nextCursor:S.nextCursor,page:S.page,pageCursors:[...S.pageCursors]};persistDrafts();
+ if(size!==S.batchSize||channelId!==S.filter){S.batchSize=size;S.filter=channelId;S.cursor=null;S.nextCursor=null;S.page=0;S.pageCursors=[null];S.scanQueue=[];S.scanFilter=null;}
+ else if(direction===1&&S.nextCursor){S.pageCursors=S.pageCursors.slice(0,S.page+1);S.pageCursors.push(S.nextCursor);S.page++;S.cursor=S.nextCursor;}
+ else if(direction===-1&&S.page>0){S.page--;S.cursor=S.pageCursors[S.page]||null;}
+ else if(direction!==0)return;
+ S.selected.clear();say('Загружаем порцию комментариев…');render();try{await load(true);}catch{if(scope===sessionScope()){Object.assign(S,before);render();}}
+}
+
+async function action(fn,kind='edit'){
+ ensureAccount();const scope=sessionScope();
+ if(kind==='scan'){if(S.scanRunning||S.refreshing||S.running)return;S.scanRunning=true;S.scanCancel=false;render();try{if(!S.loaded||!S.verifiedAt)await load();if(scope===sessionScope())await fn();}catch(e){if(scope===sessionScope())say(human(e),true);}finally{if(scope===sessionScope()){S.scanRunning=false;render();}}return;}
+ if(S.busy||S.running)return;S.busy=true;operation=kind;S.cancel=false;render();try{if(!S.loaded||!S.verifiedAt)await load(true);if(scope===sessionScope())await fn();}catch(e){if(scope===sessionScope())say(human(e),true);}finally{if(scope===sessionScope()){S.busy=false;operation='';persistSnapshot();persistDrafts();render();}}
+}
+function prepareReplies(all=false,replaceExisting=false){
+ const rows=(all?visible():selected()).slice(0,S.batchSize).filter(r=>eligible(r)&&!['approved','sending','sent','uncertain'].includes(r.reply?.status)&&(replaceExisting||pending(r)));if(!rows.length||S.busy||S.running)return;
+ if(replaceExisting&&rows.some(r=>r.reply?.text?.trim())&&!window.confirm(`Подготовить заново ${rows.length} ответов? Текущие черновики заменятся только после успешного ответа сервера. Одобрять их нужно будет заново.`))return;
+ if(all)S.selected=new Set(rows.map(r=>r.id));return action(()=>generate(rows,replaceExisting),'generate');
+}
+function view(v){S.view=v;render();}
+function saved(rows){if(rows.some(r=>S.edits.has(r.id)))throw Error('Сначала сохраните или отмените правки выбранных ответов. Одобряется только сохранённый текст.');}
+async function analyze(rows=S.rows.filter(r=>eligible(r)&&!r.topicId),cancelled=()=>S.cancel){if(!rows.length){say('Новых вопросов для разбора нет. Можно уточнить правила существующих категорий.');return;}const scope=sessionScope();let done=0;for(let i=0;i<rows.length&&!cancelled()&&scope===sessionScope();i+=60){say(`Разбираем вопросы: ${done} из ${rows.length}…`);const r=await call('analyze',{ids:rows.slice(i,i+60).map(r=>r.id)});done+=r.analyzed;}if(scope!==sessionScope())return;await load(true);if(!S.scanRunning)S.view='knowledge';say(cancelled()?'Разбор остановлен. Готовые категории сохранены.':`Разобрано ${done} комментариев. Ответьте на вопросы категорий - на них будут опираться ответы.`);}
+async function scan(withAnalysis=true){
+ if(!S.loaded)await load();const scope=sessionScope(),cancelled=()=>S.scanCancel||scope!==sessionScope(),channels=S.channels.filter(c=>!S.filter||c.id===S.filter);
+ if(!channels.length)throw Error('Сохранённых каналов нет. Добавьте канал в разделе подключения.');
+ if(S.scanFilter!==S.filter||!S.scanQueue.length){S.scanFilter=S.filter;S.scanQueue=channels.map(c=>({op:'sync',channelId:c.id,cursor:null}));}
+ let total=0,calls=0;S.channelErrors.clear();
+ while(S.scanQueue.length&&total<S.batchSize&&calls<20&&!cancelled()){
+  const task=S.scanQueue[0],limit=S.batchSize-total;calls++;say(`Загружаем историю: ${total} из ${S.batchSize} комментариев…`);
+  try{const result=await call(task.op,{channelId:task.channelId,cursor:task.cursor,limit,...(task.parentId?{parentId:task.parentId}:{})});if(cancelled())break;
+   if(!Number.isInteger(result.count)||result.count<0||result.count>limit)throw Error('Сервер не подтвердил размер порции комментариев.');
+   if(result.cursor&&result.cursor===task.cursor)throw Error('YouTube повторил страницу. Повторите загрузку позже.');
+   total+=result.count;S.scanQueue.shift();
+   const continuation=result.cursor?{...task,cursor:result.cursor}:null;
+   const replies=task.op==='sync'?(result.threads||[]).filter(t=>t.parentId).map(t=>({op:'syncReplies',channelId:task.channelId,parentId:t.parentId,cursor:null})):[];
+   S.scanQueue.unshift(...replies,...(continuation?[continuation]:[]));persistSnapshot();
+  }catch(e){if(scope!==sessionScope())return;S.channelErrors.set(task.channelId,human(e));say('Загрузка остановлена: '+human(e),true);throw e;}
+ }
+ if(scope!==sessionScope())return;await load(true);if(cancelled()){say('Загрузка остановлена. Полученные комментарии сохранены.');return;}
+ if(withAnalysis){await collectFeedback(cancelled);if(!cancelled())await analyze(undefined,cancelled);}
+ say(`Получено ${total} из ${S.batchSize} комментариев.${S.scanQueue.length?' Следующее нажатие продолжит историю с этого места.':' История выбранных каналов загружена.'}`);
+}
+async function refreshRecent(){
+ ensureAccount();if(S.refreshing||S.scanRunning||S.running||S.busy||S.loading)return;const scope=sessionScope();S.refreshing=true;S.refreshCancel=false;render();let total=0,success=0;
+ try{if(!S.loaded||!S.verifiedAt)await load();const channels=S.channels.filter(c=>!S.filter||c.id===S.filter);
+ for(let i=0;i<channels.length&&total<S.batchSize;i++){if(S.refreshCancel||scope!==sessionScope())break;const channel=channels[i],limit=Math.max(1,Math.floor((S.batchSize-total)/(channels.length-i)));
+ try{const result=await call('sync',{channelId:channel.id,limit});if(!Number.isInteger(result.count)||result.count<0||result.count>limit)throw Error('Сервер не подтвердил размер порции комментариев.');total+=result.count;success++;S.channelErrors.delete(channel.id);}catch(e){if(scope!==sessionScope())return;S.channelErrors.set(channel.id,human(e));}}
+ if(scope===sessionScope()){await load(true);say(`Обновлено до ${total} комментариев. Каналов: ${success} из ${channels.length}.`,success<channels.length);}}
+ catch(e){if(scope===sessionScope())say(human(e),true);}finally{if(scope===sessionScope()){S.refreshing=false;render();}}
+}
+
+async function generate(rows=selected(),replaceExisting=false){
+ saved(rows);rows=rows.slice(0,S.batchSize).map(r=>S.rows.find(current=>current.id===r.id)||r).filter(r=>eligible(r)&&!['approved','sending','sent','uncertain'].includes(r.reply?.status)&&(replaceExisting||pending(r)));
+ if(!rows.length)throw Error('У выбранных комментариев уже есть ответы или они пропускаются по правилам.');
+ const scope=sessionScope(),g={total:rows.length,processed:0,done:0,failed:0,skipped:0,review:0};S.generation=g;S.view='drafts';S.active=rows[0].id;render();let consecutiveFailures=0;
+ try{for(const source of rows){if(S.cancel||scope!==sessionScope())break;const r=S.rows.find(r=>r.id===source.id);if(!r)continue;if(S.edits.has(r.id)||S.rowBusy.has(r.id)||['approved','sending','sent','uncertain'].includes(r.reply?.status)){g.skipped++;g.processed++;continue;}say(`Готовим ответы: ${g.processed+1} из ${g.total}…`);S.rowBusy.add(r.id);touchRow(r.id);render();
+ try{const result=await call('generate',{id:r.id});if(scope!==sessionScope())return;applyReplyResult(r.id,result);const live=S.rows.find(item=>item.id===r.id);if(live){if(result.needsReview!==undefined)live.needsReview=!!result.needsReview;if(result.skipped!==undefined)live.skipReply=!!result.skipped;}consecutiveFailures=0;
+ if(result.skipped)g.skipped++;else if(result.needsReview||isPlaceholder(result.reply?.text))g.review++;else if(result.reply?.text)g.done++;else throw Error('Сервер не вернул черновик. Повторите подготовку этого комментария.');
+ }catch(e){if(scope!==sessionScope())return;const live=S.rows.find(item=>item.id===r.id);if(live)live.localError=human(e);g.failed++;consecutiveFailures++;if(/resource-exhausted|permission-denied|unauthenticated|unavailable|spend|budget|quota|лимит/i.test(String(e?.code||'')+' '+String(e?.message||e))||consecutiveFailures>=3)S.cancel=true;}
+ finally{if(scope===sessionScope()){S.rowBusy.delete(r.id);touchRow(r.id);persistSnapshot();}}
+ g.processed++;render();}}
+ finally{if(scope===sessionScope()){const errors=new Map(S.rows.filter(r=>r.localError).map(r=>[r.id,r.localError]));S.generation=null;try{await load(true);}catch{}for(const r of S.rows)if(errors.has(r.id))r.localError=errors.get(r.id);S.view='drafts';const firstError=[...errors.values()][0];say(`${S.cancel?'Обработка остановлена. ':''}Подготовлено: ${g.done}. Пропущено: ${g.skipped}. Нужна проверка: ${g.review}. Ошибок: ${g.failed}. Обработано ${g.processed} из ${g.total}.${firstError?' Причина: '+firstError:''} Черновики сохранены; отправка - после одобрения.`,g.failed>0);render();}}
+}
+
+async function approve(chosen=selected()){
+ chosen=chosen.map(r=>S.rows.find(current=>current.id===r.id)||r);saved(chosen);const rows=chosen.filter(canApprove),excluded=chosen.length-rows.length,scope=sessionScope();
+ if(!rows.length)throw Error('Среди выбранных нет готовых черновиков без ошибок.');
+ if(!window.confirm(`Одобрить ${rows.length} проверенных ответов?${excluded?' Исключено требующих проверки: '+excluded+'.':''} Все тире в одобряемых ответах заменятся на короткий дефис (-). Отправка начнётся только после отдельного запуска очереди.`))return;
+ let approved=0,failed=0;for(const r of rows){if(S.cancel||scope!==sessionScope())break;if(S.rowBusy.has(r.id)){failed++;continue;}S.rowBusy.add(r.id);touchRow(r.id);try{const result=await call('approve',{id:r.id,revision:r.reply.revision});applyReplyResult(r.id,result);approved++;}catch(e){if(scope!==sessionScope())return;r.localError=human(e);failed++;if(/permission-denied|unauthenticated|unavailable/i.test(String(e?.code||'')+' '+String(e)))break;}finally{if(scope===sessionScope()){S.rowBusy.delete(r.id);touchRow(r.id);}}}
+ if(scope===sessionScope()){persistSnapshot();say(`Одобрено ${approved}. Исключено: ${excluded}. Ошибок: ${failed}. Ответы ожидают запуска в разделе «Очередь».`,failed>0);}
+}
+function stopQueue(){S.running=false;queueRunId++;render();void call('pause').catch(e=>say(human(e),true));}
+async function run(){
+ ensureAccount();const uid=window.__pmAdminCore.auth.currentUser.uid,scope=sessionScope();saved(S.rows.filter(r=>r.reply?.status==='approved'&&r.reply.approval?.uid===uid));if(S.running)return;
+ const batchIds=new Set(S.rows.filter(r=>r.reply?.status==='approved'&&!r.skipReply&&r.reply.approval?.uid===uid).slice(0,S.batchSize).map(r=>r.id));const runId=++queueRunId;S.running=true;S.view='queue';render();const active=()=>S.running&&runId===queueRunId&&scope===sessionScope();let primaryError=null;
+ try{await call('start');while(active()){if(!active())break;const rows=S.rows.filter(r=>batchIds.has(r.id)&&r.reply?.status==='approved'&&!r.skipReply&&!r.needsReview&&!isPlaceholder(r.reply.text)&&r.reply.approval?.uid===uid).sort((a,b)=>a.reply.approval.at-b.reply.approval.at);const next=rows.find(r=>r.channelId!==S.queue.lastChannelId)||rows[0];if(!next)break;
+ await refreshRow(next.id);if(!active())break;const checked=S.rows.find(r=>r.id===next.id);if(!checked||checked.reply?.status!=='approved'||checked.needsReview||checked.skipReply){batchIds.delete(next.id);continue;}if(normalizeReplyDashes(checked.reply.text)!==checked.reply.text)throw Error('reply_dashes_require_save');const revision=checked.reply.revision,accessToken=await token(next.configId);if(!active())break;const current=S.rows.find(r=>r.id===next.id);if(!current||current.reply?.status!=='approved'||current.reply.revision!==revision||current.reply.approval?.uid!==uid)continue;
+ say(`Отправляем одобренный ответ: ${name(next.configId)}…`);const sent=await call('send',{id:next.id,revision,token:accessToken});batchIds.delete(next.id);S.queue.lastChannelId=next.channelId;if(!active())break;await refreshRow(next.id);if(sent.status!=='sent'||!batchIds.size)break;for(let seconds=60;seconds>0&&active();seconds--){say(`Следующий ответ через ${seconds} с. Очередь можно остановить.`);await new Promise(r=>setTimeout(r,1000));}}
+ if(scope===sessionScope())say(active()?'Все одобренные ответы обработаны.':'Очередь остановлена.');
+ }catch(e){primaryError=e;throw e;}finally{if(scope===sessionScope()){S.running=false;try{await call('pause');}catch(e){if(!primaryError)say('Очередь остановлена в этой вкладке. Сервер не подтвердил паузу: '+human(e),true);}try{await load(true);}catch{}render();}}
+}
+function header(root){const top=n('div',undefined,'yt-header'),copy=n('div'),actions=n('div',undefined,'yt-actions');copy.append(n('div','РАБОТА С АУДИТОРИЕЙ','yt-eyebrow'),n('h2','Комментарии YouTube'),n('p','Сохранённые комментарии, ваши правила и проверенные ответы.','yt-subtitle'));
+ actions.append(b('Обновить новые комментарии',()=>refreshRecent(),'secondary',S.refreshing||S.scanRunning||S.running),b('Обновить сохранённый список',()=>action(()=>load(true),'reload'),'secondary',S.busy||S.running),b('Загрузить порцию истории и разобрать',()=>action(()=>scan(true),'scan'),'secondary',S.scanRunning||S.refreshing||S.running));
+ if(S.scanRunning)actions.append(b('Остановить сканирование',()=>{S.scanCancel=true;say('Останавливаем сканирование после текущего запроса…');render();},'secondary',S.scanCancel));
+ if(S.busy&&!S.running)actions.append(b('Остановить обработку',()=>{S.cancel=true;say('Останавливаем после текущего запроса…');render();}));if(S.running)actions.append(b('Остановить очередь',stopQueue,'danger'));
+ if(S.refreshing){const refresh=n('div',undefined,'yt-background-refresh');refresh.append(n('span','Обновляем новые комментарии. Работа с сохранёнными ответами доступна.'),b('Остановить обновление',()=>{S.refreshCancel=true;},'quiet',S.refreshCancel));copy.append(refresh);}if(S.scanRunning)copy.append(n('p','Загружается только выбранная порция истории. Готовые ответы сохраняются.','yt-muted'));if(S.storageWarning)copy.append(n('p',S.storageWarning,'yt-error'));top.append(copy,actions);root.append(top);
+ const uid=window.__pmAdminCore?.auth?.currentUser?.uid,nav=n('nav',undefined,'yt-steps');nav.setAttribute('aria-label','Этапы работы с комментариями');for(const [i,id,title,count]of [[1,'channels','Каналы',S.channels.length||(!S.loaded?'…':0)],[2,'knowledge','База ответов',S.topics.filter(t=>!ready(t)).length],[3,'drafts','Комментарии',S.rows.length],[4,'queue','Очередь',S.rows.filter(r=>r.reply?.status==='approved'&&!r.skipReply&&r.reply.approval?.uid===uid).length],[5,'feedback','Просьбы и жалобы',S.feedback.topics?.length||0]]){const tab=b('',()=>view(id));tab.className='yt-step';tab.title=title;tab.setAttribute('aria-current',S.view===id?'step':'false');tab.append(n('span',String(i),'yt-step-number'),n('span',title),n('span',String(count),'yt-count'));nav.append(tab);}const notice=n('div',S.message,'yt-notice');notice.dataset.error=String(S.error);notice.setAttribute('role','status');notice.setAttribute('aria-live','polite');root.append(nav,notice);if(authFeedback){const feedback=n('div',authFeedback,'yt-notice');feedback.dataset.error=String(authResult!=='connected');feedback.setAttribute('role','status');root.append(feedback);}
+}
+function title(root,h,p){const box=n('div',undefined,'yt-section-title');box.append(n('h3',h),n('p',p));root.append(box);}
+function channels(root){if(!S.loaded&&!S.channels.length){title(root,'Загружаем каналы…','Проверяем сохранённые подключения. Повторное подключение не требуется.');root.append(n('div','Загрузка списка каналов…','yt-empty'));return;}title(root,`Ваши каналы · ${S.channels.length}`,'Комментарии доступны без переподключения. Для отправки один раз разрешите доступ к каждому каналу - дальше сервер обновляет его автоматически.');if(!S.channels.length){root.append(n('div',S.loaded?'Сохранённых каналов нет. Добавьте канал в разделе подключения.':'Загружаем подключённые каналы…','yt-empty'));root.append(b('Подключить канал',()=>window.switchTab('video-phrases')));return;}const grid=n('div',undefined,'yt-channels');for(const c of S.channels){const card=n('article',undefined,'yt-channel'),head=n('div',undefined,'yt-channel-head');head.append(n('div',(c.title||'YT').replace(/^Профессор Лингман\s*[|│]?\s*/i,'').slice(0,2).toUpperCase(),'yt-avatar'),n('span',c.authorization==='connected'?'Автодоступ включён':'Комментарии доступны','yt-badge yt-badge--success'));card.append(head,n('h4',c.title||c.youtubeChannelId),n('p',`${S.rows.filter(r=>r.configId===c.id).length} комментариев загружено`,'yt-muted'));if(S.channelErrors.has(c.id))card.append(n('p',S.channelErrors.get(c.id),'yt-error'));const controls=n('div',undefined,'yt-actions');controls.append(b('Смотреть комментарии',()=>{view('drafts');void changeBatch({channelId:c.id});}),b(c.authorization==='connected'?'Изменить подключение':'Разрешить отправку один раз',()=>action(async()=>{await token(c.id,true);S.channelErrors.delete(c.id);say(`Доступ к «${c.title}» обновлён.`);}),'quiet',S.busy));card.append(controls);grid.append(card);}root.append(grid);const next=n('section',undefined,'yt-next');next.append(n('h3','Начните со сканирования вопросов'),n('p','Загрузим выбранную порцию обсуждений и сгруппируем вопросы. Остальную историю можно продолжить следующим нажатием.'));root.append(next);}
+function knowledge(root){title(root,'Научите помощника отвечать по делу','Вопросы составлены по обращениям аудитории. Укажите факты, подход и ограничения - тексты ответов будут разными.');if(!S.topics.length){const empty=n('div',undefined,'yt-empty');empty.append(n('h3','Сначала разберём вопросы аудитории'),n('p','Категории и уточнения появятся после сканирования.'),b('Разобрать загруженные комментарии',()=>action(()=>analyze(S.rows.filter(eligible))),'primary',S.busy||!S.rows.length));root.append(empty);}const grid=n('div',undefined,'yt-topics');for(const t of S.topics){const card=n('article',undefined,'yt-topic'),head=n('div',undefined,'yt-section-row');head.append(n('h4',t.title),n('span',ready(t)?'Правила готовы':'Нужны ваши ответы',ready(t)?'yt-badge yt-badge--success':'yt-badge yt-badge--attention'));card.append(head,n('p',t.summary,'yt-muted'));for(const r of S.rows.filter(r=>r.topicId===t.id).slice(0,2))card.append(n('blockquote',r.text));const values=S.answers.get(t.id)||t.answers||[];t.questions.forEach((q,i)=>{const label=n('label',q,'yt-field'),input=n('textarea');input.id=`yt-guidance-${t.id}-${i}`;input.rows=3;input.maxLength=5000;input.value=values[i]||'';input.oninput=()=>{const a=[...(S.answers.get(t.id)||t.answers||[])];a[i]=input.value;S.answers.set(t.id,a);persistDrafts();};label.append(input);card.append(label);});card.append(b('Сохранить правила категории',()=>action(async()=>{await call('guidance',{topicId:t.id,questions:t.questions,answers:S.answers.get(t.id)||t.answers||[]});S.answers.delete(t.id);persistDrafts();await load(true);say(`Правила «${t.title}» сохранены.`);}),'primary',S.busy));grid.append(card);}root.append(grid);toneControls(root,true);}
+function toneControls(root,expanded=false){
+ const details=n('details',undefined,'yt-common yt-tone-controls');details.id='yt-tone-controls';details.open=expanded;let undo;details.append(n('summary','Тон и общие правила ответов'));
+ const label=n('label','Как отвечать аудитории','yt-field'),input=n('textarea');input.id='yt-global-tone';input.value=normalizeReplyDashes(S.toneDraft??S.knowledge.global??'');input.rows=expanded?10:4;input.maxLength=20000;input.placeholder='Например: спокойно и дружелюбно, без лести, кратко и по делу.';input.oninput=()=>{S.toneDraft=input.value;persistDrafts();if(undo)undo.disabled=false;};label.append(input);details.append(label,n('p','В ответах используется только короткий дефис (-). Сохраните инструкции перед подготовкой новых ответов. Готовые черновики сами не изменятся.','yt-muted'));
+ details.append(b('Сохранить тон и правила',()=>action(async()=>{const text=S.toneDraft??S.knowledge.global??'';await call('knowledge',{text});S.knowledge.global=text;if(S.toneDraft===text)S.toneDraft=null;persistDrafts();persistSnapshot();say('Тон и общие правила сохранены. Новые ответы будут готовиться с этими инструкциями.');},'knowledge'),'secondary',S.busy||S.running));
+ undo=b('Отменить правки правил',()=>{S.toneDraft=null;persistDrafts();render();},'quiet',S.toneDraft===null);details.append(undo,b('Восстановить согласованные правила',()=>{S.toneDraft=S.ownerInstructions;persistDrafts();render();say('Согласованные правила вставлены в поле. Сохраните их, чтобы применить.');},'quiet',S.busy||S.running));root.append(details);
+}
+
+async function collectFeedback(cancelled=()=>S.cancel){
+ const scope=S.scope,rows=S.rows.filter(r=>!r.ownComment&&!r.feedbackVersion);let done=0;
+ for(let i=0;i<rows.length&&!cancelled()&&scope===S.scope;i+=30){say(`ИИ разбирает просьбы и жалобы: ${done} из ${rows.length}…`);await call('feedback',{ids:rows.slice(i,i+30).map(r=>r.id)});done+=Math.min(30,rows.length-i);}
+ if(scope!==S.scope)return;await load(true);say(cancelled()?'Анализ остановлен. Обработанные обращения сохранены.':`Просьбы и жалобы сохранены. Проверено новых комментариев: ${done}.`);
+}
+const feedbackCategories={lessons:'Темы уроков',format:'Формат и темп',audio:'Звук и озвучка',text:'Текст и перевод',app:'Приложение',payment:'Оплата',materials:'Материалы и видео',other:'Другое'};
+const feedbackColors={lessons:'#8bbcff',format:'#bda5ff',audio:'#ffb182',text:'#7dd9c6',app:'#89cfe4',payment:'#f2cf75',materials:'#e9a1ce',other:'#a9bacb'};
+function feedback(root){
+ title(root,'Просьбы и жалобы','ИИ объединяет похожие обращения со всех каналов. Повторное сканирование не увеличивает счётчики. Один комментарий может содержать несколько разных просьб.');
+ const pending=S.rows.filter(r=>!r.ownComment&&!r.feedbackVersion).length;
+ const summary=n('div',undefined,'yt-feedback-summary');summary.append(n('strong',`${S.feedback.analyzed||0} комментариев разобрано`),n('span',`${pending} ожидают анализа`,'yt-muted'),b('Разобрать новые обращения',()=>action(async()=>{await collectFeedback();S.view='feedback';}),'primary',S.busy||!pending));root.append(summary);
+ const controls=n('div',undefined,'yt-feedback-filters');
+ for(const [key,label,options]of [['feedbackChannel','Канал',[['','Все каналы'],...S.channels.map(c=>[c.id,c.title])]],['feedbackKind','Тип обращения',[['','Просьбы и жалобы'],['request','Просьбы'],['complaint','Жалобы']]],['feedbackCategory','Категория',[['','Все категории'],...Object.entries(feedbackCategories)]]]){
+  const field=n('label',label,'yt-field'),select=n('select');select.setAttribute('aria-label',label);for(const [value,text]of options)select.add(new Option(text,value));select.value=S[key];select.onchange=()=>{S[key]=select.value;S.feedbackActive=null;render();};field.append(select);controls.append(field);
+ }
+ const search=n('label','Поиск просьбы или жалобы','yt-field'),input=n('input');input.type='search';input.value=S.query;input.setAttribute('aria-label','Поиск просьбы или жалобы');input.onchange=()=>{S.query=input.value;S.feedbackActive=null;render();};search.append(input);controls.append(search);root.append(controls);
+ const topics=(S.feedback.topics||[]).map(t=>({...t,visibleCount:S.feedbackChannel?t.channels[S.feedbackChannel]||0:t.count})).filter(t=>t.visibleCount>0&&(!S.feedbackKind||t.kind===S.feedbackKind)&&(!S.feedbackCategory||t.category===S.feedbackCategory)&&(!S.query||t.title.toLowerCase().includes(S.query.toLowerCase()))).sort((a,b)=>b.visibleCount-a.visibleCount||a.title.localeCompare(b.title));
+ if(!topics.length){root.append(n('div',pending?'Нажмите «Разобрать новые обращения»: ИИ выделит конкретные просьбы и жалобы из загруженных комментариев.':'По выбранным фильтрам обращений нет.','yt-empty'));return;}
+ const layout=n('div',undefined,'yt-feedback-layout'),chart=n('section',undefined,'yt-feedback-chart');chart.append(n('h3','Чаще всего просят и замечают'),n('p','15 самых частых тем · нажмите на полосу, чтобы открыть примеры','yt-muted'));
+ const max=topics[0].visibleCount;
+ for(const t of topics.slice(0,15)){
+  const button=b('',()=>{S.feedbackActive=t.id;render();});button.className='yt-feedback-bar';button.setAttribute('aria-label',`${t.title}: ${t.visibleCount} обращений`);button.setAttribute('aria-pressed',String((S.feedbackActive||topics[0].id)===t.id));
+  const heading=n('span',undefined,'yt-section-row');heading.append(n('strong',t.title),n('strong',String(t.visibleCount)));const track=n('span',undefined,'yt-feedback-track'),fill=n('span');fill.style.width=(100*t.visibleCount/max)+'%';fill.style.background=feedbackColors[t.category]||feedbackColors.other;track.setAttribute('aria-hidden','true');track.append(fill);button.append(heading,n('span',`${t.kind==='request'?'Просьба':'Жалоба'} · ${feedbackCategories[t.category]}`,'yt-muted'),track);chart.append(button);
+ }
+ const active=topics.find(t=>t.id===S.feedbackActive)||topics[0],detail=n('article',undefined,'yt-feedback-detail');
+ detail.append(n('span',active.kind==='request'?'Просьба':'Жалоба','yt-badge'),n('h3',active.title),n('p',`${active.visibleCount} обращений · ${feedbackCategories[active.category]}`));
+ const examples=(active.examples||[]).filter(e=>!S.feedbackChannel||e.configId===S.feedbackChannel);detail.append(n('p','Сохранённые примеры (до 12 последних на тему):','yt-muted'));
+ if(!examples.length)detail.append(n('p','Для этого канала среди последних примеров нет комментариев. Счётчик включает более ранние обращения.','yt-muted'));
+ for(const e of examples){const card=n('div',undefined,'yt-feedback-example');card.append(n('strong',name(e.configId)),n('blockquote',e.text));if(e.videoId){const link=n('a','Открыть комментарий на YouTube ↗');link.href=`https://www.youtube.com/watch?v=${encodeURIComponent(e.videoId)}&lc=${encodeURIComponent(e.commentId)}`;link.target='_blank';link.rel='noopener noreferrer';card.append(link);}detail.append(card);}
+ layout.append(chart,detail);root.append(layout);
+ const all=n('details',undefined,'yt-common');all.append(n('summary',`Все темы: ${topics.length}`));for(const t of topics)all.append(b(`${t.title} - ${t.visibleCount}`,()=>{S.feedbackActive=t.id;render();},'quiet'));root.append(all);
+}
+
+function filters(root){const box=n('div',undefined,'yt-filters'),search=n('input'),select=n('select');search.type='search';search.placeholder='Поиск в этой порции';search.setAttribute('aria-label','Поиск комментариев');search.value=S.query;search.onchange=()=>{S.query=search.value;render();};select.setAttribute('aria-label','Канал');select.add(new Option('Все каналы',''));for(const c of S.channels)select.add(new Option(c.title,c.id));select.value=S.filter;select.disabled=batchBlocked();select.onchange=()=>{void changeBatch({channelId:select.value});};const status=n('select');status.setAttribute('aria-label','Показать комментарии');status.add(new Option('Все комментарии','all'));status.add(new Option('С ответами','prepared'));status.value=replyFilter;status.onchange=()=>{replyFilter=status.value;render();};box.append(search,select,status);root.append(box);}
+function batchControls(root){
+ const box=n('div',undefined,'yt-pagination yt-batch-controls'),label=n('label','Комментариев за раз','yt-field'),select=n('select');select.id='yt-batch-size';select.setAttribute('aria-label','Комментариев за раз');select.title='Загрузить только выбранное число комментариев. Ответы готовятся для этой порции.';
+ for(const size of BATCH_SIZES)select.add(new Option(String(size),String(size)));select.value=String(S.batchSize);select.disabled=batchBlocked();select.onchange=()=>{void changeBatch({size:Number(select.value)});};label.append(select);
+ box.append(label,b('Предыдущая порция',()=>changeBatch({direction:-1}),'quiet',batchBlocked()||!S.page),n('span',`Порция ${S.page+1} · загружено ${S.rows.length} из ${S.batchSize}`),b('Следующая порция',()=>changeBatch({direction:1}),'secondary',batchBlocked()||!S.nextCursor));root.append(box);
+}
+function drafts(root){batchControls(root);toneControls(root);clearDraftControls(root);filters(root);const rows=visible(),chosen=selected(),todo=rows.filter(pending),tools=n('div',undefined,'yt-review-toolbar');
+tools.append(n('strong',`Выбрано ${chosen.length} из ${rows.length}`),b('Выбрать все',()=>{rows.filter(r=>eligible(r)&&!['approved','sending','sent','uncertain'].includes(r.reply?.status)).forEach(r=>S.selected.add(r.id));render();},'quiet'),b('Снять выбор',()=>{S.selected.clear();render();},'quiet'),b(`Подготовить ответы для порции (${todo.length})`,()=>prepareReplies(true),'primary',S.busy||S.running||!todo.length),b('Подготовить ответы',()=>prepareReplies(),'secondary',S.busy||S.running||!chosen.some(pending)),b('Подготовить заново',()=>prepareReplies(false,true),'secondary',S.busy||S.running||!chosen.some(r=>eligible(r)&&!['approved','sending','sent','uncertain'].includes(r.reply?.status))),b('Одобрить выбранные',()=>action(()=>approve(),'approve'),'secondary',S.busy||S.running||!chosen.some(canApprove)),b('Открыть очередь отправки',()=>view('queue'),'quiet'));
+ tools.append(n('p',`Без готового ответа: ${todo.length}. Выбор и подготовка охватывают только эту порцию с текущими фильтрами. Готовые черновики заменяются только через «Подготовить заново».`,'yt-bulk-hint'));
+ if(S.generation){const g=S.generation,progress=n('div',undefined,'yt-bulk-progress'),bar=n('progress');bar.max=g.total;bar.value=g.processed;bar.setAttribute('aria-label','Подготовка ответов');progress.append(n('strong',`Обработано ${g.processed} из ${g.total} · Готово ${g.done} · Пропущено ${g.skipped} · Проверить ${g.review} · Ошибок ${g.failed}`),bar,b('Остановить подготовку',()=>{S.cancel=true;say('Останавливаем подготовку после текущего ответа. Готовые черновики сохранятся.');},'secondary',S.cancel));tools.append(progress);}else if(S.busy&&!S.running){tools.append(n('p',S.message,'yt-bulk-hint'));tools.append(b('Остановить текущую обработку',()=>{S.cancel=true;say('Останавливаем после текущего запроса…');render();},'secondary'));}
+ root.append(tools);if(!rows.length){root.append(n('div',S.rows.length?'В этой порции нет комментариев по выбранному фильтру. Измените фильтр или откройте следующую порцию.':'В этой порции комментариев нет. Вернитесь к предыдущей или обновите комментарии с YouTube.','yt-empty'));return;}const list=n('div',undefined,'yt-inline-list');for(const r of rows)list.append(replyCard(r));root.append(list);}
+
+function replyCard(r){
+ const item=n('article',undefined,'yt-thread yt-inline-card'),head=n('div',undefined,'yt-inline-head'),check=n('input');
+ item.dataset.commentId=r.id;check.type='checkbox';check.checked=S.selected.has(r.id);check.disabled=!eligible(r);check.setAttribute('aria-label',`Выбрать комментарий ${r.author}`);
+ check.onchange=()=>{if(check.checked)S.selected.add(r.id);else S.selected.delete(r.id);render();};
+ head.append(check,n('strong',r.author||'Зритель'),n('span',name(r.configId),'yt-thread-channel'),n('span',r.ownComment?'Ответ канала':r.skipReply?'Пропущен':r.needsReview?'Нужна проверка':labels[r.reply?.status]||'Без ответа','yt-badge'));
+ const pair=n('div',undefined,'yt-inline-pair'),original=n('div',undefined,'yt-inline-original'),answer=n('div',undefined,'yt-inline-answer');
+ original.append(n('div','Комментарий','yt-eyebrow'),n('blockquote',r.text,'yt-original'));
+ if(r.videoId){const link=n('a','Открыть обсуждение на YouTube ↗');link.href=`https://www.youtube.com/watch?v=${encodeURIComponent(r.videoId)}&lc=${encodeURIComponent(r.commentId||r.parentId)}`;link.target='_blank';link.rel='noopener noreferrer';original.append(link);}
+ if(!eligible(r)){
+  answer.append(n('p',r.ownComment?'Это уже опубликованный ответ вашего канала.':r.skipReply?'Ответ пропущен по правилам. Если ИИ ошибся, разрешите подготовку для этого комментария.':'Ответы на этот комментарий недоступны.','yt-muted'));
+  if(r.skipReply)answer.append(b('ИИ ошибся: это не об ИИ или озвучке',()=>action(async()=>{await call('feedbackAllowReply',{id:r.id});await load();say('Пометка исправлена. Теперь можно подготовить и проверить ответ.');}),'quiet',S.busy));
+ }else{
+  if(r.localError||r.needsReview||isPlaceholder(r.reply?.text))answer.append(n('p',r.localError||'Информации недостаточно. Дополните правила или напишите ответ вручную.','yt-error'));
+  const field=n('label','Ваш ответ','yt-field'),input=n('textarea');input.id='yt-reply-'+r.id;input.className='yt-reply-input';input.rows=3;input.maxLength=4000;const shownText=S.edits.get(r.id)?.text??r.reply?.text??'';input.value=['approved','sending','sent','uncertain'].includes(r.reply?.status)?shownText:normalizeReplyDashes(shownText);input.placeholder='Ответ появится здесь после подготовки';
+  let undo,approveButton;const locked=['approved','sending','sent','uncertain'].includes(r.reply?.status);input.disabled=locked||S.running||S.rowBusy.has(r.id);
+  input.oninput=()=>{const start=input.selectionStart,end=input.selectionEnd,text=input.value,normalized=normalizeReplyDashes(text);if(normalized!==text){input.value=normalized;if(typeof input.setSelectionRange==='function')input.setSelectionRange(normalizeReplyDashes(text.slice(0,start)).length,normalizeReplyDashes(text.slice(0,end)).length);}S.edits.set(r.id,{text:input.value,revision:S.edits.get(r.id)?.revision??r.reply?.revision??0});persistDrafts();if(undo)undo.disabled=false;if(approveButton)approveButton.disabled=true;};field.append(input);answer.append(field);
+  const controls=n('div',undefined,'yt-actions');controls.append(b(r.reply?.text?.trim()?'Подготовить заново':'Подготовить ответ',()=>{if(r.reply?.text?.trim()&&!window.confirm('Подготовить новый вариант этого ответа? Текущий текст заменится после успешной подготовки.'))return;return action(()=>generate([r],true),'generate');},'secondary',S.busy||S.running||S.rowBusy.has(r.id)||locked),b('Сохранить черновик',()=>rowAction(r.id,current=>saveDraft(r.id,input.value,S.edits.get(r.id)?.revision??current.reply?.revision??0)),'primary',rowBlocked(r.id)||locked));
+  undo=b('Отменить правки',()=>discardEdits(r.id),'quiet',!S.edits.has(r.id)||S.rowBusy.has(r.id));controls.append(undo);
+  if(canApprove(r)){approveButton=b('Одобрить ответ',()=>action(()=>approve([r]),'approve'),'secondary',S.busy||S.running||S.rowBusy.has(r.id)||S.edits.has(r.id));controls.append(approveButton);}
+  if(r.reply?.status==='approved'&&!r.skipReply)controls.append(b('Отменить одобрение и изменить',()=>rowAction(r.id,current=>saveDraft(r.id,current.reply.text,current.reply.revision)),'secondary',rowBlocked(r.id)));
+  if(['sending','uncertain'].includes(r.reply?.status))controls.append(b('Проверить результат отправки',()=>rowAction(r.id,async(current,scope)=>{const accessToken=await token(current.configId);if(scope!==sessionScope())return;const result=await call('reconcile',{id:current.id,token:accessToken});await load(true,current.id);say(result.status==='sent'?'Ответ найден на YouTube.':'Результат пока не подтверждён. Повторная отправка заблокирована.');}),'secondary',rowBlocked(r.id)));
+  controls.append(b('Правила ответа',()=>view('knowledge'),'quiet'));answer.append(controls);
+ }
+ pair.append(original,answer);item.append(head,pair);return item;
+}
+function queue(root){const approved=S.rows.filter(r=>r.reply?.status==='approved'&&!r.skipReply&&r.reply.approval?.uid===window.__pmAdminCore?.auth?.currentUser?.uid),sent=S.rows.filter(r=>r.reply?.status==='sent'),summary=n('section',undefined,'yt-queue-summary');summary.append(n('h3',S.running?'Очередь работает':'Готовы к отправке'),n('p',`${approved.length} одобренных · ${sent.length} отправлено`),n('p','Только одобренные ответы из этой порции: по одному, с паузой и чередованием каналов. Вкладка должна оставаться открытой.'),b('Запустить одобренные ответы',()=>action(run,'queue'),'primary',S.busy||S.running||!approved.length));root.append(summary);for(const r of S.rows.filter(r=>['approved','sending','sent','uncertain'].includes(r.reply?.status))){const item=n('article',undefined,'yt-queue-row');item.append(n('span',labels[r.reply.status],'yt-badge'),n('strong',name(r.configId)),n('p',r.reply.text),b('Посмотреть',()=>{S.active=r.id;replyFilter='all';S.query='';view('drafts');requestAnimationFrame(()=>panel.querySelector(`[data-comment-id="${CSS.escape(r.id)}"]`)?.scrollIntoView({block:'center'}));},'quiet'));root.append(item);}}
+function render(){ensureAccount();if(!panel)return;const focused=document.activeElement,focus=focused?.id,start=focused?.selectionStart,end=focused?.selectionEnd,toneOpen=panel.querySelector('#yt-tone-controls')?.open,scroll=panel.querySelector('.yt-thread-list')?.scrollTop||0;content.replaceChildren();panel.setAttribute('aria-busy',String(S.busy));header(content);const body=n('div',undefined,'yt-body');({channels,knowledge,drafts,queue,feedback}[S.view]||channels)(body);content.append(body);const list=panel.querySelector('.yt-thread-list');if(list)list.scrollTop=scroll;const tone=panel.querySelector('#yt-tone-controls');if(tone&&typeof toneOpen==='boolean')tone.open=toneOpen;if(focus){const next=panel.querySelector('#'+CSS.escape(focus));next?.focus({preventScroll:true});if(typeof start==='number'&&typeof end==='number'&&typeof next?.setSelectionRange==='function')next.setSelectionRange(start,end);}}
+async function openWorkspace(fresh=false){
+ ensureAccount();render();if(!S.scope)throw Error('Войдите в админку, чтобы открыть комментарии.');
+ if(!fresh&&S.loaded&&S.verifiedAt&&Date.now()-S.verifiedAt<FRESH_MS)return{status:'fresh',source:'youtube-comments',fetchedAt:S.verifiedAt,message:S.rows.length+' сохранённых комментариев'};
+ if(opening&&!fresh)return opening;const scope=sessionScope();const promise=load(!!fresh).finally(()=>{if(scope===sessionScope()&&opening===promise)opening=null;});opening=promise;
+ if(S.loaded&&!fresh){void promise.catch(()=>{});return{status:'cached',source:'youtube-comments',fetchedAt:S.cacheAt,message:'Показаны сохранённые комментарии; обновление списка идёт в фоне.'};}return promise;
+}
+function mount(){const catalog=document.getElementById('tab-youtube-catalog');if(!catalog||!window.__pmAdminCore||panel)return false;const css=n('link');css.rel='stylesheet';css.href='scripts/pages/youtube-comments.css';document.head.append(css);panel=n('section');panel.id='tab-youtube-comments';panel.className='reports-tab pm-v4-page';panel.dataset.adminCategory='content';panel.dataset.pmV4Section='youtube-comments';content=n('div',undefined,'yt-workspace-content');panel.append(content);catalog.parentNode.append(panel);catalog.prepend(b('Комментарии и ответы →',()=>window.switchTab('youtube-comments')));window.loadYoutubeCommentsWorkspace=openWorkspace;document.addEventListener('pm:admin-auth-changed',event=>{window.__pmAdminAuthReady=event.detail?.ready===true;ensureAccount();render();if(window.__pmAdminAuthReady&&(window.location.hash==='#youtube-comments'||panel.classList.contains('active')))void openWorkspace().catch(()=>{});});document.addEventListener('pm:section-opened',event=>{if(event.detail?.tab==='youtube-comments')void openWorkspace().catch(()=>{});});window.addEventListener('beforeunload',()=>{persistDrafts();S.running=false;queueRunId++;});window.addEventListener('focus',()=>{if(ensureAccount())render();});render();if(window.location.hash==='#youtube-comments'){window.switchTab('youtube-comments');void openWorkspace().catch(()=>{});}window.pmYoutubeAuth?.prepare?.().catch(()=>{});return true;}
+if(!mount()){const timer=setInterval(()=>{if(mount())clearInterval(timer);},500);setTimeout(()=>clearInterval(timer),120000);}
+})();
+

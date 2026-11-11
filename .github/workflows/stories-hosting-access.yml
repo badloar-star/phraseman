@@ -1,0 +1,121 @@
+name: Deploy Stories only
+
+on:
+  push:
+    branches: [feature/referral-roulette]
+    paths: [.github/workflows/stories-hosting-access.yml]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: admin-hosting-stories-production
+  cancel-in-progress: false
+
+jobs:
+  deploy-stories-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      # Select exactly one deployment credential. Never enumerate repository secrets.
+      # The optional variable names an existing secret; its value is not a credential.
+      - name: Check explicitly named Hosting credential is configured
+        env:
+          HAS_HOSTING_CREDENTIAL: ${{ secrets[vars.FIREBASE_HOSTING_CREDENTIAL_SECRET || 'FIREBASE_SERVICE_ACCOUNT_PHRASEMAN_EA0B3'] != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$HAS_HOSTING_CREDENTIAL" != "true" ]]; then
+            echo '::error::STORIES_DEPLOY_BLOCKED: the named Firebase Hosting credential is not configured. Configure FIREBASE_SERVICE_ACCOUNT_PHRASEMAN_EA0B3 or set the repository variable FIREBASE_HOSTING_CREDENTIAL_SECRET to the name of the existing project service-account secret. No Hosting changes were made.'
+            exit 31
+          fi
+
+      - name: Check out this immutable release
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /admin/v2/
+            /scripts/deploy_admin_stories_only.py
+            /tests/admin_stories_regression.py
+            /tests/admin_stories_layout_regression.py
+            /tests/admin_stories_deploy_test.py
+
+      - name: Use Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install test and deployment clients
+        run: |
+          python -m pip install --disable-pip-version-check 'playwright==1.57.0' 'google-auth>=2.40,<3' 'requests==2.32.5'
+          python -m playwright install --with-deps chromium
+
+      - name: Verify Stories lifecycle, preview layout and deployment isolation
+        shell: bash
+        run: |
+          set -euo pipefail
+          export STORIES_TEST_OUTPUT="$RUNNER_TEMP/stories-test-output"
+          node --check admin/v2/scripts/pages/story_announcements_v2.js
+          python tests/admin_stories_regression.py
+          python tests/admin_stories_layout_regression.py
+          python tests/admin_stories_deploy_test.py
+
+      - name: Deploy only the tested Stories assets with the named project credential
+        env:
+          HOSTING_CREDENTIAL_JSON: ${{ secrets[vars.FIREBASE_HOSTING_CREDENTIAL_SECRET || 'FIREBASE_SERVICE_ACCOUNT_PHRASEMAN_EA0B3'] }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/stories-hosting-credential.json"
+          trap 'rm -f "$GOOGLE_APPLICATION_CREDENTIALS"' EXIT
+          python - <<'PY'
+          import json, os
+          raw = os.environ.get('HOSTING_CREDENTIAL_JSON', '')
+          try:
+              data = json.loads(raw)
+          except (TypeError, ValueError):
+              raise SystemExit('STORIES_DEPLOY_BLOCKED: the named credential must contain service-account JSON. No Hosting changes were made.') from None
+          valid = (
+              isinstance(data, dict)
+              and data.get('type') == 'service_account'
+              and data.get('project_id') == 'phraseman-ea0b3'
+              and isinstance(data.get('client_email'), str)
+              and data['client_email'].endswith('@phraseman-ea0b3.iam.gserviceaccount.com')
+              and isinstance(data.get('private_key'), str)
+              and bool(data['private_key'].strip())
+              and data.get('token_uri') == 'https://oauth2.googleapis.com/token'
+          )
+          if not valid:
+              raise SystemExit('STORIES_DEPLOY_BLOCKED: credential is not a valid service-account configuration for phraseman-ea0b3. No Hosting changes were made.')
+          fd = os.open(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+          with os.fdopen(fd, 'w', encoding='utf-8') as output:
+              output.write(raw)
+          PY
+          unset HOSTING_CREDENTIAL_JSON
+          python scripts/deploy_admin_stories_only.py --apply
+
+      - name: Retain non-sensitive release verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stories-release-verification
+          path: |
+            stories-release-result.json
+            ${{ runner.temp }}/stories-test-output/layout-results.json
+            ${{ runner.temp }}/stories-test-output/stories-after.png
+            /tmp/story_announcements_v2-regression-results.json
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Remove temporary credential
+        if: always()
+        shell: bash
+        run: rm -f "$RUNNER_TEMP/stories-hosting-credential.json"

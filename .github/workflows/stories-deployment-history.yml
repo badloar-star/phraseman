@@ -1,0 +1,73 @@
+name: Diagnose Stories deployment configuration
+
+on:
+  push:
+    branches: [feature/referral-roulette]
+    paths: [.github/workflows/stories-deployment-history.yml]
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  inspect-deployment-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Find prior deployment runs and referenced credential names only
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPOSITORY: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, re, urllib.request, urllib.error
+          repo = os.environ['GH_REPOSITORY']
+          base = 'https://api.github.com/repos/' + repo
+          token = os.environ['GH_TOKEN']
+          def get(path):
+              request = urllib.request.Request(base + path, headers={
+                  'Authorization': 'Bearer ' + token,
+                  'Accept': 'application/vnd.github+json',
+                  'X-GitHub-Api-Version': '2022-11-28',
+              })
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  return json.load(response)
+          matches = []
+          for page in range(1, 5):
+              data = get('/actions/runs?status=success&per_page=100&page=' + str(page))
+              runs = data.get('workflow_runs', [])
+              for run in runs:
+                  if re.search(r'deploy|firebase|hosting', run.get('name', ''), re.I):
+                      matches.append({k: run.get(k) for k in ('id', 'name', 'path', 'head_sha', 'head_branch', 'created_at')})
+              if len(runs) < 100:
+                  break
+          print('Successful deployment-related runs:', len(matches))
+          print(json.dumps(matches[:20], ensure_ascii=True, indent=2))
+          # Read only already-public workflow definitions at immutable historical refs.
+          # Report configuration references, never environment or secret values.
+          names = set()
+          environments = set()
+          import base64
+          for run in matches[:8]:
+              path = str(run.get('path', '')).split('@', 1)[0]
+              if not path.startswith('.github/workflows/'):
+                  continue
+              try:
+                  data = get('/contents/' + path + '?ref=' + run['head_sha'])
+                  source = base64.b64decode(data['content']).decode('utf-8')
+                  refs = re.findall(r'secrets\.([A-Za-z_][A-Za-z0-9_]*)', source)
+                  project_refs = sorted({x for x in refs if re.search(r'FIREBASE|GOOGLE|GCP|GCLOUD|SERVICE_ACCOUNT', x, re.I)})
+                  vars_refs = sorted(set(re.findall(r'vars\.([A-Za-z_][A-Za-z0-9_]*)', source)))
+                  envs = re.findall(r'^\s+environment:\s*([A-Za-z0-9_-]+)\s*$', source, re.M)
+                  names.update(project_refs)
+                  environments.update(envs)
+                  print(json.dumps({'run': run['id'], 'credentialReferences': project_refs, 'variableReferences': vars_refs, 'environments': envs}, ensure_ascii=True))
+              except (urllib.error.HTTPError, KeyError, ValueError) as error:
+                  print('Historical source unavailable for run', run['id'], type(error).__name__)
+          summary = {'successfulDeploymentRuns': len(matches), 'credentialNamesReferencedInSource': sorted(names), 'environmentsReferencedInSource': sorted(environments)}
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as output:
+              output.write('## Stories deployment configuration audit\n\nNo project secrets were read. No Hosting changes were made.\n\n```json\n' + json.dumps(summary, indent=2) + '\n```\n')
+          print(json.dumps(summary, ensure_ascii=True))
+          PY

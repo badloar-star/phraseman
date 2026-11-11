@@ -25,6 +25,9 @@ import { tabEnteredByMenu } from '../tab_entry_source';
 import { SPIRE_SCENE_V2_ENABLED } from '../../components/spire/scene/spire_scene_flag';
 import { useIsFocused } from '@react-navigation/native';
 import { useSceneStatusBar } from '../../hooks/use_scene_status_bar';
+import CommunityHeaderScrim from '../../components/CommunityHeaderScrim';
+import { useTheme } from '../../components/ThemeContext';
+import { homeSceneTokensForTheme } from '../../components/home/v2/scene/home_scene_tokens';
 
 type Section = SubRuntimeOwnerId;
 type SectionScreen = React.ComponentType<{ presentation?: 'push' | 'embedded' }>;
@@ -80,6 +83,11 @@ export default function CommunityTabRoute() {
   const sceneTint = useSpireSceneHeaderTint();
   const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null);
   const [headerH, setHeaderH] = useState(0);
+  // зачем (владелец 11.11: «в наборах… при скролле верхняя часть просто накладывается»; то же на Пике): шапка поверх сцены прозрачная —
+  // при прокрутке под вкладками появляется полоса цветом верха сцены раздела с мягким нижним краем. «Наборы» — верх сцены темы, Пик — цвет его сцены
+  const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+  const packsSceneTop = useMemo(() => homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance).sceneTop, [liquidGlassThemeId, liquidGlassAppearance]);
+  const scrimTint = !overScene ? null : section === 'packs' ? packsSceneTop : sceneTint;
   useEffect(() => { setSpireHeaderOverlayInset(overScene ? headerH : 0); }, [overScene, headerH]);
   // зачем (владелец 29.10, вкладки наезжают при прокрутке Пика; «сперва логи»): решение шапки пишется при каждой смене — см. spire_tabs_scroll_trace
   useEffect(() => { traceSpireTabsHeader({ section, overScene, sceneTint, topInset, headerH }); }, [section, overScene, sceneTint, topInset, headerH]);
@@ -208,6 +216,7 @@ export default function CommunityTabRoute() {
         <View style={s.headerRight}>{section === 'packs' ? packsSlot?.right : section === 'spire' && SPIRE_SCENE_V2_ENABLED ? <SpireEnergyPill ownerActive={tabVisible && section === 'spire'} /> : null}</View>
         </>)}
       </View>
+      {scrimTint ? <CommunityHeaderScrim headerHeight={headerH} tint={scrimTint} /> : null}
       <View style={overScene ? s.bodyUnder : s.body}>
         {renderSection('friends')}
         {spireVisible ? renderSection('spire') : null}

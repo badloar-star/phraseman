@@ -25,6 +25,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
+import ScrollTopEdgeFade from '../../components/ScrollTopEdgeFade';
 import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 // зачем (владелец 2026-09-29): вкладка «Друзья» 1 в 1 по макету community.html (Liquid Glass) —
@@ -2874,6 +2875,8 @@ export default function FriendsTabScreen() {
   return (
     <ScreenGradient artBackdrop="friends">
       <View testID="screen-friends" style={{ flex: 1 }}>
+      {/* зачем (владелец 11.11: «везде край размыт и нигде жёсткий»): список под шапкой «Сообщества» растворяется на 20 px после начала прокрутки, в покое вид прежний */}
+      <ScrollTopEdgeFade>
       <BouncyWrap style={bouncyStyle}>
         <AnimatedFlashList decelerationRate="fast"
           {...listScrollProps}
@@ -2914,6 +2917,7 @@ export default function FriendsTabScreen() {
           ListFooterComponent={listFooter}
         />
       </BouncyWrap>
+      </ScrollTopEdgeFade>
 
 
       {friendsLadderShown ? (

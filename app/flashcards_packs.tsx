@@ -48,6 +48,8 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { safeRouterBack } from './navigation_back';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import { useCommunityHeaderSlotSetter } from './community_header_slot';
+import { useTabNav } from './TabContext';
+import { useTopFadeScroll } from '../components/TopFadeScrollContext';
 import { primeFlashcardsCollectionCache } from './flashcards/useCollectionData';
 import FlashcardsCategoryHub from './flashcards/FlashcardsCategoryHub';
 import { packTileArtRevision } from './flashcards/packMarketplaceIcons';
@@ -231,12 +233,33 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
       }),
     [scrollY],
   );
+  // зачем (владелец 11.11: «в наборах… при скролле верхняя часть просто накладывается»): встроенные «Наборы» сообщают прокрутку в общий
+  // признак вкладок — по нему под вкладками «Сообщества» появляется полоса цвета сцены с мягким краем (CommunityHeaderScrim).
+  // Только маска (onScrollMaskOnly): нижнее меню от прокрутки «Наборов» не сворачивается, как и раньше. Общий признак помнит последний
+  // раздел, поэтому при показе «Наборы» сообщают своё место заново (как Пик в use_spire_scene_scroll).
+  const topFadeScroll = useTopFadeScroll();
+  const { runtimeOwnerId } = useTabNav();
+  const hubLastYRef = useRef(0);
+  const reportHubScroll = useCallback((e: { nativeEvent: { contentOffset: { y: number } } }) => {
+    hubLastYRef.current = e.nativeEvent.contentOffset.y;
+    topFadeScroll?.onScrollMaskOnly(e);
+  }, [topFadeScroll]);
+  const hubShown = embedded && runtimeOwnerId === 'packs';
+  useEffect(() => {
+    if (!hubShown) return;
+    if (!topFadeScroll) {
+      console.log('[SOFT-TOP] packs: нет TopFadeScroll — полоса под вкладками не узнает о прокрутке'); // guard-ok: ранний выход называет причину
+      return;
+    }
+    topFadeScroll.onScrollMaskOnly({ nativeEvent: { contentOffset: { y: hubLastYRef.current } } });
+  }, [hubShown, topFadeScroll]);
   const onHubScroll = useMemo(
     () =>
       Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
         useNativeDriver: Platform.OS !== 'web',
+        listener: embedded ? reportHubScroll : undefined,
       }),
-    [scrollY],
+    [scrollY, embedded, reportHubScroll],
   );
 
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -516,7 +539,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             keyboardShouldPersistTaps="handled"
             bounces
             alwaysBounceVertical={false}
-            onScroll={reduceMotion ? undefined : onHubScroll}
+            onScroll={reduceMotion && !embedded ? undefined : onHubScroll}
             scrollEventThrottle={16}
           >
             {/* зачем (cards-v2 catalog() / commHead()): заголовок «Сообщество» 34/40 (+ круглая «создать набор» — функция приложения, в макете её нет),

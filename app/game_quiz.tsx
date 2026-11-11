@@ -10,7 +10,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -18,7 +17,10 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
-import { V2AnswerOption, V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
+import GameAnswerTile from '../components/games/GameAnswerTile';
+import GameRise from '../components/games/GameRise';
+import GameSegments from '../components/games/GameSegments';
+import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
@@ -74,12 +76,12 @@ function Prompt({ round, phase, picked, onReplay }: Readonly<{ round: QuizRound;
     return (
       <View style={s.pairs}>
         {prompt.pairs.map(([left, right], i) => (
-          <Reanimated.View key={left} entering={FadeInDown.duration(320).delay(i * 70)} style={s.pairSlot}>
+          <GameRise key={left} delayMs={i * 70} style={s.pairSlot}>
             <V2Card seed={i} style={[s.pair, hidden && i !== prompt.askIndex && s.pairHidden]}>
               <Text style={[s.pairLeft, { color: p.text }]}>{left}</Text>
               <Text style={[s.pairRight, { color: p.textSecondary, opacity: hidden ? 0 : 1 }]}>{right}</Text>
             </V2Card>
-          </Reanimated.View>
+          </GameRise>
         ))}
       </View>
     );
@@ -87,7 +89,7 @@ function Prompt({ round, phase, picked, onReplay }: Readonly<{ round: QuizRound;
 
   if (prompt.kind === 'gap') {
     return (
-      <View style={s.gapRow}>
+      <GameRise style={s.gapRow}>
         {prompt.before ? <Text style={[s.gapText, { color: p.text }]}>{prompt.before}</Text> : null}
         <View style={[s.hole, { backgroundColor: p.track }]}>
           {/* зачем: в пропуск всегда встаёт верное слово — его и красим по исходу ответа */}
@@ -95,20 +97,20 @@ function Prompt({ round, phase, picked, onReplay }: Readonly<{ round: QuizRound;
           <Text accessible={answered} importantForAccessibility={answered ? 'auto' : 'no-hide-descendants'} style={[s.gapText, { color: ok ? p.correct : p.wrong, opacity: answered ? 1 : 0 }]}>{round.options[round.correctIndex]}</Text>
         </View>
         {prompt.after ? <Text style={[s.gapText, { color: p.text }]}>{prompt.after}</Text> : null}
-      </View>
+      </GameRise>
     );
   }
 
   return (
     <View style={s.cells}>
       {prompt.known.map((form, i) => (
-        <Reanimated.View key={form} entering={FadeInDown.duration(320).delay(i * 120)} style={[s.cell, { backgroundColor: p.glass }]}>
+        <GameRise key={form} delayMs={i * 120} style={[s.cell, { backgroundColor: p.glass }]}>
           <Text style={[s.cellText, { color: p.text }]}>{form}</Text>
-        </Reanimated.View>
+        </GameRise>
       ))}
-      <Reanimated.View entering={FadeInDown.duration(320).delay(240)} style={[s.cell, s.cellHole, { backgroundColor: p.track }]}>
+      <GameRise delayMs={240} style={[s.cell, s.cellHole, { backgroundColor: p.track }]}>
         <Text accessible={answered} importantForAccessibility={answered ? 'auto' : 'no-hide-descendants'} style={[s.cellText, { color: p.correct, opacity: answered ? 1 : 0 }]}>{round.options[round.correctIndex]}</Text>
-      </Reanimated.View>
+      </GameRise>
     </View>
   );
 }
@@ -190,6 +192,7 @@ export default function GameQuizScreen() {
 
   const finished = phase === 'done';
   const doneCount = finished ? rounds.length : game.index + (phase === 'verdict' ? 1 : 0);
+  const segmentIds = useMemo(() => rounds.map((r) => r.id), [rounds]);
 
   return (
     <ScreenGradient>
@@ -205,9 +208,7 @@ export default function GameQuizScreen() {
             </View>
           </View>
 
-          <View style={s.segs}>
-            {rounds.map((r, i) => <View key={r.id} style={[s.seg, { backgroundColor: i < doneCount ? p.text : p.track }]} />)}
-          </View>
+          <GameSegments ids={segmentIds} done={doneCount} track={p.track} fill={p.text} style={s.segs} />
 
           {finished ? (
             <View style={s.finish}>
@@ -227,13 +228,14 @@ export default function GameQuizScreen() {
               <Text style={[s.ask, { color: p.textSecondary }]}>{phase === 'show' ? '' : round.ask}</Text>
               <View style={s.answers}>
                 {phase === 'show' ? null : round.options.map((option, i) => (
-                  <V2AnswerOption
+                  <GameAnswerTile
                     key={`${round.id}-${i}`}
                     testID={`game-quiz-option-${i}`}
                     label={option}
+                    index={i}
                     disabled={phase !== 'answer'}
-                    state={phase === 'answer' ? 'idle' : i === round.correctIndex ? 'correct' : i === picked ? 'wrong' : 'dimmed'}
-                    onPress={() => { void hapticTap(); onPick(i); }}
+                    state={phase === 'answer' ? 'idle' : i === round.correctIndex ? 'correct' : i === picked ? 'wrong' : 'off'}
+                    onPress={() => onPick(i)}
                   />
                 ))}
               </View>
@@ -251,8 +253,7 @@ const s = StyleSheet.create({
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: V2.iconButton },
   pill: { height: 36, paddingHorizontal: 12, borderRadius: 18, justifyContent: 'center' },
   pillText: { fontSize: 14, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  segs: { flexDirection: 'row', gap: 6, marginTop: 14, height: 4 },
-  seg: { flex: 1, height: 4, borderRadius: 2 },
+  segs: { marginTop: 14 },
   stageTop: { flex: 0.6 },
   stageBottom: { flex: 1 },
   promptBox: { minHeight: 200, justifyContent: 'center' },

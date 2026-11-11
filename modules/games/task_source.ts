@@ -1,23 +1,20 @@
 /**
- * Откуда игры берут задания. Владелец 11.11.2026: «фразы должны корректно подбираться для режимов игры, без багов».
+ * Откуда игры берут задания. Владелец 11.11.2026: «фразы должны корректно подбираться для режимов игры, без багов»,
+ * «оно должно работать на всех языках».
  *
  * зачем один модуль: только он решает, какие задания дать и доступна ли игра для языка обучения. Экраны и разминка
  * спрашивают его и не знают о банке. Правило: человек никогда не получает задания не на том языке, который учит, —
- * если для языка заданий нет, игра в разминку не попадает.
+ * если для языка заданий нет, игра в разминку не попадает. Банки языков — в реестре `bank/index.ts`.
  */
 import { peekHomeScreenHydration } from '../../app/home_screen_hydration';
-import { EXACT_BANK_EN } from './bank/exact_en';
-import { FORMS_BANK_EN } from './bank/forms_en';
-import { ODD_WORD_BANK_EN } from './bank/odd_word_en';
-import { SORT_BANK_EN } from './bank/sort_en';
-import { HUNT_SEED_TASKS, ORDER_SEED_TASKS, isValidHuntTask, isValidOrderTask, type HuntTask, type OrderTask } from './dialogue_core';
+import { gameBankFor } from './bank';
+import { isValidHuntTask, isValidOrderTask, type HuntTask, type OrderTask } from './dialogue_core';
 import { isValidOddWordTask, type OddWordTask } from './odd_word_core';
-import { QUIZ_SEED_DECKS, isValidQuizRound, type QuizDeck, type QuizKind } from './quiz_core';
+import { QUIZ_SEED_DECKS, isValidQuizRound, type QuizDeck, type QuizKind, type QuizRound } from './quiz_core';
 import type { SortDeck } from './sort_core';
 
 export type GameId = 'flow' | 'odd_word' | 'sort' | 'listen' | 'memory' | 'exact' | 'forms' | 'hunt' | 'order';
 
-const BANK_LANGUAGE = 'en';
 const LESSON_MIN = 1;
 const LESSON_MAX = 32;
 
@@ -36,7 +33,8 @@ export function currentGameLesson(studyTarget: string): number {
  * Запись банка для урока: сам урок, иначе ближайший предыдущий, для которого задания есть.
  * зачем: задания старше текущего урока содержали бы слова, которых человек ещё не видел.
  */
-export function bankEntryForLesson<T>(bank: Readonly<Record<number, T>>, lesson: number, usable: (entry: T) => boolean): T | null {
+export function bankEntryForLesson<T>(bank: Readonly<Record<number, T>> | undefined, lesson: number, usable: (entry: T) => boolean): T | null {
+  if (!bank) return null;
   for (let n = Math.min(LESSON_MAX, Math.max(LESSON_MIN, Math.floor(lesson))); n >= LESSON_MIN; n -= 1) {
     const entry = bank[n];
     if (entry !== undefined && usable(entry)) return entry;
@@ -45,37 +43,36 @@ export function bankEntryForLesson<T>(bank: Readonly<Record<number, T>>, lesson:
 }
 
 export function oddWordTasksFor(studyTarget: string, lesson: number): readonly OddWordTask[] {
-  if (studyTarget !== BANK_LANGUAGE) return [];
-  const tasks = bankEntryForLesson(ODD_WORD_BANK_EN, lesson, (list) => list.some(isValidOddWordTask));
+  const tasks = bankEntryForLesson(gameBankFor(studyTarget)?.oddWord, lesson, (list) => list.some(isValidOddWordTask));
   return (tasks ?? []).filter(isValidOddWordTask);
 }
 
 export function sortDeckFor(studyTarget: string, lesson: number): SortDeck | null {
-  if (studyTarget !== BANK_LANGUAGE) return null;
-  return bankEntryForLesson(SORT_BANK_EN, lesson, (deck) => deck.tasks.length > 0);
+  return bankEntryForLesson(gameBankFor(studyTarget)?.sort, lesson, (deck) => deck.tasks.length > 0);
 }
 
-/** Колода викторины. «Точное слово» и «Три формы» — из банка; «На слух» и «Память» — пока примеры из макета. */
+function quizRoundsFor(kind: QuizKind, studyTarget: string, lesson: number): readonly QuizRound[] {
+  const bank = gameBankFor(studyTarget);
+  if (!bank) return [];
+  if (kind === 'forms') return (bank.forms ?? []).filter(isValidQuizRound);
+  const rounds = bankEntryForLesson(bank[kind], lesson, (list) => list.some(isValidQuizRound));
+  return (rounds ?? []).filter(isValidQuizRound);
+}
+
+/** Колода викторины для языка и урока; null — у языка нет заданий этой игры. */
 export function quizDeckFor(kind: QuizKind, studyTarget: string, lesson: number): QuizDeck | null {
-  if (studyTarget !== BANK_LANGUAGE) return null;
-  const seed = QUIZ_SEED_DECKS[kind];
-  if (kind === 'exact') {
-    const rounds = bankEntryForLesson(EXACT_BANK_EN, lesson, (list) => list.some(isValidQuizRound));
-    return rounds ? { ...seed, rounds: rounds.filter(isValidQuizRound) } : null;
-  }
-  if (kind === 'forms') {
-    const rounds = FORMS_BANK_EN.filter(isValidQuizRound);
-    return rounds.length > 0 ? { ...seed, rounds } : null;
-  }
-  return seed;
+  const rounds = quizRoundsFor(kind, studyTarget, lesson);
+  return rounds.length > 0 ? { ...QUIZ_SEED_DECKS[kind], rounds } : null;
 }
 
-export function huntTasksFor(studyTarget: string): readonly HuntTask[] {
-  return studyTarget === BANK_LANGUAGE ? HUNT_SEED_TASKS.filter(isValidHuntTask) : [];
+export function huntTasksFor(studyTarget: string, lesson: number = LESSON_MAX): readonly HuntTask[] {
+  const tasks = bankEntryForLesson(gameBankFor(studyTarget)?.hunt, lesson, (list) => list.some(isValidHuntTask));
+  return (tasks ?? []).filter(isValidHuntTask);
 }
 
-export function orderTasksFor(studyTarget: string): readonly OrderTask[] {
-  return studyTarget === BANK_LANGUAGE ? ORDER_SEED_TASKS.filter(isValidOrderTask) : [];
+export function orderTasksFor(studyTarget: string, lesson: number = LESSON_MAX): readonly OrderTask[] {
+  const tasks = bankEntryForLesson(gameBankFor(studyTarget)?.order, lesson, (list) => list.some(isValidOrderTask));
+  return (tasks ?? []).filter(isValidOrderTask);
 }
 
 /** Есть ли у игры задания для этого языка и урока. «Поток» берёт фразы прямо из уроков любого курса. */
@@ -87,9 +84,9 @@ export function isGameAvailable(id: GameId, studyTarget: string, lesson: number)
     case 'listen':
     case 'memory':
     case 'exact':
-    case 'forms': return (quizDeckFor(id, studyTarget, lesson)?.rounds.length ?? 0) > 0;
-    case 'hunt': return huntTasksFor(studyTarget).length > 0;
-    case 'order': return orderTasksFor(studyTarget).length > 0;
+    case 'forms': return quizDeckFor(id, studyTarget, lesson) !== null;
+    case 'hunt': return huntTasksFor(studyTarget, lesson).length > 0;
+    case 'order': return orderTasksFor(studyTarget, lesson).length > 0;
     default: return false;
   }
 }

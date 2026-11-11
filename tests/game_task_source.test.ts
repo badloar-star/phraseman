@@ -26,8 +26,8 @@ it('для английского уроков 1–8 у каждой игры е
   }
 });
 
-it('другой язык обучения не получает английские задания: остаётся только «Поток»', () => {
-  for (const target of ['es', 'de', 'fr', 'it']) {
+it('язык без банка не получает чужие задания: остаётся только «Поток»', () => {
+  for (const target of ['xx', 'toString', 'constructor']) {
     expect(oddWordTasksFor(target, 1)).toEqual([]);
     expect(sortDeckFor(target, 1)).toBeNull();
     expect(quizDeckFor('exact', target, 1)).toBeNull();
@@ -43,6 +43,7 @@ it('урок старше банка берёт ближайший предыд�
   expect(bankEntryForLesson(bank, 5, (x) => x.length > 0)).toEqual(['e']);
   expect(bankEntryForLesson(bank, 1, (x) => x.length > 0)).toBeNull();
   expect(bankEntryForLesson({ 3: [] as string[] }, 9, (x) => x.length > 0)).toBeNull();
+  expect(bankEntryForLesson(undefined as Record<number, string[]> | undefined, 3, () => true)).toBeNull();
 });
 
 it('порция дня: нужного размера, без повторов, одна и та же в течение дня', () => {
@@ -57,7 +58,7 @@ it('порция дня: нужного размера, без повторов,
 });
 
 it('разминка: когда доступна одна игра, день состоит из неё одной', () => {
-  const only = availableWarmupGames('es');
+  const only = availableWarmupGames('xx');
   expect(warmupGamesForDay('2026-11-11', only).map((g) => g.id)).toEqual(['flow']);
   expect(warmupGamesForDay('2026-11-11', availableWarmupGames('en'))).toHaveLength(3);
 });

@@ -62,6 +62,10 @@ describe('правила доказуемого пропуска', () => {
     expect(provableGapByRule('do', input('I do it every day', 'do'))).toBeNull();
     // подлежащее-существительное: согласование по местоимению не применимо
     expect(provableGap(input('My parents are at work', 'are'))).toBeNull();
+    // указательные согласуются как it / they — на них держится урок притяжательных («This is my phone», «Are these bags ours?»)
+    expect(lower(provableGap(input('This is my phone', 'is'))?.distractors ?? [])).toEqual(expect.arrayContaining(['am', 'are']));
+    expect(lower(provableGap(input('Are these bags ours?', 'Are'))?.distractors ?? [])).toEqual(expect.arrayContaining(['am', 'is']));
+    expect(provableGap(input('This phone is mine', 'is'))).toBeNull();
   });
 
   it('art: «the» и притяжательные в соблазны не попадают; исключения по звуку учитываются', () => {

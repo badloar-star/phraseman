@@ -134,14 +134,28 @@ function pick(input: GapRuleInput, rule: GapRuleId, provenWrong: readonly string
   return { rule, answer, distractors: [styled(chosen[0]!, answer), styled(chosen[1]!, answer), styled(chosen[2]!, answer)] };
 }
 
-/** Местоимение-подлежащее рядом с глаголом: «He ___ …» (слева, в начале фразы/придаточного) или «___ he …?» (справа, в вопросе). */
-function adjacentSubject(t: Tokenized): Subject | null {
-  const before = t.lower[t.index - 1];
-  const after = t.lower[t.index + 1];
+/** Указательные согласуются как it / they: «This is…», «Are these bags ours?» (урок притяжательных держится на них). */
+const DEMONSTRATIVE_AS: Readonly<Record<string, Subject>> = { this: 'it', that: 'it', these: 'they', those: 'they' };
+
+function subjectOf(value: string | undefined): Subject | null {
+  if (isSubject(value)) return value;
+  return (value && DEMONSTRATIVE_AS[value]) || null;
+}
+
+type AdjacentSubject = { subject: Subject; question: boolean };
+
+/**
+ * Подлежащее рядом с глаголом: «He ___ …» (слева, в начале фразы/придаточного) или «___ he …?» (справа, в вопросе).
+ * Слева указательное считается подлежащим, только когда стоит само («This is…»); «That he is…» — союз, поэтому «that»
+ * перед местоимением сюда не попадает: слева проверяется слово вплотную к пропуску.
+ */
+function adjacentSubject(t: Tokenized): AdjacentSubject | null {
+  const before = subjectOf(t.lower[t.index - 1]);
+  const after = subjectOf(t.lower[t.index + 1]);
   const startsClause = (position: number): boolean => position === 0 || CLAUSE_STARTERS.has(t.lower[position - 1] ?? '');
-  if (isSubject(before) && startsClause(t.index - 1)) return before;
+  if (before && startsClause(t.index - 1)) return { subject: before, question: false };
   const opensQuestion = t.index === 0 || (t.index === 1 && QUESTION_WORDS.has(t.lower[0] ?? ''));
-  if (isSubject(after) && opensQuestion) return after;
+  if (after && opensQuestion) return { subject: after, question: true };
   return null;
 }
 
@@ -214,7 +228,7 @@ function ruleVerb(input: GapRuleInput, t: Tokenized): GapRuleResult | null {
 function rulePast(input: GapRuleInput, t: Tokenized): GapRuleResult | null {
   const answer = t.lower[t.index]!;
   if (answer !== 'was' && answer !== 'were') return null;
-  const subject = adjacentSubject(t);
+  const subject = adjacentSubject(t)?.subject;
   if (!subject || !AGREEMENT[answer]!.includes(subject)) return null;
   // настоящее время согласованной формы («She is writing») было бы верным, поэтому берём только несогласованные формы
   return pick(input, 'past', [answer === 'was' ? 'were' : 'was', ...wrongBeForms(subject)]);
@@ -223,7 +237,7 @@ function rulePast(input: GapRuleInput, t: Tokenized): GapRuleResult | null {
 function ruleHave(input: GapRuleInput, t: Tokenized): GapRuleResult | null {
   const answer = t.lower[t.index]!;
   if (answer !== 'have' && answer !== 'has') return null;
-  const subject = adjacentSubject(t);
+  const subject = adjacentSubject(t)?.subject;
   if (!subject || !AGREEMENT[answer]!.includes(subject)) return null;
   return pick(input, 'have', [answer === 'have' ? 'has' : 'have', ...wrongBeForms(subject)]);
 }
@@ -231,18 +245,18 @@ function ruleHave(input: GapRuleInput, t: Tokenized): GapRuleResult | null {
 function ruleDo(input: GapRuleInput, t: Tokenized): GapRuleResult | null {
   const answer = t.lower[t.index]!;
   if (answer !== 'do' && answer !== 'does') return null;
-  const subject = adjacentSubject(t);
-  if (!subject || !AGREEMENT[answer]!.includes(subject)) return null;
-  // утверждение без «not» («I do it») — смысловой глагол, там правило согласования соблазны не отсекает
-  const isQuestion = isSubject(t.lower[t.index + 1]);
-  if (!isQuestion && t.lower[t.index + 1] !== 'not') return null;
+  const found = adjacentSubject(t);
+  if (!found || !AGREEMENT[answer]!.includes(found.subject)) return null;
+  const subject = found.subject;
+  // утверждение без «not» («I do it») — смысловой глагол, а не вспомогательный: такой пропуск не берём
+  if (!found.question && t.lower[t.index + 1] !== 'not') return null;
   return pick(input, 'do', [answer === 'do' ? 'does' : 'do', ...wrongBeForms(subject)]);
 }
 
 function ruleBe(input: GapRuleInput, t: Tokenized): GapRuleResult | null {
   const answer = t.lower[t.index]!;
   if (!(BE_FORMS as readonly string[]).includes(answer)) return null;
-  const subject = adjacentSubject(t);
+  const subject = adjacentSubject(t)?.subject;
   if (!subject || beFor(subject) !== answer) return null;
   // третий соблазн — do/does и have/has, не согласованные с подлежащим («He do not here», «I has okay»)
   const third = AGREEMENT.is!.includes(subject) ? ['do', 'have'] : ['does', 'has'];

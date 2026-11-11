@@ -223,6 +223,7 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
       overtake: live('overtake', mine(overtake)),
       lastChance: live('lastChance', lastChanceDecision?.show ?? null),
       consume,
+      owner,
     };
     // consumedTick — пересчёт после consume (сама пометка живёт в ref)
     // eslint-disable-next-line react-hooks/exhaustive-deps

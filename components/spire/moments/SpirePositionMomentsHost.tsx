@@ -29,20 +29,33 @@ export type SpirePositionMomentsHostProps = Readonly<{
   onClimb: () => void;
 }>;
 
-type Shown = Readonly<{ kind: SpirePositionMomentKind; key: string }>;
+type Shown = Readonly<{ kind: SpirePositionMomentKind; key: string; owner: string | null }>;
+/** зачем (F17): ключи окон не содержат uid — «закрыто» и «показано» считаем в паре с владельцем решений. */
+const closedMark = (owner: string | null, kind: SpirePositionMomentKind, key: string): string => `${owner ?? '-'}|${kind}:${key}`;
 
 function SpirePositionMomentsHost({ lang, coinRank, positions, blocked, busy, onClimb }: SpirePositionMomentsHostProps) {
   const nav = useGuardedNav();
+  const owner = positions.owner ?? null;
   const [closed, setClosed] = useState<readonly string[]>([]);
   const candidate = useMemo<Shown | null>(() => {
     if (blocked) return null;
-    const pick = (kind: SpirePositionMomentKind, key: string | undefined): Shown | null => (key && !closed.includes(`${kind}:${key}`) ? { kind, key } : null);
+    const pick = (kind: SpirePositionMomentKind, key: string | undefined): Shown | null => (key && !closed.includes(closedMark(owner, kind, key)) ? { kind, key, owner } : null);
     return pick('rise', positions.rise?.key) ?? pick('overtake', positions.overtake?.key) ?? pick('lastChance', positions.lastChance?.key);
-  }, [blocked, closed, positions.lastChance?.key, positions.overtake?.key, positions.rise?.key]);
+  }, [blocked, closed, owner, positions.lastChance?.key, positions.overtake?.key, positions.rise?.key]);
 
   // зачем: показ засчитывается в момент появления; запоминаем показанное локально, чтобы окно не пропадало, когда Ядро после consume перестанет отдавать решение
-  const [active, setActive] = useState<Shown | null>(null);
-  const [frozen, setFrozen] = useState<SpirePositionMoments | null>(null);
+  const [heldActive, setActive] = useState<Shown | null>(null);
+  const [heldFrozen, setFrozen] = useState<SpirePositionMoments | null>(null);
+  // зачем (F17, владелец 11.11): хост живёт дольше аккаунта. Окно прошлого владельца (с его строками в frozen) новому не
+  // показываем ни на кадр; а «закрыто» прошлого не глушит то же окно новому («Последний шанс» одной недели — один ключ на всех).
+  const active = heldActive && heldActive.owner === owner ? heldActive : null;
+  const frozen = active ? heldFrozen : null;
+  useEffect(() => {
+    if (!heldActive || heldActive.owner === owner) return; // guard-ok: чужого окна нет — убирать нечего
+    console.log(`[SPIRE-POSITION] владелец сменился — убираем окно прошлого kind=${heldActive.kind} key=${heldActive.key}`); // guard-ok: единичный журнал смены владельца
+    setActive(null);
+    setFrozen(null);
+  }, [heldActive, owner]);
   useEffect(() => {
     if (active || !candidate) return;
     console.log(`[SPIRE-POSITION] показ kind=${candidate.kind} key=${candidate.key} причина=решение Ядра, окно свободно (итог ступени закрыт)`); // guard-ok: единичный журнал показа
@@ -58,14 +71,14 @@ function SpirePositionMomentsHost({ lang, coinRank, positions, blocked, busy, on
       console.log(`[SPIRE-POSITION] закрыть: окна нет причина=${reason}`); // guard-ok: ранний выход
       return;
     }
-    const windowKey = `${active.kind}:${active.key}`;
+    const windowKey = closedMark(active.owner, active.kind, active.key);
     if (finishedKeyRef.current === windowKey) {
       console.log(`[SPIRE-POSITION] закрыть повторно — пропуск key=${windowKey} причина=${reason}`); // guard-ok: ранний выход — двойной тап
       return;
     }
     finishedKeyRef.current = windowKey;
     console.log(`[SPIRE-POSITION] закрыто kind=${active.kind} key=${active.key} причина=${reason}`); // guard-ok: единичный журнал закрытия
-    setClosed((prev) => [...prev, `${active.kind}:${active.key}`]);
+    setClosed((prev) => [...prev, windowKey]);
     setActive(null);
     setFrozen(null);
     then?.();

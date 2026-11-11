@@ -52,6 +52,11 @@ export type SpirePositionMoments = Readonly<{
   lastChance: SpireLastChanceShow | null;
   /** Окно показано: хук Ядра больше не отдаёт решение с этим key. */
   consume: (kind: SpirePositionMomentKind, key: string) => void;
+  /**
+   * Чьи это решения: аккаунт + язык обучения; null/нет — никого. Ключи окон uid не содержат (`${weekId}:lastChance`),
+   * поэтому хост обязан считать «уже закрыто» отдельно для каждого владельца (F17, владелец 11.11).
+   */
+  owner?: string | null;
 }>;
 
 export const NO_POSITION_MOMENTS: SpirePositionMoments = Object.freeze({

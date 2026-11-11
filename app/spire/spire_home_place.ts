@@ -11,6 +11,7 @@ import { useSyncExternalStore } from 'react';
 
 import type { SpireLang, SpireWeekLocal } from '../../modules/spire/report_queue';
 import type { SpireRoomSnapshot } from '../../modules/spire/room_rows';
+import { onAccountOwnerChanged } from '../account_owner_change';
 
 export type SpireHomePlace = Readonly<{ lang: SpireLang; place: number }>;
 
@@ -28,6 +29,15 @@ function publish(next: SpireHomePlace | null): void {
   current = next;
   listeners.forEach((listener) => listener());
 }
+
+// зачем (F17, владелец 11.11): место хранится без uid — после выхода/смены аккаунта бейдж «N место» на Главной показывал
+// место прошлого игрока, пока новый не закроет ступень. Сбрасываем и обесцениваем идущий пересчёт (его uid уже чужой).
+onAccountOwnerChanged('spire_home_place', () => {
+  const dropped = current ? `${current.lang}:${current.place}` : null;
+  refreshSeq += 1;
+  publish(null);
+  log('owner_changed', { dropped, seq: refreshSeq, action: 'badge_cleared' });
+});
 
 /** Место для бейджа (только язык Главной); null — бейджа нет. Без перерисовки Главной: подписан только ряд плиток. */
 export function useSpireHomePlace(lang: string | null): number | null {

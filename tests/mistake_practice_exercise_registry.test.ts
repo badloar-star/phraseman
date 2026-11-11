@@ -206,4 +206,23 @@ describe('mistake exercise mode registry', () => {
 
     expect(exercise.prompt).toBe('I _____ ready.');
   });
+
+  // зачем (владелец 11.11.2026): пропуск прятал слово вместе с приклеенным знаком и частью слова
+  test.each([
+    [['Estudiáis', 'mucho.'], 1, 'mucho', 'Estudiáis _____.'],
+    [["l'homme", 'arrive.'], 0, 'homme', "l'_____ arrive."],
+    [['Mucho', 'gusto.'], 0, 'mucho', '_____ gusto.'],
+    [['She', 'is', 'here.'], 1, 'was', 'She _____ here.'],
+  ])('fill gap keeps attached punctuation and word parts: %j', (tokens, tokenIndex, expected, prompt) => {
+    const exercise = buildMistakeExercise({
+      mistakeId: 'mistake-gap-attached',
+      mode: 'lesson_fill_gap',
+      canonicalTarget: tokens.join(' '),
+      tokens,
+      tokenIndex,
+      expected,
+    });
+    expect(exercise.prompt).toBe(prompt);
+    expect(exercise.correctAnswer).toBe(expected);
+  });
 });

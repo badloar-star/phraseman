@@ -123,3 +123,9 @@ Outcome: неверный ответ на вопрос с пропуском в 
 Governance-ID: TG-E9104F74C2DA
 
 Governance-ID: TG-7394FB4DEEDE
+
+Governance-ID: TG-81E658BD3D75
+
+Governance-ID: TG-A9B385551CD4
+
+Governance-ID: TG-764BC089D735

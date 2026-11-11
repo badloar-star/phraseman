@@ -83,10 +83,8 @@ describe('итоговый экзамен: ошибки в вопросах с �
         sourceMeaning: attempt.content.sourceMeaning,
         distractors: attempt.content.distractors,
       } as Parameters<typeof buildMistakeExercise>[0]);
-      // слова вокруг пропуска — те же, что в вопросе экзамена: лишнее слово ответа рядом с пропуском не остаётся
-      const shown = exercise.prompt.split(/\s+/).map((word) => (word === '_____' ? '___' : word));
-      const asked = question.q.trim().split(/\s+/).map((word) => (word.includes('___') ? '___' : word));
-      expect([question.q, shown]).toEqual([question.q, asked]);
+      // строго: повтор показывает ТОТ ЖЕ вопрос — лишнее слово ответа не остаётся, знаки при пропуске не теряются
+      expect([question.q, exercise.prompt]).toEqual([question.q, question.q.trim().replace(/\s+/g, ' ').replace('___', '_____')]);
       expect([question.q, exercise.correctAnswer]).toEqual([question.q, expected]);
     }
   });

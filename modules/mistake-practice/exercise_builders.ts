@@ -80,6 +80,17 @@ export function boundedBuilderDistractors(distractors: readonly string[] | undef
   return out;
 }
 
+/**
+ * зачем (владелец 11.11.2026, «Да, почини»): слово с пропуском прятали целиком вместе с приклеенным знаком — «Estudiáis
+ * mucho.» на повторе становилось «Estudiáis _____» без точки, а «l'homme» потеряло бы и «l'». Прячем только сам ответ,
+ * приклеенные части слова и знаки остаются. Ответа внутри слова нет — прячем слово целиком, как раньше.
+ */
+function maskGapToken(token: string, answer: string): string {
+  // без учёта регистра: ответ «mucho» в начале фразы стоит как «Mucho.»
+  const at = answer ? token.toLocaleLowerCase().indexOf(answer.toLocaleLowerCase()) : -1;
+  return at < 0 ? '_____' : `${token.slice(0, at)}_____${token.slice(at + answer.length)}`;
+}
+
 export function buildMistakeExercise(
   material: MistakeExerciseMaterial,
 ): MistakeExercise {
@@ -106,7 +117,7 @@ export function buildMistakeExercise(
   const authoredPrompt = material.sourcePrompt?.trim() || '';
   const meaning = material.sourceMeaning?.trim() || '';
   const prompt = renderer === 'fill_gap'
-    ? targetTokens.map((token, index) => index === gapIndex ? '_____' : token).join(' ')
+    ? targetTokens.map((token, index) => index === gapIndex ? maskGapToken(token, gapAnswer) : token).join(' ')
     : authoredPrompt || meaning || canonicalTarget;
   // Перевод уходит подсказкой ВТОРОЙ строкой — но только если первую занял
   // текст задания, иначе перевод продублировал бы сам себя.

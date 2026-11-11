@@ -14,7 +14,8 @@
  "01.50": {
   "pt-BR": "Estou perto da porta.",
   "vi": "Tôi đang ở gần cửa.",
-  "tr": "Kapının yakınındayım."
+  "tr": "Kapının yakınındayım.",
+  "id": "Saya dekat pintu."
  },
  "02.19": {
   "ru": "Вы не опаздываете.",
@@ -36,7 +37,8 @@
   "pl": "Sklepy nie są otwarte."
  },
  "02.28": {
-  "es": "La bolsa no está allí."
+  "es": "La bolsa no está allí.",
+  "vi": "Túi xách không ở đó."
  },
  "02.30": {
   "pl": "Szklanka nie jest brudna."
@@ -64,12 +66,19 @@
   "pt-BR": "Vocês não estão sozinhos aqui.",
   "pl": "Nie jesteście tu sami."
  },
+ "02.49": {
+  "uk": "Автобуса ще немає.",
+  "es": "El autobús aún no está aquí.",
+  "pt-BR": "O ônibus ainda não está aqui.",
+  "tr": "Otobüs henüz burada değil.",
+  "pl": "Autobusa jeszcze tu nie ma."
+ },
  "03.09": {
   "tr": "Geç miyiz?"
  },
  "03.17": {
-  "ru": "Вы рано?",
-  "uk": "Ви рано?",
+  "ru": "Вы раньше времени?",
+  "uk": "Ви раніше часу?",
   "pt-BR": "Você está adiantado?",
   "tr": "Erken misiniz?",
   "pl": "Czy jesteś przed czasem?"
@@ -81,11 +90,18 @@
   "tr": "Biletler cebinde mi?",
   "pl": "Czy bilety są w twojej kieszeni?"
  },
+ "03.41": {
+  "es": "¿Está ya aquí el próximo autobús?",
+  "pt-BR": "O próximo ônibus já está aqui?",
+  "tr": "Bir sonraki otobüs burada mı?",
+  "pl": "Czy następny autobus już tu jest?"
+ },
  "03.42": {
   "pl": "Czy obie drzwi są zamknięte?"
  },
  "03.47": {
-  "uk": "Ви тут заради концерту?"
+  "uk": "Ви тут заради концерту?",
+  "pl": "Czy jesteś tu na koncert?"
  },
  "03.48": {
   "pl": "Czy pokój jest na pierwszym piętrze?"
@@ -147,13 +163,20 @@
   "pt-BR": "O troco está no bolso.",
   "vi": "Tiền lẻ ở trong túi.",
   "id": "Uang receh ada di dalam saku.",
-  "tr": "Bozuk para cepte."
+  "tr": "Bozuk para cepte.",
+  "pl": "Drobne są w kieszeni."
  },
  "07.26": {
   "pl": "Szukają miejsca."
  },
+ "07.28": {
+  "pl": "Léa patrzy na ceny."
+ },
  "07.45": {
   "uk": "Ви бронюєте на сьогоднішній вечір?"
+ },
+ "08.12": {
+  "pl": "Kto jest przy drzwiach?"
  },
  "08.22": {
   "pl": "Kiedy wyjeżdżasz?"
@@ -164,6 +187,9 @@
  "08.26": {
   "tr": "Léa ne zaman eve dönüyor?",
   "pl": "Kiedy Leah wraca do domu?"
+ },
+ "08.37": {
+  "ru": "Сколько времени длится поездка?"
  },
  "08.48": {
   "id": "Apa yang sedang dilakukan Paul?"
@@ -203,7 +229,10 @@
   "pl": "Dodajesz musztardę."
  },
  "12.31": {
-  "pt-BR": "Eu não pego leite."
+  "pt-BR": "Eu não pego leite.",
+  "vi": "Tôi không lấy sữa.",
+  "id": "Saya tidak mengambil susu.",
+  "pl": "Nie biorę mleka."
  },
  "12.34": {
   "pt-BR": "Ela não compra manteiga."
@@ -222,7 +251,11 @@
   "pl": "Dzielimy się jednym talerzem frytek."
  },
  "14.03": {
-  "pl": "Ona może przyjść."
+  "pl": "Ona może przyjść.",
+  "vi": "Cô ấy có thể đến."
+ },
+ "14.05": {
+  "id": "Kamu bisa lewat."
  },
  "14.11": {
   "pt-BR": "Eu quero experimentar.",
@@ -236,6 +269,18 @@
   "id": "Perlu memesan tempat.",
   "tr": "Bir yer ayırtmak gerekiyor.",
   "pl": "Trzeba zarezerwować miejsce."
+ },
+ "14.35": {
+  "id": "Kamu tidak boleh menyentuh tombol ini.",
+  "pl": "Nie wolno ci dotykać tego przycisku.",
+  "tr": "Bu düğmeye dokunmamalısınız."
+ },
+ "14.36": {
+  "pt-BR": "Não quero incomodar.",
+  "vi": "Tôi không muốn làm phiền.",
+  "id": "Aku tidak ingin mengganggu.",
+  "tr": "Rahatsız etmek istemiyorum.",
+  "pl": "Nie chcę przeszkadzać."
  },
  "14.42": {
   "ru": "Можете показать мне выход?",
@@ -272,6 +317,7 @@
   "en": "You won't wait long.",
   "es": "No va a esperar mucho.",
   "pt-BR": "Você não vai esperar muito.",
+  "vi": "Bạn sẽ không đợi lâu đâu.",
   "id": "Kamu tidak akan menunggu lama.",
   "tr": "Uzun süre beklemeyeceksiniz.",
   "pl": "Nie będziesz długo czekać."
@@ -316,6 +362,12 @@
   "tr": "Çıkışın önünde beklemeyin!",
   "pl": "Nie czekaj przed wyjściem!"
  },
+ "16.44": {
+  "en": "Let's look for another table!",
+  "pt-BR": "Vamos procurar outra mesa!",
+  "tr": "Başka bir masa arayalım!",
+  "pl": "Poszukajmy innego stolika!"
+ },
  "17.05": {
   "pt-BR": "Vocês se levantam.",
   "vi": "Các bạn thức dậy.",
@@ -323,6 +375,14 @@
  },
  "17.08": {
   "pt-BR": "Você se prepara."
+ },
+ "17.21": {
+  "en": "I get dressed in the bedroom.",
+  "es": "Me visto en el dormitorio.",
+  "pt-BR": "Eu me visto no quarto.",
+  "id": "Saya berpakaian di kamar tidur.",
+  "tr": "Yatak odasında giyiniyorum.",
+  "pl": "Ubieram się w sypialni."
  },
  "17.24": {
   "pt-BR": "Você se veste para sair.",
@@ -342,13 +402,22 @@
   "uk": "Він плутає платформу."
  },
  "18.06": {
+  "pt-BR": "Eles fecharam a sala.",
   "pl": "Zamknęli salę."
  },
  "18.33": {
   "tr": "Giriş kartını bulamadı."
  },
  "18.39": {
-  "pl": "Kto stłukł szklankę?"
+  "pl": "Kto stłukł szklankę?",
+  "vi": "Ai đã làm vỡ cái ly?",
+  "id": "Siapa yang memecahkan gelasnya?"
+ },
+ "18.47": {
+  "vi": "Họ đã hủy việc giao hàng."
+ },
+ "18.50": {
+  "id": "Kami selesai bekerja pada tengah hari."
  },
  "19.15": {
   "pl": "Moja mama wróciła wcześnie do domu."
@@ -356,6 +425,13 @@
  "19.18": {
   "vi": "Các bà hàng xóm đã ở lại bên ngoài.",
   "id": "Para tetangga perempuan tinggal di luar."
+ },
+ "19.25": {
+  "vi": "Chị tôi đã lên tầng một."
+ },
+ "19.34": {
+  "vi": "Các khách hàng nữ không vào.",
+  "id": "Para pelanggan perempuan tidak masuk."
  },
  "19.43": {
   "pt-BR": "As duas amigas vieram a pé.",
@@ -370,6 +446,9 @@
  },
  "21.17": {
   "pl": "Byłem na dworcu kolejowym, kiedy napisałeś."
+ },
+ "21.18": {
+  "tr": "Çorba geldiğinde açtık."
  },
  "21.19": {
   "pt-BR": "Os alunos estavam esperando quando anunciaram a partida.",
@@ -399,6 +478,9 @@
  },
  "22.20": {
   "tr": "Bu şarkıyı dinliyorum."
+ },
+ "22.24": {
+  "vi": "Chúng tôi không nghe thấy nó."
  },
  "22.25": {
   "pt-BR": "Eles não o pegam.",
@@ -431,6 +513,16 @@
   "pt-BR": "Você fica lá por muito tempo?",
   "tr": "Orada uzun süre kalıyor musunuz?",
   "pl": "Zostajesz tam długo?"
+ },
+ "24.28": {
+  "vi": "Cô ấy đã để túi xách của mình ở đó."
+ },
+ "24.37": {
+  "ru": "Мы собираемся пообедать там.",
+  "uk": "Ми збираємося пообідати там.",
+  "en": "We're going to have lunch there.",
+  "tr": "Orada öğle yemeği yiyeceğiz.",
+  "pl": "Zjemy tam lunch."
  },
  "24.38": {
   "vi": "Anh ấy phải ghé qua đó vào ngày mai."
@@ -471,6 +563,9 @@
  "25.17": {
   "uk": "Меду я додаю ложку.",
   "pl": "Miód, dodam łyżkę."
+ },
+ "25.22": {
+  "tr": "Artık bizde yok."
  },
  "25.25": {
   "pt-BR": "Você nunca leva nenhum?",
@@ -519,11 +614,19 @@
   "ru": "Вы сможете оплатить на месте.",
   "uk": "Ви зможете заплатити на місці.",
   "pt-BR": "Você poderá pagar no local.",
+  "vi": "Bạn sẽ có thể thanh toán tại chỗ.",
+  "id": "Anda akan bisa membayar di tempat.",
   "tr": "Yerinde ödeme yapabileceksiniz.",
   "pl": "Będziesz mógł zapłacić na miejscu."
  },
  "27.27": {
   "pl": "Bank zamknie się dziś wieczorem wcześniej."
+ },
+ "27.39": {
+  "vi": "Bạn sẽ giúp tôi khiêng mấy thùng đồ chứ?"
+ },
+ "27.45": {
+  "pl": "Oni wyślą plik pocztą."
  },
  "28.11": {
   "vi": "Làm ơn, bạn có thể nhắc lại được không?",
@@ -545,6 +648,9 @@
  "28.24": {
   "uk": "Ти б волів піти пішки?"
  },
+ "28.28": {
+  "vi": "Thêm một cái chăn nữa sẽ hữu ích."
+ },
  "28.31": {
   "pt-BR": "Você deveria guardar o recibo.",
   "id": "Anda sebaiknya menyimpan struknya.",
@@ -561,6 +667,9 @@
   "tr": "Dersten sonra uğrayabilirsin.",
   "pl": "Mógłbyś wpaść po zajęciach."
  },
+ "28.40": {
+  "id": "Kamu bisa mengirimkan foto kepadanya."
+ },
  "28.44": {
   "en": "I'd like to reschedule my appointment.",
   "es": "Me gustaría reprogramar mi cita.",
@@ -569,6 +678,10 @@
   "id": "Saya ingin menjadwal ulang janji saya.",
   "tr": "Randevumu yeniden planlamak istiyorum.",
   "pl": "Chciałbym przełożyć moje spotkanie."
+ },
+ "28.48": {
+  "vi": "Bạn có thể gọi lại cho tôi sau 10 giờ được không?",
+  "id": "Bisakah Anda menghubungi saya kembali setelah pukul 10?"
  },
  "29.03": {
   "pl": "Oto klucz, który otwiera piwnicę."
@@ -591,8 +704,17 @@
   "en": "I like games that have a simple rule.",
   "es": "Me gustan los juegos que tienen una regla sencilla.",
   "pt-BR": "Gosto de jogos que têm uma regra simples.",
+  "vi": "Tôi thích những trò chơi có một luật chơi đơn giản.",
+  "id": "Saya suka permainan yang memiliki satu aturan sederhana.",
   "tr": "Basit bir kuralı olan oyunları severim.",
   "pl": "Lubię gry, które mają prostą zasadę."
+ },
+ "29.21": {
+  "pt-BR": "O pão que você prepara tem um cheiro delicioso.",
+  "vi": "Bánh mì bạn chuẩn bị có mùi thơm ngon.",
+  "id": "Roti yang Anda siapkan baunya enak sekali.",
+  "tr": "Hazırladığınız ekmek çok güzel kokuyor.",
+  "pl": "Chleb, który przygotowujesz, pachnie pysznie."
  },
  "29.22": {
   "tr": "Beklediğimiz tren rötarlı."
@@ -602,6 +724,7 @@
   "uk": "Сумка, яку я зберігаю, належить моїй сестрі.",
   "en": "The bag I'm keeping belongs to my sister.",
   "pt-BR": "A bolsa que estou guardando pertence à minha irmã.",
+  "vi": "Chiếc túi tôi đang giữ là của chị gái tôi.",
   "id": "Tas yang saya simpan milik saudara perempuan saya.",
   "tr": "Sakladığım çanta kız kardeşime ait.",
   "pl": "Torba, którą przechowuję, należy do mojej siostry."
@@ -611,6 +734,16 @@
  },
  "29.44": {
   "pl": "Pociąg, którym mamy jechać, odjeżdża w południe."
+ },
+ "29.47": {
+  "es": "El sillón que quisiera vender está en buen estado.",
+  "pl": "Fotel, który chciałbym sprzedać, jest w dobrym stanie."
+ },
+ "29.49": {
+  "pt-BR": "A sala que reservamos é bem iluminada."
+ },
+ "29.50": {
+  "pl": "Okno, które źle się zamyka, wychodzi na ulicę."
  },
  "30.12": {
   "id": "Anda perlu membawa kartu akses Anda."
@@ -653,6 +786,9 @@
   "vi": "Anh ấy sẽ đọc tin nhắn nếu anh ấy có kính của mình.",
   "id": "Dia akan membaca pesan itu jika dia punya kacamatanya."
  },
+ "32.31": {
+  "pl": "Gdyby klucz się przekręcił, drzwi by się otworzyły."
+ },
  "32.36": {
   "pl": "Gdyby piekarnik działał, upiekłaby ciasto."
  },
@@ -676,5 +812,9 @@
   "vi": "Nếu bạn hứa sẽ quay lại, tôi sẽ giữ chỗ cho bạn.",
   "id": "Jika Anda berjanji untuk kembali, saya akan menjaga tempat Anda.",
   "pl": "Gdybyś obiecał wrócić, zatrzymałbym dla ciebie miejsce."
+ },
+ "32.50": {
+  "pt-BR": "Se os horários mudassem, nós avisaríamos vocês.",
+  "pl": "Gdyby harmonogram się zmienił, poinformowalibyśmy was."
  }
 }

@@ -19,6 +19,7 @@
  "fr:01.50": {
   "pt-BR": "Estou perto da porta.",
   "vi": "Tôi đang ở gần cửa.",
+  "id": "Saya dekat pintu.",
   "tr": "Kapının yakınındayım.",
   "reason": "U20 точный смысл (11.11)"
  },
@@ -47,6 +48,7 @@
  },
  "fr:02.28": {
   "es": "La bolsa no está allí.",
+  "vi": "Túi xách không ở đó.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:02.30": {
@@ -81,13 +83,21 @@
   "pl": "Nie jesteście tu sami.",
   "reason": "U20 точный смысл (11.11)"
  },
+ "fr:02.49": {
+  "uk": "Автобуса ще немає.",
+  "es": "El autobús aún no está aquí.",
+  "pt-BR": "O ônibus ainda não está aqui.",
+  "tr": "Otobüs henüz burada değil.",
+  "pl": "Autobusa jeszcze tu nie ma.",
+  "reason": "U20 точный смысл (11.11)"
+ },
  "fr:03.09": {
   "tr": "Geç miyiz?",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:03.17": {
-  "ru": "Вы рано?",
-  "uk": "Ви рано?",
+  "ru": "Вы раньше времени?",
+  "uk": "Ви раніше часу?",
   "pt-BR": "Você está adiantado?",
   "tr": "Erken misiniz?",
   "pl": "Czy jesteś przed czasem?",
@@ -101,12 +111,20 @@
   "pl": "Czy bilety są w twojej kieszeni?",
   "reason": "U20 точный смысл (11.11)"
  },
+ "fr:03.41": {
+  "es": "¿Está ya aquí el próximo autobús?",
+  "pt-BR": "O próximo ônibus já está aqui?",
+  "tr": "Bir sonraki otobüs burada mı?",
+  "pl": "Czy następny autobus już tu jest?",
+  "reason": "U20 точный смысл (11.11)"
+ },
  "fr:03.42": {
   "pl": "Czy obie drzwi są zamknięte?",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:03.47": {
   "uk": "Ви тут заради концерту?",
+  "pl": "Czy jesteś tu na koncert?",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:03.48": {
@@ -182,14 +200,23 @@
   "vi": "Tiền lẻ ở trong túi.",
   "id": "Uang receh ada di dalam saku.",
   "tr": "Bozuk para cepte.",
+  "pl": "Drobne są w kieszeni.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:07.26": {
   "pl": "Szukają miejsca.",
   "reason": "U20 точный смысл (11.11)"
  },
+ "fr:07.28": {
+  "pl": "Léa patrzy na ceny.",
+  "reason": "U20 точный смысл (11.11)"
+ },
  "fr:07.45": {
   "uk": "Ви бронюєте на сьогоднішній вечір?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:08.12": {
+  "pl": "Kto jest przy drzwiach?",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:08.22": {
@@ -203,6 +230,10 @@
  "fr:08.26": {
   "tr": "Léa ne zaman eve dönüyor?",
   "pl": "Kiedy Leah wraca do domu?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:08.37": {
+  "ru": "Сколько времени длится поездка?",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:08.48": {
@@ -253,6 +284,9 @@
  },
  "fr:12.31": {
   "pt-BR": "Eu não pego leite.",
+  "vi": "Tôi không lấy sữa.",
+  "id": "Saya tidak mengambil susu.",
+  "pl": "Nie biorę mleka.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:12.34": {
@@ -275,7 +309,12 @@
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:14.03": {
+  "vi": "Cô ấy có thể đến.",
   "pl": "Ona może przyjść.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:14.05": {
+  "id": "Kamu bisa lewat.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:14.11": {
@@ -291,6 +330,20 @@
   "id": "Perlu memesan tempat.",
   "tr": "Bir yer ayırtmak gerekiyor.",
   "pl": "Trzeba zarezerwować miejsce.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:14.35": {
+  "id": "Kamu tidak boleh menyentuh tombol ini.",
+  "tr": "Bu düğmeye dokunmamalısınız.",
+  "pl": "Nie wolno ci dotykać tego przycisku.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:14.36": {
+  "pt-BR": "Não quero incomodar.",
+  "vi": "Tôi không muốn làm phiền.",
+  "id": "Aku tidak ingin mengganggu.",
+  "tr": "Rahatsız etmek istemiyorum.",
+  "pl": "Nie chcę przeszkadzać.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:14.42": {
@@ -332,6 +385,7 @@
   "en": "You won't wait long.",
   "es": "No va a esperar mucho.",
   "pt-BR": "Você não vai esperar muito.",
+  "vi": "Bạn sẽ không đợi lâu đâu.",
   "id": "Kamu tidak akan menunggu lama.",
   "tr": "Uzun süre beklemeyeceksiniz.",
   "pl": "Nie będziesz długo czekać.",
@@ -385,6 +439,13 @@
   "pl": "Nie czekaj przed wyjściem!",
   "reason": "U20 точный смысл (11.11)"
  },
+ "fr:16.44": {
+  "en": "Let's look for another table!",
+  "pt-BR": "Vamos procurar outra mesa!",
+  "tr": "Başka bir masa arayalım!",
+  "pl": "Poszukajmy innego stolika!",
+  "reason": "U20 точный смысл (11.11)"
+ },
  "fr:17.05": {
   "pt-BR": "Vocês se levantam.",
   "vi": "Các bạn thức dậy.",
@@ -393,6 +454,15 @@
  },
  "fr:17.08": {
   "pt-BR": "Você se prepara.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:17.21": {
+  "en": "I get dressed in the bedroom.",
+  "es": "Me visto en el dormitorio.",
+  "pt-BR": "Eu me visto no quarto.",
+  "id": "Saya berpakaian di kamar tidur.",
+  "tr": "Yatak odasında giyiniyorum.",
+  "pl": "Ubieram się w sypialni.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:17.24": {
@@ -417,6 +487,7 @@
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:18.06": {
+  "pt-BR": "Eles fecharam a sala.",
   "pl": "Zamknęli salę.",
   "reason": "U20 точный смысл (11.11)"
  },
@@ -425,7 +496,17 @@
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:18.39": {
+  "vi": "Ai đã làm vỡ cái ly?",
+  "id": "Siapa yang memecahkan gelasnya?",
   "pl": "Kto stłukł szklankę?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:18.47": {
+  "vi": "Họ đã hủy việc giao hàng.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:18.50": {
+  "id": "Kami selesai bekerja pada tengah hari.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:19.15": {
@@ -435,6 +516,15 @@
  "fr:19.18": {
   "vi": "Các bà hàng xóm đã ở lại bên ngoài.",
   "id": "Para tetangga perempuan tinggal di luar.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:19.25": {
+  "vi": "Chị tôi đã lên tầng một.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:19.34": {
+  "vi": "Các khách hàng nữ không vào.",
+  "id": "Para pelanggan perempuan tidak masuk.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:19.43": {
@@ -452,6 +542,10 @@
  },
  "fr:21.17": {
   "pl": "Byłem na dworcu kolejowym, kiedy napisałeś.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:21.18": {
+  "tr": "Çorba geldiğinde açtık.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:21.19": {
@@ -488,6 +582,10 @@
  },
  "fr:22.20": {
   "tr": "Bu şarkıyı dinliyorum.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:22.24": {
+  "vi": "Chúng tôi không nghe thấy nó.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:22.25": {
@@ -528,6 +626,18 @@
   "pt-BR": "Você fica lá por muito tempo?",
   "tr": "Orada uzun süre kalıyor musunuz?",
   "pl": "Zostajesz tam długo?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:24.28": {
+  "vi": "Cô ấy đã để túi xách của mình ở đó.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:24.37": {
+  "ru": "Мы собираемся пообедать там.",
+  "uk": "Ми збираємося пообідати там.",
+  "en": "We're going to have lunch there.",
+  "tr": "Orada öğle yemeği yiyeceğiz.",
+  "pl": "Zjemy tam lunch.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:24.38": {
@@ -577,6 +687,10 @@
  "fr:25.17": {
   "uk": "Меду я додаю ложку.",
   "pl": "Miód, dodam łyżkę.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:25.22": {
+  "tr": "Artık bizde yok.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:25.25": {
@@ -636,12 +750,22 @@
   "ru": "Вы сможете оплатить на месте.",
   "uk": "Ви зможете заплатити на місці.",
   "pt-BR": "Você poderá pagar no local.",
+  "vi": "Bạn sẽ có thể thanh toán tại chỗ.",
+  "id": "Anda akan bisa membayar di tempat.",
   "tr": "Yerinde ödeme yapabileceksiniz.",
   "pl": "Będziesz mógł zapłacić na miejscu.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:27.27": {
   "pl": "Bank zamknie się dziś wieczorem wcześniej.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:27.39": {
+  "vi": "Bạn sẽ giúp tôi khiêng mấy thùng đồ chứ?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:27.45": {
+  "pl": "Oni wyślą plik pocztą.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:28.11": {
@@ -670,6 +794,10 @@
   "uk": "Ти б волів піти пішки?",
   "reason": "U20 точный смысл (11.11)"
  },
+ "fr:28.28": {
+  "vi": "Thêm một cái chăn nữa sẽ hữu ích.",
+  "reason": "U20 точный смысл (11.11)"
+ },
  "fr:28.31": {
   "pt-BR": "Você deveria guardar o recibo.",
   "id": "Anda sebaiknya menyimpan struknya.",
@@ -689,6 +817,10 @@
   "pl": "Mógłbyś wpaść po zajęciach.",
   "reason": "U20 точный смысл (11.11)"
  },
+ "fr:28.40": {
+  "id": "Kamu bisa mengirimkan foto kepadanya.",
+  "reason": "U20 точный смысл (11.11)"
+ },
  "fr:28.44": {
   "en": "I'd like to reschedule my appointment.",
   "es": "Me gustaría reprogramar mi cita.",
@@ -697,6 +829,11 @@
   "id": "Saya ingin menjadwal ulang janji saya.",
   "tr": "Randevumu yeniden planlamak istiyorum.",
   "pl": "Chciałbym przełożyć moje spotkanie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:28.48": {
+  "vi": "Bạn có thể gọi lại cho tôi sau 10 giờ được không?",
+  "id": "Bisakah Anda menghubungi saya kembali setelah pukul 10?",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:29.03": {
@@ -723,8 +860,18 @@
   "en": "I like games that have a simple rule.",
   "es": "Me gustan los juegos que tienen una regla sencilla.",
   "pt-BR": "Gosto de jogos que têm uma regra simples.",
+  "vi": "Tôi thích những trò chơi có một luật chơi đơn giản.",
+  "id": "Saya suka permainan yang memiliki satu aturan sederhana.",
   "tr": "Basit bir kuralı olan oyunları severim.",
   "pl": "Lubię gry, które mają prostą zasadę.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:29.21": {
+  "pt-BR": "O pão que você prepara tem um cheiro delicioso.",
+  "vi": "Bánh mì bạn chuẩn bị có mùi thơm ngon.",
+  "id": "Roti yang Anda siapkan baunya enak sekali.",
+  "tr": "Hazırladığınız ekmek çok güzel kokuyor.",
+  "pl": "Chleb, który przygotowujesz, pachnie pysznie.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:29.22": {
@@ -736,6 +883,7 @@
   "uk": "Сумка, яку я зберігаю, належить моїй сестрі.",
   "en": "The bag I'm keeping belongs to my sister.",
   "pt-BR": "A bolsa que estou guardando pertence à minha irmã.",
+  "vi": "Chiếc túi tôi đang giữ là của chị gái tôi.",
   "id": "Tas yang saya simpan milik saudara perempuan saya.",
   "tr": "Sakladığım çanta kız kardeşime ait.",
   "pl": "Torba, którą przechowuję, należy do mojej siostry.",
@@ -747,6 +895,19 @@
  },
  "fr:29.44": {
   "pl": "Pociąg, którym mamy jechać, odjeżdża w południe.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:29.47": {
+  "es": "El sillón que quisiera vender está en buen estado.",
+  "pl": "Fotel, który chciałbym sprzedać, jest w dobrym stanie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:29.49": {
+  "pt-BR": "A sala que reservamos é bem iluminada.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:29.50": {
+  "pl": "Okno, które źle się zamyka, wychodzi na ulicę.",
   "reason": "U20 точный смысл (11.11)"
  },
  "fr:30.12": {
@@ -800,6 +961,10 @@
   "id": "Dia akan membaca pesan itu jika dia punya kacamatanya.",
   "reason": "U20 точный смысл (11.11)"
  },
+ "fr:32.31": {
+  "pl": "Gdyby klucz się przekręcił, drzwi by się otworzyły.",
+  "reason": "U20 точный смысл (11.11)"
+ },
  "fr:32.36": {
   "pl": "Gdyby piekarnik działał, upiekłaby ciasto.",
   "reason": "U20 точный смысл (11.11)"
@@ -826,6 +991,11 @@
   "vi": "Nếu bạn hứa sẽ quay lại, tôi sẽ giữ chỗ cho bạn.",
   "id": "Jika Anda berjanji untuk kembali, saya akan menjaga tempat Anda.",
   "pl": "Gdybyś obiecał wrócić, zatrzymałbym dla ciebie miejsce.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "fr:32.50": {
+  "pt-BR": "Se os horários mudassem, nós avisaríamos vocês.",
+  "pl": "Gdyby harmonogram się zmienił, poinformowalibyśmy was.",
   "reason": "U20 точный смысл (11.11)"
  }
 }

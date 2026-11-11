@@ -15,7 +15,8 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('react-native-svg', () => {
   const R = jest.requireActual('react');
-  const host = (name: string) => (props: Record<string, unknown>) => R.createElement('View', { testID: name }, props.children);
+  // зачем: viewBox/width/height пробрасываются, чтобы тест видел, что рисунок кольца привязан к своей области (11.11, обрезанное кольцо)
+  const host = (name: string) => (props: Record<string, unknown>) => R.createElement('View', { testID: name, viewBox: props.viewBox, width: props.width, height: props.height }, props.children);
   return { __esModule: true, default: host('svg'), Svg: host('svg'), Circle: host('svg-circle'), Defs: host('svg-defs'), LinearGradient: host('svg-gradient'), Path: host('svg-path'), Stop: host('svg-stop') };
 });
 jest.mock('@expo/vector-icons/Ionicons', () => {
@@ -44,6 +45,16 @@ describe('PlusAvatarRing', () => {
     expect(screen.getByTestId('plus-ring')).toBeTruthy();
     expect(screen.getAllByTestId('svg-path')).toHaveLength(4);
     expect(screen.getByTestId('icon-diamond')).toBeTruthy();
+  });
+
+  // зачем (владелец 11.11, «кольцо поломано»): без viewBox рисунок кольца на устройстве получался крупнее своей области и обрезался справа и снизу.
+  // viewBox обязан совпадать с размером области — тогда кольцо вписывается в неё при любом масштабе нативной части.
+  it.each([[44, 'list', 53], [35, 'list', 44], [30, 'flat', 40], [165, 'card', 187]] as const)('рисунок кольца привязан к своей области: аватар %s (%s) → viewBox 0 0 %s', async (size, kind, outer) => {
+    await render(<PlusAvatarRing plus size={size} kind={kind} hidePin><Avatar /></PlusAvatarRing>);
+    const svg = screen.getByTestId('svg');
+    expect(svg.props.width).toBe(outer);
+    expect(svg.props.height).toBe(outer);
+    expect(svg.props.viewBox).toBe(`0 0 ${outer} ${outer}`);
   });
 
   it('Plus у аватара меньше 26 (автор набора 18): кольцо есть, значка нет', async () => {

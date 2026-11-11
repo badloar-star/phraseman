@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>U36 · Истории наград · анимация</title>
+<!-- зачем: владелец 11.11 отклонил текстовый макет («наляписто, много текста») и попросил красивую
+     анимированную историю с длинной дорогой анимацией до 5 с активной фазы. Поэтому причину награды
+     рассказывает движение: твоё место в комнате, зона подъёма, смена лиги, монеты летят в счётчик.
+     Слов на кадре минимум. Конечный кадр = состояние по умолчанию: анимация только ведёт к нему,
+     так что при «меньше движения» или сбое кадр сразу готов. Числа примера выдуманы. -->
+<style>
+  :root{--page:#0b0b0d;--chip:#1c1c21;--chipOn:#f4f4f6;--mut:#8d8e97;--ink:#ececf1;--up:#34C759;--down:#FF6B63;
+    --press:240ms cubic-bezier(.3,1.4,.5,1)}
+  .t-graphite{--bg:#070C11;--card:#171C22;--ctl:#262C32;--tx:#F7FAFE;--sec:#C6CBD1;--mu:#A3A8AD;--acc:#ABC0D7;
+    --glow:radial-gradient(110% 62% at 50% 24%, #24364a 0%, #0e161f 50%, #070C11 100%)}
+  .t-ink{--bg:#090918;--card:#191A2A;--ctl:#292A3A;--tx:#F9FAFE;--sec:#C8C9D8;--mu:#A5A6B2;--acc:#C1C4FF;
+    --glow:radial-gradient(110% 62% at 50% 24%, #2f3068 0%, #12122c 50%, #090918 100%)}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font:15px/1.45 -apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:36px 16px 64px}
+  h1{font-size:clamp(24px,3.4vw,34px);line-height:1.12;letter-spacing:-.02em;margin:0 0 10px;font-weight:750;text-wrap:balance}
+  .lede{color:#b9bac3;max-width:64ch;margin:0 0 24px;text-wrap:pretty}
+  .bar{display:flex;flex-wrap:wrap;gap:16px 26px;margin-bottom:30px}
+  .grp{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .grp>span{color:var(--mut);font-size:13px;margin-right:6px}
+  .chip{appearance:none;border:0;background:var(--chip);color:#d7d8df;font:inherit;font-size:13.5px;font-weight:550;
+    padding:8px 14px;border-radius:20px;cursor:pointer;transition:transform var(--press),background-color 160ms ease,color 160ms ease}
+  .chip:active{transform:scale(.96)}
+  .chip[aria-pressed="true"]{background:var(--chipOn);color:#111114}
+  .chip:focus-visible,.ph:focus-visible{outline:2px solid #8fb4ff;outline-offset:3px}
+  .stage{display:flex;flex-wrap:wrap;gap:36px 28px;justify-content:center}
+  figure{margin:0;width:min(340px,100%)}
+  figcaption{margin-top:13px;color:#b9bac3;font-size:13.5px;text-wrap:pretty}
+  figcaption b{display:block;color:var(--ink);font-weight:650;font-size:15px;margin-bottom:2px}
+
+  .ph{position:relative;width:100%;aspect-ratio:411.43/880;border-radius:34px;overflow:hidden;background:var(--bg);color:var(--tx);cursor:pointer;
+    box-shadow:0 0 0 1px rgba(255,255,255,.07),0 30px 70px -30px rgba(0,0,0,.9)}
+  .story{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--glow)}
+  .segs{display:flex;gap:4px;padding:16px 14px 0}
+  .segs i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.22);overflow:hidden}
+  .segs i.on{background:rgba(255,255,255,.92)}
+  .segs i.run b{display:block;height:100%;background:rgba(255,255,255,.92);transform-origin:left;transform:scaleX(1)}
+  .who{display:flex;align-items:center;gap:9px;padding:12px 16px 0;font-size:13.5px;font-weight:600;color:var(--sec)}
+  .who .av{width:28px;height:28px;border-radius:50%;background:var(--ctl);display:grid;place-items:center;color:var(--acc)}
+  .coin{flex:none;color:var(--acc)}
+
+  /* вариант А: пик из тридцати ступеней-мест */
+  .spire{position:relative;height:330px;margin:22px 30px 0}
+  .rg{position:absolute;left:50%;height:5px;border-radius:3px;background:var(--ctl);translate:-50% 0}
+  .rg.u{background:color-mix(in srgb,var(--up) 58%,var(--ctl))}
+  .rg.d{background:color-mix(in srgb,var(--down) 50%,var(--ctl))}
+  .rg.me{background:var(--tx);box-shadow:0 0 18px 2px color-mix(in srgb,var(--tx) 55%,transparent)}
+  .mk{position:absolute;left:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;
+    box-shadow:0 0 0 5px color-mix(in srgb,var(--acc) 30%,transparent),0 0 26px 6px color-mix(in srgb,var(--acc) 70%,transparent)}
+  .ring{position:absolute;left:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;box-shadow:0 0 0 2px var(--tx);opacity:0}
+  .trail{position:absolute;left:50%;width:2px;margin-left:-1px;border-radius:1px;opacity:0;
+    background:linear-gradient(to var(--tdir,top),color-mix(in srgb,var(--acc) 90%,transparent),transparent)}
+  .apex{position:absolute;left:50%;top:-20px;width:14px;height:14px;margin-left:-7px;rotate:45deg;border-radius:3px;background:var(--tx);
+    box-shadow:0 0 22px 5px color-mix(in srgb,var(--acc) 80%,transparent)}
+
+  /* вариант Б: дуга комнаты и монета лиги */
+  .dial{position:relative;width:260px;height:260px;margin:26px auto 0;perspective:700px}
+  .dial svg{position:absolute;inset:0;overflow:visible}
+  .tick{stroke:var(--ctl);stroke-width:4;stroke-linecap:round}
+  .tick.u{stroke:color-mix(in srgb,var(--up) 62%,var(--ctl))}
+  .tick.d{stroke:color-mix(in srgb,var(--down) 54%,var(--ctl))}
+  .arc{fill:none;stroke:var(--tx);stroke-width:3;stroke-linecap:round;opacity:.9}
+  .head{transform-box:view-box;transform-origin:130px 130px}
+  .head circle{fill:#fff;filter:drop-shadow(0 0 7px var(--acc))}
+  .lcoin{position:absolute;left:50%;top:50%;width:132px;height:132px;margin:-66px 0 0 -66px;transform-style:preserve-3d}
+  .face{position:absolute;inset:0;border-radius:50%;display:grid;place-items:center;backface-visibility:hidden;
+    font-size:58px;font-weight:800;letter-spacing:-.03em;color:var(--tx);
+    background:radial-gradient(circle at 34% 26%,color-mix(in srgb,var(--acc) 46%,var(--card)) 0%,var(--card) 66%);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),inset 0 0 0 9px color-mix(in srgb,var(--acc) 12%,transparent),
+      0 26px 50px -20px color-mix(in srgb,var(--acc) 55%,transparent)}
+  .face.b{transform:rotateY(180deg)}
+
+  /* общий итог под сценой: место, лига, сумма, две-три причины */
+  .res{margin-top:auto;padding:0 22px 26px}
+  .top{display:flex;align-items:flex-end;gap:14px}
+  .pl{font-size:88px;line-height:.86;font-weight:800;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+  .side{padding-bottom:4px;min-width:0}
+  .side small{display:block;color:var(--mu);font-size:14px;font-weight:600}
+  .lg{position:relative;display:flex;align-items:center;gap:7px;height:32px;font-size:25px;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+  .lg .names{position:relative;display:block;height:32px;line-height:32px;overflow:hidden}
+  .lg .old{position:absolute;left:0;top:0;opacity:0;color:var(--mu)}
+  .sum{display:flex;align-items:center;gap:9px;margin-top:20px;font-size:30px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .sum .wait{font-size:19px;font-weight:650;color:var(--sec);letter-spacing:0}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+  .rz{display:flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:20px;background:color-mix(in srgb,var(--card) 86%,transparent);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);font-size:13.5px;font-weight:600;color:var(--sec);font-variant-numeric:tabular-nums}
+  .rz b{color:var(--tx);font-weight:700}
+  .rz.pos b{color:var(--up)} .rz.neg b{color:var(--down)}
+  .cap{margin-top:14px;color:var(--mu);font-size:14px;font-weight:550}
+  .fly{position:absolute;opacity:0;pointer-events:none}
+
+  /* ачивка: семь огней и медаль */
+  .ach{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px 26px;text-align:center}
+  .medal{position:relative;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;color:var(--tx);overflow:hidden;
+    background:radial-gradient(circle at 34% 26%,color-mix(in srgb,var(--acc) 50%,var(--card)) 0%,var(--card) 66%);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),inset 0 0 0 10px color-mix(in srgb,var(--acc) 12%,transparent),
+      0 30px 60px -22px color-mix(in srgb,var(--acc) 65%,transparent)}
+  .medal .n{font-size:74px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .shine{position:absolute;inset:-20% auto -20% 0;width:46%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent);
+    transform:translateX(420%) skewX(-18deg)}
+  .wave{position:absolute;width:150px;height:150px;border-radius:50%;box-shadow:0 0 0 2px var(--acc);opacity:0}
+  .mwrap{position:relative;display:grid;place-items:center;margin-bottom:34px}
+  .orbs{position:relative;display:flex;gap:9px;margin-bottom:30px}
+  .orbs::before{content:"";position:absolute;left:15px;right:15px;top:50%;height:2px;margin-top:-1px;background:color-mix(in srgb,var(--up) 45%,var(--ctl));
+    transform-origin:left;transform:scaleX(var(--ln,1))}
+  .orb{position:relative;width:30px;height:30px;border-radius:50%;background:color-mix(in srgb,var(--up) 70%,var(--card));
+    box-shadow:0 0 14px 1px color-mix(in srgb,var(--up) 45%,transparent)}
+  .atitle{font-size:27px;line-height:1.12;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+  .acond{margin-top:9px;color:var(--mu);font-size:15px;font-weight:550}
+  .clip{overflow:hidden;padding-bottom:3px}
+
+  .notes{margin:50px auto 0;max-width:760px;color:#b9bac3;font-size:14.5px}
+  .notes h2{font-size:20px;font-weight:700;letter-spacing:-.01em;margin:0 0 12px;color:var(--ink)}
+  .notes p{margin:0 0 10px;text-wrap:pretty}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>U36 · Истории наград · анимация</h1>
+  <p class="lede">Причину рассказывает движение, а не текст. Активная фаза до пяти секунд, дальше кадр спокойно стоит. Нажмите на телефон, чтобы проиграть ещё раз.</p>
+
+  <div class="bar">
+    <div class="grp" data-g="state"><span>Неделя</span>
+      <button class="chip" data-v="up">Повышение</button>
+      <button class="chip" data-v="stay">Остался</button>
+      <button class="chip" data-v="down">Спуск</button>
+      <button class="chip" data-v="summit">Вершина</button>
+      <button class="chip" data-v="pending">Награда в пути</button>
+    </div>
+    <div class="grp" data-g="theme"><span>Тема</span>
+      <button class="chip" data-v="graphite">Затмение</button>
+      <button class="chip" data-v="ink">Сумерки</button>
+    </div>
+    <div class="grp"><button class="chip" id="replay">Проиграть все</button></div>
+  </div>
+
+  <div class="stage">
+    <figure><div class="ph" id="pA" tabindex="0" role="button" aria-label="Проиграть вариант А"></div>
+      <figcaption><b>Вариант А · Пик</b>Комната складывается в пик из тридцати мест. Огонёк поднимается до твоего, зона подъёма загорается.</figcaption></figure>
+    <figure><div class="ph" id="pB" tabindex="0" role="button" aria-label="Проиграть вариант Б"></div>
+      <figcaption><b>Вариант Б · Монета</b>Дуга комнаты заполняется до твоего места, монета лиги переворачивается на новую сторону.</figcaption></figure>
+    <figure><div class="ph" id="pC" tabindex="0" role="button" aria-label="Проиграть ачивку"></div>
+      <figcaption><b>Ачивка · Семь огней</b>Дни серии зажигаются по одному и собираются в медаль.</figcaption></figure>
+  </div>
+
+  <section class="notes">
+    <h2>Что осталось из слов</h2>
+    <p>Место, название лиги, сумма и две короткие метки под ней: «место» и «повышение». Внизу одна строка причины. Всё остальное показывает сцена.</p>
+    <p>Сумма и числа в метках видны только когда монеты дошли до баланса. В состоянии «Награда в пути» метки стоят без чисел.</p>
+  </section>
+</div>
+
+<script>
+const S = {
+  up:{from:'Гранит',to:'Базальт',dir:'up',place:2,total:30,k:5,rows:[['место',200],['повышение',100]],paid:true,energy:1,cap:'Первые 5 из 30 поднимаются'},
+  stay:{from:'Гранит',to:'Гранит',dir:'stay',place:9,total:30,k:5,rows:[],paid:true,energy:0,cap:'До пятёрки не хватило 240 монет'},
+  down:{from:'Мрамор',to:'Базальт',dir:'down',place:27,total:30,k:5,rows:[],paid:true,energy:-1,cap:'Последние 5 из 30 спускаются'},
+  summit:{from:'Гранит',to:'Базальт',dir:'up',place:8,total:30,k:5,rows:[['повышение',100]],paid:true,energy:1,cap:'Вершина башни поднимает с любого места',apex:true},
+  pending:{from:'Гранит',to:'Базальт',dir:'up',place:1,total:30,k:5,rows:[['место',300],['повышение',100]],paid:false,energy:1,cap:'Первые 5 из 30 поднимаются'}
+};
+const ui = {state:'up', theme:'graphite'};
+const OUT='cubic-bezier(.23,1,.32,1)', IO='cubic-bezier(.77,0,.175,1)';
+const calm = matchMedia('(prefers-reduced-motion:reduce)').matches;
+const num = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+const coin = s => `<svg class="coin" width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>`;
+const dirIcon = d => d==='stay' ? '' : `<svg class="dir" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--${d})"><path d="${d==='up'?'M12 19V6M6 11l6-6 6 6':'M12 5v13M6 13l6 6 6-6'}" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const bolt = `<svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></svg>`;
+const head = (label,on) => `<div class="segs">${[0,1,2,3].map(i=>`<i class="${i<on?'on':(i===on?'run':'')}">${i===on?'<b></b>':''}</i>`).join('')}</div><div class="who"><span class="av">${coin(16)}</span>${label}</div>`;
+
+// Кривая движения огонька: по ней же считаем, когда он проходит каждую ступень.
+function bezier(x1,y1,x2,y2){
+  const cx=3*x1,bx=3*(x2-x1)-cx,ax=1-cx-bx,cy=3*y1,by=3*(y2-y1)-cy,ay=1-cy-by;
+  const X=t=>((ax*t+bx)*t+cx)*t, Y=t=>((ay*t+by)*t+cy)*t;
+  return y=>{let lo=0,hi=1;for(let i=0;i<32;i++){const m=(lo+hi)/2;Y(m)<y?lo=m:hi=m}return X(lo)};
+}
+const timeAt = bezier(.77,0,.175,1);
+
+// Один прогон на телефон: при повторе старые анимации и таймеры гасим.
+const runs = new WeakMap();
+function stage(ph){
+  const old = runs.get(ph); if(old){ old.t.forEach(clearTimeout); cancelAnimationFrame(old.raf.id); }
+  const r = {t:[], raf:{id:0}}; runs.set(ph,r);
+  const an = (el,kf,o) => (!el||calm) ? null : el.animate(kf,{easing:OUT,fill:'backwards',...o});
+  const at = (ms,fn) => { if(calm) return; r.t.push(setTimeout(fn,ms)); };
+  return {an,at,r};
+}
+const hidden = {opacity:0}, risen = {opacity:0,transform:'translateY(14px)',filter:'blur(8px)'};
+
+function resHTML(s){
+  const total = s.rows.reduce((a,x)=>a+x[1],0);
+  const chips = s.rows.map(x=>`<span class="rz">${x[0]}${s.paid?` <b>+${num(x[1])}</b>`:''}</span>`).join('')
+    + (s.energy?`<span class="rz ${s.energy>0?'pos':'neg'}">${bolt}<b>${s.energy>0?'+1':'−1'}</b></span>`:'');
+  const sum = !total ? '' : `<div class="sum"><span class="tgt">${coin(26)}</span>${s.paid?`<span class="cnt" data-to="${total}">+${num(total)}</span>`:'<span class="wait">в пути</span>'}</div>`;
+  return `<div class="res">
+    <div class="top"><div class="pl">${s.place}</div>
+      <div class="side"><small>место</small>
+        <div class="lg"><span class="names">${s.from!==s.to?`<span class="old">${s.from}</span>`:''}<span class="new">${s.to}</span></span>${dirIcon(s.dir)}</div></div></div>
+    ${sum}${chips?`<div class="chips">${chips}</div>`:''}
+    <div class="cap">${s.cap}</div></div>`;
+}
+
+// Итог: место проявляется, лига сменяется, монеты из меток летят в счётчик.
+function runRes(ph,s,t0,X,swap){
+  const {an,at,r} = X, q = sel => ph.querySelector(sel);
+  an(q('.pl'),[{opacity:0,transform:'translateY(18px) scale(.88)',filter:'blur(14px)'},{opacity:1,transform:'none',filter:'blur(0)'}],{delay:t0,duration:750});
+  an(q('.side'),[risen,{opacity:1,transform:'none',filter:'blur(0)'}],{delay:t0+220,duration:600});
+  if(swap && q('.old')){
+    an(q('.old'),[{opacity:1,transform:'translateY(0)',filter:'blur(0)'},{opacity:0,transform:'translateY(-100%)',filter:'blur(6px)'}],{delay:t0+700,duration:650,easing:IO});
+    an(q('.new'),[{opacity:0,transform:'translateY(100%)',filter:'blur(6px)'},{opacity:1,transform:'none',filter:'blur(0)'}],{delay:t0+700,duration:650,easing:IO});
+  }
+  an(q('.dir'),[{opacity:0,transform:`translateY(${s.dir==='up'?10:-10}px) scale(.6)`},{opacity:1,transform:'none'}],{delay:t0+1150,duration:500});
+  an(q('.sum'),[risen,{opacity:1,transform:'none',filter:'blur(0)'}],{delay:t0+1000,duration:550});
+  const cnt = q('.cnt'), tgt = q('.tgt'), story = q('.story'); let acc = 0;
+  if(cnt && !calm) cnt.textContent = '+0';
+  ph.querySelectorAll('.rz').forEach((c,i)=>{
+    const t = t0+1150+i*330;
+    an(c,[{opacity:0,transform:'translateY(10px) scale(.92)'},{opacity:1,transform:'none'}],{delay:t,duration:480});
+    const amount = s.rows[i] && s.rows[i][1];
+    if(!amount || !tgt || !s.paid || calm) return;
+    const a = c.getBoundingClientRect(), b = tgt.getBoundingClientRect(), o = story.getBoundingClientRect();
+    const f = document.createElement('span'); f.className='fly'; f.innerHTML = coin(18);
+    f.style.left = (b.left-o.left+4)+'px'; f.style.top = (b.top-o.top+4)+'px'; story.appendChild(f);
+    const dx = a.left+a.width/2-b.left-13, dy = a.top-b.top;
+    f.animate([{opacity:0,transform:`translate(${dx}px,${dy}px) scale(.6)`},{opacity:1,transform:`translate(${dx*.7}px,${dy-26}px) scale(1.15)`,offset:.35},{opacity:1,transform:'translate(0,0) scale(1)',offset:.9},{opacity:0,transform:'translate(0,0) scale(.7)'}],{delay:t+260,duration:620,easing:'cubic-bezier(.5,0,.2,1)'});
+    at(t+260+560,()=>{ const from=acc; acc+=amount; countTo(cnt,from,acc,420,r);
+      tgt.animate([{transform:'scale(1)'},{transform:'scale(1.28)'},{transform:'scale(1)'}],{duration:380,easing:OUT}); });
+  });
+  an(q('.cap'),[hidden,{opacity:1}],{delay:t0+1900,duration:500,easing:'ease'});
+  // полоска сегмента истории идёт всю активную фазу
+  an(q('.segs .run b'),[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:5000,easing:'linear'});
+}
+function countTo(el,from,to,ms,r){
+  const t0 = performance.now();
+  (function step(t){ const k=Math.min(1,(t-t0)/ms), e=1-Math.pow(1-k,3);
+    el.textContent='+'+num(Math.round(from+(to-from)*e)); if(k<1&&el.isConnected) r.raf.id=requestAnimationFrame(step); })(t0);
+}
+
+/* ── Вариант А · Пик ── */
+function playA(ph){
+  const s = S[ui.state], STEP = 11, X = stage(ph), {an} = X;
+  const start = s.dir==='down' ? 12 : s.total, span = Math.abs(start-s.place);
+  let rungs='';
+  for(let i=1;i<=s.total;i++){
+    const z = i===s.place?'me':(i<=s.k?'u':(i>s.total-s.k?'d':''));
+    rungs += `<i class="rg ${z}" data-i="${i}" style="top:${(i-1)*STEP}px;width:${(22+(i-1)/(s.total-1)*78).toFixed(1)}%"></i>`;
+  }
+  const my = (s.place-1)*STEP+2.5, tl = span*STEP;
+  ph.innerHTML = `<div class="story">${head('Пик',2)}
+    <div class="spire">${s.apex?'<i class="apex"></i>':''}${rungs}
+      <i class="trail" style="${start>s.place?`top:${my}px;--tdir:bottom`:`top:${my-tl}px;--tdir:top`};height:${tl}px"></i>
+      <i class="ring" style="top:${my}px"></i><i class="mk" style="top:${my}px"></i></div>
+    ${resHTML(s)}</div>`;
+  const T0=850, DUR=1750, land=T0+DUR;
+  ph.querySelectorAll('.rg').forEach(el=>{
+    const i = +el.dataset.i;
+    an(el,[{opacity:0,transform:'scaleX(.35)'},{opacity:1,transform:'scaleX(1)'}],{delay:(s.total-i)*17,duration:460});
+    if(i===s.place) an(el,[{filter:'brightness(.26)'},{filter:'brightness(1)'}],{delay:land-60,duration:380});
+    else if(el.classList.contains('u')||el.classList.contains('d'))
+      an(el,[{filter:'saturate(0) brightness(.7)'},{filter:'saturate(1) brightness(1)'}],{delay:land+(el.classList.contains('u')?s.k-i:i-(s.total-s.k))*55,duration:600});
+    // огонёк проходит ступень: короткая вспышка в тот самый момент
+    const between = start>s.place ? (i<=start && i>s.place) : (i>=start && i<s.place);
+    if(between && !calm) el.animate([{filter:'brightness(1)'},{filter:'brightness(3.2)',offset:.22},{filter:'brightness(1)'}],
+      {delay:T0+timeAt(Math.abs(start-i)/span)*DUR-40,duration:520,easing:'ease-out',composite:'add'});
+  });
+  const dy = (start-s.place)*STEP;
+  an(ph.querySelector('.mk'),[{opacity:0,transform:`translateY(${dy}px) scale(.3)`},{opacity:1,transform:`translateY(${dy}px) scale(1)`}],{delay:T0-350,duration:350});
+  if(!calm){
+    ph.querySelector('.mk').animate([{transform:`translateY(${dy}px)`},{transform:'translateY(0)'}],{delay:T0,duration:DUR,easing:IO,fill:'backwards'});
+    ph.querySelector('.trail').animate([{opacity:0},{opacity:.75,offset:.45},{opacity:0}],{delay:T0+200,duration:DUR,easing:'ease'});
+    ph.querySelector('.ring').animate([{opacity:.8,transform:'scale(1)'},{opacity:0,transform:'scale(5)'}],{delay:land,duration:1000,easing:OUT});
+    ph.querySelector('.mk').animate([{transform:'scale(1)'},{transform:'scale(1.5)'},{transform:'scale(1)'}],{delay:land,duration:520,easing:OUT});
+  }
+  an(ph.querySelector('.apex'),[{opacity:0,transform:'scale(.2)'},{opacity:1,transform:'scale(1.5)',offset:.6},{opacity:1,transform:'scale(1)'}],{delay:land+150,duration:700});
+  runRes(ph,s,land+50,X,true);
+}
+
+/* ── Вариант Б · Монета ── */
+function playB(ph){
+  const s = S[ui.state], X = stage(ph), {an} = X, C=130, R=110;
+  const frac = p => (s.total-p)/(s.total-1), ang = f => 135+270*f;
+  const pt = (a,r) => { const g=a*Math.PI/180; return [(C+r*Math.cos(g)).toFixed(1),(C+r*Math.sin(g)).toFixed(1)]; };
+  let ticks='';
+  for(let i=1;i<=s.total;i++){
+    const z = i<=s.k?'u':(i>s.total-s.k?'d':''), a=ang(frac(i)), [x1,y1]=pt(a,R+7), [x2,y2]=pt(a,R+17);
+    ticks += `<line class="tick ${z}" data-f="${frac(i).toFixed(3)}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;
+  }
+  const [sx,sy]=pt(135,R), [ex,ey]=pt(405,R), f = frac(s.place), changed = s.from!==s.to;
+  ph.innerHTML = `<div class="story">${head('Пик',2)}
+    <div class="dial"><svg viewBox="0 0 260 260" aria-hidden="true">${ticks}
+        <path class="arc" pathLength="100" stroke-dasharray="100" stroke-dashoffset="${(100*(1-f)).toFixed(2)}" d="M${sx} ${sy} A${R} ${R} 0 1 1 ${ex} ${ey}"/>
+        <g class="head" style="transform:rotate(${ang(f)}deg)"><circle cx="${C+R}" cy="${C}" r="6.5"/></g></svg>
+      <div class="lcoin" style="transform:rotateY(${changed?540:0}deg)"><div class="face">${s.from[0]}</div><div class="face b">${s.to[0]}</div></div></div>
+    ${resHTML(s)}</div>`;
+  const T0=750, DUR=1650, land=T0+DUR, over = s.dir==='down' ? .62 : null;
+  ph.querySelectorAll('.tick').forEach(el=>an(el,[{opacity:0},{opacity:1}],{delay:(+el.dataset.f)*620,duration:380,easing:'ease'}));
+  ph.querySelectorAll('.tick.u,.tick.d').forEach(el=>an(el,[{filter:'saturate(0) brightness(.7)'},{filter:'saturate(1) brightness(1)'}],{delay:land,duration:650}));
+  const off = v => ({strokeDashoffset:(100*(1-v)).toFixed(2)}), rot = v => ({transform:`rotate(${ang(v)}deg)`});
+  // при спуске дуга сначала уходит дальше, затем откатывается: видно, что место потеряно
+  const path = over ? [0,over,f] : [0,f], offs = over ? [0,.58,1] : [0,1];
+  an(ph.querySelector('.arc'),path.map((v,i)=>({...off(v),offset:offs[i]})),{delay:T0,duration:DUR,easing:IO});
+  an(ph.querySelector('.head'),path.map((v,i)=>({...rot(v),offset:offs[i]})),{delay:T0,duration:DUR,easing:IO});
+  an(ph.querySelector('.head circle'),[{opacity:0},{opacity:1}],{delay:T0-200,duration:250,easing:'ease'});
+  const lc = ph.querySelector('.lcoin');
+  an(ph.querySelector('.dial'),[{opacity:0,transform:'scale(.86)'},{opacity:1,transform:'scale(1)'}],{duration:700});
+  if(changed) an(lc,[{transform:'rotateY(0deg) scale(1)'},{transform:'rotateY(270deg) scale(1.16)',offset:.5},{transform:'rotateY(540deg) scale(1)'}],{delay:land-150,duration:1250,easing:IO});
+  else if(!calm) lc.animate([{transform:'rotateY(0deg)'},{transform:'rotateY(26deg)',offset:.3},{transform:'rotateY(-16deg)',offset:.65},{transform:'rotateY(0deg)'}],{delay:land-100,duration:1100,easing:'ease-in-out'});
+  runRes(ph,s,land+250,X,false);
+}
+
+/* ── Ачивка · Семь огней ── */
+function playC(ph){
+  const X = stage(ph), {an} = X;
+  ph.innerHTML = `<div class="story">${head('Ачивка · 14 из 41',3)}
+    <div class="ach">
+      <div class="mwrap"><i class="wave"></i><div class="medal"><span class="n">7</span><i class="shine"></i></div></div>
+      <div class="orbs">${'<i class="orb"></i>'.repeat(7)}</div>
+      <div class="clip"><div class="atitle">Неделя держит слово</div></div>
+      <div class="acond">7 дней подряд</div>
+    </div></div>`;
+  const orbs = ph.querySelectorAll('.orb'), T0=350, GAP=270, lit=T0+7*GAP;
+  an(ph.querySelector('.orbs'),[{opacity:0,transform:'translateY(60px)'},{opacity:1,transform:'translateY(60px)'}],{duration:350,easing:'ease'});
+  orbs.forEach((o,i)=>{
+    an(o,[{filter:'saturate(0) brightness(.45)',transform:'scale(.7)',boxShadow:'0 0 0 0 transparent'},{filter:'saturate(1) brightness(1.5)',transform:'scale(1.25)',offset:.55},{filter:'saturate(1) brightness(1)',transform:'scale(1)'}],{delay:T0+i*GAP,duration:520});
+  });
+  if(!calm){
+    ph.querySelector('.orbs').animate([{'--ln':0},{'--ln':1}],{delay:T0,duration:7*GAP,easing:'linear',fill:'backwards'});
+    // огни стоят в центре, пока зажигаются, потом уступают место медали
+    ph.querySelector('.orbs').animate([{transform:'translateY(60px)'},{transform:'translateY(0)'}],{delay:lit+100,duration:800,easing:IO,fill:'backwards'});
+    ph.querySelector('.wave').animate([{opacity:.7,transform:'scale(.6)'},{opacity:0,transform:'scale(2)'}],{delay:lit+450,duration:1100,easing:OUT});
+    ph.querySelector('.shine').animate([{transform:'translateX(-160%) skewX(-18deg)'},{transform:'translateX(420%) skewX(-18deg)'}],{delay:lit+900,duration:1100,easing:'ease-in-out',fill:'backwards'});
+  }
+  an(ph.querySelector('.medal'),[{opacity:0,transform:'scale(.4) rotate(-24deg)',filter:'blur(14px)'},{opacity:1,transform:'scale(1.08) rotate(3deg)',filter:'blur(0)',offset:.65},{opacity:1,transform:'none',filter:'blur(0)'}],{delay:lit+150,duration:900});
+  an(ph.querySelector('.atitle'),[{transform:'translateY(110%)'},{transform:'none'}],{delay:lit+900,duration:800});
+  an(ph.querySelector('.acond'),[{opacity:0},{opacity:1}],{delay:lit+1500,duration:500,easing:'ease'});
+  an(ph.querySelector('.segs .run b'),[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:5000,easing:'linear'});
+}
+try{ CSS.registerProperty({name:'--ln',syntax:'<number>',inherits:true,initialValue:'1'}); }catch(e){ console.warn('[U36-STORY] --ln не зарегистрирована, линия огней появится сразу:', e.message); }
+
+const P = {pA:playA, pB:playB, pC:playC};
+function playAll(){
+  document.querySelectorAll('.ph').forEach(p=>{ p.className='ph t-'+ui.theme; P[p.id](p); });
+  document.querySelectorAll('.grp[data-g]').forEach(g=>g.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(ui[g.dataset.g]===c.dataset.v))));
+}
+document.addEventListener('click',e=>{
+  const chip = e.target.closest('.chip[data-v]');
+  if(chip){ ui[chip.parentElement.dataset.g]=chip.dataset.v; playAll(); return; }
+  if(e.target.closest('#replay')){ playAll(); return; }
+  const ph = e.target.closest('.ph'); if(ph) P[ph.id](ph);
+});
+document.addEventListener('keydown',e=>{ if((e.key==='Enter'||e.key===' ') && e.target.classList.contains('ph')){ e.preventDefault(); P[e.target.id](e.target); } });
+playAll();
+</script>
+</body>
+</html>

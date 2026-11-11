@@ -25,9 +25,7 @@ import { V2 } from '../../../../constants/v2Style';
 import { useTheme } from '../../../ThemeContext';
 import type { ThemedArtBrightness } from '../../../theme/themed_art_registry';
 import type { HomeWeekDotsProps } from '../HomeWeekDots';
-import { buildHomeSceneStory, buildHomeSpecialStory } from '../../../../modules/story_events/home_activity_stories';
 import { homeContinueLessonLabel } from './HomeContinueScene';
-import type { StoryEvent } from '../../../../modules/story_events/story_events_core';
 import HomeSceneStage, { HOME_SCENE_PANEL_OVERLAP, type HomeSceneChip } from './HomeSceneStage';
 import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopy, type HomeSceneCopyInput, type HomeSceneCtaTarget } from './home_scene_copy';
 import { homeSceneDaysAwayByVisits, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
@@ -99,7 +97,7 @@ type HomeSceneScrollProps = Readonly<{ topOverscroll?: import('react-native-rean
 type Props = HomeSceneScrollProps & Readonly<{
   lang: Lang;
   /** HomeV2Header с tone="scene"; surface — верхний цвет сцены (под значком ◆ кольца Plus). */
-  header: (surface: string, sceneStory?: StoryEvent) => React.ReactNode;
+  header: (surface: string) => React.ReactNode;
   week?: HomeWeekDotsProps;
   overlapNextPanel?: boolean;
   artTone: ThemedArtBrightness;
@@ -237,7 +235,7 @@ export default function HomeScene(p: Props) {
 
 export type HomeSceneViewProps = HomeSceneScrollProps & Readonly<{
   lang: Lang;
-  header: (surface: string, sceneStory?: StoryEvent) => React.ReactNode;
+  header: (surface: string) => React.ReactNode;
   week?: HomeWeekDotsProps;
   overlapNextPanel?: boolean;
   artTone: ThemedArtBrightness;
@@ -359,18 +357,8 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   }, [copyInput, liveEnergy, fixedEnergyMinutes]);
   const chips = useMemo<readonly HomeSceneChip[]>(() => copy.chips.map((kind) => ({ kind, label: homeSceneChipLabel(p.lang, kind), icon: CHIP_ICON[kind] })), [copy.chips, p.lang]);
   const offlineLine = useMemo(() => (decision.offlineLine ? homeSceneOfflineLine(p.lang) : null), [decision.offlineLine, p.lang]);
-  // зачем (владелец 11.11): состояние сцены — история дня; особая сцена — своя история; «Нет сети» при обычном герое — тоже история
-  const sceneStory = p.pending ? undefined
-    : specialView ? buildHomeSpecialStory(specialView.special, specialView.key, specialView.copy, new Date())
-      : buildHomeSceneStory(decision.offlineLine && (decision.state === 'continue' || decision.state === 'newbie') ? 'offline' : decision.state, copy, offlineLine?.bold, new Date());
-  const storyLogRef = useRef('');
-  useEffect(() => {
-    if (!p.continueOnly) return;
-    const key = `${sceneStory?.id ?? 'none'}|${decision.state}|${specialView?.special ?? ''}|${String(p.pending)}`;
-    if (storyLogRef.current === key) return;
-    storyLogRef.current = key;
-    console.log('[HOME-SCENE-STORY]', JSON.stringify({ story: sceneStory?.id ?? null, status: sceneStory?.payload.status ?? null, state: decision.state, special: specialView?.special ?? null, offlineLine: decision.offlineLine, pending: p.pending, reason: p.pending ? 'pending' : sceneStory ? 'to_story' : 'permanent_state_no_story' })); // guard-ok: одна строка на смену истории
-  }, [p.continueOnly, sceneStory, decision.state, decision.offlineLine, specialView, p.pending]);
+  // зачем (владелец 11.11, вечер: «не будет историй с ними, просто удаляй их»): состояния и особые сцены Главной историями НЕ становятся.
+  // Утром того же дня они уходили в кольцо аватара кадром «значок i + фраза» — владелец увидел этот кадр и отменил решение целиком.
   // зачем (жалоба владельца 25.10 «Ещё эпизод → классическое меню»): в момент тапа — состояние, цель и надпись, которую видел человек;
   // маршрут пишет обработчик Главной ([HOME-CONTINUE] open). Цель и обработчик Главная считает в одном рендере (homeSceneCtaTarget).
   const { onContinue } = p;
@@ -390,15 +378,15 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   }, [copy.cta, ctaEpisode, ctaLessonNo, ctaTarget, decision.state, onContinue, onSpecial, specialView]);
   // зачем (владелец 11.11: «убери с главной все состояния вверху, который урок или всё другое; кнопка „Продолжить" становится
   // „Продолжить урок" и только продолжает последний открытый урок»): фон и картинка сцены темы остаются, а надписи героя, место урока,
-  // прогресс и чипы уходят — состояние живёт историей в кольце аватара (sceneStory выше). Кнопки нет, если продолжать нечего.
+  // прогресс и чипы уходят. Кнопки нет, если продолжать нечего.
   const stageCopy = useMemo<HomeSceneCopy>(() => ({
     kicker: '', title: '', line: null, bar: null, warm: null, note: null, chips: [],
     cta: p.canContinue === false ? null : homeContinueLessonLabel(p.lang),
   }), [p.canContinue, p.lang]);
   const onContinueLesson = useCallback(() => {
-    console.log('[HOME-CONTINUE] tap', JSON.stringify({ mode: 'continue_lesson_only', state: decision.state, story: sceneStory?.id ?? null, lessonNo: ctaLessonNo })); // guard-ok: одна строка на тап
+    console.log('[HOME-CONTINUE] tap', JSON.stringify({ mode: 'continue_lesson_only', state: decision.state, lessonNo: ctaLessonNo })); // guard-ok: одна строка на тап
     onContinue();
-  }, [decision.state, sceneStory?.id, ctaLessonNo, onContinue]);
+  }, [decision.state, ctaLessonNo, onContinue]);
   // зачем (владелец 22.10 «полоса другого цвета в сейф-зоне»): факт — где по экрану начинается сцена и какой у неё верхний цвет;
   // сравнивается с [SAFE-TOP] status_strip (высота зоны часов и цвет полосы над ней).
   const rootRef = useRef<View>(null);
@@ -430,7 +418,7 @@ export function HomeSceneView(p: HomeSceneViewProps) {
       />
       {/* зачем (владелец 22.10): фон сцены заходит под часы, шапка — ниже зоны часов на прежние 12 */}
       <View onLayout={handleHeaderLayout} style={[s.top, topInset > 0 ? { paddingTop: HEADER_TOP + topInset } : null]} pointerEvents="box-none">
-        {p.header(tokens.sceneTop, sceneStory)}
+        {p.header(tokens.sceneTop)}
         {offlineLine && !p.continueOnly ? (
           <View testID="home-scene-offline" style={s.offline} accessibilityLiveRegion="polite">
             <Ionicons name="cloud-offline-outline" size={18} color={HOME_SCENE_INK.text} />

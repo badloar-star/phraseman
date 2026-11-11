@@ -160,9 +160,9 @@ describe('подключение: точки входа пишут метку, �
     expect(fc).toContain('if (viewLang === studyTarget) {\n      const pickedDecks');
   });
 
-  it('Главная передаёт в истории только статус сцены, кнопка открывает сохранённый урок', () => {
+  it('Главная не передаёт состояния сцены в истории (владелец 11.11), кнопка открывает сохранённый урок', () => {
     const home = read('app/(tabs)/home.tsx');
-    expect(home).toContain("homeStories={sceneStory && mistakeAccountGeneration.phase === 'active' ? [sceneStory] : undefined}");
+    expect(home).not.toContain('homeStories=');
     expect(home).toContain("pathname: '/lesson1', params: { id: String(lastLesson.id), from: 'home' }");
     expect(home).toContain('if (sceneLesson) openLastLesson();');
   });

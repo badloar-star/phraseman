@@ -1,7 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { buildHomeSceneStory, buildHomeSpecialStory } from '../modules/story_events/home_activity_stories';
-import { addStoryEvent, nextLiveStoryIndex } from '../modules/story_events/story_events_core';
 
 const read = (file: string) => fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
 
@@ -26,7 +24,6 @@ test('Home top keeps only «Continue lesson»: states and lesson info leave the 
   expect(scene).toContain('homeContinueLessonLabel(p.lang)');
   expect(scene).toContain("state={p.continueOnly ? 'continue' : decision.state}");
   expect(scene).toContain('offlineLine && !p.continueOnly');
-  expect(scene).toContain('buildHomeSpecialStory(specialView.special');
   const home = read('app/(tabs)/home.tsx');
   const handler = home.slice(home.indexOf('const continueFromScene = () => {'), home.indexOf('const openScenePhrase'));
   expect(handler).toContain('openLastLesson()');
@@ -38,25 +35,14 @@ test('Home top keeps only «Continue lesson»: states and lesson info leave the 
   expect(scene).toContain("cta: p.canContinue === false ? null : homeContinueLessonLabel(p.lang)");
 });
 
-test('special scenes become their own day story; empty titles do not', () => {
-  const now = new Date(2026, 10, 11, 18);
-  const story = buildHomeSpecialStory('mistakes', '3', { title: '3 ошибки ждут' }, now)!;
-  expect(story.type).toBe('home_activity');
-  expect(story.payload).toEqual({ state: 'special:mistakes', status: '3 ошибки ждут' });
-  expect(story.id.startsWith('home-activity:special:mistakes:3:')).toBe(true);
-  expect(buildHomeSpecialStory('mistakes', null, { title: '  ' }, now)).toBeUndefined();
-});
-
-test('the current scene can surface a status without carrying the place or writing to the journal', () => {
-  const now = new Date(2026, 10, 11, 18);
-  const place = { kicker: 'Урок 3', title: 'Знакомство' };
-  expect(buildHomeSceneStory('continue', place, undefined, now)).toBeUndefined();
-  expect(buildHomeSceneStory('newbie', place, undefined, now)).toBeUndefined();
-  const status = buildHomeSceneStory('day_done', { ...place, title: 'День засчитан' }, undefined, now)!;
-  expect(status.payload).toEqual({ state: 'day_done', status: 'День засчитан' });
-  expect(addStoryEvent([], status, now.getTime())).toMatchObject({ added: false, reason: 'invalid' });
-  expect(nextLiveStoryIndex([status], 0, 0, undefined, [status.id])).toBe(0);
-  expect(nextLiveStoryIndex([status], 0, 0, undefined, [])).toBe(1);
+// зачем (владелец 11.11, вечер: «не будет историй с ними, просто удаляй их»): состояния и особые сцены Главной историями не становятся.
+// Падает, если Главная снова начнёт собирать из них истории или передавать их в кольцо аватара.
+test('Home states and special scenes do not become stories', () => {
+  const scene = read('components/home/v2/scene/HomeScene.tsx');
+  const home = read('app/(tabs)/home.tsx');
+  expect(scene).not.toMatch(/buildHomeSceneStory|buildHomeSpecialStory|home_activity_stories|sceneStory/);
+  expect(home).not.toMatch(/homeStories=|sceneStory/);
+  expect(fs.existsSync(path.join(__dirname, '..', 'modules/story_events/home_activity_stories.ts'))).toBe(false);
 });
 
 test('holding the coin for a second replays recent and Home stories even with unread events', () => {

@@ -152,7 +152,6 @@ import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { VIDEO_PHRASES_NAME } from '../video_phrases_name';
 import { HOME_TILE_ROW_MAX, homeVideoPacksTileWanted } from '../home_video_tile_rule'; // зачем (слово владельца ~20:41): правило «видеоплитка только пока Видео закрыт» — чистая функция, проверяется по рангам 0…5
-import type { StoryEvent } from '../../modules/story_events/story_events_core';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { noteLessonsOpenStart } from '../lessons_tab_diagnostics';
 import { markHomeFirstPaint } from '../home_paint_marker';
@@ -2693,7 +2692,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           perfNavStart('lesson1');
           nav.push({ pathname: '/lesson1', params: { id: String(lastLesson.id), from: 'home' } } as never);
         };
-        const renderHomeV2Header = (tone: 'default' | 'scene', surface?: string, sceneStory?: StoryEvent) => (
+        const renderHomeV2Header = (tone: 'default' | 'scene', surface?: string) => (
               <HomeBellStateContext.Provider value={homeBellState}>
               <HomeV2Header
                 tone={tone}
@@ -2706,7 +2705,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   <StoryAvatarSlot
                     key={mistakeAccountGenerationKey + ':' + studyTarget}
                     lang={lang}
-                    homeStories={sceneStory && mistakeAccountGeneration.phase === 'active' ? [sceneStory] : undefined}
                     coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null}
                     coinSource={homeCoinRankSource}
                     placeholderColor={t.bgSurface2}
@@ -2768,7 +2766,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             <HomeScene
               lang={lang}
               topOverscroll={homeTopOverscroll}
-              header={(surface, sceneStory) => renderHomeV2Header('scene', surface, sceneStory)}
+              header={(surface) => renderHomeV2Header('scene', surface)}
               overlapNextPanel={homeV2Tiles.length === 0}
               week={{
                 active: homeRuntimeActive,

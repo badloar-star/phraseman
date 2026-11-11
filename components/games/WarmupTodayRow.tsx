@@ -41,6 +41,9 @@ function WarmupTodayRow({ style, testID = 'today-warmup-row' }: Props) {
     router.push('/warmup' as never);
   }, [router]);
 
+  // зачем (сквозная проверка 11.11): у языка без игр разминки нет — строка не показывается вовсе, а не ведёт на пустой экран
+  if (total === 0) return null;
+
   return (
     <Pressable
       testID={testID}

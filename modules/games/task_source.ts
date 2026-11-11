@@ -75,10 +75,22 @@ export function orderTasksFor(studyTarget: string, lesson: number = LESSON_MAX):
   return (tasks ?? []).filter(isValidOrderTask);
 }
 
-/** Есть ли у игры задания для этого языка и урока. «Поток» берёт фразы прямо из уроков любого курса. */
-export function isGameAvailable(id: GameId, studyTarget: string, lesson: number): boolean {
+/**
+ * Можно ли играть в «Поток». Он берёт фразы прямо из уроков курса, поэтому:
+ *  • язык без курса игр её не получает — раньше экран подставлял английские фразы (сквозная проверка 11.11),
+ *    а правило модуля — «человек никогда не получает задания не на том языке, который учит»;
+ *  • при языке интерфейса, равном изучаемому, «перевод» — это сама фраза: верный вариант дословно совпадает
+ *    с мелькнувшим текстом. Умолчание до решения владельца — игру в этом случае не предлагать.
+ */
+export function isFlowAvailable(studyTarget: string, uiLang?: string | null): boolean {
+  if (gameBankFor(studyTarget) === null) return false;
+  return !uiLang || uiLang !== studyTarget;
+}
+
+/** Есть ли у игры задания для этого языка и урока. `uiLang` — язык интерфейса, он нужен только «Потоку». */
+export function isGameAvailable(id: GameId, studyTarget: string, lesson: number, uiLang?: string | null): boolean {
   switch (id) {
-    case 'flow': return true;
+    case 'flow': return isFlowAvailable(studyTarget, uiLang);
     case 'odd_word': return oddWordTasksFor(studyTarget, lesson).length > 0;
     case 'sort': return sortDeckFor(studyTarget, lesson) !== null;
     case 'listen':

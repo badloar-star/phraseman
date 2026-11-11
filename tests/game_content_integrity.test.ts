@@ -242,10 +242,10 @@ describe('игры × языки × уроки: задания решаемы и
     for (const lang of LANGS) expect([lang, gameBankFor(lang) === GAME_BANKS[lang]]).toEqual([lang, true]);
   });
 
-  it('язык без банка получает только «Поток» и ни одного чужого задания', () => {
+  it('язык без банка не получает ни одной игры и ни одного чужого задания', () => {
     for (const target of ['xx', 'pt', 'ru', 'EN', '', 'constructor', '__proto__', 'toString', 'hasOwnProperty']) {
       for (const lesson of [1, 8, 32]) {
-        expect([target, lesson, GAMES.filter((g) => isGameAvailable(g, target, lesson))]).toEqual([target, lesson, ['flow']]);
+        expect([target, lesson, GAMES.filter((g) => isGameAvailable(g, target, lesson))]).toEqual([target, lesson, []]);
         for (const game of GAMES) expect([target, lesson, game, fetch(game, target, lesson).tasks.length]).toEqual([target, lesson, game, 0]);
       }
     }
@@ -340,10 +340,10 @@ describe('разминка: никогда не выдаёт игру без з�
     expect(problems).toEqual([]);
   });
 
-  it('язык без банка: разминка из одного «Потока», а не из чужих игр', () => {
+  it('язык без банка: разминка пуста, а не из чужих игр', () => {
     for (const target of ['xx', 'pt', 'constructor']) {
-      expect([target, availableWarmupGames(target).map((g) => g.id)]).toEqual([target, ['flow']]);
-      for (const day of dayKeys.slice(0, 7)) expect(warmupGamesForDay(day, availableWarmupGames(target)).map((g) => g.id)).toEqual(['flow']);
+      expect([target, availableWarmupGames(target).map((g) => g.id)]).toEqual([target, []]);
+      for (const day of dayKeys.slice(0, 7)) expect(warmupGamesForDay(day, availableWarmupGames(target)).map((g) => g.id)).toEqual([]);
     }
   });
 

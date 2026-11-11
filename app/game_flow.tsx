@@ -26,10 +26,8 @@ import { GAME_EASE, GAME_MOTION } from '../constants/gameMotion';
 import { triLang, type Lang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import {
-  FLOW_DEFAULT_ROUNDS, FLOW_TEMPO, buildFlowRounds, flowRoundTimings, isFlowHighTempo, nextFlowTempoLevel,
-  type FlowItem, type FlowRound,
-} from '../modules/games/flow_core';
+import { FLOW_DEFAULT_ROUNDS, FLOW_TEMPO, buildFlowRounds, flowRoundTimings, isFlowHighTempo, nextFlowTempoLevel, type FlowItem, type FlowRound, flowTranslation } from '../modules/games/flow_core';
+import { currentGameLesson, isFlowAvailable } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { getClassicLessonPhrases, isClassicCourseLang } from './classic_course_phrases';
@@ -149,12 +147,6 @@ const FadeCaption = memo(function FadeCaption({ text, color }: Readonly<{ text: 
   return <Reanimated.Text style={[s.caption, { color }, style]}>{last.current}</Reanimated.Text>;
 });
 
-function translationOf(phrase: { russian: string; ukrainian: string; sourceLocales?: Record<string, string | undefined> }, lang: Lang): string {
-  if (lang === 'ru') return phrase.russian;
-  if (lang === 'uk') return phrase.ukrainian || phrase.russian;
-  return phrase.sourceLocales?.[lang] || phrase.russian;
-}
-
 export default function GameFlowScreen() {
   const router = useRouter();
   useSkillSession(); // занятие объявляет сам режим — только его прирост попадёт в «Навыки растут»
@@ -162,12 +154,19 @@ export default function GameFlowScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const params = useLocalSearchParams<{ lesson?: string }>();
-  const lessonId = Math.max(1, Math.floor(Number(params.lesson) || 1));
+  // зачем (сквозная проверка 11.11): без номера в адресе брался урок 1 — разминка всегда давала фразы первого урока;
+  // теперь, как у остальных игр, берётся урок, на котором человек сейчас
+  const lessonId = Math.max(1, Math.floor(Number(params.lesson) || currentGameLesson(studyTarget)));
 
   // зачем: раунды собираются один раз на вход — повторный рендер не должен перетасовать варианты под пальцем
   const rounds = useMemo<FlowRound[]>(() => {
-    const course = isClassicCourseLang(studyTarget) ? studyTarget : 'en';
-    const pool: FlowItem[] = getClassicLessonPhrases(lessonId, course).map((phrase) => ({ id: `${course}:${lessonId}:${String(phrase.id)}`, en: phrase.english, translation: translationOf(phrase, lang) }));
+    // зачем: чужой язык не подставляется — нет курса или язык интерфейса совпал с изучаемым, игра открывается пустой
+    if (!isClassicCourseLang(studyTarget) || !isFlowAvailable(studyTarget, lang)) {
+      console.warn(`${LOG} rounds:unavailable ${JSON.stringify({ studyTarget, lang, lessonId })}`); // guard-ok: ранний выход с причиной
+      return [];
+    }
+    const course = studyTarget;
+    const pool: FlowItem[] = getClassicLessonPhrases(lessonId, course).map((phrase) => ({ id: `${course}:${lessonId}:${String(phrase.id)}`, en: phrase.english, translation: flowTranslation(phrase, lang) }));
     const built = buildFlowRounds(pool, FLOW_DEFAULT_ROUNDS);
     if (built.length === 0) console.warn(`${LOG} rounds:empty ${JSON.stringify({ course, lessonId, pool: pool.length })}`); // guard-ok: ранний выход с причиной
     return built;

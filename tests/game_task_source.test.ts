@@ -7,7 +7,7 @@ import { isValidQuizRound } from '../modules/games/quiz_core';
 import {
   bankEntryForLesson, dailyPortion, isGameAvailable, oddWordTasksFor, quizDeckFor, sortDeckFor, type GameId,
 } from '../modules/games/task_source';
-import { availableWarmupGames, warmupGamesForDay } from '../modules/games/warmup_state';
+import { WARMUP_POOL, availableWarmupGames, warmupGamesForDay } from '../modules/games/warmup_state';
 
 const ALL: GameId[] = ['flow', 'odd_word', 'sort', 'listen', 'memory', 'exact', 'forms', 'hunt', 'order'];
 
@@ -27,13 +27,13 @@ it('для английского уроков 1–8 у каждой игры е
   }
 });
 
-it('язык без банка не получает чужие задания: остаётся только «Поток»', () => {
+it('язык без банка не получает ни чужих заданий, ни «Потока» с чужими фразами', () => {
   for (const target of ['xx', 'toString', 'constructor']) {
     expect(oddWordTasksFor(target, 1)).toEqual([]);
     expect(sortDeckFor(target, 1)).toBeNull();
     expect(quizDeckFor('exact', target, 1)).toBeNull();
-    expect(ALL.filter((id) => isGameAvailable(id, target, 1))).toEqual(['flow']);
-    expect(availableWarmupGames(target).map((g) => g.id)).toEqual(['flow']);
+    expect(ALL.filter((id) => isGameAvailable(id, target, 1))).toEqual([]);
+    expect(availableWarmupGames(target).map((g) => g.id)).toEqual([]);
   }
 });
 
@@ -59,7 +59,19 @@ it('порция дня: нужного размера, без повторов,
 });
 
 it('разминка: когда доступна одна игра, день состоит из неё одной', () => {
-  const only = availableWarmupGames('xx');
+  // зачем: раньше «одну игру» давал язык без банка (ему оставался «Поток» с чужими фразами); теперь у такого языка
+  // игр нет вовсе, поэтому одна игра берётся прямо из списка разминки
+  const only = WARMUP_POOL.filter((g) => g.id === 'flow');
   expect(warmupGamesForDay('2026-11-11', only).map((g) => g.id)).toEqual(['flow']);
+  expect(warmupGamesForDay('2026-11-11', availableWarmupGames('xx'))).toEqual([]);
   expect(warmupGamesForDay('2026-11-11', availableWarmupGames('en'))).toHaveLength(3);
+});
+
+it('«Поток» не предлагается, когда язык интерфейса равен изучаемому: перевод совпал бы с фразой', () => {
+  expect(isGameAvailable('flow', 'en', 1, 'en')).toBe(false);
+  expect(isGameAvailable('flow', 'es', 1, 'es')).toBe(false);
+  expect(isGameAvailable('flow', 'en', 1, 'ru')).toBe(true);
+  expect(isGameAvailable('flow', 'de', 1, 'en')).toBe(true);
+  expect(availableWarmupGames('en', 'en').map((g) => g.id)).not.toContain('flow');
+  expect(availableWarmupGames('en', 'ru').map((g) => g.id)).toContain('flow');
 });

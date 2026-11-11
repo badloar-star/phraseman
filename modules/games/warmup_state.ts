@@ -7,7 +7,7 @@
  * каждый день) — за три дня человек встречает каждую игру, и ни одного экрана выбора не появляется.
  * Состояние «какие игры сегодня сыграны» живёт в памяти процесса и привязано к дню.
  */
-import { peekStudyTargetRaw } from '../../app/app_snapshot_bootstrap';
+import { peekAppLang, peekStudyTargetRaw } from '../../app/app_snapshot_bootstrap';
 import type { SkillId } from '../skills/skill_points_table';
 import { currentGameLesson, isGameAvailable } from './task_source';
 
@@ -122,9 +122,20 @@ function currentTarget(): string {
   }
 }
 
-export function availableWarmupGames(target: string): readonly WarmupGame[] {
+/** Язык интерфейса из памяти процесса; сбой чтения не ломает разминку — язык считается неизвестным. */
+function currentUiLang(): string | null {
+  try {
+    const raw: unknown = peekAppLang();
+    return typeof raw === 'string' && raw ? raw : null;
+  } catch (error) {
+    console.warn(`[WARMUP] ui_lang:peek_failed ${error instanceof Error ? error.message : String(error)}`);
+    return null;
+  }
+}
+
+export function availableWarmupGames(target: string, uiLang: string | null = currentUiLang()): readonly WarmupGame[] {
   const lesson = currentGameLesson(target);
-  return WARMUP_POOL.filter((game) => isGameAvailable(game.id, target, lesson));
+  return WARMUP_POOL.filter((game) => isGameAvailable(game.id, target, lesson, uiLang));
 }
 
 function freshState(dayKey: string): WarmupState {

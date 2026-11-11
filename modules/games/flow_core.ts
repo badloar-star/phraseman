@@ -84,6 +84,33 @@ export function flowRoundTimings(wordCount: number, msPerWord: number): FlowTimi
   };
 }
 
+/**
+ * Перевод фразы для варианта ответа — без методической пометки урока.
+ * зачем (сквозная проверка 11.11): в данных уроков у части переводов после самой фразы стоит пометка для сборки —
+ * «Оно открыто. (О предмете.)», «Лестница небезопасна. Для сборки: «не» + «безопасная».». В уроке она нужна,
+ * а в «Потоке» выдавала верный вариант (он длиннее и «с инструкцией») и показывала грамматические пояснения.
+ * Данные уроков не меняются — пометка срезается только здесь.
+ */
+export function cleanFlowTranslation(text: string): string {
+  let out = typeof text === 'string' ? text : '';
+  out = out.replace(/\s*Для сборки:.*$/su, '');
+  // хвостовых скобок может быть несколько подряд — снимаем все
+  let previous = '';
+  while (previous !== out) {
+    previous = out;
+    out = out.replace(/\s*\([^()]*\)\s*$/u, '');
+  }
+  return out.trim();
+}
+
+export type FlowPhraseSource = Readonly<{ russian: string; ukrainian: string; sourceLocales?: Readonly<Record<string, string | undefined>> }>;
+
+/** Перевод фразы урока на язык интерфейса: свой язык, иначе русский; всегда без пометки урока. */
+export function flowTranslation(phrase: FlowPhraseSource, uiLang: string): string {
+  const raw = uiLang === 'ru' ? phrase.russian : uiLang === 'uk' ? (phrase.ukrainian || phrase.russian) : (phrase.sourceLocales?.[uiLang] || phrase.russian);
+  return cleanFlowTranslation(raw);
+}
+
 function splitWords(text: string): string[] {
   return text.trim().split(/\s+/).filter(Boolean);
 }

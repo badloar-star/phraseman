@@ -24,6 +24,7 @@ import Reanimated, { Easing, cancelAnimation, runOnJS, useAnimatedStyle, useShar
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
+import { RuneBalanceChip } from '../components/RuneBalanceChip';
 import ScreenGradient from '../components/ScreenGradient';
 import GameSegments from '../components/games/GameSegments';
 import WarmupCardArt from '../components/games/WarmupCardArt';
@@ -62,6 +63,8 @@ const COPY = {
   complete: { ru: 'Разминка пройдена', uk: 'Розминку пройдено', es: 'Calentamiento completado', en: 'Warm-up complete' },
   of: { ru: 'из', uk: 'із', es: 'de', en: 'of' },
   back: { ru: 'Назад', uk: 'Назад', es: 'Atrás', en: 'Back' },
+  // зачем: у языка без игр разминка пуста — кнопка говорит об этом прямо и ничего не запускает
+  none: { ru: 'Сегодня игр нет', uk: 'Сьогодні ігор немає', es: 'Hoy no hay juegos', en: 'No games today' },
 } as const;
 
 type DeckCardProps = Readonly<{
@@ -184,18 +187,19 @@ export default function WarmupScreen() {
   }, []);
 
   const played = warmupPlayedCount(state);
-  const complete = played === state.games.length;
+  const complete = count > 0 && played === count;
 
   // после возвращения из игры карусель сама встаёт на следующую несыгранную игру
   useEffect(() => {
     const next = nextWarmupIndex(state, index);
-    if (next !== null && next !== index && state.results[state.games[index].id] !== undefined) {
+    const shown = state.games[index];
+    if (next !== null && next !== index && shown && state.results[shown.id] !== undefined) {
       setIndex(next);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
-  const game = state.games[index];
+  const game = state.games[index] ?? null;
   const date = useMemo(() => {
     try {
       const text = new Intl.DateTimeFormat(lang, { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date());
@@ -211,7 +215,11 @@ export default function WarmupScreen() {
     const now = Date.now();
     if (now - lastNavAt.current < NAV_GUARD_MS) return; // защита от двойного тапа
     lastNavAt.current = now;
-    const route = state.games[target].route;
+    const route = state.games[target]?.route;
+    if (!route) {
+      console.warn(`[WARMUP] start:no_game ${JSON.stringify({ target, count: state.games.length })}`); // guard-ok: ранний выход с причиной
+      return;
+    }
     setZooming(target);
     if (navTimer.current) clearTimeout(navTimer.current);
     navTimer.current = setTimeout(() => router.push(route as never), ZOOM_NAV_MS);
@@ -242,9 +250,11 @@ export default function WarmupScreen() {
     return `${a} ${triLang(lang, COPY.of)} ${b}`;
   };
 
-  const cta = complete
-    ? triLang(lang, COPY.complete)
-    : `${triLang(lang, state.results[game.id] !== undefined ? COPY.again : COPY.start)} · ${triLang(lang, game.name)}`;
+  const cta = !game
+    ? triLang(lang, COPY.none)
+    : complete
+      ? triLang(lang, COPY.complete)
+      : `${triLang(lang, state.results[game.id] !== undefined ? COPY.again : COPY.start)} · ${triLang(lang, game.name)}`;
 
   return (
     <ScreenGradient>
@@ -253,7 +263,10 @@ export default function WarmupScreen() {
           <View style={s.top}>
             <V2IconButton icon="chevron-back" onPress={onBack} accessibilityLabel={triLang(lang, COPY.back)} testID="warmup-back" />
             <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{triLang(lang, COPY.title)}</Text>
-            <View style={s.topSpacer} />
+            {/* зачем (владелец 11.11: «без строки, с монетами»): баланс монет справа, как на макете; общий чип читает кошелёк из памяти, сети нет */}
+            <View style={[s.coins, { backgroundColor: p.glass }]}>
+              <RuneBalanceChip color={p.text} size={20} interactive={false} testID="warmup-coins" />
+            </View>
           </View>
 
           <View style={s.head}>
@@ -306,7 +319,7 @@ export default function WarmupScreen() {
             {state.games.map((item, i) => <DeckDot key={item.id} on={i === index} />)}
           </View>
           <GameSegments ids={segmentIds} done={0} doneIds={state.results} track={p.track} fill={p.text} style={s.segs} />
-          <V2Button testID="warmup-start" label={cta} icon={complete ? undefined : 'play'} iconPosition="leading" disabled={complete} onPress={() => start(index)} />
+          <V2Button testID="warmup-start" label={cta} icon={complete || !game ? undefined : 'play'} iconPosition="leading" disabled={complete || !game} onPress={() => start(index)} />
         </View>
       </SafeAreaView>
     </ScreenGradient>
@@ -318,7 +331,7 @@ const s = StyleSheet.create({
   content: { flex: 1, paddingTop: 8, paddingBottom: 16, paddingHorizontal: V2.screenPad },
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: V2.iconButton },
   title: { position: 'absolute', left: 64, right: 64, textAlign: 'center', fontSize: 17, lineHeight: 22, fontWeight: '700' },
-  topSpacer: { width: V2.iconButton },
+  coins: { height: 36, paddingHorizontal: 12, borderRadius: 18, justifyContent: 'center' },
   head: { marginTop: 22, minHeight: 122 },
   over: { minHeight: 18, fontSize: 14, lineHeight: 18, fontWeight: '500' },
   big: { marginTop: 6, fontSize: 38, lineHeight: 42, fontWeight: '800', letterSpacing: -0.8 },

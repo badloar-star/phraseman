@@ -10,6 +10,7 @@
  * дополнить FRIEND_PROFILE_FIELDS-маппинг здесь, не раздувая клиент.
  */
 import * as admin from 'firebase-admin';
+import { validSkillLevels } from './skill_levels_public';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
 import { ENFORCE_APP_CHECK } from './callable_options';
@@ -113,6 +114,8 @@ export interface FriendPublicProfile {
   friendWeek: FriendWeekWire | null;
   /** «Фраза дня вдвоём» (идея 8): последний ответ друга из friends_phrase_v1; null — нет записи. */
   friendPhrase: FriendPhraseWire | null;
+  /** Навыки друга (D207): шесть уровней 0..30 из progress.skills_public_v1; null — записи нет или она битая. */
+  skillLevels: number[] | null;
 }
 
 type ProfilesResponse = { ok: true; profiles: Record<string, FriendPublicProfile | null> };
@@ -295,6 +298,17 @@ export function friendPhraseFromProgress(progress: Record<string, unknown>): Fri
   return { v: 1, day, phraseId, optionId, correct: r.correct };
 }
 
+/**
+ * Навыки друга (владелец 11.11.2026, D207 «друзья видят навыки всегда»): телефон друга кладёт шесть уровней в
+ * users/{uid}.progress.skills_public_v1, сервер строго разбирает и отдаёт тем же чтением users/{uid} — 0 новых чтений.
+ * зачем отдельный канал: в public_profiles уровни пишутся только при визитке «Про» (тот документ читают все), а друг
+ * должен видеть их и без неё. Эта выдача уже проверяет взаимную дружбу.
+ */
+export function friendSkillLevelsFromProgress(progress: Record<string, unknown>): number[] | null {
+  const raw = parseJsonObject(progress['skills_public_v1']);
+  return raw.v === 1 ? validSkillLevels(raw.levels) : null;
+}
+
 /** Читает active_days_v1/friends_push_v1/last_active_date из users/{uid}.progress. */
 export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: number = Date.now()): {
   lastActiveDate: string | null;
@@ -304,6 +318,7 @@ export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: numbe
   spireLang: string | null;
   friendWeek: FriendWeekWire | null;
   friendPhrase: FriendPhraseWire | null;
+  skillLevels: number[] | null;
 } {
   const progress = getProgress(userData);
   const lastActiveDate = typeof progress['last_active_date'] === 'string' && progress['last_active_date']
@@ -330,6 +345,7 @@ export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: numbe
     spireLang: spire.spireLang,
     friendWeek: friendWeekFromProgress(progress),
     friendPhrase: friendPhraseFromProgress(progress),
+    skillLevels: friendSkillLevelsFromProgress(progress),
   };
 }
 
@@ -378,6 +394,7 @@ export function buildFriendProfile(
     spireLang: together.spireLang,
     friendWeek: together.friendWeek,
     friendPhrase: together.friendPhrase,
+    skillLevels: together.skillLevels,
   };
   if (!profile.displayName && !profile.avatar && profile.profileCardLevel <= 0) {
     return null;

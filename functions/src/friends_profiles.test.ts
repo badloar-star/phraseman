@@ -129,6 +129,19 @@ describe('friendsGetProfiles reads', () => {
     expect(reads).toHaveLength(2 * 5);
   });
 
+  it('passes the friend skill levels (D207) from the already-read user doc; broken records give null, no new reads', async () => {
+    // зачем (владелец 11.11.2026): друзья видят навыки всегда, даже когда у друга нет визитки «Про» и в public_profiles уровней нет
+    const rows: Record<string, Row> = { ...friendRows('caller-d7', 'skilled'), ...friendRows('caller-d7', 'broken'), ...friendRows('caller-d7', 'none') };
+    rows['users/skilled'] = { progress: { skills_public_v1: JSON.stringify({ v: 1, day: '2026-11-11', levels: [14, 17, 11, 12, 8, 15] }) } };
+    rows['users/broken'] = { progress: { skills_public_v1: JSON.stringify({ v: 1, day: '2026-11-11', levels: [14, 17, 11, 12, 8, 99] }) } };
+    const { db, reads } = makeDb(rows);
+    const result = await runFriendsGetProfiles(db, 'caller-d7', ['skilled', 'broken', 'none']);
+    expect(result.profiles.skilled?.skillLevels).toEqual([14, 17, 11, 12, 8, 15]);
+    expect(result.profiles.broken?.skillLevels).toBeNull();
+    expect(result.profiles.none?.skillLevels).toBeNull();
+    expect(reads).toHaveLength(3 * 5);
+  });
+
   it('the caller own profile still reads its user doc and deletion marker itself', async () => {
     const { db, reads } = makeDb({ 'users/caller-d3': { progress: {} }, 'public_profiles/caller-d3': { name: 'Я' } });
     const result = await runFriendsGetProfiles(db, 'caller-d3', ['caller-d3']);

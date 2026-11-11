@@ -136,3 +136,29 @@ describe('public profile isPlus (ring for others)', () => {
     expect(project({ premium_plan: 'lifetime', premium_expiry: '0', vip_plan: 'referral', vip_until: String(NOW + 50) }).plusUntilMs).toBe(0);
   });
 });
+
+describe('skill levels in the public profile (owner 11.11.2026, D207)', () => {
+  const user = { progress: {} };
+  const levels = [14, 17, 11, 12, 8, 15];
+  const project = (input: PublicProfileProjectionInput) => buildAuthoritativePublicProfileProjection('stable-skills', user, { ...cosmetic, ...input }, 1_800_000_000_000);
+
+  it('are published only together with the Pro profile card', () => {
+    expect(project({ profileCardPro: true, profileCardStyle: 'obs', skillLevels: levels }).skillLevels).toEqual(levels);
+    // без «Про» поля в проекции нет вовсе — вызывающий стирает его из public_profiles
+    expect(project({ profileCardPro: false, skillLevels: levels })).not.toHaveProperty('skillLevels');
+    expect(project({ skillLevels: levels })).not.toHaveProperty('skillLevels');
+  });
+
+  it.each([
+    ['five numbers', [1, 2, 3, 4, 5]],
+    ['seven numbers', [1, 2, 3, 4, 5, 6, 7]],
+    ['level above 30', [1, 2, 3, 4, 5, 31]],
+    ['negative level', [-1, 2, 3, 4, 5, 6]],
+    ['fractional level', [1.5, 2, 3, 4, 5, 6]],
+    ['string level', ['1', 2, 3, 4, 5, 6]],
+    ['object instead of a list', { listening: 3 }],
+    ['points smuggled as an extra field', { levels: [1, 2, 3, 4, 5, 6], points: 9000 }],
+  ])('a malformed record is dropped whole: %s', (_name, raw) => {
+    expect(project({ profileCardPro: true, profileCardStyle: 'obs', skillLevels: raw })).not.toHaveProperty('skillLevels');
+  });
+});

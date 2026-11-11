@@ -7,6 +7,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { isLifetimePlanActive, isPremiumAccessActive, isRealPlusActive, isVipActive, realPlusTier, realPlusUntilMs } from './premium_status';
+import { validSkillLevels } from './skill_levels_public';
 type ProfileReason = 'display_change' | 'entitlement_change';
 
 export type PublicProfileProjectionInput = {
@@ -24,6 +25,8 @@ export type PublicProfileProjectionInput = {
   profileCardPro?: unknown;
   profileCardStyle?: unknown;
   profileCardLegendNo?: unknown;
+  /** Навыки (D207, 11.11.2026): шесть уровней 0..30 в порядке клиентского SKILL_IDS. Публикуются только при визитке «Про». */
+  skillLevels?: unknown;
   coinRank?: unknown;
   displayHash?: unknown;
   // Explicitly accepted by the type so callers cannot accidentally make these
@@ -80,6 +83,9 @@ function validCoinRank(value: unknown): number | null {
     : null;
 }
 
+// зачем (владелец 11.11.2026, D207 «посторонние видят навыки только на визитке „Про“»): public_profiles читает любой вошедший
+// пользователь, поэтому уровни человека без «Про» сюда не пишутся вовсе — скрытие одним приложением обходилось бы прямым чтением.
+// Разбор записи — validSkillLevels (skill_levels_public.ts): только шесть целых 0..30; очки и журнал действий сервер не получает.
 /** Pure builder used by the callable and deterministic repair tooling/tests. */
 export function buildAuthoritativePublicProfileProjection(
   stableUid: string,
@@ -126,6 +132,8 @@ export function buildAuthoritativePublicProfileProjection(
   if (coinRank !== null) projection.coinRank = coinRank;
   const proStyle = projection.profileCardPro === true ? validProfileCardStyle(input.profileCardStyle) : null;
   if (proStyle !== null) projection.profileCardStyle = proStyle;
+  const skillLevels = projection.profileCardPro === true ? validSkillLevels(input.skillLevels) : null;
+  if (skillLevels !== null) projection.skillLevels = skillLevels;
   if (input.cardWordsLearned !== undefined) {
     projection.cardWordsLearned = boundedInt(input.cardWordsLearned, 0, 10_000_000, 0);
   }
@@ -197,6 +205,10 @@ export const publicProfileProjectMine = onCall(HOT_CALLABLE_OPTIONS, async (requ
     if (!Object.prototype.hasOwnProperty.call(projection, 'profileCardStyle')) {
       // Без «Про» (или с неизвестным стилем) стиль у чужих не должен залипнуть.
       writePayload.profileCardStyle = admin.firestore.FieldValue.delete();
+    }
+    if (!Object.prototype.hasOwnProperty.call(projection, 'skillLevels')) {
+      // Без «Про» (или с битой записью) уровни навыков у посторонних не должны залипнуть: merge:true сам поле не уберёт.
+      writePayload.skillLevels = admin.firestore.FieldValue.delete();
     }
     transaction.set(profileRef, writePayload, { merge: true });
     return {

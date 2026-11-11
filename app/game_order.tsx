@@ -26,7 +26,7 @@ import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { INITIAL_ORDER_STATE, shuffledOrder, tapOrderLine } from '../modules/games/dialogue_core';
-import { orderTasksFor } from '../modules/games/task_source';
+import { currentGameLesson, dailyPortion, orderTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { useSkillSession } from '../modules/skills/use_skill_session';
@@ -92,7 +92,12 @@ export default function GameOrderScreen() {
   const p = useV2Palette();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const task = useMemo(() => orderTasksFor(studyTarget)[0] ?? null, [studyTarget]);
+  // зачем (чтение кода перед выпуском 11.11): без номера урока брался урок 32 — человек на уроке 1 получал реплики
+  // из поздних уроков; берём задания урока, на котором человек сейчас, и меняем диалог от дня к дню
+  const task = useMemo(() => {
+    const tasks = orderTasksFor(studyTarget, currentGameLesson(studyTarget));
+    return dailyPortion(tasks, 1, Math.floor(Date.now() / 86400000))[0] ?? null;
+  }, [studyTarget]);
   // порядок кнопок фиксируется на вход: повторный рендер не перетасовывает их под пальцем
   const buttons = useMemo(() => (task ? shuffledOrder(task.lines.length) : []), [task]);
   const [game, setGame] = useState(INITIAL_ORDER_STATE);

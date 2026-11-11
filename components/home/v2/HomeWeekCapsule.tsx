@@ -18,6 +18,7 @@ import Animated, { Easing, cancelAnimation, useAnimatedStyle, useSharedValue, wi
 
 import type { AuroraMaterial } from '../../../constants/aurora_material';
 import { useReduceMotion } from '../../../hooks/use_reduce_motion';
+import { useRuntimeActive } from '../../../hooks/use_runtime_active';
 import { LinearGradient } from '../../SafeLinearGradient';
 import V2Pressable from '../../v2/V2Pressable';
 
@@ -63,6 +64,9 @@ export function homeWeekChainRuns(days: readonly HomeWeekCapsuleDay[]): readonly
 
 function HomeWeekCapsule({ days, labels, scene, active, accessibilityLabel, onPress }: Props) {
   const reduceMotion = useReduceMotion();
+  // зачем (сторож perf_freeze_contract, 11.11): бесконечные пульс и колебание огонька идут только когда экран в фокусе
+  // И приложение на переднем плане — одного признака `active` от родителя мало: в фоне приложения цикл продолжал работать
+  const runtimeActive = useRuntimeActive(active);
   const todayIndex = days.findIndex((d) => d.isToday);
   const todayCounted = todayIndex >= 0 && days[todayIndex]!.counted;
   const count = days.filter((d) => d.counted).length;
@@ -91,11 +95,11 @@ function HomeWeekCapsule({ days, labels, scene, active, accessibilityLabel, onPr
     cancelAnimation(flick);
     pulse.value = 0;
     flick.value = 0;
-    if (!active || reduceMotion || todayIndex < 0) return undefined;
+    if (!runtimeActive || reduceMotion || todayIndex < 0) return undefined;
     if (!todayCounted) pulse.value = withRepeat(withTiming(1, { duration: 2400, easing: EASE_OUT }), -1, false);
     else flick.value = withDelay(700, withRepeat(withSequence(withTiming(1, { duration: 540, easing: Easing.inOut(Easing.ease) }), withTiming(-1, { duration: 540, easing: Easing.inOut(Easing.ease) }), withTiming(0, { duration: 720, easing: Easing.inOut(Easing.ease) })), -1, false));
     return () => { cancelAnimation(pulse); cancelAnimation(flick); };
-  }, [active, reduceMotion, todayCounted, todayIndex, pulse, flick]);
+  }, [runtimeActive, reduceMotion, todayCounted, todayIndex, pulse, flick]);
 
   const fillStyle = useAnimatedStyle(() => ({ opacity: Math.min(1, ignite.value / 0.57), transform: [{ scale: 0.5 + 0.5 * Math.min(1, ignite.value / 0.57) }] }));
   const flameStyle = useAnimatedStyle(() => {

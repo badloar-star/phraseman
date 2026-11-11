@@ -30,7 +30,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { isHuntHit } from '../modules/games/dialogue_core';
-import { huntTasksFor } from '../modules/games/task_source';
+import { currentGameLesson, huntTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { useSkillSession } from '../modules/skills/use_skill_session';
@@ -120,7 +120,9 @@ export default function GameHuntScreen() {
   const p = useV2Palette();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const tasks = useMemo(() => huntTasksFor(studyTarget), [studyTarget]);
+  // зачем (чтение кода перед выпуском 11.11): без номера урока брался урок 32 — человек на уроке 1 получал слова,
+  // которых ещё не видел; как остальные игры, «Охота» берёт задания урока, на котором человек сейчас
+  const tasks = useMemo(() => huntTasksFor(studyTarget, currentGameLesson(studyTarget)), [studyTarget]);
   const [index, setIndex] = useState(0);
   const [found, setFound] = useState(false);
   const [missId, setMissId] = useState('');

@@ -81,7 +81,8 @@ export const ODD_WORD_BANK_EN: Readonly<Record<number, readonly OddWordTask[]>> 
     task(6, 2, 'When do [does] we start?', 'Когда мы начинаем?', 'С we идёт do, does тут лишнее.'),
     task(6, 3, 'What [is] does he want?', 'Что он хочет?', 'Помощник здесь уже есть — это does.'),
     task(6, 4, 'Which bus [does] goes to the centre?', 'Какой автобус едет до центра?', 'Автобус едет сам: goes, и помощник не нужен.'),
-    task(6, 5, 'Who [do] teaches the evening class?', 'Кто ведёт вечерний урок?', 'Спрашиваем, кто это делает, — после who сразу teaches.'),
+    // зачем (владелец 11.11): прежнее «Who do teaches…» спорило с «Who do I call?» из того же урока — объяснение путало
+    task(6, 5, 'What time do you finish [to] work?', 'Во сколько вы заканчиваете работу?', 'После finish сразу идёт work, без to.'),
     task(6, 6, 'How long [time] does the journey take?', 'Сколько времени занимает поездка?', 'How long уже значит «как долго».'),
     task(6, 7, 'Which [the] colour do you prefer?', 'Какой цвет вы предпочитаете?', 'После which сразу идёт colour, без the.'),
     task(6, 8, 'Where does this train [it] stop?', 'Где этот поезд останавливается?', 'This train уже назван — it его повторяет.'),

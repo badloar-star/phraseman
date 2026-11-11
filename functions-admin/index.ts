@@ -182,23 +182,10 @@ export {
 // зачем: D110 — adminRefundCommunityPackPurchase удалён (решение владельца).
 export { adminRunContentStage } from '../functions/src/content_stage_worker';
 // зачем: D108 — админ-архив косметики удалён вместе с аурами и кастомными аватарами.
-export {
-  jarvisGetQualitySnapshot,
-  jarvisGetMoneySnapshot,
-  jarvisGetGrowthSnapshot,
-  jarvisGetAllDecisions,
-  jarvisGetApprovalAudit,
-  jarvisGetCohortRetention,
-  jarvisGetPlans,
-  jarvisSetPlanStatus,
-  jarvisDeletePlan,
-  jarvisGetBusinessTier,
-  jarvisRunBusinessTierBackfill,
-  jarvisDailyDepartmentsCron,
-  jarvisDailyBusinessHistoryCron,
-  jarvisProductKnowledgeReviewCron,
-  jarvisTelegramApprovalWebhook,
-} from '../functions/src/jarvis';
+// зачем (владелец 11.11.2026): Джарвис удалён целиком — его 11 функций панели и 3 крона убраны.
+// Остаётся только приёмник кнопок Telegram: через него идут одобрения ответов поддержки.
+// Имя функции прежнее — на него настроен вебхук бота.
+export { jarvisTelegramApprovalWebhook } from '../functions/src/shared_ops/approval_webhook';
 // 04.10 (владелец, «вычистить весь MAX»): админские функции отзывов и здоровья MAX
 // удалены вместе с исходниками; админка их больше не зовёт. Из облака их убирает координатор по имени.
 export { adminGetOnboardingFunnel } from '../functions/src/onboarding_funnel';

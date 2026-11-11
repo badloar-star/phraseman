@@ -6,7 +6,6 @@ const root = process.cwd();
 const html = normalizeEol(fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8'));
 const rules = normalizeEol(fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8'));
 const server = normalizeEol(fs.readFileSync(path.join(root, 'functions/src/admin_global_broadcast.ts'), 'utf8'));
-const jarvis = normalizeEol(fs.readFileSync(path.join(root, 'functions/src/jarvis/jarvis_data_contract_guard.test.ts'), 'utf8'));
 const functionsPackage = JSON.parse(normalizeEol(fs.readFileSync(path.join(root, 'functions/package.json'), 'utf8'))) as {
   scripts: Record<string, string>;
 };
@@ -31,7 +30,6 @@ describe('Admin D2 post-review security and truth contracts', () => {
     expect(catchAll).toContain('!isServerOwnedSupportRoot(collection)');
     expect(rules).toMatch(/function isServerOwnedSupportRoot\(collection\)[\s\S]*\(admin_command_operations\|global_broadcast_modals\)/);
     expect(rules).not.toContain('function globalBroadcastHasNoAdminMetadata');
-    expect(jarvis).toContain("collection: 'global_broadcast_modals'");
     expect(appBroadcast).toContain("'globalBroadcastListActive'");
     expect(appBroadcast).not.toContain("'global_broadcast_modals'");
     expect(publicServer).toContain('inspectGlobalBroadcastPublicAuthority');

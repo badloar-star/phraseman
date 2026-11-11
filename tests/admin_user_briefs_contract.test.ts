@@ -9,7 +9,6 @@ describe('live admin user briefs projection contract', () => {
   const source = read('functions/src/admin_user_briefs.ts');
   const index = read('functions/src/index.ts');
   const rules = read('firestore.rules');
-  const jarvis = read('functions/src/jarvis/jarvis_data_contract_guard.test.ts');
 
   it('backs the live callable with a bounded server projection', () => {
     expect(live).toContain("httpsCallable(functionsUs, 'adminUserBriefs')");
@@ -20,7 +19,6 @@ describe('live admin user briefs projection contract', () => {
     expect(index).toContain('adminUserBriefs');
     expect(rules).toContain('match /admin_user_briefs_rate_limits/{document=**}');
     expect(rules).toContain("collection != 'admin_user_briefs_rate_limits'");
-    expect(jarvis).toContain("collection: 'admin_user_briefs_rate_limits'");
   });
 
   it('keeps the response allowlist free from email and raw profile fields', () => {

@@ -60,13 +60,11 @@ describe('ссылки в письмах поддержки ведут на жи
   });
 
   test('каждый адрес knowlyapps.com в модулях поддержки существует на сайте', () => {
-    // зачем сканировать файлы, а не только подпись: адреса живут ещё в знании
-    // Джарвиса и в текстах готовых ответов (бот оплаты, сертификат).
+    // зачем сканировать файлы, а не только подпись: адреса живут ещё в текстах
+    // готовых ответов (бот оплаты, сертификат).
     const files = [
       path.join(__dirname, 'support_inbox.ts'),
       path.join(__dirname, 'support_auto_reply_policy.ts'),
-      path.join(__dirname, 'jarvis', 'knowledge', 'money.md'),
-      path.join(__dirname, 'jarvis', 'knowledge', 'product.md'),
     ].filter((file) => fs.existsSync(file));
 
     const dead: string[] = [];

@@ -44,14 +44,5 @@ for (const kind of [
   assert.ok(phoneEconomy.includes(`'${kind}'`), `phone-state economy is missing ${kind}`);
 }
 
-const jarvisDir = path.join(root, 'functions', 'src', 'jarvis');
-const jarvisReaders = fs.readdirSync(jarvisDir)
-  .filter((name) => name.endsWith('_firestore_fetcher.ts'))
-  .map((name) => fs.readFileSync(path.join(jarvisDir, name), 'utf8'))
-  .join('\n');
-assert.ok(
-  !/attempt_restore_all|session_attempt_recovery_rune_debit/u.test(jarvisReaders),
-  'Jarvis reader started consuming the new local projection; update its contract guard',
-);
-
+// зачем (владелец 11.11.2026): проверка читателей Джарвиса снята вместе с его кодом.
 console.log('PASS session attempts economy gate');

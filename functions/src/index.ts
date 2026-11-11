@@ -72,7 +72,7 @@ const {
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { JARVIS_TELEGRAM_CONFIG } =
-  require("./jarvis/telegram_owner_config") as {
+  require("./shared_ops/telegram_owner_config") as {
     JARVIS_TELEGRAM_CONFIG: import("firebase-functions/params").SecretParam;
   };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -688,17 +688,17 @@ export { adminListShardRefunds } from "./admin_shard_refunds";
 export { adminGetAnalyticsTrends } from "./admin_analytics_trends";
 export { adminSearchUsers, adminGetUserProfile } from "./admin_user_profile";
 // зачем здесь пусто (Р4, снос 2026-08-02): старые слои agent_office и
-// agent_manager удалены целиком — их заменил functions/src/jarvis.
+// agent_manager удалены целиком.
 // Firestore Rules их коллекций СОХРАНЕНЫ намеренно: данные могли остаться,
 // и прямой браузерный доступ к ним должен быть закрыт навсегда
-// (сторожит jarvis/legacy_agent_rules_guard.test.ts).
+// (сторож legacy_agent_rules_guard снят вместе с Джарвисом 11.11.2026).
 // зачем: первый видимый рубеж нового Джарвиса (2026-08-01) — департамент
 // «Качество» по требованию владельца через панель admin/v2/legacy.html.
 // Старые agent_office/agent_manager выше не тронуты и сносятся отдельным
 // шагом позже, когда у нового Джарвиса будет диалог и approvals.
 // зачем (владелец 17.10, сокращение расходов Firebase — docs/work/tasks/firebase-cost-cut-2026-10-17.md):
 // Джарвис выключен целиком — 12 callable, 3 крона, вебхук Telegram и триггер планов сняты с деплоя и удалены
-// из облака (кроны и OpenAI до 50 $/мес). Модули functions/src/jarvis/* остаются: из них берут общие части
+// из облака (кроны и OpenAI до 50 $/мес). Владелец 11.11.2026: код Джарвиса удалён; общие части переехали в functions/src/shared_ops/ — их берут
 // support_inbox, progress_events, admin_product_charter, support_telegram_review.
 
 // Устав Phraseman: описание продукта, на которое опирается Джарвис. Правится в

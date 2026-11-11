@@ -23,7 +23,7 @@ import {
   nextProductCharterReviewDate,
   parseProductCharter,
   validateProductCharterSections,
-} from './jarvis/product_charter';
+} from './shared_ops/product_charter';
 
 const REGION = 'us-central1';
 const CHARTER_COLLECTION = 'admin_config';

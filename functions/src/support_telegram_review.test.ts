@@ -1,4 +1,4 @@
-import { buildApprovalToken } from './jarvis/approval_token';
+import { buildApprovalToken } from './shared_ops/approval_token';
 import {
   buildSupportTelegramReviewPreview,
   buildSupportAttentionRequiredNotice,

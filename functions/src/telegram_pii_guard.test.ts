@@ -16,9 +16,8 @@ const KNOWN_DIRECT_SENDERS = new Set([
   'admin_alerts.ts',
   'auth_recovery.ts',
   'email_delivery_watchdog.ts',
-  'jarvis/approval_webhook.ts',
-  'jarvis/jarvis_crons.ts',
-  'jarvis/telegram_send.ts',
+  'shared_ops/approval_webhook.ts',
+  'shared_ops/telegram_send.ts',
   'support_inbox.ts',
   'telegram_premium_bot.ts',
   'telegram_support.ts',
@@ -79,6 +78,5 @@ describe('nothing personal reaches Telegram', () => {
     expect(recovery).toContain('Старых uid: ${outcome.previousProviderUids.length}');
     const alerts = readFileSync(join(SRC, 'admin_alerts.ts'), 'utf8');
     expect(alerts).not.toMatch(/export function format(CriticalErrorAlert|ContentReportAlert)/);
-    expect(readFileSync(join(SRC, 'jarvis', 'telegram_digest.ts'), 'utf8')).toContain('return redactAdminAlertText(value)');
   });
 });

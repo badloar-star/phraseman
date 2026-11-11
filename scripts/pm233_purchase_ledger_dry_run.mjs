@@ -113,7 +113,7 @@ export const LEDGER = Object.freeze([
     source: 'Тот же вебхук: отказ owner_lineage_limit / transfer_lineage_limit / удалённый аккаунт / неизвестная среда',
     storage: 'revenuecat_premium_denials/{receiptId или transfer_*}',
     writers: ['functions/src/revenuecat_shards.ts:500', 'functions/src/revenuecat_shards.ts:655', 'functions/src/revenuecat_shards.ts:1125'],
-    readers: ['functions/src/jarvis/all_departments_callables.ts:173'],
+    readers: [], // читатель был в Джарвисе, удалён 11.11.2026
     fate: 'D137 (владелец 2026-10-01): выдать Plus всем подтверждённым магазином, но отклонённым сервером. Исполнение — только скрипт scripts/pm233_grant_plus_for_denials.mjs по команде владельца (по умолчанию сухой прогон).',
     decisions: ['D137'],
     status: 'convert_decided',
@@ -820,7 +820,7 @@ export const IGNORED = Object.freeze({
   'callable:maxVoiceFinalize': 'итог звонка — учтено в max_voice_minutes',
   'callable:adminIssueV2EpisodeVoiceReceipt': 'квитанция озвучки контента V2',
   'callable:dialogueV2FreeformPreparedBotVoiceResolve': 'озвучка реплики бота',
-  'callable:jarvisTelegramApprovalWebhook': 'согласования Джарвиса в Telegram',
+  'callable:jarvisTelegramApprovalWebhook': 'одобрения ответов поддержки в Telegram',
 });
 
 // ─── сканер (только чтение) ────────────────────────────────────────────────

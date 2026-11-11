@@ -263,23 +263,22 @@ Unauthenticated», site key Google не признавал, все ~30 функ�
 **Исключение — Telegram и любые внешние каналы:** туда не уходят ни имена, ни
 uid, только количества.
 
-## ⛔ ДЖАРВИС УДАЛЯЕТСЯ — НЕ РАЗВИВАТЬ И НЕ ОБНОВЛЯТЬ (владелец 11.11.2026)
+## ⛔ ДЖАРВИС УДАЛЁН — НЕ ВОССТАНАВЛИВАТЬ (владелец 11.11.2026)
 
-Джарвис снят с облака 17.10 и удаляется из проекта целиком (задача N01). Прежнее
-правило «тронул данные — обнови Джарвиса» **отменено**: читатели и департаменты
-Джарвиса под новую схему обновлять не нужно, новых не добавлять.
+Код Джарвиса удалён из проекта (задача N01); с облака он снят ещё 17.10. Правило
+«тронул данные — обнови Джарвиса» отменено, сторож `jarvis_data_contract_guard` снят.
 
-- В `functions/src/jarvis/` пока лежат ОБЩИЕ части живых функций: одобрения и
-  отправка в Telegram (`approval_*`, `telegram_*`, `commands`, `control`), бюджет ИИ
+- Бывшие общие части живут в `functions/src/shared_ops/`: одобрения и отправка в
+  Telegram (`approval_*`, `telegram_*`, `commands`, `control`), бюджет ИИ
   (`llm_budget`, `llm_enricher_cost`), статистика уроков (`content_lesson_stats*`,
   `learning_metrics`), устав продукта (`product_charter`), разбор спама поддержки
   (`support_spam_triage`). Их зовут `support_inbox`, `progress_events`,
-  `admin_product_charter`, `support_telegram_review` — **не удалять походя**: сначала
-  перенос в нейтральную папку, потом удаление остального.
-- Имена коллекций `jarvis_*` и секрета `JARVIS_TELEGRAM_CONFIG` остаются прежними
-  (решение владельца: данные не трогать), правила Firestore к ним — тоже.
-- Сторож `jarvis_data_contract_guard.test.ts` снимается вместе с папкой. Покраснел до
-  этого — не чинить читатели Джарвиса; сказать владельцу.
+  `admin_product_charter`, `support_telegram_review`.
+- Приёмник кнопок Telegram `jarvisTelegramApprovalWebhook` сохранён под прежним
+  именем (`shared_ops/approval_webhook.ts`): через него идут одобрения ответов поддержки.
+- Имена коллекций `jarvis_*`, секрета `JARVIS_TELEGRAM_CONFIG` и значение
+  `draftOrigin: 'jarvis'` остаются прежними (решение владельца: данные не трогать),
+  правила Firestore к ним — тоже.
 
 ## MASON — content scriptwriter pipeline
 

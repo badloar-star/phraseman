@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import type { ApprovalTokenDoc } from './jarvis/approval_token';
+import type { ApprovalTokenDoc } from './shared_ops/approval_token';
 import { findSupportHumanVoiceViolations } from './support_communication_bible';
 
 export const SUPPORT_TELEGRAM_REVIEW_COLLECTION = 'support_telegram_reviews';

@@ -51,9 +51,8 @@ feature.
   Arena and Tournament. External adapters must append an immutable economy
   event and must never introduce a personal-balance writer or derive an event
   amount from that legacy field.
-- Any economy schema/collection/field change must update Firestore Rules and
-  the Jarvis data-contract audit in the same change, following the Jarvis rule
-  below.
+- Any economy schema/collection/field change must update Firestore Rules in
+  the same change.
 
 The canonical detailed contract is `docs/economy/ECONOMY_CONSTITUTION.md`.
 Contract tests must fail when a new standalone debit, direct balance writer or
@@ -135,27 +134,14 @@ TTL ≥ 6 часов, отсутствие `setInterval` рядом с `loadData
 - Never create a branch, Git worktree, separate checkout, forked coding task, or delegated coding session without an explicit owner request to create that exact branch/worktree/task.
 - Existing historical branches and worktrees must not be deleted unless the owner explicitly requests that exact action.
 
-## 🤖 Джарвис обязан оставаться актуальным (владелец, 2026-08-02)
+## ⛔ Джарвис удалён (владелец, 2026-11-11)
 
-Джарвис (`functions/src/jarvis/`) читает чужие коллекции и поля, но не участвует
-в их изменении. Переименовали поле — департамент **не упадёт**, он вернёт нули и
-будет бодро врать, что всё хорошо. Молчаливая ложь опаснее явной поломки: её
-никто не заметит, пока не потеряются деньги или жалоба ребёнка не останется без
-разбора.
-
-Поэтому при ЛЮБОМ изменении контента, схемы данных, коллекций или полей —
-**в том же ходу**, не дожидаясь напоминания владельца:
-
-1. Проверь, читает ли это Джарвис: `functions/src/jarvis/*_firestore_fetcher.ts`.
-2. Читает — обнови читатель под новую схему.
-3. Обнови таблицу контракта в `functions/src/jarvis/jarvis_data_contract_guard.test.ts`.
-4. Новый департамент → подключи в `all_departments_snapshot.ts` (поле обязательное,
-   забыть нельзя) **и** добавь в `JF_DEPARTMENT_META` в `admin/v2/legacy.html`.
-5. Новая коллекция → закрой правилом в `firestore.rules`.
-
-Страж `jarvis_data_contract_guard.test.ts` ломает сборку при расхождении.
-Обычные тесты департаментов это НЕ ловят — они на моках и остаются зелёными.
-Сломался страж — чини контракт, не удаляй проверку.
+Код Джарвиса удалён; правило «тронул данные — обнови Джарвиса» отменено. Его бывшие общие
+части (одобрения и отправка в Telegram, бюджет ИИ, статистика уроков, устав продукта,
+разбор спама поддержки) лежат в `functions/src/shared_ops/`. Имена коллекций `jarvis_*`
+и секрета `JARVIS_TELEGRAM_CONFIG` прежние; правила Firestore к ним не трогать.
+Не восстанавливать без прямой команды владельца. Новая коллекция → закрой правилом
+в `firestore.rules`.
 
 ## ⛔ ЕДИНСТВЕННАЯ РАБОЧАЯ АДМИНКА — `admin/v2/legacy.html` (КРИТИЧНО, читать первым)
 

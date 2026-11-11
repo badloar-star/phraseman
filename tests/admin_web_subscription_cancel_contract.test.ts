@@ -6,7 +6,6 @@ const server = fs.readFileSync(path.join(root, 'functions/src/web_checkout.ts'),
 const exportsSource = fs.readFileSync(path.join(root, 'functions/src/index.ts'), 'utf8');
 const liveAdmin = fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8');
 const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
-const jarvisContract = fs.readFileSync(path.join(root, 'functions/src/jarvis/jarvis_data_contract_guard.test.ts'), 'utf8');
 
 describe('live admin Stripe renewal cancellation contract', () => {
   test('server action is authenticated, money-authorized, idempotent and period-end only', () => {
@@ -30,8 +29,6 @@ describe('live admin Stripe renewal cancellation contract', () => {
     expect(server).toContain("tx.update(orderRef");
     expect(rules).toContain("'stripeCancelAtPeriodEnd'");
     expect(rules).toContain("'stripeCancellationOperationId'");
-    expect(jarvisContract).toContain("collection: 'web_premium_orders'");
-    expect(jarvisContract).toContain("fields: ['stripeCancelAtPeriodEnd', 'stripeCancellationOperationId', 'stripeAccessEndsAtMs', 'stripeCancellationRequestedAtMs']");
   });
 
   test('the only live admin source provides lookup, explicit confirmation and visible states', () => {

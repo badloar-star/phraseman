@@ -3,9 +3,9 @@ import { createHash } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
-import { applyLessonScoreSample, type LessonScoreStats } from './jarvis/content_lesson_stats';
-import { extractLessonScoreSample, lessonStatsDocId, shouldRecordLessonScore } from './jarvis/content_lesson_stats_write';
-import { commitPreparedLearningMetrics, prepareLearningCompletionMetrics } from './jarvis/learning_metrics';
+import { applyLessonScoreSample, type LessonScoreStats } from './shared_ops/content_lesson_stats';
+import { extractLessonScoreSample, lessonStatsDocId, shouldRecordLessonScore } from './shared_ops/content_lesson_stats_write';
+import { commitPreparedLearningMetrics, prepareLearningCompletionMetrics } from './shared_ops/learning_metrics';
 
 export type ProgressMap = Record<string, unknown>;
 

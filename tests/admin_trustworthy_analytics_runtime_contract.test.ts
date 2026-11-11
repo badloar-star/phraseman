@@ -145,8 +145,8 @@ describe('live admin trustworthy analytics runtime contract', () => {
     expect(liveHtml).not.toContain('Новые платящие пользователи.');
   });
 
-  test('changed analytics and Jarvis endpoints have one exact narrow deploy profile', () => {
-    const command = functionsPackage.scripts?.['deploy:admin-analytics-jarvis'] ?? '';
+  test('changed analytics endpoints have one exact narrow deploy profile', () => {
+    const command = functionsPackage.scripts?.['deploy:admin-analytics'] ?? '';
     const names = [...command.matchAll(/functions:([A-Za-z0-9_]+)/g)].map((match) => match[1]);
     expect(names).toEqual([
       'adminGetAnalyticsSnapshot',

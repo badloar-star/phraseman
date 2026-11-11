@@ -73,7 +73,7 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   tournament: { model: 'gpt-4.1-mini', globalDailyCap: 300 },
   // LLM-обогатитель Джарвиса: один прогон в сутки (крон 06:00), решений
   // мало (максимум по одному на департамент) — кап символический, реальный
-  // денежный потолок держит отдельный технический бюджет (jarvis/llm_budget.ts).
+  // денежный потолок держит отдельный технический бюджет (shared_ops/llm_budget.ts).
   jarvis: { model: DEFAULT_TEXT_MODEL, globalDailyCap: 20 },
 };
 

@@ -3,7 +3,7 @@ import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 /**
  * Одноразовые токены approval для кнопок Джарвиса в Telegram.
  *
- * зачем именно так (runbook docs/guides/jarvis-telegram-approvals.md):
+ * зачем именно так:
  * нажатие кнопки — это действие от вашего имени, поэтому оно обязано доказать
  * ТРИ вещи сразу: кто нажал, что именно подтверждается и что нажатие свежее.
  *

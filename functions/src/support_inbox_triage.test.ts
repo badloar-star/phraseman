@@ -3,7 +3,7 @@ export {};
 /**
  * Интеграционный тест самого триггера supportInboxOnNewMail (не только его
  * чистых частей — decideSpamAction/buildSpamTriagePrompt уже покрыты в
- * jarvis/support_spam_triage.test.ts). Мокает Firestore/OpenAI/Telegram по
+ * shared_ops/support_spam_triage.test.ts). Мокает Firestore/OpenAI/Telegram по
  * образцу auth_recovery.test.ts: onDocumentCreated ловится моком firestore
  * v2, хендлер вызывается напрямую с фиктивным событием.
  *
@@ -87,7 +87,7 @@ jest.mock('./admin_alerts', () => ({
   sendTelegramAlert: (...args: unknown[]) => mockSendTelegramAlert(...args),
 }));
 
-jest.mock('./jarvis/telegram_send', () => ({
+jest.mock('./shared_ops/telegram_send', () => ({
   sendJarvisDigest: (...args: unknown[]) => mockSendJarvisDigest(...args),
   sendJarvisDigestMessage: async (...args: unknown[]) => (
     await mockSendJarvisDigest(...args) ? 101 : null
@@ -1602,7 +1602,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
         autoReply: { state: 'pending', attempts: 0 },
       });
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const { issueApprovalToken } = require('./jarvis/approval_store');
+      const { issueApprovalToken } = require('./shared_ops/approval_store');
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { supportResumeBotTokenDepartment } = require('./support_telegram_review');
       const issued = await issueApprovalToken({

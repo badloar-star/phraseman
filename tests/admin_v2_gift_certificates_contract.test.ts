@@ -31,7 +31,6 @@ describe("live admin gift certificates workflow", () => {
   const server = read("functions/src/web_checkout.ts");
   const functionsIndex = read("functions/src/index.ts");
   const firestoreRules = read("firestore.rules");
-  const jarvisContract = read("functions/src/jarvis/jarvis_data_contract_guard.test.ts");
 
   test("uses the Firebase callable SDK for authenticated envelopes and structured errors", () => {
     const helper = extractNamedFunction(live, "createAdminAuthCallable");
@@ -536,7 +535,6 @@ describe("live admin gift certificates workflow", () => {
     expect(firestoreRules).toContain("collection != 'gift_certificate_deliveries'");
     expect(firestoreRules).toContain("collection != 'admin_gift_certificate_batch_operations'");
     expect(firestoreRules).toContain("collection != 'gift_certificate_archive'");
-    expect(jarvisContract).toContain("collection: 'gift_certificate_archive'");
   });
 
   test("requires manual-access permission for secret list fields and every code-bearing path", () => {

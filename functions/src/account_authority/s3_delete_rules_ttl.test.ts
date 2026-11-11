@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import { readFileSync, readdirSync } from 'fs';
+import { existsSync, readFileSync, readdirSync } from 'fs';
 import path from 'path';
 import { FieldValue, type Firestore } from 'firebase-admin/firestore';
 import {
@@ -634,10 +634,13 @@ describe('S3 пункты 4–7: правила, TTL, единый список 
     }
   });
 
-  test('Джарвис не читает коллекции AA (контракт данных не меняется)', () => {
-    const jarvisDir = path.join(__dirname, '..', 'jarvis');
-    for (const file of readdirSync(jarvisDir).filter((f) => f.endsWith('_firestore_fetcher.ts'))) {
-      expect(readFileSync(path.join(jarvisDir, file), 'utf8')).not.toMatch(/account_authority|AA_[A-Z_]+_COLLECTION/);
+  // зачем (владелец 11.11.2026): Джарвис удалён; сторож теперь смотрит на его бывшие общие части
+  // в shared_ops и на то, что сама папка не вернулась.
+  test('общие части бывшего Джарвиса не читают коллекции AA, а его папки больше нет', () => {
+    expect(existsSync(path.join(__dirname, '..', 'jarvis'))).toBe(false);
+    const sharedDir = path.join(__dirname, '..', 'shared_ops');
+    for (const file of readdirSync(sharedDir).filter((f) => f.endsWith('.ts') && !f.endsWith('.test.ts'))) {
+      expect(readFileSync(path.join(sharedDir, file), 'utf8')).not.toMatch(/account_authority|AA_[A-Z_]+_COLLECTION/);
     }
   });
 

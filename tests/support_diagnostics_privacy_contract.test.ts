@@ -46,12 +46,9 @@ describe('support diagnostics privacy and retention contract', () => {
     }
   });
 
-  test('keeps the nested timeline out of Jarvis and Telegram text', () => {
-    const guard = read('functions/src/jarvis/jarvis_data_contract_guard.test.ts');
+  test('keeps the nested timeline out of Telegram text', () => {
     const alerts = read('functions/src/admin_alerts.ts');
     const digest = read('functions/src/admin_daily_digest.ts');
-    expect(guard).toContain("'error_reports.diagnostics'");
-    expect(guard).toContain('intentionally_excluded_from_jarvis_prompts');
     expect(alerts).not.toContain('report.diagnostics');
     expect(digest).not.toContain('d.diagnostics');
   });

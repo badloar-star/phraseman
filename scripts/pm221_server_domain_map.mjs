@@ -112,7 +112,7 @@ export const DOMAIN_OWNERS = {
   'content/video': 'Логика/сервер + админка legacy.html',
   notifications: 'Логика/сервер',
   'sync/progress': 'Логика/сервер (D66 local-first)',
-  admin: 'Логика/сервер + админка legacy.html; Jarvis — jarvis_data_contract_guard',
+  admin: 'Логика/сервер + админка legacy.html',
   'ai/audio': 'Логика/сервер; бюджет OpenAI — PM-224',
   'learning-v2': 'Логика/сервер + фабрика курса',
   'social/friends': 'Логика/сервер',

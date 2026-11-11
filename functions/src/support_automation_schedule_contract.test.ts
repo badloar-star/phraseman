@@ -96,7 +96,7 @@ describe('support automation schedules', () => {
   });
 
   test('public Telegram webhook never mounts Gmail or OpenAI secrets', () => {
-    const webhook = fs.readFileSync(path.join(__dirname, 'jarvis', 'approval_webhook.ts'), 'utf8');
+    const webhook = fs.readFileSync(path.join(__dirname, 'shared_ops', 'approval_webhook.ts'), 'utf8');
     const start = webhook.indexOf('export const jarvisTelegramApprovalWebhook');
     const options = webhook.slice(start, webhook.indexOf('async (req, res)', start));
     expect(options).toContain('secrets: [JARVIS_TELEGRAM_CONFIG, ADMIN_ALERT_BOT_TOKEN]');

@@ -1,4 +1,4 @@
-import { expireJarvisCardButtons } from './jarvis/telegram_send';
+import { expireJarvisCardButtons } from './shared_ops/telegram_send';
 
 /**
  * зачем этот файл (владелец, 2026-08-17: «я нажал уже кучу раз, а оно всё

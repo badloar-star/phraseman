@@ -1,7 +1,7 @@
 {
   "name": "phraseman-functions-admin",
   "version": "1.0.0",
-  "description": "Admin, Jarvis and owner tooling codebase. Отдельная кодбаза, чтобы холодный старт пользовательских функций не грузил 216 админских (611 → 392 файла, 8.92 → 6.34 МБ).",
+  "description": "Admin and owner tooling codebase. Отдельная кодбаза, чтобы холодный старт пользовательских функций не грузил 216 админских (611 → 392 файла, 8.92 → 6.34 МБ).",
   "engines": {
     "node": "22"
   },

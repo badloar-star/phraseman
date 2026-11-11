@@ -30,9 +30,9 @@ import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from './admin_alerts';
-import { decideSpamAction, buildSpamTriagePrompt, parseSpamVerdict } from './jarvis/support_spam_triage';
-import { checkAndReserveBudget, recordActualSpend } from './jarvis/llm_budget';
-import { actualEnrichmentCostUsd } from './jarvis/llm_enricher_cost';
+import { decideSpamAction, buildSpamTriagePrompt, parseSpamVerdict } from './shared_ops/support_spam_triage';
+import { checkAndReserveBudget, recordActualSpend } from './shared_ops/llm_budget';
+import { actualEnrichmentCostUsd } from './shared_ops/llm_enricher_cost';
 import { retrieveSupportRepositoryContext, renderSupportRepositoryContext, supportEvidenceFingerprint } from './support_repository_context';
 import { supportReplyIsCustomerReady } from './support_communication_bible';
 import {
@@ -67,12 +67,12 @@ import {
   supportOwnerInstructionsMatch,
   type SupportOwnerInstructionsSnapshot,
 } from './support_owner_instructions';
-import { issueApprovalToken, type ConsumeApprovalTokenResult } from './jarvis/approval_store';
-import { parseOwnerConfig, type OwnerConfig } from './jarvis/approval_webhook_core';
-import { JARVIS_TELEGRAM_CONFIG } from './jarvis/telegram_owner_config';
-import { expireJarvisCardButtons, sendJarvisDigest, sendJarvisDigestMessage } from './jarvis/telegram_send';
-import { hashNonce, verifyApprovalToken, type ApprovalAction, type ApprovalTokenDoc } from './jarvis/approval_token';
-import type { InlineKeyboard } from './jarvis/telegram_buttons';
+import { issueApprovalToken, type ConsumeApprovalTokenResult } from './shared_ops/approval_store';
+import { parseOwnerConfig, type OwnerConfig } from './shared_ops/approval_webhook_core';
+import { JARVIS_TELEGRAM_CONFIG } from './shared_ops/telegram_owner_config';
+import { expireJarvisCardButtons, sendJarvisDigest, sendJarvisDigestMessage } from './shared_ops/telegram_send';
+import { hashNonce, verifyApprovalToken, type ApprovalAction, type ApprovalTokenDoc } from './shared_ops/approval_token';
+import type { InlineKeyboard } from './shared_ops/telegram_buttons';
 import {
   SUPPORT_TELEGRAM_EDIT_SESSION_COLLECTION,
   SUPPORT_TELEGRAM_EDIT_TTL_MS,

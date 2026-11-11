@@ -3,7 +3,6 @@ import { logger } from 'firebase-functions';
 import { onRequest } from 'firebase-functions/v2/https';
 import { ADMIN_ALERT_BOT_TOKEN } from '../admin_alerts';
 import { handleSupportTelegramAction, handleSupportTelegramFeedback } from '../support_inbox';
-import { isSupportEmailDepartment } from '../support_telegram_review';
 import {
   buildApprovalAuditEntry,
   JARVIS_APPROVAL_AUDIT_COLLECTION,
@@ -12,12 +11,7 @@ import {
 import { consumeApprovalToken } from './approval_store';
 import { handleApprovalCallback, parseOwnerConfig } from './approval_webhook_core';
 import { markRowDecided } from './approval_message_edit';
-import { issueDecisionButtons } from './issue_decision_buttons';
-import { recordPlanOwnerDecision } from './jarvis_plans_store';
-import { approveActionsForDecision } from './jarvis_actions_store';
 import type { InlineKeyboard } from './telegram_buttons';
-import { sendJarvisDigest } from './telegram_send';
-import type { Decision } from './decision';
 import { buildStatusText, type JarvisCommand } from './commands';
 import { JARVIS_CONTROL_DOC, parseControl } from './control';
 import { JARVIS_TELEGRAM_CONFIG } from './telegram_owner_config';
@@ -38,9 +32,7 @@ import { swallowed } from '../swallowed_error'; // зачем: PM-229 — нем
  * Функция ВЫКЛЮЧЕНА, пока секрет не задан: без конфига она отвечает 404 и
  * не трогает ни Firestore, ни Telegram — как требует runbook.
  *
- * Вебхук ставится ВРУЧНУЮ — см. docs/guides/jarvis-telegram-approvals.md
- * (там же модель безопасности, формат секрета и проверка после деплоя).
- * В коде установки нет намеренно: деплой не должен перебивать вебхук бота,
+ * Вебхук ставится ВРУЧНУЮ. В коде установки нет намеренно: деплой не должен перебивать вебхук бота,
  * общего с алертами.
  */
 
@@ -50,17 +42,6 @@ const REGION = 'us-central1';
 
 /** Заголовок, которым Telegram передаёт секрет вебхука. */
 const SECRET_HEADER = 'x-telegram-bot-api-secret-token';
-
-/**
- * Фиктивное решение для самопроверки кнопок.
- * зачем department 'quality': реальный департамент, чтобы путь выдачи токена
- * был ровно тот же, что в суточном кроне, без особых веток.
- */
-const SELFTEST_DECISION = {
-  department: 'quality',
-  finding: 'Проверка кнопок подтверждения.',
-  recommendation: 'Проверка',
-} as unknown as Decision;
 
 async function answerCallbackQuery(token: string, callbackQueryId: string, text: string): Promise<void> {
   try {
@@ -200,39 +181,9 @@ export const jarvisTelegramApprovalWebhook = onRequest(
     const providedSecret = req.get(SECRET_HEADER) ?? undefined;
     const db = admin.firestore();
 
-    // зачем самопроверка: без неё «работают ли кнопки» проверить нечем —
-    // токен рождается только внутри суточного крона. Пригодится после каждого
-    // рефакторинга approvals, поэтому не удалена, а закрыта выключателем.
-    //
-    // зачем ДВА условия: секрета мало. Он живёт в конфиге годами, а лишняя
-    // дверь в боевой функции — это дверь. Чтобы открыть проверку, нужно
-    // осознанно добавить selftestEnabled в секрет.
-    if ((req.body as Record<string, unknown> | undefined)?.selftest === true) {
-      if (!providedSecret || providedSecret !== config.webhookSecret) {
-        res.status(401).send('');
-        return;
-      }
-      if (!config.selftestEnabled) {
-        // Выключена — ведём себя так, будто ветки нет вовсе.
-        res.status(404).send('Not Found');
-        return;
-      }
-      const keyboard = await issueDecisionButtons({
-        db,
-        decisions: [SELFTEST_DECISION],
-        config,
-        nowMs: Date.now(),
-      });
-      const sent = await sendJarvisDigest({
-        botToken: ADMIN_ALERT_BOT_TOKEN.value(),
-        chatId: config.ownerTelegramChatId,
-        text: '🤖 <b>Джарвис</b> · проверка кнопок\n\nНажмите «Проверка» — рабочая кнопка должна ответить «Принято, подтверждено».',
-        keyboard,
-      });
-      res.status(200).json({ ok: sent, hadKeyboard: keyboard !== null });
-      return;
-    }
-
+    // зачем (владелец 11.11.2026, удаление Джарвиса): ветка самопроверки кнопок выпускала
+    // токен через департамент Джарвиса и удалена вместе с ним. Запрос с selftest теперь
+    // идёт обычным путём и получает отказ как любой не-callback.
     const nowMs = Date.now();
     let audit: ApprovalAuditEntry | null = null;
 
@@ -257,37 +208,9 @@ export const jarvisTelegramApprovalWebhook = onRequest(
           outcome: outcome.ok ? 'accepted' : outcome.reason,
           nowMs,
         });
-        // зачем регулярка, а не startsWith (аудит 2026-08-16): cancel-кнопка
-        // поддержки выпускается с department 'support_email_cancel:...', и
-        // startsWith('support_email:') её НЕ узнавал — нажатие «Отменить»
-        // проваливалось сюда, в lifecycle-механику планов Джарвиса, и лезло
-        // в чужую коллекцию с support-овским reviewId. Сегодня безвредно
-        // (совпадений нет), но это заложенная мина.
-        if (outcome.ok && !isSupportEmailDepartment(outcome.doc.department)) {
-          // зачем без отдельной кнопки: владелец уже сказал «да» этой находке.
-          // Спрашивать второй раз «точно поставить пометку?» — лишний тап и та
-          // самая усталость от подтверждений, из-за которой жмут «ок» не глядя.
-          // Необратимого среди разрешённых действий нет, цена ошибки — клик отката.
-          if (outcome.doc.action === 'approve') {
-            await approveActionsForDecision({
-              db,
-              sourceDecisionHash: outcome.doc.decisionHash,
-              nowMs,
-            }).catch((error: unknown) => {
-              logger.warn('jarvis_approval: action approval failed', error);
-            });
-          }
-          await recordPlanOwnerDecision({
-            db,
-            approvalDecisionHash: outcome.doc.decisionHash,
-            action: outcome.doc.action,
-            nowMs,
-          }).catch((error) => {
-            // Approval audit остаётся источником истины даже если план временно
-            // недоступен; Telegram не должен ретраить уже погашенный токен.
-            logger.warn('jarvis_approval: plan lifecycle update failed', error);
-          });
-        }
+        // зачем (владелец 11.11.2026, удаление Джарвиса): раньше здесь не-поддержечные
+        // решения уходили в планы и действия Джарвиса. Их больше нет: токен погашен,
+        // запись в журнале одобрений остаётся единственным следом.
         return outcome;
       },
     });

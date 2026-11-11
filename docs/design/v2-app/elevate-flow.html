@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вход без выбора, итоги всех режимов и статистика</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="elevate-mechanics.css">
+<link rel="stylesheet" href="elevate-extra.css">
+</head>
+<body data-theme="ink" data-page="flow">
+<div class="page">
+  <h1 class="page-h1">Вход без выбора, итоги всех режимов и статистика</h1>
+  <p class="page-lead">Предложение, не эталон. Слева уменьшенный экран «как сейчас», справа — как станет; каждый новый телефон живой, кнопка под ним проигрывает показ заново. Код приложения не менялся.</p>
+  <div id="nav"></div>
+  <div class="switch"><span class="k">Тема</span>
+    <button class="on" data-theme-set="ink">Сумерки</button>
+    <button data-theme-set="marine">Океан</button>
+    <button data-theme-set="graphite">Затмение</button>
+    <button data-theme-set="amethyst">Аметист</button>
+  </div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script src="elevate-core.js"></script>
+<script src="elevate-flow.js"></script>
+<script>document.getElementById('nav').innerHTML = EL.nav('elevate-flow.html');</script>
+</body>
+</html>

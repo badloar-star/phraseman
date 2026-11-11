@@ -46,6 +46,7 @@ import { SCREEN_BACK_SIZE, SafeTopCloseButton } from '../components/v2/ScreenBac
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { noteSkillAction } from '../modules/skills/skill_store';
 import { practiceCoinsAllowedForDeckKeys } from './flashcards/dictionary_training_deck';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -646,6 +647,8 @@ export default function FlashcardsRecallSession() {
       // Revealed/self-graded answers confirm learning but do not mint currency.
       if (!answerRevealed) {
         const awarded = practiceRunes.onCorrectAnswer(card.id);
+        // зачем (D207, владелец 11.11): очки навыков — по таблице modules/skills; от монет не зависят, экран не меняют
+        noteSkillAction({ action: 'recall_written', itemKey: card.id });
         setLastAward(awarded > 0 ? awarded : 0);
         if (awarded > 0) runeFlight.fly(awarded);
       } else {

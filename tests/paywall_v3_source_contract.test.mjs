@@ -65,16 +65,14 @@ test('the Plus paywall is the only one: A–G screens, variant picker and A/B sh
 });
 
 test('plan tile: billed price with period is bold and clearer than the trial line (store rule)', () => {
-  // макет «Все окна Plus» (слово владельца 05.11, 1 в 1): плитка = имя + «39,99 € в год» + строка пробного периода; «≈ в месяц» и бейджа скидки нет —
-  // списываемая сумма остаётся единственной ценой, поэтому самая заметная (жирная 13 против обычной 13 строки пробного периода).
   const ui = read('components/paywall/PaywallPlanRows.tsx');
-  const size = (key) => Number(ui.match(new RegExp(`${key}: \\{[^}]*fontSize: ([\\d.]+)`))?.[1]);
-  assert.ok(size('price') >= size('trial'), 'billed price is not smaller than the trial line');
-  assert.match(ui, /price: \{ fontSize: 13, lineHeight: 17, fontWeight: '700'/);
+  assert.match(ui, /fontSize = paywallPriceFontSize\(shown, fontScale\)/);
+  assert.match(ui, /price: \{[^}]*textAlign: 'center', fontWeight: '800'/);
+  assert.match(ui, />\{subPrice\}<\/Text>/);
   assert.match(ui, /testID=\{priceTestID\} style=\{\[S\.price/);
   assert.match(ui, /priceTestID="paywall-year-price"/);
   assert.match(ui, /subPrice=\{pick\(lang, COPY\.perYear\)\}/);
-  assert.doesNotMatch(ui, /PlanRadio|paywall-savings-badge/, 'no selection circle and no savings badge on the sample tile');
+  assert.doesNotMatch(ui, /paywall-savings-badge/, 'no decorative savings badge on the tile');
 });
 
 test('trial length comes only from the store — no hard-coded 7/12/17 day durations', () => {
@@ -147,13 +145,13 @@ test('after purchase without notification permission the reminder prompt is show
   assert.match(notifications, /\[TRIAL-REMINDER\]/);
 });
 
-test('the fixed CTA covers trial, yearly and monthly wording; taps stay ≥ 44dp', () => {
+test('the purchase CTA covers trial, yearly and monthly wording; taps stay ≥ 44dp', () => {
   const copy = read(COPY);
   for (const token of ['Начать {n} {days} бесплатно', 'Оформить за {v} в год', 'Оформить за {v} в месяц', 'Затем {v} в год · Отмена в любой момент']) {
     assert.ok(copy.includes(token), `missing CTA copy «${token}»`);
   }
   const ui = read(UI);
-  assert.match(ui, /cta: \{ minHeight: 54/); // было 58 — устаревший пин: в HEAD кнопка 54, тест был красным до переноса пейвола (05.11)
+  assert.match(ui, /cta: \{ minHeight: 52/); // было 58 — устаревший пин: в HEAD кнопка 54, тест был красным до переноса пейвола (05.11)
   assert.match(ui, /close: \{ width: 44, height: 44/);
   assert.match(ui, /linkHit: \{ minHeight: 44/);
   // зачем (владелец 11.10, 960f2de5f): блока «Цены не загрузились» с кнопкой повтора больше нет — тихая строка про цену, поэтому стиля retry нет

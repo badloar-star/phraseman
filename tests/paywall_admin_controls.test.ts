@@ -72,12 +72,11 @@ describe('paywall admin control visibility', () => {
     expect(screen).toContain("from '../../app/paywall_control_visibility'");
     expect(screen).toContain('closeVisible={controlVisibility.closeVisible}');
     expect(screen).toContain('restoreVisible={controlVisibility.restoreVisible}');
-    for (const file of ['PaywallPlus.tsx', 'PaywallPlusScreen.tsx', 'PaywallServerRefusedDock.tsx']) {
+    for (const file of ['PaywallPlus.tsx', 'PaywallPlusScreen.tsx']) {
       expect(read(`components/paywall/${file}`)).not.toMatch(/getRemoteBool\(/);
     }
     expect(screen).toContain('const swipeEnabled = !checkoutInFlight && !prompt;');
     expect(screen).toContain("handleClose('close', 'back')");
-    expect(screen).toContain("handleClose('close', 'scrim')");
     expect(screen).toContain("handleClose('close', 'swipe')");
   });
 
@@ -97,7 +96,7 @@ describe('paywall admin control visibility', () => {
     expect(screen).toContain('if (ctaBusy) return;');
     expect(screen).toContain("onAppEvent('remote_config_changed'");
     expect(screen).not.toContain('readRemoteConfigCacheRaw');
-    expect(dock).toContain('testID="paywall-restore"');
+    expect(dock).toContain("testID={serverRefused ? 'paywall-server-refused-restore' : 'paywall-restore'}");
     expect(dock).toContain('testID="paywall-promo-code"');
   });
 });

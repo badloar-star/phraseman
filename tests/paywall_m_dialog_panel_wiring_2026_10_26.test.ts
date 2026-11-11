@@ -14,17 +14,10 @@ describe('пейвол М: подключение панели «Разгово�
     expect(screen).toContain('correctionWas: was && now ? was : null, correctionNow: was && now ? now : null');
   });
 
-  it('окно М показывает панель по виду «dialog» с ключами mc.dialog.*', () => {
-    const sheet = read('components/paywall/m/PaywallMSheet.tsx');
-    expect(sheet).toContain("panelKind === 'dialog'");
-    expect(sheet).toContain("paywallMText(lang, 'mc.dialog.cta')");
-    const panels = read('components/paywall/m/PaywallMPanels.tsx');
-    for (const key of ['mc.dialog.kicker', 'mc.dialog.title', 'mc.dialog.body', 'mc.dialog.yourPhrase']) expect(panels).toContain(key);
-  });
-
-  it('панель не ходит в сеть и не читает хранилище сама', () => {
-    const panels = read('components/paywall/m/PaywallMPanels.tsx');
-    const block = panels.slice(panels.indexOf('export const PaywallMDialogPanel'), panels.indexOf('const S = StyleSheet.create'));
-    expect(block).not.toMatch(/fetch\(|httpsCallable|firestore|AsyncStorage|trackEvent/);
+  it('renders the dialog facts in the shared screen and has no M sheet', () => {
+    const screen = read('components/paywall/PaywallPlusScreen.tsx');
+    expect(screen).toContain('paywallCFactCaption(mFlag, paywallMHeadKindForContext(ctx)');
+    expect(screen).toContain('>{mFactCaption}</Text>');
+    expect(screen).not.toContain('PaywallMSheet');
   });
 });

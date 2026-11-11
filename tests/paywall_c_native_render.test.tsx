@@ -5,7 +5,6 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PaywallCBenefits } from '../components/paywall/PaywallCBenefits';
 import { PaywallPlanRows, PaywallPlanRowsSkeleton } from '../components/paywall/PaywallPlanRows';
 import { PaywallPlusDock, PaywallPlusHeader } from '../components/paywall/PaywallPlus';
-import { PaywallServerRefusedDock } from '../components/paywall/PaywallServerRefusedDock';
 
 // зачем (05.11, KNOWN_ISSUES_paywall_c_native_render): в jest этого репозитория нет пресета React Native, поэтому `requireActual('react-native/index.js')` падал на импорте
 // (SyntaxError: Cannot use import statement) ДО первого утверждения. Рисуем компоненты на ручной подмене react-native — тем же приёмом, что tests/community_podium_navigation.test.tsx.
@@ -110,8 +109,8 @@ describe('native C component rendering', () => {
     expect(view.getByText(new RegExp(`^${longMonth}`))).toBeTruthy();
     expect(view.getByTestId('paywall-plan-yearly-trial')).toBeTruthy();
     expect(view.getByTestId('paywall-plan-monthly-trial')).toBeTruthy();
-    expect(view.getByTestId('paywall-plan-yearly')).toHaveStyle({ flex: 1, minWidth: 0 });
-    expect(view.getByTestId('paywall-plan-monthly')).toHaveStyle({ flex: 1, minWidth: 0 });
+    expect(view.getByTestId('paywall-plan-yearly')).toHaveStyle({ minWidth: 0 });
+    expect(view.getByTestId('paywall-plan-monthly')).toHaveStyle({ minWidth: 0 });
     await fireEvent.press(view.getByTestId('paywall-plan-monthly'));
     expect(onSelect).toHaveBeenCalledWith('monthly');
   });
@@ -123,7 +122,7 @@ describe('native C component rendering', () => {
 
   it('fires the visible C close, purchase, restore and promo controls', async () => {
     const onClose = jest.fn();
-    const header = await render(<PaywallPlusHeader lang="en" g={dark} trialDays={7} closeVisible closeDisabled={false} onClose={onClose} contextTitle="Continue learning" />);
+    const header = await render(<PaywallPlusHeader lang="en" g={dark} closeVisible closeDisabled={false} onClose={onClose} />);
     await fireEvent.press(header.getByTestId('paywall-close'));
     expect(onClose).toHaveBeenCalledTimes(1);
     const onPress = jest.fn(); const onRestore = jest.fn(); const onPromo = jest.fn();
@@ -141,7 +140,8 @@ describe('native C component rendering', () => {
 
   it('renders server-refused restore first and fires restore, purchase and later separately', async () => {
     const onRestore = jest.fn(); const onPress = jest.fn(); const onLater = jest.fn();
-    const view = await render(<PaywallServerRefusedDock lang="en" g={dark} label="Get Plus" purchasing={false} disabled={false} bottomInset={0}
+    const view = await render(<PaywallPlusDock serverRefused lang="en" g={dark} state="ready" fine="Store disclosure" notice={false}
+      restoreVisible restoreDisabled={false} promoVisible={false} promoDisabled={false} onPromo={jest.fn()} label="Get Plus" purchasing={false} disabled={false} bottomInset={0}
       onPress={onPress} restoring={false} onRestore={onRestore} onLater={onLater} />);
     await fireEvent.press(view.getByTestId('paywall-server-refused-restore'));
     await fireEvent.press(view.getByTestId('paywall-server-refused-purchase'));
@@ -153,7 +153,7 @@ describe('native C component rendering', () => {
 
   it('honors busy locks and remote-control hidden restore/promo controls', async () => {
     const onClose = jest.fn(); const onPress = jest.fn(); const onRestore = jest.fn(); const onPromo = jest.fn();
-    const header = await render(<PaywallPlusHeader lang="en" g={dark} trialDays={null} closeVisible closeDisabled onClose={onClose} />);
+    const header = await render(<PaywallPlusHeader lang="en" g={dark} closeVisible closeDisabled onClose={onClose} />);
     await fireEvent.press(header.getByTestId('paywall-close'));
     expect(onClose).not.toHaveBeenCalled();
     const busy = await render(<PaywallPlusDock lang="en" g={dark} state="ready" label="Get Plus" fine="Disclosure" notice={false}

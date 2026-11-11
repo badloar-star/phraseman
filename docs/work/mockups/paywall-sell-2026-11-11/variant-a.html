@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пейвол A «Два пути» — все входы</title>
+<!-- зачем: владелец 11.11 выбрал вариант A; «при нажатии на Plus цвет и иконка меняются на соответственный» + «покажи все остальные контексты».
+     Тексты входов — дословно из app/paywall_context_texts.ts (ru), числа лимитов — из таблицы Plus (1 подход, 50 фраз, 30 ответов, 3 попытки, 29 уроков). -->
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url(../home-luxe-2026-11-11/fonts/Inter-Regular.ttf)}
+@font-face{font-family:Inter;font-weight:600;src:url(../home-luxe-2026-11-11/fonts/Inter-SemiBold.ttf)}
+@font-face{font-family:Inter;font-weight:700;src:url(../home-luxe-2026-11-11/fonts/Inter-Bold.ttf)}
+@font-face{font-family:Inter;font-weight:900;src:url(../home-luxe-2026-11-11/fonts/Inter-Black.ttf)}
+@property --c1{syntax:'<color>';inherits:true;initial-value:#ff7a59}
+@property --c2{syntax:'<color>';inherits:true;initial-value:#ff5f8f}
+@property --c3{syntax:'<color>';inherits:true;initial-value:#ff4fd0}
+:root{--page:#08070c;--bg:#0c0b12;--sheet:#15131d;--tile:#1c1926;--fg:#f5f1f9;--mut:#aca4ba;--line:rgba(255,255,255,.08);--ease:cubic-bezier(.23,1,.32,1)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--page);color:var(--fg);font:400 15px/1.45 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:40px 24px 80px}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;text-align:left}
+h1{font-size:34px;line-height:1.12;font-weight:900;letter-spacing:-.025em}
+.top{display:flex;flex-wrap:wrap;gap:40px 56px;align-items:center;justify-content:center;max-width:1100px;margin:0 auto}
+.notes{flex:1;min-width:300px;max-width:520px}
+.notes p{color:var(--mut);margin-top:12px}
+.notes ul{margin:18px 0 0;padding:0;list-style:none}
+.notes li{padding:13px 0;border-top:1px solid var(--line)}
+.notes li b{display:block;font-weight:700}.notes li span{color:var(--mut);font-size:14px}
+h2{font-size:22px;font-weight:700;letter-spacing:-.015em;margin:64px 0 4px}
+.gh{color:var(--mut);font-size:14px;margin-bottom:18px}
+.grid{display:flex;flex-wrap:wrap;gap:26px 20px}
+.cell{width:232px}
+.cell code{display:block;font:600 12px/1.3 ui-monospace,Consolas,monospace;color:var(--mut);margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell .phone{zoom:.62}
+.wrap{max-width:1250px;margin:0 auto}
+
+/* ── телефон; цвет уровня — три переменные, плавно перетекают при смене Ultra ↔ Plus ── */
+.phone{--c1:#ff7a59;--c2:#ff5f8f;--c3:#ff4fd0;--ink:#2b0717;position:relative;width:375px;height:780px;flex:none;border-radius:44px;overflow:hidden;background:var(--bg);box-shadow:0 0 0 1px rgba(255,255,255,.07),0 30px 80px -20px #000;transition:--c1 .4s var(--ease),--c2 .4s var(--ease),--c3 .4s var(--ease)}
+.phone[data-t=plus]{--c1:#a99bff;--c2:#8e7cff;--c3:#5f90db;--ink:#0f0a33}
+.scr{position:absolute;inset:0;overflow-y:auto;scrollbar-width:none;scroll-behavior:smooth}
+.scr::-webkit-scrollbar{display:none}
+.x{position:absolute;z-index:5;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.09);display:grid;place-items:center;font-size:15px;transition:transform .14s var(--ease)}
+.x:active{transform:scale(.92)}
+.first{min-height:780px;display:flex;flex-direction:column;padding:76px 22px 16px;background:radial-gradient(120% 60% at 50% 0,color-mix(in srgb,var(--c2) 26%,transparent),transparent 70%),var(--bg)}
+.grow{flex:1}
+.hero{position:relative;width:84px;height:84px;margin-bottom:26px}
+.mark{position:absolute;inset:0;display:grid;place-items:center;font-size:40px;color:var(--ink);background:linear-gradient(135deg,var(--c1),var(--c2),var(--c3));filter:drop-shadow(0 12px 30px color-mix(in srgb,var(--c2) 55%,transparent));transition:opacity .28s var(--ease),transform .34s var(--ease),filter .28s}
+.mark.u{clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.mark.p{border-radius:50%;font-size:34px}
+.phone[data-t=ultra] .mark.p,.phone[data-t=plus] .mark.u{opacity:0;transform:scale(.8) rotate(-30deg);filter:blur(6px)}
+.chip{position:absolute;right:-12px;bottom:-8px;width:38px;height:38px;border-radius:13px;background:var(--tile);display:grid;place-items:center;font-size:19px;box-shadow:0 0 0 3px var(--bg)}
+.hl{font-size:33px;line-height:1.1;font-weight:900;letter-spacing:-.03em;text-wrap:balance}
+.sub{color:var(--mut);font-size:15px;margin-top:10px;text-wrap:pretty}
+.buys{display:grid;gap:10px}
+.buy{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:74px;padding:14px 18px;border-radius:22px;overflow:hidden;background:var(--tile);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:transform .15s var(--ease),background-color .3s,box-shadow .3s,color .3s}
+.buy:active{transform:scale(.97)}
+.buy b{display:block;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.buy i{display:block;font-style:normal;font-size:13px;opacity:.86;margin-top:2px}
+.buy .r{text-align:right;flex:none;font-variant-numeric:tabular-nums}
+.buy .r b{font-size:21px;font-weight:900}
+.buy s{font-size:13px;opacity:.7}
+.buy[data-p=ultra]:not(.sel) .n{color:#ffb3c8}.buy[data-p=plus]:not(.sel) .n{color:#cfc7ff}
+.buy.sel{color:var(--ink);background:linear-gradient(120deg,var(--c1),var(--c2) 48%,var(--c3));box-shadow:0 14px 34px -12px color-mix(in srgb,var(--c2) 70%,transparent),inset 0 1px 0 rgba(255,255,255,.35)}
+.buy.sel::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);transform:translateX(-120%);animation:sheen 4.5s var(--ease) 1.2s infinite}
+@keyframes sheen{0%{transform:translateX(-120%)}28%,100%{transform:translateX(120%)}}
+.save{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:99px;background:rgba(255,95,143,.2);color:#ffc2d3;font-size:12px;font-weight:700;vertical-align:2px}
+.sel .save{background:var(--ink);color:#ffd9e4}
+.buy.plain{justify-content:center;min-height:60px;font-weight:700;font-size:16px}
+.buy.busy{pointer-events:none;filter:saturate(.7) brightness(.9)}
+.buy.busy .r{visibility:hidden}
+.buy.busy::before{content:"";position:absolute;right:24px;top:50%;width:20px;height:20px;margin-top:-10px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:spin .55s linear infinite}
+@keyframes spin{to{transform:rotate(1turn)}}
+.fine{color:var(--mut);font-size:13px;text-align:center;margin-top:12px;min-height:19px}
+.cue{align-self:center;margin-top:8px;padding:10px 14px;color:var(--mut);font-size:13px;font-weight:600}
+[data-t=ultra] .op,[data-t=plus] .ou{display:none}
+
+/* ── подробности ниже (только у большого телефона) ── */
+.more{padding:8px 22px 28px;background:var(--sheet);border-radius:28px 28px 0 0}
+.more h3{font-size:20px;font-weight:700;letter-spacing:-.015em;margin:26px 0 12px}
+.cmp{display:grid;grid-template-columns:1fr 92px 92px;font-size:14px}
+.cmp>*{padding:11px 0;border-top:1px solid var(--line);display:flex;align-items:center}
+.cmp>.h{border:0;padding:0 0 6px;color:var(--mut);font-size:13px;font-weight:600}
+.cmp>:nth-child(3n+2){justify-content:center;color:var(--mut)}
+.cmp>:nth-child(3n){justify-content:center;font-weight:700;text-align:center;background:color-mix(in srgb,var(--c2) 12%,transparent)}
+.cmp>.h:nth-child(3){color:var(--c1);border-radius:12px 12px 0 0;padding-top:8px}
+.cmp>:last-child{border-radius:0 0 12px 12px}
+.all{margin-top:10px;color:var(--c1);font-size:14px;font-weight:600;padding:8px 0}
+.tl div{position:relative;padding:0 0 18px 30px}
+.tl div::before{content:"";position:absolute;left:5px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--c2)}
+.tl div::after{content:"";position:absolute;left:9.5px;top:18px;bottom:-4px;width:1px;background:var(--line)}
+.tl div:last-child::after{display:none}
+.tl b{display:block;font-weight:700}.tl span{color:var(--mut);font-size:14px}
+details{border-top:1px solid var(--line)}
+summary{list-style:none;padding:14px 0;font-weight:600;display:flex;justify-content:space-between;cursor:pointer}
+summary::after{content:"+";color:var(--mut);font-weight:400;transition:transform .2s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--mut);font-size:14px;padding:0 0 14px}
+.foot{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;margin-top:22px;color:var(--mut);font-size:13px}
+.foot span{padding:10px 0}
+.dock{position:sticky;bottom:0;z-index:4;padding:10px 16px 16px;background:linear-gradient(transparent,var(--sheet) 34%);transform:translateY(110%);transition:transform .32s var(--ease)}
+.dock.on{transform:none}
+.dock .buy{min-height:56px;border-radius:18px;width:100%}
+@media (prefers-reduced-motion:reduce){*,*::after,*::before{animation:none!important;transition:none!important}.scr{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <div id="big"></div>
+  <div class="notes">
+    <h1>Вариант A «Два пути»</h1>
+    <p>Нажми на Plus в любом телефоне — знак, свечение и кнопка перетекают в фиолетовый Plus. Нажми на Ultra — обратно в коралловый.</p>
+    <ul>
+      <li><b>Первое нажатие выбирает, второе покупает</b><span>Ultra выбран заранее, поэтому год покупается в один тап. Plus — в два: первый перекрашивает окно, второй открывает оплату.</span></li>
+      <li><b>Меняется всё сразу</b><span>Шестиугольник ✦ → круг ◆, цвет свечения, яркая кнопка, слово «Plus / Ultra» в тексте, строка под кнопками, нижняя кнопка при прокрутке.</span></li>
+      <li><b>Ниже — все 37 входов приложения</b><span>Тексты взяты из приложения как есть. Меняются только заголовок, подпись и значок места входа.</span></li>
+    </ul>
+  </div>
+</div>
+<div id="groups"></div>
+</div>
+
+<script>
+// {P} — имя уровня: «Ultra» при выбранном годе, «Plus» при месяце (как applyTierName в приложении).
+const G = [
+ ['Лимит закончился', 'Человек упёрся в бесплатный предел прямо во время занятия', [
+  ['no_energy','⚡','Энергия закончилась','С {P} она не тратится — занимайся дальше сразу.'],
+  ['ai_explain','💡','Разбор на сегодня закончился','С {P} ИИ объяснит каждую ошибку: что не так и как сказать верно.'],
+  ['mistake_practice','🔁','Ошибки — без лимита','Бесплатно — 1 подход в день. С {P} разбирай сколько нужно.'],
+  ['flashcard_limit','🃏','Место для карточек закончилось','Бесплатно — 50 фраз. С {P} сохраняй сколько хочешь.'],
+  ['dialog_limit','💬','Ответы в диалогах закончились','Бесплатно — 30 ответов в месяц. С {P} счётчика нет.'],
+  ['ai_voice_input','🎙','Отвечай голосом','Бесплатно — 3 реплики голосом в день. С {P} говори сколько хочешь.'],
+  ['speaking','🗣','Говори вслух сколько нужно','Бесплатно — 3 попытки в день. С {P} повторяй, пока не получится.'],
+  ['mastery','🎯','Повтори раунд без ограничений','{P} открывает повтор любого раунда без списания монет.'],
+ ]],
+ ['Курс', 'Закрытые уроки и переходы между уровнями', [
+  ['course_after_lesson3','📚','Дальше — в {P}','Впереди ещё 29 уроков: от простых фраз до свободного разговора.'],
+  ['free_lessons_complete','🏁','Бесплатные уроки пройдены','Дальше 29 уроков — открой их с {P}.'],
+  ['lesson_b1','🧗','Уровень B1 — в {P}','Продолжай курс с того места, где остановился.'],
+  ['level_up','⬆️','Новый уровень! Идём дальше?','{P} открывает весь курс — не останавливайся.'],
+  ['notification_upsell','🔔','Продолжим курс?','Впереди 29 уроков — вернись и открой их с {P}.'],
+  ['phrase_workshop','🛠','Мастерская фраз в {P}','Собирай фразы из пройденных уроков и закрепляй их, сколько хочешь.'],
+  ['combined_lesson','🧩','Несколько тем в одном уроке','Выбирай темы сам — урок соберётся под тебя.'],
+  ['language_add','🌍','Ещё один язык для занятий','Подключи {P}, чтобы начать курс на другом языке'],
+ ]],
+ ['Карточки, диалоги, серия', 'Человек тянется к функции, которой у бесплатного нет', [
+  ['flashcard_create','✍️','Добавь свою фразу','Услышал в сериале или на работе — сохрани, и приложение будет её тренировать.'],
+  ['pack_create','📦','Собери свой набор','Фразы для поездки, работы или сериала — в одном месте.'],
+  ['dialog_locked_level','🗂','Сценарий откроется позже','Он открывается рангом монеты. {P} откроет все сразу.'],
+  ['dialog_analysis','🔍','Разбор твоей речи','Увидишь, где фраза звучала неестественно и как сказать живее.'],
+  ['streak','🛡','Не потеряй серию','{P} защитит её, если пропустишь день.'],
+  ['avatar_aura','✨','Добавь аватару свечение','Аура видна у друзей и в списках — тебя заметят сразу.'],
+  ['club','👥','Занимайся без ограничений','{P} открывает курс, разговоры и тренировки без дневных ограничений.'],
+ ]],
+ ['Статистика', 'Закрытые экраны раздела «Статистика»', [
+  ['stats','📈','Посмотри, как идут дела','Год занятий на одном экране: где шло легко, где буксовало.'],
+  ['heatmap','🗓','Весь год на одном экране','Видно каждый день: где была серия, а где перерыв.'],
+  ['patterns','🧠','Что забывается чаще всего','Приложение покажет темы, которые не закрепились, и соберёт из них тренировку.'],
+  ['percentiles','🏅','Ты идёшь лучше, чем думаешь','Твоя серия и темп на фоне других учеников.'],
+  ['weekly_review','📝','Итог недели на одной странице','Что укрепилось, где проседает и с чего начать новую неделю.'],
+ ]],
+ ['Начало и возвращение', 'Онбординг, конец пробного или бонусного доступа, возврат', [
+  ['generic','✦','Всё приложение целиком','Весь курс, разговоры вслух, тренировки, коллекция фраз и статистика.'],
+  ['onboarding_plan','🚀','Начни говорить, а не зубрить','Живые фразы, разговоры вслух и повторы того, что забываешь.'],
+  ['intro_ended','⏳','Пробный доступ закончился','{P} вернёт всё: курс, разговоры, тренировки и статистику.'],
+  ['premium_expired','↩️','Всё на месте — продолжим?','Серия, фразы и уроки никуда не делись. Подключи {P} и продолжай.'],
+  ['vip_expired','🎁','Бонусный доступ закончился','{P} вернёт курс, разговоры, тренировки и статистику.'],
+  ['referral_ended','🤝','Бонусный доступ закончился','{P} вернёт всё, чем ты пользовался.'],
+  ['winback','👋','С возвращением','Выученное на месте. Начни с короткого урока — дальше пойдёт само.'],
+ ]],
+ ['Особые окна', 'Своя раскладка кнопок: скидка и «не видим подписку»', [
+  ['home_discount_badge','🏷','Твоя цена на подписку','Та же подписка — по сниженной цене.','promo'],
+  ['plus_server_refused','🔑','Не видим твой Plus','Если подписка уже оформлена, восстанови покупку. Это бесплатно.','refused'],
+ ]],
+];
+const T = s => s.replace(/\{P\}/g, '<span class="tn">Ultra</span>');
+const ROWS = [['Уроки курса','1–3','Все 32'],['Энергия','5 в запасе','Не тратится'],['Говорить вслух','3 в день','Без лимита'],['Разбор ошибки ИИ','3 в день','Каждая'],['Языки курса','Один','Все'],['Защита серии','—','3 в месяц']];
+
+function buys(kind) {
+  if (kind === 'refused') return `<div class="buys">
+    <button class="buy sel plain" data-act>Восстановить покупки</button>
+    <button class="buy plain" data-act style="font-weight:600;font-size:15px">Оформить Plus</button></div>
+    <div class="fine">Не нашлась — напиши нам, разберёмся</div>`;
+  const year = kind === 'promo' ? '<s>€39,99</s><b>€27,99</b><i>первый год</i>' : '<b>€39,99</b><i>в год</i>';
+  const badge = kind === 'promo' ? '−30%' : '−58%';
+  return `<div class="buys" role="radiogroup">
+    <button class="buy sel" data-p="ultra"><span><b class="n">✦ Ultra · год <span class="save">${badge}</span></b><i>7 дней бесплатно</i></span><span class="r">${year}</span></button>
+    <button class="buy" data-p="plus"><span><b class="n">◆ Plus · месяц</b><i>без пробного</i></span><span class="r"><b>€7,99</b><i>в месяц</i></span></button></div>
+    <div class="fine"><span class="ou">7 дней бесплатно, потом ${kind === 'promo' ? '€27,99 за первый год' : '€39,99 в год'}</span><span class="op">€7,99 в месяц · отмена в любой момент</span></div>`;
+}
+function phone([key, icon, title, sub, kind], full) {
+  return `<div class="phone" data-t="ultra"><button class="x" aria-label="Закрыть">✕</button><div class="scr">
+    <div class="first"><div class="grow"></div>
+      <div class="hero"><div class="mark u">✦</div><div class="mark p">◆</div>${key === 'generic' ? '' : `<div class="chip">${icon}</div>`}</div>
+      <div class="hl">${T(title)}</div><div class="sub">${T(sub)}</div><div class="grow"></div>
+      ${buys(kind)}${full ? '<button class="cue">Что входит ↓</button>' : ''}</div>
+    ${full ? `<div class="more"><h3>Что меняется с подпиской</h3>
+      <div class="cmp"><span class="h"></span><span class="h">Бесплатно</span><span class="h tn">Ultra</span>${ROWS.map(r => r.map(c => `<span>${c}</span>`).join('')).join('')}</div>
+      <button class="all">Все 15 пунктов</button>
+      <div class="ou"><h3>Как работает пробный период</h3><div class="tl"><div><b>Сегодня</b><span>Всё открыто, с карты — €0</span></div><div><b>День 5</b><span>Пришлём напоминание</span></div><div><b>День 7</b><span>Первое списание €39,99. Отменил раньше — ничего не спишем</span></div></div></div>
+      <h3>Частые вопросы</h3>
+      <details><summary>Как отменить?</summary><p>В настройках App Store или Google Play, в два тапа. Доступ останется до конца оплаченного срока.</p></details>
+      <details><summary>Что будет с моим прогрессом?</summary><p>Уроки, серия и карточки сохраняются всегда — с подпиской и без неё.</p></details>
+      <details><summary>Можно перейти с месяца на год?</summary><p>Да, в любой момент в настройках магазина.</p></details>
+      <div class="foot"><span>Восстановить покупки</span><span>Промокод</span><span>Условия</span><span>Конфиденциальность</span></div></div>
+    <div class="dock"><button class="buy sel" data-act><span><b><span class="ou">Начать бесплатно</span><span class="op">Оформить Plus</span></b></span><span class="r"><i><span class="ou">потом €39,99 в год</span><span class="op">€7,99 в месяц</span></i></span></button></div>` : ''}
+  </div></div>`;
+}
+
+document.getElementById('big').innerHTML = phone(['generic','✦','Занимайся сколько хочешь','Все 32 урока, энергия не тратится, ИИ разбирает каждую ошибку.'], true);
+document.getElementById('groups').innerHTML = G.map(([name, hint, list]) =>
+  `<h2>${name}</h2><div class="gh">${hint}</div><div class="grid">${list.map(c => `<div class="cell"><code>${c[0]}</code>${phone(c, false)}</div>`).join('')}</div>`).join('');
+
+function busy(b) { if (b.classList.contains('busy')) return; b.classList.add('busy'); setTimeout(() => b.classList.remove('busy'), 1400); }
+document.querySelectorAll('.phone').forEach(ph => {
+  const scr = ph.querySelector('.scr'), dock = ph.querySelector('.dock'), more = ph.querySelector('.more');
+  ph.querySelectorAll('.buy[data-p]').forEach(b => b.onclick = () => {
+    // зачем: первое нажатие на невыбранный тариф только перекрашивает окно (цвет, знак, тексты), нажатие на выбранный — покупка; двойной тап во время оплаты игнорируется
+    if (b.classList.contains('sel')) return busy(b);
+    ph.dataset.t = b.dataset.p;
+    ph.querySelectorAll('.buy[data-p]').forEach(o => o.classList.toggle('sel', o === b));
+    ph.querySelectorAll('.tn').forEach(n => { n.textContent = b.dataset.p === 'ultra' ? 'Ultra' : 'Plus'; });
+  });
+  ph.querySelectorAll('[data-act]').forEach(b => b.onclick = () => busy(b));
+  if (!dock) return;
+  const last = [...ph.querySelectorAll('.first .buy')].pop();
+  scr.addEventListener('scroll', () => dock.classList.toggle('on', last.getBoundingClientRect().bottom < scr.getBoundingClientRect().top + 60), {passive: true});
+  ph.querySelector('.cue').onclick = () => scr.scrollTo({top: more.offsetTop - 12});
+});
+</script>
+</body>
+</html>

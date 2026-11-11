@@ -8,7 +8,7 @@
 import type { PaywallMHeadFacts, PaywallMHeadKind } from './paywall_m_head';
 import { PAYWALL_M_TOTAL_LESSONS, type PaywallMPerson } from './paywall_m_model';
 
-export type PaywallMPanelKind = 'energy' | 'streak' | 'lock' | 'workshop' | 'refused' | 'dialog';
+export type PaywallMPanelKind = 'energy' | 'streak' | 'lock' | 'refused' | 'dialog';
 
 /** Какая панель открывается первой для этого места входа; null — сразу общий экран М. */
 export function paywallMPanelKindFor(place: PaywallMHeadKind, person: Pick<PaywallMPerson, 'streakDays' | 'lessonsDone'>, facts: PaywallMHeadFacts = {}): PaywallMPanelKind | null {
@@ -16,8 +16,6 @@ export function paywallMPanelKindFor(place: PaywallMHeadKind, person: Pick<Paywa
   if (place === 'refused') return 'refused';
   // Разговор с ИИ: панель про первый бесплатный разговор — только когда он записан на телефоне (минуты и реплики из app/dialog_first_free_summary.ts); иначе сразу общий экран
   if (place === 'dialog') return finitePositive(facts.dialogMinutes) && finitePositive(facts.dialogPhrases) ? 'dialog' : null;
-  // Мастерская: урок и число фраз приходят от кнопки урока (параметры входа); нет любого из них — панели нет, сразу общий экран
-  if (place === 'workshop') return finitePositive(facts.lockedLesson) && finitePositive(facts.workshopPhrases) ? 'workshop' : null;
   if (place === 'streak') return person.streakDays > 0 ? 'streak' : null;
   if (place === 'lock') return person.lessonsDone >= 0 && person.lessonsDone < PAYWALL_M_TOTAL_LESSONS ? 'lock' : null;
   return null;

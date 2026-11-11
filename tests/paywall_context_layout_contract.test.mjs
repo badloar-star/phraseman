@@ -1,6 +1,4 @@
-// зачем (владелец 11.10: «все пейволы должны быть контекстными всегда»; журнал 10–11): окно Plus показывает контекст места входа
-// (заголовок, подзаголовок и первая плоская строка выгоды), а на месте цен без загрузки — тихая честная строка,
-// а не пустые плашки. Сторож смотрит на разметку и тексты (9 языков), чтобы это не откатилось.
+// The shared paywall keeps entry-specific copy and reuses the Plus tab comparison.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -11,37 +9,36 @@ import { normalizeEol } from './helpers/read_source_esm.mjs';
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const read = (...p) => normalizeEol(readFileSync(join(ROOT, ...p), 'utf8'));
 
-test('plus window header and benefits are contextual', () => {
+test('the first screen offers the plans and the scroll reveals context and the full Plus comparison', () => {
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
-  // слово владельца 05.11 («макеты пейволов одобряю, 1 в 1»): у каждого окна свой заголовок/подзаголовок/пилюля, три пункта и абзац — из макета «Все окна Plus»
-  assert.match(screen, /contextTitle=\{headline\.title \|\| undefined\}/);
-  assert.match(screen, /contextPill=\{headline\.pill \|\| undefined\}/);
-  assert.match(screen, /items=\{v3Rows\} paragraph=\{v3Paragraph\}/);
-  assert.match(screen, /factCaption=\{mFactCaption\}/);
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
-  assert.match(plus, /<PaywallCBenefits lang=\{lang\} g=\{g\} leadBenefit=\{leadBenefit\} leadCaption=\{leadCaption\} factCaption=\{factCaption\} items=\{items\} paragraph=\{paragraph\} \/>/);
-  const benefits = read('components', 'paywall', 'PaywallCBenefits.tsx');
-  assert.match(benefits, /testID="paywall-c-benefits"/);
-  assert.match(benefits, /index === 0 && leadBenefit \? leadBenefit/);
-  assert.match(benefits, /factCaption \|\| leadCaption \|\| ''/);
+  const tab = read('components', 'plus-tab', 'PlusTabScreen.tsx');
+  assert.match(screen, /<PaywallPlusScroll onViewportHeight=\{setViewportHeight\}/);
+  assert.match(screen, /title=\{paywallChoosePlan\(lang\)\}/);
+  assert.match(screen, /testID="paywall-context-title"/);
+  assert.match(screen, /testID="paywall-pill"[^>]+>\{headline\.pill\}/);
+  assert.match(screen, />\{mFactCaption\}<\/Text>/);
+  assert.match(screen, /<PlusTabBenefits lang=\{lang\} g=\{g\} items=\{benefits\}/);
+  assert.match(tab, /<PlusTabBenefits/);
+  assert.match(plus, /minHeight: viewportHeight/);
+  assert.match(plus, /firstScreen: \{ justifyContent: 'center'/);
 });
 
-test('plus window is a sheet over the previous screen with plans side by side (владелец 11.10, вариант 1 «Шторка»)', () => {
+test('paywall fills the screen with stacked plans and safe top padding', () => {
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /testID="paywall-sheet"/);
-  assert.match(screen, /<PaywallScrim onPress=\{closeWindow\} \/>/);
-  assert.match(read('components', 'paywall', 'paywallShared.tsx'), /testID="paywall-scrim"/);
-  assert.match(screen, /borderTopLeftRadius: 30/);
+  assert.match(screen, /paddingTop: insets\.top/);
+  assert.match(screen, /screen: \{ flex: 1 \}/);
   const nav = read('app', 'section_sheet_navigation.ts');
   assert.match(nav, /PAYWALL_SHEET_STACK_OPTIONS[\s\S]{0,80}presentation: 'transparentModal'/);
   assert.match(read('app', '_layout.tsx'), /name="premium_modal" options=\{PAYWALL_SHEET_STACK_OPTIONS\}/);
   assert.match(read('components', 'paywall', 'paywallShared.tsx'), /presentation: 'transparentModal'/);
-  // Вариант C: две плоские плитки рядом; выбранный тариф отмечен тонкой рамкой текста темы, без свечения/3D.
   const rows = read('components', 'paywall', 'PaywallPlanRows.tsx');
-  assert.match(rows, /list: \{ flexDirection: 'row', gap: PLAN_ROW_GAP/);
-  assert.match(rows, /row: \{ flexGrow: 1, minHeight: 84/);
+  assert.match(rows, /list: \{ gap: PLAN_ROW_GAP/);
+  assert.match(rows, /row: \{ overflow: 'hidden', minHeight: PLAN_ROW_MIN_HEIGHT/);
   assert.match(rows, /testID="paywall-plan-yearly"/);
-  assert.match(rows, /borderColor: on \? g\.text : 'transparent'/);
+  assert.match(rows, /borderColor: on \? aura : 'transparent'/);
+  assert.match(rows, /<LinearGradient[^>]+colors=\{\[\.\.\.metal\]\}/);
 });
 
 // зачем (владелец 11.10: «цены должны показываться все равно, везде»; приказ «пейволы все сделать»): блока «Цены не загрузились» с кнопкой «Ещё раз» больше нет.
@@ -81,8 +78,8 @@ test('plan tiles are never empty: shimmer skeleton, or the quiet price note that
   const rows = read('components', 'paywall', 'PaywallPlanRows.tsx');
   assert.match(rows, /import SkeletonBlock from '\.\.\/SkeletonShimmer';/);
   assert.match(rows, /skeletonCell: \{ flex: 1, minWidth: 0 \}/);
-  assert.equal((rows.match(/<SkeletonBlock width="100%" height=\{PLAN_ROWS_BLOCK_HEIGHT\}/g) ?? []).length, 2);
-  assert.match(plus, /<PaywallPlanRowsSkeleton g=\{g\} \/>/);
+  assert.equal((rows.match(/<SkeletonBlock width="100%" height=\{PLAN_ROW_MIN_HEIGHT\}/g) ?? []).length, 2);
+  assert.match(plus, /<PaywallPlanRowsSkeleton g=\{g\} stacked=\{stacked\} \/>/);
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /const plansShown: PaywallPlusState = state === 'loading' && sawPricesError \? 'error' : state;/);
   assert.match(screen, /plansShown === 'loading' \? <PaywallPlusPlansSkeleton/);

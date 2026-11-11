@@ -34,38 +34,47 @@ describe('owner-selected native paywall C contract', () => {
     expect(screen).toContain('paywallImpressionParams(impression)');
   });
 
-  test('renders the frozen C geometry and exactly three flat benefit rows', () => {
-    expect(benefits).toContain('PAYWALL_C_BENEFIT_COUNT = 3');
-    // макет «Все окна Plus» (05.11): заголовок 29/34, подзаголовок 15/21 (было 32/38)
-    expect(plus).toContain('fontSize: 29');
-    expect(plus).toContain('lineHeight: 34');
-    expect(plus).toContain('paddingHorizontal: 24');
-    expect(plus).toContain('minHeight: 44');
-    expect(plus).toContain('cta: { minHeight: 54, borderRadius: 28');
+  test('shows the prices and purchase action before benefits in a single scroll', () => {
+    const scroll = screen.slice(screen.indexOf('<PaywallPlusScroll '), screen.indexOf('</PaywallPlusScroll>'));
+    const plansStart = scroll.indexOf('<PaywallPlusPlans ');
+    expect(plansStart).toBeGreaterThan(scroll.indexOf('planSection={'));
+    expect(scroll.indexOf('<PlusTabBenefits')).toBeGreaterThan(plansStart);
+    const firstScreen = plus.indexOf('testID="paywall-first-screen"');
+    expect(firstScreen).toBeGreaterThan(-1);
+    const dock = plus.slice(firstScreen, plus.indexOf('{children}', firstScreen));
+    expect(dock).toContain('minHeight: viewportHeight');
+    expect(dock).toContain('{planSection}');
+    expect(dock).toContain("'paywall-cta'");
+    expect(plus).toContain("firstScreen: { justifyContent: 'center'");
     expect(plus).toContain('style={[S.cta, { backgroundColor: g.ctaFill }]}');
-    expect(plus).not.toContain('ctaFillGradient');
-    expect(screen).toContain('style={[S.sheet, { backgroundColor: g.bg, maxHeight:');
+    expect(screen).toContain('style={[S.screen, { backgroundColor: g.bg, paddingTop: insets.top }]}');
     expect(screen).not.toContain('backgroundColor: paywallSheetBg(g)');
     expect(screen).not.toContain('<PaywallPlusTrialTimeline');
     expect(plus).not.toContain('<PaywallPlusComparison');
   });
 
-  test('renders side-by-side store plans while retaining real promo/trial/source fields', () => {
+  test('renders metallic store plans while retaining real promo, trial, and reference-price disclosure', () => {
     expect(plans).toContain('flexDirection: \'row\'');
     expect(plans).toContain('const PLAN_ROW_GAP = 10');
     expect(plans).toContain('const PLAN_ROW_RADIUS = 16'); // макет: радиус плитки 16
     expect(plans).toContain('yearlyPromo');
     expect(plans).toContain('monthlyPromo');
-    expect(plans).toContain("yearlyPriceSource === 'reference'");
+    expect(plans).toContain('<LinearGradient');
+    expect(plans).toContain('pinColorsForTier(tier, g.isLight)');
+    expect(screen).toContain('p.pricesApproximate');
     expect(plans).toContain('yearlyTrialDays');
     expect(plans).toContain('monthlyTrialDays');
   });
 
   test('embedded onboarding adopts the same C markers without replacing its handlers', () => {
-    expect(onboarding).toContain('testID="onboarding-paywall-c-benefits"');
+    const plans = onboarding.indexOf('testID="onboarding-paywall-plan-yearly"');
+    const benefits = onboarding.indexOf('testID="onboarding-paywall-c-benefits"');
+    expect(plans).toBeGreaterThan(-1);
+    expect(benefits).toBeGreaterThan(plans);
     expect(onboarding).toContain('void continueFromOnboardingPaywall()');
     expect(onboarding).toContain('void completeOnboarding()');
-    expect(onboarding).toContain('else void handleRestore()');
+    expect(onboarding).toContain('onPress={() => { void handleRestore(); }}');
+    expect(onboarding).not.toContain('MoreOffersSheet');
     expect(onboarding).toContain('onPress={choosePaywallPlan}');
   });
 });

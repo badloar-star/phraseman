@@ -50,22 +50,22 @@ describe('пейвол по макету: экран', () => {
   const screen = read('components/paywall/PaywallPlusScreen.tsx');
   const plus = read('components/paywall/PaywallPlus.tsx');
   const rows = read('components/paywall/PaywallPlanRows.tsx');
-  it('заголовок/подзаголовок/пилюля — каждого окна; пункты и абзац — из макета; кнопка «Подключить Plus» / «Начать бесплатно»', () => {
-    expect(screen).toContain('contextTitle={headline.title || undefined}');
-    expect(screen).toContain('contextPill={headline.pill || undefined}');
-    expect(screen).toContain('items={v3Rows} paragraph={v3Paragraph}');
+  it('первый экран предлагает выбрать план, ниже контекст и сравнение из вкладки Plus', () => {
+    expect(screen).toContain('title={paywallChoosePlan(lang)}');
+    expect(screen).toContain('testID="paywall-pill"');
+    expect(screen).toContain('<PlusTabBenefits lang={lang} g={g} items={benefits} />');
     expect(screen).toContain('selectedTrial ? (PAYWALL_V3_CTA_TRIAL[lang] ?? PAYWALL_V3_CTA_TRIAL.en) : (PAYWALL_V3_CTA[lang] ?? PAYWALL_V3_CTA.en)');
     expect(screen).toContain('labelReady && selectedPromo ? cta.label');
   });
-  it('шапка: «PhraseMan Plus» обычным регистром, пилюля под ней; заголовок 29/34, подзаголовок 15/21', () => {
-    // зачем (Plus/Ultra 06.11): название в шапке следует выбранной плитке (Год → Ultra, Месяц → Plus; без провайдера — Plus)
-    expect(plus).toContain("{`PhraseMan ${tier === 'ultra' ? 'Ultra' : 'Plus'}`}</Text>");
-    expect(plus).toContain('testID="paywall-pill"');
-    expect(plus).toContain("h1: { marginTop: 16, fontSize: 29, lineHeight: 34, fontWeight: '800'");
-    expect(plus).toContain('sub: { marginTop: 8, fontSize: 15, lineHeight: 21 }');
+  it('keeps a close action and the context in the scroll content', () => {
+    expect(plus).not.toContain('>PhraseMan</Text>');
+    expect(plus).toContain('testID="paywall-close"');
+    expect(screen).toContain('testID="paywall-subtitle"');
+    expect(plus).toContain('fontSize: 30, lineHeight: 35');
   });
-  it('низ: автопродление над кнопкой; одна ссылка «Восстановить покупки»; «Ввести промокод» остаётся (решение владельца 05.11); «Условия» и «Конфиденциальность»', () => {
-    expect(plus.indexOf('testID="paywall-fine"')).toBeLessThan(plus.indexOf('testID="paywall-cta"'));
+
+  it('puts renewal disclosure after the purchase action with restore, promo and legal links available', () => {
+    expect(plus.indexOf('testID="paywall-fine"')).toBeGreaterThan(plus.indexOf("'paywall-cta'"));
     expect(plus).toContain('PAYWALL_V3_RESTORE[lang] ?? PAYWALL_V3_RESTORE.en');
     expect(plus).toContain('testID="paywall-promo-code"');
     expect(plus).toContain('pick(lang, COPY.terms)');
@@ -73,10 +73,11 @@ describe('пейвол по макету: экран', () => {
     expect(plus).not.toContain('refresh-outline');
     expect(plus).not.toContain('pricetag-outline');
   });
-  it('цена из магазина на плитках («≈» только у справочной), строка пробного периода, контур выбранной 2 px, без кружка и бейджа', () => {
-    expect(rows).toContain("`${shown}${subPrice ? ` ${subPrice}` : ''}`");
-    expect(rows).toContain("approx ? '≈ ' : ''");
-    expect(rows).toContain('PAYWALL_V3_NO_TRIAL_LINE[lang]');
+  it('keeps the billed price, period, and store trial readable in each tile', () => {
+    expect(rows).toContain('>{shown}</Text>');
+    expect(rows).toContain('>{subPrice}</Text>');
+    expect(rows).not.toContain("approx ? '≈ ' : ''");
+    expect(rows).toContain('trialFreeLabel(lang, trialDays)');
     expect(rows).toContain('borderWidth: 2');
     expect(rows).not.toMatch(/border(Width|Color)\s*:\s*[^,]*promo/);
   });

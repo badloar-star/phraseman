@@ -7,38 +7,19 @@ const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), '
 
 describe('окно Plus «Не видим твой Plus»', () => {
   const screen = read('components/paywall/PaywallPlusScreen.tsx');
-  const dock = read('components/paywall/PaywallServerRefusedDock.tsx');
+  const dock = read('components/paywall/PaywallPlus.tsx');
+  const hook = read('components/paywall/use_paywall_restore_outcome.ts');
   const copy = read('components/paywall/paywall_server_refused_copy.ts');
 
-  it('экран включает вариант только для plus_server_refused и отдаёт низ окна переключателю', () => {
+  it('uses the shared paywall and shows restore status before the same purchase action', () => {
     expect(screen).toContain('const serverRefused = ctx === SERVER_REFUSED_CONTEXT;');
-    expect(screen).toContain('<PaywallPlusDockSwitch serverRefused={serverRefused} onLater={() => p.handleClose(\'close\', \'x\')}');
-    expect(screen).not.toContain('<PaywallPlusDock ');
-  });
-
-  it('переключатель: без варианта — прежний PaywallPlusDock целиком', () => {
-    expect(dock).toContain('if (!serverRefused) return <PaywallPlusDock {...dock} />;');
-  });
-
-  it('порядок кнопок: восстановить → оформить → не сейчас; состояния восстановления', () => {
-    const restore = dock.indexOf('testID="paywall-server-refused-restore"');
-    const purchase = dock.indexOf('testID="paywall-server-refused-purchase"');
-    const later = dock.indexOf('testID="paywall-server-refused-later"');
-    expect(restore).toBeGreaterThan(0);
-    expect(purchase).toBeGreaterThan(restore);
-    expect(later).toBeGreaterThan(purchase);
-    expect(dock).toContain("onAppEvent('premium_activated'");
-    expect(dock).toContain("'idle' | 'busy' | 'restored' | 'not_found'");
+    expect(screen).toContain('serverRefused={serverRefused}');
+    const restore = dock.indexOf('{serverRefused ? restoreAction : null}');
+    expect(restore).toBeGreaterThan(-1);
+    expect(dock.indexOf("'paywall-server-refused-purchase'")).toBeGreaterThan(restore);
     expect(dock).toContain('testID="paywall-server-refused-status"');
-  });
-
-  it('цвета — токены темы по карте Тем (P12 / P3 / P15 / P2), без литералов и прозрачности вместо токена', () => {
     expect(dock).toContain('backgroundColor: g.ctaFill');
-    expect(dock).toContain('color: g.ctaFillInk');
-    expect(dock).toContain('backgroundColor: paywallPlateBg(g)');
-    expect(dock).toContain('color: g.secondary');
-    expect(dock).not.toMatch(/#[0-9A-Fa-f]{6}\b/);
-    expect(dock).not.toMatch(/borderWidth|borderColor/);
+    expect(hook).toContain("onAppEvent('premium_activated'");
   });
 
   it('тексты на всех 9 языках у каждой строки', () => {

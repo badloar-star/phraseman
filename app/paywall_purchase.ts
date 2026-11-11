@@ -1373,11 +1373,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent, commitLease) => {
         if (!isCommitCurrent()) return false;
         const persisted = await persistStorePremiumLocally(
+          operationAccount,
           confirmedPlan,
           metadata,
-          isCommitCurrent,
+          'store_purchase',
           false,
-          true,
+          commitLease,
         );
         if (!persisted || !isCommitCurrent()) return false;
         if (!(await refillToMax(isCommitCurrent, commitLease))) return false;
@@ -1719,11 +1720,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent, commitLease) => {
           if (!isCommitCurrent()) return false;
           const persisted = await persistStorePremiumLocally(
+            operationAccount,
             plan,
             metadata,
-            isCommitCurrent,
+            'store_restore_unverified_lineage',
             false,
-            true,
+            commitLease,
           );
           if (!persisted || !isCommitCurrent()) return false;
           if (!(await refillToMax(isCommitCurrent, commitLease))) return false;

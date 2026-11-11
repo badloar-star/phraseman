@@ -26,8 +26,6 @@ export function paywallCFactCaption(
     if (facts.correctionWas && facts.correctionNow) {
       parts.push(`${facts.correctionWas} → ${facts.correctionNow}`);
     }
-  } else if (kind === 'workshop' && isFact(facts.lockedLesson) && isFact(facts.workshopPhrases)) {
-    parts.push(paywallMHeadFor(kind, lang, person, facts).kicker);
   }
 
   return parts.filter(Boolean).join(' · ') || undefined;

@@ -13,15 +13,19 @@ import { BackHandler, Platform, StyleSheet, Text, useWindowDimensions, View } fr
 import { PaywallSwipeSheet } from './PaywallSwipeSheet';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 
+import { useReferralRouletteEnabled } from '../../app/referral_roulette_flag';
+import { PlusTabBenefits } from '../plus-tab/PlusTabBenefits';
+import { plusTabItems, PLUS_TAB_HEADLINE } from '../plus-tab/plus_tab_items';
+import { THEME_SLIDERS_V1_ENABLED } from '../../constants/theme_sliders_flag';
+import V2Pressable from '../v2/V2Pressable';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { LinearGradient } from '../SafeLinearGradient';
-import type { Lang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { usePaywallPurchase, type PaywallPlan } from '../../app/paywall_purchase';
 import { paywallEntryAnalyticsParams, SERVER_REFUSED_CONTEXT, type PaywallEntry } from '../../app/paywall_entry_contract';
-import { PaywallPlusDockSwitch } from './PaywallServerRefusedDock';
 import { parseResumeLessonId } from '../../app/paywall_lesson_continuation';
 import { logPaywallFunnel } from '../../app/paywall_funnel';
 import { trackEvent } from '../../app/analytics';
@@ -29,20 +33,19 @@ import { createPaywallAnalyticsImpression, paywallImpressionParams } from '../..
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { DebugLogger } from '../../app/debug-logger';
 import { useLoadGate } from '../../app/use_load_gate';
-import { PaywallScrim, usePaywallScreenStackOptions } from './paywallShared';
+import { usePaywallScreenStackOptions } from './paywallShared';
 import {
-  PaywallPlusDetails, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPriceNote,
+  PaywallPlusDock, PaywallPlusHeader, PaywallPlusHeading, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPriceNote,
    PaywallPlusScroll, paywallPlusCtaCopy,
   type PaywallPlusState,
 } from './PaywallPlus';
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
-import { COPY, pick } from './PaywallPlusCopy';
+import { COPY, paywallChoosePlan, pick } from './PaywallPlusCopy';
 import { paywallContextHeadline, paywallEntryFactsFromParams } from '../../app/paywall_context_headline';
 import { PaywallTierScope } from './paywall_tier_context';
 import { PAYWALL_V3_CTA } from '../../app/paywall_language_add_copy';
-import { SUBSCRIPTION_TIER_NAME } from '../../app/subscription_tier';
-import { PAYWALL_V3_AUTO_RENEW, PAYWALL_V3_CTA_TRIAL, paywallV3Rows } from '../../app/paywall_v3_rows';
-import { paywallV3Body } from '../../app/paywall_language_add_copy';
+import { applyTierName, SUBSCRIPTION_TIER_NAME } from '../../app/subscription_tier';
+import { PAYWALL_V3_AUTO_RENEW, PAYWALL_V3_CTA_TRIAL } from '../../app/paywall_v3_rows';
 import { onAppEvent } from '../../app/events';
 import { getPaywallControlVisibility } from '../../app/paywall_control_visibility';
 import { isPaywallMEnabled } from './m/paywall_m_flag';
@@ -50,6 +53,9 @@ import { paywallMHeadKindForContext } from './m/paywall_m_head';
 import { usePaywallMPerson } from './m/use_paywall_m_person';
 import { openPromoCodeFromPaywall } from '../../app/paywall_promo_navigation';
 import { paywallCFactCaption } from './paywall_c_fact_caption';
+import { PaywallDuoGlow, PaywallDuoHero, useDuoTierMix } from './duo/PaywallDuoHero';
+import { PaywallDuoPlans } from './duo/PaywallDuoPlans';
+import { PaywallDuoMore, PaywallDuoStickyBuy } from './duo/PaywallDuoMore';
 
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
@@ -71,17 +77,19 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const g = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const { height: windowHeight } = useWindowDimensions();
+  const [viewportHeight, setViewportHeight] = useState(0);
+  const benefits = useMemo(() => plusTabItems(THEME_SLIDERS_V1_ENABLED), []);
   const ctx = entry.context;
   const source = entry.source;
+  const rouletteEnabled = useReferralRouletteEnabled();
+  const showInvite = rouletteEnabled && source === 'entitlement_expired' && (ctx === 'premium_expired' || ctx === 'vip_expired');
   // зачем (координатор 25.10, Ядро c161d894a): вход «Не видим твой Plus» — свой низ окна: «Восстановить покупки» первой, «Оформить Plus» второй
   const serverRefused = ctx === SERVER_REFUSED_CONTEXT;
   const [controlVisibility, setControlVisibility] = useState(getPaywallControlVisibility);
   // зачем (владелец «Да, так», координатор 25.10): пейвол «Вариант М» — за флагом «Пульта» paywall_m_enabled, по умолчанию выключен; вход «Не видим твой Plus» остаётся на своём доке
   const [mFlag, setMFlag] = useState(isPaywallMEnabled);
   const mPerson = usePaywallMPerson(mFlag);
-  // зачем (макет М, окна по месту): факты места входа — из параметров маршрута (урок и число фраз Мастерской от кнопки урока; закрытый урок замка — lessons_done + 1)
-  const wsLessonParam = firstParam((params as Record<string, string | string[] | undefined>).workshop_lesson);
-  const wsPhrasesParam = firstParam((params as Record<string, string | string[] | undefined>).workshop_phrases);
+  // зачем (макет М, окна по месту): факты места входа — из параметров маршрута.
   const lessonsDoneFact = firstParam(params.lessons_done);
   // зачем (5 · ВХОД faf515267, координатор 26.10): итог первого бесплатного разговора приходит параметрами входа dialog_limit — читаем их для панели «Разговор с ИИ», без сети
   const dialogMinutesParam = firstParam((params as Record<string, string | string[] | undefined>).firstDialogMinutes);
@@ -95,11 +103,11 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     const was = text(dialogWasParam);
     const now = text(dialogNowParam);
     return {
-      lockedLesson: num(wsLessonParam) ?? (done === null ? null : done + 1), workshopPhrases: num(wsPhrasesParam),
+      lockedLesson: done === null ? null : done + 1,
       dialogMinutes: num(dialogMinutesParam), dialogPhrases: num(dialogTurnsParam),
       correctionWas: was && now ? was : null, correctionNow: was && now ? now : null,
     };
-  }, [lessonsDoneFact, wsLessonParam, wsPhrasesParam, dialogMinutesParam, dialogTurnsParam, dialogWasParam, dialogNowParam]);
+  }, [lessonsDoneFact, dialogMinutesParam, dialogTurnsParam, dialogWasParam, dialogNowParam]);
   // C остаётся единым визуальным экраном, а подтверждённые факты прежнего М не теряются:
   // при включённом флаге они становятся подписью первой плоской строки выгоды.
   // Общая строка прогресса М сюда не попадает: она не относится к flashcards/language_add/другим контекстам C.
@@ -126,10 +134,6 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const resumeLessonId = params.resume_kind === 'course_lesson' ? parseResumeLessonId(params.resume_lesson_id) : null;
   const [impression] = useState(() => createPaywallAnalyticsImpression(() => entry.impressionId));
   const entryAnalytics = useMemo(() => paywallEntryAnalyticsParams(entry), [entry]);
-  // зачем (владелец 11.10: «все пейволы должны быть контекстными всегда»): тексты окна — по месту входа. Тексты берутся
-  // из уже написанных paywall_copy.ts (контракт app/paywall_context_headline.ts); вход без своего текста (generic) —
-  // прежняя шапка пробного периода.
-  // зачем (утверждённые тексты 11.10): пилюля «Урок 4 закрыт» / «Серия 12 дней» берёт числа из параметров входа.
   const lessonsDoneParam = params.lessons_done;
   const streakParam = params.streak;
   const headline = useMemo(
@@ -137,10 +141,6 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     [ctx, lang, lessonsDoneParam, streakParam],
   );
   const contextual = headline.copyContext !== 'generic' && !!headline.title;
-  // зачем (макет «Все окна Plus», вариант 3; слово владельца 05.11: «макеты пейволов одобряю! внести 1 в 1»): у КАЖДОГО окна свой заголовок и подзаголовок (у общего входа — «Всё приложение целиком»),
-  // три пункта (первый по месту, «Курс дальше», «Больше практики») и абзац про бесплатные уроки 1–3; первая строка больше не повторяет подзаголовок (🔴 №44 Макетов).
-  const v3Rows = useMemo(() => paywallV3Rows(ctx, lang, headline.firstBenefit), [ctx, lang, headline.firstBenefit]);
-  const v3Paragraph = useMemo(() => paywallV3Body(lang).paragraph, [lang]);
   // зачем (макет paywall-context-redesign #c1): пилюля «что закончилось» рядом со значком входа. Поле `pill` в контракт вносит Ядро;
   // пока его нет — пилюли нет (ничего не выдумываем).
   useEffect(() => {
@@ -261,7 +261,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const selectedTrial = p.selected === 'monthly' ? monthlyTrialDays : yearlyTrialDays;
   const selectedPromo = p.selected === 'monthly' ? monthlyPromo : yearlyPromo;
   // зачем (150, координатор 06.11): цена выбранного плана — строкой в нижней панели над кнопкой («Ultra · Год — €39,99 в год»), из того же источника, что плитки (промо → цена магазина → справочная «≈»)
-  const planPriceShown = selectedPromo?.promoPriceString || (p.selected === 'monthly' ? (p.monthlyPrice ? `${p.monthlyPriceSource === 'reference' ? '≈ ' : ''}${p.monthlyPrice}` : '') : (p.yearlyPrice ? `${p.yearlyPriceSource === 'reference' ? '≈ ' : ''}${p.yearlyPrice}` : ''));
+  const planPriceShown = selectedPromo?.promoPriceString || (p.selected === 'monthly' ? p.monthlyPrice : p.yearlyPrice);
   const planLine = labelReady && planPriceShown
     ? `${p.selected === 'monthly' ? `${SUBSCRIPTION_TIER_NAME.plus} · ${pick(lang, COPY.month)}` : `${SUBSCRIPTION_TIER_NAME.ultra} · ${pick(lang, COPY.year)}`} — ${planPriceShown} ${pick(lang, p.selected === 'monthly' ? COPY.perMonth : COPY.perYear)}`
     : '';
@@ -271,7 +271,6 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const cta = paywallPlusCtaCopy(lang, {
     selected: p.selected, yearlyPrice: p.yearlyPrice, monthlyPrice: p.monthlyPrice, yearlyTrialDays, monthlyTrialDays,
     yearlyPromo, monthlyPromo,
-    yearlyApprox: p.yearlyPriceSource === 'reference', monthlyApprox: p.monthlyPriceSource === 'reference',
   });
 
   // зачем (координатор 14.10, 🔴 «закрыл предложение — всё зависло», Сверка WB-4): «ручка» шторки обещает свайп вниз — теперь
@@ -282,17 +281,29 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     p.handleClose('close', 'swipe');
   };
 
-  const closeWindow = () => {
-    console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet scrim_tap checkout=${checkoutInFlight}`); // guard-ok: временная трассировка
-    if (checkoutInFlight) {
-      console.log('[PAYWALL-CLOSE] scrim ignored reason=checkout_in_flight'); // guard-ok: ранний выход пишет причину
-      return;
-    }
-    p.handleClose('close', 'scrim');
-  };
-
-  // зачем (владелец 06.11, Plus/Ultra): Год = Ultra, Месяц = Plus — заголовок, кнопка и тексты «с Plus» следуют выбранной плитке.
   const paywallTier = p.selected === 'yearly' ? 'ultra' : 'plus';
+  // зачем (владелец 11.11, макет docs/work/mockups/paywall-sell-2026-11-11/variant-a.html «Два пути», 1 к 1): первый экран — знак уровня,
+  // заголовок, подпись и две кнопки-тарифа, которые сами покупают. Окно «Не видим твой Plus» остаётся на прежней раскладке: там первой идёт «Восстановить покупки».
+  const duo = !serverRefused;
+  const tierMix = useDuoTierMix(paywallTier);
+  const duoTitle = applyTierName(contextual ? headline.title : (triLang(lang, PLUS_TAB_HEADLINE) ?? PLUS_TAB_HEADLINE.ru), paywallTier);
+  const duoSubtitle = headline.subtitle ? applyTierName(headline.subtitle, paywallTier) : '';
+  const { handlePurchase, savingsPct } = p;
+  const buySelected = useCallback(() => { void handlePurchase(); }, [handlePurchase]);
+  const dockLabel = p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady && selectedPromo ? cta.label : selectedTrial ? (PAYWALL_V3_CTA_TRIAL[lang] ?? PAYWALL_V3_CTA_TRIAL.en) : (PAYWALL_V3_CTA[lang] ?? PAYWALL_V3_CTA.en);
+  // зачем (макет .dock): нижняя кнопка покупки появляется, когда тарифы первого экрана прокручены за верх окна; состояние меняется только на пересечении порога — без ре-рендера на каждый кадр прокрутки
+  const [stickyOn, setStickyOn] = useState(false);
+  const stickyAt = Math.max(240, (viewportHeight || windowHeight) * 0.8);
+  const onScrollY = useCallback((y: number) => {
+    const on = y > stickyAt;
+    setStickyOn((was) => {
+      if (was !== on) console.log(`[PAYWALL-DUO] нижняя кнопка ${on ? 'показана' : 'скрыта'}: y=${Math.round(y)} порог=${Math.round(stickyAt)}`); // guard-ok: одна строка на пересечение порога
+      return on;
+    });
+  }, [stickyAt]);
+  useEffect(() => {
+    DebugLogger.info('[PAYWALL-DUO]', `первый экран: duo=${String(duo)} ctx=${ctx} уровень=${paywallTier} заголовок=«${duoTitle}» контекстный=${String(contextual)} выгодаГода=${savingsPct ?? 'нет'}`);
+  }, [contextual, ctx, duo, duoTitle, savingsPct, paywallTier]);
   return (
     <PaywallTierScope tier={paywallTier}>
     <View style={S.root}>
@@ -306,47 +317,48 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
         <PaywallTrialReminderPrompt lang={lang} g={g} topInset={insets.top} bottomInset={insets.bottom}
           onAllow={p.allowTrialReminder} onSkip={p.skipTrialReminder} />
       ) : (
-        <>
-          {/* зачем (решение владельца 11.10, вариант 1 «Шторка»): окно выезжает поверх того экрана, где человек был, — за ним затемнённый
-              прежний экран, тап по затемнению закрывает (кроме времени оплаты). */}
-          <PaywallScrim onPress={closeWindow} />
-          <PaywallSwipeSheet testID="paywall-sheet" style={[S.sheet, { backgroundColor: g.bg, maxHeight: windowHeight - insets.top - 8 }]}
-            enabled={swipeEnabled} travel={windowHeight} onSwipeClose={onSwipeClose}
-            header={<PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeVisible={controlVisibility.closeVisible} closeDisabled={checkoutInFlight}
-              onClose={() => { console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet close_button`); p.handleClose('close', 'x'); }}
-              contextTitle={headline.title || undefined}
-              contextSubtitle={headline.title ? headline.subtitle : undefined}
-              contextPill={headline.pill || undefined} />}
-          >
-            <PaywallPlusScroll>
-              {/* зачем: выгода этого входа стоит над тарифами (`.ben.glass` макета). */}
-              <PaywallPlusDetails lang={lang} g={g}
-                leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined}
-                // зачем (Сверка 05.11, premium_expired: первая выгода наезжала на подзаголовок, overflow 55): когда шапка уже показывает подзаголовок (есть заголовок входа), подпись первой выгоды его не повторяет
-                leadCaption={contextual && !headline.title ? headline.subtitle : undefined}
-                factCaption={mFactCaption}
-                items={v3Rows} paragraph={v3Paragraph} />
-              {/* зачем (paywall-gaps-states «Лента пробного периода»): порядок образца — выгода, лента, тарифы */}
-              {/* C keeps trial truth compact: each plan shows its own trial; CTA fine shows charge/renewal. */}
-              {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
-                  «Сейчас недоступно» на месте цен. Кнопка покупки активна в обоих случаях, повтор — тихо в фоне. */}
-              {plansShown === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
-              {plansShown === 'error' ? <PaywallPlusPriceNote lang={lang} g={g} reason={p.storeUnavailableReason} /> : null}
-              {plansShown === 'ready' ? (
-                <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
-                  yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
-                  yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
-                  yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo}
-                  yearlyPriceSource={p.yearlyPriceSource} monthlyPriceSource={p.monthlyPriceSource} savingsPct={p.savingsPct} />
-              ) : null}
-              {/* зачем (владелец 11.10, Ядро a0a910e9d): справочная цена — честная тихая строка под плитками; причину «магазина нет» оставляем тихо же. */}
-              {plansShown === 'ready' && (p.pricesApproximate || p.storeUnavailableReason === 'billing_unavailable') ? (
-                <Text testID="paywall-price-note" style={[S.priceNote, { color: g.mutedText }]}>
-                  {p.storeUnavailableReason === 'billing_unavailable' ? pick(lang, COPY.storeUnavailable) : pick(lang, COPY.priceWillConfirm)}
-                </Text>
-              ) : null}
-            </PaywallPlusScroll>
-            <PaywallPlusDockSwitch planLine={planLine} serverRefused={serverRefused} onLater={() => p.handleClose('close', 'x')} lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady && selectedPromo ? cta.label : selectedTrial ? (PAYWALL_V3_CTA_TRIAL[lang] ?? PAYWALL_V3_CTA_TRIAL.en) : (PAYWALL_V3_CTA[lang] ?? PAYWALL_V3_CTA.en)} fine={selectedTrial || selectedPromo ? cta.fine : (PAYWALL_V3_AUTO_RENEW[lang] ?? PAYWALL_V3_AUTO_RENEW.en)}
+        <PaywallSwipeSheet testID="paywall-sheet" style={[S.screen, { backgroundColor: g.bg, paddingTop: insets.top }]}
+          enabled={swipeEnabled} travel={windowHeight} onSwipeClose={onSwipeClose}
+          header={<PaywallPlusHeader lang={lang} g={g} closeVisible={controlVisibility.closeVisible} closeDisabled={checkoutInFlight}
+            onClose={() => p.handleClose('close', 'x')} />}
+        >
+          {duo ? <PaywallDuoGlow mix={tierMix} isLight={g.isLight} /> : null}
+          <PaywallPlusScroll onViewportHeight={setViewportHeight} onScrollY={duo ? onScrollY : undefined}>
+            <PaywallPlusDock hideCta={duo} lowerStyle={duo ? [S.duoMore, { backgroundColor: g.opaqueCard }] : undefined} planLine={planLine} serverRefused={serverRefused} onLater={() => p.handleClose('close', 'x')} lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady && selectedPromo ? cta.label : selectedTrial ? (PAYWALL_V3_CTA_TRIAL[lang] ?? PAYWALL_V3_CTA_TRIAL.en) : (PAYWALL_V3_CTA[lang] ?? PAYWALL_V3_CTA.en)} fine={selectedTrial || selectedPromo ? cta.fine : (PAYWALL_V3_AUTO_RENEW[lang] ?? PAYWALL_V3_AUTO_RENEW.en)}
+              viewportHeight={viewportHeight || Math.max(0, windowHeight - insets.top - 44)}
+              planSection={(
+                <>
+                  {duo ? (
+                    <>
+                      <View style={S.duoGrow} />
+                      <PaywallDuoHero mix={tierMix} />
+                      <Text accessibilityRole="header" testID={contextual ? 'paywall-context-title' : 'paywall-title'} style={[S.duoTitle, { color: g.text }]}>{duoTitle}</Text>
+                      {duoSubtitle ? <Text testID="paywall-subtitle" style={[S.duoSub, { color: g.mutedText }]}>{duoSubtitle}</Text> : null}
+                      <View style={S.duoGrow} />
+                    </>
+                  ) : <PaywallPlusHeading g={g} title={paywallChoosePlan(lang)} />}
+                  {plansShown === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
+                  {plansShown === 'error' ? <PaywallPlusPriceNote lang={lang} g={g} reason={p.storeUnavailableReason} /> : null}
+                  {plansShown === 'ready' && duo ? (
+                    <PaywallDuoPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} onBuy={buySelected} busy={ctaBusy}
+                      yearlyPrice={p.yearlyPrice} monthlyPrice={p.monthlyPrice} yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
+                      yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo} savingsPct={savingsPct} />
+                  ) : null}
+                  {plansShown === 'ready' && !duo ? (
+                    <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
+                      yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
+                      yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
+                      yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo}
+                      yearlyPriceSource={p.yearlyPriceSource} monthlyPriceSource={p.monthlyPriceSource} savingsPct={p.savingsPct} />
+                  ) : null}
+                  {/* зачем (владелец 11.10, Ядро a0a910e9d): справочная цена — честная тихая строка под плитками; причину «магазина нет» оставляем тихо же. */}
+                  {plansShown === 'ready' && (p.pricesApproximate || p.storeUnavailableReason === 'billing_unavailable') ? (
+                    <Text testID="paywall-price-note" style={[S.priceNote, { color: g.mutedText }]}>
+                      {p.storeUnavailableReason === 'billing_unavailable' ? pick(lang, COPY.storeUnavailable) : pick(lang, COPY.priceWillConfirm)}
+                    </Text>
+                  ) : null}
+                </>
+              )}
               notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}
               onPress={() => { void p.handlePurchase(); }}
               // зачем (R1_PAYWALL_UX, координатор 12.10): «Восстановить» не зависит от цен — раньше она молча не нажималась всё время загрузки цен (до потолка 12 с),
@@ -358,9 +370,31 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                 if (ctaBusy) return;
                 // зачем (26.10, «нет окна внутри окна»): промокод заменяет пейвол, а не открывается поверх него — см. openPromoCodeFromPaywall
                 openPromoCodeFromPaywall(router, { context: ctx, source });
-              }} />
-          </PaywallSwipeSheet>
-        </>
+              }}>
+              {contextual && !duo ? (
+                <Text accessibilityRole="header" testID="paywall-context-title" style={[S.contextTitle, { color: g.text }]}>
+                  {applyTierName(headline.title, paywallTier)}
+                </Text>
+              ) : null}
+              {headline.pill ? <Text testID="paywall-pill" style={[S.contextNote, { color: g.accentTextSafe }]}>{headline.pill}</Text> : null}
+              {contextual && !duo && headline.subtitle ? <Text testID="paywall-subtitle" style={[S.contextNote, { color: g.secondary }]}>{applyTierName(headline.subtitle, paywallTier)}</Text> : null}
+              {mFactCaption ? <Text style={[S.contextNote, { color: g.secondary }]}>{mFactCaption}</Text> : null}
+              {duo
+                ? <PaywallDuoMore lang={lang} g={g} tier={paywallTier} items={benefits} trialDays={selectedTrial} chargePrice={planPriceShown || ''} />
+                : <PlusTabBenefits lang={lang} g={g} items={benefits} />}
+              {showInvite ? (
+                <V2Pressable testID="entitlement-expired-invite" accessibilityRole="button" disabled={ctaBusy}
+                  onPress={() => router.replace('/referrals')} style={S.invite}>
+                  <Text style={[S.contextNote, { color: g.accentTextSafe }]}>{pick(lang, COPY.inviteFriend)}</Text>
+                </V2Pressable>
+              ) : null}
+            </PaywallPlusDock>
+          </PaywallPlusScroll>
+          {duo ? (
+            <PaywallDuoStickyBuy g={g} tier={paywallTier} visible={stickyOn} label={applyTierName(dockLabel, paywallTier)} note={planPriceShown ? `${planPriceShown} ${pick(lang, p.selected === 'monthly' ? COPY.perMonth : COPY.perYear)}` : ''}
+              busy={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom} onPress={buySelected} />
+          ) : null}
+        </PaywallSwipeSheet>
       )}
     </View>
     </PaywallTierScope>
@@ -368,8 +402,16 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
 }
 
 const S = StyleSheet.create({
+  invite: { minHeight: 48, alignSelf: 'center', justifyContent: 'center', paddingHorizontal: 12 },
+  contextTitle: { marginTop: 16, fontSize: 21, lineHeight: 27, fontWeight: '800' },
+  contextNote: { marginTop: 8, fontSize: 14, lineHeight: 20 },
   priceNote: { marginTop: 10, fontSize: 13, lineHeight: 18, textAlign: 'center' },
-  // зачем: корень прозрачный — окно лежит поверх прежнего экрана (transparentModal), снизу шторка со скруглёнными верхними углами.
-  root: { flex: 1, justifyContent: 'flex-end' },
-  sheet: { borderTopLeftRadius: 30, borderTopRightRadius: 30, overflow: 'hidden' },
+  // макет «Два пути»: заголовок 33 · 900 · −1, подпись 15/22 с отступом 10; распорки прижимают тарифы к низу первого экрана
+  duoGrow: { flexGrow: 1, minHeight: 16 },
+  duoTitle: { fontSize: 33, lineHeight: 37, fontWeight: '900', letterSpacing: -1 },
+  duoSub: { marginTop: 10, marginBottom: 8, fontSize: 15, lineHeight: 22 },
+  // макет .more: панель на всю ширину окна (поля прокрутки 24 сняты отрицательным отступом), скругление 28 сверху, поля 22, запас снизу под выезжающую кнопку
+  duoMore: { marginHorizontal: -24, paddingHorizontal: 22, paddingTop: 8, paddingBottom: 96, borderTopLeftRadius: 28, borderTopRightRadius: 28 },
+  root: { flex: 1 },
+  screen: { flex: 1 },
 });

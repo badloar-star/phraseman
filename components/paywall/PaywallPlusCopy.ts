@@ -117,6 +117,7 @@ export const compareMore = (lang: Lang, count: number): string => withValue(lang
 
 export const COPY = {
   kicker: LP('PHRASEMAN PLUS', 'PHRASEMAN PLUS', 'PHRASEMAN PLUS', 'PHRASEMAN PLUS', 'PHRASEMAN PLUS', 'PHRASEMAN PLUS', 'PHRASEMAN PLUS', 'PHRASEMAN PLUS', 'PHRASEMAN PLUS'),
+  inviteFriend: LP('Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaşını davet et', 'Zaproś znajomego'),
   close: LP('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij'),
   heroTrialSub: LP(
     'Напомним за 2 дня до списания. Отмена в один тап.',
@@ -215,3 +216,10 @@ export const COPY = {
   afterAllow: LP('Разрешить напоминание', 'Дозволити нагадування', 'Allow reminder', 'Permitir aviso', 'Permitir lembrete', 'Cho phép nhắc', 'Izinkan pengingat', 'Hatırlatmaya izin ver', 'Zezwól na przypomnienie'),
   afterNotNow: LP('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Để sau', 'Nanti saja', 'Şimdi değil', 'Nie teraz'),
 } as const;
+
+const CHOOSE_PLAN = LP(
+  'Выбери план', 'Обери план', 'Choose a plan', 'Elige un plan', 'Escolha um plano',
+  'Chọn gói', 'Pilih paket', 'Bir plan seç', 'Wybierz plan',
+);
+
+export const paywallChoosePlan = (lang: Lang): string => pick(lang, CHOOSE_PLAN);

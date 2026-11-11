@@ -10,7 +10,7 @@ import { SERVER_REFUSED_CONTEXT } from '../../../app/paywall_entry_contract';
 import { paywallMText } from './paywall_m_copy';
 import { PAYWALL_M_LIMITS, PAYWALL_M_TOTAL_LESSONS, type PaywallMChartKind, type PaywallMPerson } from './paywall_m_model';
 
-export type PaywallMHeadKind = 'general' | 'energy' | 'dialog' | 'streak' | 'workshop' | 'lock' | 'refused';
+export type PaywallMHeadKind = 'general' | 'energy' | 'dialog' | 'streak' | 'lock' | 'refused';
 
 export type PaywallMHead = Readonly<{ pill: string | null; kicker: string; title: string; sub: string }>;
 
@@ -25,7 +25,6 @@ export type PaywallMHeadFacts = Readonly<{
   /** Номер закрытого урока (для «общего замка» и Мастерской). */
   lockedLesson?: number | null;
   /** Фраз в пройденном уроке (Мастерская). */
-  workshopPhrases?: number | null;
 }>;
 
 /** Какой график показывает место: разговор с ИИ — про реплики, остальные — про голос. */
@@ -72,14 +71,6 @@ export function paywallMHeadFor(kind: PaywallMHeadKind, lang: Lang, person: Payw
         title: paywallMText(lang, 'm.head.streak.title'),
         sub: paywallMText(lang, 'm.head.streak.sub'),
       };
-    case 'workshop':
-      if (!finite(facts.lockedLesson) || !finite(facts.workshopPhrases)) return base;
-      return {
-        pill: paywallMText(lang, 'm.head.workshop.pill'),
-        kicker: paywallMText(lang, 'm.head.workshop.kicker', { lesson: facts.lockedLesson, n: facts.workshopPhrases }),
-        title: paywallMText(lang, 'm.head.workshop.title'),
-        sub: paywallMText(lang, 'm.head.workshop.sub'),
-      };
     case 'lock': {
       if (!finite(facts.lockedLesson)) return base;
       const ahead = Math.max(0, PAYWALL_M_TOTAL_LESSONS - person.lessonsDone);
@@ -104,7 +95,6 @@ export function paywallMHeadKindForContext(context: string): PaywallMHeadKind {
     case 'no_energy': return 'energy';
     case 'dialog_limit': case 'dialog_locked_level': case 'dialog_analysis': return 'dialog';
     case 'streak': return 'streak';
-    case 'phrase_workshop': return 'workshop';
     case 'course_after_lesson3': case 'lesson_b1': return 'lock';
     case SERVER_REFUSED_CONTEXT: return 'refused'; // константа Ядра: слово входа не пишем в клиентских файлах (сторож paywall_server_refused_variant)
     default: return 'general';

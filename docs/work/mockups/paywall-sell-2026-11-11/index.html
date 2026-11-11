@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пейволы Plus / Ultra — 4 продающих варианта</title>
+<!-- зачем: владелец 11.11 — «две кнопки, минимум текста, вся инфа ниже по скроллу» + аудит, что добавить для продаж.
+     Основа — сегодняшний пейвол в коде (PaywallPlusScreen / PaywallPlanRows): Месяц = Plus (фиолет), Год = Ultra (коралл-розовый), цены €7,99 / €39,99. -->
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url(../home-luxe-2026-11-11/fonts/Inter-Regular.ttf)}
+@font-face{font-family:Inter;font-weight:600;src:url(../home-luxe-2026-11-11/fonts/Inter-SemiBold.ttf)}
+@font-face{font-family:Inter;font-weight:700;src:url(../home-luxe-2026-11-11/fonts/Inter-Bold.ttf)}
+@font-face{font-family:Inter;font-weight:900;src:url(../home-luxe-2026-11-11/fonts/Inter-Black.ttf)}
+:root{
+  --page:#08070c; --bg:#0c0b12; --sheet:#15131d; --tile:#1d1a27; --tile2:#262232;
+  --ink:#f5f1f9; --mut:#aca4ba; --line:rgba(255,255,255,.08);
+  --plus:#8e7cff; --plus2:#5f90db; --u1:#ff7a59; --u2:#ff5f8f; --u3:#ff4fd0; --uink:#2b0717;
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--page);color:var(--ink);font:400 15px/1.45 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:40px 24px 80px}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;text-align:left}
+h1{font-size:34px;line-height:1.12;font-weight:900;letter-spacing:-.025em;text-wrap:balance}
+.lead{color:var(--mut);max-width:62ch;margin-top:10px}
+.gallery{display:flex;flex-wrap:wrap;gap:40px 32px;margin-top:36px;justify-content:center}
+.slot{width:375px}
+.slot h2{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.slot p{color:var(--mut);font-size:14px;margin:4px 0 14px;min-height:40px}
+
+/* ── телефон ── */
+.phone{position:relative;width:375px;height:780px;border-radius:44px;overflow:hidden;background:var(--bg);box-shadow:0 0 0 1px rgba(255,255,255,.07),0 30px 80px -20px #000}
+.scr{position:absolute;inset:0;overflow-y:auto;scrollbar-width:none;scroll-behavior:smooth}
+.scr::-webkit-scrollbar{display:none}
+.x{position:absolute;z-index:5;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.09);display:grid;place-items:center;font-size:15px;color:var(--ink);transition:transform .14s var(--ease)}
+.x:active{transform:scale(.92)}
+.first{min-height:780px;display:flex;flex-direction:column;padding:76px 22px 16px;position:relative}
+.first>*{animation:in .5s var(--ease) backwards}
+.first>*:nth-child(2){animation-delay:.05s}.first>*:nth-child(3){animation-delay:.1s}.first>*:nth-child(4){animation-delay:.15s}.first>*:nth-child(5){animation-delay:.2s}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.grow{flex:1}
+.hl{font-size:33px;line-height:1.1;font-weight:900;letter-spacing:-.03em;text-wrap:balance}
+.sub{color:var(--mut);font-size:15px;margin-top:10px;text-wrap:pretty}
+
+/* ── две кнопки покупки ── */
+.buys{display:grid;gap:10px}
+.buy{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:74px;padding:14px 18px;border-radius:22px;overflow:hidden;transition:transform .15s var(--ease),filter .2s}
+.buy:active{transform:scale(.97)}
+.buy b{display:block;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.buy i{display:block;font-style:normal;font-size:13px;opacity:.86;margin-top:2px}
+.buy .r{text-align:right;flex:none;font-variant-numeric:tabular-nums}
+.buy .r b{font-size:21px;font-weight:900}
+.ultra{color:var(--uink);background:linear-gradient(120deg,var(--u1),var(--u2) 48%,var(--u3));box-shadow:0 14px 34px -12px rgba(255,95,143,.65),inset 0 1px 0 rgba(255,255,255,.35)}
+.ultra::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);transform:translateX(-120%);animation:sheen 4.5s var(--ease) 1.2s infinite}
+@keyframes sheen{0%{transform:translateX(-120%)}28%,100%{transform:translateX(120%)}}
+.plus{background:linear-gradient(120deg,#231e3d,#1c2440);box-shadow:inset 0 0 0 1px rgba(142,124,255,.28)}
+.plus b:first-child{color:#cfc7ff}
+.save{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:99px;background:var(--uink);color:#ffd9e4;font-size:12px;font-weight:700;vertical-align:2px}
+.buy.busy{pointer-events:none;filter:saturate(.7) brightness(.9)}
+.buy.busy .r{visibility:hidden}
+.buy.busy::before{content:"";position:absolute;right:24px;top:50%;width:20px;height:20px;margin-top:-10px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:spin .55s linear infinite}
+@keyframes spin{to{transform:rotate(1turn)}}
+.fine{color:var(--mut);font-size:13px;text-align:center;margin-top:12px}
+.cue{align-self:center;margin-top:8px;padding:10px 14px;color:var(--mut);font-size:13px;font-weight:600;display:flex;gap:6px;align-items:center}
+.cue span{animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(3px)}}
+
+/* ── подробности ниже ── */
+.more{padding:8px 22px 28px;background:var(--sheet);border-radius:28px 28px 0 0}
+.more h3{font-size:20px;font-weight:700;letter-spacing:-.015em;margin:26px 0 12px}
+.cmp{display:grid;grid-template-columns:1fr 92px 92px;font-size:14px}
+.cmp>*{padding:11px 0;border-top:1px solid var(--line);display:flex;align-items:center}
+.cmp>.h{border:0;padding:0 0 6px;color:var(--mut);font-size:13px;font-weight:600}
+.cmp>:nth-child(3n+2){justify-content:center;color:var(--mut);text-align:center}
+.cmp>:nth-child(3n){justify-content:center;font-weight:700;text-align:center;background:rgba(142,124,255,.1)}
+.cmp>.h:nth-child(3){color:#cfc7ff;border-radius:12px 12px 0 0;padding-top:8px}
+.cmp>:nth-last-child(1){border-radius:0 0 12px 12px}
+.all{margin-top:10px;color:#cfc7ff;font-size:14px;font-weight:600;padding:8px 0}
+.tl{display:grid;gap:0}
+.tl div{position:relative;padding:0 0 18px 30px}
+.tl div::before{content:"";position:absolute;left:5px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--u2)}
+.tl div::after{content:"";position:absolute;left:9.5px;top:18px;bottom:-4px;width:1px;background:var(--line)}
+.tl div:last-child::after{display:none}
+.tl b{display:block;font-weight:700}.tl span{color:var(--mut);font-size:14px}
+details{border-top:1px solid var(--line)}
+summary{list-style:none;padding:14px 0;font-weight:600;display:flex;justify-content:space-between;cursor:pointer}
+summary::after{content:"+";color:var(--mut);font-weight:400;transition:transform .2s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--mut);font-size:14px;padding:0 0 14px}
+.foot{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;margin-top:22px;color:var(--mut);font-size:13px}
+.foot a{color:inherit;text-decoration:none;padding:10px 0}
+.dock{position:sticky;bottom:0;z-index:4;padding:10px 16px 16px;background:linear-gradient(transparent,var(--sheet) 34%);transform:translateY(110%);transition:transform .32s var(--ease)}
+.dock.on{transform:none}
+.dock .buy{min-height:56px;border-radius:18px;width:100%}
+
+/* ── A: знак + две кнопки ── */
+.a .first{background:radial-gradient(120% 60% at 50% 0,rgba(255,95,143,.24),transparent 70%),var(--bg)}
+.mark{width:84px;height:84px;margin-bottom:26px;display:grid;place-items:center;font-size:40px;color:var(--uink);background:linear-gradient(135deg,var(--u1),var(--u2),var(--u3));clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);filter:drop-shadow(0 12px 30px rgba(255,95,143,.5))}
+/* ── B: сначала бесплатно ── */
+.b .first{background:radial-gradient(90% 50% at 100% 0,rgba(142,124,255,.22),transparent 70%),radial-gradient(90% 45% at 0 30%,rgba(255,122,89,.16),transparent 70%),var(--bg)}
+.big{font-size:104px;line-height:.9;font-weight:900;letter-spacing:-.05em;color:var(--u2)}
+.steps{display:flex;margin-top:28px}
+.steps div{flex:1;font-size:13px;color:var(--mut);padding-top:16px;position:relative}
+.steps div::before{content:"";position:absolute;top:0;left:0;right:6px;height:4px;border-radius:4px;background:var(--tile2)}
+.steps div:first-child::before{background:linear-gradient(90deg,var(--u1),var(--u2))}
+.steps b{display:block;color:var(--ink);font-weight:700;font-size:14px}
+.ghost{justify-content:center;min-height:54px;background:rgba(255,255,255,.07);font-weight:600;font-size:15px}
+/* ── C: твой путь ── */
+.c .first{background:radial-gradient(100% 50% at 50% 100%,rgba(142,124,255,.2),transparent 70%),var(--bg)}
+.path{display:grid;grid-template-columns:repeat(8,1fr);gap:9px;margin-bottom:30px}
+.path s{aspect-ratio:1;border-radius:11px;background:var(--tile);display:grid;place-items:center;font-size:12px;font-weight:700;color:#5d566b;text-decoration:none}
+.path s.d{background:linear-gradient(135deg,var(--plus),var(--plus2));color:#fff}
+.path s.n{background:var(--tile2);color:var(--ink);box-shadow:0 0 0 2px var(--u2),0 0 22px rgba(255,95,143,.5)}
+/* ── D: шторка поверх урока ── */
+.d .back{position:absolute;inset:0;padding:70px 24px;background:#100e18;filter:blur(3px) brightness(.55)}
+.d .back div{height:120px;border-radius:24px;background:var(--tile);margin-bottom:14px}
+.d .back div+div{height:54px;width:70%}
+.d .gap{height:236px}
+.d .first{min-height:544px;padding:12px 22px 14px;background:var(--sheet);border-radius:30px 30px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.5)}
+.d .more{border-radius:0}
+.grab{align-self:center;width:38px;height:5px;border-radius:5px;background:rgba(255,255,255,.2);margin-bottom:24px}
+.bolt{width:56px;height:56px;border-radius:18px;background:rgba(255,122,89,.16);display:grid;place-items:center;font-size:26px;margin-bottom:16px}
+.pair{display:grid;grid-template-columns:1.12fr 1fr;gap:10px}
+.pair .buy{flex-direction:column;align-items:flex-start;justify-content:flex-end;min-height:170px;padding:16px}
+.pair .buy b{white-space:nowrap}.pair .buy>span:not(.r):not(.save) b{font-size:15px}
+.d .first .x{position:absolute;top:14px;right:14px}
+.pair .buy .r{text-align:left}.pair .buy .r b{font-size:27px}
+.pair .save{position:absolute;top:14px;left:16px;margin:0}
+
+/* ── аудит ── */
+.audit{max-width:1100px;margin:72px auto 0}
+.audit h2{font-size:28px;font-weight:900;letter-spacing:-.02em}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:8px 56px;margin-top:20px}
+.cols h3{font-size:16px;font-weight:700;margin:22px 0 4px;color:#ffb3c8}
+.it{padding:14px 0;border-top:1px solid var(--line)}
+.it b{font-weight:700}.it span{display:block;color:var(--mut);font-size:14px;margin-top:3px}
+.it em{font-style:normal;font-size:12px;font-weight:700;color:#cfc7ff;background:rgba(142,124,255,.16);padding:2px 8px;border-radius:99px;margin-left:6px;white-space:nowrap}
+@media (prefers-reduced-motion:reduce){*,*::after,*::before{animation:none!important;transition:none!important}.scr{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<h1>Пейвол Plus / Ultra: четыре продающих варианта</h1>
+<p class="lead">На первом экране — только заголовок и две кнопки, каждая сразу ведёт к оплате (один тап вместо «выбери тариф → нажми кнопку»). Всё остальное — ниже по прокрутке. Телефоны живые: листай внутри, жми кнопки.</p>
+
+<div class="gallery">
+  <section class="slot"><h2>A · Два пути</h2><p>Самый чистый. Знак Ultra, одна фраза, две кнопки с ценой.</p>
+    <div class="phone a"><button class="x" aria-label="Закрыть">✕</button><div class="scr">
+      <div class="first"><div class="grow"></div><div class="mark">✦</div>
+        <div class="hl">Занимайся сколько хочешь</div><div class="sub">Все 32 урока, энергия не тратится, ИИ разбирает каждую ошибку.</div>
+        <div class="grow"></div><div data-buys></div></div>
+      <div data-more></div></div></div></section>
+
+  <section class="slot"><h2>B · Сначала бесплатно</h2><p>Продаёт пробный период: огромная «7» и честная шкала, когда спишут.</p>
+    <div class="phone b"><button class="x" aria-label="Закрыть">✕</button><div class="scr">
+      <div class="first"><div class="grow"></div>
+        <div><div class="big">7</div><div class="hl">дней бесплатно</div>
+        <div class="steps"><div><b>Сегодня</b>всё открыто</div><div><b>День 5</b>напомним</div><div><b>День 7</b>€39,99 в год</div></div></div>
+        <div class="grow"></div>
+        <div class="buys"><button class="buy ultra" style="justify-content:center;min-height:64px"><b>Начать бесплатно</b></button>
+          <button class="buy ghost">Plus на месяц · €7,99</button></div>
+        <div class="fine">Отменишь до 7-го дня — ничего не спишем</div>
+        <button class="cue">Что входит <span>↓</span></button></div>
+      <div data-more></div></div></div></section>
+
+  <section class="slot"><h2>C · Твой путь</h2><p>Личный: показывает пройденное и то, что закрыто. Цифры — из прогресса человека.</p>
+    <div class="phone c"><button class="x" aria-label="Закрыть">✕</button><div class="scr">
+      <div class="first"><div class="grow"></div><div class="path" id="path"></div>
+        <div class="hl">3 урока пройдено. Впереди ещё 29</div><div class="sub">От простых фраз до свободного разговора.</div>
+        <div class="grow"></div><div data-buys></div></div>
+      <div data-more></div></div></div></section>
+
+  <section class="slot"><h2>D · Шторка на месте</h2><p>Не уводит с урока: выезжает снизу там, где кончилась энергия. Две плитки-кнопки рядом.</p>
+    <div class="phone d"><div class="back"><div></div><div></div><div></div></div><div class="scr">
+      <div class="gap"></div>
+      <div class="first"><button class="x" aria-label="Закрыть">✕</button><div class="grab"></div><div class="bolt">⚡</div>
+        <div class="hl" style="font-size:28px">Энергия закончилась</div><div class="sub">С Plus она не тратится — продолжай сразу.</div>
+        <div class="grow"></div>
+        <div class="pair">
+          <button class="buy ultra"><span class="save">−58%</span><span><b>✦ Ultra · год</b></span><span class="r"><b>€39,99</b><i>7 дней бесплатно</i></span></button>
+          <button class="buy plus"><span><b>◆ Plus · месяц</b></span><span class="r"><b>€7,99</b><i>в месяц</i></span></button></div>
+        <div class="fine">Или подожди 30 минут — энергия вернётся сама</div>
+        <button class="cue">Что входит <span>↓</span></button></div>
+      <div data-more></div></div></div></section>
+</div>
+
+<section class="audit">
+  <h2>Аудит: что добавить, чтобы продавало лучше</h2>
+  <div class="cols">
+    <div><h3>Даст больше всего</h3>
+      <div class="it"><b>Покупка в один тап</b><em>во всех 4</em><span>Сейчас: выбрать плитку → нажать кнопку. Каждая кнопка-тариф сама открывает оплату — шаг исчезает.</span></div>
+      <div class="it"><b>Вернуть «−58%» на годовой</b><em>A, C, D</em><span>€7,99 × 12 = €95,88 против €39,99. Сейчас выгода года нигде не названа. Внимание: 05.11 бейдж убирали по твоему слову — решение за тобой.</span></div>
+      <div class="it"><b>Шкала пробного периода</b><em>B и ниже во всех</em><span>«Сегодня → напомним на 5-й день → спишем на 7-й». Снимает главный страх «забуду отменить». Напоминание в приложении уже есть.</span></div>
+      <div class="it"><b>Заголовок по месту входа</b><em>C, D</em><span>Тексты под 20+ входов уже написаны («Энергия закончилась», «Дальше — в Plus»), но сегодня главным стоит общий «Выбери план».</span></div>
+      <div class="it"><b>Кнопка, которая едет за пальцем</b><em>во всех 4</em><span>Когда человек листает описание вниз, внизу появляется компактная кнопка покупки — не надо возвращаться наверх.</span></div>
+    </div>
+    <div><h3>Дальше по силе</h3>
+      <div class="it"><b>Личные цифры</b><em>C</em><span>«3 урока пройдено, серия 5 дней» — потерять своё жальче, чем не получить чужое. Данные уже приходят в окно.</span></div>
+      <div class="it"><b>Короткая таблица «Бесплатно / Plus»</b><em>ниже во всех</em><span>6 самых сильных строк вместо 15, остальные — по кнопке «Все 15 пунктов».</span></div>
+      <div class="it"><b>Ответы на три страха</b><em>ниже во всех</em><span>Как отменить, что с прогрессом, можно ли сменить план. Раскрываются по тапу.</span></div>
+      <div class="it"><b>Мягкий выход в D</b><span>«Или подожди 30 минут» — честная альтернатива повышает доверие и не злит.</span></div>
+      <div class="it"><b>Настоящие отзывы и оценка из сторов</b><span>В макетах нет — выдуманные ставить нельзя. Появятся реальные — место под них сразу после таблицы.</span></div>
+      <div class="it"><b>Предложение при закрытии</b><span>Один раз после ✕: «Месяц за полцены» через промо-цену стора. Механика промо в коде уже есть.</span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+// зачем: общий блок двух кнопок и «подробностей ниже» — один источник на все телефоны, чтобы варианты отличались только первым экраном.
+const BUYS = `<div class="buys">
+  <button class="buy ultra"><span><b>✦ Ultra · год <span class="save">−58%</span></b><i>7 дней бесплатно</i></span><span class="r"><b>€39,99</b><i>в год</i></span></button>
+  <button class="buy plus"><span><b>◆ Plus · месяц</b><i>без пробного</i></span><span class="r"><b>€7,99</b><i>в месяц</i></span></button></div>
+  <div class="fine">Автопродление · отмена в любой момент</div>
+  <button class="cue">Что входит <span>↓</span></button>`;
+const ROWS = [['Уроки курса','1–3','Все 32'],['Энергия','5 в запасе','Не тратится'],['Говорить вслух','3 в день','Без лимита'],['Разбор ошибки ИИ','3 в день','Каждая'],['Языки курса','Один','Все'],['Защита серии','—','3 в месяц']];
+const MORE = `<div class="more">
+  <h3>Что меняется с подпиской</h3>
+  <div class="cmp"><span class="h"></span><span class="h">Бесплатно</span><span class="h">Plus</span>${ROWS.map(r=>r.map(c=>`<span>${c}</span>`).join('')).join('')}</div>
+  <button class="all">Все 15 пунктов</button>
+  <h3>Как работает пробный период</h3>
+  <div class="tl"><div><b>Сегодня</b><span>Всё открыто, с карты — €0</span></div><div><b>День 5</b><span>Пришлём напоминание</span></div><div><b>День 7</b><span>Первое списание €39,99. Отменил раньше — ничего не спишем</span></div></div>
+  <h3>Частые вопросы</h3>
+  <details><summary>Как отменить?</summary><p>В настройках App Store или Google Play, в два тапа. Доступ останется до конца оплаченного срока.</p></details>
+  <details><summary>Что будет с моим прогрессом?</summary><p>Уроки, серия и карточки сохраняются всегда — с подпиской и без неё.</p></details>
+  <details><summary>Можно перейти с месяца на год?</summary><p>Да, в любой момент в настройках магазина.</p></details>
+  <div class="foot"><a href="#">Восстановить покупки</a><a href="#">Промокод</a><a href="#">Условия</a><a href="#">Конфиденциальность</a></div>
+</div>
+<div class="dock"><button class="buy ultra"><span><b>Начать бесплатно</b></span><span class="r"><i>потом €39,99 в год</i></span></button></div>`;
+
+document.querySelectorAll('[data-buys]').forEach(n => { n.outerHTML = BUYS; });
+document.querySelectorAll('[data-more]').forEach(n => { n.outerHTML = MORE; });
+document.getElementById('path').innerHTML = Array.from({length:32},(_,i)=>`<s class="${i<3?'d':i===3?'n':''}">${i<3?'✓':i===3?'4':'🔒'}</s>`).join('').replace(/🔒/g,'');
+
+document.querySelectorAll('.phone').forEach(phone => {
+  const scr = phone.querySelector('.scr'), dock = phone.querySelector('.dock'), more = phone.querySelector('.more');
+  // зачем: липкая кнопка появляется, только когда две главные кнопки ушли из вида
+  const lastBuy = [...phone.querySelectorAll('.first .buy')].pop();
+  scr.addEventListener('scroll', () => dock.classList.toggle('on', lastBuy.getBoundingClientRect().bottom < scr.getBoundingClientRect().top + 60), {passive: true});
+  phone.querySelectorAll('.cue').forEach(c => c.onclick = () => scr.scrollTo({top: more.offsetTop - 12}));
+  // зачем: мгновенный отклик на тап покупки — кнопка сразу «занята», пока открывается окно магазина; повторный тап игнорируется
+  phone.querySelectorAll('.buy').forEach(b => b.onclick = () => { if (b.classList.contains('busy')) return; b.classList.add('busy'); setTimeout(() => b.classList.remove('busy'), 1400); });
+});
+</script>
+</body>
+</html>

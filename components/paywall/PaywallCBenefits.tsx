@@ -5,7 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { LP, pick } from './PaywallPlusCopy';
+import { COPY, LP, pick } from './PaywallPlusCopy';
 
 type GlassTokens = ReturnType<typeof liquidGlassTokens>;
 export const PAYWALL_C_BENEFIT_COUNT = 3;
@@ -32,7 +32,7 @@ const Row = memo(function Row({ g, title, caption, index }: { g: GlassTokens; ti
       opacity: enter,
       transform: [{ translateY: enter.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
     }]}>
-      <View style={S.check}><Ionicons name="checkmark" size={20} color={g.text} /></View>
+      <View style={S.check}><Ionicons name="checkmark" size={20} color={g.accentGraphic} /></View>
       <View style={S.copy}>
         <Text style={[S.title, { color: g.text }]}>{title}</Text>
         {caption ? <Text style={[S.caption, { color: g.text }]}>{caption}</Text> : null}
@@ -55,7 +55,8 @@ export const PaywallCBenefits = memo(function PaywallCBenefits({ lang, g, leadBe
       caption: index === 0 && leadBenefit ? (factCaption || leadCaption || '') : pick(lang, benefit.detail),
     }));
   return (
-    <View testID="paywall-c-benefits">
+    <View testID="paywall-c-benefits" style={[S.section, { borderTopColor: g.line }]}>
+      <Text accessibilityRole="header" style={[S.heading, { color: g.text }]}>{pick(lang, COPY.whatsIncluded)}</Text>
       {benefits.map((benefit, index) => <Row key={`${index}:${benefit.title}`} g={g} title={benefit.title} caption={benefit.caption} index={index} />)}
       {paragraph ? <Text testID="paywall-v3-paragraph" style={[S.paragraph, { color: g.text }]}>{paragraph}</Text> : null}
     </View>
@@ -63,6 +64,8 @@ export const PaywallCBenefits = memo(function PaywallCBenefits({ lang, g, leadBe
 });
 
 const S = StyleSheet.create({
+  section: { marginTop: 16, borderTopWidth: StyleSheet.hairlineWidth, paddingTop: 16 },
+  heading: { fontSize: 16, lineHeight: 22, fontWeight: '800', marginBottom: 4 },
   // макет «Все окна Plus»: строка плотнее — отступ 10, пункт 16, строка под ним 13 (шапка/абзац/плитки/кнопка помещаются на 360×800)
   row: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingVertical: 10 },
   check: { width: 26, alignItems: 'flex-start', justifyContent: 'center', paddingTop: 1 },

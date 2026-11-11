@@ -16,7 +16,7 @@ import { useLang } from '../LangContext';
 import { useV2Palette } from '../v2/useV2Palette';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
-import { WARMUP_GAMES, peekWarmup, subscribeWarmup, warmupPlayedCount } from '../../modules/games/warmup_state';
+import { peekWarmup, subscribeWarmup, warmupPlayedCount } from '../../modules/games/warmup_state';
 
 const NAV_GUARD_MS = 700;
 const TITLE = { ru: 'Разминка на 4 минуты', uk: 'Розминка на 4 хвилини', es: 'Calentamiento de 4 minutos', en: '4-minute warm-up' } as const;
@@ -30,7 +30,7 @@ function WarmupTodayRow({ style, testID = 'today-warmup-row' }: Props) {
   const state = useSyncExternalStore(subscribeWarmup, peekWarmup, peekWarmup);
   const lastNavAt = useRef(0);
   const played = warmupPlayedCount(state);
-  const total = WARMUP_GAMES.length;
+  const total = state.games.length;
   const done = played >= total;
   const title = triLang(lang, TITLE);
 
@@ -56,7 +56,7 @@ function WarmupTodayRow({ style, testID = 'today-warmup-row' }: Props) {
       <View style={s.copy}>
         <Text numberOfLines={1} style={[s.title, { color: p.text }]}>{title}</Text>
         <View style={s.marks}>
-          {WARMUP_GAMES.map((game) => (
+          {state.games.map((game) => (
             <View key={game.id} style={[s.mark, { backgroundColor: state.results[game.id] !== undefined ? p.correct : p.track }]} />
           ))}
         </View>

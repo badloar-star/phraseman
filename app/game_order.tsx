@@ -19,6 +19,7 @@ import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { hapticTap } from '../hooks/use-haptics';
 import { INITIAL_ORDER_STATE, ORDER_SEED_TASKS, isValidOrderTask, shuffledOrder, tapOrderLine } from '../modules/games/dialogue_core';
+import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { safeRouterBack } from './navigation_back';
 
 const COPY = {
@@ -72,6 +73,11 @@ export default function GameOrderScreen() {
   const onClose = useCallback(() => safeRouterBack(router, '/(tabs)/home' as never), [router]);
   const total = task ? task.lines.length : 0;
   const finished = total > 0 && game.placed >= total;
+
+  // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
+  useEffect(() => {
+    if (finished) markWarmupGamePlayed('order', `${total}/${total}`);
+  }, [finished, total]);
 
   return (
     <ScreenGradient>

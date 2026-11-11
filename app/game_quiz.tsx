@@ -24,6 +24,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import {
   INITIAL_QUIZ_STATE, QUIZ_SEED_DECKS, answerQuiz, isQuizKind, isValidQuizRound, nextQuizRound, type QuizRound,
 } from '../modules/games/quiz_core';
+import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
 
@@ -135,6 +136,11 @@ export default function GameQuizScreen() {
       setPhase('show');
     }, result.correct ? AFTER_OK_MS : AFTER_MISS_MS));
   }, [deck.skillAction, game, kind, phase, round, rounds.length]);
+
+  // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
+  useEffect(() => {
+    if (phase === 'done' && rounds.length > 0) markWarmupGamePlayed(kind, `${game.correct}/${rounds.length}`);
+  }, [game.correct, kind, phase, rounds.length]);
 
   const onClose = useCallback(() => {
     timers.current.forEach(clearTimeout);

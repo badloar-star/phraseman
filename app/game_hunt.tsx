@@ -20,6 +20,7 @@ import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { hapticTap } from '../hooks/use-haptics';
 import { HUNT_SEED_TASKS, isHuntHit, isValidHuntTask } from '../modules/games/dialogue_core';
+import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { safeRouterBack } from './navigation_back';
 
 const COPY = {
@@ -71,6 +72,11 @@ export default function GameHuntScreen() {
     lock.current = true;
     setFound(true);
   }, [task]);
+
+  // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
+  useEffect(() => {
+    if (found && isLast && tasks.length > 0) markWarmupGamePlayed('hunt', `${tasks.length}/${tasks.length}`);
+  }, [found, isLast, tasks.length]);
 
   const onClose = useCallback(() => safeRouterBack(router, '/(tabs)/home' as never), [router]);
   const onNext = useCallback(() => {

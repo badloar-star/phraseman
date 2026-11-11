@@ -19,7 +19,7 @@ import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
-import { WARMUP_GAMES, nextWarmupIndex, peekWarmup, subscribeWarmup, warmupPlayedCount } from '../modules/games/warmup_state';
+import { nextWarmupIndex, peekWarmup, subscribeWarmup, warmupPlayedCount } from '../modules/games/warmup_state';
 import { SKILL_NAME } from '../modules/skills/skill_copy';
 import { refreshSkills } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
@@ -38,8 +38,6 @@ const COPY = {
   back: { ru: 'Назад', uk: 'Назад', es: 'Atrás', en: 'Back' },
 } as const;
 
-const ICONS = { flow: 'flash', odd_word: 'checkmark', sort: 'layers' } as const;
-
 export default function WarmupScreen() {
   const router = useRouter();
   const p = useV2Palette();
@@ -57,19 +55,19 @@ export default function WarmupScreen() {
   }, []);
 
   const played = warmupPlayedCount(state);
-  const complete = played === WARMUP_GAMES.length;
+  const complete = played === state.games.length;
 
   // после возвращения из игры карусель сама встаёт на следующую несыгранную игру
   useEffect(() => {
     const next = nextWarmupIndex(state, index);
-    if (next !== null && next !== index && state.results[WARMUP_GAMES[index].id] !== undefined) {
+    if (next !== null && next !== index && state.results[state.games[index].id] !== undefined) {
       setIndex(next);
       scroll.current?.scrollTo({ x: next * (CARD_W + CARD_GAP), animated: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
-  const game = WARMUP_GAMES[index];
+  const game = state.games[index];
   const date = useMemo(() => {
     try {
       const text = new Intl.DateTimeFormat(lang, { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date());
@@ -85,11 +83,11 @@ export default function WarmupScreen() {
     const now = Date.now();
     if (now - lastNavAt.current < NAV_GUARD_MS) return; // защита от двойного тапа
     lastNavAt.current = now;
-    router.push(WARMUP_GAMES[target].route as never);
+    router.push(state.games[target].route as never);
   }, [router]);
 
   const onScrollEnd = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const next = Math.max(0, Math.min(WARMUP_GAMES.length - 1, Math.round(e.nativeEvent.contentOffset.x / (CARD_W + CARD_GAP))));
+    const next = Math.max(0, Math.min(state.games.length - 1, Math.round(e.nativeEvent.contentOffset.x / (CARD_W + CARD_GAP))));
     setIndex(next);
   }, []);
 
@@ -129,13 +127,13 @@ export default function WarmupScreen() {
             onMomentumScrollEnd={onScrollEnd}
             style={s.deckScroll}
           >
-            {WARMUP_GAMES.map((item, i) => { // guard-ok: карт всегда три, виртуализация не нужна
+            {state.games.map((item, i) => { // guard-ok: карт всегда три, виртуализация не нужна
               const result = resultLabel(state.results[item.id]);
               return (
                 <V2Card key={item.id} seed={i} raised={i === index} style={s.card} testID={`warmup-card-${item.id}`} accessibilityLabel={triLang(lang, item.name)} onPress={() => start(i)}>
                   <View style={s.tags}>
                     <View style={[s.tag, { backgroundColor: p.glassRaised }]}>
-                      <Ionicons name={ICONS[item.id]} size={16} color={p.text} />
+                      <Ionicons name={item.icon} size={16} color={p.text} />
                       <Text style={[s.tagText, { color: p.text }]}>{triLang(lang, SKILL_NAME[item.skill])}</Text>
                     </View>
                     {result ? (
@@ -154,10 +152,10 @@ export default function WarmupScreen() {
           </ScrollView>
 
           <View style={s.dots}>
-            {WARMUP_GAMES.map((item, i) => <View key={item.id} style={[s.dot, { backgroundColor: i === index ? p.text : p.track }]} />)}
+            {state.games.map((item, i) => <View key={item.id} style={[s.dot, { backgroundColor: i === index ? p.text : p.track }]} />)}
           </View>
           <View style={s.segs}>
-            {WARMUP_GAMES.map((item) => <View key={item.id} style={[s.seg, { backgroundColor: state.results[item.id] !== undefined ? p.text : p.track }]} />)}
+            {state.games.map((item) => <View key={item.id} style={[s.seg, { backgroundColor: state.results[item.id] !== undefined ? p.text : p.track }]} />)}
           </View>
           <V2Button testID="warmup-start" label={cta} icon={complete ? undefined : 'play'} iconPosition="leading" disabled={complete} onPress={() => start(index)} />
         </View>

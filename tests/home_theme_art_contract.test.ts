@@ -55,6 +55,14 @@ describe('Home per-theme artwork contract', () => {
     expect(phrase).toContain('getHomeSupportingArt(themeMode).phraseOfDay');
   });
 
+  test('the Peak crown accent is tinted with the theme colour in every theme', () => {
+    // зачем (владелец 11.11: «элемент короны, который должен краситься под цвет темы, не красится — исправь»):
+    // исключение «Пик в Авроре без окраски» снято; плитки не выключают окраску слоя .accent ни для одной темы.
+    const tiles = readFileSync(join(ROOT, 'components/home/v2/HomeV2FeatureTiles.tsx'), 'utf8');
+    expect(tiles).toContain('accent={tile.artAccent}');
+    expect(tiles).not.toContain('tintAccent');
+  });
+
   test('renders the scoped Home artwork at owner-readable sizes', () => {
     const home = readFileSync(join(ROOT, 'app/(tabs)/home.tsx'), 'utf8');
     const surveyMotion = readFileSync(join(ROOT, 'constants/motionHybrid.ts'), 'utf8');

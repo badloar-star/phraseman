@@ -108,7 +108,7 @@ function SkillsRadar({ axes, activeIndex, gridColor, axisColor, shapeFill, shape
         const y = CY + Math.sin(angle(i, n)) * R * LABEL_K;
         return (
           <View key={a.key} pointerEvents="none" style={[styles.labelBox, { left: x - LABEL_W / 2, top: y - LABEL_H / 2 }]}>
-            <Text numberOfLines={1} maxFontSizeMultiplier={1.15} style={[styles.label, { color: activeIndex === i ? labelActiveColor : labelColor }]}>{a.label}</Text>
+            <Text maxFontSizeMultiplier={1.15} style={[styles.label, { color: activeIndex === i ? labelActiveColor : labelColor }]}>{a.label}</Text>
           </View>
         );
       })}

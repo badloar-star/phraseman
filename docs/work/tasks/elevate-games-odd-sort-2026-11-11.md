@@ -98,3 +98,16 @@ Security and privacy: новых данных нет.
 Technical debt (Contain): для уроков старше восьмого берутся задания восьмого урока; для курсов, кроме английского,
 доступен только «Поток». Выход — расширение банка.
 Verification: `tests/game_task_source.test.ts`, узкая проверка типов. Rollback: вернуть экранам константы-примеры.
+
+## Починка: обрезка текста в файлах навыков и разминки остановила отправку ветки (11.11)
+
+Governance-ID: TG-8B629C7C1819
+
+Outcome: release-gate (Lint, правило text-integrity/no-unsafe-text-truncation) проходит по файлам навыков, игр и
+разминки; отправка ветки, начатая по слову владельца, может быть повторена.
+Scope: убрать `numberOfLines` из своих файлов `app/skills.tsx`, `app/warmup.tsx`, `components/games/WarmupTodayRow.tsx`,
+`components/skills/SkillsGrowthPanel.tsx`, `SkillsRadar.tsx`, `SkillsStatsCard.tsx` и из остальных своих экранов, где
+оно есть. `components/skills/ProfileCardSkills.tsx` — файл сессии «Навыки на визитке», правит она.
+Architecture: без изменений; длинный текст переносится, а не обрезается (правило владельца: лечить переносом).
+Security and privacy: не затронуто. Technical debt: нет. Verification: eslint по этим файлам через светофор.
+Rollback: не требуется.

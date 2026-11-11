@@ -77,7 +77,7 @@ const GrowthRow = memo(function GrowthRow({ row, index, name, levelWord, levelUp
   return (
     <View>
       <View style={s.head}>
-        <Text numberOfLines={1} style={[s.name, { color: p.text }]}>{name}</Text>
+        <Text style={[s.name, { color: p.text }]}>{name}</Text>
         <Text style={[s.levelWord, { color: p.textSecondary }]}>
           {levelWord} <Text style={[s.levelValue, { color: p.text }]}>{level}</Text>
         </Text>

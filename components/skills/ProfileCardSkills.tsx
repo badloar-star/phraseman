@@ -88,13 +88,13 @@ function ProfileCardSkills({ look, lang, levels, ratios, starSize = STAR_SIZE, d
           shapeStroke={accent}
         />
         {labels.map((label) => (
-          <Text key={label.id} numberOfLines={1} style={[styles.label, paint.label, { left: label.left, top: label.top }]}>{label.name}</Text>
+          <Text key={label.id} style={[styles.label, paint.label, { left: label.left, top: label.top }]}>{label.name}</Text>
         ))}
       </View>
       <View style={styles.rows} importantForAccessibility="no-hide-descendants">
         {rows.map((row, i) => (
           <View key={row.id} style={styles.row}>
-            <Text numberOfLines={1} style={[styles.name, paint.name]}>{row.name}</Text>
+            <Text style={[styles.name, paint.name]}>{row.name}</Text>
             <SkillLevelBar ratio={row.value} delayMs={delayMs + i * ROW_STAGGER_MS} trackColor={paint.track} fillColor={accent} />
             <Text testID={`${testID}-level-${row.id}`} style={[styles.level, paint.level]}>{row.level}</Text>
           </View>

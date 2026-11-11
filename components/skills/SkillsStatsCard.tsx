@@ -59,7 +59,7 @@ function SkillsStatsCard() {
         <View style={s.rows}>
           {rows.map((row, i) => (
             <View key={row.id} style={s.row}>
-              <Text numberOfLines={1} style={[s.name, { color: p.textSecondary }]}>{row.name}</Text>
+              <Text style={[s.name, { color: p.textSecondary }]}>{row.name}</Text>
               <SkillLevelBar ratio={row.progress.ratio} delayMs={350 + i * 80} trackColor={p.track} fillColor={p.progressFill} />
               <Text style={[s.level, { color: p.text }]}>{row.progress.level}</Text>
             </View>

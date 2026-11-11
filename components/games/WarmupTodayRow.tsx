@@ -54,7 +54,7 @@ function WarmupTodayRow({ style, testID = 'today-warmup-row' }: Props) {
         <Ionicons name={done ? 'checkmark' : 'play'} size={18} color={p.ctaText} />
       </View>
       <View style={s.copy}>
-        <Text numberOfLines={1} style={[s.title, { color: p.text }]}>{title}</Text>
+        <Text style={[s.title, { color: p.text }]}>{title}</Text>
         <View style={s.marks}>
           {state.games.map((game) => (
             <View key={game.id} style={[s.mark, { backgroundColor: state.results[game.id] !== undefined ? p.correct : p.track }]} />

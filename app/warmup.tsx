@@ -107,7 +107,7 @@ export default function WarmupScreen() {
         <View style={s.content}>
           <View style={s.top}>
             <V2IconButton icon="chevron-back" onPress={onBack} accessibilityLabel={triLang(lang, COPY.back)} testID="warmup-back" />
-            <Text accessibilityRole="header" numberOfLines={1} style={[s.title, { color: p.text }]}>{triLang(lang, COPY.title)}</Text>
+            <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{triLang(lang, COPY.title)}</Text>
             <View style={s.topSpacer} />
           </View>
 

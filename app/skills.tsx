@@ -80,7 +80,7 @@ export default function SkillsScreen() {
         <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
           <View style={s.header}>
             <V2IconButton icon="chevron-back" onPress={onBack} accessibilityLabel={triLang(lang, SKILLS_SCREEN_COPY.back)} testID="skills-back" />
-            <Text accessibilityRole="header" numberOfLines={1} style={[s.title, { color: p.text }]}>{triLang(lang, SKILLS_SCREEN_COPY.title)}</Text>
+            <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{triLang(lang, SKILLS_SCREEN_COPY.title)}</Text>
             <View style={[s.pill, { backgroundColor: p.glass }]}>
               <Ionicons name="trending-up" size={18} color={p.text} />
               <Text style={[s.pillText, { color: p.text }]}>{triLang(lang, SKILLS_SCREEN_COPY.thisWeek)}</Text>
@@ -89,7 +89,7 @@ export default function SkillsScreen() {
 
           <View style={s.indexBlock}>
             <Text style={[s.over, { color: p.textSecondary }]}>{triLang(lang, SKILLS_SCREEN_COPY.index)}</Text>
-            <StatCountUpText value={index} durationMs={1300} delayMs={OPEN_DELAY_MS} style={[s.big, { color: p.text }]} numberOfLines={1} />
+            <StatCountUpText value={index} durationMs={1300} delayMs={OPEN_DELAY_MS} style={[s.big, { color: p.text }]} />
           </View>
 
           <SkillsRadar
@@ -118,7 +118,7 @@ export default function SkillsScreen() {
                 onPress={() => setActive(i)}
                 style={({ pressed }) => [s.row, i > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: p.divider }, pressed && s.pressed]}
               >
-                <Text numberOfLines={1} style={[s.name, { color: active === i ? p.text : p.textSecondary }]}>{row.name}</Text>
+                <Text style={[s.name, { color: active === i ? p.text : p.textSecondary }]}>{row.name}</Text>
                 <SkillLevelBar ratio={row.progress.ratio} delayMs={OPEN_DELAY_MS + i * ROW_STAGGER_MS} trackColor={p.track} fillColor={p.progressFill} />
                 <Text style={[s.levelLabel, { color: p.textSecondary }]}>
                   {triLang(lang, SKILLS_SCREEN_COPY.levelShort)} <Text style={[s.levelValue, { color: p.text }]}>{row.progress.level}</Text>

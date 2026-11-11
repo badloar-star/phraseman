@@ -219,7 +219,8 @@ describe('экран Шпиля: откат по исходу досылки', (
     expect(home).toMatch(/game\.rejectNotice \? \(/);
     // 13.10 (Ядро, 78726f65c): общую строку «не сохранилась» заменила точная «Ступень не засчиталась» — ключ stepNotCounted на 9 языках
     expect(home).toMatch(/spireGameText\(lang, 'stepNotCounted'\)/);
-    expect(read('components/spire/spire_game_strings.ts')).toMatch(/stepNotCounted: \['Ступень не засчиталась/);
+    // зачем: 05.11 (a37fe582c, слово владельца «ступень → этап») строка стала «Этап не засчитался» — проверяем действующий текст
+    expect(read('components/spire/spire_game_strings.ts')).toMatch(/stepNotCounted: \['Этап не засчитался/);
     expect(home).toMatch(/testID="spire-reject-notice"/);
   });
 });

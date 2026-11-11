@@ -150,3 +150,29 @@ body[data-look="dark"] .rw.nw { background: rgba(255,255,255,.14); } body[data-l
 [data-ph="sk-pro"] .wcta { background: linear-gradient(180deg, #F3E2A8, #C9A85A) !important; color: #2A2108 !important; }
 body[data-look="dark"] .aline { border-bottom-color: rgba(255,255,255,.2); } body[data-look="dark"] .caret2 { background: #fff; } body[data-look="dark"] .chk2 { background: rgba(255,255,255,.1); }
 body[data-look="dark"] .acc .ab em { color: #9CC4FF; } body[data-look="dark"] .v3 .vh { border-color: rgba(255,255,255,.5); }
+
+/* ---------- третий проход по настоящим экранам (elevate-real3.js) ---------- */
+.strk { color: var(--no) !important; text-decoration: line-through; text-decoration-thickness: 2px; }
+.okc { margin-top: 16px; padding: 22px 16px; border-radius: 20px; text-align: center; font-size: 26px; font-weight: 800; background: #A9CDD6 !important; }
+.ci2 { width: 38px; height: 38px; border-radius: 12px; background: #DCE8F7; color: #2F4A6B; display: flex; align-items: center; justify-content: center; flex: none; }
+.ci2.okb { border-radius: 50%; background: var(--ok-bg); color: var(--ok); width: 44px; height: 44px; }
+.tools4 .chkb { color: var(--ok); font-weight: 700; }
+.lgd { display: flex; justify-content: center; gap: 22px; margin-top: 12px; font-size: 15px; color: var(--ink2); flex: none; }
+.lgd span { display: inline-flex; align-items: center; gap: 8px; } .lgd i { width: 10px; height: 10px; border-radius: 50%; background: rgba(20,27,43,.3); } .lgd i.a { background: #2F4A6B; }
+.chipr.on2 { background: #2F4A6B !important; color: #fff !important; }
+.dash3 { display: inline-flex; gap: 5px; flex: none; margin-right: 6px; } .dash3 i { width: 16px; height: 5px; border-radius: 3px; background: rgba(20,27,43,.16); } .dash3 i.on { background: #2F4A6B; }
+.st3r { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; } .st3r > div { display: flex; flex-direction: column; }
+.st3r b { font-size: 24px; font-weight: 800; letter-spacing: -.4px; } .st3r span { font-size: 13px; opacity: .75; }
+.st3r.lt3 > div { padding: 12px 14px; border-radius: 18px; }
+.slotb { min-height: 72px; margin-top: 18px; border-radius: 22px; padding: 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; flex: none; }
+.sheetb { margin: 0 -20px -34px; padding: 18px 18px 44px; border-radius: 30px 30px 0 0; flex: none; }
+.chip2 { height: 46px; padding: 0 16px; border-radius: 14px; background: #94A3B4; color: #101124; display: inline-flex; align-items: center; font-size: 17px; font-weight: 700; cursor: pointer; transition: opacity 200ms; }
+.chip2.used { opacity: .25; pointer-events: none; }
+.dots3 { display: inline-flex; gap: 10px; } .dots3 i { width: 22px; height: 22px; border-radius: 50%; background: rgba(20,27,43,.12); font-style: normal; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; } .dots3 i.on { background: #2F4A6B; color: #fff; } .dots3 svg { width: 12px; height: 12px; }
+.ov3 { font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; text-align: center; color: var(--ink2); margin-top: 22px; }
+.rbig { text-align: center; font-size: 30px; font-weight: 700; color: var(--ink2); margin-top: 10px; } .rbig b { font-size: 72px; font-weight: 800; letter-spacing: -2px; color: var(--ink, #fff); margin-right: 6px; font-variant-numeric: tabular-nums; }
+.hd3 { font-size: 21px; font-weight: 800; margin: 20px 0 10px; } .hd3 span { color: var(--ink2); margin-left: 6px; }
+.ecard { position: relative; padding: 16px; border-radius: 22px; margin-bottom: 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; } .ecard b { font-size: 30px; font-weight: 800; } .ecard .lng { align-self: flex-start; font-size: 12px; font-weight: 700; color: var(--ink2); }
+[data-ph="m-blitz"] .top > .gpill:first-of-type { display: none; }
+body[data-look="dark"] .okc { background: rgba(255,255,255,.18) !important; } body[data-look="dark"] .ci2 { background: rgba(255,255,255,.14); color: #fff; }
+body[data-look="dark"] .chip2 { background: rgba(255,255,255,.22); color: #fff; } body[data-look="dark"] .dash3 i, body[data-look="dark"] .dots3 i { background: rgba(255,255,255,.2); } body[data-look="dark"] .dash3 i.on, body[data-look="dark"] .dots3 i.on { background: #fff; color: #0B0C0E; }

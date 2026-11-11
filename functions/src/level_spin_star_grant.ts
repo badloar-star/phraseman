@@ -16,11 +16,13 @@ import { getWeekKey } from './progress_events';
 import {
   STAR_OPERATIONS_COLLECTION,
   beginStarLedgerTransactionAttempt,
+  buildStarsWeekSnapshotV1,
   commitStarOperations,
   normalizeStars,
   prepareStarOperations,
   type StarOpReceipt,
   type StarOpRequest,
+  type StarsWeekSnapshotV1,
 } from './stars_ledger';
 import { applySuperSundayRuneMultiplier, legacySuperSundayAmount } from '../../modules/economy/super_sunday_runes';
 
@@ -86,7 +88,14 @@ export type LevelSpinStarMaterializationAck = Readonly<{
   starsBalance: number;
   starsEarnedTotal: number;
   starsSeq: number;
+  // зачем (U33): недельный счёт Пика — монеты всех режимов; снимок недели едет в том же ответе, 0 новых чтений.
+  // Поле необязательное: старые сборки его не читают, нет валидной недели — поля нет.
+  starsWeek?: StarsWeekSnapshotV1;
 }>;
+
+function starsWeekField(starsWeek: StarsWeekSnapshotV1 | undefined): { starsWeek?: StarsWeekSnapshotV1 } {
+  return starsWeek ? { starsWeek } : {};
+}
 
 function exactKeys(value: object, expected: readonly string[]): boolean {
   const actual = Object.keys(value).sort();
@@ -291,6 +300,7 @@ export async function materializeCoinWalletOperation(
         starsBalance: current.balance,
         starsEarnedTotal: current.earnedTotal,
         starsSeq: current.seq,
+        ...starsWeekField(buildStarsWeekSnapshotV1(current)),
       });
     }
     if (chapterExamPartOne) {
@@ -329,6 +339,7 @@ export async function materializeCoinWalletOperation(
       starsBalance: result.balance,
       starsEarnedTotal: result.earnedTotal,
       starsSeq: result.seq,
+      ...starsWeekField(buildStarsWeekSnapshotV1(prepared.after)),
     });
   });
 }

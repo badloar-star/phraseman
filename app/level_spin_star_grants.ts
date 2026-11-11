@@ -49,6 +49,7 @@ import {
 import { DebugLogger } from './debug-logger';
 import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { applyOwnWeekScoreFromAck, applyOwnWeekScoreRawStars } from './spire/spire_own_week_score';
 
 const STAR_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
@@ -97,6 +98,8 @@ export type PracticeRuneMaterializationAck = Readonly<{
   starsBalance: number;
   starsEarnedTotal: number;
   starsSeq: number;
+  /** U33: недельный снимок счёта из того же ответа; старый сервер поля не шлёт. Разбирает spire_own_week_score. */
+  starsWeek?: unknown;
 }>;
 type PracticeRuneJournalEntry = Readonly<{
   schemaVersion: 'client-practice-rune-journal-entry.v1';
@@ -1784,6 +1787,13 @@ export async function adoptServerWalletFromUserDoc(
   stars: unknown,
   source: string,
 ): Promise<ServerWalletAdoptOutcome> {
+  // зачем (U33/U34): boot уже прочитал users/{uid}.stars. Weekly bucket принимается независимо
+  // и раньше wallet validation/storage, поэтому сломанный balance или диск не скрывает подтверждённый server score.
+  try {
+    applyOwnWeekScoreRawStars(token, stars);
+  } catch (error: unknown) {
+    DebugLogger.warn('[SPIRE-WEEK-SCORE] boot:apply_failed', error instanceof Error ? error.message : String(error));
+  }
   // зачем (Ревизор к 3c3764f72, п.5): в журнал — только исходы и числа, без префикса владельца.
   if (stars === undefined || stars === null) {
     DebugLogger.info('[COIN-DIVERGENCE] server_wallet:skip', JSON.stringify({ source, reason: 'no_stars_field' }));
@@ -2511,6 +2521,9 @@ export async function acknowledgePracticeRuneGrantLocally(
     || !Number.isSafeInteger(ack.starsSeq) || ack.starsSeq < 1) {
     throw new Error('practice_rune_ack_invalid');
   }
+  // зачем (U33): монеты практики (словарь, глаголы) входят в недельный счёт Пика — подтверждённый снимок принимаем сразу,
+  // до кошелька и диска: их сбой не должен прятать уже подтверждённый счёт.
+  applyOwnWeekScoreFromAck(token, ack.starsWeek, 'practice_rune_ack');
 
   const acknowledgedProjection = await withAccountTransitionLock(async (lease) => {
     await recoverProjection(token, lease);
@@ -2714,6 +2727,9 @@ async function runLevelSpinStarGrantSyncPass(
         || !Number.isSafeInteger(ack.starsSeq) || ack.starsSeq < 0) {
         throw new Error('level_spin_star_ack_invalid');
       }
+      // зачем (U33): монеты урока и наград входят в недельный счёт Пика — подтверждённый снимок принимаем сразу,
+      // до записи квитанции: отказ диска не должен прятать уже подтверждённый счёт.
+      applyOwnWeekScoreFromAck(token, ack.starsWeek, 'coin_wallet_ack');
       const ackOperationId = levelSpinStarCreditAckOperationId(operation.operationId);
       if (!ackOperationId) throw new Error('level_spin_star_ack_invalid');
       const ackStored = await commitPhoneStateNonMonetaryEconomyGrant({

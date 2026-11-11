@@ -3,6 +3,7 @@ import {
   STAR_OP_CLASS,
   STAR_OP_SOURCE,
   beginStarLedgerTransactionAttempt,
+  buildStarsWeekSnapshotV1,
   commitStarOperations,
   normalizeStars,
   prepareStarOperations,
@@ -95,6 +96,53 @@ async function run(
 }
 
 describe('единый журнал звёзд', () => {
+  it('serializes the exact current and previous authoritative week buckets', () => {
+    expect(buildStarsWeekSnapshotV1(normalizeStars({
+      ...settled(130),
+      seq: 12,
+      weekKey: '2026-W45',
+      weekEarned: 130,
+      prevWeekKey: '2026-W44',
+      prevWeekEarned: 90,
+    }))).toEqual({
+      schemaVersion: 'stars-week-snapshot.v1',
+      seq: 12,
+      current: { weekKey: '2026-W45', earned: 130 },
+      previous: { weekKey: '2026-W44', earned: 90 },
+    });
+    expect(buildStarsWeekSnapshotV1(normalizeStars({ ...settled(0), weekKey: '' }))).toBeUndefined();
+    expect(buildStarsWeekSnapshotV1(normalizeStars({
+      ...settled(0), weekKey: '2026-W45', prevWeekKey: '', prevWeekEarned: 7,
+    }))).toBeUndefined();
+  });
+
+  it('keeps exact weekly buckets monotone across earn, grant, spend and rollover', async () => {
+    const base = settled(100, {
+      weekKey: '2026-W44',
+      weekEarned: 100,
+      prevWeekKey: '2026-W43',
+      prevWeekEarned: 70,
+      seq: 9,
+    });
+    const earned = await run(base, [op({ opId: 'spire_step:w44.101', reason: 'spire_step', sourceKind: 'spire_step', sourceId: 'w44.101', delta: 15 })], ctx({ weekKeyNow: '2026-W44' }));
+    expect(earned.result.weekEarned).toBe(115);
+
+    const granted = await run(earned.result, [op({ opId: 'spire_week_reward:w44', reason: 'spire_week_reward', sourceKind: 'spire_week_reward', sourceId: 'w44', delta: 50 })], ctx({ weekKeyNow: '2026-W44' }));
+    expect(granted.result.weekEarned).toBe(115);
+
+    const spent = await run(granted.result, [op({ opId: 'spend_shop:w44', reason: 'spend_shop', sourceKind: 'spend_shop', sourceId: 'w44', delta: -10 })], ctx({ weekKeyNow: '2026-W44' }));
+    expect(spent.result.weekEarned).toBe(115);
+
+    const rolled = await run(spent.result, [op({ opId: 'spire_step:w45.1', reason: 'spire_step', sourceKind: 'spire_step', sourceId: 'w45.1', delta: 5 })], ctx({ weekKeyNow: '2026-W45' }));
+    expect(rolled.result).toMatchObject({
+      weekKey: '2026-W45',
+      weekEarned: 5,
+    });
+    expect(rolled.world.writes.sets[0].data.stars).toMatchObject({
+      prevWeekKey: '2026-W44',
+      prevWeekEarned: 115,
+    });
+  });
   it.each([2000, 1000])('monthly contest grants %i coins once without increasing learning earnings', async amount => {
     const reward = op({ opId: 'community_month:2026-10_pack', delta: amount, reason: 'community_month_reward', sourceKind: 'community_month', sourceId: '2026-10_pack' });
     const first = await run(settled(100), [reward]);

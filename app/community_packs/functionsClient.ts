@@ -111,6 +111,8 @@ export type LevelSpinStarMaterializationAck = Readonly<{
   starsBalance: number;
   starsEarnedTotal: number;
   starsSeq: number;
+  /** U33: недельный снимок счёта из того же ответа; старый сервер поля не шлёт. Разбирает spire_own_week_score. */
+  starsWeek?: unknown;
 }>;
 
 /** Persists an already committed client composite; the server never selects its reward. */

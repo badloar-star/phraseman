@@ -70,6 +70,15 @@ export type StarsState = {
   updatedAtMs: number;
 };
 
+export const STARS_WEEK_SNAPSHOT_SCHEMA_VERSION = 'stars-week-snapshot.v1' as const;
+
+export type StarsWeekSnapshotV1 = Readonly<{
+  schemaVersion: typeof STARS_WEEK_SNAPSHOT_SCHEMA_VERSION;
+  seq: number;
+  current: Readonly<{ weekKey: string; earned: number }>;
+  previous: Readonly<{ weekKey: string; earned: number }> | null;
+}>;
+
 export const EMPTY_STARS_STATE: StarsState = Object.freeze({
   schemaVersion: STARS_SCHEMA_VERSION,
   balance: 0,
@@ -453,6 +462,34 @@ export function normalizeStars(raw: unknown): StarsState {
     lastOpId: str(data.lastOpId),
     updatedAtMs: Math.max(0, int(data.updatedAtMs)),
   };
+}
+
+/** Exact response projection of an already-normalized server ledger state. */
+export function buildStarsWeekSnapshotV1(stars: StarsState): StarsWeekSnapshotV1 | undefined {
+  const validWeekKey = (value: string): boolean => /^\d{4}-W\d{2}$/.test(value);
+  if (
+    !validWeekKey(stars.weekKey)
+    || !Number.isSafeInteger(stars.seq)
+    || stars.seq < 0
+    || !Number.isSafeInteger(stars.weekEarned)
+    || stars.weekEarned < 0
+  ) return undefined;
+  if (stars.prevWeekKey) {
+    if (
+      !validWeekKey(stars.prevWeekKey)
+      || stars.prevWeekKey === stars.weekKey
+      || !Number.isSafeInteger(stars.prevWeekEarned)
+      || stars.prevWeekEarned < 0
+    ) return undefined;
+  } else if (stars.prevWeekEarned !== 0) return undefined;
+  return Object.freeze({
+    schemaVersion: STARS_WEEK_SNAPSHOT_SCHEMA_VERSION,
+    seq: stars.seq,
+    current: Object.freeze({ weekKey: stars.weekKey, earned: stars.weekEarned }),
+    previous: stars.prevWeekKey
+      ? Object.freeze({ weekKey: stars.prevWeekKey, earned: stars.prevWeekEarned })
+      : null,
+  });
 }
 
 function isPristine(state: StarsState): boolean {

@@ -47,6 +47,7 @@ import { spireMergeRoomLoad, useSpireRoomSync } from './use_spire_room_sync';
 import { spireFirstFrameRoom, spirePeekFirstFrameIds, spirePeekFirstFrameRoomLoad } from './spire_load_trace';
 import { publishSpirePositionFeed } from './spire_position_feed';
 import { useSpireOwnerEpoch } from './spire_owner_epoch';
+import { useOwnAuthoritativeWeekCoins } from './spire_own_week_score';
 import type { SpireStepContext, SpireStepFinish } from './use_spire_step_runner';
 import { spireDismissWeekResult, spireLoadWeekResult, type SpireWeekResultView } from './spire_week_result_client';
 const LOG = '[SPIRE]';
@@ -190,6 +191,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
 
   // ── Строки комнаты: чужие из кэша, свои — локальные (мгновенно после ступени) ──
   const room = roomLoad?.room ?? null;
+  const myAuthoritativeWeekCoins = useOwnAuthoritativeWeekCoins(ids?.stableId, room?.weekId);
   const { rankBy, devRankBy } = spireResolveRankBy(config, room?.weekId ?? null); // зачем (D162/D190): рубильник места, dev-подмена Сверки, текст тура
   const rows: readonly SpireRoomRow[] | null = useMemo(() => {
     if (!room || !ids || !config) return null;
@@ -197,8 +199,9 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
     return spireBuildRoomRows({
       room, myUid: ids.uid, mySteps: mine?.stepsCleared ?? 0, myReachedAtMs: mine?.reachedAtMs ?? 0,
       nowMs: Date.now(), tuning: config.residents, rankBy, fillMissingWeekCoinsForPreview: devRankBy === 'coins',
+      myAuthoritativeWeekCoins,
     });
-  }, [room, ids, config, week, rankBy, devRankBy]);
+  }, [room, ids, config, week, rankBy, devRankBy, myAuthoritativeWeekCoins]);
   const myPlace = rows ? spireMyPlace(rows) : null;
   // зачем (13.10, «сперва логи»): что реально пришло в комнату — откуда, живые/боты, соперники по этажам (console: кадры Сверки снимают logcat).
   // + m05 (координатор 15.10): позиция для окон Пика — в spire_position_feed (память, 0 чтений), её читает useSpirePositionMoments.

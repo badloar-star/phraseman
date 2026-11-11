@@ -81,6 +81,11 @@ async function callSpireReportSteps(payload: Readonly<Record<string, unknown>>):
   const { captureAccountGeneration } = await import('./account_generation');
   const token = captureAccountGeneration();
   const res = await fn(payload);
+  // зачем (U33/U34): недельный счёт — отдельная owner-bound проекция полного server state.
+  // Wallet merge/queue policy не имеют права откатить или заблокировать уже подтверждённый weekly snapshot.
+  if (res.data?.ok === true) void import('./spire/spire_own_week_score')
+    .then(({ applyOwnWeekScoreWireSnapshot }) => applyOwnWeekScoreWireSnapshot(token, res.data?.starsWeek))
+    .catch((error: unknown) => console.warn(`[SPIRE-WEEK-SCORE] spire:flush apply_failed ${error instanceof Error ? error.message : String(error)}`)); // guard-ok: weekly branch fail-soft
   // зачем ([SPIRE-GOLD]): версию правила берём только из принятой пачки — ответ-отказ (spire_not_live) её не несёт и не должен гасить золото
   if (res.data?.ok === true) void import('./spire/spire_gold_server').then((m) => m.noteSpireGoldServerRule(res.data?.goldRule)).catch((error: unknown) => console.warn(`[SPIRE-GOLD] запомнить правило сервера не удалось: ${error instanceof Error ? error.message : String(error)}`)); // guard-ok: причина сбоя
   // зачем (координатор 18.10, D1 проверки наград моментов): ответ несёт новый баланс (stars/starsSeq) — вливаем его, чтобы «+N» окна ступени

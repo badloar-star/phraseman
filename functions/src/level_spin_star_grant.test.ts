@@ -153,6 +153,27 @@ test('credit writes one stars_ledger receipt, updates the balance and the limit 
   expect(user.coinWalletLimitsV1).toMatchObject({ reportDayKey: '2026-09-28', reportDayCoins: 1_000 });
 });
 
+// зачем (U33): ответ кошелька несёт недельный снимок того же состояния журнала, что и баланс, — и при начислении,
+// и при повторе. level_spin_grant в журнале — «выдача», в недельный счёт не входит: снимок обязан честно показать 0,
+// а не подмешать баланс (иначе выданные монеты подняли бы место в Пике).
+test('U33: the ack carries the weekly snapshot of the same ledger state, on credit and on replay', async () => {
+  const world = makeDb();
+  const value = composite({ requestId: `dailyjourney_${HASH32}_1`, giftId: 'stars_500', promotionEligibility: 'gameplay' });
+  const first = await credit(world, value);
+  const stars = (world.docs.get('users/account-a') as Record<string, any>).stars;
+  expect(first.starsWeek).toEqual({
+    schemaVersion: 'stars-week-snapshot.v1',
+    seq: first.starsSeq,
+    current: { weekKey: '2026-W40', earned: stars.weekEarned },
+    previous: null,
+  });
+  expect(first.starsBalance).toBe(500);
+  expect(stars.weekEarned).toBe(0);
+  const second = await credit(world, value);
+  expect(second.replayed).toBe(true);
+  expect(second.starsWeek).toEqual(first.starsWeek);
+});
+
 test('idempotent: a repeat returns the prior result and never credits twice', async () => {
   const world = makeDb();
   const value = composite({ requestId: `dailyjourney_${HASH32}_1`, giftId: 'stars_500', promotionEligibility: 'gameplay' });

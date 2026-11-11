@@ -35,6 +35,7 @@ import {
 } from './spire_progress_contract';
 import {
   beginStarLedgerTransactionAttempt,
+  buildStarsWeekSnapshotV1,
   commitStarOperations,
   normalizeStars,
   prepareStarOperations,
@@ -312,13 +313,15 @@ export const spireReportSteps = onCall(SPIRE_REPORT_OPTIONS, async (request) => 
     // если человек вошёл в комнату позже, чем отчитался, следующая же пачка
     // (даже из одних duplicate) поднимет его строку. spireMemberStepsUpdate
     // вернёт null, когда поднимать нечего, — тогда записи нет.
+    const finalStars = coinsPrepared
+      ? coinsPrepared.after
+      : normalizeStars(userData?.stars);
+    const starsWeek = buildStarsWeekSnapshotV1(finalStars);
     if (roomValid && groupRef) {
       const current = (group?.members as Record<string, { steps?: unknown; coinRank?: unknown; weekCoins?: unknown; isPremium?: unknown; plusTier?: unknown }> | undefined)?.[stableUid];
       // зачем (D162): монеты недели после этой транзакции — из состояния журнала «после» (если платили за ступени),
       // иначе из уже прочитанного users; 0 лишних чтений.
-      const weekCoinsNow = coinsPrepared
-        ? starsWeekEarned(coinsPrepared.after, serverWeekKey)
-        : starsWeekEarned(normalizeStars(userData?.stars), serverWeekKey);
+      const weekCoinsNow = starsWeekEarned(finalStars, serverWeekKey);
       // зачем (владелец 21.10, кольцо Plus у соседей): статус Plus — из уже прочитанного users, 0 новых чтений.
       const roomPatch = spireMemberStepsUpdate(stableUid, current, evaluation.record, nowMs, spireCoinRankOrNull(data.coinRank), weekCoinsNow, spireIsPlusOf(userData, nowMs), spirePlusTierOf(userData, nowMs)); // зачем (06.11, «Plus/Ultra»): уровень той же записью, 0 новых чтений
       if (roomPatch) {
@@ -342,6 +345,7 @@ export const spireReportSteps = onCall(SPIRE_REPORT_OPTIONS, async (request) => 
         }
         : { granted: 0, planned: coinsPlanned, balance: null, seq: null, outcomes: [] },
       fromSteps,
+      starsWeek,
     };
   });
   const txDoneAt = Date.now();
@@ -404,5 +408,6 @@ export const spireReportSteps = onCall(SPIRE_REPORT_OPTIONS, async (request) => 
     coinsGranted: outcome.coins.granted,
     stars: outcome.coins.balance,
     starsSeq: outcome.coins.seq,
+    ...(outcome.starsWeek ? { starsWeek: outcome.starsWeek } : {}),
   };
 });

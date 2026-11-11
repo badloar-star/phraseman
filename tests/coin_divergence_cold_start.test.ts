@@ -14,6 +14,10 @@ import {
   commitPracticeRuneGrantLocally,
   readCoinReconcileV1Need,
 } from '../app/level_spin_star_grants';
+import {
+  __resetOwnAuthoritativeWeekScoreForTests,
+  peekOwnAuthoritativeWeekScore,
+} from '../app/spire/spire_own_week_score';
 
 // зачем (владелец 01.10, [COIN-DIVERGENCE]): на холодном старте progress.stars
 // публиковался 0 при едином кошельке 9830. Каждый тест — один путь, которым
@@ -64,6 +68,7 @@ beforeEach(() => {
   published.length = 0;
   progress = null;
   beginAccountGeneration(OWNER);
+  __resetOwnAuthoritativeWeekScoreForTests();
   (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => storage[key] ?? null);
   (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => { storage[key] = value; });
   (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
@@ -313,6 +318,40 @@ describe('Q-COIN (a): first server observation keeps the larger of server and un
 // users/{uid}.stars вливается только более новым seq и не трогает базу при неподтверждённых начислениях. Пустую
 // проекцию, которую экраны пишут раньше долива копии, долив вытесняет (сценарий в aa_account_switch_roundtrip_scenario).
 describe('A1 (21.10): server wallet adoption', () => {
+  test('valid raw weekly fields are adopted before invalid wallet fields return', async () => {
+    const { adoptServerWalletFromUserDoc } = await import('../app/level_spin_star_grants');
+    const token = captureAccountGeneration();
+    expect(await adoptServerWalletFromUserDoc(token, {
+      balance: 'invalid', seq: 11, weekKey: '2026-W46', weekEarned: 77,
+    }, 'test')).toBe('skip_invalid_stars');
+    expect(peekOwnAuthoritativeWeekScore()).toMatchObject({
+      ownerStableId: OWNER, sourceSeq: 11, current: { weekKey: '2026-W46', earned: 77 },
+    });
+  });
+
+  test('invalid weekly fields are a no-op while a valid wallet still merges', async () => {
+    progress = { stars: 0, starsEarnedTotal: 0 };
+    const { adoptServerWalletFromUserDoc } = await import('../app/level_spin_star_grants');
+    const token = captureAccountGeneration();
+    expect(await adoptServerWalletFromUserDoc(token, {
+      balance: 900, earnedTotal: 1200, seq: 7, weekKey: '', weekEarned: 999,
+    }, 'test')).toBe('merged');
+    expect(progress.stars).toBe(900);
+    expect(peekOwnAuthoritativeWeekScore()).toBeNull();
+  });
+
+  test('wallet storage failure does not roll back an already accepted weekly snapshot', async () => {
+    const { adoptServerWalletFromUserDoc } = await import('../app/level_spin_star_grants');
+    const token = captureAccountGeneration();
+    (AsyncStorage.getItem as jest.Mock).mockRejectedValueOnce(new Error('disk failed'));
+    expect(await adoptServerWalletFromUserDoc(token, {
+      balance: 900, earnedTotal: 1200, seq: 8, weekKey: '2026-W46', weekEarned: 88,
+    }, 'test')).toBe('failed');
+    expect(peekOwnAuthoritativeWeekScore()).toMatchObject({
+      ownerStableId: OWNER, sourceSeq: 8, current: { weekKey: '2026-W46', earned: 88 },
+    });
+  });
+
   test('A1: server wallet over an absent projection becomes the visible balance', async () => {
     progress = { stars: 0, starsEarnedTotal: 0 };
     const { adoptServerWalletFromUserDoc } = await import('../app/level_spin_star_grants');

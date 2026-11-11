@@ -10,7 +10,13 @@ import {
   spireEffectiveRankBy,
   parseSpireConfigDoc,
 } from '../modules/spire/config_contract';
-import { spireCompareRowsBy, spireDecodeRoomMembers, type SpireRoomRow } from '../modules/spire/room_rows';
+import {
+  spireBuildRoomRows,
+  spireCompareRowsBy,
+  spireDecodeRoomMembers,
+  type SpireRoomRow,
+  type SpireRoomSnapshot,
+} from '../modules/spire/room_rows';
 import { spireMemberScored, spireSortMembers, type SpireMemberRow } from '../components/spire/spire_room_types';
 import { spireCoinsCount, spireGroupThousands } from '../components/spire/spire_plurals';
 import { spireDecodeWeekResult } from '../app/spire/spire_week_result_client';
@@ -54,6 +60,62 @@ describe('D162 клиент: строки комнаты', () => {
   it('у ботов монеты по формуле от ступеней (только показ)', () => {
     expect(spireBotWeekCoins(0)).toBe(0);
     expect(spireBotWeekCoins(7)).toBe(210);
+  });
+});
+
+describe('U33/U34: authoritative score changes only the own exact-week row', () => {
+  const tuning = { names: ['Bot'], avatars: ['bot'], auras: ['none'] } as never;
+  const makeRoom = (myWeekCoins?: number): SpireRoomSnapshot => ({
+    schema: 'spire-room-cache.v1', uid: 'me', lang: 'en', weekId: '2026-W46', groupId: 'g1',
+    tier: 1, cohortDay: 1, weekStartMs: 1,
+    members: [
+      { uid: 'me', name: 'Me', steps: 5, reachedAtMs: 20, totalMs: 100, weekCoins: myWeekCoins },
+      { uid: 'other', name: 'Other', steps: 8, reachedAtMs: 10, totalMs: 80, weekCoins: 120, coinRank: 3 },
+    ],
+    roster: [], fetchedAtMs: 123456,
+  });
+  const build = (room: SpireRoomSnapshot, override?: number, preview = false) => spireBuildRoomRows({
+    room, myUid: 'me', mySteps: 5, myReachedAtMs: 20, nowMs: 999, tuning,
+    rankBy: 'coins', fillMissingWeekCoinsForPreview: preview,
+    myAuthoritativeWeekCoins: override,
+  });
+
+  test('no exact bucket leaves the own room value unchanged', () => {
+    expect(build(makeRoom(100)).find((entry) => entry.isMe)?.weekCoins).toBe(100);
+  });
+
+  test('same-week authoritative 130 raises stale room 100', () => {
+    expect(build(makeRoom(100), 130).find((entry) => entry.isMe)?.weekCoins).toBe(130);
+  });
+
+  test('newer room 130 is not lowered by older authoritative 100', () => {
+    expect(build(makeRoom(130), 100).find((entry) => entry.isMe)?.weekCoins).toBe(130);
+  });
+
+  test('override changes neither foreign row bytes nor room snapshot bytes', () => {
+    const room = makeRoom(100);
+    const roomBefore = JSON.stringify(room);
+    const baselineForeign = build(room).find((entry) => entry.uid === 'other');
+    const overriddenForeign = build(room, 130).find((entry) => entry.uid === 'other');
+    expect(overriddenForeign).toEqual(baselineForeign);
+    expect(JSON.stringify(room)).toBe(roomBefore);
+    expect(room.fetchedAtMs).toBe(123456);
+  });
+
+  test('existing coins comparator still resolves a score tie by steps then reached time', () => {
+    const room = makeRoom(100);
+    expect(build(room, 120).map((entry) => entry.uid)).toEqual(['other', 'me']);
+  });
+
+  test('preview fallback cannot replace an explicit authoritative zero', () => {
+    expect(build(makeRoom(undefined), 0, true).find((entry) => entry.isMe)?.weekCoins).toBe(0);
+  });
+
+  test('balance and earnedTotal-shaped values have no input channel into row building', () => {
+    const room = makeRoom(undefined);
+    expect(build(room).find((entry) => entry.isMe)?.weekCoins).toBe(0);
+    expect(JSON.stringify(room)).not.toContain('earnedTotal');
+    expect(JSON.stringify(room)).not.toContain('balance');
   });
 });
 

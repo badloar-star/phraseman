@@ -6,12 +6,14 @@ import { arenaSeasonWindow } from './arena_v2_core';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { getWeekKey } from './progress_events';
 import {
+  buildStarsWeekSnapshotV1,
   commitStarOperations,
   normalizeStars,
   prepareStarOperations,
   STAR_OP_MAX_ABS_DELTA,
   type StarOpReceipt,
   type StarOpRequest,
+  type StarsWeekSnapshotV1,
 } from './stars_ledger';
 
 /**
@@ -86,7 +88,14 @@ export type PracticeRuneMaterializationAck = Readonly<{
   starsBalance: number;
   starsEarnedTotal: number;
   starsSeq: number;
+  // зачем (U33): недельный счёт Пика — монеты всех режимов; снимок недели едет в том же ответе, 0 новых чтений.
+  // Поле необязательное: старые сборки его не читают, нет валидной недели — поля нет.
+  starsWeek?: StarsWeekSnapshotV1;
 }>;
+
+function starsWeekField(starsWeek: StarsWeekSnapshotV1 | undefined): { starsWeek?: StarsWeekSnapshotV1 } {
+  return starsWeek ? { starsWeek } : {};
+}
 
 function exactKeys(value: object, expected: readonly string[]): boolean {
   const actual = Object.keys(value).sort();
@@ -342,6 +351,7 @@ export const practiceRuneGrant = onCall(
           starsBalance: current.balance,
           starsEarnedTotal: current.earnedTotal,
           starsSeq: current.seq,
+          ...starsWeekField(buildStarsWeekSnapshotV1(current)),
         });
       }
       const prepared = await prepareStarOperations(
@@ -373,6 +383,7 @@ export const practiceRuneGrant = onCall(
         starsBalance: result.balance,
         starsEarnedTotal: result.earnedTotal,
         starsSeq: result.seq,
+        ...starsWeekField(buildStarsWeekSnapshotV1(prepared.after)),
       });
     });
   },

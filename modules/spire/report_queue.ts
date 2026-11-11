@@ -334,6 +334,13 @@ export type SpireFlushVerdict = Readonly<{
   reason?: string;
 }>;
 
+export type SpireStarsWeekSnapshotV1 = Readonly<{
+  schemaVersion: 'stars-week-snapshot.v1';
+  seq: number;
+  current: Readonly<{ weekKey: string; earned: number }>;
+  previous: Readonly<{ weekKey: string; earned: number }> | null;
+}>;
+
 export type SpireFlushResponse = Readonly<{
   ok: boolean;
   reason?: string;
@@ -344,6 +351,8 @@ export type SpireFlushResponse = Readonly<{
   results?: readonly SpireFlushVerdict[];
   /** [SPIRE-GOLD] версия правила золотого задания на сервере; нет — сервер старый. */
   goldRule?: number;
+  /** Полный server-owned снимок текущего и предыдущего weekly bucket; старый сервер может не прислать. */
+  starsWeek?: SpireStarsWeekSnapshotV1;
 }>;
 
 function backoffMs(attempts: number): number {

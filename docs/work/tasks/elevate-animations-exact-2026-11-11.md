@@ -62,3 +62,4 @@ Out of scope: экраны других сессий; новые механик�
 Governance-ID: TG-A29605D1F394
 Governance-ID: TG-9556DA448DEB
 Governance-ID: TG-977621BA5613
+Governance-ID: TG-BA1B6ECE4087

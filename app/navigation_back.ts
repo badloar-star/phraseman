@@ -118,6 +118,17 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/mistakes_hub',
   '/mistakes_list',
   '/mistake_detail',
+  // зачем (эмулятор 11.11, [NAV-BACK] candidate:reset leaving_no_section): разминка и её игры открываются с Главной
+  // и из «Сегодня»; без роли закрытие игры уходило на Главную, и разминка не вела к следующей игре —
+  // порталы наследуют владельца точки входа, игра возвращается в разминку, разминка — туда, откуда открыта
+  '/warmup',
+  '/game_flow',
+  '/game_odd_word',
+  '/game_sort',
+  '/game_quiz',
+  '/game_hunt',
+  '/game_order',
+  '/skills',
 ]);
 
 // Единственный настоящий redirect в этой семье. premium_modal сам рисует

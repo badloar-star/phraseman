@@ -1,7 +1,7 @@
 ﻿import React, { Profiler, useState, useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
 import { useFocusEffect, useNavigationContainerRef, usePathname, useRootNavigationState, useRouter, useSegments } from 'expo-router';
-import { View, StyleSheet, Animated, AppState, Easing, Text } from 'react-native';
+import { View, StyleSheet, Animated, AppState, Easing, Platform, Text } from 'react-native';
 import QuickActionsBridge from '../quick_actions_bridge';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -547,6 +547,10 @@ const BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS = BACKGROUND_TAB_PREMOUNT_QUIET_MAX_
 /** Фоново прогреваем только вкладку «Уроки» (логический индекс 1); остальные отложенные вкладки монтируются по первому тапу.
  *  зачем (владелец 04.11, Android-лаги): премаунт четырёх вкладок через 500 мс после кадра Главной давал паузы JS 1–3 с, пока человек смотрит на Главную. */
 const BACKGROUND_TAB_PREMOUNT_ORDER = [1] as const;
+/** зачем (владелец 11.11: «при переключении вкладок лёгкий фриз… которого я не хочу»; журнал с айфона: ПЕРВОЕ открытие Видео/Сообщества/Настроек
+ *  после запуска — пауза 160–420 мс, экран собирается в момент тапа; уже открытая вкладка — 41–76 мс). Только iOS: решение 04.11 было про лаги Android,
+ *  там прежний порядок. Шаги идут той же цепочкой — по одной вкладке, в «тихом окне» без касаний, — поэтому палец не ждёт сборки. */
+const IOS_EXTRA_TAB_PREMOUNT_ORDER: readonly number[] = Platform.OS === 'ios' ? [2, 3, 4] : [];
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп).
  *  journal — legacy-якорь вкладки «Все уроки». */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
@@ -1315,7 +1319,7 @@ function ReleasedTabLayout() {
     if (!backgroundPremountActiveRef.current || AppState.currentState !== 'active') return;
     backgroundPremountStartedRef.current = true;
 
-    BACKGROUND_TAB_PREMOUNT_ORDER.forEach((idx, order) => {
+    const queueStep = (idx: number, order: number) => {
       const timer = setTimeout(() => {
         backgroundPremountTimersRef.current = backgroundPremountTimersRef.current.filter((entry) => entry !== timer);
         // зачем D129: скрытую вкладку («Обучение» без курса) не греем — 52 импорта впустую.
@@ -1326,7 +1330,10 @@ function ReleasedTabLayout() {
         scheduleMount(idx);
       }, BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS + order * BACKGROUND_TAB_PREMOUNT_STEP_MS);
       backgroundPremountTimersRef.current.push(timer);
-    });
+    };
+    BACKGROUND_TAB_PREMOUNT_ORDER.forEach((idx, order) => queueStep(idx, order));
+    IOS_EXTRA_TAB_PREMOUNT_ORDER.forEach((idx, i) => queueStep(idx, BACKGROUND_TAB_PREMOUNT_ORDER.length + i));
+    if (IOS_EXTRA_TAB_PREMOUNT_ORDER.length > 0) console.log('[TABS-PREMOUNT] ios_extra', JSON.stringify({ order: IOS_EXTRA_TAB_PREMOUNT_ORDER })); // guard-ok: одна строка на запуск очереди
   }, [scheduleMount]);
 
   useEffect(() => {
@@ -1388,7 +1395,7 @@ function ReleasedTabLayout() {
         };
         backgroundPremountResumeRef.current = (why = 'unknown') => {
           // строка только пока есть несделанная работа: после загрузки «Уроков» и модуля «Настроек» возврат на вкладки молчит
-          const tabsPending = BACKGROUND_TAB_PREMOUNT_ORDER.some((idx) => !mountedTabsRef.current.has(idx));
+          const tabsPending = [...BACKGROUND_TAB_PREMOUNT_ORDER, ...IOS_EXTRA_TAB_PREMOUNT_ORDER].some((idx) => !mountedTabsRef.current.has(idx));
           if (tabsPending || deferredSettingsScreen === null) console.log('[TABS-PREMOUNT] resume', JSON.stringify({ reason: why, tabsActive: backgroundPremountActiveRef.current, appState: AppState.currentState, startedAlready: backgroundPremountStartedRef.current, mounted: [...mountedTabsRef.current], settingsLoaded: deferredSettingsScreen !== null })); // guard-ok: возврат очереди премаунта
           armSettingsModulePrewarm(why);
           scheduleBackgroundPremount();

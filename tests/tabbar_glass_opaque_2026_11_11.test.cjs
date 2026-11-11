@@ -58,6 +58,19 @@ test('контекст вкладок — фоновым рендером, за�
   assert.match(layout, /visualIdx=\{visualIdx\}/);
 });
 
+// зачем (владелец 11.11, фриз остался: первое открытие Видео/Сообщества/Настроек на айфоне собирало экран в момент тапа, 160–420 мс):
+// на iOS эти вкладки собираются заранее той же цепочкой премаунта; Android — прежний порядок решения 04.11 (только «Уроки»).
+test('на iOS остальные вкладки прогреваются заранее, Android — как решено 04.11', () => {
+  const layout = fs.readFileSync(path.resolve(__dirname, '../app/(tabs)/_layout.tsx'), 'utf8');
+  assert.match(layout, /const BACKGROUND_TAB_PREMOUNT_ORDER = \[1\] as const;/);
+  assert.match(layout, /const IOS_EXTRA_TAB_PREMOUNT_ORDER: readonly number\[\] = Platform\.OS === 'ios' \? \[2, 3, 4\] : \[\];/);
+  assert.match(layout, /IOS_EXTRA_TAB_PREMOUNT_ORDER\.forEach\(\(idx, i\) => queueStep\(idx, BACKGROUND_TAB_PREMOUNT_ORDER\.length \+ i\)\)/);
+  // шаги идут через общую очередь с «тихим окном», а не монтируются напрямую
+  const queue = layout.slice(layout.indexOf('const queueStep = '), layout.indexOf('BACKGROUND_TAB_PREMOUNT_ORDER.forEach((idx, order) => queueStep'));
+  assert.match(queue, /scheduleMount\(idx\)/);
+  assert.doesNotMatch(queue, /mountNow\(/);
+});
+
 test('плотность заливки не зависит от платформы и задаётся только константами', () => {
   const start = source.indexOf('const glassFill = useMemo(');
   const end = source.indexOf('const count = items.length');

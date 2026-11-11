@@ -16,10 +16,9 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useLang } from '../components/LangContext';
-import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
@@ -213,7 +212,7 @@ export default function CombinedLessonPickScreen() {
         </View>
 
         {/* Список тем */}
-        <SoftTopEdgeScrollView
+        <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 16, gap: 9 }}
           showsVerticalScrollIndicator={false} decelerationRate="fast"
@@ -284,7 +283,7 @@ export default function CombinedLessonPickScreen() {
               </Pressable>
             );
           })}
-        </SoftTopEdgeScrollView>
+        </ScrollView>
 
         {/* Кнопка на месте с первого кадра: меняется подпись, а не геометрия */}
         <View style={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 8 }}>

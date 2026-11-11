@@ -77,7 +77,7 @@ describe('Soft top edge on scroll: standalone screens', () => {
   });
 
   it.each([
-    'achievements_screen', 'coin_rank', 'coin_rank_catalog', 'combined_lesson_pick', 'dialogue_v2_completion', 'dialogue_v2_memory',
+    'achievements_screen', 'coin_rank', 'coin_rank_catalog', 'dialogue_v2_completion', 'dialogue_v2_memory',
     'friends_duel', 'friends_week_mine', 'lesson_help', 'lingman_playlist', 'lingman_video_watch', 'mistakes_hub', 'mistakes_list',
     'promo_code_entry', 'referrals', 'runes_wallet', 'shop', 'today_tasks',
   ])('app/%s.tsx scrolls its page through the soft-edge list', (name) => {

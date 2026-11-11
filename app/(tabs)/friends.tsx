@@ -18,6 +18,8 @@ import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // за�
 
 // FlashList с поддержкой Reanimated-обработчика скролла (onScroll-worklet на UI-потоке).
 const AnimatedFlashList = Reanimated.createAnimatedComponent(FlashList as any) as any;
+// зачем: один объект на весь модуль — новый объект на каждом рендере был бы для списка «сменой настройки».
+const FRIENDS_LIST_NO_POSITION_HOLD = { disabled: true } as const;
 // зачем: «добавить друга» — низкий Bevel-шит на общем каркасе шторок рефералки.
 import FriendsAddSheetShell from '../../components/friends/FriendsAddSheetShell';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -2937,6 +2939,12 @@ export default function FriendsTabScreen() {
         <AnimatedFlashList decelerationRate="fast"
           {...listScrollProps}
           testID="friends-list"
+          // зачем (владелец 11.11: «раздел друзья странно открывается где-то на середине скролл»): список этой версии по умолчанию
+          // «держит» первую видимую строку. Строки приходят из кэша раньше, чем блоки над ними (лента недели, заявки, полоса «нет сети»),
+          // — когда те догружаются, список сам прокручивался вниз вслед за строкой и верх оказывался за краем. Здесь не чат: держать
+          // позицию незачем, «Друзья» всегда открываются с верха. Причина взята из описания библиотеки, на телефоне не подтверждена —
+          // журнал [FRIENDS-SCROLL] оставлен до проверки владельцем.
+          maintainVisibleContentPosition={FRIENDS_LIST_NO_POSITION_HOLD}
           data={sortedFriends}
           keyExtractor={(profile: FriendProfile) => profile.uid}
           renderItem={({ item: profile, index: i }: { item: FriendProfile; index: number }) => { // guard-ok: FlashList не memo-сравнивает renderItem; стабильны колбэки внутри (onOpenProfile={openProfileByUid} и т.д., аудит 2026-08-22)

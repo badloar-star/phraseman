@@ -9,6 +9,7 @@ const BLUEPRINT = buildLevelExamBlueprint({
   studyTarget: 'en',
   sourceLocale: 'ru',
   seed: 'scoring-contract',
+  blueprintVersion: 4,
 });
 
 function correctAnswers(): LevelExamAnswers {
@@ -94,13 +95,26 @@ describe('level exam scoring', () => {
     expect(scoreLevelExam(BLUEPRINT, answers, 'submitted')).toMatchObject({ score: 29, total: 30 });
   });
 
-  test('accepts every authored fill-gap option when the source item is semantically open', () => {
-    const task = BLUEPRINT.tasks.find((candidate) => candidate.format === 'fill_gap')!;
+  test('keeps legacy v3 authored fill-gap acceptance for active-attempt compatibility', () => {
+    const legacyBlueprint = buildLevelExamBlueprint({
+      level: 'A1', studyTarget: 'en', sourceLocale: 'ru', seed: 'scoring-contract', blueprintVersion: 3,
+    });
+    const task = legacyBlueprint.tasks.find((candidate) => candidate.format === 'fill_gap')!;
     if (task.format !== 'fill_gap' || !task.acceptedOptionIds || task.acceptedOptionIds.length < 2) return;
     const answers: LevelExamAnswers = {
       [task.scoreUnitId]: { kind: 'choice', optionId: task.acceptedOptionIds[1] },
     };
-    expect(scoreLevelExam(BLUEPRINT, answers, 'submitted').score).toBe(1);
+    expect(scoreLevelExam(legacyBlueprint, answers, 'submitted').score).toBe(1);
+  });
+
+  test('accepts only the canonical fill-gap option in v4', () => {
+    const task = BLUEPRINT.tasks.find((candidate) => candidate.format === 'fill_gap')!;
+    if (task.format !== 'fill_gap') return;
+    const distractor = task.options.find((option) => option.id !== task.correctOptionId)!;
+    expect(task.acceptedOptionIds).toEqual([task.correctOptionId]);
+    expect(scoreLevelExam(BLUEPRINT, {
+      [task.scoreUnitId]: { kind: 'choice', optionId: distractor.id },
+    }, 'submitted').score).toBe(0);
   });
 
   test('returns at most three weakest canonical lessons in deterministic order', () => {

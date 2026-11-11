@@ -7,8 +7,9 @@ describe('level exam v2 route contract', () => {
   it('routes English exams through the new engine while preserving the gated French runtime', () => {
     const route = read('app/level_exam.tsx');
     expect(route).toContain('<LevelExamV2');
-    expect(route).toContain('if (!isFrenchExam && !frenchExamBlocked)');
-    expect(route).toContain('loadFrenchRemoteLevelExamQuestions');
+    // зачем (владелец 11.11, «Да, зачёты тоже»): новый движок — только английскому; у fr/es/de/it свой банк из курса языка.
+    expect(route).toContain('if (!classicExamTarget && !frenchExamBlocked)');
+    expect(route).toContain('loadClassicLevelExamQuestions');
   });
 
   it('connects persisted attempts, wall-clock timeout, scoring, and every UI format', () => {
@@ -27,6 +28,26 @@ describe('level exam v2 route contract', () => {
     expect(route).toContain("task.format === 'translate_build'");
     expect(route).not.toContain('<SpotErrorQuestion');
     expect(route).toContain('<SpeedMatchQuestion');
+  });
+
+  it('writes v4 for new attempts and rebuilds saved attempts with exact version and identity checks', () => {
+    const route = read('components/level-exam/LevelExamV2.tsx');
+    expect(route).toContain('CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION');
+    expect(route).toContain('blueprintVersion: decision.attempt.blueprintVersion');
+    expect(route).toContain('blueprintVersion: CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION');
+    expect(route).toContain('blueprintVersion: nextBlueprint.version');
+    expect(route).toContain('levelExamAttemptMatchesBlueprintIdentity');
+    expect(route).toContain("'blueprint_identity_mismatch'");
+    expect(route).toContain("const examSourceLocale = lang === 'en' ? 'ru' : lang");
+    const completed = route.indexOf("if (decision.kind === 'completed')");
+    const rebuild = route.indexOf('let restoredBlueprint: LevelExamBlueprint', completed);
+    expect(completed).toBeGreaterThan(0);
+    expect(rebuild).toBeGreaterThan(completed);
+    const mismatch = route.indexOf('if (!levelExamAttemptMatchesBlueprintIdentity');
+    const resume = route.indexOf("if (decision.kind === 'resume')", mismatch);
+    expect(mismatch).toBeGreaterThan(0);
+    expect(resume).toBeGreaterThan(mismatch);
+    expect(route.slice(mismatch, resume)).not.toContain('clearActiveLevelExamAttempt');
   });
 
   it('removes immediate correctness reveals and makes every attempt exactly 30 scored units', () => {

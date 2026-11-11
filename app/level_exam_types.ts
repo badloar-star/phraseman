@@ -3,6 +3,10 @@ import type { SourceLocale } from './source_locales';
 
 export type LevelExamLevel = CourseLevel;
 
+export const CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION = 4 as const;
+export const SUPPORTED_LEVEL_EXAM_BLUEPRINT_VERSIONS = [3, CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION] as const;
+export type LevelExamBlueprintVersion = (typeof SUPPORTED_LEVEL_EXAM_BLUEPRINT_VERSIONS)[number];
+
 export type LevelExamFormat =
   | 'guess_phrase'
   | 'fill_gap'
@@ -63,7 +67,7 @@ export type LevelExamTask =
   | LevelExamSpeedMatchTask;
 
 export type LevelExamBlueprint = {
-  version: 3;
+  version: LevelExamBlueprintVersion;
   level: LevelExamLevel;
   studyTarget: 'en';
   sourceLocale: SourceLocale;
@@ -79,4 +83,5 @@ export type BuildLevelExamBlueprintInput = {
   studyTarget: 'en';
   sourceLocale: SourceLocale;
   seed: string;
+  blueprintVersion?: LevelExamBlueprintVersion;
 };

@@ -1,4 +1,9 @@
-import type { LevelExamLevel } from './level_exam_types';
+import {
+  SUPPORTED_LEVEL_EXAM_BLUEPRINT_VERSIONS,
+  type LevelExamBlueprint,
+  type LevelExamBlueprintVersion,
+  type LevelExamLevel,
+} from './level_exam_types';
 import type { SourceLocale } from './source_locales';
 
 export type PersistedLevelExamAnswer =
@@ -17,7 +22,7 @@ export type LevelExamAttemptSnapshot = {
   level: LevelExamLevel;
   studyTarget: 'en';
   sourceLocale: SourceLocale;
-  blueprintVersion: 3;
+  blueprintVersion: LevelExamBlueprintVersion;
   seed: string;
   orderedTaskIds: string[];
   scoredUnitIds: string[];
@@ -38,7 +43,7 @@ export type CreateLevelExamAttemptInput = {
   level: LevelExamLevel;
   studyTarget: 'en';
   sourceLocale: SourceLocale;
-  blueprintVersion: 3;
+  blueprintVersion: LevelExamBlueprintVersion;
   seed: string;
   orderedTaskIds: string[];
   scoredUnitIds: string[];
@@ -51,7 +56,7 @@ export type RestoreLevelExamAttemptContext = {
   level: LevelExamLevel;
   studyTarget: 'en';
   sourceLocale: SourceLocale;
-  blueprintVersion: 3;
+  blueprintVersion: LevelExamBlueprintVersion;
   nowMs: number;
 };
 
@@ -69,6 +74,10 @@ function nonEmptyStrings(value: unknown): value is string[] {
 
 function finiteInteger(value: unknown, min = 0): value is number {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= min;
+}
+
+function isSupportedBlueprintVersion(value: unknown): value is LevelExamBlueprintVersion {
+  return (SUPPORTED_LEVEL_EXAM_BLUEPRINT_VERSIONS as readonly unknown[]).includes(value);
 }
 
 function isPersistedAnswer(value: unknown): value is PersistedLevelExamAnswer {
@@ -94,7 +103,7 @@ function isAttemptSnapshot(value: unknown): value is LevelExamAttemptSnapshot {
     || !['A1', 'A2', 'B1', 'B2'].includes(String(attempt.level))
     || attempt.studyTarget !== 'en'
     || typeof attempt.sourceLocale !== 'string'
-    || attempt.blueprintVersion !== 3
+    || !isSupportedBlueprintVersion(attempt.blueprintVersion)
     || typeof attempt.seed !== 'string' || attempt.seed.trim() === ''
     || !nonEmptyStrings(attempt.orderedTaskIds)
     || !nonEmptyStrings(attempt.scoredUnitIds)
@@ -120,6 +129,19 @@ function isAttemptSnapshot(value: unknown): value is LevelExamAttemptSnapshot {
 
 export function parseLevelExamAttemptSnapshot(raw: unknown): LevelExamAttemptSnapshot | null {
   return isAttemptSnapshot(raw) ? raw : null;
+}
+
+function sameOrderedIds(left: readonly string[], right: readonly string[]): boolean {
+  return left.length === right.length && left.every((value, index) => value === right[index]);
+}
+
+export function levelExamAttemptMatchesBlueprintIdentity(
+  attempt: LevelExamAttemptSnapshot,
+  blueprint: LevelExamBlueprint,
+): boolean {
+  return attempt.blueprintVersion === blueprint.version
+    && sameOrderedIds(attempt.orderedTaskIds, blueprint.tasks.map((task) => task.id))
+    && sameOrderedIds(attempt.scoredUnitIds, blueprint.scoredUnitIds);
 }
 
 function cloneAnswer(answer: PersistedLevelExamAnswer): PersistedLevelExamAnswer {

@@ -76,6 +76,28 @@ describe('level exam attempt counter', () => {
     await expect(loadActiveLevelExamAttempt('owner-a', 'A2', 'en')).resolves.toBeNull();
   });
 
+  it('round-trips a v4 active attempt under the existing storage key and schema', async () => {
+    const attempt = createLevelExamAttempt({
+      energySpent: true,
+      ownerStableUid: 'owner-v4',
+      startToken: 'start-v4',
+      level: 'A1',
+      studyTarget: 'en',
+      sourceLocale: 'ru',
+      blueprintVersion: 4,
+      seed: 'seed-v4',
+      orderedTaskIds: ['task-v4'],
+      scoredUnitIds: ['score-v4'],
+      startedAtMs: 1_000,
+      durationMs: 780_000,
+    });
+
+    await persistActiveLevelExamAttempt(attempt);
+
+    await expect(loadActiveLevelExamAttempt('owner-v4', 'A1', 'en')).resolves.toEqual(attempt);
+    expect(attempt.schemaVersion).toBe(2);
+  });
+
   it('removes corrupt active-attempt snapshots instead of resuming them', async () => {
     const key = activeLevelExamAttemptKey('owner-a', 'A1', 'en');
     await AsyncStorage.setItem(key, JSON.stringify({ status: 'active', ownerStableUid: 'owner-a' }));

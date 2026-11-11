@@ -15,6 +15,7 @@ import {
   completeLevelExamAttempt,
   createLevelExamAttempt,
   markLevelExamFinishing,
+  levelExamAttemptMatchesBlueprintIdentity,
   pauseLevelExamAttempt,
   remainingLevelExamMs,
   restoreLevelExamAttempt,
@@ -29,7 +30,12 @@ import {
   recordCompletedLevelExamAttemptOnce,
 } from '../../app/level_exam_attempts';
 import { scoreLevelExam, type LevelExamScoreResult } from '../../app/level_exam_scoring';
-import type { LevelExamBlueprint, LevelExamLevel, LevelExamTask } from '../../app/level_exam_types';
+import {
+  CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION,
+  type LevelExamBlueprint,
+  type LevelExamLevel,
+  type LevelExamTask,
+} from '../../app/level_exam_types';
 import { levelExamKey, storedProgressFlagIsTrue } from '../../app/target_storage_keys';
 import { getCanonicalUserId } from '../../app/user_id_policy';
 import { saveExamProgress } from '../../app/medal_utils';
@@ -266,7 +272,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
         level,
         studyTarget: 'en',
         sourceLocale: examSourceLocale,
-        blueprintVersion: 3,
+        blueprintVersion: stored.blueprintVersion,
         nowMs: Date.now(),
       });
       if (decision.kind === 'quarantine') {
@@ -274,10 +280,47 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
         if (!cancelled) setPhase('intro');
         return;
       }
+      if (decision.kind === 'completed') {
+        await clearActiveLevelExamAttempt(owner, level, 'en');
+        if (!cancelled) setPhase('intro');
+        return;
+      }
+      let restoredBlueprint: LevelExamBlueprint;
+      try {
+        restoredBlueprint = buildLevelExamBlueprint({
+          level,
+          studyTarget: 'en',
+          sourceLocale: examSourceLocale,
+          seed: decision.attempt.seed,
+          blueprintVersion: decision.attempt.blueprintVersion,
+        });
+      } catch (error) {
+        // зачем: правило владельца «никаких немых catch» — причина сбоя сборки
+        // чертежа при восстановлении должна быть видна в логе, а не только в аналитике.
+        console.warn('[LEVEL-EXAM-RESTORE] blueprint_restore_failed', {
+          level,
+          blueprintVersion: decision.attempt.blueprintVersion,
+          reason: error instanceof Error ? error.message : String(error),
+        });
+        void trackFeatureError('level_exam', 'blueprint_restore', error, { level }, 'level_exam_v4');
+        if (!cancelled) setContentUnavailable(true);
+        return;
+      }
+      if (!levelExamAttemptMatchesBlueprintIdentity(decision.attempt, restoredBlueprint)) {
+        void trackFeatureError(
+          'level_exam',
+          'blueprint_identity_mismatch',
+          new Error('level_exam_blueprint_identity_mismatch'),
+          { level, blueprintVersion: decision.attempt.blueprintVersion },
+          'level_exam_v4',
+        );
+        if (!cancelled) setContentUnavailable(true);
+        return;
+      }
       if (decision.kind === 'resume') {
         await persistActiveLevelExamAttempt(decision.attempt).catch(noteSwallowedHandler('LevelExamV2:useEffect.persistActiveLevelExamAttempt'));
       }
-      const restoredBlueprint = buildLevelExamBlueprint({ level, studyTarget: 'en', sourceLocale: examSourceLocale, seed: decision.attempt.seed });
+      if (cancelled) return;
       blueprintRef.current = restoredBlueprint;
       attemptRef.current = decision.attempt;
       setBlueprint(restoredBlueprint);
@@ -289,9 +332,6 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
         void finishExam('timeout', decision.attempt, restoredBlueprint);
       } else if (decision.kind === 'finish_pending') {
         void finishExam(decision.attempt.finishReason ?? 'submitted', decision.attempt, restoredBlueprint);
-      } else {
-        await clearActiveLevelExamAttempt(owner, level, 'en');
-        setPhase('intro');
       }
     })();
     return () => { cancelled = true; };
@@ -323,10 +363,11 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
           studyTarget: 'en',
           sourceLocale: examSourceLocale,
           seed: `${ownerStableUid}:${level}:${startToken}`,
+          blueprintVersion: CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION,
         });
       } catch (error) {
         setContentUnavailable(true);
-        void trackFeatureError('level_exam', 'content_unavailable', error, { level, lang }, 'level_exam_v3');
+        void trackFeatureError('level_exam', 'content_unavailable', error, { level, lang }, 'level_exam_v4');
         return;
       }
       if (!unlimitedEnergy && energy + bonusEnergy < ENERGY_COST) {
@@ -344,7 +385,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
         level,
         studyTarget: 'en',
         sourceLocale: examSourceLocale,
-        blueprintVersion: 3,
+        blueprintVersion: nextBlueprint.version,
         seed: nextBlueprint.seed,
         orderedTaskIds: nextBlueprint.tasks.map((task) => task.id),
         scoredUnitIds: [...nextBlueprint.scoredUnitIds],

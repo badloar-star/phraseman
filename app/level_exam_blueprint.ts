@@ -1,16 +1,18 @@
 import { COURSE_LEVEL_RANGES } from './course_levels';
 import { DebugLogger } from './debug-logger';
 import { getLessonData } from './lesson_data_all';
+import { GAP_RULE_ORDER, provableGapByRule } from './level_exam_gap_rules';
 import type { LessonPhrase, LessonWord } from './lesson_data_types';
 import { createLevelExamRng, shuffled } from './level_exam_rng';
 import type { SourceLocale } from './source_locales';
-import type {
-  BuildLevelExamBlueprintInput,
-  LevelExamBlueprint,
-  LevelExamChoiceTask,
-  LevelExamPhraseBuilderTask,
-  LevelExamSpeedMatchPair,
-  LevelExamTask,
+import {
+  CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION,
+  type BuildLevelExamBlueprintInput,
+  type LevelExamBlueprint,
+  type LevelExamChoiceTask,
+  type LevelExamPhraseBuilderTask,
+  type LevelExamSpeedMatchPair,
+  type LevelExamTask,
 } from './level_exam_types';
 
 const EXAM_DURATION_MS = { A1: 12 * 60_000, A2: 13 * 60_000, B1: 14 * 60_000, B2: 15 * 60_000 } as const;
@@ -149,7 +151,37 @@ function grammarCompatibleGapOptions(sentence: string, word: LessonWord, options
   });
 }
 
-function safeGapCandidate(reference: PhraseReference, ctx: VocabContext): GapCandidate | null {
+/**
+ * зачем (владелец, U10 «Один подходящий ответ», 11.11): с версии 4 засчитывается только один вариант, поэтому в пропуск обязан
+ * подходить ровно один. Соблазны плитки и добор «тем же классом» этого не гарантируют («Are you ___?» → free / okay / tired),
+ * поэтому пропуск строится только по правилам грамматики из level_exam_gap_rules — там же объяснено, почему именно так.
+ * Обход «правило → слово»: сначала ищем во фразе содержательное правило (время, артикль), местоимение — в последнюю очередь.
+ */
+function provableGapCandidate(reference: PhraseReference, ctx: VocabContext): GapCandidate | null {
+  const sentence = reference.phrase.english.trim();
+  const words = targetWords(reference.phrase);
+  for (const rule of GAP_RULE_ORDER) {
+    for (const word of words) {
+      const category = String(word.category ?? '').trim().toLocaleLowerCase();
+      const found = provableGapByRule(rule, {
+        sentence,
+        answer: word.text,
+        category,
+        authored: word.distractors || [],
+        categoryPool: ctx.vocab.byCategory.get(category) || [],
+        isKnown: (value) => isKnownWord(ctx, value),
+      });
+      if (!found) continue;
+      const gap = replaceUniqueWord(sentence, found.answer, '___');
+      if (gap) return { reference, word, gap, options: [found.answer, ...found.distractors] };
+    }
+  }
+  return null;
+}
+
+/** provable=false — прежний отбор версии 3 (там засчитывается любой вариант смыслового пропуска); его не трогаем, чтобы начатые попытки восстанавливались. */
+function safeGapCandidate(reference: PhraseReference, ctx: VocabContext, provable: boolean): GapCandidate | null {
+  if (provable) return provableGapCandidate(reference, ctx);
   for (const word of targetWords(reference.phrase)) {
     const answer = word.text.trim();
     if (!/^[A-Za-z']+$/u.test(answer)) continue;
@@ -288,6 +320,7 @@ function hasBuilderDistractor(reference: PhraseReference, ctx: VocabContext): bo
 }
 
 export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): LevelExamBlueprint {
+  const blueprintVersion = input.blueprintVersion ?? CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION;
   const [fromLesson, toLesson] = COURSE_LEVEL_RANGES[input.level];
   // зачем: loud считает отброшенное/добранное только для РЕАЛЬНО выданных заданий; quiet — для проб кандидатов (иначе счёт раздувается)
   const vocab = levelVocab(toLesson);
@@ -341,18 +374,19 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   }
 
   for (let index = 0; index < SINGLE_TASKS_PER_MODE; index += 1) {
-    const reference = next((item) => safeGapCandidate(item, quiet) !== null);
-    const candidate = safeGapCandidate(reference, loud)!;
+    const provableGaps = blueprintVersion >= 4;
+    const reference = next((item) => safeGapCandidate(item, quiet, provableGaps) !== null);
+    const candidate = safeGapCandidate(reference, loud, provableGaps)!;
     const id = `${input.level}:fill_gap:${reference.lessonId}:${reference.phraseId}`;
     const choices = choiceOptions(id, candidate.word.text.trim(), candidate.options.slice(1), input.seed);
     const category = String(candidate.word.category ?? '').trim().toLocaleLowerCase();
     const grammarCategory = ['article', 'articulo', 'to-be', 'verbo_ser', 'verbo_estar', 'pronoun', 'pronombre', 'verb', 'verbo', 'verbs'].includes(category);
     tasks.push({
       id, scoreUnitId: id, lessonId: reference.lessonId, phraseId: reference.phraseId,
-      format: 'fill_gap', prompt: candidate.gap,
+      format: 'fill_gap', prompt: blueprintVersion === 4 ? `${reference.sourceText}\n${candidate.gap}` : candidate.gap,
       explanation: `${reference.phrase.english.trim()} — ${reference.sourceText}`,
       ...choices,
-      acceptedOptionIds: grammarCategory
+      acceptedOptionIds: blueprintVersion === 4 || grammarCategory
         ? [choices.correctOptionId]
         : choices.options.map((option) => option.id),
     } satisfies LevelExamChoiceTask);
@@ -397,7 +431,7 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   // зачем (сперва логи): сколько соблазнов вне пройденных уроков отброшено и сколько добрано близкими по классу
   DebugLogger.info(LOG, `lang=en level=${input.level} lessons=1-${toLesson} locale=${input.sourceLocale} vocab=${vocab.tokens.size} filtered=${loud.stats.filtered} backfilled=${loud.stats.backfilled} tasks=${tasks.length}`);
   return {
-    version: 3, level: input.level, studyTarget: 'en', sourceLocale: input.sourceLocale, seed: input.seed,
+    version: blueprintVersion, level: input.level, studyTarget: 'en', sourceLocale: input.sourceLocale, seed: input.seed,
     tasks: orderedTasks,
     scoredUnitIds: orderedTasks.flatMap((task) => task.format === 'speed_match' ? task.pairs.map((pair) => pair.scoreUnitId) : [task.scoreUnitId]),
     durationMs: EXAM_DURATION_MS[input.level], passScore: 21,

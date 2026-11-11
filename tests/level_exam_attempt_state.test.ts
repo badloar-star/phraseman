@@ -9,6 +9,8 @@ import {
   restoreLevelExamAttempt,
   type CreateLevelExamAttemptInput,
 } from '../app/level_exam_attempt_state';
+import * as attemptState from '../app/level_exam_attempt_state';
+import { buildLevelExamBlueprint } from '../app/level_exam_blueprint';
 
 const BASE_INPUT: CreateLevelExamAttemptInput = {
   energySpent: true,
@@ -145,5 +147,52 @@ describe('level exam attempt state', () => {
     expect(racedTimeout.finishToken).toBe(attempt.finishToken);
     expect(completed).toEqual(repeated);
     expect(completed).toMatchObject({ status: 'completed', finishedAtMs: 700_000 });
+  });
+
+  test('accepts v4 snapshots without upgrading v3 snapshots in place', () => {
+    const v3 = createLevelExamAttempt(BASE_INPUT);
+    const v4 = createLevelExamAttempt({ ...BASE_INPUT, startToken: 'start-v4', blueprintVersion: 4 });
+    const context = {
+      ownerStableUid: BASE_INPUT.ownerStableUid,
+      level: BASE_INPUT.level,
+      studyTarget: BASE_INPUT.studyTarget,
+      sourceLocale: BASE_INPUT.sourceLocale,
+      nowMs: 100_000,
+    };
+
+    expect(restoreLevelExamAttempt(v3, { ...context, blueprintVersion: 3 })).toEqual({ kind: 'resume', attempt: v3 });
+    expect(restoreLevelExamAttempt(v4, { ...context, blueprintVersion: 4 })).toEqual({ kind: 'resume', attempt: v4 });
+    expect(restoreLevelExamAttempt(v3, { ...context, blueprintVersion: 4 }))
+      .toEqual({ kind: 'quarantine', reason: 'blueprint_mismatch' });
+  });
+
+  test('compares the exact saved task and score-unit identity before resume or grading', () => {
+    const matcher = (attemptState as typeof attemptState & {
+      levelExamAttemptMatchesBlueprintIdentity?: (attempt: unknown, blueprint: unknown) => boolean;
+    }).levelExamAttemptMatchesBlueprintIdentity;
+    expect(typeof matcher).toBe('function');
+    if (!matcher) return;
+    const blueprint = buildLevelExamBlueprint({
+      level: 'A1', studyTarget: 'en', sourceLocale: 'ru', seed: 'identity-contract', blueprintVersion: 4,
+    });
+    const attempt = createLevelExamAttempt({
+      energySpent: true,
+      ownerStableUid: 'identity-owner',
+      startToken: 'identity-start',
+      level: 'A1',
+      studyTarget: 'en',
+      sourceLocale: 'ru',
+      blueprintVersion: 4,
+      seed: blueprint.seed,
+      orderedTaskIds: blueprint.tasks.map((task) => task.id),
+      scoredUnitIds: [...blueprint.scoredUnitIds],
+      startedAtMs: 1_000,
+      durationMs: blueprint.durationMs,
+    });
+
+    expect(matcher(attempt, blueprint)).toBe(true);
+    expect(matcher({ ...attempt, orderedTaskIds: [...attempt.orderedTaskIds].reverse() }, blueprint)).toBe(false);
+    expect(matcher({ ...attempt, scoredUnitIds: [...attempt.scoredUnitIds].reverse() }, blueprint)).toBe(false);
+    expect(matcher({ ...attempt, blueprintVersion: 3 }, blueprint)).toBe(false);
   });
 });

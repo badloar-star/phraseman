@@ -529,7 +529,36 @@ const DEV_FORCED_ON: ReadonlySet<string> = (() => {
   return new Set<string>(raw.split(',').map((item: string) => item.trim()).filter((item: string) => item.length > 0));
 })();
 
+/**
+ * Функции, включённые ВСЕГДА: ни «Пульт», ни значение по умолчанию их больше не выключают.
+ *
+ * зачем (владелец 11.11, разбор переключателей: «Да, убрать» — «я всё равно потом забуду»): эти двенадцать давно включены на
+ * бою и просто висели рубильниками; о каждом надо было помнить, а три из них (промокоды, лесенка приглашений, сердечко Пика)
+ * по умолчанию были ВЫКЛ — новая установка до первой загрузки настроек видела приложение без них.
+ * В список сознательно НЕ входят: аварийные инструменты (техработы, обновление, баннеры), режим energy_mistake_charge,
+ * проба ghost_friend_ab, Account V2 / PhoneState и всё, что на бою выключено. Сторож — tests/remote_flags_retired_always_on.test.ts.
+ *
+ * Строки в DEFAULT_FLAGS оставлены как были: их значения сверяет базовый снимок OTA
+ * (docs/work/release/ota_flag_baseline_2026-10-25.json). Для ключа из этого списка они больше ни на что не влияют.
+ * Сами ключи в remote_config/app.bools должны оставаться true: их читают сервер и уже выпущенные сборки.
+ */
+export const RETIRED_ALWAYS_ON_FLAGS: ReadonlySet<RemoteBoolKey> = new Set<RemoteBoolKey>([
+  'dialogue_freeform_translate_enabled',
+  'paywall_reviews_enabled',
+  'promo_codes_enabled',
+  'rank_gates_enabled',
+  'referral_enabled',
+  'referral_ladder_enabled',
+  'soft_upsell_first_lesson_enabled',
+  'soft_upsell_free_lessons_complete_enabled',
+  'spire_gold',
+  'spire_streak_heart',
+  'video_button_enabled',
+  'weekly_review_ai_v2_enabled',
+]);
+
 export function getRemoteBool(key: RemoteBoolKey): boolean {
+  if (RETIRED_ALWAYS_ON_FLAGS.has(key)) return true;
   if (DEV_FORCED_ON.size > 0 && DEV_FORCED_ON.has(key)) return true;
   if (isDevForcedFlag(key)) return true; // зачем: dev_state?devFlags=… включает флаг без рестарта Metro (только dev-сборка)
   const override = _boolOverrides[key];
@@ -625,6 +654,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
   }
   for (const key of Object.keys(DEFAULT_FLAGS) as RemoteBoolKey[]) {
     if (!allowedBools.has(key)) continue;
+    if (RETIRED_ALWAYS_ON_FLAGS.has(key)) continue; // закреплено включённым: значение «Пульта» не запоминаем
     const raw = snapshot.bools?.[key];
     if (typeof raw === 'boolean') nextBools[key] = raw;
   }

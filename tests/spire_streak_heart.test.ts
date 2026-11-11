@@ -75,11 +75,12 @@ describe('флаг и проводка', () => {
   it('флаг spire_streak_heart в реестре «Пульта»: по умолчанию ВЫКЛ, пропускается снимком конфига', () => {
     jest.isolateModules(() => {
       const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
-      expect(flags.getRemoteBool('spire_streak_heart')).toBe(false);
-      flags.applyRemoteConfigSnapshot({ bools: { spire_streak_heart: true } });
+      // зачем (владелец 11.11 «Да, убрать»): сердечко закреплено включённым — ни значение по умолчанию, ни снимок его не выключают
+      expect(flags.getRemoteBool('spire_streak_heart')).toBe(true);
+      flags.applyRemoteConfigSnapshot({ bools: { spire_streak_heart: false } });
       expect(flags.getRemoteBool('spire_streak_heart')).toBe(true);
       flags.applyRemoteConfigSnapshot({ bools: { spire_streak_heart: 'true' } });
-      expect(flags.getRemoteBool('spire_streak_heart')).toBe(false);
+      expect(flags.getRemoteBool('spire_streak_heart')).toBe(true);
     });
     const hook = read('app/spire/use_spire_streak_heart.ts');
     expect(hook).toContain("getRemoteBool(SPIRE_STREAK_HEART_FLAG_KEY) === true");

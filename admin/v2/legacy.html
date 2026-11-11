@@ -36954,9 +36954,22 @@ html:root body.kn-admin.pm-owner-redesign #admin-app #tab-statistics .pst-card h
   function cpSetStatus(msg, color) {
     window.__cpStatus(document.getElementById('cp-toggles-status'), msg, color);
   }
+  // зачем (владелец 11.11, разбор переключателей: «Да, убрать» — «я всё равно потом забуду»): эти функции в приложении закреплены
+  // включёнными (app/remote_flags.ts → RETIRED_ALWAYS_ON_FLAGS). Рубильник прячем и запись запрещаем: ключи в remote_config/app.bools
+  // обязаны оставаться true — их читают сервер и уже выпущенные сборки, случайное «Выкл» отключило бы функцию у них.
+  // Публикация «Пульта» сохраняет ключи, которых нет на экране (Object.assign от прежнего снимка), поэтому значения не теряются.
+  const CP_RETIRED_ALWAYS_ON = Object.freeze(['dialogue_freeform_translate_enabled', 'paywall_reviews_enabled', 'promo_codes_enabled',
+    'rank_gates_enabled', 'referral_enabled', 'referral_ladder_enabled', 'spire_gold', 'spire_streak_heart', 'video_button_enabled']);
   function cpRenderToggle(key, on) {
     const cb = document.getElementById('cp-bool-' + key);
     const lbl = document.getElementById('cp-bool-label-' + key);
+    if (cb && CP_RETIRED_ALWAYS_ON.includes(key)) {
+      const row = cb.closest('.cp-switch-row') || cb.closest('label');
+      if (row) row.style.display = 'none';
+      cb.checked = true; cb.disabled = true;
+      if (on !== true) console.warn('[CP-RETIRED] закреплённая функция выключена в remote_config — проверьте: ' + key);
+      return;
+    }
     if (cb) { cb.checked = !!on; cb.disabled = false; }
     if (lbl) {
       lbl.textContent = on ? 'Вкл' : 'Выкл';
@@ -37167,6 +37180,11 @@ html:root body.kn-admin.pm-owner-redesign #admin-app #tab-statistics .pst-card h
   // Обобщённая запись ОДНОГО булевого флага в remote_config/app.bools, сохраняя
   // остальной документ (numbers + прочие bools) — чтобы не затереть лимиты/A-B.
   window.saveControlPanelBool = async function(key, checked) {
+    if (CP_RETIRED_ALWAYS_ON.includes(key)) {
+      console.warn('[CP-RETIRED] запись отклонена: функция закреплена включённой — ' + key);
+      cpSetStatus('Эта функция закреплена включённой и больше не переключается', '#f87171');
+      return;
+    }
     const cb = document.getElementById('cp-bool-' + key);
     if (cb) cb.disabled = true;
     cpSetStatus('Сохранение…');

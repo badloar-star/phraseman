@@ -12,20 +12,23 @@ describe('paywall admin control visibility', () => {
     applyRemoteConfigSnapshot({});
   });
 
-  it('keeps close and restore visible by default while promo remains server-gated', () => {
+  // зачем (владелец 11.11 «Да, убрать»): промокоды закреплены включёнными, поэтому ввод промокода на экране оплаты виден и без
+  // снимка «Пульта» (на бою оба ключа и так true). Сам промокод по-прежнему проверяет сервер.
+  it('keeps close, restore and promo visible by default; the code itself is still validated by the server', () => {
     applyRemoteConfigSnapshot({});
 
     expect(getPaywallControlVisibility()).toEqual({
       closeVisible: true,
       restoreVisible: true,
-      promoVisible: false,
+      promoVisible: true,
     });
   });
 
   it.each([
     [{ promo_codes_enabled: true }, true],
     [{ promo_codes_enabled: true, paywall_promo_code_visible: false }, false],
-    [{ promo_codes_enabled: false, paywall_promo_code_visible: true }, false],
+    // зачем (владелец 11.11 «Да, убрать»): промокоды закреплены включёнными — false из «Пульта» их не прячет; прячет только paywall_promo_code_visible
+    [{ promo_codes_enabled: false, paywall_promo_code_visible: true }, true],
   ] as const)('combines promo eligibility with the paywall visibility switch: %o', (bools, promoVisible) => {
     applyRemoteConfigSnapshot({ bools });
 

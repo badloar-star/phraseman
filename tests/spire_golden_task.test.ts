@@ -115,7 +115,8 @@ describe('телефон: флаг, проводка, «Пульт»', () => {
       const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
       expect(flags.getRemoteBool('spire_gold')).toBe(true);
       flags.applyRemoteConfigSnapshot({ bools: { spire_gold: false } });
-      expect(flags.getRemoteBool('spire_gold')).toBe(false);
+      // зачем (владелец 11.11 «Да, убрать»): «золото» закреплено включённым — снимок его больше не выключает; второй замок (goldRule от сервера) остаётся
+      expect(flags.getRemoteBool('spire_gold')).toBe(true);
     });
   });
 

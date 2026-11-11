@@ -14,7 +14,8 @@ describe('гейты по умолчанию выключены', () => {
     expect(getRemoteBool('rank_gates_existing_users')).toBe(false); // старые пользователи не теряют доступ: замки только «новым», пока Пульт не включит
     expect(getRemoteBool('section_openings_enabled')).toBe(true);
     applyRemoteConfigSnapshot({ bools: { rank_gates_enabled: false, section_openings_enabled: false } });
-    expect(getRemoteBool('rank_gates_enabled')).toBe(false);
+    // зачем (владелец 11.11 «Да, убрать»): rank_gates_enabled закреплён включённым — «Пульт» его больше не выключает (RETIRED_ALWAYS_ON_FLAGS)
+    expect(getRemoteBool('rank_gates_enabled')).toBe(true);
     expect(getRemoteBool('section_openings_enabled')).toBe(false);
   });
 
@@ -48,11 +49,11 @@ describe('dev-принуждение флагов для E2E Сверки (бе�
     const m = load({ force: 'rank_gates_enabled, section_openings_enabled' });
     expect(m.getRemoteBool('rank_gates_enabled')).toBe(true);
     expect(m.getRemoteBool('section_openings_enabled')).toBe(true);
-    expect(m.getRemoteBool('referral_ladder_enabled')).toBe(false);
+    expect(m.getRemoteBool('energy_gift_enabled')).toBe(false); // пример выключенного по умолчанию: лесенка приглашений 11.11 закреплена включённой
   });
   it('без переменной и в стор-релизе принуждения нет', () => {
     // зачем (05.11 ~15:00): section_openings_enabled теперь ВКЛ по умолчанию, поэтому принуждение проверяем на флаге, выключенном по умолчанию
-    expect(load({}).getRemoteBool('referral_ladder_enabled')).toBe(false);
-    expect(load({ force: 'referral_ladder_enabled', store: '1' }).getRemoteBool('referral_ladder_enabled')).toBe(false);
+    expect(load({}).getRemoteBool('energy_gift_enabled')).toBe(false);
+    expect(load({ force: 'energy_gift_enabled', store: '1' }).getRemoteBool('energy_gift_enabled')).toBe(false);
   });
 });

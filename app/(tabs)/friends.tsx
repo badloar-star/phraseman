@@ -26,6 +26,7 @@ import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import ScrollTopEdgeFade from '../../components/ScrollTopEdgeFade';
+import { traceFriendsContentSize, traceFriendsHeader, traceFriendsListLayout, traceFriendsScrollEvent, traceFriendsTouch, traceFriendsVisible } from '../../components/friends/friends_scroll_trace'; // ВРЕМЕННО: [FRIENDS-SCROLL], убрать после починки
 import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 // зачем (владелец 2026-09-29): вкладка «Друзья» 1 в 1 по макету community.html (Liquid Glass) —
@@ -1150,6 +1151,7 @@ export default function FriendsTabScreen() {
   const topFadeScroll = useTopFadeScroll();
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const handleFriendsScroll = useCallback((e: any) => {
+    traceFriendsScrollEvent(e); // ВРЕМЕННО: [FRIENDS-SCROLL]
     topFadeScroll?.onScroll?.(e);
     onBouncyScroll(e);
   }, [onBouncyScroll, topFadeScroll]);
@@ -2773,10 +2775,23 @@ export default function FriendsTabScreen() {
     alwaysBounceVertical: true,
     overScrollMode: 'always' as const,
     onScroll: handleFriendsScroll,
+    // ВРЕМЕННО ([FRIENDS-SCROLL], владелец 11.11 «открывается где-то на середине»): высота списка и содержимого, палец на экране
+    onLayout: (e: any) => traceFriendsListLayout(e?.nativeEvent?.layout?.height ?? -1),
+    onContentSizeChange: (w: number, h: number) => traceFriendsContentSize(w, h),
+    onScrollBeginDrag: () => traceFriendsTouch('drag_begin'),
+    onScrollEndDrag: () => traceFriendsTouch('drag_end'),
+    onMomentumScrollEnd: () => traceFriendsTouch('momentum_end'),
   };
 
   const hasRequests = requests.length > 0;
   const hasFriendRows = sortedFriends.length > 0;
+  // ВРЕМЕННО ([FRIENDS-SCROLL]): вход в раздел и каждая смена состава блоков над строками списка
+  const traceWeekRailShown = weekRail != null;
+  const traceOfflineShown = friendsTogetherUiEnabled && friendsOffline === true && hasFriendRows;
+  useEffect(() => { traceFriendsVisible(friendsTabVisible); }, [friendsTabVisible]);
+  useEffect(() => {
+    traceFriendsHeader({ rows: sortedFriends.length, requests: requests.length, weekRail: traceWeekRailShown, offlineStrip: traceOfflineShown, settled: friendsListSettled, visible: friendsTabVisible });
+  }, [sortedFriends.length, requests.length, traceWeekRailShown, traceOfflineShown, friendsListSettled, friendsTabVisible]);
   // зачем (идея 1, макет «Нет сети»): без сети список остаётся, над ним — спокойная полоса со временем сохранения
   const offlineStrip = friendsTogetherUiEnabled && friendsOffline === true && hasFriendRows ? <FriendsOfflineStrip /> : null;
   const yourFriendsTitle = L('Твои друзья', 'Твої друзі', 'Your friends', 'Tus amigos', 'Seus amigos', 'Bạn bè của bạn', 'Teman kamu', 'Arkadaşların', 'Twoi znajomi');

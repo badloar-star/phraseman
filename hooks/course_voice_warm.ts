@@ -31,6 +31,17 @@ let chain: Promise<void> = Promise.resolve();
  * `locale` — язык речи или язык обучения ('de-DE', 'de'); язык без записей → 0.
  */
 export function warmCourseVoice(source: string, texts: readonly unknown[], locale: string | null | undefined): number {
+  // зачем (проверка перед сборками 11.11): подкачка зовётся внутри подготовки ступени Пика — её сбой не имеет права
+  // закрыть вход на ступень или уронить карточку фразы дня; причина — в журнал, фраза прозвучит обычным путём
+  try {
+    return planWarm(source, texts, locale);
+  } catch (error: unknown) {
+    console.warn(`${TAG} подкачка не запущена`, JSON.stringify({ source, error: error instanceof Error ? error.message : String(error) })); // guard-ok: причина, по которой запись не подкачана заранее
+    return 0;
+  }
+}
+
+function planWarm(source: string, texts: readonly unknown[], locale: string | null | undefined): number {
   const lang = courseVoiceLangFromLocale(locale);
   if (lang === null) return 0;
   if (getNetStatus() === 'offline') {

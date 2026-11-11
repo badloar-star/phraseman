@@ -18,6 +18,21 @@ import { MEMORY_BANK_EN } from './memory_en';
 import { ODD_WORD_BANK_EN } from './odd_word_en';
 import { ORDER_BANK_EN } from './order_en';
 import { SORT_BANK_EN } from './sort_en';
+// испанский и итальянский: «Трёх форм» нет — это английская особенность
+import { EXACT_BANK_ES } from './exact_es';
+import { HUNT_BANK_ES } from './hunt_es';
+import { LISTEN_BANK_ES } from './listen_es';
+import { MEMORY_BANK_ES } from './memory_es';
+import { ODD_WORD_BANK_ES } from './odd_word_es';
+import { ORDER_BANK_ES } from './order_es';
+import { SORT_BANK_ES } from './sort_es';
+import { EXACT_BANK_IT } from './exact_it';
+import { HUNT_BANK_IT } from './hunt_it';
+import { LISTEN_BANK_IT } from './listen_it';
+import { MEMORY_BANK_IT } from './memory_it';
+import { ODD_WORD_BANK_IT } from './odd_word_it';
+import { ORDER_BANK_IT } from './order_it';
+import { SORT_BANK_IT } from './sort_it';
 
 type ByLesson<T> = Readonly<Record<number, T>>;
 
@@ -45,6 +60,24 @@ export const GAME_BANKS: Readonly<Record<string, GameBank>> = {
     // зачем: в уроке 1 одни утверждения — диалог с однозначным порядком из его слов собрать нельзя, поэтому на уроке 1
     // остаётся утверждённый владельцем пример из макета; с урока 2 идут диалоги банка (решение по уроку 1 — за владельцем)
     order: { 1: ORDER_SEED_TASKS, ...ORDER_BANK_EN },
+  },
+  es: {
+    oddWord: ODD_WORD_BANK_ES,
+    sort: SORT_BANK_ES,
+    exact: EXACT_BANK_ES,
+    listen: LISTEN_BANK_ES,
+    memory: MEMORY_BANK_ES,
+    hunt: HUNT_BANK_ES,
+    order: ORDER_BANK_ES,
+  },
+  it: {
+    oddWord: ODD_WORD_BANK_IT,
+    sort: SORT_BANK_IT,
+    exact: EXACT_BANK_IT,
+    listen: LISTEN_BANK_IT,
+    memory: MEMORY_BANK_IT,
+    hunt: HUNT_BANK_IT,
+    order: ORDER_BANK_IT,
   },
 };
 

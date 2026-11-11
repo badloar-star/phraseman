@@ -53,6 +53,10 @@ if (!CHECK && touched.length) {
   fs.writeFileSync(path.join(DIR, 'index.json'), indexText);
   en.files['index.json'] = { bytes: Buffer.byteLength(indexText), sha256: sha(indexText) };
   manifest.languages.en = { ...index, files: en.files };
-  fs.writeFileSync(manifestPath, JSON.stringify(manifest) + '\n');
+  // зачем: manifest.json бывает открыт другим процессом, и Windows тогда отклоняет перезапись и усечение (11.11 так остался
+  // «хвост» старого содержимого и файл стал невалидным); замена через временный файл и переименование проходит.
+  const tmpPath = manifestPath + '.u20tmp';
+  fs.writeFileSync(tmpPath, JSON.stringify(manifest) + '\n');
+  fs.renameSync(tmpPath, manifestPath);
   console.log(`[U20] index.rev = ${index.rev}; manifest.json обновлён`);
 }

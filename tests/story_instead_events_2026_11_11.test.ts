@@ -104,8 +104,40 @@ describe('событие instead → данные кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 })).toBeNull();
   });
 
-  it('список видов с источником — восемь; остальные 9 кадров ждут своих партий', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate']);
+  it('список видов с источником — десять; остальные 7 кадров ждут своих партий', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open']);
+  });
+
+  it('«Идеальный урок» и «Открыт урок N»: данные события → кадр; битые — нет кадра', () => {
+    expect(storyEventKey('instead', { kind: 'perfect', key: '12:en:attempt-a', lessonNo: 12, total: 45, coins: 120 })).toBe('instead:perfect:12:en:attempt-a');
+    expect(insteadTemplateFromPayload({ kind: 'perfect', key: 'k', lessonNo: 12, total: 45, coins: 120 })).toEqual({ id: 'instead_perfect', lessonNo: 12, correct: 45, total: 45, coins: 120 });
+    // ноль монет — честный кадр без плашки монет; ноль заданий или номер урока 0 — битые данные
+    expect(insteadTemplateFromPayload({ kind: 'perfect', key: 'k', lessonNo: 12, total: 45, coins: 0 })).toEqual({ id: 'instead_perfect', lessonNo: 12, correct: 45, total: 45, coins: 0 });
+    expect(insteadTemplateFromPayload({ kind: 'perfect', key: 'k', lessonNo: 12, total: 0, coins: 120 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'perfect', key: 'k', lessonNo: 0, total: 45, coins: 120 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'perfect', key: 'k', lessonNo: 12, total: 45 })).toBeNull();
+    expect(storyEventKey('instead', { kind: 'lesson_open', key: 'en:13', lessonNo: 12, nextLessonNo: 13 })).toBe('instead:lesson_open:en:13');
+    // темы следующего урока уведомление не знало — кадр без строки темы
+    expect(insteadTemplateFromPayload({ kind: 'lesson_open', key: 'en:13', lessonNo: 12, nextLessonNo: 13 })).toEqual({ id: 'instead_lesson_open', lessonNo: 12, nextLessonNo: 13, topic: null });
+    expect(insteadTemplateFromPayload({ kind: 'lesson_open', key: 'en:14', lessonNo: 12, nextLessonNo: 14 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'lesson_open', key: 'en:1', lessonNo: 0, nextLessonNo: 1 })).toBeNull();
+  });
+
+  it('итог урока: окно штампа и уведомление — прежний путь при выключенных историях; история отпускает слот секвенции', () => {
+    const screen = read('app/lesson_complete.tsx');
+    expect(screen).toContain('{perfectMomentOn && lessonCounts && !perfectAsStory ? (');
+    expect(screen).toContain('onOpenChange: onPerfectOpenChange,');
+    // уведомление «Новый урок открыт»: история — только при включённых историях, иначе прежняя очередь
+    const unlock = screen.indexOf('if (storiesReplaceWindows()) {\n            void recordLessonOpenStory(');
+    expect(unlock).toBeGreaterThan(-1);
+    expect(screen.indexOf("queue.push({ kind: 'lesson_unlock', unlockedLessonId: lessonId + 1 });", unlock)).toBeGreaterThan(unlock);
+    const hook = read('components/lesson_moments/use_perfect_moment_story.ts');
+    expect(hook).toContain('const instead = ready && (takenKey === onceKey || storiesReplaceWindows());');
+    expect(hook).toContain('.finally(() => { onOpenChangeRef.current(false); });');
+    // окно штампа не тронуто: истории в него не подмешаны
+    expect(read('components/lesson_moments/LessonPerfectHost.tsx')).not.toContain('story');
+    // кнопка «Начать урок N» ведёт в список уроков — проверки энергии и Plus там
+    expect(read('components/stories/templates/use_story_cta_action.ts')).toContain("router.push('/(tabs)/lessons' as never);");
   });
 
   it('«Оцените приложение»: повод события → кадр; серия — только три рубежа окна; чужой повод — нет кадра', () => {

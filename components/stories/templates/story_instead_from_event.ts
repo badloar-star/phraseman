@@ -5,7 +5,8 @@
 // (нет числа, отрицательное, ранг вне таблицы) кадра не даёт — лучше пропустить историю, чем показать «0 дней перерыва».
 // Подключены четыре вида: `back` («С возвращением»), `rank_enough` («Хватает на ранг»), `legacy` («Бонусы стали монетами»),
 // `plus_expired` («Plus закончился»), `ref_ended` («Доступ можно открыть снова»),
-// `ref_welcome` («Тебя пригласили»), `first_dialog` («Первый разговор»), `rate` («Оцените приложение»); остальные 9 — следующими партиями.
+// `ref_welcome` («Тебя пригласили»), `first_dialog` («Первый разговор»), `rate` («Оцените приложение»),
+// `perfect` («Идеальный урок»), `lesson_open` («Открыт урок N»); остальные 7 — следующими партиями.
 // Числа проверяются строго: строка '6' и дробное 6.9 не превращаются в 6 — так уже маскировался битый payload у ранга монеты.
 // ═══════════════════════════════════════════════════════════════════════════
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
@@ -21,7 +22,7 @@ function count(value: unknown): number | null {
 }
 
 /** Виды событий `instead`, у которых уже есть источник. */
-export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate'] as const;
+export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open'] as const;
 
 const RATE_CONTEXTS = ['perfect_lesson', 'level_exam_pass', 'streak_milestone'] as const;
 const RATE_STREAK_DAYS = [7, 14, 30] as const;
@@ -80,6 +81,21 @@ export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | n
       // длина серии — только три рубежа окна; иное (0 = «нет») кадр показывает без строки серии, как окно без карточки
       const streakDays = RATE_STREAK_DAYS.find((d) => d === p.streakDays) ?? null;
       return { id: 'instead_rate', context, streakDays: context === 'streak_milestone' ? streakDays : null };
+    }
+    case 'perfect': {
+      const lessonNo = count(p.lessonNo);
+      const total = count(p.total);
+      const coins = count(p.coins);
+      if (lessonNo === null || lessonNo < 1 || total === null || total < 1 || coins === null) return null;
+      // идеальный проход: верных столько же, сколько заданий — другого счёта у этого события не бывает
+      return { id: 'instead_perfect', lessonNo, correct: total, total, coins };
+    }
+    case 'lesson_open': {
+      const lessonNo = count(p.lessonNo);
+      const nextLessonNo = count(p.nextLessonNo);
+      if (lessonNo === null || lessonNo < 1 || nextLessonNo !== lessonNo + 1) return null;
+      // темы следующего урока уведомление не знало — кадр идёт без строки «Тема: …»
+      return { id: 'instead_lesson_open', lessonNo, nextLessonNo, topic: null };
     }
     default:
       return null;

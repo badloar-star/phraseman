@@ -103,6 +103,8 @@ import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import { prefetchLessonMenuCache } from './lesson_menu';
 import ReviewPromptModal from '../components/ReviewPromptModal';
+import { usePerfectMomentStory } from '../components/lesson_moments/use_perfect_moment_story';
+import { recordLessonOpenStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from './auth_provider';
 import { SETTINGS_OPEN_SIGN_IN_PARAM } from './account_switch_copy';
@@ -904,6 +906,16 @@ export default function LessonComplete() {
   const milestoneHoldRaw = useStreakMilestoneHold();
   const milestoneHold = momentsV3 && milestoneHoldRaw;
   const perfectMomentOn = sequenceShowing && perfectDecision.show && !milestoneHold && (!doneChainOn || doneChainFinished);
+  // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях штамп «ИДЕАЛ»
+  // приходит кадром истории — окно не открывается, а экран получает «закрыто» тем же колбэком (слот секвенции отпускается, оценка не ждёт)
+  const perfectAsStory = usePerfectMomentStory({
+    ready: perfectMomentOn && lessonCounts !== null,
+    onceKey: perfectMomentKey(lessonId, studyTarget, completionAttemptId),
+    lessonNo: lessonId,
+    total: lessonCounts ? lessonCounts.correct + lessonCounts.wrong : 0,
+    coins: practiceRunes.runes,
+    onOpenChange: onPerfectOpenChange,
+  });
   // R58 #2: слот «секвенция наград» отпускаем, когда экран итога показан и его моменты (цепочка m10, окно m09) отыграли или их не будет
   useEffect(() => {
     if (seqDone) return;
@@ -1273,7 +1285,14 @@ export default function LessonComplete() {
           params.unlocked === '1',
           premiumForUnlockAnnouncement,
         )) {
-          queue.push({ kind: 'lesson_unlock', unlockedLessonId: lessonId + 1 });
+          // зачем (владелец 11.11: «никаких модальных окон совсем»): при включённых историях «Новый урок открыт» приходит кадром истории,
+          // в очередь уведомлений итога не встаёт; истории выключены — уведомление как раньше
+          if (storiesReplaceWindows()) {
+            void recordLessonOpenStory({ studyTarget, lessonNo: lessonId, nextLessonNo: lessonId + 1 })
+              .catch((e: unknown) => { DebugLogger.error('lesson_complete:recordLessonOpenStory', e instanceof Error ? e : new Error(String(e)), 'warning'); });
+          } else {
+            queue.push({ kind: 'lesson_unlock', unlockedLessonId: lessonId + 1 });
+          }
         }
         if (medalUpgraded) {
           queue.push({ kind: 'medal', medalTier: newTier });
@@ -1702,7 +1721,7 @@ export default function LessonComplete() {
                 <StreakMilestoneHost lang={lang} />
               </Suspense>
             ) : null}
-            {perfectMomentOn && lessonCounts ? (
+            {perfectMomentOn && lessonCounts && !perfectAsStory ? (
               <Suspense fallback={null}>
                 <LessonPerfectHost lang={lang} onceKey={perfectMomentKey(lessonId, studyTarget, completionAttemptId)} total={lessonCounts.correct + lessonCounts.wrong} coinsEarned={practiceRunes.runes} onOpenChange={onPerfectOpenChange} />
               </Suspense>

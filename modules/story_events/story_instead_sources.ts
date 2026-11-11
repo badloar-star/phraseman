@@ -82,6 +82,19 @@ export function recordRateAppStory(input: Readonly<{ context: 'perfect_lesson' |
   return record('rate', `${input.context}:${input.dayKey}`, { context: input.context, streakDays: input.streakDays ?? 0 }); // guard-ok: длина серии для подписи кадра, серия не меняется
 }
 
+/**
+ * «Идеальный урок» (взамен окна-штампа на итоге урока): номер урока, число заданий (все верные) и монеты за урок — то же «+N», что на итоге.
+ * Ключ — ключ прохождения (урок + язык + попытка): повторный заход на тот же итог второй истории не создаёт.
+ */
+export function recordPerfectLessonStory(input: Readonly<{ onceKey: string; lessonNo: number; total: number; coins: number }>): Promise<StoryRecordResult> {
+  return record('perfect', input.onceKey, { lessonNo: input.lessonNo, total: input.total, coins: input.coins }); // guard-ok: число монет для показа в кадре, баланс не меняется
+}
+
+/** «Открыт урок N» (взамен уведомления «Новый урок открыт» на итоге): ключ — язык и номер открытого урока, один раз на урок. */
+export function recordLessonOpenStory(input: Readonly<{ studyTarget: string; lessonNo: number; nextLessonNo: number }>): Promise<StoryRecordResult> {
+  return record('lesson_open', `${input.studyTarget}:${input.nextLessonNo}`, { lessonNo: input.lessonNo, nextLessonNo: input.nextLessonNo });
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

@@ -108,6 +108,14 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       router.push('/referrals?enter=1' as never);
       return;
     }
+    if (cta.action === 'start_lesson') {
+      // зачем (истории вместо окон, 11.11): кнопка кадра «Открыт урок N» ведёт в список уроков, а не в сам урок — проверки энергии и Plus
+      // живут в списке, обходить их из истории нельзя; просмотр (Modal) закрываем, иначе экран открылся бы под ним
+      DebugLogger.info(LOG, `урок: закрываем просмотр и открываем список уроков (кадр=${ctx.source})`);
+      closeViewer('cta_start_lesson');
+      router.push('/(tabs)/lessons' as never);
+      return;
+    }
     if (cta.action === 'rate_app') {
       // зачем (истории вместо окон, 11.11): то же, что главная кнопка окна просьбы об оценке — открыть страницу магазина; «оценено» ставим только
       // если магазин открылся (R58 #55: иначе просьба пропадала навсегда без оценки); двойной тап магазин дважды не открывает

@@ -137,11 +137,11 @@ describe('кадры «истории вместо окон» — разметк
     expect(registry).toContain('...STORY_INSTEAD_TEMPLATE_SAMPLES,');
   });
 
-  it('шаг 2: у восьми кадров есть источник — событие instead; остальные 9 ждут своих партий', () => {
+  it('шаг 2: у десяти кадров есть источник — событие instead; остальные 7 ждут своих партий', () => {
     const fromEvent = read('components/stories/templates/story_template_from_event.ts');
     expect(fromEvent).toContain("case 'instead': return insteadTemplateFromPayload(p);");
     const own = read('components/stories/templates/story_instead_from_event.ts');
-    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate'] as const;");
+    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open'] as const;");
   });
 });
 

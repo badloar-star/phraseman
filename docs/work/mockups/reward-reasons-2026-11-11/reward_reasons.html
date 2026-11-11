@@ -3,137 +3,98 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>U36 · За что дали награду</title>
-<!-- зачем: U36 (владелец 11.11) — в «Итоге недели» и историях объяснить, за что монеты, почему
-     сменилась лига/этаж и какое условие дало ачивку. Сумма видна только при подтверждённой выплате
-     (rewardStatus = paid). Числа примера выдуманы; правила и строки ачивок взяты из кода. -->
+<title>U36 · За что дали награду · истории</title>
+<!-- зачем: U36 (владелец 11.11) — объяснить, за что монеты, почему сменилась лига/этаж и какое условие дало ачивку.
+     Уточнение владельца: ВСЕ состояния человек видит только в историях, отдельного окна итога нет.
+     Поэтому объяснение стоит прямо на кадре истории, без шторки и лишнего тапа.
+     Сумма видна только при подтверждённой выплате (rewardStatus = paid). Числа примера выдуманы;
+     таблица наград, правила зоны и строки ачивок взяты из кода. -->
 <style>
   :root{
     --page:#0b0b0d; --chip:#1c1c21; --chipOn:#f4f4f6; --mut:#8d8e97; --ink:#ececf1;
     --up:#34C759; --down:#FF6B63;
     --press:240ms cubic-bezier(.3,1.4,.5,1);
-    --sheet:440ms cubic-bezier(.2,1,.3,1);
     --out:cubic-bezier(.23,1,.32,1);
   }
-  .t-graphite{--bg:#070C11;--card:#171C22;--ctl:#262C32;--tx:#F7FAFE;--sec:#C6CBD1;--mu:#A3A8AD;--acc:#ABC0D7;--cta:#F2F1F6;--ctaTx:#0B1016;
-    --glow:radial-gradient(120% 70% at 50% -10%, #223040 0%, #0d141c 46%, #070C11 100%)}
-  .t-ink{--bg:#090918;--card:#191A2A;--ctl:#292A3A;--tx:#F9FAFE;--sec:#C8C9D8;--mu:#A5A6B2;--acc:#C1C4FF;--cta:#DFE4F8;--ctaTx:#0C0C22;
-    --glow:radial-gradient(120% 70% at 50% -10%, #2b2c5a 0%, #111128 46%, #090918 100%)}
+  .t-graphite{--bg:#070C11;--card:#171C22;--ctl:#262C32;--tx:#F7FAFE;--sec:#C6CBD1;--mu:#A3A8AD;--acc:#ABC0D7;
+    --glow:radial-gradient(120% 60% at 50% -8%, #223040 0%, #0d141c 48%, #070C11 100%)}
+  .t-ink{--bg:#090918;--card:#191A2A;--ctl:#292A3A;--tx:#F9FAFE;--sec:#C8C9D8;--mu:#A5A6B2;--acc:#C1C4FF;
+    --glow:radial-gradient(120% 60% at 50% -8%, #2b2c5a 0%, #111128 48%, #090918 100%)}
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--page);color:var(--ink);
     font:15px/1.45 -apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1180px;margin:0 auto;padding:36px 16px 64px}
+  .wrap{max-width:1500px;margin:0 auto;padding:36px 16px 64px}
   h1{font-size:clamp(24px,3.4vw,34px);line-height:1.12;letter-spacing:-.02em;margin:0 0 10px;font-weight:750;text-wrap:balance}
-  .lede{color:#b9bac3;max-width:68ch;margin:0 0 26px;text-wrap:pretty}
-  .bar{display:flex;flex-wrap:wrap;gap:18px 28px;margin-bottom:30px}
-  .grp{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
-  .grp>span{color:var(--mut);font-size:13px;margin-right:6px}
+  h2.grp-t{font-size:20px;font-weight:700;letter-spacing:-.01em;margin:44px 0 18px}
+  .lede{color:#b9bac3;max-width:70ch;margin:0 0 22px;text-wrap:pretty}
+  .bar{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .bar>span{color:var(--mut);font-size:13px;margin-right:6px}
   .chip{appearance:none;border:0;background:var(--chip);color:#d7d8df;font:inherit;font-size:13.5px;font-weight:550;
     padding:8px 14px;border-radius:20px;cursor:pointer;transition:transform var(--press),background-color 160ms ease,color 160ms ease}
   .chip:active{transform:scale(.96)}
   .chip[aria-pressed="true"]{background:var(--chipOn);color:#111114}
-  .chip:focus-visible,.cta:focus-visible,.why:focus-visible,.x:focus-visible{outline:2px solid #8fb4ff;outline-offset:2px}
-  .stage{display:flex;flex-wrap:wrap;gap:34px 28px;justify-content:center;align-items:flex-start}
-  figure{margin:0;width:min(360px,100%)}
-  figcaption{margin-top:14px;color:#b9bac3;font-size:13.5px;text-wrap:pretty}
-  figcaption b{color:var(--ink);font-weight:650}
+  .chip:focus-visible{outline:2px solid #8fb4ff;outline-offset:2px}
+  .stage{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:36px 24px}
+  figure{margin:0;width:100%;max-width:340px;justify-self:center}
+  figcaption{margin-top:13px;color:#b9bac3;font-size:13.5px;text-wrap:pretty}
+  figcaption b{display:block;color:var(--ink);font-weight:650;font-size:15px;margin-bottom:2px}
 
-  /* телефон */
+  /* кадр истории */
   .ph{position:relative;width:100%;aspect-ratio:411.43/880;border-radius:34px;overflow:hidden;background:var(--bg);color:var(--tx);
     box-shadow:0 0 0 1px rgba(255,255,255,.07),0 30px 70px -30px rgba(0,0,0,.9)}
-  .scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--glow)}
-  .scroll{flex:1;overflow-y:auto;padding:54px 20px 16px;scrollbar-width:none}
-  .scroll::-webkit-scrollbar{display:none}
-  .foot{padding:10px 20px 22px}
-  .cta{appearance:none;border:0;width:100%;height:54px;border-radius:24px;background:var(--cta);color:var(--ctaTx);
-    font:inherit;font-size:17px;font-weight:650;cursor:pointer;transition:transform var(--press)}
-  .cta:active{transform:scale(.97)}
-  .over{color:var(--mu);font-size:13px;font-weight:600}
-  .title{font-size:27px;line-height:1.12;font-weight:800;letter-spacing:-.02em;margin:6px 0 0;text-wrap:balance}
-  .hero{display:flex;align-items:center;gap:10px;margin:20px 0 4px;font-variant-numeric:tabular-nums}
-  .hero .n{font-size:44px;line-height:1;font-weight:800;letter-spacing:-.03em}
-  .hero .u{font-size:17px;font-weight:600;color:var(--sec);align-self:flex-end;padding-bottom:5px}
-  .coin{flex:none;color:var(--acc)}
-  .sub{color:var(--sec);font-size:14.5px;margin:2px 0 0}
-  .sec{margin-top:22px}
-  .sec>h3{margin:0 0 8px;font-size:13px;font-weight:650;color:var(--mu)}
-  .box{background:var(--card);border-radius:20px;padding:4px 16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
-  .row{display:flex;align-items:center;gap:12px;min-height:50px;padding:10px 0}
-  .row+.row{border-top:1px solid rgba(255,255,255,.06)}
-  .row .l{flex:1;min-width:0;font-size:15.5px;font-weight:550}
-  .row .r{flex:none;font-size:15.5px;font-weight:700;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:6px}
-  .plus{color:var(--tx)} .neg{color:var(--down)} .pos{color:var(--up)}
-  .pill{font-size:12.5px;font-weight:650;color:var(--sec);background:var(--ctl);padding:5px 10px;border-radius:20px}
-  .say{font-size:15px;color:var(--sec);padding:13px 0;text-wrap:pretty}
-  .ok{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--mu);margin-top:9px}
-  .ok svg{flex:none}
-  .move{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:750;letter-spacing:-.01em;padding:14px 0 2px}
-  .move .from{color:var(--mu);font-weight:600}
-  .arr{flex:none}
-  .ticks{display:flex;gap:3px;align-items:flex-end;height:26px;margin:12px 0 5px}
-  .tk{flex:1;height:14px;border-radius:2px;background:var(--ctl)}
-  .tk.u{background:color-mix(in srgb,var(--up) 62%,var(--card))}
-  .tk.d{background:color-mix(in srgb,var(--down) 55%,var(--card))}
-  .tk.me{height:26px;background:var(--tx);box-shadow:0 0 0 3px color-mix(in srgb,var(--tx) 22%,transparent)}
-  .scale{display:flex;justify-content:space-between;color:var(--mu);font-size:12px;font-variant-numeric:tabular-nums}
-  .why-t{font-size:15px;color:var(--sec);padding:10px 0 14px;text-wrap:pretty}
-
-  /* история */
   .story{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--glow)}
   .segs{display:flex;gap:4px;padding:16px 14px 0}
   .segs i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.22)}
   .segs i.on{background:rgba(255,255,255,.92)}
   .who{display:flex;align-items:center;gap:9px;padding:12px 16px 0;font-size:13.5px;font-weight:600;color:var(--sec)}
   .who .av{width:28px;height:28px;border-radius:50%;background:var(--ctl);display:grid;place-items:center;color:var(--acc)}
-  .sbody{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 22px 26px}
-  .big{font-size:120px;line-height:.9;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--tx)}
-  .big small{font-size:20px;font-weight:650;letter-spacing:0;color:var(--mu);margin-left:8px}
-  .stitle{font-size:29px;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:14px 0 6px;text-wrap:balance}
-  .sline{color:var(--sec);font-size:15.5px;margin:0 0 20px;text-wrap:pretty}
-  .why{appearance:none;border:0;align-self:flex-start;display:flex;align-items:center;gap:9px;height:46px;padding:0 18px 0 14px;border-radius:24px;
-    background:var(--ctl);color:var(--tx);font:inherit;font-size:15.5px;font-weight:650;cursor:pointer;
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:transform var(--press)}
-  .why:active{transform:scale(.96)}
-  .dim{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity 260ms ease}
-  .sheet{position:absolute;left:0;right:0;bottom:0;max-height:76%;display:flex;flex-direction:column;background:var(--bg);
-    border-radius:28px 28px 0 0;box-shadow:0 -1px 0 rgba(255,255,255,.07),0 -30px 60px rgba(0,0,0,.5);
-    transform:translateY(100%);transition:transform var(--sheet)}
-  .open .sheet{transform:translateY(0)} .open .dim{opacity:1;pointer-events:auto}
-  .grab{width:38px;height:5px;border-radius:3px;background:var(--ctl);margin:9px auto 0}
-  .sh-h{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 0}
-  .sh-h b{font-size:19px;font-weight:750;letter-spacing:-.01em}
-  .x{appearance:none;border:0;width:32px;height:32px;border-radius:50%;background:var(--ctl);color:var(--sec);cursor:pointer;display:grid;place-items:center;
-    transition:transform var(--press)}
-  .x:active{transform:scale(.92)}
-  .sh-b{overflow-y:auto;padding:0 20px 22px;scrollbar-width:none}
-  .sh-b::-webkit-scrollbar{display:none}
-  .sh-b .sec:first-child{margin-top:14px}
+  .sbody{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 18px 22px}
+  .big{font-size:92px;line-height:.9;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .big small{font-size:18px;font-weight:650;letter-spacing:0;color:var(--mu);margin-left:8px}
+  .stitle{font-size:26px;line-height:1.12;font-weight:800;letter-spacing:-.02em;margin:12px 0 0;text-wrap:balance}
+  .got{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:16px;font-weight:650;font-variant-numeric:tabular-nums}
+  .got .st{color:var(--mu);font-weight:550;font-size:14px;display:flex;align-items:center;gap:5px}
+  .coin{flex:none;color:var(--acc)}
+  .box{background:color-mix(in srgb,var(--card) 88%,transparent);border-radius:20px;padding:2px 14px;margin-top:12px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+  .row{display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 0}
+  .row+.row,.say+.row,.row+.say{border-top:1px solid rgba(255,255,255,.06)}
+  .row .l{flex:1;min-width:0;font-size:15px;font-weight:550}
+  .row .r{flex:none;font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:6px}
+  .neg{color:var(--down)} .pos{color:var(--up)}
+  .pill{font-size:12.5px;font-weight:650;color:var(--sec);background:var(--ctl);padding:4px 10px;border-radius:20px}
+  .say{font-size:14.5px;color:var(--sec);padding:11px 0;text-wrap:pretty}
+  .move{display:flex;align-items:center;gap:9px;font-size:17px;font-weight:750;letter-spacing:-.01em;padding:12px 0 0}
+  .move .from{color:var(--mu);font-weight:600}
+  .arr{flex:none}
+  .ticks{display:flex;gap:2.5px;align-items:flex-end;height:22px;margin:10px 0 0}
+  .tk{flex:1;height:12px;border-radius:2px;background:var(--ctl)}
+  .tk.u{background:color-mix(in srgb,var(--up) 62%,var(--card))}
+  .tk.d{background:color-mix(in srgb,var(--down) 55%,var(--card))}
+  .tk.me{height:22px;background:var(--tx);box-shadow:0 0 0 3px color-mix(in srgb,var(--tx) 22%,transparent)}
+  .why-t{font-size:14.5px;color:var(--sec);padding:9px 0 12px;text-wrap:pretty}
+  .why-t em{font-style:normal;color:var(--mu)}
 
   /* ачивка */
-  .medal{width:132px;height:132px;border-radius:50%;margin:0 0 22px;display:grid;place-items:center;color:var(--acc);
+  .medal{width:116px;height:116px;border-radius:50%;margin:0 0 18px;display:grid;place-items:center;color:var(--acc);
     background:radial-gradient(circle at 34% 28%,color-mix(in srgb,var(--acc) 34%,var(--card)) 0%,var(--card) 62%);
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 24px 50px -22px color-mix(in srgb,var(--acc) 60%,transparent)}
-  .days{display:flex;gap:6px;margin:12px 0 4px}
-  .days i{flex:1;height:30px;border-radius:9px;background:color-mix(in srgb,var(--up) 26%,var(--card));display:grid;place-items:center;
-    font-style:normal;font-size:12px;font-weight:650;color:var(--tx)}
-  .bal{display:flex;align-items:baseline;gap:8px;font-variant-numeric:tabular-nums;padding:12px 0 2px}
-  .bal b{font-size:26px;font-weight:800;letter-spacing:-.02em}
+  .cond{font-size:16.5px;font-weight:700;letter-spacing:-.01em;padding:13px 0 0;text-wrap:pretty}
+  .days{display:flex;gap:5px;margin:11px 0 0}
+  .days i{flex:1;height:28px;border-radius:9px;background:color-mix(in srgb,var(--up) 26%,var(--card));display:grid;place-items:center;
+    font-style:normal;font-size:12px;font-weight:650}
+  .bal{display:flex;align-items:baseline;gap:8px;font-variant-numeric:tabular-nums;padding:10px 0 0}
+  .bal b{font-size:24px;font-weight:800;letter-spacing:-.02em}
   .bal span{color:var(--mu);font-size:13.5px}
 
-  /* появление: уже видимое состояние по умолчанию, анимация только украшает */
   @media (prefers-reduced-motion:no-preference){
-    .in>*{animation:rise 420ms var(--out) both}
-    .in>*:nth-child(2){animation-delay:40ms}.in>*:nth-child(3){animation-delay:80ms}
-    .in>*:nth-child(4){animation-delay:120ms}.in>*:nth-child(5){animation-delay:160ms}
-    .in>*:nth-child(6){animation-delay:200ms}.in>*:nth-child(7){animation-delay:240ms}
+    .sbody>*{animation:rise 420ms var(--out)}
     @keyframes rise{from{opacity:0;transform:translateY(8px)}}
   }
-  @media (prefers-reduced-motion:reduce){
-    .sheet,.dim,.chip,.cta,.why,.x{transition-duration:1ms}
-  }
+  @media (prefers-reduced-motion:reduce){.chip{transition-duration:1ms}}
 
-  .rules{margin:54px auto 0;max-width:920px}
+  .rules{margin:54px 0 0;max-width:920px}
   .rules h2{font-size:20px;font-weight:700;letter-spacing:-.01em;margin:0 0 14px}
   .rules dl{margin:0;display:grid;grid-template-columns:minmax(150px,230px) 1fr;gap:0 24px}
   .rules dt,.rules dd{margin:0;padding:13px 0;border-top:1px solid rgba(255,255,255,.08);font-size:14.5px}
@@ -145,45 +106,18 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>U36 · За что дали награду</h1>
-  <p class="lede">Каждая строка отвечает на один вопрос: за что монеты, почему другая лига, почему снова первый этаж, за что ачивка. Сумма появляется только после того, как монеты дошли до баланса.</p>
-
-  <div class="bar">
-    <div class="grp" data-g="state"><span>Неделя</span>
-      <button class="chip" data-v="up">Повышение</button>
-      <button class="chip" data-v="stay">Остался</button>
-      <button class="chip" data-v="down">Спуск</button>
-      <button class="chip" data-v="summit">Вершина</button>
-      <button class="chip" data-v="pending">Награда в пути</button>
-    </div>
-    <div class="grp" data-g="detail"><span>Откуда монеты недели</span>
-      <button class="chip" data-v="off">Скрыто</button>
-      <button class="chip" data-v="on">Показано</button>
-    </div>
-    <div class="grp" data-g="ach"><span>Ачивка</span>
-      <button class="chip" data-v="streak_7">7 дней подряд</button>
-      <button class="chip" data-v="shards_1000">1 000 монет</button>
-    </div>
-    <div class="grp" data-g="theme"><span>Тема</span>
-      <button class="chip" data-v="graphite">Затмение</button>
-      <button class="chip" data-v="ink">Сумерки</button>
-    </div>
+  <h1>U36 · За что дали награду · истории</h1>
+  <p class="lede">Человек видит итог только в историях, поэтому объяснение стоит прямо на кадре: за что монеты, почему другая лига, за что ачивка. Сумма появляется только после того, как монеты дошли до баланса.</p>
+  <div class="bar" id="theme"><span>Тема</span>
+    <button class="chip" data-v="graphite">Затмение</button>
+    <button class="chip" data-v="ink">Сумерки</button>
   </div>
 
-  <div class="stage">
-    <figure>
-      <div class="ph" id="p1"></div>
-      <figcaption><b>Окно «Итог недели».</b> Под заголовком три ответа подряд: монеты, лига, этаж. Ничего не спрятано за тапом.</figcaption>
-    </figure>
-    <figure>
-      <div class="ph" id="p2"></div>
-      <figcaption><b>История недели.</b> Кадр остаётся чистым, кнопка «За что» поднимает шторку с тем же разбором.</figcaption>
-    </figure>
-    <figure>
-      <div class="ph" id="p3"></div>
-      <figcaption><b>История ачивки.</b> Условие из каталога и факт, который его выполнил. Монет за ачивки нет, поэтому суммы здесь не бывает.</figcaption>
-    </figure>
-  </div>
+  <h2 class="grp-t">История недели: пять состояний</h2>
+  <div class="stage" id="weeks"></div>
+
+  <h2 class="grp-t">История ачивки</h2>
+  <div class="stage" id="achs"></div>
 
   <section class="rules">
     <h2>Откуда берётся каждая строка</h2>
@@ -193,151 +127,102 @@
       <dt>Почему другая лига</dt>
       <dd>Место и размер зоны: <code>roomRank</code>, <code>roomTotal</code>, <code>zoneSize</code>. В неполной комнате зона меньше пяти, текст подставляет настоящее число. Вершина башни (<code>topReached</code>) поднимает с любого места и получает свой текст.</dd>
       <dt>Почему первый этаж</dt>
-      <dd>Этаж считается внутри недели и обнуляется у всех. Одна строка, чтобы не путать этаж с лигой.</dd>
+      <dd>Этаж считается внутри недели и обнуляется у всех. Короткая фраза в конце блока лиги, чтобы этаж не путали с лигой.</dd>
       <dt>Запас энергии</dt>
       <dd>+1 при повышении, −1 при спуске. Строка есть только когда изменение было.</dd>
-      <dt>Откуда монеты недели</dt>
-      <dd>Необязательный блок. Ему нужна разбивка по ступеням, этажам и вершине, которой в итоге недели сейчас нет. Числа в макете для него примерные.</dd>
       <dt>Ачивка</dt>
-      <dd>Условие слово в слово из каталога ачивок. Факт: даты серии или баланс в момент выдачи.</dd>
+      <dd>Условие слово в слово из каталога ачивок. Факт: дни серии или баланс в момент выдачи. Монет за ачивки нет, суммы на кадре не бывает.</dd>
     </dl>
   </section>
 </div>
 
 <script>
 // Пример данных. Таблица наград (300/200/150 за 1–3 место, +100 за повышение) и правила зоны — из серверного конфига Пика.
-const S = {
-  up:{over:'Итог недели · Гранит', title:'2 место. Поднимаешься', from:'Гранит', to:'Базальт', dir:'up', place:2, total:30, k:5, week:1300,
-    rows:[['2 место в комнате',200],['Повышение в Базальт',100]], paid:true, energy:1, floor:10,
-    why:'Вверх идут первые 5 из 30. Ты на 2 месте: 1 300 монет за неделю.', sTitle:'Поднимаешься в Базальт',
-    detail:[['75 ступеней по 10',750],['9 этажей',500],['5 золотых ступеней',50]]},
-  stay:{over:'Итог недели · Гранит', title:'Остаёшься в Граните', from:'Гранит', to:'Гранит', dir:'stay', place:9, total:30, k:5, week:860,
-    rows:[], note:'Монеты за место получают первые три.', paid:true, energy:0, floor:7,
-    why:'Вверх идут первые 5 из 30. До пятого места не хватило 240 монет.', sTitle:'Остаёшься в Граните',
-    detail:[['55 ступеней по 10',550],['6 этажей',260],['5 золотых ступеней',50]]},
-  down:{over:'Итог недели · Мрамор', title:'Неделя закончилась: Базальт', from:'Мрамор', to:'Базальт', dir:'down', place:27, total:30, k:5, week:150,
-    rows:[], note:'Монеты за место получают первые три.', paid:true, energy:-1, floor:3,
-    why:'Вниз идут последние 5 из 30. Ты на 27 месте.', sTitle:'Спускаемся в Базальт',
-    detail:[['12 ступеней по 10',120],['2 этажа',30]]},
-  summit:{over:'Итог недели · Гранит', title:'8 место. Поднимаешься', from:'Гранит', to:'Базальт', dir:'up', place:8, total:30, k:5, week:3050,
-    rows:[['Повышение в Базальт',100]], note:'200 монет за вершину пришли сразу, в день подъёма.', paid:true, energy:1, floor:15,
-    why:'Вершина башни пройдена. Она поднимает с любого места.', sTitle:'Поднимаешься в Базальт',
-    detail:[['135 ступеней по 10',1350],['15 этажей',1500],['Вершина башни',200]]},
-  pending:{over:'Итог недели · Гранит', title:'1 место. Поднимаешься', from:'Гранит', to:'Базальт', dir:'up', place:1, total:30, k:5, week:2240,
-    rows:[['1 место в комнате',300],['Повышение в Базальт',100]], paid:false, energy:1, floor:13,
-    why:'Вверх идут первые 5 из 30. Ты на 1 месте: 2 240 монет за неделю.', sTitle:'Поднимаешься в Базальт',
-    detail:[['110 ступеней по 10',1100],['12 этажей',930],['21 золотая ступень',210]]}
-};
-const A = {
-  streak_7:{count:'Ачивка · 14 из 41', title:'Неделя держит слово', cond:'Заниматься 7 дней подряд.', kind:'days', fact:'5–11 ноября, без пропусков'},
-  shards_1000:{count:'Ачивка · 15 из 41', title:'Четыре цифры монет', cond:'Хотя бы раз иметь 1 000 монет на балансе.', kind:'bal', fact:'9 ноября, после награды за неделю'}
-};
-const ui = {state:'up', detail:'off', ach:'streak_7', theme:'graphite', sheet:true};
+const WEEKS = [
+  {name:'Повышение', cap:'Место в первой тройке и подъём: две строки с суммами, монеты уже на балансе.',
+    from:'Гранит', to:'Базальт', dir:'up', place:2, total:30, k:5, week:1300, title:'Поднимаешься в Базальт',
+    rows:[['2 место в комнате',200],['Повышение в Базальт',100]], paid:true, energy:1,
+    why:'Вверх идут первые 5 из 30. Ты на 2 месте: 1 300 монет за неделю.'},
+  {name:'Остался', cap:'Награды нет. Кадр честно говорит, кому она положена и сколько не хватило до подъёма.',
+    from:'Гранит', to:'Гранит', dir:'stay', place:9, total:30, k:5, week:860, title:'Остаёшься в Граните',
+    rows:[], note:'Монеты за место получают первые три.', paid:true, energy:0,
+    why:'Вверх идут первые 5 из 30. До пятого места не хватило 240 монет.'},
+  {name:'Спуск', cap:'Причина спуска названа числом, без упрёка. Энергия уменьшается на одну.',
+    from:'Мрамор', to:'Базальт', dir:'down', place:27, total:30, k:5, week:150, title:'Спускаемся в Базальт',
+    rows:[], note:'Монеты за место получают первые три.', paid:true, energy:-1,
+    why:'Вниз идут последние 5 из 30. Ты на 27 месте.'},
+  {name:'Вершина', cap:'Место вне пятёрки, но вершина башни поднимает. Свой текст, чтобы подъём не выглядел ошибкой.',
+    from:'Гранит', to:'Базальт', dir:'up', place:8, total:30, k:5, week:3050, title:'Поднимаешься в Базальт',
+    rows:[['Повышение в Базальт',100]], note:'200 монет за вершину пришли сразу, в день подъёма.', paid:true, energy:1,
+    why:'Вершина башни пройдена. Она поднимает с любого места.'},
+  {name:'Награда в пути', cap:'Монеты ещё не дошли до баланса. Причины видны, чисел нет, чтобы не обещать лишнего.',
+    from:'Гранит', to:'Базальт', dir:'up', place:1, total:30, k:5, week:2240, title:'Поднимаешься в Базальт',
+    rows:[['1 место в комнате',300],['Повышение в Базальт',100]], paid:false, energy:1,
+    why:'Вверх идут первые 5 из 30. Ты на 1 месте: 2 240 монет за неделю.'}
+];
+const ACHS = [
+  {name:'Серия', cap:'Условие и семь дней, которые его выполнили.',
+    count:'Ачивка · 14 из 41', title:'Неделя держит слово', cond:'Заниматься 7 дней подряд.', kind:'days', fact:'5–11 ноября, без пропусков'},
+  {name:'Монеты на балансе', cap:'Условие и баланс в момент выдачи.',
+    count:'Ачивка · 15 из 41', title:'Четыре цифры монет', cond:'Хотя бы раз иметь 1 000 монет на балансе.', kind:'bal', fact:'9 ноября, после награды за неделю'}
+];
 
 const num = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
 const coinW = n => { const a=n%10,b=n%100; return a===1&&b!==11?'монета':(a>=2&&a<=4&&(b<10||b>=20)?'монеты':'монет'); };
 const coin = s => `<svg class="coin" width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>`;
-const arrow = d => `<svg class="arr" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--${d==='down'?'down':'up'})"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const check = `<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--up)"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const arrow = d => `<svg class="arr" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--${d==='down'?'down':'up'})"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const check = `<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--up)"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const head = (label, on) => `<div class="segs">${[0,1,2,3].map(i=>`<i class="${i<on?'on':''}"></i>`).join('')}</div><div class="who"><span class="av">${coin(16)}</span>${label}</div>`;
 
 function ticks(s){
   let h='';
-  for(let i=1;i<=s.total;i++){
-    const c = i===s.place?'me':(i<=s.k?'u':(i>s.total-s.k?'d':''));
-    h+=`<i class="tk ${c}"></i>`;
-  }
-  return `<div class="ticks" role="img" aria-label="Место ${s.place} из ${s.total}">${h}</div><div class="scale"><span>1</span><span>${s.total}</span></div>`;
+  for(let i=1;i<=s.total;i++) h+=`<i class="tk ${i===s.place?'me':(i<=s.k?'u':(i>s.total-s.k?'d':''))}"></i>`;
+  return `<div class="ticks" role="img" aria-label="Место ${s.place} из ${s.total}">${h}</div>`;
 }
 
-// Один разбор на оба места показа: окно недели и шторка истории.
-function breakdown(s){
-  let coins = s.rows.map(r=>`<div class="row"><span class="l">${r[0]}</span><span class="r plus">${s.paid?'+'+num(r[1])+coin(16):'<span class="pill">в пути</span>'}</span></div>`).join('');
-  if(s.note) coins += `<div class="${s.rows.length?'row':''}"><div class="say">${s.note}</div></div>`;
-  const energy = s.energy ? `<div class="row"><span class="l">Запас энергии</span><span class="r ${s.energy>0?'pos':'neg'}">${s.energy>0?'+1':'−1'}</span></div>` : '';
-  const detail = ui.detail==='on' ? `<div class="sec"><h3>Откуда ${num(s.week)} ${coinW(s.week)} недели</h3><div class="box">${
-      s.detail.map(r=>`<div class="row"><span class="l">${r[0]}</span><span class="r">${num(r[1])}${coin(16)}</span></div>`).join('')}</div></div>` : '';
-  const league = s.dir==='stay'
-    ? `<div class="move">${s.to}</div>`
-    : `<div class="move"><span class="from">${s.from}</span>${arrow(s.dir)}<span>${s.to}</span></div>`;
-  return `
-    <div class="sec"><h3>Монеты</h3><div class="box">${coins}${energy}</div></div>
-    ${detail}
-    <div class="sec"><h3>Лига</h3><div class="box">${league}${ticks(s)}<div class="why-t">${s.why}</div></div></div>
-    <div class="sec"><h3>Этаж</h3><div class="box"><div class="move"><span class="from">${s.floor}</span>${arrow('up')}<span>1</span></div><div class="why-t">Новая неделя. Все начинают с первого этажа.</div></div></div>`;
-}
-
-function heroOf(s){
+function weekStory(s){
   const total = s.rows.reduce((a,r)=>a+r[1],0);
-  if(total && s.paid) return `<div class="hero">${coin(34)}<span class="n" data-count="${total}">+${num(total)}</span><span class="u">${coinW(total)}</span></div>`;
-  if(total) return `<div class="hero">${coin(34)}<span class="n" style="font-size:30px">Награда в пути</span></div>`;
-  return `<div class="hero"><span class="n">${s.place}</span><span class="u">место из ${s.total}</span></div>`;
+  // Итоговая строка: сумма только после выплаты; без награды показываем монеты недели.
+  const got = !total ? `<div class="got"><span class="st">${num(s.week)} ${coinW(s.week)} за неделю</span></div>`
+    : s.paid ? `<div class="got">${coin(20)}+${num(total)} ${coinW(total)}<span class="st">${check}на балансе</span></div>`
+    : `<div class="got">${coin(20)}Награда в пути</div>`;
+  let coins = s.rows.map(r=>`<div class="row"><span class="l">${r[0]}</span><span class="r">${s.paid?'+'+num(r[1])+coin(15):'<span class="pill">в пути</span>'}</span></div>`).join('');
+  if(s.note) coins += `<div class="say">${s.note}</div>`;
+  if(s.energy) coins += `<div class="row"><span class="l">Запас энергии</span><span class="r ${s.energy>0?'pos':'neg'}">${s.energy>0?'+1':'−1'}</span></div>`;
+  const league = s.dir==='stay' ? `<div class="move">${s.to}</div>`
+    : `<div class="move"><span class="from">${s.from}</span>${arrow(s.dir)}<span>${s.to}</span></div>`;
+  return `<div class="story">${head('Пик · '+s.to, 2)}
+    <div class="sbody">
+      <div class="big">${s.place}<small>место</small></div>
+      <h3 class="stitle">${s.title}</h3>
+      ${got}
+      <div class="box">${coins}</div>
+      <div class="box">${league}${ticks(s)}<div class="why-t">${s.why} <em>Новая неделя: все снова с 1 этажа.</em></div></div>
+    </div></div>`;
 }
 
-function render(){
-  const s = S[ui.state], a = A[ui.ach], total = s.rows.reduce((x,r)=>x+r[1],0);
-  document.querySelectorAll('.ph').forEach(p=>p.className='ph t-'+ui.theme);
-
-  p1.innerHTML = `<div class="scr"><div class="scroll in">
-      <div><div class="over">${s.over}</div><h2 class="title">${s.title}</h2></div>
-      <div>${heroOf(s)}${!total ? `<p class="sub">${num(s.week)} ${coinW(s.week)} за неделю</p>`
-        : (s.paid ? `<div class="ok">${check}Уже на балансе</div>` : `<p class="sub">Сумма появится, когда монеты дойдут до баланса.</p>`)}</div>
-      ${breakdown(s)}
-    </div><div class="foot"><button class="cta">Играть</button></div></div>`;
-
-  const label = total && s.paid ? `За что +${num(total)}` : 'За что';
-  p2.innerHTML = `<div class="story ${ui.sheet?'open':''}">
-      <div class="segs"><i class="on"></i><i class="on"></i><i></i><i></i></div>
-      <div class="who"><span class="av">${coin(16)}</span>Пик · ${s.to}</div>
-      <div class="sbody in">
-        <div class="big">${s.place}<small>место</small></div>
-        <h2 class="stitle">${s.sTitle}</h2>
-        <p class="sline">${num(s.week)} ${coinW(s.week)} за неделю</p>
-        <button class="why" data-sheet="1">${coin(20)}${label}</button>
-      </div>
-      <div class="dim" data-sheet="0"></div>
-      <div class="sheet" role="dialog" aria-label="За что">
-        <div class="grab"></div>
-        <div class="sh-h"><b>За что</b><button class="x" data-sheet="0" aria-label="Закрыть"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button></div>
-        <div class="sh-b">${breakdown(s)}</div>
-      </div>
-    </div>`;
-
+function achStory(a){
   const fact = a.kind==='days'
-    ? `<div class="days">${['ср','чт','пт','сб','вс','пн','вт'].map(d=>`<i>${d}</i>`).join('')}</div><div class="why-t">${a.fact}</div>`
-    : `<div class="bal">${coin(22)}<b>1 040</b><span>на балансе</span></div><div class="why-t">${a.fact}</div>`;
-  p3.innerHTML = `<div class="story">
-      <div class="segs"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
-      <div class="who"><span class="av">${coin(16)}</span>${a.count}</div>
-      <div class="sbody in">
-        <div class="medal"><svg width="56" height="56" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L3.4 9.3l6-.7z" fill="currentColor"/></svg></div>
-        <h2 class="stitle" style="margin-top:0">${a.title}</h2>
-        <div class="sec" style="margin-top:12px"><h3>За что</h3><div class="box"><div class="move" style="font-size:17px">${a.cond}</div>${fact}</div></div>
-      </div>
-    </div>`;
-
-  document.querySelectorAll('.grp').forEach(g=>g.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed', String(ui[g.dataset.g]===c.dataset.v))));
-  countUp();
+    ? `<div class="days">${['ср','чт','пт','сб','вс','пн','вт'].map(d=>`<i>${d}</i>`).join('')}</div>`
+    : `<div class="bal">${coin(20)}<b>1 040</b><span>на балансе</span></div>`;
+  return `<div class="story">${head(a.count, 3)}
+    <div class="sbody">
+      <div class="medal"><svg width="50" height="50" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L3.4 9.3l6-.7z" fill="currentColor"/></svg></div>
+      <h3 class="stitle" style="margin-top:0">${a.title}</h3>
+      <div class="box"><div class="cond">${a.cond}</div>${fact}<div class="why-t">${a.fact}</div></div>
+    </div></div>`;
 }
 
-// Счётчик суммы 650 мс, как в kit проекта. При reduced-motion число стоит сразу.
-function countUp(){
-  const el = document.querySelector('#p1 [data-count]');
-  if(!el || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  const to = +el.dataset.count, t0 = performance.now();
-  (function step(t){
-    const k = Math.min(1,(t-t0)/650), e = 1-Math.pow(1-k,4);
-    el.textContent = '+'+num(Math.round(to*e));
-    if(k<1 && el.isConnected) requestAnimationFrame(step);
-  })(t0);
+let theme = 'graphite';
+function render(){
+  const fig = (html, s) => `<figure><div class="ph t-${theme}">${html}</div><figcaption><b>${s.name}</b>${s.cap}</figcaption></figure>`;
+  document.getElementById('weeks').innerHTML = WEEKS.map(s=>fig(weekStory(s), s)).join('');
+  document.getElementById('achs').innerHTML = ACHS.map(a=>fig(achStory(a), a)).join('');
+  document.querySelectorAll('#theme .chip').forEach(c=>c.setAttribute('aria-pressed', String(c.dataset.v===theme)));
 }
-
-document.addEventListener('click', e=>{
-  const chip = e.target.closest('.chip');
-  if(chip){ ui[chip.parentElement.dataset.g] = chip.dataset.v; render(); return; }
-  const sh = e.target.closest('[data-sheet]');
-  if(sh){ ui.sheet = sh.dataset.sheet==='1'; document.querySelector('#p2 .story').classList.toggle('open', ui.sheet); }
+document.getElementById('theme').addEventListener('click', e=>{
+  const c = e.target.closest('.chip'); if(c){ theme = c.dataset.v; render(); }
 });
-const p1 = document.getElementById('p1'), p2 = document.getElementById('p2'), p3 = document.getElementById('p3');
 render();
 </script>
 </body>

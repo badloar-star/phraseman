@@ -6,13 +6,17 @@
  * Игра, для которой у языка нет заданий, в разминку этого языка не попадает (человек не получает чужой язык).
  * Ключ записи — номер урока; для уроков старше берётся ближайший предыдущий.
  */
-import { HUNT_SEED_TASKS, ORDER_SEED_TASKS, type HuntTask, type OrderTask } from '../dialogue_core';
+import { ORDER_SEED_TASKS, type HuntTask, type OrderTask } from '../dialogue_core';
 import type { OddWordTask } from '../odd_word_core';
-import { QUIZ_SEED_DECKS, type QuizRound } from '../quiz_core';
+import type { QuizRound } from '../quiz_core';
 import type { SortDeck } from '../sort_core';
 import { EXACT_BANK_EN } from './exact_en';
 import { FORMS_BANK_EN } from './forms_en';
+import { HUNT_BANK_EN } from './hunt_en';
+import { LISTEN_BANK_EN } from './listen_en';
+import { MEMORY_BANK_EN } from './memory_en';
 import { ODD_WORD_BANK_EN } from './odd_word_en';
+import { ORDER_BANK_EN } from './order_en';
 import { SORT_BANK_EN } from './sort_en';
 
 type ByLesson<T> = Readonly<Record<number, T>>;
@@ -35,11 +39,12 @@ export const GAME_BANKS: Readonly<Record<string, GameBank>> = {
     sort: SORT_BANK_EN,
     exact: EXACT_BANK_EN,
     forms: FORMS_BANK_EN,
-    // «На слух», «Память», «Охота на ошибку», «Собери диалог» — пока примеры из макета, с первого урока
-    listen: { 1: QUIZ_SEED_DECKS.listen.rounds },
-    memory: { 1: QUIZ_SEED_DECKS.memory.rounds },
-    hunt: { 1: HUNT_SEED_TASKS },
-    order: { 1: ORDER_SEED_TASKS },
+    listen: LISTEN_BANK_EN,
+    memory: MEMORY_BANK_EN,
+    hunt: HUNT_BANK_EN,
+    // зачем: в уроке 1 одни утверждения — диалог с однозначным порядком из его слов собрать нельзя, поэтому на уроке 1
+    // остаётся утверждённый владельцем пример из макета; с урока 2 идут диалоги банка (решение по уроку 1 — за владельцем)
+    order: { 1: ORDER_SEED_TASKS, ...ORDER_BANK_EN },
   },
 };
 

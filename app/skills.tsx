@@ -5,12 +5,12 @@
  * зачем так:
  *  • первый кадр — сразу конечная геометрия из памяти процесса; диск догружается фоном, сети нет вовсе
  *    (правило «каждый раздел открывается мгновенно»). Пока диск не прочитан — те же строки с нулями, без спиннера;
+ *  • подсказки «растёт от…» и отметок «за неделю» на экране нет — владелец 11.11: «пусть сами догадываются», «навыки навсегда»;
  *  • все числа считаются только через modules/skills — экран итога и статистика покажут те же цифры;
  *  • нижней кнопки «Подтянуть» на экране нет: владелец 11.11 велел её удалить; в разминку ведёт строка на экране «Сегодня».
  */
 import React, { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -24,10 +24,10 @@ import { useV2Palette } from '../components/v2/useV2Palette';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { hapticTap } from '../hooks/use-haptics';
-import { SKILLS_SCREEN_COPY, SKILL_NAME, SKILL_RANK_NAME, SKILL_SOURCE } from '../modules/skills/skill_copy';
+import { SKILLS_SCREEN_COPY, SKILL_NAME, SKILL_RANK_NAME } from '../modules/skills/skill_copy';
 import { EMPTY_SKILL_TOTALS, SKILL_LEVEL_MAX, skillProgressFromPoints, skillRank } from '../modules/skills/skill_levels';
 import { SKILL_IDS } from '../modules/skills/skill_points_table';
-import { peekSkills, refreshSkills, skillWeekGains, subscribeSkills } from '../modules/skills/skill_store';
+import { peekSkills, refreshSkills, subscribeSkills } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
 
 const LOG = '[SKILLS]';
@@ -49,8 +49,7 @@ export default function SkillsScreen() {
   }, []);
 
   const totals = state?.totals ?? EMPTY_SKILL_TOTALS;
-  const gains = useMemo(() => (state ? skillWeekGains(state) : EMPTY_SKILL_TOTALS), [state]);
-  const rows = useMemo(() => SKILL_IDS.map((id) => ({ id, name: triLang(lang, SKILL_NAME[id]), progress: skillProgressFromPoints(totals[id]), gain: Math.floor(gains[id]) })), [gains, lang, totals]);
+  const rows = useMemo(() => SKILL_IDS.map((id) => ({ id, name: triLang(lang, SKILL_NAME[id]), progress: skillProgressFromPoints(totals[id]) })), [lang, totals]);
   const axes = useMemo<SkillsRadarAxis[]>(() => rows.map((row) => ({
     key: row.id,
     label: row.name,
@@ -61,7 +60,6 @@ export default function SkillsScreen() {
 
   const onBack = useCallback(() => safeRouterBack(router, '/(tabs)/home' as never), [router]);
 
-  const hint = active === null ? triLang(lang, SKILLS_SCREEN_COPY.hint) : triLang(lang, SKILL_SOURCE[rows[active].id]);
 
   return (
     <ScreenGradient>
@@ -70,10 +68,8 @@ export default function SkillsScreen() {
           <View style={s.header}>
             <V2IconButton icon="chevron-back" onPress={onBack} accessibilityLabel={triLang(lang, SKILLS_SCREEN_COPY.back)} testID="skills-back" />
             <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{triLang(lang, SKILLS_SCREEN_COPY.title)}</Text>
-            <View style={[s.pill, { backgroundColor: p.glass }]}>
-              <Ionicons name="trending-up" size={18} color={p.text} />
-              <Text style={[s.pillText, { color: p.text }]}>{triLang(lang, SKILLS_SCREEN_COPY.thisWeek)}</Text>
-            </View>
+            {/* зачем (владелец 11.11: «навыки навсегда, а не за неделю»): пилюли «за неделю» и колонки недельного прироста нет */}
+            <View style={s.headerSpacer} />
           </View>
 
           <View style={s.indexBlock}>
@@ -99,7 +95,6 @@ export default function SkillsScreen() {
             labelActiveColor={p.text}
           />
 
-          <Text style={[s.hint, { color: p.textSecondary }]}>{hint}</Text>
 
           <V2Card seed={1} style={s.list}>
             {rows.map((row, i) => (
@@ -118,7 +113,6 @@ export default function SkillsScreen() {
                 <Text style={[s.levelLabel, { color: p.textSecondary }]}>
                   {triLang(lang, SKILLS_SCREEN_COPY.levelShort)} <Text style={[s.levelValue, { color: p.text }]}>{row.progress.level}</Text>
                 </Text>
-                <Text style={[s.gain, { color: row.gain > 0 ? p.correct : p.textMuted }]}>{row.gain > 0 ? `+${row.gain}` : '—'}</Text>
               </Pressable>
             ))}
           </V2Card>
@@ -140,12 +134,11 @@ const s = StyleSheet.create({
   rankPill: { marginBottom: 4 },
   over: { fontSize: 14, lineHeight: 18, fontWeight: '500' },
   big: { marginTop: 4, fontSize: 44, lineHeight: 48, fontWeight: '800', letterSpacing: -1, fontVariant: ['tabular-nums'] },
-  hint: { minHeight: 18, marginTop: 4, textAlign: 'center', fontSize: 14, lineHeight: 18, fontWeight: '500' },
+  headerSpacer: { width: V2.iconButton },
   list: { marginTop: 14, paddingVertical: 2, paddingHorizontal: 16 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, height: 46 },
   pressed: { opacity: 0.86 },
   name: { width: 104, fontSize: 16, lineHeight: 21, fontWeight: '600' },
   levelLabel: { width: 64, textAlign: 'right', fontSize: 14, lineHeight: 22, fontWeight: '600', fontVariant: ['tabular-nums'] },
   levelValue: { fontSize: 18, fontWeight: '800' },
-  gain: { width: 40, textAlign: 'right', fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });

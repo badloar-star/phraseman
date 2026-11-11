@@ -39,8 +39,8 @@
   const rowsOf = (list) => `<div class="prows">${list.map((s) => `<div class="prow"><span>${s.nm}</span><div class="pbar"><i style="width:${Math.round(axis(s.lv, s.p) * 100)}%"></i></div><b>${s.lv}</b></div>`).join('')}</div>`;
   const card = (look, who, list, o = {}) => `<div class="pcd pcd-${look}"${o.id ? ` id="${o.id}"` : ''}>${K.coinImg(who.rank, 76).replace('class="coin"', 'class="pav"')}
       <div class="pnm">${who.name}${look === 'normal' ? '' : '<span class="pbadge">PRO</span>'}</div><div class="prank">${who.title}</div>
-      <div class="pskills${o.hidden ? ' hide' : ''}"><div class="starbox" style="width:${o.star || 190}px;height:${o.star || 190}px">${starSvg(o.star || 190, skAxes(list), o.from ? { from: zero } : {})}${starLabels(o.star || 190, NAMES)}</div>${rowsOf(list)}</div>
-      ${o.hidden ? `<div class="plock">${I('lockF', 's28')}<b>Навыки скрыты</b><span>Их видят только друзья</span></div>` : ''}</div>`;
+      ${o.hidden ? '' : `<div class="pskills"><div class="starbox" style="width:${o.star || 190}px;height:${o.star || 190}px">${starSvg(o.star || 190, skAxes(list), o.from ? { from: zero } : {})}${starLabels(o.star || 190, NAMES)}</div>${rowsOf(list)}</div>`}
+      </div>`;
   function cardPro(ph, auto) {
     const G = timers(); let cur = 2, stop = () => {};
     $(ph, '.lay').innerHTML = `${top({ back: true, mid: '<div class="ttl">Визитка «Про»</div>' })}
@@ -61,7 +61,7 @@
       <div class="gl panel2 hint" style="margin-top:12px"><div class="h"></div><div class="sub" style="margin-top:4px"></div></div>
       <div style="flex:1"></div><div class="pcta pcta-obs t">${K.coinImg(7, 22)}&nbsp;Про визитка · 10 000</div>`;
     const set = (v) => { $$(ph, '.seg2 div').forEach((d) => d.classList.toggle('on', (d.dataset.v === '1') === v)); $(ph, '.pslot').innerHTML = card('normal', me, SK, { hidden: !v, star: 170 });
-      $(ph, '.hint .h').textContent = v ? 'Сейчас навыки видишь ты и друзья' : 'Так визитку видит посторонний'; $(ph, '.hint .sub').textContent = v ? 'С визиткой «Про» звезду и уровни увидят все.' : 'Вместо навыков — замок. «Про» откроет их всем.'; log('обычная визитка: вид', v ? 'свой' : 'посторонний'); };
+      $(ph, '.hint .h').textContent = v ? 'Сейчас навыки видишь ты и друзья' : 'Так визитку видит посторонний'; $(ph, '.hint .sub').textContent = v ? 'С визиткой «Про» звезду и уровни увидят все.' : 'Навыков на ней просто нет. С визиткой «Про» они появятся у всех.'; log('обычная визитка: вид', v ? 'свой' : 'посторонний'); };
     $(ph, '.seg2').addEventListener('click', (e) => { const d = e.target.closest('[data-v]'); if (d) set(d.dataset.v === '1'); });
     set(true);
     if (auto) { G.after(2600, () => set(false)); G.after(5600, () => set(true)); }
@@ -76,7 +76,7 @@
   // зачем: владелец уточнил, что разница была из-за тёмной и светлой темы — навыки и статистика остаются по переключателю оформления, насильно тёмными их не делаем
   set('sk-skills', { fn: skills, cls: '', note: 'Индекс речи, звезда и прирост за неделю у каждого навыка. Нажатие на строку подсвечивает луч и пишет, от чего навык растёт.' });
   set('sk-pro', { fn: cardPro, cls: 'night deep', lbl: 'Визитка «Про»: все шесть стилей', note: 'Нажимай на название стиля сверху — карточка меняется. Звезда и полоски уровней есть на каждом.' });
-  set('sk-free', { fn: cardFree, cls: 'night deep', lbl: 'Обычная визитка: что вижу я и что видит посторонний', note: 'Карточка тёмная, как в приложении. У постороннего вместо навыков — заметный замок.' });
+  set('sk-free', { fn: cardFree, cls: 'night deep', lbl: 'Обычная визитка: что вижу я и что видит посторонний', note: 'Карточка тёмная, как в приложении. Посторонний видит ту же карточку без блока навыков — никакого замка.' });
   if (S.skills && S.skills[2]) { S.skills[2].html = gallery; S.skills[2].lead = 'Сверху — все семь визиток разом: обычная и шесть стилей «Про» из приложения, на каждой звезда и полоски уровней. Ниже — живые экраны.'; }
   // зачем (владелец 11.11: «почему только скорость и словарь? надо определить точно, какие навыки что качает, конкретно»):
   // одна таблица «действие → навык → очки»; блок «Навыки растут» на любом итоге обязан считаться только по ней

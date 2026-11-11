@@ -45,6 +45,8 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   pool?: MistakePracticePool;
   /** «Ещё N» (координатор 04.10): только эти ошибки — неверные в прошлой сессии. Пусто — как раньше. */
   mistakeIds?: readonly string[];
+  /** D203, вкладка «Проверка»: вместе с pool 'corrected' — только ошибки, чей срок проверки наступил. */
+  checkDueOnly?: boolean;
   storage?: MistakePracticeStorage;
   nowMs?: number;
   /** Язык интерфейса: подпись формы для старых ошибок «Неправильных глаголов» (без неё задание без формы). */
@@ -79,7 +81,7 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   const retryRequested = (input.mistakeIds?.length ?? 0) > 0;
   // зачем (координатор 13.10, mistakes-panel-017): продолжать только сессию ТОГО ЖЕ запроса — иначе «Все 12» продолжало
   // сохранённую сессию группы из одной ошибки. У старых сессий запроса нет — продолжаются как раньше.
-  const requested = mistakePracticeRequestOf(input.requestedLength, input.facets);
+  const requested = mistakePracticeRequestOf(input.requestedLength, input.facets, input.pool === 'corrected' && input.checkDueOnly === true);
   const requestMismatch = restored ? mistakePracticeRequestMismatch(restored.request, requested) : null;
   // зачем: «Ещё N» просит НОВУЮ сессию из конкретных ошибок — продолжать прежнюю вместо неё нельзя.
   const restoredStillAvailable = !retryRequested && requestMismatch === null && restoredPool === requestedPool && restored?.queue.slice(restored.cursor).every((entry) => {
@@ -178,6 +180,7 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     facets: input.facets,
     pool: requestedPool,
     mistakeIds: input.mistakeIds,
+    checkDueOnly: input.checkDueOnly,
   });
   const deferSave = input.persistSession && input.deferNewSessionSave === true;
   if (input.persistSession && !deferSave) {

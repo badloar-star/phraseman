@@ -128,9 +128,17 @@ describe('practice session carries all remaining steps of every mistake (D203)',
     expect(session.queue.filter((entry) => entry.mistakeId === second)).toHaveLength(3);
   });
 
-  test('the review of corrected mistakes stays one question per mistake', () => {
+  // зачем (D203, вкладка «Проверка»): исправленная тремя шагами ошибка ждёт проверку — её берёт только занятие-проверка
+  // и только когда срок наступил; вопрос на ошибку по-прежнему один.
+  test('the check of a corrected mistake stays one question per mistake', () => {
     const fixed = [captured(), answered(true, T0 + 1, v3), answered(true, T0 + 2, v3), answered(true, T0 + 3, v3)];
-    const session = buildMistakePracticeSession({ items: [...projectMistakes(fixed).items.values()], requestedLength: 'all', nowMs: T0 + 10, pool: 'corrected' });
+    const session = buildMistakePracticeSession({
+      items: [...projectMistakes(fixed).items.values()],
+      requestedLength: 'all',
+      nowMs: T0 + 3 + MISTAKE_CHECK_DELAY_MS,
+      pool: 'corrected',
+      checkDueOnly: true,
+    });
     expect(session.queue).toHaveLength(1);
   });
 });

@@ -417,6 +417,8 @@ function MistakePracticeSessionScreen() {
     facetGroup?: string;
     /** 'corrected' — «Повторить исправленные» (владелец 04.10); без параметра — обычная отработка. */
     pool?: string;
+    /** '1' вместе с pool=corrected — занятие-проверка из вкладки «Проверка» (D203): только ошибки, чей срок наступил. */
+    check?: string;
     /** «Ещё N» (координатор 04.10): id ошибок через запятую — только неверные из прошлой сессии. */
     mistakeIds?: string | string[];
     /** id списанной попытки дня ЭТОГО входа (гейт «Ошибок»): по нему экран вернёт попытку, если тренировка не стартует. */
@@ -667,6 +669,7 @@ function MistakePracticeSessionScreen() {
         focusMistakeId: focusedMistakeId,
         facets: facetsFromParam(params.facetGroup),
         pool: reviewPool,
+        checkDueOnly: reviewPool === 'corrected' && params.check === '1',
         mistakeIds: retryIds.ids,
         interfaceLang: lang,
       });

@@ -14,6 +14,7 @@ import type { MistakeFacet } from './contracts';
 import type { MistakeProjectionItem } from './projection';
 import { mistakeExerciseCapabilitiesFor } from './capabilities';
 import { MISTAKE_STEPS_REQUIRED, mistakeStepSupport } from './three_step_rule';
+import { mistakeCheckState, selectMistakesForCheck } from './check_queue';
 import {
   planFailureRequeue,
   selectCorrectedMistakesForReview,
@@ -48,11 +49,14 @@ export interface MistakePracticeSessionEntry {
 export interface MistakePracticeRequest {
   readonly length: MistakePracticeLength;
   readonly facets: readonly MistakeFacet[];
+  /** D203: занятие-проверка (только ошибки, чей срок проверки наступил). У обычных занятий поля нет. */
+  readonly check?: boolean;
 }
 
 /** Отпечаток запроса: группы без повторов и по порядку — «Значение+Грамматика» и «Грамматика+Значение» один запрос. */
-export function mistakePracticeRequestOf(length: MistakePracticeLength, facets?: readonly MistakeFacet[]): MistakePracticeRequest {
-  return Object.freeze({ length, facets: Object.freeze([...new Set(facets ?? [])].sort()) });
+export function mistakePracticeRequestOf(length: MistakePracticeLength, facets?: readonly MistakeFacet[], check?: boolean): MistakePracticeRequest {
+  // поле check пишется только у занятия-проверки — у остальных отпечаток запроса прежний байт в байт
+  return Object.freeze({ length, facets: Object.freeze([...new Set(facets ?? [])].sort()), ...(check ? { check: true } : {}) });
 }
 
 /** Чем запрос отличается от сохранённого; null — тот же запрос (или у сохранённой сессии запроса нет — старая запись). */
@@ -66,6 +70,8 @@ export function mistakePracticeRequestMismatch(
   const storedFacets = [...stored.facets].sort().join('+') || 'all';
   const requestedFacets = [...requested.facets].sort().join('+') || 'all';
   if (storedFacets !== requestedFacets) diffs.push(`facets:${storedFacets}->${requestedFacets}`);
+  // зачем (D203): сохранённый «повтор исправленных» нельзя продолжать как проверку и наоборот — состав у них разный
+  if (Boolean(stored.check) !== Boolean(requested.check)) diffs.push(`check:${Boolean(stored.check)}->${Boolean(requested.check)}`);
   return diffs.length > 0 ? diffs.join(',') : null;
 }
 
@@ -190,6 +196,11 @@ export function buildMistakePracticeSession(input: {
    * параметра — поведение прежнее байт в байт. Дальше работают обычные правила pool/срока/лимита.
    */
   readonly mistakeIds?: readonly string[];
+  /**
+   * зачем (владелец 11.11, D203, вкладка «Проверка»): вместе с pool 'corrected' собирает занятие-проверку — только ошибки,
+   * чей срок проверки наступил. Без параметра — прежний повтор исправленных.
+   */
+  readonly checkDueOnly?: boolean;
 }): MistakePracticeSession {
   const focusMistakeId = input.focusMistakeId?.trim() ?? '';
   const facetFiltered = input.facets && input.facets.length > 0
@@ -203,8 +214,16 @@ export function buildMistakePracticeSession(input: {
   const candidates = focusMistakeId
     ? idFiltered.filter((item) => item.mistakeId === focusMistakeId)
     : idFiltered;
+  const checkOnly = pool === 'corrected' && input.checkDueOnly === true;
+  // зачем (D203): обычный «повтор исправленных» не берёт ошибки, которые ещё ждут свою проверку, — иначе верный ответ в повторе
+  // засчитал бы проверку раньше срока, и трёхдневная пауза потеряла бы смысл. Разбор одной ошибки (focus) не ограничиваем.
+  const reviewCandidates = pool === 'corrected' && !checkOnly && !focusMistakeId
+    ? candidates.filter((item) => mistakeCheckState(item, input.nowMs) !== 'waiting' && mistakeCheckState(item, input.nowMs) !== 'due')
+    : candidates;
   const ready = pool === 'corrected'
-    ? selectCorrectedMistakesForReview(candidates, { limit: focusMistakeId ? 1 : MISTAKE_PRACTICE_MAX_SESSION })
+    ? checkOnly
+      ? selectMistakesForCheck(candidates, { nowMs: input.nowMs, limit: focusMistakeId ? 1 : MISTAKE_PRACTICE_MAX_SESSION })
+      : selectCorrectedMistakesForReview(reviewCandidates, { limit: focusMistakeId ? 1 : MISTAKE_PRACTICE_MAX_SESSION })
     : selectMistakesForSession(candidates, {
       nowMs: input.nowMs,
       limit: focusMistakeId ? 1 : MISTAKE_PRACTICE_MAX_SESSION,
@@ -303,7 +322,7 @@ export function buildMistakePracticeSession(input: {
   return Object.freeze({
     version: 1,
     sessionId,
-    request: mistakePracticeRequestOf(input.requestedLength, input.facets),
+    request: mistakePracticeRequestOf(input.requestedLength, input.facets, checkOnly),
     ...(pool === 'corrected' ? { pool } : {}),
     startedAtMs: input.nowMs,
     initialCount: count,

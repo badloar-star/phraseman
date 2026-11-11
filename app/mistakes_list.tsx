@@ -25,6 +25,8 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
 import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { MISTAKE_PRACTICE_MAX_SESSION } from '../modules/mistake-practice/session';
+import { mistakeCheckDueGroup, selectMistakesForCheck, splitMistakesByCheck } from '../modules/mistake-practice/check_queue';
+import { mistakeCheckCopy } from '../components/mistakes-panel/checkCopy';
 import { dropMistakesHubPeek, peekMistakesHubSnapshot } from './mistakes_hub';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeListItem } from './mistake_practice_insights';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
@@ -38,7 +40,8 @@ import NoEnergyModal from '../components/NoEnergyModal';
  * слово, перевод и три полоски дней. Тап по строке открывает карточку ошибки. Данные — снимок хаба (локальный журнал, 0 чтений Firestore).
  */
 
-type Tab = 'waiting' | 'corrected';
+// зачем (владелец 11.11, D203): третья вкладка «Проверка» — исправленные ошибки, которым ещё предстоит одна проверка.
+type Tab = 'waiting' | 'check' | 'corrected';
 
 const copyFor = (lang: Lang) => triLang(lang, {
   ru: { title: 'Все ошибки', back: 'Назад', waiting: 'Ждут', corrected: 'Исправлены', all: 'Все', empty: 'Здесь пока пусто', practice: 'Отработать', repeatFixed: 'Повторить исправленные', search: 'Поиск', clear: 'Очистить' },
@@ -86,7 +89,10 @@ export default function MistakesListScreen() {
   const copy = useMemo(() => copyFor(lang), [lang]);
   // зачем (22.09): подмена испанского/немецкого на английский — человек видел чужой список ошибок. Журнал ключуется по языку.
   const target = normalizeMistakeStudyTarget(studyTarget);
-  const [tab, setTab] = useState<Tab>(params.filter === 'corrected' ? 'corrected' : 'waiting');
+  const [tab, setTab] = useState<Tab>(params.filter === 'corrected' ? 'corrected' : params.filter === 'check' ? 'check' : 'waiting');
+  const checkCopy = useMemo(() => mistakeCheckCopy(lang), [lang]);
+  // зачем: «сейчас» для сроков проверки фиксируется на заход на экран — иначе строки перескакивали бы между группами при каждой перерисовке
+  const [nowMs, setNowMs] = useState(() => Date.now());
   const [group, setGroup] = useState<MistakeGroupFilter>('all');
   const [query, setQuery] = useState('');
   const [searching, setSearching] = useState(false);
@@ -103,6 +109,7 @@ export default function MistakesListScreen() {
   useFocusEffect(useCallback(() => {
     let cancelled = false;
     openingRef.current = false;
+    setNowMs(Date.now());
     // зачем (аудит Дизайна 0936a7510): удалённая в карточке ошибка не мелькает в списке, пока перечитывается журнал
     setItems((prev) => (prev ? withoutLocallyHiddenMistakes(prev) : prev));
     void loadMistakePracticeHubSnapshot(target)
@@ -115,9 +122,13 @@ export default function MistakesListScreen() {
     return () => { cancelled = true; };
   }, [target]));
 
-  const inTab = useMemo(() => (items ?? []).filter((item) => (tab === 'corrected' ? item.status === 'corrected' : item.status === 'active')), [items, tab]);
-  const waitingCount = useMemo(() => (items ?? []).filter((item) => item.status === 'active').length, [items]);
-  const correctedCount = (items?.length ?? 0) - waitingCount;
+  // зачем (D203): расклад по трём вкладкам считает одна функция — ошибка не может оказаться сразу в двух вкладках или выпасть из всех.
+  // «Исправлены» — закреплённые проверкой и исправленные по прежнему правилу; «Проверка» — те, кому проверка ещё предстоит.
+  const split = useMemo(() => splitMistakesByCheck(items ?? [], nowMs), [items, nowMs]);
+  const inTab = tab === 'corrected' ? split.fixed : tab === 'check' ? split.check : split.waiting;
+  const waitingCount = split.waiting.length;
+  const checkCount = split.check.length;
+  const correctedCount = split.fixed.length;
   const counts = useMemo(() => {
     const result: Record<string, number> = { all: inTab.length, meaning: 0, grammar: 0, sound: 0 };
     for (const item of inTab) result[mistakeGroupOf(item.facet)] += 1;
@@ -134,7 +145,12 @@ export default function MistakesListScreen() {
   [group, inTab, needle]);
   // зачем (владелец 04.10, Ядро 76242ef31): «Повторить исправленные» — отработка из пула исправленных (pool=corrected); число — те же исправленные,
   // что считает correctedMistakeCount(scheduler), берём из снимка хаба; при нуле кнопки нет. Цена: 1 ⚡ только от 5 ошибок, 1–4 бесплатно (решает экран сессии).
-  const correctedInGroup = useMemo(() => Math.min(MISTAKE_PRACTICE_MAX_SESSION, (items ?? []).filter((item) => item.status === 'corrected' && (group === 'all' || mistakeGroupOf(item.facet) === group)).length), [group, items]);
+  const correctedInGroup = useMemo(() => Math.min(MISTAKE_PRACTICE_MAX_SESSION, split.fixed.filter((item) => group === 'all' || mistakeGroupOf(item.facet) === group).length), [group, split]);
+  // зачем (D203): кнопка «Проверить N» считает только ошибки, чей срок проверки уже наступил, — ровно те, что соберёт занятие.
+  const checkDueInGroup = useMemo(() => selectMistakesForCheck(
+    split.check.filter((item) => group === 'all' || mistakeGroupOf(item.facet) === group),
+    { nowMs, limit: MISTAKE_PRACTICE_MAX_SESSION },
+  ).length, [group, nowMs, split]);
   const readyInGroup = useMemo(() => Math.min(MISTAKE_PRACTICE_MAX_SESSION, (items ?? []).filter((item) => item.ready && (group === 'all' || mistakeGroupOf(item.facet) === group)).length), [group, items]);
 
   // зачем (владелец 22.10: «удалить все накопившиеся ошибки, так чтобы они не возвращались»): меню → подтверждение «Удалить N ошибок из разбора?» →
@@ -290,6 +306,28 @@ export default function MistakesListScreen() {
     router.push({ pathname: '/mistake_practice_session', params: group === 'all' ? { pool: 'corrected', length: 'all', ...receipt } : { pool: 'corrected', length: 'all', facetGroup: group, ...receipt } } as never);
   }, [correctedInGroup, gate, group, router, target]);
 
+  // зачем (владелец 11.11, D203): «Проверить N» — занятие-проверка: тот же повтор исправленных, но только из ошибок, чей срок наступил.
+  // Верный ответ закрепляет ошибку, промах возвращает её в «Ждут» (правило в projection.ts). Цена и ворота — как у повтора.
+  const startCheck = useCallback(() => {
+    if (openingRef.current || checkDueInGroup < 1) {
+      console.log('[MISTAKES-CHECK] start:skip', JSON.stringify({ opening: openingRef.current, due: checkDueInGroup })); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    hapticTap();
+    if (!gate.tryStartSession(checkDueInGroup)) return;
+    openingRef.current = true;
+    trackMistakePracticeEvent('mistake_practice_setup_started', {
+      study_target: target,
+      entry_source: 'mistakes_list_check',
+      requested_length: 'all',
+      ready_count: checkDueInGroup,
+      session_count: checkDueInGroup,
+      costs_energy: checkDueInGroup >= 5,
+    });
+    const receipt = gate.takeQuotaReceiptParam();
+    router.push({ pathname: '/mistake_practice_session', params: group === 'all' ? { pool: 'corrected', check: '1', length: 'all', ...receipt } : { pool: 'corrected', check: '1', length: 'all', facetGroup: group, ...receipt } } as never);
+  }, [checkDueInGroup, gate, group, router, target]);
+
   // зачем (аудит скорости 13.10): подскролл у низа срабатывал на КАЖДОЕ событие и даже при показанных всех строках двигал limit — лишние перерисовки всего экрана.
   // Теперь при limit ≥ числа строк состояние не меняется (React пропускает перерисовку для того же значения).
   const visibleCountRef = useRef(0);
@@ -302,10 +340,20 @@ export default function MistakesListScreen() {
   const goBack = useCallback(() => safeRouterBack(router, '/mistakes_hub' as never), [router]);
   const closeSearch = useCallback(() => { setSearching(false); setQuery(''); }, []);
 
-  const tabs = [
-    { id: 'waiting' as const, label: `${copy.waiting} · ${waitingCount}` },
-    { id: 'corrected' as const, label: `${copy.corrected} · ${correctedCount}` },
-  ];
+  // зачем (D203): вкладка «Проверка» появляется, только когда в ней что-то есть (или она уже открыта). Пока её нет, строка вкладок
+  // остаётся прежней — две вкладки с «·», как в утверждённом образце. С тремя вкладками подписи короче и строка листается вбок:
+  // на длинных языках три вкладки не помещаются в ширину экрана.
+  const showCheckTab = checkCount > 0 || tab === 'check';
+  const tabs: { id: Tab; label: string }[] = showCheckTab
+    ? [
+      { id: 'waiting', label: `${copy.waiting} ${waitingCount}` },
+      { id: 'check', label: `${checkCopy.tab} ${checkCount}` },
+      { id: 'corrected', label: `${copy.corrected} ${correctedCount}` },
+    ]
+    : [
+      { id: 'waiting', label: `${copy.waiting} · ${waitingCount}` },
+      { id: 'corrected', label: `${copy.corrected} · ${correctedCount}` },
+    ];
 
   return (
     <ScreenGradient>
@@ -355,7 +403,7 @@ export default function MistakesListScreen() {
         </View>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} onScroll={onScroll} scrollEventThrottle={64} keyboardShouldPersistTaps="handled" decelerationRate="fast">
           <ScreenTitle g={g} text={copy.title} />
-          <View style={styles.tabs}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabsScroll} contentContainerStyle={styles.tabs} keyboardShouldPersistTaps="handled">
             {tabs.map((entry) => {
               const on = entry.id === tab;
               return (
@@ -365,12 +413,12 @@ export default function MistakesListScreen() {
                   accessibilityRole="tab"
                   accessibilityState={{ selected: on }}
                   onPress={() => { hapticTap(); setTab(entry.id); setGroup('all'); setLimit(PAGE); }}
-                  style={({ pressed }) => [styles.tab, { backgroundColor: on ? g.accent : g.hairlineSoft }, pressed && styles.pressed]}>
+                  style={({ pressed }) => [styles.tab, showCheckTab && styles.tabCompact, { backgroundColor: on ? g.accent : g.hairlineSoft }, pressed && styles.pressed]}>
                   <Text style={[styles.tabText, { color: on ? g.accentInk : g.secondary }]}>{entry.label}</Text>
                 </Pressable>
               );
             })}
-          </View>
+          </ScrollView>
           <FilterChips g={g} chips={chips} activeId={group} onChange={(id) => { hapticTap(); setGroup(id as MistakeGroupFilter); setLimit(PAGE); }} testIDPrefix="mistakes-list-chip" />
           <Panel g={g}>
             {items !== null && visible.length === 0 ? (
@@ -382,13 +430,31 @@ export default function MistakesListScreen() {
                 <View style={[styles.skel, { backgroundColor: g.line, height: 16, width: '50%' }]} />
                 <View style={[styles.skel, { backgroundColor: g.line, height: 12, width: '30%', marginTop: 8 }]} />
               </View>
-            )) : visible.slice(0, limit).map((item, index) => (
-              <MistakeListRow key={item.mistakeId} g={g} first={index === 0} item={item} onOpen={openOne} onAskDelete={askDeleteOne} />
-            ))}
+            )) : visible.slice(0, limit).map((item, index, shown) => {
+              // зачем (D203): во вкладке «Проверка» строки идут группами по сроку — «Сегодня», «Завтра», «Через N дней»;
+              // заголовок ставится перед первой строкой группы. В остальных вкладках заголовков нет — вёрстка прежняя.
+              const heading = tab === 'check' && typeof item.checkDueAtMs === 'number'
+                ? checkCopy.group(mistakeCheckDueGroup(item.checkDueAtMs, nowMs))
+                : null;
+              const previous = index > 0 ? shown[index - 1] : undefined;
+              const previousHeading = tab === 'check' && previous && typeof previous.checkDueAtMs === 'number'
+                ? checkCopy.group(mistakeCheckDueGroup(previous.checkDueAtMs, nowMs))
+                : null;
+              const startsGroup = heading !== null && heading !== previousHeading;
+              return (
+                <React.Fragment key={item.mistakeId}>
+                  {startsGroup ? <Text testID={`mistakes-list-check-group-${index}`} style={[styles.groupTitle, index > 0 && styles.groupTitleNext, { color: g.secondary }]}>{heading}</Text> : null}
+                  <MistakeListRow g={g} first={index === 0 || startsGroup} item={item} onOpen={openOne} onAskDelete={askDeleteOne} />
+                </React.Fragment>
+              );
+            })}
           </Panel>
         </ScrollView>
         {tab === 'corrected' && correctedInGroup > 0 ? (
           <PanelDock><PanelCta g={g} testID="mistakes-list-review" label={copy.repeatFixed} onPress={startReview} /></PanelDock>
+        ) : null}
+        {tab === 'check' && checkDueInGroup > 0 ? (
+          <PanelDock><PanelCta g={g} testID="mistakes-list-check" label={`${checkCopy.cta} ${checkDueInGroup}`} onPress={startCheck} /></PanelDock>
         ) : null}
         {tab === 'waiting' && readyInGroup > 0 ? (
           <PanelDock><PanelCta g={g} testID="mistakes-list-start" label={`${copy.practice} ${readyInGroup}`} onPress={startPractice} /></PanelDock>
@@ -430,7 +496,12 @@ const baseStyles = StyleSheet.create({
   // зачем: поле поиска — как в утверждённом макете «Наборы» (packs-simple, кадр поиска): высота 46, капсула, фон 8 %.
   field: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10 },
   fieldInput: { flex: 1, fontSize: 16, paddingVertical: 0 },
-  tabs: { marginTop: 18, flexDirection: 'row', gap: 8 },
+  // зачем (D203): строка вкладок листается вбок — отступ сверху живёт на самой ленте, а не на её содержимом
+  tabsScroll: { marginTop: 18, flexGrow: 0 },
+  tabs: { flexDirection: 'row', gap: 8 },
+  tabCompact: { paddingHorizontal: 14 },
+  groupTitle: { fontSize: 15, lineHeight: 20, fontWeight: '600', paddingTop: 14, paddingBottom: 2 },
+  groupTitleNext: { paddingTop: 18 },
   tab: { minHeight: 38, paddingHorizontal: 18, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
   tabText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   empty: { minHeight: 72, alignItems: 'center', justifyContent: 'center' },

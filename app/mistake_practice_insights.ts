@@ -288,6 +288,10 @@ export interface MistakePracticeListItem {
   readonly dueAtMs: number;
   readonly correctedAtMs: number | null;
   readonly firstCapturedAtMs: number;
+  /** D203: срок проверки исправленной ошибки; null/нет — проверки нет или она пройдена. Нужен вкладке «Проверка». */
+  readonly checkDueAtMs?: number | null;
+  /** D203: когда проверка пройдена. */
+  readonly checkPassedAtMs?: number | null;
 }
 
 export interface MistakePracticeHubSnapshot {
@@ -330,6 +334,8 @@ export function buildMistakePracticeHubSnapshot(
       dueAtMs: item.dueAtMs,
       correctedAtMs: item.correctedAtMs,
       firstCapturedAtMs: item.firstCapturedAtMs,
+      checkDueAtMs: item.checkDueAtMs ?? null,
+      checkPassedAtMs: item.checkPassedAtMs ?? null,
     }))
     // Готовые сверху, чаще промахивались - выше; исправленные - по свежести.
     .sort((left, right) =>

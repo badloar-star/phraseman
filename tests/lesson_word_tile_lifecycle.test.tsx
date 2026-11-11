@@ -60,9 +60,11 @@ jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn() }));
 jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => false }));
 
 const lessonSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
-const optionsStart = lessonSource.indexOf('{wordOptionItems.map(');
-const optionsEnd = lessonSource.indexOf('{/* ГОРИЗОНТАЛЬНЫЙ ПРОГРЕСС-БАР */}', optionsStart);
-const optionsBlock = lessonSource.slice(optionsStart, optionsEnd);
+// зачем (аудит микрофризов, владелец 11.11): сетка плиток вынесена в components/LessonWordTiles.tsx —
+// проверки те же, смотрят в новое место; ключи по-прежнему объявлены в экране урока.
+const tilesSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'LessonWordTiles.tsx'), 'utf8');
+const optionsStart = tilesSource.indexOf('{wordOptionItems.map(');
+const optionsBlock = tilesSource.slice(optionsStart);
 
 type KeyFactory = (phraseEnterKey: string, phraseWordIdx: number, i: number, word: string) => React.Key;
 
@@ -110,13 +112,16 @@ describe('lesson word tile lifecycle', () => {
   test('source separates stable presentation slots from full semantic press identity', () => {
     expect(lessonSource).toContain('const optionKey = `${phraseEnterKey}:${phraseWordIdx}:${i}:${word}`');
     expect(lessonSource).toContain('const presentationSlotKey = i;');
+    expect(optionsStart).toBeGreaterThan(0);
+    expect(lessonSource).toContain('<LessonWordTiles');
     expect(optionsBlock).toContain('key={presentationSlotKey}');
     expect(optionsBlock).toContain('pressTargetKey={optionKey}');
     expect(optionsBlock).toContain('const isFlashing = flashWord?.optionKey === optionKey');
     expect(optionsBlock).toContain('triggerWordFlash(optionKey, isCorrectOption)');
     expect(optionsBlock).toContain('disabled={wordDispatchPending}');
     expect(optionsBlock).toContain('}, WORD_DISPATCH_LOCK_MS);');
-    expect(optionsBlock).toContain('handleWordPress(word)');
+    expect(optionsBlock).toContain('onWordPress(word)');
+    expect(lessonSource).toContain('handleWordPress(word)');
   });
 
   test('actual lesson keys retain press channels while remounting target style owners', async () => {

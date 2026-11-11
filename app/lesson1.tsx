@@ -22,12 +22,11 @@ import {
   View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlowText } from '../components/text-integrity/FlowText';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { studySpeechLocale } from './study_speech_locale';
 import ScreenGradient from '../components/ScreenGradient';
-import DuoPressable from '../components/DuoPressable';
+import LessonWordTiles from '../components/LessonWordTiles';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import LessonFirstFrame from '../modules/lesson_first_frame';
 import { triLang, type Lang } from '../constants/i18n';
@@ -300,7 +299,6 @@ const PRESS_IN_MS = KIT_MOTION.pressDownMs;
 const PRESS_RELEASE_EASING = Easing.bezier(...KIT_MOTION.pressEase);
 const ERROR_REPLAY_DELAY_ANSWERS = 2;
 const COMBO_ACHIEVEMENT_THRESHOLDS = new Set([3, 10, 20, 50, 100, 150, 250, 500]);
-const WORD_DISPATCH_LOCK_MS = 90;
 // зачем (владелец, 2026-09-17): аварийный потолок ожидания озвучки результата
 // перед переходом на lesson_complete — на случай, если settle() из эффекта
 // эха (onDone/onStopped/onError) почему-то не придёт вовсе. Выведен из ТОГО ЖЕ
@@ -757,21 +755,15 @@ const LessonContent = React.memo(function LessonContent({
   const grammarHintAnimationRef = useRef<Animated.CompositeAnimation | null>(null);
   const grammarHintGenerationRef = useRef(0);
   const grammarHintSeenCacheRef = useRef(new Set<string>());
-  // Вспышка плитки при тапе слова привязана к конкретной опции и шагу фразы.
-  // Чёткий визуальный отклик «выбрано/верно/неверно» (раньше плитка никак не реагировала).
-  const [flashWord, setFlashWord] = useState<{ optionKey: string; correct: boolean } | null>(null);
-  const flashTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const triggerWordFlash = useCallback((optionKey: string, correct: boolean) => {
-    if (flashTimerRef.current) clearTimeout(flashTimerRef.current);
-    setFlashWord({ optionKey, correct });
-    flashTimerRef.current = setTimeout(() => setFlashWord(null), 260);
-  }, []);
-  useEffect(() => () => { if (flashTimerRef.current) clearTimeout(flashTimerRef.current); }, []);
-  // Ответ применяется сразу; короткий lock нужен только против двойного тапа,
-  // чтобы второй нативный press не успел выбрать соседнюю плитку в том же жесте.
-  const [wordDispatchPending, setWordDispatchPending] = useState(false);
-  const wordDispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  useEffect(() => () => { if (wordDispatchTimerRef.current) clearTimeout(wordDispatchTimerRef.current); }, []);
+  // зачем (аудит микрофризов 11.11): вспышка и блокировка двойного тапа переехали в LessonWordTiles.
+  // Обработчик выбора слова стабилен (читает свежие значения через ref), чтобы сетка плиток не
+  // перерисовывалась, когда блок урока обновляется по причинам, не связанным с плитками.
+  const tileWordPressLatestRef = useRef<(word: string) => void>(() => {});
+  tileWordPressLatestRef.current = (word: string) => {
+    if (showTapHint) setShowTapHint(false);
+    handleWordPress(word);
+  };
+  const onTileWordPress = useCallback((word: string) => tileWordPressLatestRef.current(word), []);
   const questionEnterAnim = useRef(new Animated.Value(1)).current;
   // Mirror of phraseEnterKey, read inside async callbacks to drop stale AI-explain responses
   // that resolve after the user has already moved to another phrase.
@@ -1463,82 +1455,17 @@ const LessonContent = React.memo(function LessonContent({
             onPress={handleBgTap}
             style={{ paddingHorizontal: lessonHorizontalPadding, paddingTop: linkedSliceCompact ? 2 : 4, paddingBottom: linkedSliceCompact ? 2 : 4 }}
           >
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
-              {wordOptionItems.map(({ optionKey, presentationSlotKey, word, index: i, isCorrectOption, displayText }) => {
-                return (
-                  <Animated.View
-                    key={presentationSlotKey}
-                    style={{
-                    width: '48%',
-                    marginBottom: linkedSliceCompact ? 5 : (compact ? 7 : 10),
-                    // зачем: владелец убрал подсказку-пульсацию правильного слова на первых
-                    // фразах урока 1 — осталось только приглушение от «50 на 50».
-                    opacity: (fiftyFiftyActive && fiftyFiftyDimmed.has(i)) ? 0.22 : 1
-                  }}>
-                    {(() => {
-                      // Плитка вспыхивает АКЦЕНТНЫМ цветом темы при нажатии (единый
-                      // фирменный цвет на любой тап). Объём — через DuoPressable (3D-кромка).
-                      const isFlashing = flashWord?.optionKey === optionKey;
-                      return (
-                    <DuoPressable
-                      pressTargetKey={optionKey}
-                      // зачем (координатор 12.10, съёмка R1 energy-modes-002…005/016): робот не знает, какой номер неверный —
-                      // в dev первый неверный вариант помечен `lesson1-word-option-wrong` (ошибка по шагу). В стор-сборке __DEV__ = false.
-                      // зачем (координатор 05.11, Maestro-проход урока до итога): помеченные плитки нужны роботу ТОЛЬКО в dev; в релизе плитки
-                      // без testID — ничего не подсказывает, какой вариант верный (владелец: «в релизе — ничего»)
-                      testID={__DEV__ ? (isCorrectOption ? 'lesson1-word-option-correct' : (wordOptionItems.find((o) => !o.isCorrectOption)?.index === i ? 'lesson1-word-option-wrong' : `lesson1-word-option-${i}`)) : undefined}
-                      pressedExternally={isFlashing}
-                      // зачем (аудит микрофризов 11.11): вибрация срабатывает в момент касания, внутри кнопки,
-                      // а не после обработки слова — раньше она ждала конца тяжёлого onPress и запаздывала.
-                      withHaptic
-                      disabled={wordDispatchPending}
-                      style={{
-                        width: '100%',
-                        backgroundColor: isFlashing ? glass.cta : glass.plateFillFrom,
-                        paddingVertical: linkedSliceCompact ? 7 : (compact ? 10 : 15),
-                        minHeight: 52,
-                        borderRadius: 18,
-                        boxShadow: plateBoxShadow(glass), // зачем («Тень» 12.10): кнопка-слово — плашка без кромки
-                      }}
-                      onPress={() => {
-                        if (showTapHint) setShowTapHint(false);
-                        if (settings.hardMode) {
-                          // В hardMode нажатие на кнопку вставляет слово в текстовое поле
-                          const w = stripMarkers(word);
-                          const current = typedText.trimEnd();
-                          setTypedText(current ? current + ' ' + w : w);
-                          setTimeout(() => textInputRef.current?.focus(), 50);
-                        } else {
-                          // Вспышка плитки начинается сразу, но сам ответ тоже обязан
-                          // примениться в этот же кадр. Прежняя задержка 170 мс ради
-                          // вспышки делала каждую кнопку ощутимо «тормозной».
-                          if (wordDispatchTimerRef.current) return;
-                          setWordDispatchPending(true);
-                          triggerWordFlash(optionKey, isCorrectOption);
-                          wordDispatchTimerRef.current = setTimeout(() => {
-                            wordDispatchTimerRef.current = null;
-                            setWordDispatchPending(false);
-                          }, WORD_DISPATCH_LOCK_MS);
-                          handleWordPress(word);
-                        }
-                        // [FeedbackKit] Решение владельца: плитки слов — БЕЗ клик-звука
-                        // (звук только на управляющих кнопках). Родная вибрация — на касании (withHaptic выше).
-                      }}
-                    >
-                      {/* зачем: 3 юзера писали, что длинные слова в плитках обрезаны
-                          («understands», «documents») и приходится угадывать. Плитка — 48%
-                          ширины, при штатном «среднем» шрифте влезает ~10 знаков, а в данных
-                          уроков есть слова до 15-16 знаков. Шрифт НЕ ужимаем (правило
-                          владельца) — разрешаем вторую строку: фиксированной высоты у плитки
-                          нет (DuoPressable: только minHeight), поэтому обрезки не будет. */}
-                      <FlowText testID="lesson-word-tile" provenance="authored" style={{ color: isFlashing ? glass.ctaInk : glass.text, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }}>{displayText}</FlowText>
-                    </DuoPressable>
-                      );
-                    })()}
-                  </Animated.View>
-                );
-              })}
-            </View>
+            {/* зачем (аудит микрофризов 11.11): вспышка и блокировка двойного тапа живут внутри LessonWordTiles —
+                два «поздних» обновления после тапа перерисовывают только плитки, а не весь блок урока. */}
+            <LessonWordTiles
+              wordOptionItems={wordOptionItems}
+              dimmedIndexes={fiftyFiftyActive ? fiftyFiftyDimmed : null}
+              glass={glass}
+              fontSize={f.numMd}
+              tileGap={linkedSliceCompact ? 5 : (compact ? 7 : 10)}
+              tilePaddingVertical={linkedSliceCompact ? 7 : (compact ? 10 : 15)}
+              onWordPress={onTileWordPress}
+            />
           </Pressable>
         )}
 

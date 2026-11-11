@@ -20,7 +20,7 @@ const DIRS = ['components/practice', 'components/speech', 'components/feedback',
   'components/lesson_exit', 'components/lesson_moments', 'components/mistakes-panel', 'components/mistake-practice'];
 const FILES = ['app/lesson1.tsx', ...['LessonReviewSheet', 'AiMistakeCard', 'BilingualMistakeText',
   'NoEnergyModal', 'SpeechUnavailableNote', 'MicAllowanceBadge', 'PracticeRuneCounter', 'EnergyBar', 'SpeakingInlineSlot', 'SpeakingInlineResultStars',
-  'LessonEnergyLightning', 'LessonLoadingSkeleton'].map((n) => `components/${n}.tsx`)];
+  'LessonEnergyLightning', 'LessonLoadingSkeleton', 'LessonWordTiles'].map((n) => `components/${n}.tsx`)];
 for (const d of DIRS) {
   const abs = path.join(ROOT, d);
   if (!fs.existsSync(abs)) continue;

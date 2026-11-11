@@ -6,14 +6,19 @@ import path from 'node:path';
 // сборке плитки без testID, чтобы ничто не подсказывало верный ответ (владелец: «в релизе — ничего»).
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
+// зачем (аудит микрофризов, владелец 11.11): сетка плиток вынесена в components/LessonWordTiles.tsx — пометки плиток проверяются там.
+const tilesSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'LessonWordTiles.tsx'), 'utf8');
 
 describe('lesson1: тестовые id плиток только в dev', () => {
   test('верная плитка помечена только при __DEV__', () => {
-    expect(source).toContain("testID={__DEV__ ? (isCorrectOption ? 'lesson1-word-option-correct'");
+    expect(tilesSource).toContain("testID={__DEV__ ? (isCorrectOption ? 'lesson1-word-option-correct'");
   });
 
   test('нет безусловной пометки верной плитки', () => {
-    expect(source).not.toMatch(/testID=\{isCorrectOption \? 'lesson1-word-option-correct'/);
+    expect(tilesSource).not.toMatch(/testID=\{isCorrectOption \? 'lesson1-word-option-correct'/);
+    expect(source).not.toContain('lesson1-word-option-');
+    // Все упоминания пометок плиток — только в ветке __DEV__ одной строки.
+    expect(tilesSource.match(/'lesson1-word-option-correct'/g)).toHaveLength(1);
   });
 
   test('скрытый эталон ответа для Maestro существует только при __DEV__', () => {
@@ -26,8 +31,9 @@ describe('lesson1: тестовые id плиток только в dev', () => 
   });
 
   test('в релизной ветке testID не задаётся', () => {
-    const idx = source.indexOf("testID={__DEV__ ? (isCorrectOption ? 'lesson1-word-option-correct'");
-    const line = source.slice(idx, source.indexOf('\n', idx));
+    const idx = tilesSource.indexOf("testID={__DEV__ ? (isCorrectOption ? 'lesson1-word-option-correct'");
+    expect(idx).toBeGreaterThan(0);
+    const line = tilesSource.slice(idx, tilesSource.indexOf('\n', idx));
     expect(line.trimEnd().endsWith(': undefined}')).toBe(true);
   });
 });

@@ -26,6 +26,7 @@ import { SPIRE_SCENE_V2_ENABLED } from '../../components/spire/scene/spire_scene
 import { useIsFocused } from '@react-navigation/native';
 import { useSceneStatusBar } from '../../hooks/use_scene_status_bar';
 import CommunityHeaderScrim from '../../components/CommunityHeaderScrim';
+import ScrollTopEdgeFade from '../../components/ScrollTopEdgeFade';
 import { useTheme } from '../../components/ThemeContext';
 import { homeSceneTokensForTheme } from '../../components/home/v2/scene/home_scene_tokens';
 
@@ -167,6 +168,10 @@ export default function CommunityTabRoute() {
     else if (key === 'spire') {
       if (peakAccess.status === 'locked') body = <RankLockedSection surface="peak" minimumRank={peakAccess.minimumRank} />;
       else { const Screen = loadSpire(); body = <Screen />; }
+      // зачем (владелец 11.11: «раздел Пик всё ещё жёсткий край»; журнал [SPIRE-TABS-SCROLL] с его телефона: section=spire, overScene=false, sceneTint=null):
+      // у Пика без «Сцены» шапка стоит блоком над лентой, полоса цвета сцены (CommunityHeaderScrim) там не рисуется — лента резалась ровной линией.
+      // В этом режиме лента растворяется той же маской, что «Друзья»; со «Сценой» маска выключена (обёртка постоянная — раздел не перемонтируется).
+      body = <ScrollTopEdgeFade enabled={!overScene}>{body}</ScrollTopEdgeFade>;
     }
     else { const Screen = loadPacks(); body = <CommunityHeaderSlotProvider value={setPacksSlot}><Screen presentation="embedded" /></CommunityHeaderSlotProvider>; }
     return (

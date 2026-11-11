@@ -24,7 +24,8 @@ describe('Soft top edge on scroll: Friends, Packs, Peak', () => {
     const fade = read('components/ScrollTopEdgeFade.tsx');
     expect(fade).toContain("colors={['transparent', 'black']}");
     expect(fade).toContain("useTopFadeScrolled({ rest: 1, stepOnAndroid: true })");
-    expect(fade).toMatch(/<Animated\.View style=\{\[styles\.restCover, \{ opacity: restCover \}\]\} \/>/);
+    // выключенная маска целиком непрозрачная — содержимое не меняется
+    expect(fade).toContain('<Animated.View style={[styles.restCover, { opacity: enabled ? restCover : 1 }]} />');
     expect(fade).toMatch(/<\/MaskedView>/);
     expect(fade).not.toContain('borderWidth');
   });
@@ -61,6 +62,13 @@ describe('Soft top edge on scroll: Friends, Packs, Peak', () => {
     // отдельный экран (не вкладка) держит свой признак прокрутки — край мягкий и там
     expect(videos).toContain("return presentation === 'tab' ? content : <TopFadeScrollProvider>{content}</TopFadeScrollProvider>;");
     expect(videos).toContain('if (!inTab) topFadeScroll?.onScrollMaskOnly(e);');
+  });
+
+  it('Peak without a scene (header as a block) fades its feed with the same mask; with a scene the mask is off', () => {
+    const community = read('app/(tabs)/community.tsx');
+    expect(community).toContain('body = <ScrollTopEdgeFade enabled={!overScene}>{body}</ScrollTopEdgeFade>;');
+    // Пик сообщает прокрутку в общий признак (только маска, нижнее меню не сворачивается)
+    expect(read('components/spire/scene/use_spire_scene_scroll.ts')).toContain('topFade?.onScrollMaskOnly(e);');
   });
 
   it('draws the scene-colored band under the Community tabs only when the header lies over a scene', () => {

@@ -23,7 +23,16 @@ const styles = StyleSheet.create({
  * рисунок, плоской заливкой его не повторить), но растворение включается только после начала прокрутки. В покое верх списка
  * закрыт непрозрачной накладкой маски — первый блок («Твои друзья», лента недели) виден целиком, вид экрана прежний.
  */
-export default function ScrollTopEdgeFade({ children }: Readonly<{ children: React.ReactNode }>) {
+type Props = Readonly<{
+  children: React.ReactNode;
+  /**
+   * false — маска целиком непрозрачная, содержимое не меняется. зачем: раздел, у которого шапка то стоит блоком, то лежит поверх
+   * сцены («Пик»), держит обёртку постоянно — иначе смена режима перемонтировала бы весь раздел.
+   */
+  enabled?: boolean;
+}>;
+
+export default function ScrollTopEdgeFade({ children, enabled = true }: Props) {
   const restCover = useTopFadeScrolled({ rest: 1, stepOnAndroid: true });
   return (
     <MaskedView
@@ -32,7 +41,7 @@ export default function ScrollTopEdgeFade({ children }: Readonly<{ children: Rea
         <View style={styles.fill} pointerEvents="none">
           <LinearGradient colors={['transparent', 'black']} style={styles.edge} />
           <View style={styles.opaque} />
-          <Animated.View style={[styles.restCover, { opacity: restCover }]} />
+          <Animated.View style={[styles.restCover, { opacity: enabled ? restCover : 1 }]} />
         </View>
       }
     >

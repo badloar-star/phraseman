@@ -1,6 +1,7 @@
 # Task packet: «истории вместо окон» — шаг 2б: старые бонусы и истёкшая подписка приходят кадром
 
 Governance-ID: TG-D463D5CA8284
+Governance-ID: TG-10F0EEAEA3C6
 Status: In progress
 Owner: сессия Claude «аудит всплывающих окон», 2026-11-11
 Related epic/enabler: шаг 2а — `stories-instead-of-modals-step2a-home-2026-11-11.md` (коммит 0d919e212)

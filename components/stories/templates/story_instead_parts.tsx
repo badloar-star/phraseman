@@ -42,7 +42,8 @@ export const PerkRows = memo(function PerkRows({ items, locked = false, d0 }: Re
         const d = d0 + i * 90;
         return (
           <Enter key={`r${i}:${text}`} d={d} style={[s.row, { backgroundColor: mix(pal.tx, 0.09) }]}>
-            <Text style={[s.rowText, { color: pal.tx }]} numberOfLines={1}>{text}</Text>
+            {/* зачем (правило владельца: текст не обрезать и не ужимать): длинная строка переносится, отметка остаётся по центру строки */}
+            <Text style={[s.rowText, { color: pal.tx }]}>{text}</Text>
             <View style={[s.ck, { backgroundColor: mix(pal.tx, 0.14) }]}>
               <CheckFill d={d + 260}>
                 <View style={[s.ckOn, { backgroundColor: locked ? mix(pal.tx, 0.22) : pal.accG }]}>

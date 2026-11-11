@@ -159,7 +159,8 @@ export const PackPrizeFrame = memo(function PackPrizeFrame({ tpl, lang }: FrameP
             {columns.map((e, i) => (
               <View key={e.place} style={f.pc}>
                 <SpireRankCoin rank={e.rank} size={40} />
-                <Text style={[f.pcName, { color: pal.tx }]} numberOfLines={1}>{e.me ? you : e.name}</Text>
+                {/* зачем (правило владельца: текст не обрезать и не ужимать): длинное имя переносится по центру колонки, столбик стоит на месте — колонка растёт вверх */}
+                <Text style={[f.pcName, { color: pal.tx }]}>{e.me ? you : e.name}</Text>
                 <Grow axis="y" d={200 + i * 120} dur={800} style={[f.bar, { height: PRIZE_BAR[e.place], backgroundColor: e.me ? pal.accG : mix(pal.tx, 0.12) }, e.me ? { boxShadow: `0 -10px 40px -10px ${pal.accGlow}` } : null]}>
                   <Text style={[f.barN, { color: e.me ? pal.accInk : pal.sec }]}>{e.place}</Text>
                 </Grow>
@@ -197,13 +198,16 @@ export const FirstDialogFrame = memo(function FirstDialogFrame({ tpl, lang }: Fr
 const RaceRow = memo(function RaceRow({ name, rank, share, value, lead, d }: Readonly<{ name: string; rank: number | null; share: number; value: number; lead: boolean; d: number }>) {
   const pal = useStoryTemplatePalette();
   return (
-    <View style={f.raceRow}>
-      <Text style={[f.raceName, { color: pal.sec }]} numberOfLines={1}>{name}</Text>
+    <View style={f.raceBlock}>
+      {/* зачем (правило владельца: текст не обрезать и не ужимать): имя стоит в потоке над дорожкой — длинное переносится и раздвигает строки, а не налезает на соседнюю */}
+      <Text style={[f.raceName, { color: pal.sec }]}>{name}</Text>
+      <View style={f.raceRow}>
       <SpireRankCoin rank={rank} size={36} />
       <View style={[f.track, { backgroundColor: mix(pal.tx, 0.1) }]}>
         <Grow axis="x" to={share} d={d} dur={1300} style={[f.trackFill, { backgroundColor: lead ? pal.accG : mix(pal.tx, 0.32) }]} />
       </View>
       <View style={f.raceValueBox}><Text style={[f.raceValue, { color: pal.tx }]}>{tplNumber(value)}</Text></View>
+      </View>
     </View>
   );
 });
@@ -241,13 +245,15 @@ const f = StyleSheet.create({
   // .podium в этом кадре: высота 190; колонка 88, зазор 6; монета 40; столбик со скруглением сверху 16
   podium: { flexDirection: 'row', alignItems: 'flex-end', gap: 10, height: 190 },
   pc: { width: 88, alignItems: 'center', gap: 6 },
-  pcName: { fontSize: 13, lineHeight: 17, fontWeight: '700', maxWidth: 88 },
+  pcName: { fontSize: 13, lineHeight: 17, fontWeight: '700', maxWidth: 88, textAlign: 'center' },
   bar: { width: 88, borderTopLeftRadius: 16, borderTopRightRadius: 16, alignItems: 'center', paddingTop: 10 },
   barN: { fontSize: 20, lineHeight: 21, fontWeight: '800' },
   // .race: колонка, зазор 14, отступ снизу 24; строка: отступ 10, монета 36, дорожка 28 (радиус 14), число 62 справа 15/700
   race: { alignSelf: 'stretch', gap: 14, marginBottom: 24 },
-  raceRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
-  raceName: { position: 'absolute', left: 58, top: -18, fontSize: 12, lineHeight: 21, maxWidth: 200 },
+  // имя: макет ставит его на 18 выше строки (left 58, 12/21) — в потоке это отступ слева 58 и нахлёст 3 на строку; блок несёт отступ 10 между строками
+  raceBlock: { marginTop: -8 },
+  raceRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  raceName: { paddingLeft: 58, marginBottom: -3, fontSize: 12, lineHeight: 21, textAlign: 'left' },
   track: { flex: 1, minWidth: 0, height: 28, borderRadius: 14, overflow: 'hidden' },
   trackFill: { height: '100%', width: '100%', borderRadius: 14 },
   raceValueBox: { width: 62 },

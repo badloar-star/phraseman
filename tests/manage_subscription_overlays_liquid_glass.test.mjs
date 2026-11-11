@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import test from 'node:test';
 import vm from 'node:vm';
 import ts from 'typescript';
+// зачем (владелец 11.11): разметку экрана рисует ManageSubscriptionDuoView — стенд раскрывает настоящий компонент, а не муляж
+import { loadDuoViewModule, visit } from './helpers/manage_subscription_duo_view.mjs';
 
 const SOURCE_PATH = 'app/manage_subscription.tsx';
 const source = fs.readFileSync(SOURCE_PATH, 'utf8');
@@ -31,7 +33,6 @@ const DEPENDENCIES = {
   'app/manage_subscription_purchase.ts': 'fd85c1c6e7cd523a7599deb61a17b892729861e1304f227bf0ef14cc4bb25106',
 };
 
-const visit = node => Array.isArray(node) ? node.flatMap(visit) : node && typeof node === 'object' ? [node, ...visit(node.props?.children)] : [];
 const flatStyle = style => Object.assign({}, ...((Array.isArray(style) ? style : [style]).flat(Infinity).filter(Boolean)));
 const byId = (tree, id) => visit(tree).find(node => node.props?.testID === id);
 const textOf = node => visit(node).flatMap(item => item?.props?.children ?? []).filter(value => typeof value === 'string' || typeof value === 'number').join(' ');
@@ -142,6 +143,11 @@ function createHarness({ lang = 'ru', themeId = 'graphite', platform = 'ios', ke
     '../components/ContentWrap': { __esModule: true, default: 'ContentWrap' },
     '../components/DuoPressable': { __esModule: true, default: 'DuoPressable' },
     '../components/PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
+    '../components/manage-subscription/ManageSubscriptionDuoView': loadDuoViewModule(React),
+    // U23 (d75e10503): «Восстановить» ждёт подтверждения владельца на сервере — в стенде владелец подтверждён (прежний путь); отказ держит tests/u23_restore_owner_manage_subscription
+    './restore_owner_confirmation': { confirmRestoreOwnerOnServer: async () => ({ verdict: 'confirmed', ms: 0 }), restoreOwnerNotConfirmedToast: () => ({}) },
+    // 11.11: потолок ожидания загрузки экран берёт из общего шлюза (app/load_gate_config) — в стенде то же значение
+    './load_gate_config': { LOAD_GATE_TOTAL_MS: 12000 },
     '../components/v2/BackGlyph': { __esModule: true, default: 'BackGlyph' }, // 17.10: «назад» — общий значок BackGlyph (слово владельца)
     '../components/v2/ScreenBackButton': { __esModule: true, default: 'ScreenBackButton', ScreenBackSlot: 'ScreenBackSlot', ScreenOriginBelowSafeTop: ({ children }) => children }, // 22.10: «назад» — общая кнопка
     '../components/feedback/FullscreenHybridEntrance': { __esModule: true, default: props => React.createElement('FullscreenHybridEntrance', props, ...props.slots) },

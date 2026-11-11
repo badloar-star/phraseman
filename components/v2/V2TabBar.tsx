@@ -35,6 +35,10 @@ export type V2TabBarItem = Readonly<{
   activeIcon: IconName;
   /** Точка «есть новое» (макет system.html: 8px, белая, с кольцом цвета капсулы). */
   badge?: boolean;
+  /** Свой градиент активной плашки под этим пунктом (вкладка Plus — цвет уровня, макет plus-screens-duo-2026-11-11); без него — цвет темы. */
+  capGradient?: readonly [string, string, string];
+  /** Цвет активного значка поверх capGradient. */
+  capInk?: string;
 }>;
 
 // зачем: размеры сняты с референса владельца 24.09 и утверждены на макете
@@ -428,6 +432,11 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
           {palette.aurora
             ? <LinearGradient colors={[palette.aurora.ctaFrom, palette.aurora.ctaTo]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={[StyleSheet.absoluteFill, { borderRadius: CAP_RADIUS }]} />
             : <CapFill width={capW} color={palette.accentCap} />}
+          {/* зачем (владелец 11.11, «в точности как на макете»): под вкладкой Plus плашка — градиент уровня, как знак и кнопка на самом экране;
+              у остальных пунктов поля нет — плашка прежняя, в цвете темы */}
+          {items[activeIndex]?.capGradient
+            ? <LinearGradient testID="tab-cap-gradient" colors={[...items[activeIndex].capGradient]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: CAP_RADIUS }]} />
+            : null}
           <Animated.View style={[s.capBright, { opacity: capBright }]} />
         </Animated.View>
       ) : null}
@@ -440,7 +449,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
         {items.map((item, i) => {
           const on = i === activeIndex;
           // Активный значок: в «Спокойно» accentBright = cta (как было), иначе — цвет темы.
-          const color = on ? (palette.aurora ? palette.aurora.ctaInk : palette.accentBright) : hoverIdx === i ? palette.secondary : palette.mutedText;
+          const color = on ? (item.capGradient && item.capInk ? item.capInk : palette.aurora ? palette.aurora.ctaInk : palette.accentBright) : hoverIdx === i ? palette.secondary : palette.mutedText;
           return (
             <View
               key={item.key}

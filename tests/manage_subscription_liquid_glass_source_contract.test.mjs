@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import test from 'node:test';
 import vm from 'node:vm';
 import ts from 'typescript';
+// зачем (владелец 11.11): разметку экрана рисует ManageSubscriptionDuoView — стенд раскрывает настоящий компонент, а не муляж
+import { DUO_TIER_COLORS, loadDuoViewModule, visit } from './helpers/manage_subscription_duo_view.mjs';
 
 const SOURCE_PATH = 'app/manage_subscription.tsx';
 const source = fs.readFileSync(SOURCE_PATH, 'utf8');
@@ -126,7 +128,6 @@ function benefitCopyDiagnostics(candidate) {
   return ts.createProgram([fileName], options, host).getSemanticDiagnostics().map(diagnostic => ts.flattenDiagnosticMessageText(diagnostic.messageText, ' '));
 }
 
-const visit = node => Array.isArray(node) ? node.flatMap(visit) : node && typeof node === 'object' ? [node, ...visit(node.props?.children)] : [];
 const flatStyle = style => Object.assign({}, ...((Array.isArray(style) ? style : [style]).flat(Infinity).filter(Boolean)));
 const textOf = node => visit(node).flatMap(item => item?.props?.children ?? []).filter(value => typeof value === 'string').join('');
 const byId = (tree, id) => visit(tree).find(node => node.props?.testID === id);
@@ -183,6 +184,11 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     '../components/feedback/FullscreenHybridEntrance': { __esModule: true, default: 'FullscreenHybridEntrance' },
     '../components/keyboardAvoidance': { useKeyboardBottomInset: () => 0 },
     '../components/PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
+    '../components/manage-subscription/ManageSubscriptionDuoView': loadDuoViewModule(React),
+    // U23 (d75e10503): «Восстановить» ждёт подтверждения владельца на сервере — в стенде владелец подтверждён (прежний путь); отказ держит tests/u23_restore_owner_manage_subscription
+    './restore_owner_confirmation': { confirmRestoreOwnerOnServer: async () => ({ verdict: 'confirmed', ms: 0 }), restoreOwnerNotConfirmedToast: () => ({}) },
+    // 11.11: потолок ожидания загрузки экран берёт из общего шлюза (app/load_gate_config) — в стенде то же значение
+    './load_gate_config': { LOAD_GATE_TOTAL_MS: 12000 },
     '../components/v2/BackGlyph': { __esModule: true, default: 'BackGlyph' }, // 17.10: «назад» — общий значок BackGlyph (слово владельца)
     '../components/v2/ScreenBackButton': { __esModule: true, default: 'ScreenBackButton', ScreenBackSlot: 'ScreenBackSlot', ScreenOriginBelowSafeTop: ({ children }) => children }, // 22.10: «назад» — общая кнопка
     '../hooks/use-screen': { useScreen: () => ({ contentMaxW: 640, rawBottomInset: 0 }) },
@@ -263,16 +269,19 @@ test('renders the bounded Liquid Glass host across all 13 palettes with normaliz
     assert.deepEqual(harness.calls.tokenIds, [themeId]);
     const status = byId(tree, 'manage-subscription-status-card');
     assert.ok(status, `${themeId} status card`);
-    assert.deepEqual(Object.fromEntries(['backgroundColor', 'borderRadius', 'padding', 'marginTop'].map(key => [key, flatStyle(status.props.style)[key]])), { backgroundColor: harness.glass.opaqueCard, borderRadius: 22, padding: 20, marginTop: 20 });
+    // зачем (владелец 11.11, макет plus-screens-duo-2026-11-11, раздел B): карточка статуса — «пропуск» градиентом уровня (цвет уровня, темой не красится),
+    // радиус 26, отступ сверху 24; заголовок 33/37 по макету. Стенд считает масштаб шрифта 1 (medium / medium).
+    assert.deepEqual(Object.fromEntries(['backgroundColor', 'borderRadius', 'paddingHorizontal', 'marginTop'].map(key => [key, flatStyle(status.props.style)[key]])), { backgroundColor: DUO_TIER_COLORS.plus[1], borderRadius: 26, paddingHorizontal: 20, marginTop: 24 });
+    assert.ok(visit(status).some(node => node.type === 'LinearGradient' && String(node.props.colors) === String(DUO_TIER_COLORS.plus)), `${themeId} pass uses the tier gradient`);
     const title = byId(tree, 'manage-subscription-title');
-    assert.equal(flatStyle(title.props.style).fontSize, 34);
-    assert.equal(flatStyle(title.props.style).lineHeight, 40);
-    assert.equal(flatStyle(title.props.style).flexShrink, 1);
+    assert.equal(flatStyle(title.props.style).fontSize, 33);
+    assert.equal(flatStyle(title.props.style).lineHeight, 37);
     for (const [id] of BENEFITS) {
       const row = byId(tree, `manage-subscription-benefit-${id}`);
       assert.equal(row.props.accessibilityRole, 'text');
       const style = flatStyle(row.props.style);
-      assert.deepEqual([style.minHeight, style.borderRadius, style.paddingVertical, style.paddingHorizontal], [64, 14, 10, 14]);
+      // макет 11.11: строки одного блока без своих плашек — высота 54, поля даёт общий блок
+      assert.deepEqual([style.minHeight, style.borderRadius, style.paddingVertical, style.paddingHorizontal], [54, undefined, 8, undefined]);
       assert.equal(visit(row).some(node => node.type === 'Ionicons' && String(node.props.name).includes('chevron')), false);
     }
   }
@@ -327,8 +336,9 @@ test('keeps loading, monthly, yearly, lifetime, absent-store-data, and busy cont
   for (const control of [change, restore, cancel]) {
     assert.ok(control);
     assert.equal(control.props.accessibilityRole, 'button');
+    // 11.11: кнопки нового вида — V2Pressable (звука у неё нет вовсе); вибрацию по-прежнему даёт сам обработчик, у кнопки она выключена
+    assert.equal(control.type, 'V2Pressable');
     assert.equal(control.props.withHaptic, false);
-    assert.equal(control.props.withSound, false);
   }
   close.props.onPress();
   cancel.props.onPress();

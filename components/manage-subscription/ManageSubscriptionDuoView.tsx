@@ -48,6 +48,8 @@ export type ManageSubscriptionDuoViewProps = Readonly<{
   /** Переход к отмене в магазине; null — у разовой покупки отмены нет. */
   cancel: Readonly<{ label: string; onPress: () => void }> | null;
   storeNote: string;
+  /** Масштаб шрифта из настройки «Размер текста» приложения (экран считает его сам); без него — размеры макета. */
+  scale?: (value: number) => number;
   /** Название на карточке вместо «уровень · период» (разовая покупка называется «Phraseman Pro»). */
   passNameOverride?: string;
 }>;
@@ -83,9 +85,11 @@ export const ManageSubscriptionDuoGlow = memo(function ManageSubscriptionDuoGlow
 
 // зачем: вибрацию дают сами обработчики экрана (смена плана, восстановление, отмена) — у кнопок она выключена, иначе была бы двойной
 export const ManageSubscriptionDuoView = memo(function ManageSubscriptionDuoView({
-  lang, g, tier, period, title, status, nextDate, nextDateLabel, lifetimeNote, loading, loadingSlot, benefits, upgrade, restore, cancel, storeNote, passNameOverride,
+  lang, g, tier, period, title, status, nextDate, nextDateLabel, lifetimeNote, loading, loadingSlot, benefits, upgrade, restore, cancel, storeNote, passNameOverride, scale,
 }: ManageSubscriptionDuoViewProps) {
   const { width: windowWidth } = useWindowDimensions();
+  // зачем: прежний экран уважал настройку «Размер текста» — новый вид не должен её потерять; размеры макета = масштаб 1
+  const f = (size: number, line: number) => (scale ? { fontSize: scale(size), lineHeight: scale(line) } : null);
   const mix = useDuoTierMix(tier);
   const colors = DUO_TIER_COLORS[tier];
   const ink = DUO_TIER_INK[tier];
@@ -103,9 +107,9 @@ export const ManageSubscriptionDuoView = memo(function ManageSubscriptionDuoView
         <View style={S.mark}><PaywallDuoHero mix={mix} /></View>
         <View style={S.live}>
           <View style={[S.liveHalo, { backgroundColor: `${colors[1]}42` }]}><View style={[S.liveDot, { backgroundColor: accent }]} /></View>
-          <Text style={[S.liveText, { color: accent }]}>{status}</Text>
+          <Text style={[S.liveText, f(13, 18), { color: accent }]}>{status}</Text>
         </View>
-        <Text accessibilityRole="header" testID="manage-subscription-title" style={[S.title, { color: g.text }]}>{title}</Text>
+        <Text accessibilityRole="header" testID="manage-subscription-title" style={[S.title, f(33, 37), { color: g.text }]}>{title}</Text>
 
         <View
           testID="manage-subscription-status-card" accessible accessibilityLabel={`${passName}. ${passValue ? `${passLabel}: ${passValue}` : ''}`}
@@ -114,21 +118,21 @@ export const ManageSubscriptionDuoView = memo(function ManageSubscriptionDuoView
           <LinearGradient pointerEvents="none" colors={[...colors]} locations={[0, 0.48, 1]} start={{ x: 0, y: 0.2 }} end={{ x: 1, y: 0.8 }} style={StyleSheet.absoluteFill} />
           <Sheen width={windowWidth} />
           <View style={S.passHead}>
-            <Text style={[S.passName, { color: ink }]}>{passName}</Text>
-            <Text style={[S.passBrand, { color: ink }]}>{BRAND}</Text>
+            <Text style={[S.passName, f(14, 20), { color: ink }]}>{passName}</Text>
+            <Text style={[S.passBrand, f(14, 20), { color: ink }]}>{BRAND}</Text>
           </View>
           {/* зачем: дата приходит из магазина позже кэша — строка держит высоту, карточка не прыгает */}
-          <Text testID="manage-subscription-next-date" style={[S.passValue, { color: ink }]}>{passValue || ' '}</Text>
-          <Text style={[S.passLabel, { color: ink }]}>{passValue ? passLabel : ' '}</Text>
+          <Text testID="manage-subscription-next-date" style={[S.passValue, f(27, 31), { color: ink }]}>{passValue || ' '}</Text>
+          <Text style={[S.passLabel, f(13, 18), { color: ink }]}>{passValue ? passLabel : ' '}</Text>
         </View>
 
-        <Text accessibilityRole="header" style={[S.section, { color: g.text }]}>{pick(lang, INCLUDED_TITLE)}</Text>
+        <Text accessibilityRole="header" style={[S.section, f(20, 26), { color: g.text }]}>{pick(lang, INCLUDED_TITLE)}</Text>
         {loading ? (loadingSlot ?? null) : (
           <View style={[S.included, { backgroundColor: g.opaqueCard }]}>
             {benefits.map((benefit, index) => (
               <View key={benefit.id} testID={`manage-subscription-benefit-${benefit.id}`} accessibilityRole="text" style={[S.row, index > 0 ? [S.rowLine, { borderTopColor: g.line }] : null]}>
                 <Ionicons name={benefit.icon} size={22} color={accent} />
-                <Text style={[S.rowText, { color: g.text }]}>{benefit.label}</Text>
+                <Text style={[S.rowText, f(15, 21), { color: g.text }]}>{benefit.label}</Text>
                 <Ionicons name="checkmark" size={18} color={accent} />
               </View>
             ))}
@@ -147,8 +151,8 @@ export const ManageSubscriptionDuoView = memo(function ManageSubscriptionDuoView
               <LinearGradient pointerEvents="none" colors={[...UP_GLOW]} locations={[0, 0.62]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
               <UltraHex />
               <View style={S.upCopy}>
-                <Text style={[S.upTitle, { color: g.text }]}>{upgrade.title}</Text>
-                <Text style={[S.upSub, { color: g.isLight ? g.text : UP_SOFT }]}>{upgrade.sub}</Text>
+                <Text style={[S.upTitle, f(16, 21), { color: g.text }]}>{upgrade.title}</Text>
+                <Text style={[S.upSub, f(13, 18), { color: g.isLight ? g.text : UP_SOFT }]}>{upgrade.sub}</Text>
               </View>
               {upgrade.busy ? <ActivityIndicator color={g.isLight ? g.text : UP_SOFT} /> : <Ionicons name="arrow-forward" size={20} color={g.isLight ? g.text : UP_SOFT} />}
             </V2Pressable>
@@ -160,16 +164,16 @@ export const ManageSubscriptionDuoView = memo(function ManageSubscriptionDuoView
             accessibilityState={{ disabled: restore.busy, busy: restore.busy }} disabled={restore.busy} onPress={restore.onPress}
             withHaptic={false} scaleTo={0.97} style={[S.quiet, { backgroundColor: g.opaqueControl }]}
           >
-            <Text style={[S.quietText, { color: g.text }]}>{restore.label}</Text>
+            <Text style={[S.quietText, f(15, 21), { color: g.text }]}>{restore.label}</Text>
             {restore.busy ? <ActivityIndicator color={g.mutedText} /> : <Ionicons name="chevron-forward" size={18} color={g.mutedText} />}
           </V2Pressable>
 
           {cancel ? (
             <V2Pressable testID="manage-subscription-cancel" accessibilityRole="button" accessibilityLabel={cancel.label} onPress={cancel.onPress} withHaptic={false} scaleTo={0.97} style={S.leave}>
-              <Text style={[S.leaveText, { color: g.mutedText }]}>{cancel.label}</Text>
+              <Text style={[S.leaveText, f(14, 20), { color: g.mutedText }]}>{cancel.label}</Text>
             </V2Pressable>
           ) : null}
-          <Text style={[S.fine, { color: g.mutedText }]}>{storeNote}</Text>
+          <Text style={[S.fine, f(13, 18), { color: g.mutedText }]}>{storeNote}</Text>
         </View>
       )}
     </View>

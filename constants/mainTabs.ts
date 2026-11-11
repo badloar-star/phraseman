@@ -6,6 +6,9 @@ export type MainTabDefinition = {
   icon: V2TabBarItem['icon'];
   active: V2TabBarItem['activeIcon'];
   label: { ru: string; uk: string; es: string; en: string } & PlannedTriLangCopy;
+  /** Свой градиент активной плашки и цвет значка на нём (только вкладка Plus). */
+  capGradient?: V2TabBarItem['capGradient'];
+  capInk?: V2TabBarItem['capInk'];
 };
 
 // One set of labels, icons and route identities for tab pages and their child screens.
@@ -26,7 +29,10 @@ export const MAIN_TABS: MainTabDefinition[] = [
     ru: 'Настройки', uk: 'Параметри', en: 'Settings', es: 'Ajustes', 'pt-BR': 'Ajustes', vi: 'Cài đặt', id: 'Setelan', tr: 'Ayarlar', pl: 'Ustawienia',
   } },
   // зачем (слово владельца 05.11): пятая иконка — Plus, ромб без подписи (подпись нужна только доступности); видна по правилу app/plus_tab_visibility.ts
-  { key: 'plus', icon: 'diamond-outline', active: 'diamond', label: {
+  // зачем (владелец 11.11, макет plus-screens-duo-2026-11-11): активная плашка вкладки — градиент уровня Ultra, который выбран на экране по умолчанию.
+  // theme-exempt: цвета — ровно DUO_TIER_COLORS.ultra / DUO_TIER_INK.ultra из пейвола «Два пути» (равенство держит tests/plus_screens_duo_2026_11_11);
+  // значения продублированы, чтобы список вкладок не тянул на старте модуль пейвола.
+  { key: 'plus', icon: 'diamond-outline', active: 'diamond', capGradient: ['#FF7A59', '#FF5F8F', '#FF4FD0'], capInk: '#2B0717', label: {
     ru: 'Plus', uk: 'Plus', en: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus',
   } },
 ];

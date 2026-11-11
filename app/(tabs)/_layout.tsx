@@ -692,6 +692,8 @@ function TabScaffold({
       label: triLang(lang, tab.label) ?? tab.label.ru,
       icon: tab.icon,
       activeIcon: tab.active,
+      capGradient: tab.capGradient,
+      capInk: tab.capInk,
       badge: tab.key === 'community' && communityDot,
     })),
     [barTabs, lang, communityDot],

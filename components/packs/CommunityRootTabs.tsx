@@ -14,7 +14,7 @@ export function CommunityRootTabs({ lang, bottomInset, onSelectRoute }: Readonly
   // зачем (владелец 30.10 и 05.11): тот же таббар, что в _layout, — «Видео» скрыта до ранга 1, Plus только при 4 иконках и без подписки (общий хук раскладки)
   const { layout } = useTabPageLayout();
   const tabs = MAIN_TABS.filter((_, index) => !isLogicalTabHidden(index, layout));
-  const items = tabs.map(tab => ({ key: tab.key, icon: tab.icon, activeIcon: tab.active, label: triLang(lang, tab.label) ?? tab.label.ru }));
+  const items = tabs.map(tab => ({ key: tab.key, icon: tab.icon, activeIcon: tab.active, capGradient: tab.capGradient, capInk: tab.capInk, label: triLang(lang, tab.label) ?? tab.label.ru }));
   return <V2TabBar items={items} activeIndex={tabs.findIndex(tab => tab.key === 'community')}
     bottomOffset={tabPillBottomOffset(bottomInset)} reduceMotion={reduceMotion}
     onSelect={index => { const tab = tabs[index]; if (tab) onSelectRoute(`/(tabs)/${tab.key}`); }} />;

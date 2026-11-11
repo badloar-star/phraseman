@@ -43,7 +43,29 @@ describe('вкладка Plus в стиле пейвола «Два пути» (
   });
 });
 
+describe('иконка вкладки Plus в нижней панели (владелец 11.11)', () => {
+  it('активная плашка под вкладкой Plus — градиент уровня Ultra из пейвола, значок его чернилами; у остальных вкладок плашка прежняя', () => {
+    const tabs = readSource('constants/mainTabs.ts');
+    const hero = readSource('components/paywall/duo/PaywallDuoHero.tsx');
+    const bar = readSource('components/v2/V2TabBar.tsx');
+    expect(tabs).toContain("{ key: 'plus', icon: 'diamond-outline', active: 'diamond', capGradient: ['#FF7A59', '#FF5F8F', '#FF4FD0'], capInk: '#2B0717',");
+    expect(hero).toContain("ultra: ['#FF7A59', '#FF5F8F', '#FF4FD0']");
+    expect(hero).toContain("ultra: '#2B0717'");
+    expect(tabs.match(/capGradient: \[/g)).toHaveLength(1);
+    expect(bar).toContain('{items[activeIndex]?.capGradient');
+    expect(bar).toContain('item.capGradient && item.capInk ? item.capInk :');
+    for (const file of ['app/(tabs)/_layout.tsx', 'components/packs/CommunityRootTabs.tsx']) expect(readSource(file)).toContain('capGradient: tab.capGradient');
+  });
+});
+
 describe('экран подключённой подписки в стиле пейвола «Два пути» (владелец 11.11)', () => {
+  it('настройка «Размер текста» не потеряна: экран передаёт свой масштаб, вид применяет его к каждому тексту', () => {
+    expect(readSource('app/manage_subscription.tsx')).toContain('scale={scaled}');
+    const duo = readSource('components/manage-subscription/ManageSubscriptionDuoView.tsx');
+    expect(duo.match(/, f\(\d+, \d+\), \{/g)).toHaveLength(13);
+    expect(duo).not.toContain('adjustsFontSizeToFit');
+  });
+
   const view = readSource('components/manage-subscription/ManageSubscriptionDuoView.tsx');
 
   it('цвет и знак — от уровня подписки, карточка-пропуск градиентом уровня с бликом', () => {

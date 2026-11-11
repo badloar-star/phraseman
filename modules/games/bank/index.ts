@@ -33,6 +33,22 @@ import { MEMORY_BANK_IT } from './memory_it';
 import { ODD_WORD_BANK_IT } from './odd_word_it';
 import { ORDER_BANK_IT } from './order_it';
 import { SORT_BANK_IT } from './sort_it';
+// немецкий и французский: «Три формы» есть только у немецкого (gehen — ging — gegangen)
+import { EXACT_BANK_DE } from './exact_de';
+import { FORMS_BANK_DE } from './forms_de';
+import { HUNT_BANK_DE } from './hunt_de';
+import { LISTEN_BANK_DE } from './listen_de';
+import { MEMORY_BANK_DE } from './memory_de';
+import { ODD_WORD_BANK_DE } from './odd_word_de';
+import { ORDER_BANK_DE } from './order_de';
+import { SORT_BANK_DE } from './sort_de';
+import { EXACT_BANK_FR } from './exact_fr';
+import { HUNT_BANK_FR } from './hunt_fr';
+import { LISTEN_BANK_FR } from './listen_fr';
+import { MEMORY_BANK_FR } from './memory_fr';
+import { ODD_WORD_BANK_FR } from './odd_word_fr';
+import { ORDER_BANK_FR } from './order_fr';
+import { SORT_BANK_FR } from './sort_fr';
 
 type ByLesson<T> = Readonly<Record<number, T>>;
 
@@ -78,6 +94,27 @@ export const GAME_BANKS: Readonly<Record<string, GameBank>> = {
     memory: MEMORY_BANK_IT,
     hunt: HUNT_BANK_IT,
     order: ORDER_BANK_IT,
+  },
+  // зачем: «Собери диалог» у немецкого идёт с урока 4, у французского — с урока 3: в более ранних уроках одни
+  // утверждения, однозначный порядок реплик из их слов не собрать (английский пример из макета сюда не ставим — чужой язык)
+  de: {
+    oddWord: ODD_WORD_BANK_DE,
+    sort: SORT_BANK_DE,
+    exact: EXACT_BANK_DE,
+    forms: FORMS_BANK_DE,
+    listen: LISTEN_BANK_DE,
+    memory: MEMORY_BANK_DE,
+    hunt: HUNT_BANK_DE,
+    order: ORDER_BANK_DE,
+  },
+  fr: {
+    oddWord: ODD_WORD_BANK_FR,
+    sort: SORT_BANK_FR,
+    exact: EXACT_BANK_FR,
+    listen: LISTEN_BANK_FR,
+    memory: MEMORY_BANK_FR,
+    hunt: HUNT_BANK_FR,
+    order: ORDER_BANK_FR,
   },
 };
 

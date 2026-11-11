@@ -27,6 +27,7 @@
 <script src="elevate-flow.js"></script>
 <script src="elevate-modes.js"></script>
 <script src="elevate-games.js"></script>
+<script src="elevate-skills.js"></script>
 <script>
 // зачем (владелец 11.11: «1 макет сделай со всеми сразу, отсортировано»): одна страница собирает разделы четырёх страниц по пути человека
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,7 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
     sec('a-modes', 'Режимы приложения: было → стало', S.modes.lead, S.modes.screens),
     sec('a-games', 'Новые игры на наших материалах', S.games.lead, S.games.screens),
     sec('a-results', 'Экраны завершения: было → стало', S.results.lead, S.results.screens),
-    sec('a-growth', 'Рост: навыки и статистика', 'Навыки показывают, что выросло. Статистика: что из нынешних блоков заменено и что добавлено.', [p1('skills')].concat(S.stats.screens)),
+    sec('a-growth', 'Рост: навыки, уровни и статистика', 'Шесть навыков, у каждого 30 уровней. Звезда одна и та же в статистике, на итогах, в историях. Статистика: что из нынешних блоков заменено и что добавлено.', S.skills[0].screens.concat(S.stats.screens)),
+    sec('a-social', S.skills[2].title, S.skills[2].lead, S.skills[2].screens),
+    Object.assign(sec('a-matrix', S.skills[3].title, S.skills[3].lead, []), { html: S.skills[3].html }),
   ].map((s, i) => Object.assign(s, { title: `${i + 1} · ${s.title}`, screens: s.screens.map((x) => Object.assign({}, x, { lbl: x.lbl.replace(/^\d+ · /, '') })) })); // зачем: номера несёт раздел, у телефонов свои номера с отдельных страниц сбивали бы счёт
   document.getElementById('toc').innerHTML = list.map((s) => `<a href="#${s.id}">${s.title}<b>${s.screens.length}</b></a>`).join('');
   EL.mount(list);

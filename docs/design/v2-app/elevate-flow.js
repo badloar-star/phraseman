@@ -67,34 +67,34 @@
   const R = [
     { id: 'r-lesson', lbl: 'Урок', w: { title: 'Урок пройден', sub: 'Эпизод 5', stats: [['10', 'верно'], ['2', 'ошибок'], ['83%', 'точность']], btns: ['Ошибки', 'Дальше'] },
       c: { title: 'Урок 1 · эпизод 5', ring: { v: 83, p: .83, suffix: '%', label: 'точность' }, h1: '10 из 12 фраз с первого раза', h2: 'Открыт эпизод 6', cta: 'Следующий эпизод', coins: 20,
-        panels: [P.chips('Новые слова', ['cooking', 'dinner', 'messages']), P.mistakes('Разбор ошибок', [['She is writing messages', 'ты собрал: She writing is messages'], ['It is working well', 'ты выбрал: Это работало хорошо']]), P.growth('Грамматика', 262, 275), P.rate()] } },
+        panels: [P.chips('Новые слова', ['cooking', 'dinner', 'messages']), P.mistakes('Разбор ошибок', [['She is writing messages', 'ты собрал: She writing is messages'], ['It is working well', 'ты выбрал: Это работало хорошо']]), P.star([['Грамматика', .2], ['Словарь', .1]]), P.rate()] } },
     { id: 'r-words', lbl: 'Слова урока', w: { title: 'Слова пройдены', sub: 'Урок 1', stats: [['12', 'слов'], ['1', 'ошибка'], ['92%', 'точность']] },
       c: { title: 'Слова · урок 1', ring: { v: 12, of: 12, p: 1, label: 'слов узнал' }, h1: 'Словарь урока собран', h2: 'Четыре слова ушли в карточки', cta: 'К уроку', coins: 10,
-        panels: [P.chips('Ещё повторим завтра', ['waiting', 'listening']), P.growth('Словарь', 358, 370)] } },
+        panels: [P.chips('Ещё повторим завтра', ['waiting', 'listening']), P.star([['Словарь', .25]])] } },
     { id: 'r-blitz', lbl: 'Блиц', w: { title: 'Тренировка завершена', sub: 'Счёт: 23', stats: [['23', 'верно'], ['2', 'ошибки'], ['92%', 'точность']], btns: ['Добить: Ещё учу (2)', 'Готово'] },
       c: { title: 'Блиц', ring: { v: 23, p: .77, label: 'за минуту' }, h1: 'На четыре больше, чем вчера', h2: 'Осталось два сердца из трёх', cta: 'Добить: ещё учу (2)', cta2: 'Готово', coins: 15,
-        panels: [P.record('Гонка с собой', [['Сегодня', '23', .77], ['Вчера', '19', .63, 1], ['Рекорд', '26', .87, 1]]), P.mistakes('Ещё учу', [['Hire, fire, quit', 'нанимать, увольнять, увольняться'], ['Call it a day', 'закончить на сегодня']]), P.growth('Скорость', 314, 340)] } },
+        panels: [P.record('Гонка с собой', [['Сегодня', '23', .77], ['Вчера', '19', .63, 1], ['Рекорд', '26', .87, 1]]), P.mistakes('Ещё учу', [['Hire, fire, quit', 'нанимать, увольнять, увольняться'], ['Call it a day', 'закончить на сегодня']]), P.star([['Скорость', .2], ['Словарь', .1]])] } },
     { id: 'r-speak', lbl: 'Устно', w: { title: 'Тренировка завершена', sub: 'Устная тренировка', stats: [['8', 'верно'], ['2', 'ошибок'], ['80%', 'точность']] },
       c: { title: 'Устно', ring: { v: 8, of: 10, p: .8, label: 'сказано чисто' }, h1: 'Тебя понятно с первого раза', h2: 'Две фразы стоит повторить', cta: 'Повторить две фразы', cta2: 'Готово', coins: 15,
-        panels: [P.record('Как звучало', [['waiting', 'чисто', .95], ['messages', 'почти', .7, 1], ['usually', 'смазано', .4, 1]]), P.growth('Речь', 226, 240)] } },
+        panels: [P.record('Как звучало', [['waiting', 'чисто', .95], ['messages', 'почти', .7, 1], ['usually', 'смазано', .4, 1]]), P.star([['Речь', .36]])] } },
     { id: 'r-tf', lbl: 'Правда / ложь', w: { title: 'Тренировка завершена', sub: 'Правда / ложь', stats: [['17', 'верно'], ['1', 'ошибка'], ['94%', 'точность']] },
       c: { title: 'Смахни', ring: { v: 94, p: .94, suffix: '%', label: 'точность' }, h1: '17 из 18 без подсказки', h2: 'Меньше секунды на ответ', cta: 'Готово', coins: 10,
-        panels: [P.mistakes('Где споткнулся', [['We usually wait here', 'это привычка, а не «сейчас»']]), P.growth('Грамматика', 270, 275)] } },
+        panels: [P.mistakes('Где споткнулся', [['We usually wait here', 'это привычка, а не «сейчас»']]), P.star([['Словарь', .12]])] } },
     { id: 'r-write', lbl: 'Вспомни и напиши', w: { title: 'Тренировка завершена', sub: 'Вспомни и напиши', stats: [['7', 'верно'], ['1', 'ошибка'], ['88%', 'точность']] },
       c: { title: 'Вспомни и напиши', ring: { v: 7, of: 8, p: .875, label: 'по памяти' }, h1: 'Семь фраз без подсказки', h2: 'Одна буква подвела', cta: 'Готово', coins: 15,
-        panels: [P.diff('Где подвела буква', 'He is coo<u>c</u>ing dinner', 'Верно: cooking — после двух «o» идёт k'), P.growth('Словарь', 362, 370)] } },
+        panels: [P.diff('Где подвела буква', 'He is coo<u>c</u>ing dinner', 'Верно: cooking — после двух «o» идёт k'), P.star([['Словарь', .2]])] } },
     { id: 'r-mist', lbl: 'Ошибки', w: { title: 'Ошибки разобраны', sub: '5 верно · 1 вернётся позже', stats: [['5', 'верно'], ['1', 'позже'], ['83%', 'точность']] },
       c: { title: 'Ошибки', ring: { v: 5, of: 6, p: .83, label: 'исправлено' }, h1: 'Пять ошибок закрыты', h2: 'Осталось семь в списке', cta: 'Готово', coins: 50,
-        panels: [P.note('Вернётся завтра', 'I tend to agree — свяжи значение со всей фразой.'), P.growth('Грамматика', 268, 275)] } },
+        panels: [P.note('Вернётся завтра', 'I tend to agree — свяжи значение со всей фразой.'), P.star([['Грамматика', .1]])] } },
     { id: 'r-exam', lbl: 'Экзамен главы', w: { title: 'Экзамен сдан', sub: '11 из 12 верно', stats: [['11', 'верно'], ['1', 'ошибка'], ['92%', 'точность']], btns: ['Разбор ошибок', 'К главе 3'] },
       c: { title: 'Экзамен главы 2', ring: { v: 11, of: 12, p: .92, label: 'нужно 10' }, h1: 'Глава 3 открыта', h2: 'Эпизоды 13–16 доступны', cta: 'К главе 3', cta2: 'Разбор ошибок', coins: 30,
-        panels: [P.mistakes('Одна ошибка', [['Does she work here?', 'ты написал: Do she work here?']])] } },
+        panels: [P.mistakes('Одна ошибка', [['Does she work here?', 'ты написал: Do she work here?']]), P.star([['Грамматика', .12]])] } },
   ];
 
   /* ---------- 5 · статистика ---------- */
-  const SK = [['Слух', 310, 12], ['Скорость', 340, 26], ['Словарь', 370, 8], ['Грамматика', 275, 5], ['Речь', 240, 0]];
+  const SK = EL.SK.map((x) => [x.nm, 500 * EL.axis(x.lv, x.p), x]); // зачем: те же шесть навыков и уровни, что на экране «Навыки» и на итогах
   function stats(ph) {
-    const G = timers(); let raf = 0; const cx = 150, cy = 120, R = 84, N = 5;
+    const G = timers(); let raf = 0; const cx = 150, cy = 120, R = 84, N = SK.length;
     const pt = (i, k) => [cx + Math.cos(-Math.PI / 2 + i * 2 * Math.PI / N) * R * k, cy + Math.sin(-Math.PI / 2 + i * 2 * Math.PI / N) * R * k];
     const poly = (k) => SK.map((_, i) => pt(i, typeof k === 'function' ? k(i) : k).map((n) => n.toFixed(1)).join(',')).join(' ');
     const bell = Array.from({ length: 60 }, (_, i) => { const x = i / 59; return `${(x * 354).toFixed(1)},${(58 - 52 * Math.exp(-Math.pow(x - .46, 2) / .052)).toFixed(1)}`; }).join(' L');
@@ -103,8 +103,9 @@
       <div class="scrollin" style="padding-bottom:40px;-webkit-mask-image:none;mask-image:none"><div style="height:14px"></div>
         <div class="gl panel2"><div class="h">Навыки<span class="newtag">новое</span></div>
           <div class="radar s"><svg viewBox="0 0 300 232">${[.34, .67, 1].map((k) => `<polygon class="grid" points="${poly(k)}"/>`).join('')}<polygon class="shape" points="${poly(0)}"/></svg>${SK.map((s, i) => { const [x, y] = pt(i, 1.22); return `<div class="lb" style="left:${x}px;top:${y}px">${s[0]}</div>`; }).join('')}</div>
-          <div class="sub" style="text-align:center">Вместо блока «Баланс практики»</div></div>
-        <div class="gl panel2"><div class="h">Подтянуть: Речь<span class="newtag">новое</span></div><div class="sub" style="margin-top:4px">Самая слабая ось. Одна кнопка собирает занятие сама.</div><div class="cta2 t" style="margin-top:12px;background:#fff;color:#0B0C0E">Начать · 5 минут</div></div>
+          <div class="lvrows">${SK.map(([nm, , x]) => `<div class="lvr"><span>${nm}</span><div class="bar"><i style="--p:${x.p}"></i></div><b>${x.lv}</b></div>`).join('')}</div>
+          <div class="sub" style="text-align:center;margin-top:10px">Нажатие открывает экран «Навыки»</div></div>
+        <div class="gl panel2"><div class="h">Подтянуть: Общение<span class="newtag">новое</span></div><div class="sub" style="margin-top:4px">Самая слабая ось. Одна кнопка собирает занятие сама.</div><div class="cta2 t" style="margin-top:12px;background:#fff;color:#0B0C0E">Начать · 5 минут</div></div>
         <div class="gl panel2"><div class="h">Неделя</div><div class="sub" style="margin-top:2px">Лучший день — среда, 44 минуты</div><div class="b7">${week.map(([d, v]) => `<div${v === 88 ? ' class="best"' : ''}><i data-h="${v}"></i>${d}</div>`).join('')}</div></div>
         <div class="gl panel2"><div class="h">Рекорды игр<span class="newtag">новое</span></div><div class="recs">${[['26', 'Блиц · верных за минуту'], ['×1,9', 'Поток · темп'], ['14', 'Лишнее слово · серия'], ['0,8 с', 'Смахни · на ответ']].map(([a, b]) => `<div><b>${a}</b><span>${b}</span></div>`).join('')}</div></div>
         <div class="gl panel2"><div class="h">Год</div><div class="heat2">${Array.from({ length: 84 }, (_, k) => `<i style="--k:${k};background:rgba(255,255,255,${[.1, .1, .28, .5, .1, .85, .28][(k * 5 + (k >> 2)) % 7]})"></i>`).join('')}</div></div>

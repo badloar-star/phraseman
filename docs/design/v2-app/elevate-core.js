@@ -50,13 +50,42 @@ window.EL = (() => {
       <div class="dock"><div class="wcta t">${I('play')}${c.cta}</div>${two ? `<div class="cta2 t">${c.cta2}</div>` : ''}</div>`;
     const v = $(ph, '.ringw .v'), r = c.ring;
     G.after(350, () => { $(ph, '.fg').style.strokeDashoffset = 565.5 * (1 - r.p); const t0 = performance.now(); const f = (now) => { const p = Math.min(1, (now - t0) / 1400), e = 1 - Math.pow(1 - p, 3), n = Math.round(r.v * e); v.textContent = r.of ? `${n} / ${r.of}` : n + (r.suffix || ''); if (p < 1 && v.isConnected) requestAnimationFrame(f); }; requestAnimationFrame(f); });
+    let stopStar = () => {}; G.after(900, () => { stopStar = starGrow(ph, G); });
     G.after(900, () => { $$(ph, '.now[data-p]').forEach((b) => b.style.setProperty('--p', b.dataset.p)); $$(ph, '.cnt').forEach((n) => count(n, +n.dataset.from, +n.dataset.to, 1100)); });
     G.after(1900, () => { const cn = $(ph, '.cn'); count(cn, 1240, 1240 + (c.coins || 10), 650); bump(cn); });
     log('итог показан:', c.title);
-    return () => G.clear();
+    return () => { G.clear(); stopStar(); };
   };
   const wasResult = (o) => was(`<div style="height:120px"></div><div class="tile t61" style="margin:0 auto">${I('check', 's28')}</div><div class="wt center" style="margin-top:22px;font-size:30px">${o.title}</div><div class="ws center">${o.sub || ''}</div>
     <div class="st3">${o.stats.map(([n, l]) => `<div><b>${n}</b><span>${l}</span></div>`).join('')}</div><div style="height:34px"></div>${(o.btns || ['Готово']).map((b, i, a) => `<div class="cta${i < a.length - 1 ? ' gh' : ''}" style="margin-top:12px">${b}</div>`).join('')}`);
+
+  /* ---------- навыки: шесть концов звезды, 30 уровней (решения владельца из опроса 11.11) ---------- */
+  // зачем: звезда, строки уровней и итоги обязаны показывать одни и те же числа — данные макета лежат в одном месте
+  const LVMAX = 30;
+  const SK = [['Слух', 9, .45], ['Речь', 6, .7], ['Словарь', 12, .3], ['Грамматика', 8, .86], ['Скорость', 10, .5], ['Общение', 3, .2]].map(([nm, lv, p]) => ({ nm, lv, p }));
+  const need = (lv) => 60 + lv * 10; // очков до следующего уровня: чем выше, тем дольше
+  const axis = (lv, p = 0) => Math.sqrt((lv + p) / LVMAX); // зачем: корень — чтобы первые уровни уже давали заметный луч
+  const skAxes = (list = SK) => list.map((s) => axis(s.lv, s.p));
+  const geo = (size, N) => { const c = size / 2, R = size * .36, pt = (i, k) => [c + Math.cos(-Math.PI / 2 + i * 2 * Math.PI / N) * R * k, c + Math.sin(-Math.PI / 2 + i * 2 * Math.PI / N) * R * k]; return { c, pt, poly: (ks) => ks.map((k, i) => pt(i, k).map((n) => n.toFixed(1)).join(',')).join(' ') }; };
+  const starSvg = (size, ks, o = {}) => { const g = geo(size, ks.length); return `<svg class="starsvg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">${[.34, .67, 1].map((k) => `<polygon class="grid" points="${g.poly(ks.map(() => k))}"/>`).join('')}${ks.map((_, i) => { const [x, y] = g.pt(i, 1); return `<line class="ax" x1="${g.c}" y1="${g.c}" x2="${x}" y2="${y}"/>`; }).join('')}${o.other ? `<polygon class="shape2" points="${g.poly(o.other)}"/>` : ''}<polygon class="shape" points="${g.poly(o.from || ks)}"/></svg>`; };
+  const starLabels = (size, names) => { const g = geo(size, names.length); return names.map((n, i) => { const [x, y] = g.pt(i, 1.28); return `<div class="lb" data-i="${i}" style="left:${x}px;top:${y}px">${n}</div>`; }).join(''); };
+  function starTween(svg, from, to, ms = 1300, delay = 0) {
+    const g = geo(+svg.getAttribute('width'), to.length), sh = svg.querySelector('.shape'); let raf = 0; const t0 = performance.now() + delay;
+    const f = (now) => { const p = Math.min(1, Math.max(0, (now - t0) / ms)), e = 1 - Math.pow(1 - p, 3); sh.setAttribute('points', g.poly(to.map((v, i) => from[i] + (v - from[i]) * e))); if (p < 1 && svg.isConnected) raf = requestAnimationFrame(f); };
+    raf = requestAnimationFrame(f); return () => cancelAnimationFrame(raf);
+  }
+  // Панель «Навыки растут» на любом итоге: gains = [['Грамматика', доля уровня], …]
+  P.star = (gains) => `<div class="gl panel2 starp"><div class="h">Навыки растут</div><div class="starrow"><div class="starbox">${starSvg(128, skAxes())}</div><div class="sgl">${gains.map(([nm, add]) => { const s = SK.find((x) => x.nm === nm); return `<div class="sgr" data-nm="${nm}" data-add="${add}"><div class="kv"><div class="tx">${nm}</div><span class="lvb">уровень <b class="lvn">${s.lv}</b></span></div><div class="bar"><i class="was" style="--p:${s.p}"></i><i class="nowb" style="--p:${s.p}"></i></div><div class="upt">Новый уровень</div></div>`; }).join('')}</div></div></div>`;
+  function starGrow(ph, G) {
+    const box = $(ph, '.starp'); if (!box) return () => {}; const after = SK.map((s) => ({ ...s }));
+    $$(box, '.sgr').forEach((row) => {
+      const s = after.find((x) => x.nm === row.dataset.nm), bar = $(row, '.nowb'), sum = s.p + +row.dataset.add;
+      if (sum < 1) { s.p = sum; bar.style.setProperty('--p', sum); return; }
+      s.lv += 1; s.p = sum - 1; bar.style.setProperty('--p', 1); // зачем: полоса сначала доходит до конца, и только потом уровень щёлкает
+      G.after(1200, () => { row.classList.add('up'); const n = $(row, '.lvn'); n.textContent = s.lv; bump(n); bar.style.transition = 'none'; bar.style.setProperty('--p', 0); void bar.offsetWidth; bar.style.transition = ''; bar.style.setProperty('--p', s.p); $(row, '.was').style.setProperty('--p', 0); log('навык поднялся:', s.nm, '→ уровень', s.lv); });
+    });
+    return starTween($(box, '.starsvg'), skAxes(), after.map((s) => axis(s.lv, s.p)), 1500, 200);
+  }
 
   /* ---------- смахивание в одну из двух сторон (сортировка, правда/ложь) ---------- */
   function swipe(ph, auto, o) {
@@ -118,7 +147,7 @@ window.EL = (() => {
   }
 
   /* ---------- сборка страницы ---------- */
-  const NAV = [['elevate-all.html', 'Всё вместе'], ['elevate-mechanics.html', 'Шесть механик'], ['elevate-flow.html', 'Вход, итоги, статистика'], ['elevate-modes.html', 'Режимы: было → стало'], ['elevate-games.html', 'Новые игры']];
+  const NAV = [['elevate-all.html', 'Всё вместе'], ['elevate-mechanics.html', 'Шесть механик'], ['elevate-flow.html', 'Вход, итоги, статистика'], ['elevate-modes.html', 'Режимы: было → стало'], ['elevate-games.html', 'Новые игры'], ['elevate-skills.html', 'Навыки и уровни']];
   const nav = (cur) => `<div class="elnav">${NAV.map(([h, t]) => `<a href="${h}"${h === cur ? ' class="on"' : ''}>${t}</a>`).join('')}</div>`;
   function mount(sections) {
     const all = sections.flatMap((s) => s.screens), stop = {};
@@ -135,5 +164,5 @@ window.EL = (() => {
     document.querySelectorAll('.ph.sky').forEach((p) => io.observe(p));
     K.init(); window.__elevate = { run, all };
   }
-  return { I, log, $, $$, sky, was, timers, fmt, count, bump, again, coins, top, segs, tiles, showTiles, mark, hearts, P, result, wasResult, swipe, quiz, nav, mount };
+  return { I, log, $, $$, sky, was, timers, fmt, count, bump, again, coins, top, segs, tiles, showTiles, mark, hearts, P, result, wasResult, swipe, quiz, nav, mount, SK, LVMAX, need, axis, skAxes, starSvg, starLabels, starTween };
 })();

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Навыки и уровни</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="elevate-mechanics.css">
+<link rel="stylesheet" href="elevate-extra.css">
+</head>
+<body data-theme="ink" data-page="skills">
+<div class="page">
+  <h1 class="page-h1">Навыки и уровни</h1>
+  <p class="page-lead">Предложение, не эталон. Шесть навыков, у каждого 30 уровней; звезда с шестью концами стоит в статистике, на итогах, на визитке и у друзей и везде показывает одни и те же числа. Код приложения не менялся.</p>
+  <div id="nav"></div>
+  <div class="switch"><span class="k">Тема</span>
+    <button class="on" data-theme-set="ink">Сумерки</button>
+    <button data-theme-set="marine">Океан</button>
+    <button data-theme-set="graphite">Затмение</button>
+    <button data-theme-set="amethyst">Аметист</button>
+  </div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script src="elevate-core.js"></script>
+<script src="elevate-flow.js"></script>
+<script src="elevate-skills.js"></script>
+<script>document.getElementById('nav').innerHTML = EL.nav('elevate-skills.html');</script>
+</body>
+</html>

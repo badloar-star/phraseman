@@ -8,7 +8,7 @@
 import { getClassicLessonPhrases, type ClassicCourseLang } from '../app/classic_course_phrases';
 import { GAME_BANKS, gameBankFor, type GameBank } from '../modules/games/bank/index';
 import { isValidHuntTask, isValidOrderTask, type HuntTask, type OrderTask } from '../modules/games/dialogue_core';
-import { FLOW_DEFAULT_ROUNDS, FLOW_OPTIONS, buildFlowRounds, canStartFlow, type FlowItem } from '../modules/games/flow_core';
+import { FLOW_DEFAULT_ROUNDS, FLOW_OPTIONS, buildFlowRounds, canStartFlow, flowTranslation, type FlowItem } from '../modules/games/flow_core';
 import { isValidOddWordTask, type OddWordTask } from '../modules/games/odd_word_core';
 import { isValidQuizRound, type QuizKind, type QuizRound } from '../modules/games/quiz_core';
 import type { SortDeck } from '../modules/games/sort_core';
@@ -265,12 +265,37 @@ describe('игры × языки × уроки: задания решаемы и
 });
 
 describe('«Поток»: фразы своего языка, три разных варианта, верный среди них', () => {
-  /** Перевод на язык интерфейса — те же три строки, что в экране игры (экран в этом тесте не монтируется). */
-  const translationOf = (phrase: { russian: string; ukrainian: string; sourceLocales?: Record<string, string | undefined> }, ui: string): string => {
-    if (ui === 'ru') return phrase.russian;
-    if (ui === 'uk') return phrase.ukrainian || phrase.russian;
-    return phrase.sourceLocales?.[ui] || phrase.russian;
-  };
+  /** Перевод на язык интерфейса — та же функция, которую зовёт экран игры. */
+  const translationOf = flowTranslation;
+
+  it('в переводе после чистки нет пометок урока: 5 курсов × 32 урока × ru/uk/en/es', () => {
+    const MARKERS: readonly (readonly [string, RegExp])[] = [
+      ['скобка', /[()]/u],
+      ['пометка сборки', /Для сборки|При сборке|Для складання|При складанні/u],
+      ['формула «слово + слово»', /[«"“][^»"”]*[»"”]\s*\+/u],
+    ];
+    const found = new Map<string, string[]>();
+    let checked = 0;
+    for (const lang of LANGS) {
+      for (const lesson of LESSONS) {
+        for (const phrase of getClassicLessonPhrases(lesson, lang)) {
+          for (const ui of UI_LANGS) {
+            checked += 1;
+            const text = flowTranslation(phrase, ui);
+            const where = `${lang} · урок ${lesson} · ${text}`;
+            if (blank(text)) found.set(`${ui} · пустой перевод`, [...(found.get(`${ui} · пустой перевод`) ?? []), `${lang} · урок ${lesson} · ${String(phrase.id)}`]);
+            for (const [name, pattern] of MARKERS) {
+              if (pattern.test(text)) found.set(`${ui} · ${name}`, [...(found.get(`${ui} · ${name}`) ?? []), where]);
+            }
+          }
+        }
+      }
+    }
+    // находка печатается как «язык интерфейса · маркер · сколько фраз · 2 примера»
+    expect([...found].map(([key, list]) => `${key} · ${list.length} · ${list.slice(0, 2).join(' | ')}`)).toEqual([]);
+    expect(checked).toBe(LANGS.length * LESSONS.length * 50 * UI_LANGS.length);
+  });
+
   const seeded = (seed: number) => () => {
     seed = (seed + 0x6d2b79f5) | 0;
     let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);

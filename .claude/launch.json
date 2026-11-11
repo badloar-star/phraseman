@@ -294,6 +294,14 @@
         "C:/appsprojects/phraseman/docs/work/mockups/queue-board-2026-11-11/serve.cjs"
       ],
       "port": 4790
+    },
+    {
+      "name": "course-voice",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/appsprojects/phraseman/output/course-voice/serve.cjs"
+      ],
+      "port": 4795
     }
   ]
 }

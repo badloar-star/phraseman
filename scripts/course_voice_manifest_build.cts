@@ -83,6 +83,24 @@ function collect() {
     const pack = preps.getLessonPrepositionPack(lesson, 'en');
     for (const item of pack?.items ?? []) add('en', String(item.sentenceTemplate).replace(/__/g, item.correct), 'prepositions', lesson);
   }
+
+  // зачем (владелец 11.11.2026, ночь: «Пик и фразу дня» — после счёта 348 + 880 фраз): задания Пика «на слух» и
+  // «диктант» есть только в английском (functions/src/spire_listen_draft_pool.ts), произносится поле phrase.
+  // Раздел идёт ПОСЛЕ курса: фраза, уже записанная для урока, второй раз не записывается.
+  const peak = JSON.parse(fs.readFileSync(path.join(ROOT, 'functions', 'src', 'generated', 'spire_listen_draft_en.json'), 'utf8')).rows;
+  for (const row of peak) add('en', row?.payload?.phrase, 'peak', 0);
+
+  // Фраза дня: произносится само выражение (components/DailyPhraseCard.tsx → phrase.english).
+  // en — каталог идиом; es/de/it — наборы в сборке; fr — принятые авторские наборы (в приложение приходят с сервера).
+  for (const idiom of require(path.join(ROOT, 'app', 'idioms_data.ts')).IDIOMS) add('en', idiom.english, 'daily', 0);
+  for (const lang of ['es', 'de', 'it']) {
+    const pack = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets', 'daily_phrase_packs', `${lang}.dpk`), 'utf8'));
+    for (const entry of pack.entries) add(lang, entry.targetText, 'daily', 0);
+  }
+  const frDir = path.join(ROOT, 'content', 'daily-phrases', 'fr', 'authoring');
+  for (const file of fs.readdirSync(frDir).filter((name) => name.endsWith('.json')).sort()) {
+    for (const row of JSON.parse(fs.readFileSync(path.join(frDir, file), 'utf8')).rows ?? []) add('fr', row.targetText, 'daily', 0);
+  }
 }
 
 function main() {

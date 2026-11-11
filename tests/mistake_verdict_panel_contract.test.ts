@@ -25,9 +25,12 @@ describe('mistake verdict contract', () => {
     expect(kit).not.toMatch(/ActivityIndicator/);
   });
 
-  test('makes the three-day chain visible and keeps the rule as its source', () => {
+  test('makes the three-step chain visible and keeps the rule as its source', () => {
     expect(screen).toContain('feedback.chain.corrected ? 3 : feedback.chain.days');
-    expect(screen).toContain('afterItem.qualifyingDays.length');
+    // зачем (D203, 11.11): кружки считают пройденные ШАГИ, а не дни — при трёх шагах в одном занятии счёт по дням замирал на «1».
+    // Источник прежний по смыслу: то же состояние ошибки, что решает её статус (afterItem из расчёта журнала).
+    expect(screen).toContain('mistakeStepsShown(afterItem)');
+    expect(screen).not.toContain('afterItem.qualifyingDays.length');
     // зачем (11.10): цепочка показывается при любом верном ответе, а «засчитан ли день» решает самостоятельность
     // ответа (gainedToday); сами дни считает проекция журнала (qualifyingDays) — правило осталось источником.
     expect(screen).toContain('correct && afterItem');

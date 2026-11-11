@@ -5,6 +5,7 @@ import {
   applyMistakeStepAnswer,
   initialMistakeStepState,
   isMistakeCheckDue,
+  mistakeStepsShown,
   mistakeStepSupport,
   type MistakeStepState,
 } from '../modules/mistake-practice/three_step_rule';
@@ -88,6 +89,16 @@ describe('mistake three-step correction rule (D203)', () => {
     for (let i = 0; i < 3; i += 1) state = answer(state, true);
     expect(answer(state, false, T0 + 10)).toEqual(state);
     expect(answer(state, true, T0 + 10)).toEqual(state);
+  });
+
+  // зачем (D203): кружки на экранах считают шаги; при трёх шагах в одном занятии прежний счёт «по дням» замирал на 1.
+  test('the dots show the steps passed, and a corrected mistake always shows all three', () => {
+    expect(mistakeStepsShown({ status: 'active', supportPassCount: 0 })).toBe(0);
+    expect(mistakeStepsShown({ status: 'active', supportPassCount: 2 })).toBe(2);
+    expect(mistakeStepsShown({ status: 'active' })).toBe(0);
+    expect(mistakeStepsShown({ status: 'active', supportPassCount: 9 })).toBe(3);
+    expect(mistakeStepsShown({ status: 'active', supportPassCount: -1 })).toBe(0);
+    expect(mistakeStepsShown({ status: 'corrected', supportPassCount: 0 })).toBe(3);
   });
 
   test('the rule never mutates the state it was given', () => {

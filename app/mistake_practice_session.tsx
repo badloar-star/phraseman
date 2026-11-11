@@ -60,6 +60,7 @@ import SpeechUnavailableNote from '../components/SpeechUnavailableNote';
 import { isMistakeStudyTargetValue, type MistakeEvent } from '../modules/mistake-practice/contracts';
 import { cleanMistakeExplanation } from './mistake_explanation_text';
 import { MISTAKE_RULE_THREE_STEPS, projectMistakes, requiredModesForMistake } from '../modules/mistake-practice/projection';
+import { mistakeStepsShown } from '../modules/mistake-practice/three_step_rule';
 import {
   advanceMistakePracticeSession,
   type MistakePracticeLength,
@@ -1112,7 +1113,9 @@ function MistakePracticeSessionScreen() {
       // текущую цепочку без нового дня (gainedToday=false); подсказанный ответ день не добавляет (projection.ts).
       const chain = correct && afterItem
         ? {
-          days: Math.min(3, afterItem.qualifyingDays.length),
+// зачем (владелец 11.11, D203): кружки показывают пройденные ШАГИ отработки, а не дни. Раньше число бралось из дней —
+          // при трёх шагах в одном занятии счётчик замирал на «1».
+          days: mistakeStepsShown(afterItem),
           // зачем (аудит 2026-09-15): без числа режимов панель обещала «ещё один
           // день в другом режиме» там, где нужно два дня или режим уже второй.
           modes: new Set(afterItem.qualifyingModes).size,

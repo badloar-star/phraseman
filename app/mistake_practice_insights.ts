@@ -1,5 +1,6 @@
 import type { MistakeEvent, MistakeFacet, MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { projectMistakes, type MistakeProjectionStatus } from '../modules/mistake-practice/projection';
+import { mistakeStepsShown } from '../modules/mistake-practice/three_step_rule';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -322,7 +323,9 @@ export function buildMistakePracticeHubSnapshot(
       lessonId: item.lessonId,
       status: item.status,
       captureCount: item.captureCount,
-      qualifyingDays: Math.min(3, item.qualifyingDays.length),
+// зачем (владелец 11.11, D203): кружки показывают пройденные ШАГИ отработки, а не дни. Раньше число бралось из дней —
+      // при трёх шагах в одном занятии счётчик замирал на «1».
+      qualifyingDays: mistakeStepsShown(item),
       ready: item.status === 'active' && item.dueAtMs <= nowMs,
       dueAtMs: item.dueAtMs,
       correctedAtMs: item.correctedAtMs,

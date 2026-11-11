@@ -54,6 +54,17 @@ export function isMistakeCheckDue(state: MistakeStepState, nowMs: number): boole
   return state.phase === 'check' && state.checkDueAtMs !== null && nowMs >= state.checkDueAtMs;
 }
 
+/**
+ * Сколько кружков-шагов закрашено у ошибки на экранах (ответ в отработке, хаб, список, паспорт): 0..3.
+ * зачем (D203): единственное место расчёта — все экраны показывают одно число. Исправленная ошибка — всегда 3
+ * (в том числе исправленная по прежнему правилу, где шагов не считали).
+ */
+export function mistakeStepsShown(item: Readonly<{ status: string; supportPassCount?: number }>): number {
+  if (item.status === 'corrected') return MISTAKE_STEPS_REQUIRED;
+  const steps = Number.isFinite(item.supportPassCount) ? Math.floor(item.supportPassCount as number) : 0;
+  return Math.max(0, Math.min(MISTAKE_STEPS_REQUIRED, steps));
+}
+
 export function applyMistakeStepAnswer(state: MistakeStepState, answer: MistakeStepAnswer): MistakeStepState {
   // Закреплённую ошибку ответы больше не меняют: вернуть её может только новая ошибка в уроке (событие captured).
   if (state.phase === 'done') return state;

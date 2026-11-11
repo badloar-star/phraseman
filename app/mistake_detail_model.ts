@@ -1,5 +1,6 @@
 import type { MistakeEvent, MistakeFacet, MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { projectMistakes, requiredModesForMistake } from '../modules/mistake-practice/projection';
+import { mistakeStepsShown } from '../modules/mistake-practice/three_step_rule';
 import { MISTAKE_EXERCISE_MODE_REGISTRY, type MistakeExerciseMode } from '../modules/mistake-practice/exercise_mode_registry';
 import { loadMistakeEventJournal } from './mistake_practice_store';
 import { mistakeDisplayMeaningV1, mistakeSourceGroupFor, type MistakeSourceGroup } from './mistake_practice_insights';
@@ -117,7 +118,9 @@ export function buildMistakeDetail(
     sourceGroup: item.sourceKind ? mistakeSourceGroupFor(item.sourceKind) : null,
     status: item.status,
     captureCount: item.captureCount,
-    qualifyingDays: Math.min(3, item.qualifyingDays.length),
+// зачем (владелец 11.11, D203): кружки показывают пройденные ШАГИ отработки, а не дни. Раньше число бралось из дней —
+    // при трёх шагах в одном занятии счётчик замирал на «1».
+    qualifyingDays: mistakeStepsShown(item),
     qualifyingModes: new Set(item.qualifyingModes).size,
     // зачем (§130, 04.10): общий помощник проекции — карточка, панель итога и правило не могут разойтись.
     requiredModes: requiredModesForMistake(item),

@@ -720,14 +720,19 @@ function isFriendSearchReady(value: string): boolean {
   return query.length >= 2 && query.length <= FRIEND_SEARCH_MAX_LENGTH;
 }
 
+type FriendCodeInputSeed = { readonly value: string };
+
 function AddFriendModal({
   visible, onClose,
-  codeInput, setCodeInput, isSearching, foundUser, searchError,
+  codeInputSeed, onCodeInputChange, isSearching, foundUser, searchError,
   isAdding, addFeedback, addFeedbackTone, onSearch, onAddFound, onCloseFoundUser,
   lang, onShareCode,
 }: {
   visible: boolean; onClose: () => void;
-  codeInput: string; setCodeInput: (v: string) => void;
+  /** Значение, выставленное корнем экрана программно (сброс при открытии, возврат после ошибки); новый объект = новое значение. */
+  codeInputSeed: FriendCodeInputSeed;
+  /** Каждое изменение текста — корень кладёт его в ref, без перерисовки экрана. */
+  onCodeInputChange: (v: string) => void;
   isSearching: boolean; foundUser: FriendProfile | null; searchError: string | null;
   isAdding: boolean; addFeedback: string | null; addFeedbackTone: 'success' | 'error' | 'pending';
   onSearch: () => void; onAddFound: () => void; onCloseFoundUser: () => void;
@@ -747,6 +752,16 @@ function AddFriendModal({
     pl: string,
   ) => triLang(lang as any, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const { glass, textScale } = useFriendsGlass();
+  // зачем (владелец 11.11, аудит «подлагивания на Android»): текст поля жил в корне экрана «Друзья» (3200 строк), и каждая
+  // буква перерисовывала весь экран со списком — на слабых телефонах ввод отставал от клавиатуры. Теперь текст живёт здесь,
+  // корень узнаёт его через ref (onCodeInputChange) и сам меняет поле только программно — через codeInputSeed.
+  const [codeInput, setCodeInputLocal] = useState(codeInputSeed.value);
+  const [appliedSeed, setAppliedSeed] = useState(codeInputSeed);
+  if (appliedSeed !== codeInputSeed) {
+    // Подхват в фазе рендера (без useEffect): шторка не показывает кадр со старым текстом.
+    setAppliedSeed(codeInputSeed);
+    setCodeInputLocal(codeInputSeed.value);
+  }
   const searchReady = isFriendSearchReady(codeInput);
   const codeMode = isFriendCodeQuery(codeInput);
   // Юзер открыл шит «добавить друга» именно чтобы ввести имя — открываем
@@ -809,7 +824,9 @@ function AddFriendModal({
                   autoCorrect={false}
                   value={codeInput}
                   onChangeText={v => {
-                    setCodeInput(normalizeFriendSearchInput(v));
+                    const next = normalizeFriendSearchInput(v);
+                    setCodeInputLocal(next);
+                    onCodeInputChange(next);
                     onCloseFoundUser();
                   }}
                   onSubmitEditing={onSearch}
@@ -1369,7 +1386,16 @@ export default function FriendsTabScreen() {
     }
   }, [lang, myProfile?.name, referralAccountKey, referralMarketingVisible]);
 
-  const [codeInput, setCodeInput] = useState('');
+  // зачем (владелец 11.11, аудит скорости): текст поля «код/имя друга» больше не состояние корня — набор текста не
+  // перерисовывает экран. codeInputRef — что сейчас в поле (пишет шторка на каждую букву); codeInputSeed — значение,
+  // которое корень ставит сам (сброс, возврат после ошибки); setCodeInput оставлен с прежней сигнатурой для этих мест.
+  const codeInputRef = useRef('');
+  const [codeInputSeed, setCodeInputSeed] = useState<FriendCodeInputSeed>({ value: '' });
+  const setCodeInput = useCallback((value: string) => {
+    codeInputRef.current = value;
+    setCodeInputSeed({ value });
+  }, []);
+  const handleCodeInputChange = useCallback((value: string) => { codeInputRef.current = value; }, []);
   const [isSearching, setIsSearching] = useState(false);
   const [foundUser, setFoundUser] = useState<FriendProfile | null>(null);
   // зачем: «один код» (решение владельца 2026-07-25) — если пользователь нашёл друга
@@ -1854,7 +1880,7 @@ export default function FriendsTabScreen() {
   }, []);
 
   const handleSearch = useCallback(async () => {
-    const query = getFriendSearchQuery(codeInput);
+    const query = getFriendSearchQuery(codeInputRef.current);
     // зачем (R55, «первый тап по лупе не срабатывает» при открытой клавиатуре): сперва логи — видно, дошёл ли тап до поиска
     // и почему вышли. Сам запрос не печатаем (ник — персональные данные), только длину и тип.
     const searchTrace = { queryLength: query.length, ready: isFriendSearchReady(query), isSearching, isCode: isFriendCodeQuery(query), keyboardVisible: Keyboard.isVisible() };
@@ -1992,7 +2018,7 @@ export default function FriendsTabScreen() {
         transient: isTransient,
         code: errCode,
         message: e instanceof Error ? e.message : String(e),
-        queryLength: codeInput.length,
+        queryLength: codeInputRef.current.length,
       });
       void import('../app_health')
         .then(({ logAppWarning }) =>
@@ -2000,7 +2026,7 @@ export default function FriendsTabScreen() {
             feature: 'friends',
             screen: 'friends',
             writeToFirestore: true,
-            tags: { queryLength: codeInput.length, transient: isTransient, errorCode: errCode },
+            tags: { queryLength: codeInputRef.current.length, transient: isTransient, errorCode: errCode },
           }),
         )
         .catch(noteSwallowedHandler('friends:useCallback.call'));
@@ -2009,7 +2035,7 @@ export default function FriendsTabScreen() {
         screen: 'friends',
         result: 'error',
         tags: {
-          queryLength: codeInput.length,
+          queryLength: codeInputRef.current.length,
           transient: isTransient,
           error: e instanceof Error ? e.message : String(e),
         },
@@ -2020,7 +2046,7 @@ export default function FriendsTabScreen() {
     } finally {
       setIsSearching(false);
     }
-  }, [L, codeInput, isSearching, myCode, profiles, friends, requests]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [L, isSearching, myCode, profiles, friends, requests]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // зачем: state isAdding обновляется после рендера — второй тап в том же кадре успевал
   // отправить заявку дважды; ref-замок меняется синхронно (Optimistic UI, защита от двойного тапа).
@@ -2033,7 +2059,7 @@ export default function FriendsTabScreen() {
     }
     addRequestInFlightRef.current = true;
     const targetUser = foundUser;
-    const previousCodeInput = codeInput;
+    const previousCodeInput = codeInputRef.current;
     hapticTap();
     setIsAdding(true);
     setFoundUser(null);
@@ -2125,7 +2151,7 @@ export default function FriendsTabScreen() {
       addRequestInFlightRef.current = false;
       setIsAdding(false);
     }
-  }, [L, codeInput, foundUser, isAdding, showFeedback]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [L, foundUser, isAdding, setCodeInput, showFeedback]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // зачем (FINAL_PHASE п.7): двойной тап по «Принять/Отклонить» до перерисовки строки
   // отправлял два вызова на сервер — держим набор заявок «в пути».
@@ -2898,8 +2924,8 @@ export default function FriendsTabScreen() {
         visible={addModalOpen}
         onClose={() => setAddModalOpen(false)}
         onShareCode={referralMarketingVisible ? () => { void handleReferralInvite(); } : null}
-        codeInput={codeInput}
-        setCodeInput={setCodeInput}
+        codeInputSeed={codeInputSeed}
+        onCodeInputChange={handleCodeInputChange}
         isSearching={isSearching}
         foundUser={foundUser}
         searchError={searchError}

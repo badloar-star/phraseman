@@ -154,8 +154,8 @@ test('credit writes one stars_ledger receipt, updates the balance and the limit 
 });
 
 // зачем (U33): ответ кошелька несёт недельный снимок того же состояния журнала, что и баланс, — и при начислении,
-// и при повторе. level_spin_grant в журнале — «выдача», в недельный счёт не входит: снимок обязан честно показать 0,
-// а не подмешать баланс (иначе выданные монеты подняли бы место в Пике).
+// и при повторе. Снимок обязан нести ровно недельное число журнала, а не баланс: что входит в неделю, решает
+// stars_week_policy.ts (U35 — бонус кошелька level_spin_grant входит; приз недели и подарки — нет).
 test('U33: the ack carries the weekly snapshot of the same ledger state, on credit and on replay', async () => {
   const world = makeDb();
   const value = composite({ requestId: `dailyjourney_${HASH32}_1`, giftId: 'stars_500', promotionEligibility: 'gameplay' });

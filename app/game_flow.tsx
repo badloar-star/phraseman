@@ -57,7 +57,9 @@ const COPY = {
   ok: { ru: 'Верно — темп растёт', uk: 'Правильно — темп зростає', es: 'Correcto: el ritmo sube', en: 'Correct — tempo goes up' },
   miss: { ru: 'Мимо — темп ниже', uk: 'Повз — темп нижчий', es: 'Fallo: el ritmo baja', en: 'Missed — tempo goes down' },
   doneTitle: { ru: 'Поток пройден', uk: 'Потік пройдено', es: 'Flujo completado', en: 'Flow complete' },
-  score: { ru: 'верных из', uk: 'правильних із', es: 'aciertos de', en: 'correct of' },
+  // зачем (найдено на эмуляторе 11.11): «1 верных из 6» — число перед словом заставляет склонять; пишем «Верно: 1 из 6»
+  score: { ru: 'Верно', uk: 'Правильно', es: 'Aciertos', en: 'Correct' },
+  of: { ru: 'из', uk: 'із', es: 'de', en: 'of' },
   done: { ru: 'Готово', uk: 'Готово', es: 'Listo', en: 'Done' },
   empty: { ru: 'Для игры пока мало фраз', uk: 'Для гри поки замало фраз', es: 'Aún hay pocas frases para jugar', en: 'Not enough phrases to play yet' },
   close: { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close' },
@@ -220,7 +222,7 @@ export default function GameFlowScreen() {
   if (phase === 'intro') caption = triLang(lang, COPY.rule);
   else if (phase === 'verdict' && round) caption = round.item.translation;
   else if (phase === 'empty') caption = triLang(lang, COPY.empty);
-  else if (phase === 'done') caption = `${correctCount} ${triLang(lang, COPY.score)} ${rounds.length}`;
+  else if (phase === 'done') caption = `${triLang(lang, COPY.score)}: ${correctCount} ${triLang(lang, COPY.of)} ${rounds.length}`;
 
   let headline: string | null = null;
   if (phase === 'intro' || phase === 'empty') headline = triLang(lang, COPY.name);

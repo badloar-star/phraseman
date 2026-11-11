@@ -47,7 +47,8 @@ const COPY = {
   ask: { ru: 'Убери лишнее слово', uk: 'Прибери зайве слово', es: 'Quita la palabra que sobra', en: 'Remove the extra word' },
   doneTitle: { ru: 'Готово', uk: 'Готово', es: 'Listo', en: 'Done' },
   timeUp: { ru: 'Минута вышла', uk: 'Хвилина минула', es: 'Se acabó el minuto', en: 'Time is up' },
-  solved: { ru: 'фраз очищено', uk: 'фраз очищено', es: 'frases limpias', en: 'phrases cleaned' },
+  // зачем (найдено на эмуляторе 11.11): «4 фраз очищено» — число перед словом заставляет склонять; пишем «Очищено фраз: 4»
+  solved: { ru: 'Очищено фраз', uk: 'Очищено фраз', es: 'Frases limpias', en: 'Phrases cleaned' },
   close: { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close' },
 } as const;
 
@@ -203,7 +204,7 @@ export default function GameOddWordScreen() {
           {finished ? (
             <View style={s.finish}>
               <Text style={[s.big, { color: p.text }]}>{triLang(lang, finished === 'time' ? COPY.timeUp : COPY.doneTitle)}</Text>
-              <Text style={[s.sub, { color: p.textSecondary }]}>{`${game.solved} ${triLang(lang, COPY.solved)}`}</Text>
+              <Text style={[s.sub, { color: p.textSecondary }]}>{`${triLang(lang, COPY.solved)}: ${game.solved}`}</Text>
               <SkillsSessionGrowth style={s.growth} />
               <View style={s.flex} />
               <V2Button testID="game-odd-done" label={triLang(lang, COPY.doneTitle)} onPress={onClose} />

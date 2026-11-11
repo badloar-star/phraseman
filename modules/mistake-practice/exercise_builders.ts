@@ -3,6 +3,7 @@ import {
   sha256Utf8,
 } from '../learning-v2/policies/decision_registry';
 import type { MistakeExerciseMode } from './exercise_mode_registry';
+import { mistakePracticeOptionOrder } from './option_order';
 
 export type MistakeExerciseRenderer =
   | 'choices'
@@ -46,6 +47,8 @@ export interface MistakeExerciseMaterial {
   readonly audioRef?: string;
   readonly tokenIndex?: number;
   readonly expected?: string;
+  /** Соль порядка вариантов (id запуска сессии). В exerciseId НЕ входит: задание то же, меняется только расстановка. */
+  readonly orderSalt?: string;
 }
 
 const rendererFor = (mode: MistakeExerciseMode): MistakeExerciseRenderer => {
@@ -114,12 +117,15 @@ export function buildMistakeExercise(
         ...boundedBuilderDistractors(material.distractors, targetTokens),
       ])
     : undefined;
-  const options = renderer === 'fill_gap'
-    ? Object.freeze([...new Set([...(material.distractors ?? []), gapAnswer])])
-    : renderer === 'choices' || renderer === 'matching'
-      ? Object.freeze([...new Set([...(material.distractors ?? []), canonicalTarget])])
-      : undefined;
   const correctAnswer = renderer === 'fill_gap' ? gapAnswer : canonicalTarget;
+  // зачем (F05, 11.11: «последний вариант правильный»): верный дописывался в конец и показывался как есть.
+  // Перемешиваем устойчиво: зерно = ошибка + режим + соль сессии, поэтому при перерисовке порядок стоит, а завтра другой.
+  const options = renderer === 'fill_gap' || renderer === 'choices' || renderer === 'matching'
+    ? Object.freeze(mistakePracticeOptionOrder(
+        [...new Set([...(material.distractors ?? []), correctAnswer])],
+        `${material.mistakeId}|${material.mode}|${material.orderSalt ?? ''}`,
+      ))
+    : undefined;
   const identity = canonicalJsonV1({
     canonicalTarget,
     mistakeId: material.mistakeId,

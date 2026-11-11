@@ -253,12 +253,19 @@ export function buildMistakePracticeSession(input: {
         audioRef: item.audioRef ?? undefined,
         tokenIndex: item.tokenIndex ?? undefined,
         expected: item.expected ?? undefined,
+        // зачем (F05): место верного варианта меняется от запуска к запуску, иначе при повторе заучивается позиция
+        orderSalt: String(input.nowMs),
       }),
     });
   });
   console.log('[MISTAKE-SESSION] queue', JSON.stringify({
     count,
-    queue: queue.map((entry) => ({ id: entry.mistakeId.slice(-8), mode: entry.exercise.mode })),
+    // pos — место верного варианта из числа вариантов («2/4»): по журналу видно, что он не стоит всегда последним (F05)
+    queue: queue.map((entry) => ({
+      id: entry.mistakeId.slice(-8),
+      mode: entry.exercise.mode,
+      ...(entry.exercise.options ? { pos: `${entry.exercise.options.indexOf(entry.exercise.correctAnswer) + 1}/${entry.exercise.options.length}` } : {}),
+    })),
   }));
   const sessionId = `mistake-session:v1:${sha256Utf8(canonicalJsonV1({
     mistakeIds: queue.map((entry) => entry.mistakeId),

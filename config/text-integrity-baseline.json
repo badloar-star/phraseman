@@ -249,7 +249,7 @@
       "fingerprint": "1277b6aca1bc32cf0429abe8e0c77c305b5320aaacefda8e778d4118daad4b2c",
       "count": 1,
       "lineHints": [
-        4066
+        3762
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -395,8 +395,8 @@
       "fingerprint": "233cedad3288bf33786e7b4922e9fbfe4ef2f6c87c5c47b5430a41f95602705c",
       "count": 2,
       "lineHints": [
-        139,
-        142
+        151,
+        154
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -568,7 +568,7 @@
       "fingerprint": "2c9f5694ce14229bbd7325ddec499e10da3970d670bdc01e842f93e74289a54a",
       "count": 1,
       "lineHints": [
-        1248
+        1247
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -679,7 +679,7 @@
       "fingerprint": "329c0bc738cd50e76ce19c0d908b8b73610fcd0d8a4a9bcd09c9430bf490b11a",
       "count": 1,
       "lineHints": [
-        4269
+        3965
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -769,7 +769,7 @@
       "fingerprint": "3662bbc934c57a28d6c00abccf3170b3f6d80e07809c4846c2683031a7b5b0f8",
       "count": 1,
       "lineHints": [
-        891
+        874
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -804,7 +804,7 @@
       "fingerprint": "3754194ff3311d8fad264e0456b78697c4cc0f65e93b84b395597f94dc07b1a4",
       "count": 1,
       "lineHints": [
-        3240
+        2961
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -955,7 +955,7 @@
       "fingerprint": "3c8cd995da3cc6bcee0da46e8539e93b18548253bc1d18db79908087d7a20b6f",
       "count": 1,
       "lineHints": [
-        3227
+        2948
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1047,8 +1047,8 @@
       "fingerprint": "4601beb3ca45cc889727a503011fc42ae9d8bbb5c4e30087969bfde12caed554",
       "count": 2,
       "lineHints": [
-        3240,
-        3243
+        2961,
+        2964
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1105,8 +1105,8 @@
       "fingerprint": "48968e7e9dc00df77e6fc954b8cd783abf7ccf4b5513942f8bd3bf9c498a9a91",
       "count": 2,
       "lineHints": [
-        1203,
-        1244
+        1202,
+        1243
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1163,8 +1163,8 @@
       "fingerprint": "4b25b09db624efe37231372711e844618ceee8ca55a1c78d8e5c8053fe4e639e",
       "count": 2,
       "lineHints": [
-        282,
-        284
+        279,
+        281
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1254,7 +1254,7 @@
       "fingerprint": "4d13963d472af4a08afbd5027ed4e51d8577556e294c7350c265cefdcc3a7d46",
       "count": 1,
       "lineHints": [
-        470
+        455
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1283,7 +1283,7 @@
       "fingerprint": "4d78d7ad3e538abab17a7818d327eade6b44f73e41de6b7ff1fd9b4f3314f39c",
       "count": 1,
       "lineHints": [
-        115
+        122
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1313,7 +1313,7 @@
       "fingerprint": "4f271fa7f78e9dc1bec9235d7d571c0b855776272f12f2285670a4bc5cda8809",
       "count": 1,
       "lineHints": [
-        959
+        958
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1368,7 +1368,7 @@
       "fingerprint": "55cbc151e9bed6f1cc32634e8db7698b2198a422d12ab0ad4e6ccca9036b1c8d",
       "count": 1,
       "lineHints": [
-        4108
+        4048
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1571,33 +1571,6 @@
       }
     },
     {
-      "file": "components/plus-tab/PlusTabPlans.tsx",
-      "ownerName": "Tile",
-      "ownerPath": "Tile",
-      "ancestorPath": [
-        "V2Pressable",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "6443e240cf2c8b122726dd6fe89b350e237b472f9e63d0b4a92c18c66f312a60",
-      "count": 1,
-      "lineHints": [
-        73
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/v2/V2PillSwitch.tsx",
       "ownerName": "V2PillSwitch",
       "ownerPath": "V2PillSwitch",
@@ -1642,9 +1615,9 @@
       "fingerprint": "66be378825ebbb1d81bebf607233f632a11897c333c918f4e55dec74ed14f888",
       "count": 3,
       "lineHints": [
-        1233,
-        1258,
-        1304
+        1232,
+        1257,
+        1303
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1675,37 +1648,7 @@
       "fingerprint": "684e5d479a46b64aa5bb7e85c92b660cf099cdb8a8fdc997d2a80fc0c0455cab",
       "count": 1,
       "lineHints": [
-        1918
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/plus-splash/PlusLaunchSplashView.tsx",
-      "ownerName": "PlusLaunchSplashView",
-      "ownerPath": "PlusLaunchSplashView",
-      "ancestorPath": [
-        "View",
-        "Animated.View",
-        "View",
-        "V2Pressable",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "6972c7a47787d64b3a3048f62c21f325e73f0f147fee8cd4506f46e782adb683",
-      "count": 1,
-      "lineHints": [
-        130
+        1910
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1734,7 +1677,7 @@
       "fingerprint": "6a4527daacef4756017a97ff220695e798eeb74cb2d344c62d5e8ead034b5536",
       "count": 1,
       "lineHints": [
-        206
+        168
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1876,7 +1819,7 @@
       "fingerprint": "72ad21604c61bed037b0514431fd9c6942985a13a6131e1238946007285aa2e0",
       "count": 1,
       "lineHints": [
-        707
+        706
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2043,7 +1986,7 @@
       "fingerprint": "787848668197b7e153242550c32cf6aab26bf6950afd3da6e937b2d5a8758ec7",
       "count": 1,
       "lineHints": [
-        67
+        85
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2162,7 +2105,7 @@
       "fingerprint": "7cda4d2850140c5bea0d5835bdb3c2859cc93188e8b481cdbdbc62f8c027ef44",
       "count": 1,
       "lineHints": [
-        675
+        680
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2197,7 +2140,7 @@
       "fingerprint": "7ddc326b84b6e810e2c179c605056ac921ae79c1a098817f05b2a353a077959d",
       "count": 1,
       "lineHints": [
-        3243
+        2964
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2413,33 +2356,6 @@
       }
     },
     {
-      "file": "components/plus-tab/PlusTabPlans.tsx",
-      "ownerName": "Tile",
-      "ownerPath": "Tile",
-      "ancestorPath": [
-        "V2Pressable",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "8613c1b753134d85aa6d5038d986e5603c6d7916def592815cfada645757c5cf",
-      "count": 1,
-      "lineHints": [
-        74
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/community_packs/PackCommentsSheet.tsx",
       "ownerName": "PackCommentsSheet",
       "ownerPath": "PackCommentsSheet",
@@ -2516,36 +2432,7 @@
       "fingerprint": "87b88cb9209ded8204c25940ee6c3e441a6547d9ffca184920ed0729308a909c",
       "count": 1,
       "lineHints": [
-        1079
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/workshop/PhraseWorkshopTheorySheet.tsx",
-      "ownerName": "PhraseWorkshopTheorySheetBase",
-      "ownerPath": "PhraseWorkshopTheorySheetBase",
-      "ancestorPath": [
-        "View",
-        "View",
-        "PressableHybrid",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "8e9d11b309de32381e186987921dcee408bb4dd962421d1babbea724d319b576",
-      "count": 1,
-      "lineHints": [
-        84
+        1071
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2665,7 +2552,7 @@
       "fingerprint": "9a7e3c7f3e6121111c37e8fd13d8fd44135cb4218e8c73422ecb8e91abcd1cdf",
       "count": 1,
       "lineHints": [
-        952
+        951
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2832,7 +2719,7 @@
       "fingerprint": "a22902ff62d820a2f3b51d0c5157f6812e8c0ac45451ecf52401aaeda7d8a80e",
       "count": 1,
       "lineHints": [
-        69
+        87
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2918,8 +2805,8 @@
       "fingerprint": "a6e01ca5a70b725374a2b00dc634221446d038a63b4fb26c2d8c1a9d83fb68f8",
       "count": 2,
       "lineHints": [
-        223,
-        224
+        217,
+        218
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2978,7 +2865,7 @@
       "fingerprint": "aadea2107270a910a8dfc10010c92587a5fbb304ab2f540626576815ebb9c472",
       "count": 1,
       "lineHints": [
-        957
+        956
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3184,36 +3071,6 @@
       "lineHints": [
         133,
         134
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/learning_v2_lesson_words.tsx",
-      "ownerName": "LearningV2LessonWordsScreen",
-      "ownerPath": "LearningV2LessonWordsScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "View",
-        "ContentWrap",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "b591d6d573af4a45052eb3916d66186a963a359e51a4ab870ae70e8867efc0cc",
-      "count": 1,
-      "lineHints": [
-        94
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3443,8 +3300,8 @@
       "fingerprint": "bdc800f316fe42e53c9641fe8a0a12884e70311305a78196cba993b5fdfb2895",
       "count": 2,
       "lineHints": [
-        3214,
-        3217
+        2935,
+        2938
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3501,7 +3358,7 @@
       "fingerprint": "c1b00bda0c34ef1221b2f67657f41b208cc4760fb8bb3a54e2f03604c6ad460e",
       "count": 1,
       "lineHints": [
-        873
+        872
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3530,8 +3387,8 @@
       "fingerprint": "c2051f7084d6d31efd5926c898e7bc94f8f5665aa17eb12e2ddb701eedfb8219",
       "count": 2,
       "lineHints": [
-        189,
-        190
+        187,
+        188
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3560,7 +3417,7 @@
       "fingerprint": "c2e19e62b11afa546aa5b795d932568edbc86a569d36bb9595df07350a9e45d0",
       "count": 1,
       "lineHints": [
-        474
+        459
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3644,8 +3501,8 @@
       "fingerprint": "c3e73727317cbf575e37acc3de69934457b8f1d8a9bb40c9abef86af88a3a23c",
       "count": 2,
       "lineHints": [
-        707,
-        711
+        706,
+        710
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3675,8 +3532,8 @@
       "fingerprint": "c3f9e14ec2c3ae9d153f048cea00fe8a1507feefec771aa8b4ba1e079e819869",
       "count": 2,
       "lineHints": [
-        721,
-        725
+        590,
+        594
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3848,10 +3705,9 @@
       "value": "1",
       "testID": null,
       "fingerprint": "d3e1baf2276f67055af22c13ffbf6d052df27c43584a20df553aebadc584a106",
-      "count": 2,
+      "count": 1,
       "lineHints": [
-        1787,
-        1828
+        1647
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3910,8 +3766,8 @@
       "fingerprint": "db501ee69e33e0ecb9f377f89d5e0786d1ec0b12895603e22b67324714c8a0e0",
       "count": 2,
       "lineHints": [
-        1718,
-        1993
+        1733,
+        2008
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4030,36 +3886,8 @@
       "fingerprint": "e2b3c6202d2bb3bed9868fe46900b1df9d27bfe544aa1927bba3eddc99fed6b8",
       "count": 2,
       "lineHints": [
-        3240,
-        3248
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/LearningV2TaskChrome.tsx",
-      "ownerName": "LearningV2TaskTitle",
-      "ownerPath": "LearningV2TaskTitle",
-      "ancestorPath": [
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "e54b7acab7f4fc9acd7aa0c946bd49b38d7a471684b07fc7940519fe97b238a7",
-      "count": 1,
-      "lineHints": [
-        41
+        2961,
+        2969
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4206,7 +4034,7 @@
       "fingerprint": "f474139c12ddf994631b0adfd9d6576f2dc131667ea572041e3636d53e75bce5",
       "count": 1,
       "lineHints": [
-        1921
+        1913
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

@@ -26,17 +26,17 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['The bus is late', 'left', 'bus — автобус один'],
     ['We are at home', 'right', 'we — нас несколько'],
   ]),
-  2: deck(2, { title: 'Спрашивают', example: 'Is she…  Are you…' }, { title: 'Отвечают', example: 'Yes…  No…  She is not…' }, [
+  2: deck(2, { title: 'Спрашивают', example: 'Is she…  Are you…' }, { title: 'Утверждают', example: 'Yes…  No…  She is not…' }, [
     ['Is she ready', 'left', 'is стоит первым — это вопрос'],
-    ['She is not ready', 'right', 'she стоит первой — это ответ'],
+    ['She is not ready', 'right', 'she стоит первой — это не вопрос'],
     ['Are they at home', 'left', 'are стоит первым — это вопрос'],
     ['Yes, they are', 'right', 'yes — так отвечают'],
     ['Is the bus here', 'left', 'is стоит первым — это вопрос'],
-    ['The lift is not here', 'right', 'the lift стоит первым — это ответ'],
+    ['The lift is not here', 'right', 'the lift стоит первым — это не вопрос'],
     ['Are these seats free', 'left', 'are стоит первым — это вопрос'],
     ['No, it is not', 'right', 'no — так отвечают'],
   ]),
-  3: deck(3, { title: 'He · She', example: 'works, lives' }, { title: 'I · We · They', example: 'work, live' }, [
+  3: deck(3, { title: 'He · She', example: 'works, lives' }, { title: 'I · You · We · They', example: 'work, live' }, [
     ['___ works nearby', 'left', 'works с -s — это про него или про неё'],
     ['___ live alone', 'right', 'live без -s — это я, мы или они'],
     ['___ starts early', 'left', 'starts с -s — это про него или про неё'],

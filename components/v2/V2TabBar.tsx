@@ -130,6 +130,14 @@ const CapFill = memo(function CapFill({ width, color }: { width: number; color: 
   );
 });
 
+/** Через сколько сверить значки с реально открытой вкладкой, если экран не подтвердил выбор. */
+const GLYPH_RECONCILE_MS = 1500;
+
+/** Значок вкладки в одном из двух видов; слои обоих видов лежат друг на друге, видимость решает UI-поток. */
+const TabGlyph = memo(function TabGlyph({ item, on, color }: { item: V2TabBarItem; on: boolean; color: string }) {
+  return <Ionicons name={on ? item.activeIcon : item.icon} size={ICON_SIZE} color={color} />;
+});
+
 /**
  * Плавающая стеклянная капсула таббара 2.0. Капсула активного пункта едет
  * пружиной; её можно зажать (или сразу повести пальцем) и перетащить — где
@@ -216,6 +224,43 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIndex, slotW, capInset]);
 
+  // зачем (владелец 11.11: «на долю секунды белые при анимации перемещения»; журнал с телефона: тап → перекраска значка 60–230 мс): активный вид значка
+  // переключается тем же путём, что и плашка, — значением на UI-потоке в самом обработчике касания, не дожидаясь перерисовки экрана вкладки.
+  // Мгновенно, без затухания: вид тот же, что был после коммита, пропала только задержка.
+  const glyphsRef = useRef<Array<{ on: Animated.Value; off: Animated.AnimatedInterpolation<number> }>>([]);
+  const selectedRef = useRef(activeIndex);
+  const reconcileTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  while (glyphsRef.current.length < count) {
+    const on = new Animated.Value(glyphsRef.current.length === selectedRef.current ? 1 : 0);
+    glyphsRef.current.push({ on, off: on.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }) });
+  }
+  const glyphs = glyphsRef.current;
+  const activeIndexRef = useRef(activeIndex);
+  activeIndexRef.current = activeIndex;
+  const markSelected = (idx: number, source: 'tap' | 'drag' | 'prop' | 'reconcile') => {
+    if (reconcileTimerRef.current) { clearTimeout(reconcileTimerRef.current); reconcileTimerRef.current = null; }
+    if (source === 'tap' || source === 'drag') {
+      // Откат: экран не принял выбор (вкладка не сменилась) — значки возвращаются к тому, что реально открыто.
+      reconcileTimerRef.current = setTimeout(() => {
+        reconcileTimerRef.current = null;
+        if (selectedRef.current === activeIndexRef.current) return;
+        DebugLogger.warn('[TABBAR]', `glyph: выбор ${selectedRef.current} не подтверждён экраном (открыта ${activeIndexRef.current}) → значки возвращены`);
+        markSelected(activeIndexRef.current, 'reconcile');
+      }, GLYPH_RECONCILE_MS);
+    }
+    if (selectedRef.current === idx) return;
+    selectedRef.current = idx;
+    glyphsRef.current.forEach((g, i) => {
+      Animated.timing(g.on, { toValue: i === idx ? 1 : 0, duration: 0, useNativeDriver: true }).start();
+    });
+  };
+  // Свайп страниц, переход по ссылке, смена состава вкладок — значки следуют за открытой вкладкой.
+  useEffect(() => {
+    markSelected(activeIndex, 'prop');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeIndex, count]);
+  useEffect(() => () => { if (reconcileTimerRef.current) clearTimeout(reconcileTimerRef.current); }, []);
+
   const pressIn = useCallback((idx: number) => {
     setPressedIdx(idx);
     pressAnim.stopAnimation();
@@ -271,6 +316,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   const tapSelect = (idx: number) => {
     // Переезд стартует прямо в обработчике касания, до тяжёлой перерисовки экрана вкладки.
     travelTo(PAD + idx * live.current.slotW + live.current.capInset);
+    markSelected(idx, 'tap');
     live.current.onSelect(idx);
   };
 
@@ -290,6 +336,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
       }
       const target = clampIdx(Math.round((dragLeftRef.current - PAD - live.current.capInset) / live.current.slotW));
       travelTo(PAD + target * live.current.slotW + live.current.capInset);
+      markSelected(target, 'drag');
       live.current.onSelect(target);
       return;
     }
@@ -452,7 +499,8 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
         {items.map((item, i) => {
           const on = i === activeIndex;
           // Активный значок: в «Спокойно» accentBright = cta (как было), иначе — цвет темы.
-          const color = on ? (item.capGradient && item.capInk ? item.capInk : palette.aurora ? palette.aurora.ctaInk : palette.accentBright) : hoverIdx === i ? palette.secondary : palette.mutedText;
+          const activeColor = item.capGradient && item.capInk ? item.capInk : palette.aurora ? palette.aurora.ctaInk : palette.accentBright;
+          const idleColor = hoverIdx === i ? palette.secondary : palette.mutedText;
           return (
             <View
               key={item.key}
@@ -470,7 +518,14 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
                   название вкладки остаётся в accessibilityLabel для TalkBack/VoiceOver.
                   ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот тут вот без слов!!!» — и со «Сценой» тоже (сторож v2_tab_bar_liquid_glass_theme). */}
               <Animated.View style={pressedIdx === i ? { transform: [{ scale: iconPressScale }] } : null}>
-                <Ionicons name={on ? item.activeIcon : item.icon} size={ICON_SIZE} color={color} />
+                {/* зачем (владелец 11.11: «на долю секунды белые при анимации перемещения»): два слоя значка — обычный и активный; какой виден, решает
+                    значение на UI-потоке (markSelected), а не перерисовка React. Плашка уезжала сразу, а значки ждали коммита экрана 60–230 мс. */}
+                <Animated.View style={{ opacity: glyphs[i]!.off }}>
+                  <TabGlyph item={item} on={false} color={idleColor} />
+                </Animated.View>
+                <Animated.View pointerEvents="none" style={[s.glyphOn, { opacity: glyphs[i]!.on }]}>
+                  <TabGlyph item={item} on color={activeColor} />
+                </Animated.View>
                 {item.badge ? (
                   <View
                     testID={`tab-${item.key}-badge`}
@@ -533,5 +588,6 @@ const s = StyleSheet.create({
   capBright: { ...StyleSheet.absoluteFillObject, borderRadius: CAP_RADIUS, backgroundColor: '#FFFFFF' }, // theme-exempt: яркая вспышка плашки при нажатии — белая в любой теме
   row: { ...StyleSheet.absoluteFillObject, flexDirection: 'row', paddingHorizontal: PAD },
   tab: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  glyphOn: { ...StyleSheet.absoluteFillObject },
   badge: { position: 'absolute', top: -1, right: -3, width: 12, height: 12, borderRadius: 6, borderWidth: 2 }, // shadow-ok: кольцо-вырез значка непрочитанного на иконке вкладки, не контейнер
 });

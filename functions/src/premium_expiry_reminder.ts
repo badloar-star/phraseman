@@ -21,6 +21,7 @@ import * as admin from 'firebase-admin';
 import { parseProgressMs, type ProgressLike } from './premium_status';
 import { isInQuietHours, isValidExpoPushToken } from './re_engage_push';
 import { sendExpoPushMessages, type ExpoPushMessage } from './admin_push_jobs';
+import { claimPushRun, pushRunDaySlot } from './push_run_lease';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -312,6 +313,13 @@ export async function runPremiumExpiryReminder(
   const db = admin.firestore();
   const PAGE_SIZE = 500;
   const STAMP_BATCH = 400;
+
+  // зачем (F08 «Два push»): отметка lastPremiumExpiryReminderAt ставится ПОСЛЕ отправки, поэтому два
+  // одновременных прогона (двойная доставка крона) оба слали одно и то же напоминание. Занимаем сутки
+  // ДО скана — второй прогон выходит сразу и не читает users вовсе. См. push_run_lease.ts.
+  if (!(await claimPushRun(db, 'premiumExpiryReminder', pushRunDaySlot(now), now))) {
+    return { scanned: 0, candidates: 0, sent: 0, failed: 0, optedOut: 0 };
+  }
 
   let scanned = 0;
   let optedOut = 0;

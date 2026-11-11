@@ -22,6 +22,7 @@
  * от I/O, поэтому покрывается тестами без сети и Firestore.
  */
 import * as admin from 'firebase-admin';
+import { claimPushRun } from './push_run_lease';
 import { TOURNAMENTS_RELEASED } from './tournament_release_gate';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -332,6 +333,14 @@ export async function runTournamentStartPush(
   const db = admin.firestore();
   const PAGE_SIZE = 300;
   const STAMP_BATCH = 400;
+
+  // зачем (F08 «Два push»): окно «лобби открывается» (6 мин) шире такта крона (5 мин), а отметка
+  // lastTournamentPushAt ставится ПОСЛЕ отправки — второй тик или двойная доставка могли разослать
+  // старт одного турнира дважды. Один турнир (roomId) = одна рассылка. Заодно второй тик больше не
+  // читает всю коллекцию users впустую. См. push_run_lease.ts.
+  if (!(await claimPushRun(db, 'tournamentStartPush', roomId, now))) {
+    return { scanned: 0, candidates: 0, sent: 0, failedChunks: 0 };
+  }
 
   let scanned = 0;
   const allCandidates: TournamentPushCandidate[] = [];

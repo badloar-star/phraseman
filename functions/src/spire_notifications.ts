@@ -145,28 +145,39 @@ export function readSpirePushMark(data: Record<string, unknown> | undefined, fie
 }
 
 /**
- * Ставит метку weekId тем, кому пуш реально ушёл (чанк принят Expo).
+ * Атомарно ЗАНИМАЕТ метку weekId ДО отправки и возвращает только тех, кого занял именно этот прогон.
  *
- * зачем: PM-200 — повторный (ручной или retry) прогон крона слал тот же пуш
- * второй раз: ключа недели не было. Метка живёт в users/{uid}, который крон
- * и так читает через getAll ради токена, — проверка бесплатная, а цена — одна
- * запись на отправленный пуш в неделю (батчами по 400).
+ * зачем (F08 «Два push», владелец 11.11: «по одному событию — одно уведомление»): раньше порядок был
+ * «прочитал метку → отправил → поставил метку». Два прогона одного крона, идущие одновременно (Cloud
+ * Scheduler доставляет «хотя бы один раз», плюс retryCount), оба читали пустую метку и оба слали пуш —
+ * дубль, описанный в SPIRE_SIMULATION_2026-10-11 п.4. Теперь метка ставится в транзакции до сети:
+ * из двух одновременных прогонов каждого человека получает ровно один, второй видит занятую метку.
+ *
+ * Цена «сначала метка»: если Expo потом не примет чанк, эти люди пуш за неделю не получат (метка уже
+ * стоит). Это осознанно — пуш не источник истины (итог лежит в Firestore и виден на экране), а повторный
+ * прогон и раньше их не досылал: подведённые комнаты крон пропускает. Лучше ноль пушей, чем два.
+ *
+ * Firebase-экономия: +1 чтение на реально отправляемый пуш в неделю (tx.getAll одним вызовом на чанк
+ * ≤100, только поле метки) и та же 1 запись, что была у прежней метки «после отправки».
+ * Колбэк транзакции может выполниться повторно — в нём нет сети и внешних побочных эффектов.
  */
-export async function stampSpirePushMarks(
+export async function claimSpirePushMarks(
   db: FirebaseFirestore.Firestore,
   uids: readonly string[],
   field: string,
   weekId: string,
-): Promise<number> {
-  const BATCH = 400;
-  let stamped = 0;
-  for (let i = 0; i < uids.length; i += BATCH) {
-    const batch = db.batch();
-    for (const uid of uids.slice(i, i + BATCH)) {
-      batch.set(db.collection('users').doc(uid), { [field]: weekId }, { merge: true });
-    }
-    await batch.commit();
-    stamped += Math.min(BATCH, uids.length - i);
-  }
-  return stamped;
+): Promise<string[]> {
+  if (uids.length === 0) return [];
+  const refs = uids.map((uid) => db.collection('users').doc(uid));
+  return db.runTransaction(async (tx) => {
+    // guard-ok: один сетевой вызов на чанк, точечные документы по id, только поле метки.
+    const snaps = await tx.getAll(...refs, { fieldMask: [field] });
+    const claimed: string[] = [];
+    snaps.forEach((snap, idx) => {
+      if (snap.get(field) === weekId) return; // уже занято другим прогоном — этому человеку не шлём
+      tx.set(refs[idx], { [field]: weekId }, { merge: true });
+      claimed.push(uids[idx]);
+    });
+    return claimed;
+  });
 }

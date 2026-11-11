@@ -126,19 +126,7 @@ describe('PM-200: opt-out по существующей категории и м
       ['u1', { expoPushToken: PUSH_FIXTURE, pushTokenLang: 'ru' }],
       ['u2', { pushTokenLang: 'ru', expoPushToken: 'ExponentPushToken' + '[b]', pushPrefs: { streak: false } }],
     ]);
-    const db = {
-      collection: () => ({ doc: (id: string) => ({ id }) }),
-      getAll: async (...refs: Array<{ id: string }>) => refs.map((r) => ({ data: () => users.get(r.id) })),
-      batch: () => {
-        const ops: Array<[string, Record<string, unknown>]> = [];
-        return {
-          set: (ref: { id: string }, data: Record<string, unknown>) => { ops.push([ref.id, data]); },
-          commit: async () => {
-            for (const [id, data] of ops) users.set(id, { ...(users.get(id) ?? {}), ...data });
-          },
-        };
-      },
-    };
+    const db = fakePushDb(users);
     const fetchMock = jest.fn(async () => ({ ok: true, status: 200 }));
     const originalFetch = global.fetch;
     global.fetch = fetchMock as unknown as typeof fetch;
@@ -157,4 +145,103 @@ describe('PM-200: opt-out по существующей категории и м
       log.mockRestore();
     }
   });
+
+  // зачем (F08 «Два push»): двойная одновременная доставка крона — оба прогона читают users ДО того,
+  // как кто-то поставил метку. Раньше оба слали пуш. Теперь метку занимает транзакция до отправки.
+  it('два ОДНОВРЕМЕННЫХ прогона за одну неделю шлют один пуш на человека', async () => {
+    const { runSpireWeekResultPush } = require('./spire_week_result_push');
+    const users = new Map<string, Record<string, unknown>>([
+      ['u1', { expoPushToken: PUSH_FIXTURE, pushTokenLang: 'ru' }],
+      ['u3', { expoPushToken: 'ExponentPushToken' + '[c]', pushTokenLang: 'uk' }],
+    ]);
+    // Ворота: первое чтение users каждого прогона ждёт, пока прочитают ОБА — гонка гарантирована.
+    let waiting: Array<() => void> = [];
+    const gate = () => new Promise<void>((resolve) => {
+      waiting.push(resolve);
+      if (waiting.length === 2) { waiting.forEach((go) => go()); waiting = []; }
+    });
+    const db = fakePushDb(users, gate);
+    const recipients: string[] = [];
+    const fetchMock = jest.fn(async (_url: string, init: { body: string }) => {
+      for (const message of JSON.parse(init.body) as Array<{ to: string }>) recipients.push(message.to);
+      return { ok: true, status: 200 };
+    });
+    const originalFetch = global.fetch;
+    global.fetch = fetchMock as unknown as typeof fetch;
+    const log = jest.spyOn(console, 'log').mockImplementation(() => {});
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    try {
+      const inputs = [RESULT, { ...RESULT, uid: 'u3' }];
+      const [a, b] = await Promise.all([
+        runSpireWeekResultPush(db, inputs, '2026-W39'),
+        runSpireWeekResultPush(db, inputs, '2026-W39'),
+      ]);
+      // Оба прогона увидели пустую метку (кандидатов по 2) — но отправил только один.
+      expect(a.candidates).toBe(2);
+      expect(b.candidates).toBe(2);
+      expect(a.sent + b.sent).toBe(2);
+      expect((a.lostRace ?? 0) + (b.lostRace ?? 0)).toBe(2);
+      expect(recipients.sort()).toEqual([PUSH_FIXTURE, 'ExponentPushToken' + '[c]'].sort());
+    } finally {
+      global.fetch = originalFetch;
+      log.mockRestore();
+      warn.mockRestore();
+    }
+  });
+
+  it('Expo не принял чанк — метка остаётся, повтор не шлёт (лучше ноль пушей, чем два)', async () => {
+    const { runSpireWeekResultPush } = require('./spire_week_result_push');
+    const users = new Map<string, Record<string, unknown>>([['u1', { expoPushToken: PUSH_FIXTURE, pushTokenLang: 'ru' }]]);
+    const db = fakePushDb(users);
+    const fetchMock = jest.fn(async () => ({ ok: false, status: 500 }));
+    const originalFetch = global.fetch;
+    global.fetch = fetchMock as unknown as typeof fetch;
+    const log = jest.spyOn(console, 'log').mockImplementation(() => {});
+    const error = jest.spyOn(console, 'error').mockImplementation(() => {});
+    try {
+      const first = await runSpireWeekResultPush(db, [RESULT], '2026-W39');
+      expect(first).toMatchObject({ candidates: 1, sent: 0, failedChunks: 1 });
+      const second = await runSpireWeekResultPush(db, [RESULT], '2026-W39');
+      expect(second).toMatchObject({ candidates: 0, sent: 0, alreadySent: 1 });
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+    } finally {
+      global.fetch = originalFetch;
+      log.mockRestore();
+      error.mockRestore();
+    }
+  });
 });
+
+/**
+ * Мини-Firestore для пушей Шпиля: getAll вне транзакции (чтение кандидатов) и runTransaction,
+ * где чтение+запись метки атомарны (колбэк без await между чтением и записью выполняется подряд,
+ * как сериализованная транзакция настоящего Firestore).
+ */
+function fakePushDb(users: Map<string, Record<string, unknown>>, beforeRead?: () => Promise<void>) {
+  const snapOf = (id: string) => ({
+    data: () => users.get(id),
+    get: (field: string) => users.get(id)?.[field],
+  });
+  let chain: Promise<unknown> = Promise.resolve();
+  return {
+    collection: () => ({ doc: (id: string) => ({ id }) }),
+    getAll: async (...refs: Array<{ id: string }>) => {
+      if (beforeRead) await beforeRead();
+      return refs.map((r) => snapOf(r.id));
+    },
+    runTransaction: <T>(fn: (tx: unknown) => Promise<T>): Promise<T> => {
+      // Транзакции по одним и тем же документам идут строго по очереди.
+      const run = chain.then(async () => {
+        const writes: Array<() => void> = [];
+        const result = await fn({
+          getAll: async (...args: unknown[]) => (args.filter((a) => a && typeof a === 'object' && 'id' in (a as object)) as Array<{ id: string }>).map((r) => snapOf(r.id)),
+          set: (ref: { id: string }, data: Record<string, unknown>) => { writes.push(() => users.set(ref.id, { ...(users.get(ref.id) ?? {}), ...data })); },
+        });
+        writes.forEach((apply) => apply());
+        return result;
+      });
+      chain = run.catch(() => undefined);
+      return run;
+    },
+  };
+}

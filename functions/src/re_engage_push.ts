@@ -15,6 +15,7 @@
  * чистые функции покрыты unit-тестами без сети и Firestore.
  */
 import * as admin from 'firebase-admin';
+import { claimPushRun, pushRunHourSlot } from './push_run_lease';
 import { reportCauseServer } from './swallowed_error'; // зачем (координатор 13.10): причина сбоя в журнале, поведение прежнее
 
 // ── Константы политики ────────────────────────────────────────────────────────
@@ -634,6 +635,16 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
   const db = admin.firestore();
   const PAGE_SIZE = 300;
   const STAMP_BATCH = 400;
+
+  // зачем (F08 «Два push»): отметка lastReEngagePushAt ставится ПОСЛЕ всех отправок, поэтому два
+  // одновременных прогона (двойная доставка крона) оба слали одно и то же «вернись». Занимаем час
+  // запуска ДО скана — второй прогон выходит сразу и не читает users вовсе. См. push_run_lease.ts.
+  if (!(await claimPushRun(db, 'reEngagePush', pushRunHourSlot(now), now))) {
+    return {
+      scanned: 0, candidates: 0, sent: 0, failedChunks: 0, ticketCount: 0,
+      quietSkipped: 0, quietWouldBeCandidates: 0, quietByOffset: {},
+    };
+  }
 
   let scanned = 0;
   let optedOut = 0;

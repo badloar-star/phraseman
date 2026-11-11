@@ -36,7 +36,7 @@ import {
   readSpirePushPrefs,
   sendSpireExpoPushChunk,
   spirePushTierName,
-  stampSpirePushMarks,
+  claimSpirePushMarks,
   SPIRE_WEEK_RESULT_PUSH_MARK_FIELD,
   type SpireExpoPushMessage,
   type SpirePushPrefs,
@@ -195,6 +195,8 @@ export interface SpireWeekResultPushSummary {
   failedChunks: number;
   optedOut?: number;
   alreadySent?: number;
+  /** Скольких перехватил параллельный прогон между чтением и занятием метки (F08). */
+  lostRace?: number;
 }
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -281,27 +283,42 @@ export async function runSpireWeekResultPush(
 
   let sent = 0;
   let failedChunks = 0;
+  let lostRace = 0;
   for (const chunk of chunkSpirePushMessages(candidates, 100)) {
+    // зачем (F08 «Два push»): метку недели занимаем ДО отправки, атомарно. Одновременный второй прогон
+    // (двойная доставка крона) получит пустой список и не отправит дубль — см. claimSpirePushMarks.
+    let claimed: SpireWeekResultPushCandidate[];
     try {
-      await sendSpireExpoPushChunk(chunk.map(buildSpireWeekResultMessage));
-      sent += chunk.length;
+      const won = new Set(await claimSpirePushMarks(db, chunk.map((c) => c.uid), SPIRE_WEEK_RESULT_PUSH_MARK_FIELD, weekId));
+      claimed = chunk.filter((c) => won.has(c.uid));
     } catch (err) {
+      // Метку занять не удалось — не шлём вовсе: без метки нет гарантии «один пуш».
       failedChunks++;
-      console.error(LOG, JSON.stringify({ event: 'chunk_failed', error: String((err as Error)?.message ?? err) }));
+      console.error('[PUSH-PREFS]', JSON.stringify({
+        event: 'spire_week_result_claim_failed', weekId, count: chunk.length,
+        error: String((err as Error)?.message ?? err),
+      }));
       continue;
     }
+    lostRace += chunk.length - claimed.length;
+    if (claimed.length === 0) continue;
     try {
-      await stampSpirePushMarks(db, chunk.map((c) => c.uid), SPIRE_WEEK_RESULT_PUSH_MARK_FIELD, weekId);
+      await sendSpireExpoPushChunk(claimed.map(buildSpireWeekResultMessage));
+      sent += claimed.length;
     } catch (err) {
-      // Пуш уже ушёл; без метки повторный прогон может его продублировать — громко.
-      console.error('[PUSH-PREFS]', JSON.stringify({
-        event: 'spire_week_result_mark_failed', weekId, count: chunk.length,
-        error: String((err as Error)?.message ?? err),
+      // Метка уже стоит: эти люди пуш за неделю не получат (осознанно — лучше ноль, чем два).
+      failedChunks++;
+      console.error(LOG, JSON.stringify({
+        event: 'chunk_failed', weekId, count: claimed.length, error: String((err as Error)?.message ?? err),
       }));
     }
   }
+  if (lostRace > 0) {
+    // Только счётчик — без uid. Не ноль = параллельно шёл второй прогон того же крона.
+    console.warn('[PUSH-PREFS]', JSON.stringify({ event: 'spire_week_result_claim_lost', weekId, lostRace }));
+  }
 
-  const summary = { results: results.length, candidates: candidates.length, sent, failedChunks, optedOut, alreadySent };
+  const summary = { results: results.length, candidates: candidates.length, sent, failedChunks, optedOut, alreadySent, lostRace };
   console.log(LOG, JSON.stringify({ event: 'done', ...summary }));
   return summary;
 }

@@ -11,7 +11,9 @@
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
 import type { StoryInsteadTemplate } from './story_instead_registry';
 
-type Payload = Readonly<Record<string, string | number | boolean>>;
+// зачем (release-gate 11.11, TS2345): данные события приходят из журнала как «неизвестно что» (StoryEventLike: Record<string, unknown>) —
+// так их и принимаем; каждое поле ниже проверяется по типу перед использованием, поэтому сужать тип на входе незачем и нечестно.
+type Payload = Readonly<Record<string, unknown>>;
 
 /** Целое неотрицательное число как есть; иначе null. */
 function count(value: unknown): number | null {

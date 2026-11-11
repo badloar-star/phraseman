@@ -1,6 +1,7 @@
 # Task packet: «истории вместо окон» — шаг 2г: реферальное приветствие и «Первый разговор» приходят кадром
 
 Governance-ID: TG-10F0EEAEA3C6
+Governance-ID: TG-A238CF00BF33
 Status: In progress
 Owner: сессия Claude «аудит всплывающих окон», 2026-11-11
 Related epic/enabler: шаг 2в — `stories-instead-of-modals-step2c-referral-ended-2026-11-11.md` (коммит 2d09c45dd)

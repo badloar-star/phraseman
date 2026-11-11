@@ -64,6 +64,7 @@ import {
 } from './exam_certificate';
 import CertificateNameModal from '../components/CertificateNameModal';
 import { bundleLang, triLang } from '../constants/i18n';
+import { pluralWithCount } from '../constants/plural';
 import { examTopicForLang } from './exam_locale';
 import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
@@ -1266,15 +1267,16 @@ export default function ExamScreen() {
           {answered < questions.length && (
             <Text style={{color:t.wrong,fontSize:16,textAlign:'center',marginBottom:6}}>
               {t3(
-                `${questions.length - answered} вопросов без ответа`,
-                `${questions.length - answered} питань без відповіді`,
+                // зачем (аудит текстов 11.11): «1 вопросов без ответа» — в ru/uk/pl слово склоняем по числу
+                `${pluralWithCount('ru', questions.length - answered, { one: 'вопрос', few: 'вопроса', many: 'вопросов' })} без ответа`,
+                `${pluralWithCount('uk', questions.length - answered, { one: 'питання', few: 'питання', many: 'питань' })} без відповіді`,
                 `${questions.length - answered} unanswered questions`,
                 `${questions.length - answered} preguntas sin respuesta`,
                 `${questions.length - answered} perguntas sem resposta`,
                 `${questions.length - answered} câu hỏi chưa trả lời`,
                 `${questions.length - answered} soal belum dijawab`,
                 `${questions.length - answered} soru cevapsız`,
-                `${questions.length - answered} pytań bez odpowiedzi`,
+                `${pluralWithCount('pl', questions.length - answered, { one: 'pytanie', few: 'pytania', many: 'pytań' })} bez odpowiedzi`,
               )}
             </Text>
           )}

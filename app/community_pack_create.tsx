@@ -256,8 +256,9 @@ function communityPackValidationToast(
       };
     case 'study_target_gate':
       return {
-        ru: 'Community-наборы для French закрыты до отдельной проверки источников.',
-        uk: 'Community-набори для French закриті до окремої перевірки джерел.',
+        // зачем (аудит текстов 11.11): человеку — что недоступно, без внутренних слов «Community / French / проверка источников»
+        ru: 'Наборы сообщества для французского пока недоступны.',
+        uk: 'Набори спільноти для французької поки недоступні.',
         es: 'Los packs community para French están bloqueados hasta una revisión de fuentes.', en: 'Community packs for French are closed until the sources are reviewed.',
         'pt-BR': 'Os pacotes community para French ficam bloqueados até uma revisão separada das fontes.',
         vi: 'Bộ community cho French bị chặn cho đến khi kiểm tra nguồn riêng.',

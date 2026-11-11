@@ -81,6 +81,7 @@ import { recordPrimaryCourseLanguageAtOnboarding } from '../app/course_language_
 import { fill, onboardingCopy, OnboardingCopyProvider, useOnboardingCopy, useOnboardingLang, type OnboardingCopyKey } from './onboarding/clean_onboarding_copy';
 import { formatOnboardingDateLong, formatOnboardingLockDate, onboardingDaysWord } from './onboarding/clean_onboarding_dates';
 import { languageNameOf, sourceTitle } from './onboarding/clean_onboarding_options';
+import { languageTitleFit, longestWordLength } from './onboarding/language_title_fit';
 import { enableSmartDailyReminder, requestNotificationPermissionWithFallback } from '../app/notifications';
 import {
   readOnboardingNotificationChoice,
@@ -1085,13 +1086,19 @@ function LanguageCard({
   option,
   selected,
   onPress,
+  sizeBy,
 }: {
   option: (typeof LANGUAGE_OPTIONS)[number];
   selected: boolean;
   onPress: () => void;
+  /** Самое длинное название в списке: по нему считается кегль, чтобы все строки были одного размера. */
+  sizeBy?: string;
 }) {
   const P = useOnboardingPalette();
   const styles = createStyles(P);
+  // зачем (владелец 11.11, эмулятор 320 + шрифт 1.5): «Французский» рвался на последней букве — кегль названия подгоняется под место в строке
+  const { width: languageWindowWidth, fontScale: languageFontScale } = useWindowDimensions();
+  const titleFit = languageTitleFit({ title: sizeBy ?? option.native, windowWidth: languageWindowWidth, fontScale: languageFontScale });
   return (
     <Pressable
       testID={`onboarding-language-${option.id}`}
@@ -1107,7 +1114,7 @@ function LanguageCard({
         <Ionicons name={option.icon} size={44} color={selected ? P.text : P.muted} />
       )}
       <View style={styles.optionCopy}>
-        <Text style={styles.languageTitle}>{option.native}</Text>
+        <Text style={[styles.languageTitle, titleFit]}>{option.native}</Text>
       </View>
       <View style={[styles.radioLarge, selected && styles.radioLargeSelected]}>
         {selected ? <Ionicons name="checkmark" size={15} color={P.ctaInk} /> : null}
@@ -4004,10 +4011,12 @@ function CleanOnboarding({
       footer={<PrimaryButton label={oc.languagePick} onPress={() => go('notifications')} disabled={!isStudyTargetAllowedForUi(studyTarget, lang)} testID="onboarding-language-continue" />}
     >
       <View style={styles.optionList}>
-        {LANGUAGE_OPTIONS.filter((item) => isStudyTargetAllowedForUi(item.id, lang) && isCourseVisibleOnOnboarding(item.id)).map((item) => (
+        {LANGUAGE_OPTIONS.filter((item) => isStudyTargetAllowedForUi(item.id, lang) && isCourseVisibleOnOnboarding(item.id)).map((item, _index, visible) => (
           <LanguageCard
             key={item.id}
             option={{ ...item, title: languageNameOf(oc, item.id), native: languageNameOf(oc, item.id) }}
+            // зачем: один кегль на весь список — по самому длинному названию (иначе «Французский» мельче соседей)
+            sizeBy={visible.map((v) => languageNameOf(oc, v.id)).reduce((a, b) => (longestWordLength(b) > longestWordLength(a) ? b : a), '')}
             selected={studyTarget === item.id}
             onPress={() => { void chooseStudyTarget(item.id); }}
           />

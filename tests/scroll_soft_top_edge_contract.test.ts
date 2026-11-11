@@ -42,6 +42,24 @@ describe('Soft top edge on scroll: Friends, Packs, Peak', () => {
     expect(modal).toBeGreaterThan(close);
   });
 
+  it('wraps the Videos lists under the feed chips, leaving the header, chips and sheets outside the mask', () => {
+    const videos = read('app/lingman_videos.tsx');
+    const chips = videos.indexOf('<VideoFeedChips value=');
+    const open = videos.indexOf('<ScrollTopEdgeFade>', chips);
+    const list = videos.indexOf('ref={homeListRef}', open);
+    const close = videos.indexOf('</ScrollTopEdgeFade>', list);
+    const sheet = videos.indexOf('<StudyLanguageSheet', close);
+    expect(chips).toBeGreaterThan(-1);
+    expect(open).toBeGreaterThan(chips);
+    expect(list).toBeGreaterThan(open);
+    expect(close).toBeGreaterThan(list);
+    expect(sheet).toBeGreaterThan(close);
+    // обёртка одна и постоянная — списки не перемонтируются при смене состояний экрана
+    expect(videos.split('<ScrollTopEdgeFade>').length).toBe(2);
+    // растворение включает прокрутка, которую вкладка уже сообщает в общий признак
+    expect(videos).toContain('topFadeScroll?.onScroll?.(e);');
+  });
+
   it('draws the scene-colored band under the Community tabs only when the header lies over a scene', () => {
     const community = read('app/(tabs)/community.tsx');
     expect(community).toContain("const scrimTint = !overScene ? null : section === 'packs' ? packsSceneTop : sceneTint;");

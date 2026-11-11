@@ -44,6 +44,7 @@ import { safeRouterBack } from './navigation_back';
 import { useTabNav } from './TabContext';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import { useTopFadeScroll } from '../components/TopFadeScrollContext';
+import ScrollTopEdgeFade from '../components/ScrollTopEdgeFade';
 import { V2 } from '../constants/v2Style';
 import { DebugLogger } from './debug-logger';
 import { useVideoFavorites } from '../hooks/use_video_favorites';
@@ -812,6 +813,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         {/* зачем (владелец 01.10): плашек «устарел/офлайн» и экрана ошибки нет — показываем то, что есть, обновляем тихо. */}
         {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
+        {/* зачем (владелец 11.11: «везде край размыт и нигде жёсткий»): лента под рядом положений растворяется на 20 px после начала прокрутки; в покое и вне вкладок вид прежний */}
+        <ScrollTopEdgeFade>
         {noChannel && !catalog ? (
           noVideosPanel
         ) : catalogExhausted && !catalog && !snapshot ? (
@@ -886,6 +889,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             ListEmptyComponent={feedFilter !== 'all' ? <VideoFeedFilterEmpty filter={feedFilter} /> : !hero ? <View testID="lingman-videos-empty" /> : null}
           />
         )}
+        </ScrollTopEdgeFade>
 
         {inTab ? (
           <StudyLanguageSheet

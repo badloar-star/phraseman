@@ -4,6 +4,7 @@ import { facetsFromParam } from '../components/mistakes-panel/mistakeGroups';
 import { Panel, PanelCta, SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import { buildMistakeAnswerDiff } from './mistake_answer_diff';
+import { buildCorrectPhraseSegments } from './mistake_correct_phrase';
 import { AnswerField, AnswerSlot, OptionGrid, QuestionBlock, DiffValue, ResultRow, RoundButton, StepDots, Token, Tray, fieldInputStyle, type OptionMark } from '../components/mistakes-panel/PracticeKit';
 import { mpColors } from '../components/mistakes-panel/panelPaint';
 import { practiceCopyFor } from '../components/mistakes-panel/practiceCopy';
@@ -1535,6 +1536,11 @@ function MistakePracticeSessionScreen() {
   const whyText = cleanMistakeExplanation(liveExplanation ?? feedback?.explanation ?? '', { lang, answers: [feedback?.answer ?? '', feedback?.userAnswer ?? ''] });
   // зачем (владелец 2026-09-14): «твой ответ» и «верный» стоят рядом с подсветкой расхождения; разметку даёт чистая функция buildMistakeAnswerDiff.
   const diff = feedback && !feedback.correct ? buildMistakeAnswerDiff({ userAnswer: feedback.userAnswer, correctAnswer: feedback.answer }) : null;
+  // зачем (владелец 11.11: «зачем тут 2 — work, works?»): после ВЕРНОГО выбора показываем готовую фразу с подсвеченным словом,
+  // а не повтор двух вариантов. Разметку даёт чистая функция; при неверном выборе варианты остаются («выбрал» против «верно»).
+  const correctSegments = feedback?.correct && isChoice
+    ? buildCorrectPhraseSegments({ phrase: feedback.answer, highlight: entry.exercise.correctAnswer })
+    : null;
   const canCheck = answerValue.trim().length > 0 && !submitting;
 
   // ---- «стакан» внизу экрана: зависит от состояния задания ----
@@ -1592,7 +1598,12 @@ function MistakePracticeSessionScreen() {
             right={feedback.chain ? <StepDots g={g} compact n={feedback.chain.corrected ? 3 : feedback.chain.days} /> : null}
           />
           {/* зачем (сверка 15–18): в шторке «Верно»/«Неверно» по макету только два варианта — верный и выбранный (при верном — первый другой). */}
-          {isChoice ? <OptionGrid g={g} options={feedbackOptions} marks={marks} disabled /> : null}
+          {isChoice && !feedback.correct ? <OptionGrid g={g} options={feedbackOptions} marks={marks} disabled /> : null}
+          {correctSegments && correctSegments.length > 0 ? (
+            <View testID="mistake-practice-correct-phrase" style={[styles.correctPhrase, { backgroundColor: g.hairlineSoft }]}>
+              <DiffValue g={g} segments={correctSegments} baseColor={g.text} style={styles.correctPhraseText} />
+            </View>
+          ) : null}
           {!feedback.correct ? (
             <>
               {!isChoice ? (
@@ -1831,6 +1842,9 @@ const baseStyles = StyleSheet.create({
   trayRow: { flexDirection: 'row', gap: 10 },
   trayRowGap: { marginTop: 16 },
   trayCtaGap: { marginTop: 16 },
+  // зачем (владелец 11.11): плашка готовой фразы на «Верно» — та же высота и скругление, что у плитки варианта (62 / 18), без обводки
+  correctPhrase: { minHeight: 62, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 12, justifyContent: 'center' },
+  correctPhraseText: { fontSize: 19, lineHeight: 24, fontWeight: '700' },
   trayWhy: { marginTop: 14, marginBottom: 16, paddingHorizontal: 2, fontSize: 16, lineHeight: 23 },
   trayStop: { marginTop: 12, fontSize: 13, lineHeight: 20, textAlign: 'center' },
   whyHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 12 },

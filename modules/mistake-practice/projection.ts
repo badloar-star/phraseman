@@ -9,6 +9,14 @@ import {
   type MistakeExerciseMode,
 } from './exercise_mode_registry';
 import { mistakeExerciseCapabilitiesFor, type MistakeCapabilitySource } from './capabilities';
+import { applyMistakeStepAnswer } from './three_step_rule';
+
+/**
+ * Метка правила на ответе отработки (payload.rule). зачем (D203, 11.11): состояние ошибки пересчитывается из ВСЕЙ истории
+ * ответов, поэтому новое правило «три шага + проверка» применяется только к ответам с этой меткой. Ответы без метки
+ * (старые сборки, старая история) читаются по прежнему правилу — давно исправленные ошибки не «воскресают».
+ */
+export const MISTAKE_RULE_THREE_STEPS = 3;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const LOCAL_DAY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -30,6 +38,14 @@ export interface MistakeProjectionItem {
   readonly qualifyingModes: readonly string[];
   readonly hasIndependentProduction: boolean;
   readonly supportPassCount?: number;
+  /** D203: когда исправленной ошибке пора на проверку; null — проверки нет (старое правило) или она уже пройдена. */
+  readonly checkDueAtMs?: number | null;
+  /** D203: когда проверка пройдена — ошибка закреплена. */
+  readonly checkPassedAtMs?: number | null;
+  /** D203: промахи подряд в отработке. */
+  readonly missesInRow?: number;
+  /** D203: три промаха подряд — задания прекращаются, нужен разбор. */
+  readonly stubborn?: boolean;
   readonly lessonId: string | null;
   readonly sourceId?: string | null;
   readonly sourceKind?: string | null;
@@ -76,6 +92,10 @@ interface MutableProjectionItem {
   qualifyingModes: string[];
   hasIndependentProduction: boolean;
   supportPassCount: number;
+  checkDueAtMs: number | null;
+  checkPassedAtMs: number | null;
+  missesInRow: number;
+  stubborn: boolean;
   lessonId: string | null;
   sourceId: string | null;
   sourceKind: string | null;
@@ -140,6 +160,10 @@ function fromCapture(event: MistakeEvent): MutableProjectionItem {
     qualifyingModes: [],
     hasIndependentProduction: false,
     supportPassCount: 0,
+    checkDueAtMs: null,
+    checkPassedAtMs: null,
+    missesInRow: 0,
+    stubborn: false,
     lessonId: payloadString(event.payload, 'lessonId'),
     sourceId: payloadString(event.payload, 'sourceId'),
     sourceKind: payloadString(event.payload, 'sourceKind'),
@@ -246,9 +270,19 @@ export function projectMistakes(
       && current.status === 'corrected'
       && event.payload.review === true
     ) {
-      if (event.payload.correct !== true) {
+      if (event.payload.correct === true) {
+        // зачем (D203): верный ответ в повторе исправленной — это пройденная проверка: ошибка закреплена, срок проверки снят.
+        if (current.checkDueAtMs !== null) {
+          current.checkPassedAtMs = event.occurredAtMs;
+          current.checkDueAtMs = null;
+        }
+      } else {
         current.status = 'active';
         current.correctedAtMs = null;
+        current.checkDueAtMs = null;
+        current.checkPassedAtMs = null;
+        current.missesInRow = 1;
+        current.stubborn = false;
         current.supportPassCount = 0;
         current.qualifyingDays = [];
         current.qualifyingModes = [];
@@ -270,6 +304,36 @@ export function projectMistakes(
       ? MISTAKE_EXERCISE_MODE_REGISTRY[mode as MistakeExerciseMode]
       : undefined;
     const independent = definition?.countsAsIndependentProduction === true;
+    // зачем (D203): ответ с меткой нового правила — три шага, затем проверка. Само правило — чистая функция three_step_rule.ts,
+    // здесь только перенос её результата в поля записи. Ответы без метки идут ниже по прежним веткам.
+    if (event.payload.rule === MISTAKE_RULE_THREE_STEPS) {
+      const next = applyMistakeStepAnswer(
+        { phase: 'steps', stepsDone: current.supportPassCount, checkDueAtMs: null, missesInRow: current.missesInRow, stubborn: current.stubborn },
+        { correct, occurredAtMs: event.occurredAtMs },
+      );
+      current.supportPassCount = next.stepsDone;
+      current.missesInRow = next.missesInRow;
+      current.stubborn = next.stubborn;
+      current.dueAtMs = event.occurredAtMs;
+      if (correct) {
+        const localDayV3 = payloadString(event.payload, 'localDay');
+        if (localDayV3 && LOCAL_DAY_PATTERN.test(localDayV3) && !current.qualifyingDays.includes(localDayV3)) {
+          current.qualifyingDays.push(localDayV3);
+          if (mode) current.qualifyingModes.push(mode);
+        }
+        current.hasIndependentProduction = current.hasIndependentProduction || independent;
+      }
+      if (next.phase === 'check') {
+        current.status = 'corrected';
+        current.correctedAtMs = event.occurredAtMs;
+        current.checkDueAtMs = next.checkDueAtMs;
+        current.checkPassedAtMs = null;
+      }
+      if (Date.now() - event.occurredAtMs < 10 * 60 * 1000) {
+        console.log('[MISTAKE-STEPS]', JSON.stringify({ facet: current.facet, rule: 'three_steps', correct, mode, stepsDone: next.stepsDone, phase: next.phase, missesInRow: next.missesInRow, stubborn: next.stubborn, checkDueAtMs: next.checkDueAtMs }));
+      }
+      continue;
+    }
     if (!correct) {
       current.supportPassCount = 0;
       if (independent) {

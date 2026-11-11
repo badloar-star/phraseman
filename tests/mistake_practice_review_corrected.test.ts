@@ -47,7 +47,9 @@ describe('сборка повтора исправленных', () => {
   test('без параметра pool сессия прежняя байт в байт', () => {
     const plain = buildMistakePracticeSession(BASE);
     expect(buildMistakePracticeSession({ ...BASE, pool: 'active' })).toEqual(plain);
-    expect(plain.queue.map((entry) => entry.mistakeId)).toEqual(['mistake-1']);
+    // зачем (D203, 11.11): в занятии ошибка проходит три шага, поэтому в очереди стоит до трёх раз; одна ошибка — три шага.
+    expect(plain.initialCount).toBe(1);
+    expect(plain.queue.map((entry) => entry.mistakeId)).toEqual(['mistake-1', 'mistake-1', 'mistake-1']);
     expect(plain).not.toHaveProperty('pool');
   });
 

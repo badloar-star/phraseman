@@ -35,7 +35,8 @@ function item(index: number, status: MistakeProjectionItem['status'] = 'active')
 
 const ITEMS = [item(1), item(2), item(3), item(4), item(5, 'corrected'), item(6)];
 const BASE = { items: ITEMS, requestedLength: 'all' as const, nowMs: 1_000 };
-const ids = (session: ReturnType<typeof buildMistakePracticeSession>) => session.queue.map((entry) => entry.mistakeId);
+// зачем (D203, 11.11): в занятии ошибка проходит три шага, поэтому в очереди стоит до трёх раз; состав занятия — первый круг очереди.
+const ids = (session: ReturnType<typeof buildMistakePracticeSession>) => session.queue.slice(0, session.initialCount).map((entry) => entry.mistakeId);
 
 describe('«Ещё N»: сужение сессии до неверных', () => {
   test('без параметра и с пустым списком — сессия прежняя байт в байт', () => {

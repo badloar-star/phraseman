@@ -13,6 +13,7 @@ import {
 import type { MistakeFacet } from './contracts';
 import type { MistakeProjectionItem } from './projection';
 import { mistakeExerciseCapabilitiesFor } from './capabilities';
+import { MISTAKE_STEPS_REQUIRED, mistakeStepSupport } from './three_step_rule';
 import {
   planFailureRequeue,
   selectCorrectedMistakesForReview,
@@ -146,6 +147,10 @@ export function mistakePracticeSessionCostsEnergy(count: number): boolean {
   return Number.isFinite(count) && count >= MISTAKE_PRACTICE_ENERGY_MIN_COUNT;
 }
 
+/** Какой вид задания положен после стольких пройденных шагов (то же правило, что в three_step_rule.ts). */
+const stageForSteps = (stepsDone: number): MistakeExerciseSupport =>
+  mistakeStepSupport({ phase: 'steps', stepsDone, checkDueAtMs: null, missesInRow: 0, stubborn: false });
+
 const stageFor = (item: MistakeProjectionItem): MistakeExerciseSupport => {
   if ((item.supportPassCount ?? 0) === 0) return 'recognition';
   if ((item.supportPassCount ?? 0) === 1) return 'guided';
@@ -229,11 +234,11 @@ export function buildMistakePracticeSession(input: {
   }
 
   const recentModes: MistakeExerciseMode[] = [];
-  const queue = ready.slice(0, count).map((item) => {
+  const entryFor = (item: MistakeProjectionItem, stage: MistakeExerciseSupport) => {
     const mode: MistakeExerciseMode = chooseMistakeExerciseMode({
       facet: item.facet,
       capabilities: capabilitiesFor(item),
-      stage: stageFor(item),
+      stage,
       recentModes,
     });
     recentModes.push(mode);
@@ -257,7 +262,20 @@ export function buildMistakePracticeSession(input: {
         orderSalt: String(input.nowMs),
       }),
     });
-  });
+  };
+  const selected = ready.slice(0, count);
+  // зачем (владелец 11.11, D203 «три шага»): в одном занятии ошибка проходит все оставшиеся шаги — узнать, с опорой, самостоятельно.
+  // Шаги идут кругами (сначала первый шаг у всех ошибок, потом следующий), поэтому одна и та же ошибка не стоит подряд.
+  // Повтор исправленных (pool 'corrected') — это проверка: один вопрос на ошибку, как раньше.
+  const queue: ReturnType<typeof entryFor>[] = [];
+  const rounds = pool === 'corrected' ? 1 : MISTAKE_STEPS_REQUIRED;
+  for (let round = 0; round < rounds; round += 1) {
+    for (const item of selected) {
+      const stepsDone = (item.supportPassCount ?? 0) + round;
+      if (round > 0 && stepsDone >= MISTAKE_STEPS_REQUIRED) continue;
+      queue.push(entryFor(item, pool === 'corrected' ? stageFor(item) : stageForSteps(stepsDone)));
+    }
+  }
   console.log('[MISTAKE-SESSION] queue', JSON.stringify({
     count,
     // pos — место верного варианта из числа вариантов («2/4»): по журналу видно, что он не стоит всегда последним (F05)
@@ -268,7 +286,8 @@ export function buildMistakePracticeSession(input: {
     })),
   }));
   const sessionId = `mistake-session:v1:${sha256Utf8(canonicalJsonV1({
-    mistakeIds: queue.map((entry) => entry.mistakeId),
+    // зачем (D203): id занятия считается по выбранным ошибкам, а не по очереди — в очереди ошибка теперь стоит до трёх раз.
+    mistakeIds: selected.map((item) => item.mistakeId),
     focusMistakeId: focusMistakeId || null,
     requestedLength: input.requestedLength,
     startedAtMs: input.nowMs,

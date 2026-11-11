@@ -89,7 +89,8 @@ describe('mistake practice session', () => {
     });
 
     expect(session.initialCount).toBe(1);
-    expect(session.queue).toHaveLength(1);
+    // зачем (D203, 11.11): в занятии ошибка проходит три шага, поэтому в очереди стоит до трёх раз; одна ошибка — три шага.
+    expect(session.queue).toHaveLength(3);
     expect(session.queue[0]?.mistakeId).toBe('mistake-2');
   });
 
@@ -101,7 +102,8 @@ describe('mistake practice session', () => {
     });
 
     expect(session.initialCount).toBe(10);
-    expect(session.queue).toHaveLength(10);
+    // зачем (D203, 11.11): в занятии ошибка проходит три шага, поэтому в очереди стоит до трёх раз; десять ошибок — тридцать заданий.
+    expect(session.queue).toHaveLength(30);
     expect(new Set(session.queue.map((entry) => entry.exercise.mode)).size).toBeGreaterThan(1);
     expect(session.cursor).toBe(0);
   });
@@ -116,7 +118,8 @@ describe('mistake practice session', () => {
       requestedLength: 'all',
       nowMs: 100,
     });
-    expect(session.queue).toHaveLength(6);
+    // зачем (D203, 11.11): в занятии ошибка проходит три шага, поэтому в очереди стоит до трёх раз; шесть ошибок — восемнадцать заданий.
+    expect(session.queue).toHaveLength(18);
     expect(session.queue.some((entry) => entry.facet === 'pronunciation')).toBe(true);
     expect(session.queue.some((entry) => entry.facet === 'word_order')).toBe(true);
     expect(session).not.toHaveProperty('voiceOnly');

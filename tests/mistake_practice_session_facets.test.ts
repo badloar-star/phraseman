@@ -41,9 +41,11 @@ describe('mistake practice session facets', () => {
 
   test('facets narrow the queue to the chosen types only', () => {
     const meaning = buildMistakePracticeSession({ ...BASE, facets: ['meaning'] });
-    expect(meaning.queue.map((entry) => entry.facet)).toEqual(['meaning', 'meaning']);
+    // зачем (D203, 11.11): в занятии ошибка проходит три шага, поэтому в очереди стоит до трёх раз; две ошибки × три шага.
+    expect(meaning.initialCount).toBe(2);
+    expect(meaning.queue.map((entry) => entry.facet)).toEqual(['meaning', 'meaning', 'meaning', 'meaning', 'meaning', 'meaning']);
     const grammar = buildMistakePracticeSession({ ...BASE, facets: facetsOfGroup('grammar') });
-    expect(grammar.queue.map((entry) => entry.mistakeId).sort()).toEqual(['mistake-1', 'mistake-3', 'mistake-5']);
+    expect([...new Set(grammar.queue.map((entry) => entry.mistakeId))].sort()).toEqual(['mistake-1', 'mistake-3', 'mistake-5']);
   });
 
   test('a type with no ready mistakes fails the same way as an empty journal (the chip must be inactive)', () => {

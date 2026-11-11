@@ -59,7 +59,7 @@ import { useSpeechUnavailableOnDevice } from './speech_device_availability';
 import SpeechUnavailableNote from '../components/SpeechUnavailableNote';
 import { isMistakeStudyTargetValue, type MistakeEvent } from '../modules/mistake-practice/contracts';
 import { cleanMistakeExplanation } from './mistake_explanation_text';
-import { projectMistakes, requiredModesForMistake } from '../modules/mistake-practice/projection';
+import { MISTAKE_RULE_THREE_STEPS, projectMistakes, requiredModesForMistake } from '../modules/mistake-practice/projection';
 import {
   advanceMistakePracticeSession,
   type MistakePracticeLength,
@@ -1029,6 +1029,8 @@ function MistakePracticeSessionScreen() {
           support: modeDefinition.support,
           exerciseId: entry.exercise.exerciseId,
           sessionId: session.sessionId,
+          // зачем (D203, 11.11): метка нового правила «три шага + проверка» — расчёт состояния ошибки применяет его только к таким ответам.
+          rule: MISTAKE_RULE_THREE_STEPS,
           // зачем (владелец 04.10): ответ в повторе исправленной — журнал знает, что это закрепление (projection.ts).
           ...(session.pool === 'corrected' ? { review: true } : {}),
         },

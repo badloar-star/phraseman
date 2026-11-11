@@ -81,11 +81,20 @@ function planClips(lessonsInOrder: readonly (readonly string[])[]): readonly Pla
  * app/lesson1.tsx для своей собственной докачки при входе.
  */
 async function lessonPhraseTexts(lessonId: number): Promise<readonly string[]> {
-  const [{ getLessonData }, { phraseHasStudyTargetContent, phraseAnswerDisplayLine }] =
+  const [{ getLessonData }, { phraseHasStudyTargetContent, phraseAnswerDisplayLine }, { classicCourseActiveFor, getClassicLessonPhrases }] =
     await Promise.all([
       import('../app/lesson_data_all'),
       import('../app/phrase_target_utils'),
+      import('../app/classic_course_phrases'),
     ]);
+  // зачем (владелец 11.11.2026, новая озвучка: «чтобы юзеры не ждали загрузку»): урок теперь идёт по классическому
+  // курсу, а здесь тексты брались из прежних данных урока — другие фразы, и докачка заранее не находила ни одной
+  // новой записи (замер: 46 из 1600). Берём те же фразы и ту же строку, что произносит экран урока.
+  if (classicCourseActiveFor('en')) {
+    return getClassicLessonPhrases(lessonId, 'en')
+      .map((p) => phraseAnswerDisplayLine(p, 'en', 'en'))
+      .filter((line): line is string => Boolean(line));
+  }
   const rows = getLessonData(lessonId).filter((p) => {
     if (!p || !phraseHasStudyTargetContent(p, 'en')) return false;
     return p.words && p.words.length > 0;

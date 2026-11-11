@@ -94,6 +94,19 @@ jest.mock('../app/lesson_data_all', () => ({
   getLessonData: (lessonId: number) => lessonPhrasesById[lessonId] ?? [],
 }));
 
+let classicActive = false;
+const classicPhrasesById: Record<number, FakePhrase[]> = {
+  1: [{ words: ['k'], english: 'classic one phrase k' }],
+  2: [{ words: ['m'], english: 'classic two phrase m' }],
+};
+
+// зачем (11.11.2026, новая озвучка): урок идёт по классическому курсу — докачка заранее обязана брать ЕГО фразы,
+// иначе новые записи не находятся (замер: 46 из 1600 по прежним данным урока).
+jest.mock('../app/classic_course_phrases', () => ({
+  classicCourseActiveFor: () => classicActive,
+  getClassicLessonPhrases: (lessonId: number) => classicPhrasesById[lessonId] ?? [],
+}));
+
 jest.mock('../app/phrase_target_utils', () => ({
   phraseHasStudyTargetContent: () => true,
   phraseAnswerDisplayLine: (p: FakePhrase) => p.english,
@@ -152,6 +165,18 @@ describe('scheduleAheadPhraseAudioPrefetch (D48)', () => {
     );
     // Дедуп: "shared phrase" встречается ровно один раз, а не дважды.
     expect(downloads.filter((t) => t === 'shared phrase')).toHaveLength(1);
+  });
+
+  it('классический курс включён — качаются его фразы, а не прежние данные урока', async () => {
+    classicActive = true;
+    try {
+      scheduleAheadPhraseAudioPrefetch();
+      jest.advanceTimersByTime(AHEAD_PREFETCH_START_DELAY_MS);
+      await flush();
+      expect([...downloads].sort()).toEqual(['classic one phrase k', 'classic two phrase m']);
+    } finally {
+      classicActive = false;
+    }
   });
 
   it('второй вызов не запускает вторую пачку — стартует один раз за процесс', async () => {

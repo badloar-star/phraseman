@@ -31,12 +31,22 @@ const Segment = memo(function Segment({ filled, track, fill }: SegmentProps) {
   );
 });
 
-type Props = Readonly<{ ids: readonly string[]; done: number; track: string; fill: string; style?: StyleProp<ViewStyle> }>;
+type Props = Readonly<{
+  ids: readonly string[];
+  done: number;
+  /** Если задан — закрашены деления, чьи id есть в списке (разминка: сыграть можно не по порядку); `done` тогда не читается. */
+  doneIds?: Readonly<Record<string, unknown>>;
+  track: string;
+  fill: string;
+  style?: StyleProp<ViewStyle>;
+}>;
 
-function GameSegments({ ids, done, track, fill, style }: Props) {
+function GameSegments({ ids, done, doneIds, track, fill, style }: Props) {
+  const isDone = (id: string, i: number) => (doneIds ? doneIds[id] !== undefined : i < done);
+  const now = doneIds ? ids.filter((id) => doneIds[id] !== undefined).length : Math.min(done, ids.length);
   return (
-    <View accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: ids.length, now: Math.min(done, ids.length) }} style={[s.row, style]}>
-      {ids.map((id, i) => <Segment key={id} filled={i < done} track={track} fill={fill} />)}
+    <View accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: ids.length, now }} style={[s.row, style]}>
+      {ids.map((id, i) => <Segment key={id} filled={isDone(id, i)} track={track} fill={fill} />)}
     </View>
   );
 }

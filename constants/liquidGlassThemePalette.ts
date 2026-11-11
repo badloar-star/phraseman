@@ -321,7 +321,9 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   // зачем (находка контраста «Авроры» 12.10): у градиентных тем в светлом оформлении сырой `accent` — пастель (1,0–1,8 на фоне/карточке с level ≈ 0,55–0,75), и кольца/полосы/точки на нём невидимы.
   // accentGraphic = accent, пока он держит ≥ 3:1 на ВСЕХ поверхностях; иначе тот же оттенок, углублённый в сторону текста темы. В тёмном оформлении и там, где accent и так виден, совпадает с accent.
   // зачем (координатор 17.10, «кнопки нигде не сливаются»): графика акцента (точки, полоса прогресса) лежит и на заливке buttonFill (дорожка, пилюля) — держим ≥ 3,2:1 и к ней
-  const earlyButtonFill = deriveLiquidGlassButtonRoles({ ...built, bad: (deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles).bad }).buttonFill;
+  // зачем (владелец 11.11 «да, убрать» рывки кнопок на ползунках): у тем-ползунков кнопки считаются без выключателя тона — см. fillLine в liquidGlassButtonTokens.ts
+  const isSliderTheme = parseThemeTuneId(themeId) !== null;
+  const earlyButtonFill = deriveLiquidGlassButtonRoles({ ...built, bad: (deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles).bad }, isSliderTheme).buttonFill;
   const accentGraphicRaw = legibleOn(built.accent, built.text, [
     built.bg, built.bgTop, built.bgBottom, built.opaqueCard, built.opaqueControl, built.opaqueSheet, earlyButtonFill,
   ], 3.2);
@@ -338,7 +340,7 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
     mutedText,
     ...surfaceRoles,
     // зачем (владелец 13.10, №35): роли кнопок — вторичная/отключённая/главная заливки, не сливающиеся с фоном ни в одной теме (constants/liquidGlassButtonTokens.ts)
-    ...deriveLiquidGlassButtonRoles({ ...built, bad: paletteRoles.bad }),
+    ...deriveLiquidGlassButtonRoles({ ...built, bad: paletteRoles.bad }, isSliderTheme),
     // зачем (релизный пол 10.10): good/bad/warn/info, скрим, плитки, достижения, медали, уровни A1–B2 — токены всех тем.
     ...paletteRoles,
     // Последним слоем: derivation общего дизайн-системного набора не должна

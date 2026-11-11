@@ -87,8 +87,12 @@ const TONE_SHARE = 0.3;
  * владелец такое уже браковал. Если поверхность нейтральна, а акцент темы цветной, подмешиваем акцент (и в тёмный конец сдвига) — вторичная получает тон темы; «Спокойно» (акцент нейтрален) не меняется.
  */
 /** Линия заливок кнопок: от opaqueControl (с тоном темы там, где поверхность серая) к тексту темы — по ней идут вторичная и отключённая. */
-function fillLine(t: Surfaces): Readonly<{ start: string; toward: string }> {
-  const tone = chroma(t.opaqueControl) < NEUTRAL_CHROMA_MAX && chroma(t.cta) >= ACCENT_CHROMA_MIN;
+// зачем (владелец 11.11: ползунки «меняют резко цвет, когда входишь в зону» → «да, убрать»; трассировка: tune:250 светлое, насыщенность 14 → 15 —
+// цветность акцента переходит порог 0,05, выключатель тона включается и вторичная кнопка прыгает с #B5B6B8 на #A5A8AC; на 32 → 33 поверхность
+// переходит порог 0,03 и кнопка прыгает обратно): выключатель «да/нет» придуман для именных градиентных тем с серой поверхностью. У тем-ползунков
+// поверхность и акцент меняются плавно и пересекают пороги на ходу — тон им не подмешивается вовсе (allowTone = false), цвет кнопки идёт без ступенек.
+function fillLine(t: Surfaces, allowTone: boolean): Readonly<{ start: string; toward: string }> {
+  const tone = allowTone && chroma(t.opaqueControl) < NEUTRAL_CHROMA_MAX && chroma(t.cta) >= ACCENT_CHROMA_MIN;
   return { start: tone ? mix(t.opaqueControl, t.cta, TONE_SHARE) : hex6(t.opaqueControl), toward: tone ? mix(t.text, t.cta, 0.2) : t.text };
 }
 
@@ -107,9 +111,9 @@ function disabledFill(t: Surfaces, secondary: string): string {
   return best;
 }
 
-function secondaryFill(t: Surfaces): string {
+function secondaryFill(t: Surfaces, allowTone: boolean): string {
   const under = underSurfaces(t);
-  const { start, toward } = fillLine(t);
+  const { start, toward } = fillLine(t, allowTone);
   let best = start;
   let bestScore = -1;
   for (let k = 0; k <= 0.9001; k += 0.02) {
@@ -194,8 +198,9 @@ function dangerRoles(t: Surfaces): Readonly<{ dangerFill: string; dangerInk: str
   return fallback;
 }
 
-export function deriveLiquidGlassButtonRoles(t: Surfaces): LiquidGlassButtonRoles {
-  const buttonFill = secondaryFill(t);
+/** `smoothForSliders` — тема-ползунок (`tune:H:S`): без выключателя тона, чтобы цвет кнопок менялся плавно на каждом шаге ползунка. */
+export function deriveLiquidGlassButtonRoles(t: Surfaces, smoothForSliders = false): LiquidGlassButtonRoles {
+  const buttonFill = secondaryFill(t, !smoothForSliders);
   const buttonFillDisabled = disabledFill(t, buttonFill);
   // подпись приглушаем (отличие от активной), но не ниже порога: берём последнюю смесь, которая ещё держит DISABLED_INK_TARGET
   let buttonInkDisabled = hex6(t.text);

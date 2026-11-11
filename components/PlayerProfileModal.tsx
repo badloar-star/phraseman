@@ -18,6 +18,7 @@ import {
   Modal,
   Platform,
   Pressable,
+  ScrollView,
   Share,
   StyleSheet,
   Text,
@@ -60,6 +61,8 @@ import { PROFILE_CARD_LOOKS } from './profile-card/profile_card_looks';
 import { PC, t4 } from './profile-card/profile_card_copy';
 import { usePlayerProfileSocial } from './profile-card/usePlayerProfileSocial';
 import { useSelfProfileCard } from './profile-card/useSelfProfileCard';
+import { useProfileCardSkills } from './profile-card/useProfileCardSkills';
+import ProfileCardSkills from './skills/ProfileCardSkills';
 import ReanimatedView from 'react-native-reanimated';
 import { noAndroidOutline } from '../constants/androidGlow';
 import type { GlassTokens } from '../constants/liquidGlassThemePalette';
@@ -133,6 +136,11 @@ const CARD_RADIUS = 38;
 /** Окно защиты от двойного тапа «Повысить ранг» на визитке (после него кнопка снова ведёт на /coin_rank). */
 const RANK_UPGRADE_TAP_GUARD_MS = 1000;
 const CARD_CY = 0.36;
+// зачем (владелец 11.11.2026: «компактная карточка заменяет большую, при нехватке высоты — прокрутка»; макет elevate-real4.js `card`,
+// стили `.pcd` в elevate-light.css): монета 76 сверху, под ней имя, ранг, звезда навыков и полоски — в потоке, внутри прокрутки.
+// Прежняя большая сцена остаётся только для церемонии повышения ранга (её рисует таймлайн ProfileCardRankUp).
+const COMPACT_COIN = 76;
+const COMPACT_PAD_TOP = 20;
 
 type BodyProps = {
   player: PlayerInfo;
@@ -287,6 +295,8 @@ function PlayerProfileModalBody({
   useEffect(() => {
     setSheet('none');
   }, [player.friendUid, player.uid, setSheet]);
+  // Навыки (D207): свои — всегда, друга — всегда, постороннего — только при «Про»; нет уровней → блока нет. Сети здесь нет.
+  const cardSkills = useProfileCardSkills({ isMe, targetUid, isFriend: isAlreadyFriend, ownerHasPro: isPro, cardLevels: otherCard?.skillLevels ?? null });
 
   // ── Повышение ранга прямо в визитке ──
   const rankUpT = useRankUpTimeline(visibleCeremony !== null, reduceMotion, self.dismissCeremony);
@@ -311,9 +321,13 @@ function PlayerProfileModalBody({
     setStage((prev) => (prev.width === width && prev.height === height ? prev : { width, height }));
   }, []);
   const k = stage.width > 0 ? Math.max(0.82, Math.min(1.1, stage.width / 370)) : 1;
-  const coinSize = Math.round(tokens.coin * k);
+  const compact = visibleCeremony === null;
+  const coinSize = compact ? COMPACT_COIN : Math.round(tokens.coin * k);
   const cx = stage.width / 2;
-  const cy = stage.height * CARD_CY;
+  const cy = compact ? COMPACT_PAD_TOP + COMPACT_COIN / 2 : stage.height * CARD_CY;
+  // Свет и кольца фона идут за монетой: центр — у монеты 76, масштаб — в её долю от прежней монеты вида.
+  const backdropCy = compact && stage.height > 0 ? cy / stage.height : CARD_CY;
+  const backdropK = compact ? (k * COMPACT_COIN) / tokens.coin : k;
   const animate = !reduceMotion && sheet === 'none';
 
   const cardEnter = useMemo(() => ({
@@ -338,6 +352,26 @@ function PlayerProfileModalBody({
     </Pressable>
   );
 
+  const cardBody = (
+    <ProfileCardBody
+      lang={L}
+      tokens={tokens}
+      name={player.name}
+      rank={visibleRank}
+      ceremony={visibleCeremony}
+      chipStyles={chipStyles}
+      bioText={bioText}
+      canEditBio={isMe && myProOwned}
+      showLock={isMe && myPro !== null && !myProOwned}
+      onEditBio={() => setSheet('bio')}
+      onOpenBuy={() => setSheet('buy')}
+      plus={plus}
+      plusTier={plusTier}
+      compact={compact}
+      nameBadge={compact && isPro && tokens.badge ? <ProBadge compact fill={tokens.badge.fill} text={tokens.badge.text} radius={tokens.badge.radius} /> : null}
+    />
+  );
+
   return (
     <>
       <Animated.View style={[styles.backdrop, { backgroundColor: overlay.backdrop, opacity: fadeAnim }]}>
@@ -355,7 +389,7 @@ function PlayerProfileModalBody({
         >
           <View style={styles.stage} onLayout={onStageLayout}>
             {stage.width > 0 ? (
-              <ProfileCardBackdrop look={look} width={stage.width} height={stage.height} cy={CARD_CY} animate={animate} k={k} />
+              <ProfileCardBackdrop look={look} width={stage.width} height={stage.height} cy={backdropCy} animate={animate} k={backdropK} />
             ) : null}
             {visibleCeremony && stage.width > 0 ? (
               <>
@@ -376,20 +410,11 @@ function PlayerProfileModalBody({
                   toRank={visibleCeremony.toRank}
                 />
               </>
-            ) : stage.width > 0 ? (
-              <View
-                testID="profile-card-coin"
-                accessible
-                accessibilityLabel={rankRow ? coinRankTitle(rankRow.rank, L) : t4(L, PC.rankUnknown)}
-                style={{ position: 'absolute', left: cx - coinSize / 2, top: cy - coinSize / 2 }}
-              >
-                <ProfileCardCoin look={look} rank={visibleRank} size={coinSize} animate={animate} plus={plus} plusTier={plusTier} plusSurface={tokens.bg} />
-              </View>
             ) : null}
 
             <View style={styles.top} pointerEvents="box-none">
               <View style={styles.topGroup}>
-                {isPro && tokens.badge ? <ProBadge fill={tokens.badge.fill} text={tokens.badge.text} radius={tokens.badge.radius} /> : null}
+                {!compact && isPro && tokens.badge ? <ProBadge fill={tokens.badge.fill} text={tokens.badge.text} radius={tokens.badge.radius} /> : null}
               </View>
               <View style={styles.topGroup}>
                 {isMe
@@ -424,22 +449,27 @@ function PlayerProfileModalBody({
               </ReanimatedView.View>
             ) : null}
 
-            <ProfileCardBody
-              lang={L}
-              tokens={tokens}
-              name={player.name}
-              rank={visibleRank}
-              ceremony={visibleCeremony}
-              chipStyles={chipStyles}
-              bioText={bioText}
-              canEditBio={isMe && myProOwned}
-              showLock={isMe && myPro !== null && !myProOwned}
-              onEditBio={() => setSheet('bio')}
-              onOpenBuy={() => setSheet('buy')}
-              plus={plus}
-              plusTier={plusTier}
-            />
-            {!isMe && player.pairStats ? <FriendCardStats stats={player.pairStats} tokens={tokens} lang={L} /> : null}
+            {compact ? (
+              <ScrollView
+                testID="profile-card-scroll"
+                style={styles.scroll}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={false}
+                bounces={false}
+              >
+                <View
+                  testID="profile-card-coin"
+                  accessible
+                  accessibilityLabel={rankRow ? coinRankTitle(rankRow.rank, L) : t4(L, PC.rankUnknown)}
+                  style={styles.compactCoin}
+                >
+                  <ProfileCardCoin look={look} rank={visibleRank} size={coinSize} animate={animate} plus={plus} plusTier={plusTier} plusSurface={tokens.bg} />
+                </View>
+                {cardBody}
+                {cardSkills ? <ProfileCardSkills look={look} lang={L} levels={cardSkills.levels} ratios={cardSkills.ratios} /> : null}
+                {!isMe && player.pairStats ? <FriendCardStats stats={player.pairStats} tokens={tokens} lang={L} /> : null}
+              </ScrollView>
+            ) : cardBody}
           </View>
           {isMe ? (
             <ProfileCardSelfFooter
@@ -714,6 +744,10 @@ const styles = StyleSheet.create({
     elevation: 24,
   },
   stage: { flex: 1, minHeight: 0, overflow: 'hidden' },
+  // Компактная визитка: всё содержимое в потоке внутри прокрутки (макет `.pcd`: поля 20 · 18 · 18); кнопки шапки лежат поверх.
+  scroll: { ...StyleSheet.absoluteFillObject, zIndex: 6 },
+  scrollContent: { paddingTop: COMPACT_PAD_TOP, paddingHorizontal: 18, paddingBottom: 18 },
+  compactCoin: { alignSelf: 'center' },
   edge: { ...StyleSheet.absoluteFillObject, borderRadius: CARD_RADIUS }, // guard-ok: кант визитки .vz-edge (1–1,5pt полупрозрачный, стиль 2.0)
   top: {
     position: 'absolute', top: 16, left: 16, right: 16, zIndex: 12,

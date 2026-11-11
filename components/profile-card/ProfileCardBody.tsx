@@ -38,6 +38,13 @@ type Props = Readonly<{
   plus?: boolean;
   /** Уровень подписки для метки у имени: plus → «◆ Plus», ultra → «✦ Ultra»; по умолчанию plus. */
   plusTier?: SubscriptionTier;
+  /**
+   * Компактная визитка (владелец 11.11.2026: «компактная карточка заменяет большую», макет elevate-real4.js `card`): тело стоит
+   * в потоке под монетой 76, имя 24, плашка ранга ближе к имени. Без флага — прежняя раскладка (тело прижато к низу сцены).
+   */
+  compact?: boolean;
+  /** Метка «PRO» в строке имени — только в компактной визитке (макет `.pbadge`). */
+  nameBadge?: React.ReactNode;
 }>;
 
 // зачем (Сверка 05.10 04:45: при rank=5 визитка писала «ранг 6», после повышения «ранг 7»): ранги 0…19 показываются
@@ -47,7 +54,7 @@ export function profileCardRankLabel(rank: number, lang: Lang): string {
 }
 
 function ProfileCardBodyBase({
-  lang, tokens, name, rank, ceremony, chipStyles, bioText, canEditBio, showLock, onEditBio, onOpenBuy, plus, plusTier = 'plus',
+  lang, tokens, name, rank, ceremony, chipStyles, bioText, canEditBio, showLock, onEditBio, onOpenBuy, plus, plusTier = 'plus', compact = false, nameBadge,
 }: Props) {
   const editable = canEditBio && !ceremony;
   // зачем (закон владельца 22.10): белое поверх арта — mediaInk темы с прежними плотностями (profile_card_art_ink), не свои литералы
@@ -64,13 +71,14 @@ function ProfileCardBodyBase({
       <View style={styles.nameRow}>
         <Text
           testID="profile-card-name"
-          style={[styles.name, { color: tokens.title }, tokens.titleGlow ? { textShadowColor: tokens.titleGlow, textShadowRadius: 18 } : null]}
+          style={[styles.name, compact ? styles.nameCompact : null, { color: tokens.title }, tokens.titleGlow ? { textShadowColor: tokens.titleGlow, textShadowRadius: compact ? 16 : 18 } : null]}
         >
           {name}
         </Text>
+        {nameBadge}
         {plus === true ? <PlusTag testID="profile-card-plus-tag" isLight={false} tier={plusTier} style={styles.plusTag} /> : null}
       </View>
-      <View style={styles.rankWrap}>
+      <View style={[styles.rankWrap, compact ? styles.rankWrapCompact : null]}>
         {ceremony ? (
           <>
             <ReanimatedView.View style={chipStyles.oldChip}>
@@ -132,7 +140,7 @@ function ProfileCardBodyBase({
     </>
   );
   return (
-    <View style={styles.body} pointerEvents="box-none">
+    <View style={compact ? styles.bodyCompact : styles.body} pointerEvents="box-none">
       {tokens.glassBody ? <View style={[styles.glass, tone.glass]}>{content}</View> : content}
     </View>
   );
@@ -147,6 +155,10 @@ const styles = StyleSheet.create({
     paddingTop: 16, paddingHorizontal: 14, paddingBottom: 18, borderRadius: 28,
     // зачем (владелец 12.10, стиль «Тень»): стеклянная плашка «Ауры» без кромки — отделяет полупрозрачный белый тон на арте (tone.glass)
   },
+  // макет `.pcd .pnm` / `.prank`: имя 24 через 10 после монеты, плашка ранга через 8
+  bodyCompact: { alignSelf: 'stretch', alignItems: 'center', marginTop: 10 },
+  nameCompact: { fontSize: 24, lineHeight: 29, letterSpacing: -0.3 },
+  rankWrapCompact: { marginTop: 8 },
   center: { alignItems: 'center' },
   nameRow: { alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
   plusTag: { marginLeft: 8, flexShrink: 0 },

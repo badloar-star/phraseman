@@ -89,9 +89,10 @@ export function TwoLine({ title, sub, ink, subCoinRank }: { title: string; sub: 
   );
 }
 
-export function ProBadge({ fill, text, radius }: { fill: GradientSpec; text: string; radius: number }) {
+// зачем `compact` (владелец 11.11.2026, макет elevate-real4.js `.pbadge`): в компактной визитке метка стоит в строке имени — 22 pt, шрифт 11.
+export function ProBadge({ fill, text, radius, compact }: { fill: GradientSpec; text: string; radius: number; compact?: boolean }) {
   return (
-    <View testID="profile-card-pro-badge" style={[styles.badge, { borderRadius: radius }]}>
+    <View testID="profile-card-pro-badge" style={[styles.badge, compact ? styles.badgeCompact : null, { borderRadius: radius }]}>
       <LinearGradient
         pointerEvents="none"
         colors={fill.colors as unknown as [string, string, ...string[]]}
@@ -99,7 +100,7 @@ export function ProBadge({ fill, text, radius }: { fill: GradientSpec; text: str
         {...gradientPoints(fill.angle)}
         style={[StyleSheet.absoluteFill, { borderRadius: radius }]}
       />
-      <Text style={[styles.badgeText, { color: text }]}>PRO</Text>
+      <Text style={[styles.badgeText, compact ? styles.badgeTextCompact : null, { color: text }]}>PRO</Text>
     </View>
   );
 }
@@ -137,6 +138,8 @@ const styles = StyleSheet.create({
   twoSub: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
   badge: { height: 30, paddingHorizontal: 12, justifyContent: 'center', overflow: 'hidden' },
   badgeText: { fontSize: 13, fontWeight: '900', letterSpacing: 3 },
+  badgeCompact: { height: 22, paddingHorizontal: 9, marginLeft: 8, flexShrink: 0 },
+  badgeTextCompact: { fontSize: 11, fontWeight: '800', letterSpacing: 0.8 },
   rank: {
     height: 36,
     borderRadius: 18,

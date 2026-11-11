@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
@@ -14,7 +14,7 @@ import { publishYoutubePosition, registerYoutubePauseHandler, registerYoutubeSee
 import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
 import { forgetYoutubePosition, readYoutubeResumeSec, rememberYoutubePosition } from '../../app/youtube_resume_position';
 import { triLang } from '../../constants/i18n';
-import { setManagedAudioMode } from '../../app/audio_session_coordinator';
+import { getManagedAudioModeSnapshot, setManagedAudioMode } from '../../app/audio_session_coordinator';
 import { reportYoutubeAudioModeOutcome } from '../../app/audio_mode_outcome_diagnostics';
 import { UI_SFX_AUDIO_MODE } from '../../app/audio_playback_mode';
 import { claimVideoAudio, type SpokenAudioClaim } from '../../modules/audio/audio_runtime_arbiter';
@@ -61,6 +61,16 @@ function shouldKeepLingmanPlayerNavigationInApp(url: string): boolean {
   }
 }
 
+// `videoId` здесь включает стабильный id экземпляра: два оставленных на экране
+// плеера одного ролика не должны снимать keep-awake друг у друга.
+function activateVideoKeepAwake(videoId: string): Promise<void> {
+  return activateKeepAwakeAsync(`video:${videoId}`);
+}
+
+function deactivateVideoKeepAwake(videoId: string): Promise<void> {
+  return deactivateKeepAwake(`video:${videoId}`);
+}
+
 type YoutubeInlinePlayerProps = {
   videoId: string;
   title: string;
@@ -92,10 +102,16 @@ export default function YoutubeInlinePlayer({
   // зачем (закон владельца 22.10): сцена под плеером, кнопка и значок поверх кадра — роли темы (video_media_tones)
   const media = useVideoMediaTones();
   const [playerError, setPlayerError] = useState(false);
+  const playerInstanceId = useId();
   // зачем ([NAV-PAINT-TRACE], 15.10): размонтирование плеера/WebView — отдельная отметка цепочки перехода с ролика
   useEffect(() => () => trainNavMark('player WebView unmount'), []);
   useEffect(() => { videoOpenMark('player mount'); }, []);
   const [playerKey, setPlayerKey] = useState(0);
+  const playerSession = useMemo(
+    () => ({}),
+    [active, playerError, playerKey, startSec, videoId],
+  );
+  const committedPlayerSessionRef = useRef<object | null>(null);
   const webViewRef = useRef<WebView>(null);
   const pauseRequestedAtRef = useRef<number | null>(null);
   // зачем (удобство №9): кнопка «Продолжить с m:ss» — только когда ролик открыт с явного момента (startSec) и есть брошенная позиция;
@@ -152,16 +168,42 @@ export default function YoutubeInlinePlayer({
   }, [active, seekController, videoId]);
   // зачем (Ядро 01.10): плеер YouTube перехватывает аудиосессию; после закрытия возвращаем
   // режим приложения (тот же, что ставит запуск), иначе озвучка фраз и звуки интерфейса молчат.
-  useEffect(() => () => {
-    console.log('[VIDEO-PLAYER] закрыт — возвращаю режим звука приложения', JSON.stringify({ videoId }));
-    setManagedAudioMode(UI_SFX_AUDIO_MODE).then(reportYoutubeAudioModeOutcome).catch((error: unknown) => {
-      console.warn('[VIDEO-PLAYER] режим звука не вернулся', error instanceof Error ? error.message : String(error));
-    });
-  }, [videoId]);
+  // зачем (F20, «ресурсы видео»): возврат режима был привязан только к размонтированию. Экран ролика при уходе
+  // не размонтирует плеер, а даёт active=false (WebView удаляется, компонент жив) — режим оставался за YouTube.
+  // Теперь режим возвращается при любом уходе активного плеера: inactive, смена ролика, размонтирование — и ровно один раз.
+  useEffect(() => {
+    if (!active) return undefined;
+    return () => {
+      // Запоздалый уход: выгрузка плеера отложена до конца перехода, и к этому моменту следующий экран
+      // уже мог включить запись с микрофона. Возврат режима воспроизведения оборвал бы запись — не трогаем.
+      if (getManagedAudioModeSnapshot().recordingActive) {
+        console.log('[VIDEO-PLAYER] закрыт — режим звука не трогаю: идёт запись с микрофона', JSON.stringify({ videoId })); // guard-ok: ранний выход, раз на закрытие
+        return;
+      }
+      console.log('[VIDEO-PLAYER] закрыт — возвращаю режим звука приложения', JSON.stringify({ videoId }));
+      setManagedAudioMode(UI_SFX_AUDIO_MODE).then(reportYoutubeAudioModeOutcome).catch((error: unknown) => {
+        console.warn('[VIDEO-PLAYER] режим звука не вернулся', error instanceof Error ? error.message : String(error));
+      });
+    };
+  }, [active, videoId]);
   // зачем (PM-207): видео и озвучка не звучат одновременно. Пока ролик играет, он держит
   // аренду звука в арбитре; озвучка/микрофон вытесняют его — тогда stop() ставит паузу в
   // плеере. Аренда снимается при паузе, окончании и размонтировании (не залипает).
   const audioClaimRef = useRef<SpokenAudioClaim | null>(null);
+  const keepAwakeQueueRef = useRef<Promise<void>>(Promise.resolve());
+  const keepAwakeVideoId = `${videoId}:${playerInstanceId}`;
+  const queueKeepAwake = useCallback((awake: boolean) => {
+    keepAwakeQueueRef.current = keepAwakeQueueRef.current
+      .then(() => awake
+        ? activateVideoKeepAwake(keepAwakeVideoId)
+        : deactivateVideoKeepAwake(keepAwakeVideoId))
+      .catch((error: unknown) => {
+        console.warn(
+          `[VIDEO-PLAYER] keep-awake: ${awake ? 'включить' : 'снять'} не удалось`,
+          String((error as Error)?.message ?? error).slice(0, 120),
+        );
+      });
+  }, [keepAwakeVideoId]);
   // зачем (§126 п.9, «видео не помнит позицию»): последняя секунда из моста — запоминается на паузе/закрытии.
   const lastPositionSecRef = useRef<number | null>(null);
   const releaseAudioClaim = useCallback((why: string) => {
@@ -172,11 +214,22 @@ export default function YoutubeInlinePlayer({
     console.log('[VIDEO-PLAYER] аренда звука снята', JSON.stringify({ videoId, why }));
     claim.release();
     // зачем (§126 п.9): экран держим ровно пока видео играет — снимаем вместе с арендой звука.
-    void Promise.resolve(deactivateKeepAwake(`video:${videoId}`)).catch((error: unknown) => {
-      console.warn('[VIDEO-PLAYER] keep-awake: снять не удалось', String((error as Error)?.message ?? error).slice(0, 120));
-    });
-  }, [videoId]);
+    queueKeepAwake(false);
+  }, [queueKeepAwake, videoId]);
   useEffect(() => () => releaseAudioClaim('unmount'), [releaseAudioClaim]);
+  useLayoutEffect(() => {
+    if (!active || playerError) {
+      committedPlayerSessionRef.current = null;
+      return undefined;
+    }
+    committedPlayerSessionRef.current = playerSession;
+    return () => {
+      if (committedPlayerSessionRef.current === playerSession) {
+        committedPlayerSessionRef.current = null;
+      }
+      releaseAudioClaim('session_closed');
+    };
+  }, [active, playerError, playerSession, releaseAudioClaim]);
   // Новый WebView (повтор после ошибки) снова ждёт готовности.
   useEffect(() => {
     seekController.reset();
@@ -231,11 +284,22 @@ export default function YoutubeInlinePlayer({
       };
       // Чужие сообщения (сам YouTube шлёт свои) молча игнорируем — но только их.
       if (parsed?.source !== LINGMAN_PLAYER_BRIDGE_SOURCE) return;
+      // Нативное событие старого WebView может дойти уже после inactive/замены.
+      // Только сессия, подтверждённая текущим commit, вправе менять владельца аудио.
+      if (!active || committedPlayerSessionRef.current !== playerSession) {
+        // зачем (F20): ранний выход не немой — по журналу видно, что звук/экран не захвачены повторно закрытым плеером.
+        console.log('[VIDEO-PLAYER] запоздалое событие отброшено', JSON.stringify({ // guard-ok: ранний выход; старый WebView уже удалён, событий единицы
+          videoId, type: String(parsed.type), playing: parsed.playing, active, sessionCurrent: committedPlayerSessionRef.current === playerSession,
+        }));
+        return;
+      }
       if (parsed.type === 'ready') {
         seekController.markReady();
         // Явный момент (startSec, фраза из видео) главнее сохранённой позиции.
         if (startSec === undefined) {
           void readYoutubeResumeSec(videoId).then((resumeSec) => {
+            // Чтение хранилища могло завершиться уже для другого WebView.
+            if (committedPlayerSessionRef.current !== playerSession) return;
             console.log('[VIDEO-RESUME] плеер готов', JSON.stringify({ videoId, resumeSec }));
             if (resumeSec !== null) seekController.requestSeek(resumeSec);
           });
@@ -260,9 +324,7 @@ export default function YoutubeInlinePlayer({
           if (!audioClaimRef.current) pauseVideo();
           // зачем (§126 п.9, жалоба «видео гаснет через 5 минут»): удержания экрана не было нигде —
           // система гасила экран посреди ролика. Держим, пока у видео есть аренда звука.
-          else void activateKeepAwakeAsync(`video:${videoId}`).catch((error: unknown) => {
-            console.warn('[VIDEO-PLAYER] keep-awake: включить не удалось', String((error as Error)?.message ?? error).slice(0, 120));
-          });
+          else queueKeepAwake(true);
         }
       } else {
         if (pauseRequestedAtRef.current !== null) {
@@ -293,7 +355,7 @@ export default function YoutubeInlinePlayer({
       // без неё поломка моста однажды тихо остановит подсветку фраз.
       if (__DEV__) console.log(`[VIDEO-PLAYER] bridge: unparsable message=${raw.slice(0, 64)}`);
     }
-  }, [seekController, videoId, releaseAudioClaim, startSec]);
+  }, [active, playerSession, queueKeepAwake, seekController, videoId, releaseAudioClaim, startSec]);
 
   if (!active) return null;
 

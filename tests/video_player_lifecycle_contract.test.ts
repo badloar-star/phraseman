@@ -18,8 +18,11 @@ describe('жизненный цикл видеоплеера (PM-118)', () => {
 
   it('закрытие плеера возвращает режим звука приложения (озвучка и звуки не молчат) и снимает аренду звука и экран (PM-118-A2)', () => {
     // размонтирование: эффект с cleanup, который ставит режим приложения UI_SFX_AUDIO_MODE через координатор аудиосессии
-    expect(player).toContain("import { setManagedAudioMode } from '../../app/audio_session_coordinator';");
-    expect(player).toMatch(/useEffect\(\(\) => \(\) => \{\s*console\.log\('\[VIDEO-PLAYER\] закрыт — возвращаю режим звука приложения'/);
+    expect(player).toContain("import { getManagedAudioModeSnapshot, setManagedAudioMode } from '../../app/audio_session_coordinator';");
+    // F20: возврат режима — при любом уходе активного плеера (inactive/смена ролика/размонтирование), а не только при размонтировании;
+    // поведение проверяет tests/youtube_player_owner_lifecycle.test.tsx
+    expect(player).toMatch(/useEffect\(\(\) => \{\s*if \(!active\) return undefined;\s*return \(\) => \{[\s\S]{0,900}console\.log\('\[VIDEO-PLAYER\] закрыт — возвращаю режим звука приложения'[\s\S]{0,400}\}, \[active, videoId\]\);/);
+    expect(player).toContain('if (getManagedAudioModeSnapshot().recordingActive) {'); // запоздалый уход не обрывает запись
     expect(player).toContain('setManagedAudioMode(UI_SFX_AUDIO_MODE)');
     expect(player).toContain("console.warn('[VIDEO-PLAYER] режим звука не вернулся'"); // отказ не молчит
     expect(player).toContain("useEffect(() => () => releaseAudioClaim('unmount'), [releaseAudioClaim]);");

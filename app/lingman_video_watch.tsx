@@ -52,6 +52,9 @@ import BackGlyph from '../components/v2/BackGlyph';
 import { VideoRewardProgress } from '../components/video/VideoRewardProgress'; // зачем (владелец 06.11): шкала «до +500» под плеером
 import { videoRewardRowVisible } from './video_reward_progress';
 import { useVideoFullRewarded } from '../hooks/use_video_full_rewarded';
+import { V2Button } from '../components/v2/V2Kit';
+import { peekCachedVideoPhrases } from './video_phrases_client';
+import { canBuildVideoQuiz } from './video_quiz_core'; // зачем (владелец 11.11): «Проверь себя» после ролика — три вопроса из фраз этого ролика
 
 const LOG = '[VIDEO-SCREEN]';
 
@@ -169,6 +172,7 @@ export default function LingmanVideoWatchScreen() {
   const copy = {
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
     save: triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
+    quiz: triLang(lang, { ru: 'Проверить себя', uk: 'Перевірити себе', en: 'Test yourself', es: 'Ponte a prueba', 'pt-BR': 'Teste-se', vi: 'Tự kiểm tra', id: 'Uji dirimu', tr: 'Kendini sına', pl: 'Sprawdź się' }),
     rewardDone: triLang(lang, { ru: 'Засчитано', uk: 'Зараховано', en: 'Counted', es: 'Contado', 'pt-BR': 'Contado', vi: 'Đã tính', id: 'Tercatat', tr: 'Sayıldı', pl: 'Zaliczone' }),
     rewardLabel: triLang(lang, { ru: 'Награда за просмотр', uk: 'Нагорода за перегляд', en: 'Watch reward', es: 'Recompensa por ver', 'pt-BR': 'Recompensa por assistir', vi: 'Phần thưởng xem video', id: 'Hadiah menonton', tr: 'İzleme ödülü', pl: 'Nagroda za oglądanie' }),
     unsave: triLang(lang, { ru: 'Убрать отметку «Нравится»', uk: 'Прибрати позначку «Подобається»', en: 'Remove like', es: 'Quitar Me gusta', 'pt-BR': 'Remover gostei', vi: 'Bỏ thích', id: 'Batal suka', tr: 'Beğeniyi kaldır', pl: 'Usuń polubienie' }),
@@ -215,6 +219,18 @@ export default function LingmanVideoWatchScreen() {
     trainSheet.open();
     trainNavMark('train sheet opened');
   }, [pack?.cardCount, pack?.id, packOwned, trainSheet, videoId]);
+
+  // зачем (владелец 11.11, макет docs/work/mockups/video-hub-2026-11-11, экран 2): кнопка «Проверить себя» видна, только когда из фраз ролика собирается тест
+  // (три разные фразы и больше). Первый кадр — по фразам из памяти; если их ещё нет, признак обновляется, когда список фраз сообщит о загрузке.
+  const [quizReady, setQuizReady] = useState<boolean>(() => canBuildVideoQuiz(peekCachedVideoPhrases(videoId) ?? []));
+  const openQuiz = useCallback(() => {
+    // пауза сразу и запомненная секунда — как у «Тренировать»: «Назад» из теста вернёт ролик на то же место
+    const savedPosition = Math.floor(lastPositionRef.current);
+    setResumeSec(savedPosition > 0 ? savedPosition : null);
+    const paused = requestYoutubePause(videoId);
+    console.log('[VIDEO-QUIZ]', 'tap', JSON.stringify({ videoId, resumeSec: savedPosition, pauseSent: paused, packLanguage })); // guard-ok: вход в тест с экрана ролика
+    router.push({ pathname: '/lingman_video_quiz', params: { videoId, title, packLanguage, sourceTitle: channelName } } as never);
+  }, [channelName, packLanguage, router, title, videoId]);
 
   // зачем ([NAV-PAINT-TRACE], 15.10): когда экран ролика теряет фокус и когда размонтируется — отдельные отметки цепочки «Тренировать → первый кадр хаба»
   const releaseHandleRef = useRef<{ cancel: () => void } | null>(null);
@@ -274,6 +290,11 @@ export default function LingmanVideoWatchScreen() {
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, { paddingBottom: pack ? 132 + insets.bottom : 32 }]} decelerationRate="fast">
           {title ? <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text> : null}
           {meta ? <Text style={[styles.meta, { color: g.secondary }]}>{meta}</Text> : null}
+          {videoId && quizReady ? (
+            <View style={styles.quiz}>
+              <V2Button testID="lingman-video-watch-quiz" label={copy.quiz} variant="secondary" onPress={openQuiz} />
+            </View>
+          ) : null}
           {videoId ? (
             <View style={styles.phrases}>
               <YoutubeVideoPhrases
@@ -282,7 +303,7 @@ export default function LingmanVideoWatchScreen() {
                 sourceTitle={channelName || undefined}
                 testID={`video-phrases-${videoId}`}
                 defaultExpanded
-                onSourceResolved={(from, count) => { videoOpenMark(`phrases resolved from=${from} count=${count}`); logOpen(from, count); }}
+                onSourceResolved={(from, count) => { videoOpenMark(`phrases resolved from=${from} count=${count}`); logOpen(from, count); setQuizReady(canBuildVideoQuiz(peekCachedVideoPhrases(videoId) ?? [])); }}
               />
             </View>
           ) : null}
@@ -333,5 +354,6 @@ const styles = StyleSheet.create({
   title: { marginTop: 16, fontSize: 20, lineHeight: 26, fontWeight: '700' },
   // зачем: `.vm` макета 14 → 13 по шкале D145.
   meta: { marginTop: 4, fontSize: 13, lineHeight: 18, fontWeight: '400' },
+  quiz: { marginTop: 16 },
   phrases: { marginTop: 20 },
 });

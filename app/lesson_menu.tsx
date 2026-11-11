@@ -97,6 +97,7 @@ import {
 import { DebugLogger } from './debug-logger';
 import LessonMenuGateSkeleton from '../components/lessons/LessonMenuGateSkeleton'; // зачем (координатор 13.10): скелет вместо пустого первого кадра, пока идёт fail-closed проверка доступа
 import { captureAccountGeneration } from './account_generation'; // зачем: stableId в ключ подтверждения доступа (Ревизор 7d564d137)
+import { LOAD_GATE_TOTAL_MS } from './load_gate_config';
 import { navOnce } from './nav_once'; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по «Начать/Продолжить» открывал два урока
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { useLineScale } from '../hooks/useLineScale';
@@ -470,6 +471,9 @@ function LessonMenu() {
   const [lockRevalidating, setLockRevalidating] = useState(false);
   const lockConfirmedKeyRef = useRef<string | null>(null);
   const lockGenerationRef = useRef(0);
+  // зачем (владелец 11.11, «платный урок, подписка не подтвердилась за 12 с → пускать в меню»): для какого ключа (аккаунт|урок|язык)
+  // потолок ожидания уже сработал. Пока он стоит, повторная неподтверждённая проверка не возвращает скелет — меню остаётся видимым.
+  const pendingCeilingKeyRef = useRef<string | null>(null);
   // зачем (координатор 13.10): сколько мс длится проверка доступа, пока на экране скелет, и чем она кончилась. Только журнал: решения гейта это не касается.
   const lockCheckStartedAtRef = useRef(Date.now());
   const [lockReason, setLockReason] = useState<'pending' | 'premium' | 'level' | 'progress'>('progress');
@@ -664,7 +668,8 @@ function LessonMenu() {
     // stableId в ключе подтверждения: подтверждение одного аккаунта не переносится на другой.
     const generation = ++lockGenerationRef.current;
     let entitlementPending = false;
-    const lockKey = `${captureAccountGeneration()?.stableId ?? 'anon'}|${lessonId}|${String(studyTarget)}`;
+    let pendingAfterCeiling = false;
+    const lockKey =`${captureAccountGeneration()?.stableId ?? 'anon'}|${lessonId}|${String(studyTarget)}`;
     const gatedSetLocked = (value: boolean) => { if (lockGenerationRef.current === generation) setIsLessonLocked(value); };
     const gatedSetReason = (value: 'pending' | 'premium' | 'level' | 'progress') => { if (lockGenerationRef.current === generation) setLockReason(value); };
     const gatedSetInfo = (next: Awaited<ReturnType<typeof getLessonLockInfo>> | null) => { if (lockGenerationRef.current === generation) setLockInfoQuiet(next); };
@@ -736,6 +741,12 @@ function LessonMenu() {
         if (!premiumNow && !isPremiumAccessDecisionConfirmedForCurrentAccount()) {
           entitlementPending = true;
           console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: true, by: 'access_pending', premiumNow })}`);
+          if (pendingCeilingKeyRef.current === lockKey) {
+            // потолок для этого урока уже сработал: меню остаётся на экране, запуск закрыт (lockRevalidating) до подтверждения подписки
+            pendingAfterCeiling = true;
+            console.log(`[LESSON-MENU] lock:pending_after_ceiling ${JSON.stringify({ lessonId, studyTarget, menuVisible: true, launchBlocked: true })}`); // guard-ok: ветка после потолка — почему скелет не вернулся
+            return;
+          }
           gatedSetLocked(true);
           gatedSetReason('pending');
           gatedSetInfo(null);
@@ -822,11 +833,16 @@ function LessonMenu() {
         );
       } finally {
         if (lockGenerationRef.current === generation) {
-          setLockRevalidating(false);
-          if (entitlementPending) {
+          // после потолка неподтверждённая проверка держит запуск закрытым (fail-closed), но меню не прячет
+          setLockRevalidating(pendingAfterCeiling);
+          if (pendingAfterCeiling) {
+            lockConfirmedKeyRef.current = lockKey;
+            setLockStateLoaded(true);
+          } else if (entitlementPending) {
             lockConfirmedKeyRef.current = null;
             setLockStateLoaded(false);
           } else {
+            pendingCeilingKeyRef.current = null;
             lockConfirmedKeyRef.current = lockKey;
             setLockStateLoaded(true);
           }
@@ -836,6 +852,31 @@ function LessonMenu() {
       }
     })();
   }, [lessonId, premiumAccessResolved, studyTarget]);
+
+  // зачем (владелец 11.11: «платный урок, подписка не подтвердилась за 12 с → пускать в меню»; D158 «тихо — не значит бесконечно»):
+  // скелет меню держался, пока подписка не подтвердится, а потолка у этого ожидания не было (на эмуляторе доходило до ~94 с).
+  // Через LOAD_GATE_TOTAL_MS показываем МЕНЮ, но запуск урока остаётся закрытым (lockRevalidating → lessonLaunchBlocked) до настоящего
+  // решения: видеть меню можно, начать платный урок без подтверждённого доступа — нет. Замок языка (language_lock) сюда не попадает:
+  // там решение принято (lockStateLoaded истинно).
+  useEffect(() => {
+    if (lockStateLoaded || lockReason !== 'pending') return;
+    const generation = lockGenerationRef.current;
+    const key = `${captureAccountGeneration()?.stableId ?? 'anon'}|${lessonId}|${String(studyTarget)}`;
+    const timer = setTimeout(() => {
+      if (lockGenerationRef.current !== generation) {
+        console.log(`[LESSON-MENU] lock:pending_ceiling_skip ${JSON.stringify({ lessonId, reason: 'newer_check_started', generation, latest: lockGenerationRef.current })}`); // guard-ok: ранний выход с причиной
+        return;
+      }
+      console.warn(`[LESSON-MENU] lock:pending_ceiling ${JSON.stringify({ lessonId, studyTarget, waitedMs: Date.now() - lockCheckStartedAtRef.current, shown: 'menu', launchBlocked: true })}`); // guard-ok: потолок сработал — что увидел человек
+      pendingCeilingKeyRef.current = key;
+      lockConfirmedKeyRef.current = key;
+      setLockRevalidating(true);
+      setIsLessonLocked(false);
+      setLockReason('progress');
+      setLockStateLoaded(true);
+    }, LOAD_GATE_TOTAL_MS);
+    return () => clearTimeout(timer);
+  }, [lockStateLoaded, lockReason, lessonId, studyTarget]);
 
   // зачем (координатор 13.10; сперва логи): начало и конец ожидания проверки доступа — пока `lockStateLoaded` ложно, на экране скелет, а не пустой фон. Итог проверки (закрыто/открыто, причина) читается из состояния, решение не принимается здесь.
   useEffect(() => {

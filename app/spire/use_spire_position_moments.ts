@@ -36,12 +36,20 @@ const LOG = '[SPIRE-MOMENT-TRIGGER]'; // ветка общего журнала 
 const seenKey = (uid: string, lang: string): string => `spire_position_seen_v1:${uid}:${lang}`;
 const lastChanceKey = (uid: string, lang: string): string => `spire_last_chance_shown_v1:${uid}:${lang}`;
 
-/** «Тебя обогнали» — не чаще раза за сессию (процесс приложения). */
-let overtakeShownThisSession = false;
+/**
+ * «Тебя обогнали» — не чаще раза за сессию (процесс приложения) НА АККАУНТ: здесь uid, которому окно уже показано.
+ * зачем (F17, владелец 11.11): общий флаг процесса глушил окно аккаунту B, если его в этой сессии уже видел A.
+ */
+let overtakeShownForUid: string | null = null;
 
 export function __resetSpirePositionMomentsForTests(): void {
-  overtakeShownThisSession = false;
+  overtakeShownForUid = null;
 }
+
+/** Владелец окон: аккаунт + язык обучения (у каждого языка своя комната). null — никого (вышел / Пик закрыт). */
+const ownerOf = (uid: string | null, lang: string | null): string | null => (uid && lang ? `${uid}:${lang}` : null);
+/** Решение окна вместе с владельцем, для которого оно принято: чужое решение не отдаётся ни на один кадр. */
+type Owned<T> = Readonly<{ owner: string | null; show: T }>;
 
 export type SpirePositionMomentsInput = Readonly<{
   /** Ворота Пика открыты и комната загружена. */
@@ -97,13 +105,32 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
   const { enabled, uid, lang, weekId, roomFetchedAtMs, rows, rankBy, nowMs } = input;
   const energyRef = useRef(input.energyReadyAtMs);
   energyRef.current = input.energyReadyAtMs;
-  const [rise, setRise] = useState<SpirePositionRiseShow | null>(null);
-  const [overtake, setOvertake] = useState<SpireOvertakeShow | null>(null);
+  const owner = ownerOf(uid, lang);
+  const [rise, setRise] = useState<Owned<SpirePositionRiseShow> | null>(null);
+  const [overtake, setOvertake] = useState<Owned<SpireOvertakeShow> | null>(null);
   /** undefined — пометка ещё не прочитана (окно не решаем, чтобы не показать дважды). */
-  const [lastChanceShownWeek, setLastChanceShownWeek] = useState<string | null | undefined>(undefined);
+  const [lastChanceMark, setLastChanceMark] = useState<Owned<string | null> | undefined>(undefined);
+  // зачем (F17): пометка прошлого владельца = «ещё не прочитана» — иначе «Последний шанс» мигнул бы новому аккаунту на кадр
+  const lastChanceShownWeek = lastChanceMark && lastChanceMark.owner === owner ? lastChanceMark.show : undefined;
   const consumedRef = useRef(new Set<string>());
   const [consumedTick, setConsumedTick] = useState(0);
   const prevRef = useRef<SpirePositionState | null>(null);
+  const ownerRef = useRef(owner);
+
+  // ── F17: смена владельца (выход, A → B, другой язык обучения) — окна и «прежнее место» прошлого владельца убираем ──
+  // зачем (владелец 11.11): хук живёт дольше аккаунта. Раньше место A оставалось в prevRef и сравнивалось с местом B:
+  // A вне зоны повышения, B в ней → B видел ложное «Позиция выросла». Эффект стоит ПЕРВЫМ, чтобы сработать до решений ниже.
+  useEffect(() => {
+    if (ownerRef.current === owner) return; // guard-ok: владелец тот же — сбрасывать нечего
+    console.log(`${LOG} owner: ${ownerRef.current ?? 'никого'} → ${owner ?? 'никого'} — сброс: прежнее место=${prevRef.current ? `${prevRef.current.place} (${prevRef.current.zone})` : 'нет'}, открытых окон rise=${rise ? 1 : 0} overtake=${overtake ? 1 : 0}, пометок показа=${consumedRef.current.size}`);
+    ownerRef.current = owner;
+    prevRef.current = null;
+    consumedRef.current = new Set();
+    setRise(null);
+    setOvertake(null);
+    // состояние окон читается только для журнала; сброс — строго по смене владельца
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [owner]);
 
   const snapshot = useMemo(
     () => (enabled && rows && weekId && roomFetchedAtMs !== null ? spirePositionOf(rows, rankBy, weekId, roomFetchedAtMs) : null),
@@ -117,7 +144,7 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
     prevRef.current = snapshot;
     const d = spireDecideRise(prev, snapshot, rows, rankBy);
     if (prev) console.log(`${LOG} rise ${d.show ? 'show' : 'skip'}: ${d.why}`);
-    if (d.show && !consumedRef.current.has(`rise:${d.show.key}`)) setRise(d.show);
+    if (d.show && !consumedRef.current.has(`rise:${d.show.key}`)) setRise({ owner, show: d.show });
   }, [snapshot, rows]);
 
   // ── overtake: место хуже между двумя загрузками комнаты (позиция хранится на устройстве) ──
@@ -136,9 +163,10 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
       const seen = readSeen(raw);
       if (seen && seen.roomFetchedAtMs !== snapshot.roomFetchedAtMs) {
         const d = spireDecideOvertake(seen, snapshot, rows, rankBy);
-        if (d.show && overtakeShownThisSession) console.log(`${LOG} overtake skip: уже показывали в этой сессии (${d.why})`);
+        const shownThisSession = overtakeShownForUid === uid;
+        if (d.show && shownThisSession) console.log(`${LOG} overtake skip: уже показывали в этой сессии этому аккаунту (${d.why})`);
         else console.log(`${LOG} overtake ${d.show ? 'show' : 'skip'}: ${d.why}`);
-        if (d.show && !overtakeShownThisSession && !consumedRef.current.has(`overtake:${d.show.key}`)) setOvertake(d.show);
+        if (d.show && !shownThisSession && !consumedRef.current.has(`overtake:${d.show.key}`)) setOvertake({ owner, show: d.show });
       }
       try {
         await AsyncStorage.setItem(key, JSON.stringify(snapshot));
@@ -153,12 +181,12 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
   useEffect(() => {
     if (!uid || !lang) return undefined;
     let alive = true;
-    setLastChanceShownWeek(undefined);
+    setLastChanceMark(undefined);
     void AsyncStorage.getItem(lastChanceKey(uid, lang))
-      .then((raw) => { if (alive) setLastChanceShownWeek(raw); })
+      .then((raw) => { if (alive) setLastChanceMark({ owner: ownerOf(uid, lang), show: raw }); })
       .catch((error: unknown) => {
         console.warn(`${LOG} lastChance: пометка не прочиталась (${String(error)}) — считаем, что не показывали`);
-        if (alive) setLastChanceShownWeek(null);
+        if (alive) setLastChanceMark({ owner: ownerOf(uid, lang), show: null });
       });
     return () => { alive = false; };
   }, [uid, lang]);
@@ -175,10 +203,10 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
   const consume = useCallback((kind: SpirePositionMomentKind, key: string) => {
     consumedRef.current.add(`${kind}:${key}`);
     console.log(`${LOG} consume kind=${kind} key=${key}`);
-    if (kind === 'overtake') overtakeShownThisSession = true;
+    if (kind === 'overtake') overtakeShownForUid = uid;
     if (kind === 'lastChance' && uid && lang) {
       const week = key.split(':')[0] ?? '';
-      setLastChanceShownWeek(week);
+      setLastChanceMark({ owner: ownerOf(uid, lang), show: week });
       AsyncStorage.setItem(lastChanceKey(uid, lang), week)
         .catch((error: unknown) => console.warn(`${LOG} lastChance: пометка не сохранилась (${String(error)}) — может показаться ещё раз на этой неделе`));
     }
@@ -188,15 +216,17 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
   return useMemo<SpirePositionMoments>(() => {
     const live = <T extends { key: string }>(kind: SpirePositionMomentKind, show: T | null): T | null =>
       (show && !consumedRef.current.has(`${kind}:${show.key}`) ? show : null);
+    // зачем (F17): окно отдаётся только своему владельцу — уже в том же кадре, где владелец сменился (до эффекта сброса)
+    const mine = <T,>(held: Owned<T> | null): T | null => (held && held.owner === owner ? held.show : null);
     return {
-      rise: live('rise', rise),
-      overtake: live('overtake', overtake),
+      rise: live('rise', mine(rise)),
+      overtake: live('overtake', mine(overtake)),
       lastChance: live('lastChance', lastChanceDecision?.show ?? null),
       consume,
     };
     // consumedTick — пересчёт после consume (сама пометка живёт в ref)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rise, overtake, lastChanceDecision, consume, consumedTick]);
+  }, [rise, overtake, lastChanceDecision, consume, consumedTick, owner]);
 }
 
 /* expo-router route shim */

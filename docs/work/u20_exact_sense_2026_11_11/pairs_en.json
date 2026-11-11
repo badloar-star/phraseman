@@ -1,0 +1,1815 @@
+[
+ {
+  "id": "en-classic-r1:01.17",
+  "loc": "vi",
+  "target": "She is at work.",
+  "old": "Cô ấy đang làm việc.",
+  "neu": "Cô ấy ở chỗ làm."
+ },
+ {
+  "id": "en-classic-r1:01.17",
+  "loc": "id",
+  "target": "She is at work.",
+  "old": "Dia sedang bekerja.",
+  "neu": "Dia di tempat kerja."
+ },
+ {
+  "id": "en-classic-r1:01.18",
+  "loc": "vi",
+  "target": "He is at work.",
+  "old": "Anh ấy đang làm việc.",
+  "neu": "Anh ấy ở chỗ làm."
+ },
+ {
+  "id": "en-classic-r1:01.18",
+  "loc": "id",
+  "target": "He is at work.",
+  "old": "Dia sedang bekerja.",
+  "neu": "Dia di tempat kerja."
+ },
+ {
+  "id": "en-classic-r1:01.20",
+  "loc": "vi",
+  "target": "They are at work.",
+  "old": "Họ đang làm việc.",
+  "neu": "Họ ở chỗ làm."
+ },
+ {
+  "id": "en-classic-r1:01.20",
+  "loc": "id",
+  "target": "They are at work.",
+  "old": "Mereka sedang bekerja.",
+  "neu": "Mereka di tempat kerja."
+ },
+ {
+  "id": "en-classic-r1:01.31",
+  "loc": "ru",
+  "target": "I am early.",
+  "old": "Я пришёл рано.",
+  "neu": "Я рано."
+ },
+ {
+  "id": "en-classic-r1:01.31",
+  "loc": "uk",
+  "target": "I am early.",
+  "old": "Я прийшов рано.",
+  "neu": "Я рано."
+ },
+ {
+  "id": "en-classic-r1:01.31",
+  "loc": "es",
+  "target": "I am early.",
+  "old": "Llegué temprano.",
+  "neu": "Llego temprano."
+ },
+ {
+  "id": "en-classic-r1:01.31",
+  "loc": "pt-BR",
+  "target": "I am early.",
+  "old": "Eu cheguei cedo.",
+  "neu": "Estou adiantado(a)."
+ },
+ {
+  "id": "en-classic-r1:01.32",
+  "loc": "ru",
+  "target": "You are early.",
+  "old": "Ты пришёл рано.",
+  "neu": "Ты рано."
+ },
+ {
+  "id": "en-classic-r1:01.32",
+  "loc": "uk",
+  "target": "You are early.",
+  "old": "Ти прийшов рано.",
+  "neu": "Ти рано."
+ },
+ {
+  "id": "en-classic-r1:01.32",
+  "loc": "es",
+  "target": "You are early.",
+  "old": "Llegaste temprano.",
+  "neu": "Llegas temprano."
+ },
+ {
+  "id": "en-classic-r1:01.32",
+  "loc": "pt-BR",
+  "target": "You are early.",
+  "old": "Você chegou cedo.",
+  "neu": "Você está adiantado(a)."
+ },
+ {
+  "id": "en-classic-r1:01.33",
+  "loc": "es",
+  "target": "She is late.",
+  "old": "Ella llegó tarde.",
+  "neu": "Ella llega tarde."
+ },
+ {
+  "id": "en-classic-r1:01.34",
+  "loc": "ru",
+  "target": "We are early.",
+  "old": "Мы пришли рано.",
+  "neu": "Мы рано."
+ },
+ {
+  "id": "en-classic-r1:01.34",
+  "loc": "uk",
+  "target": "We are early.",
+  "old": "Ми прийшли рано.",
+  "neu": "Ми рано."
+ },
+ {
+  "id": "en-classic-r1:01.34",
+  "loc": "pt-BR",
+  "target": "We are early.",
+  "old": "Nós chegamos cedo.",
+  "neu": "Nós estamos adiantados."
+ },
+ {
+  "id": "en-classic-r1:01.35",
+  "loc": "es",
+  "target": "They are late.",
+  "old": "Ellos llegaron tarde.",
+  "neu": "Ellos llegan tarde."
+ },
+ {
+  "id": "en-classic-r1:01.36",
+  "loc": "es",
+  "target": "The bus is late.",
+  "old": "El autobús llegó tarde.",
+  "neu": "El autobús llega tarde."
+ },
+ {
+  "id": "en-classic-r1:01.48",
+  "loc": "pt-BR",
+  "target": "The bus is here.",
+  "old": "O ônibus chegou.",
+  "neu": "O ônibus está aqui."
+ },
+ {
+  "id": "en-classic-r1:01.48",
+  "loc": "vi",
+  "target": "The bus is here.",
+  "old": "Xe buýt đến rồi.",
+  "neu": "Xe buýt ở đây."
+ },
+ {
+  "id": "en-classic-r1:02.01",
+  "loc": "ru",
+  "target": "I am not late.",
+  "old": "Я не опоздал.",
+  "neu": "Я не опаздываю."
+ },
+ {
+  "id": "en-classic-r1:02.01",
+  "loc": "uk",
+  "target": "I am not late.",
+  "old": "Я не запізнився.",
+  "neu": "Я не запізнююся."
+ },
+ {
+  "id": "en-classic-r1:02.02",
+  "loc": "ru",
+  "target": "You are not late.",
+  "old": "Вы не опоздали.",
+  "neu": "Вы не опаздываете."
+ },
+ {
+  "id": "en-classic-r1:02.02",
+  "loc": "uk",
+  "target": "You are not late.",
+  "old": "Ви не запізнилися.",
+  "neu": "Ви не запізнюєтеся."
+ },
+ {
+  "id": "en-classic-r1:02.07",
+  "loc": "id",
+  "target": "They are not at work.",
+  "old": "Mereka tidak sedang bekerja.",
+  "neu": "Mereka tidak di tempat kerja."
+ },
+ {
+  "id": "en-classic-r1:02.08",
+  "loc": "pl",
+  "target": "The door is not open.",
+  "old": "Drzwi są zamknięte.",
+  "neu": "Drzwi nie są otwarte."
+ },
+ {
+  "id": "en-classic-r1:02.09",
+  "loc": "es",
+  "target": "My phone is not on.",
+  "old": "Mi teléfono está apagado.",
+  "neu": "Mi teléfono no está encendido."
+ },
+ {
+  "id": "en-classic-r1:02.09",
+  "loc": "pt-BR",
+  "target": "My phone is not on.",
+  "old": "Meu telefone está desligado.",
+  "neu": "Meu telefone não está ligado."
+ },
+ {
+  "id": "en-classic-r1:02.09",
+  "loc": "pl",
+  "target": "My phone is not on.",
+  "old": "Mój telefon jest wyłączony.",
+  "neu": "Mój telefon nie jest włączony."
+ },
+ {
+  "id": "en-classic-r1:02.13",
+  "loc": "vi",
+  "target": "Is he at work?",
+  "old": "Anh ấy có đang làm việc không?",
+  "neu": "Anh ấy có ở chỗ làm không?"
+ },
+ {
+  "id": "en-classic-r1:02.13",
+  "loc": "id",
+  "target": "Is he at work?",
+  "old": "Apakah dia sedang bekerja?",
+  "neu": "Apakah dia di tempat kerja?"
+ },
+ {
+  "id": "en-classic-r1:02.15",
+  "loc": "vi",
+  "target": "Is it open?",
+  "old": "Cửa hàng có mở cửa không?",
+  "neu": "Nó có mở cửa không?"
+ },
+ {
+  "id": "en-classic-r1:02.15",
+  "loc": "id",
+  "target": "Is it open?",
+  "old": "Apakah toko ini buka?",
+  "neu": "Apakah itu buka?"
+ },
+ {
+  "id": "en-classic-r1:02.17",
+  "loc": "ru",
+  "target": "Am I early?",
+  "old": "Я пришёл рано?",
+  "neu": "Я рано?"
+ },
+ {
+  "id": "en-classic-r1:02.17",
+  "loc": "uk",
+  "target": "Am I early?",
+  "old": "Я прийшов рано?",
+  "neu": "Я рано?"
+ },
+ {
+  "id": "en-classic-r1:02.17",
+  "loc": "es",
+  "target": "Am I early?",
+  "old": "¿Llegué temprano?",
+  "neu": "¿Llego temprano?"
+ },
+ {
+  "id": "en-classic-r1:02.17",
+  "loc": "pt-BR",
+  "target": "Am I early?",
+  "old": "Cheguei cedo?",
+  "neu": "Estou adiantado(a)?"
+ },
+ {
+  "id": "en-classic-r1:02.18",
+  "loc": "ru",
+  "target": "Is the bus here?",
+  "old": "Автобус приехал?",
+  "neu": "Автобус здесь?"
+ },
+ {
+  "id": "en-classic-r1:02.18",
+  "loc": "uk",
+  "target": "Is the bus here?",
+  "old": "Автобус приїхав?",
+  "neu": "Автобус тут?"
+ },
+ {
+  "id": "en-classic-r1:02.18",
+  "loc": "pt-BR",
+  "target": "Is the bus here?",
+  "old": "O ônibus já chegou?",
+  "neu": "O ônibus está aqui?"
+ },
+ {
+  "id": "en-classic-r1:02.18",
+  "loc": "id",
+  "target": "Is the bus here?",
+  "old": "Apakah bus sudah datang?",
+  "neu": "Apakah bus ada di sini?"
+ },
+ {
+  "id": "en-classic-r1:02.18",
+  "loc": "tr",
+  "target": "Is the bus here?",
+  "old": "Otobüs geldi mi?",
+  "neu": "Otobüs burada mı?"
+ },
+ {
+  "id": "en-classic-r1:02.45",
+  "loc": "es",
+  "target": "The ticket office is not open.",
+  "old": "La taquilla está cerrada.",
+  "neu": "La taquilla no está abierta."
+ },
+ {
+  "id": "en-classic-r1:02.45",
+  "loc": "pt-BR",
+  "target": "The ticket office is not open.",
+  "old": "A bilheteria está fechada.",
+  "neu": "A bilheteria não está aberta."
+ },
+ {
+  "id": "en-classic-r1:02.45",
+  "loc": "pl",
+  "target": "The ticket office is not open.",
+  "old": "Kasa biletowa jest zamknięta.",
+  "neu": "Kasa biletowa nie jest otwarta."
+ },
+ {
+  "id": "en-classic-r1:02.48",
+  "loc": "pl",
+  "target": "I am not on the bus.",
+  "old": "Nie jadę autobusem.",
+  "neu": "Nie jestem w autobusie."
+ },
+ {
+  "id": "en-classic-r1:03.25",
+  "loc": "pl",
+  "target": "The cafe closes early.",
+  "old": "Kawiarnia zamyka się wcześniej.",
+  "neu": "Kawiarnia zamyka się wcześnie."
+ },
+ {
+  "id": "en-classic-r1:03.27",
+  "loc": "ru",
+  "target": "My shift starts soon.",
+  "old": "Моя смена скоро начнётся.",
+  "neu": "Моя смена скоро начинается."
+ },
+ {
+  "id": "en-classic-r1:03.29",
+  "loc": "es",
+  "target": "The bus stops nearby.",
+  "old": "La parada de autobús está cerca.",
+  "neu": "El autobús para cerca."
+ },
+ {
+  "id": "en-classic-r1:03.29",
+  "loc": "vi",
+  "target": "The bus stops nearby.",
+  "old": "Trạm xe buýt ở gần đó.",
+  "neu": "Xe buýt dừng ở gần đây."
+ },
+ {
+  "id": "en-classic-r1:03.29",
+  "loc": "id",
+  "target": "The bus stops nearby.",
+  "old": "Halte bus berada di dekat sini.",
+  "neu": "Bus berhenti di dekat sini."
+ },
+ {
+  "id": "en-classic-r1:03.29",
+  "loc": "tr",
+  "target": "The bus stops nearby.",
+  "old": "Otobüs durağı yakınlarda.",
+  "neu": "Otobüs yakınlarda duruyor."
+ },
+ {
+  "id": "en-classic-r1:03.31",
+  "loc": "pl",
+  "target": "I take the bus.",
+  "old": "Jadę autobusem.",
+  "neu": "Jeżdżę autobusem."
+ },
+ {
+  "id": "en-classic-r1:03.32",
+  "loc": "pl",
+  "target": "He takes the train.",
+  "old": "On jedzie pociągiem.",
+  "neu": "On jeździ pociągiem."
+ },
+ {
+  "id": "en-classic-r1:03.34",
+  "loc": "vi",
+  "target": "She shares a flat.",
+  "old": "Cô ấy ở chung căn hộ với tôi.",
+  "neu": "Cô ấy ở chung căn hộ."
+ },
+ {
+  "id": "en-classic-r1:04.16",
+  "loc": "pl",
+  "target": "This machine does not accept coins.",
+  "old": "Ten bankomat nie przyjmuje monet.",
+  "neu": "Ten automat nie przyjmuje monet."
+ },
+ {
+  "id": "en-classic-r1:04.21",
+  "loc": "id",
+  "target": "The door does not lock.",
+  "old": "Pintu tidak terkunci.",
+  "neu": "Pintu tidak bisa dikunci."
+ },
+ {
+  "id": "en-classic-r1:04.27",
+  "loc": "id",
+  "target": "The windows do not shut.",
+  "old": "Jendela tidak tertutup.",
+  "neu": "Jendela tidak bisa ditutup."
+ },
+ {
+  "id": "en-classic-r1:04.50",
+  "loc": "pl",
+  "target": "My card does not work in this machine.",
+  "old": "Moja karta nie działa w tym bankomacie.",
+  "neu": "Moja karta nie działa w tym automacie."
+ },
+ {
+  "id": "en-classic-r1:05.15",
+  "loc": "pl",
+  "target": "Does the door lock?",
+  "old": "Czy drzwi są zamknięte na klucz?",
+  "neu": "Czy drzwi zamykają się na klucz?"
+ },
+ {
+  "id": "en-classic-r1:05.17",
+  "loc": "pl",
+  "target": "Does the shop open early?",
+  "old": "Czy sklep otwiera się wcześniej?",
+  "neu": "Czy sklep otwiera się wcześnie?"
+ },
+ {
+  "id": "en-classic-r1:05.23",
+  "loc": "pl",
+  "target": "Do the rooms have heating?",
+  "old": "Czy pokoje są ogrzewane?",
+  "neu": "Czy pokoje mają ogrzewanie?"
+ },
+ {
+  "id": "en-classic-r1:05.31",
+  "loc": "tr",
+  "target": "Do you like your new shift?",
+  "old": "Yeni vardiyanızı beğendiniz mi?",
+  "neu": "Yeni vardiyanızı beğeniyor musunuz?"
+ },
+ {
+  "id": "en-classic-r1:05.32",
+  "loc": "pl",
+  "target": "Does your team start early?",
+  "old": "Czy Twój zespół zaczyna pracę wcześniej?",
+  "neu": "Czy Twój zespół zaczyna pracę wcześnie?"
+ },
+ {
+  "id": "en-classic-r1:05.45",
+  "loc": "vi",
+  "target": "Does anyone check the post?",
+  "old": "Có ai kiểm tra bưu kiện không?",
+  "neu": "Có ai kiểm tra thư không?"
+ },
+ {
+  "id": "en-classic-r1:05.46",
+  "loc": "pl",
+  "target": "Do I collect it here?",
+  "old": "Czy mogę odebrać przesyłkę tutaj?",
+  "neu": "Czy odbieram to tutaj?"
+ },
+ {
+  "id": "en-classic-r1:05.47",
+  "loc": "pl",
+  "target": "Do I show my ticket at the gate?",
+  "old": "Czy muszę okazać bilet przy bramce?",
+  "neu": "Czy pokazuję bilet przy bramce?"
+ },
+ {
+  "id": "en-classic-r1:06.27",
+  "loc": "pt-BR",
+  "target": "Where do I return this parcel?",
+  "old": "Onde posso devolver esta encomenda?",
+  "neu": "Onde eu devolvo esta encomenda?"
+ },
+ {
+  "id": "en-classic-r1:06.27",
+  "loc": "pl",
+  "target": "Where do I return this parcel?",
+  "old": "Gdzie mogę zwrócić tę paczkę?",
+  "neu": "Gdzie zwracam tę paczkę?"
+ },
+ {
+  "id": "en-classic-r1:06.30",
+  "loc": "pl",
+  "target": "Why does this one cost more?",
+  "old": "Dlaczego ta karta jest droższa?",
+  "neu": "Dlaczego ta kosztuje więcej?"
+ },
+ {
+  "id": "en-classic-r1:07.01",
+  "loc": "pl",
+  "target": "I have a ticket.",
+  "old": "Mam mandat.",
+  "neu": "Mam bilet."
+ },
+ {
+  "id": "en-classic-r1:07.02",
+  "loc": "pl",
+  "target": "She has a ticket.",
+  "old": "Ona ma mandat.",
+  "neu": "Ona ma bilet."
+ },
+ {
+  "id": "en-classic-r1:07.15",
+  "loc": "tr",
+  "target": "My daughter has a cold.",
+  "old": "Kızım nezle oldu.",
+  "neu": "Kızımın nezlesi var."
+ },
+ {
+  "id": "en-classic-r1:07.24",
+  "loc": "tr",
+  "target": "Does he have any change?",
+  "old": "Parası var mı?",
+  "neu": "Bozuk parası var mı?"
+ },
+ {
+  "id": "en-classic-r1:08.21",
+  "loc": "ru",
+  "target": "The office closes on public holidays.",
+  "old": "Офис закрыт в праздничные дни.",
+  "neu": "Офис закрывается в праздничные дни."
+ },
+ {
+  "id": "en-classic-r1:08.21",
+  "loc": "tr",
+  "target": "The office closes on public holidays.",
+  "old": "Ofis resmi tatillerde kapalı.",
+  "neu": "Ofis resmi tatillerde kapanır."
+ },
+ {
+  "id": "en-classic-r1:08.21",
+  "loc": "pl",
+  "target": "The office closes on public holidays.",
+  "old": "Biuro jest nieczynne w święta.",
+  "neu": "Biuro zamyka się w święta."
+ },
+ {
+  "id": "en-classic-r1:08.25",
+  "loc": "ru",
+  "target": "The market opens on Saturdays.",
+  "old": "Рынок открыт по субботам.",
+  "neu": "Рынок открывается по субботам."
+ },
+ {
+  "id": "en-classic-r1:08.25",
+  "loc": "pl",
+  "target": "The market opens on Saturdays.",
+  "old": "Targ jest otwarty w soboty.",
+  "neu": "Targ otwiera się w soboty."
+ },
+ {
+  "id": "en-classic-r1:08.26",
+  "loc": "ru",
+  "target": "The parcel arrives on Monday afternoon.",
+  "old": "Посылка прибудет в понедельник днем.",
+  "neu": "Посылка приходит в понедельник днём."
+ },
+ {
+  "id": "en-classic-r1:08.33",
+  "loc": "ru",
+  "target": "The kitchen gets hot in summer.",
+  "old": "На кухне летом жарко.",
+  "neu": "Летом на кухне становится жарко."
+ },
+ {
+  "id": "en-classic-r1:08.45",
+  "loc": "pl",
+  "target": "The shop closes early today.",
+  "old": "Sklep zamyka się dziś wcześniej.",
+  "neu": "Sklep zamyka się dziś wcześnie."
+ },
+ {
+  "id": "en-classic-r1:10.10",
+  "loc": "id",
+  "target": "They cannot stay late.",
+  "old": "Mereka tidak bisa tinggal lebih lama.",
+  "neu": "Mereka tidak bisa tinggal sampai larut."
+ },
+ {
+  "id": "en-classic-r1:10.10",
+  "loc": "pl",
+  "target": "They cannot stay late.",
+  "old": "Nie mogą zostać dłużej.",
+  "neu": "Nie mogą zostać do późna."
+ },
+ {
+  "id": "en-classic-r1:10.17",
+  "loc": "es",
+  "target": "Can I borrow a pen?",
+  "old": "¿Me prestas un bolígrafo?",
+  "neu": "¿Puedo tomar prestado un bolígrafo?"
+ },
+ {
+  "id": "en-classic-r1:11.01",
+  "loc": "ru",
+  "target": "I walked home yesterday.",
+  "old": "Я вчера шел домой пешком.",
+  "neu": "Я вчера пошёл домой пешком."
+ },
+ {
+  "id": "en-classic-r1:11.02",
+  "loc": "pl",
+  "target": "She walked to the station.",
+  "old": "Ona poszła na stację.",
+  "neu": "Ona poszła pieszo na stację."
+ },
+ {
+  "id": "en-classic-r1:12.29",
+  "loc": "es",
+  "target": "He broke his glasses.",
+  "old": "Se le rompieron las gafas.",
+  "neu": "Él rompió sus gafas."
+ },
+ {
+  "id": "en-classic-r1:13.05",
+  "loc": "pl",
+  "target": "They will meet us here.",
+  "old": "Spotkają się tutaj.",
+  "neu": "Spotkają się z nami tutaj."
+ },
+ {
+  "id": "en-classic-r1:13.19",
+  "loc": "pl",
+  "target": "There will be a small fee for delivery.",
+  "old": "Za dostawę pobierana jest niewielka opłata.",
+  "neu": "Za dostawę będzie niewielka opłata."
+ },
+ {
+  "id": "en-classic-r1:13.32",
+  "loc": "tr",
+  "target": "Will she need a lift?",
+  "old": "Ona bir araçla götürmem gerekecek mi?",
+  "neu": "Onu arabayla bırakmak gerekecek mi?"
+ },
+ {
+  "id": "en-classic-r1:13.44",
+  "loc": "pl",
+  "target": "The new timetable will start next month.",
+  "old": "Nowy rozkład jazdy będzie obowiązywał w przyszłym miesiącu.",
+  "neu": "Nowy rozkład jazdy zacznie obowiązywać w przyszłym miesiącu."
+ },
+ {
+  "id": "en-classic-r1:13.45",
+  "loc": "pt-BR",
+  "target": "The forecast says it will rain after lunch.",
+  "old": "A previsão é de chuva depois do almoço.",
+  "neu": "A previsão diz que vai chover depois do almoço."
+ },
+ {
+  "id": "en-classic-r1:14.42",
+  "loc": "pl",
+  "target": "Is the larger room more expensive?",
+  "old": "Czy większy przedział jest droższy?",
+  "neu": "Czy większy pokój jest droższy?"
+ },
+ {
+  "id": "en-classic-r1:15.46",
+  "loc": "tr",
+  "target": "I have the driver's number.",
+  "old": "Şoförün numarasını biliyorum.",
+  "neu": "Şoförün numarası bende."
+ },
+ {
+  "id": "en-classic-r1:16.05",
+  "loc": "pl",
+  "target": "We set off for the harbour before lunch.",
+  "old": "Wyruszymy do portu przed obiadem.",
+  "neu": "Wyruszyliśmy do portu przed obiadem."
+ },
+ {
+  "id": "en-classic-r1:16.08",
+  "loc": "pl",
+  "target": "Come back after the rehearsal.",
+  "old": "Wrócimy po próbie.",
+  "neu": "Wróć po próbie."
+ },
+ {
+  "id": "en-classic-r1:17.03",
+  "loc": "id",
+  "target": "We are leaving.",
+  "old": "Kami akan pergi.",
+  "neu": "Kami sedang berangkat."
+ },
+ {
+  "id": "en-classic-r1:17.04",
+  "loc": "id",
+  "target": "They are leaving.",
+  "old": "Mereka akan pergi.",
+  "neu": "Mereka sedang berangkat."
+ },
+ {
+  "id": "en-classic-r1:17.33",
+  "loc": "es",
+  "target": "We are not staying overnight.",
+  "old": "No nos quedaremos a pasar la noche.",
+  "neu": "No nos quedamos a pasar la noche."
+ },
+ {
+  "id": "en-classic-r1:17.33",
+  "loc": "tr",
+  "target": "We are not staying overnight.",
+  "old": "Geceyi burada geçirmeyeceğiz.",
+  "neu": "Geceyi burada geçirmiyoruz."
+ },
+ {
+  "id": "en-classic-r1:17.36",
+  "loc": "pl",
+  "target": "They are not working today.",
+  "old": "Dzisiaj nie działają.",
+  "neu": "Dzisiaj nie pracują."
+ },
+ {
+  "id": "en-classic-r1:17.39",
+  "loc": "ru",
+  "target": "I am not taking the car.",
+  "old": "Я не поеду на машине.",
+  "neu": "Я не беру машину."
+ },
+ {
+  "id": "en-classic-r1:17.39",
+  "loc": "uk",
+  "target": "I am not taking the car.",
+  "old": "Я не поїду машиною.",
+  "neu": "Я не беру машину."
+ },
+ {
+  "id": "en-classic-r1:17.40",
+  "loc": "es",
+  "target": "The bus is not moving.",
+  "old": "El autobús está parado.",
+  "neu": "El autobús no se mueve."
+ },
+ {
+  "id": "en-classic-r1:17.40",
+  "loc": "pl",
+  "target": "The bus is not moving.",
+  "old": "Autobus stoi.",
+  "neu": "Autobus się nie rusza."
+ },
+ {
+  "id": "en-classic-r1:18.04",
+  "loc": "pl",
+  "target": "Sit down here.",
+  "old": "Proszę usiąść.",
+  "neu": "Proszę usiąść tutaj."
+ },
+ {
+  "id": "en-classic-r1:18.08",
+  "loc": "vi",
+  "target": "Keep the door closed.",
+  "old": "Đóng cửa lại.",
+  "neu": "Giữ cửa luôn đóng."
+ },
+ {
+  "id": "en-classic-r1:18.08",
+  "loc": "id",
+  "target": "Keep the door closed.",
+  "old": "Tutup pintunya.",
+  "neu": "Jaga pintu tetap tertutup."
+ },
+ {
+  "id": "en-classic-r1:18.08",
+  "loc": "pl",
+  "target": "Keep the door closed.",
+  "old": "Drzwi powinny być zamknięte.",
+  "neu": "Trzymaj drzwi zamknięte."
+ },
+ {
+  "id": "en-classic-r1:18.40",
+  "loc": "pl",
+  "target": "Ring the bell once.",
+  "old": "Zadzwoń raz.",
+  "neu": "Zadzwoń dzwonkiem raz."
+ },
+ {
+  "id": "en-classic-r1:19.14",
+  "loc": "tr",
+  "target": "She is on the bus.",
+  "old": "Otobüste.",
+  "neu": "O otobüste."
+ },
+ {
+  "id": "en-classic-r1:19.15",
+  "loc": "tr",
+  "target": "He is in the taxi.",
+  "old": "Takside.",
+  "neu": "O takside."
+ },
+ {
+  "id": "en-classic-r1:19.32",
+  "loc": "es",
+  "target": "Put the folder on the desk.",
+  "old": "Ponga la carpeta sobre el mostrador.",
+  "neu": "Ponga la carpeta sobre el escritorio."
+ },
+ {
+  "id": "en-classic-r1:19.42",
+  "loc": "es",
+  "target": "There is a hole in my pocket.",
+  "old": "Tengo un agujero en el bolsillo.",
+  "neu": "Hay un agujero en mi bolsillo."
+ },
+ {
+  "id": "en-classic-r1:20.18",
+  "loc": "ru",
+  "target": "We booked a taxi. The taxi came early.",
+  "old": "Мы заказали такси. Такси приехало раньше.",
+  "neu": "Мы заказали такси. Такси приехало рано."
+ },
+ {
+  "id": "en-classic-r1:20.18",
+  "loc": "uk",
+  "target": "We booked a taxi. The taxi came early.",
+  "old": "Ми замовили таксі. Таксі приїхало раніше.",
+  "neu": "Ми замовили таксі. Таксі приїхало рано."
+ },
+ {
+  "id": "en-classic-r1:20.18",
+  "loc": "pl",
+  "target": "We booked a taxi. The taxi came early.",
+  "old": "Zamówiliśmy taksówkę. Taksówka przyjechała wcześniej.",
+  "neu": "Zamówiliśmy taksówkę. Taksówka przyjechała wcześnie."
+ },
+ {
+  "id": "en-classic-r1:21.05",
+  "loc": "pt-BR",
+  "target": "I need someone to help.",
+  "old": "Preciso de ajuda.",
+  "neu": "Preciso de alguém para ajudar."
+ },
+ {
+  "id": "en-classic-r1:21.05",
+  "loc": "id",
+  "target": "I need someone to help.",
+  "old": "Saya butuh bantuan.",
+  "neu": "Saya butuh seseorang untuk membantu."
+ },
+ {
+  "id": "en-classic-r1:21.07",
+  "loc": "tr",
+  "target": "Someone has my number.",
+  "old": "Birinin numaramı biliyor.",
+  "neu": "Birinde numaram var."
+ },
+ {
+  "id": "en-classic-r1:21.18",
+  "loc": "pl",
+  "target": "Did you go anywhere yesterday?",
+  "old": "Czy byłeś gdzieś wczoraj?",
+  "neu": "Czy poszedłeś gdzieś wczoraj?"
+ },
+ {
+  "id": "en-classic-r1:21.20",
+  "loc": "es",
+  "target": "Can I get you anything?",
+  "old": "¿Quieres algo?",
+  "neu": "¿Puedo traerte algo?"
+ },
+ {
+  "id": "en-classic-r1:21.20",
+  "loc": "id",
+  "target": "Can I get you anything?",
+  "old": "Apakah ada yang bisa saya bantu?",
+  "neu": "Bisakah saya mengambilkan sesuatu untuk Anda?"
+ },
+ {
+  "id": "en-classic-r1:21.20",
+  "loc": "pl",
+  "target": "Can I get you anything?",
+  "old": "Czy mogę coś załatwić?",
+  "neu": "Czy mogę ci coś przynieść?"
+ },
+ {
+  "id": "en-classic-r1:21.33",
+  "loc": "id",
+  "target": "Everyone has a seat.",
+  "old": "Semua orang sudah duduk.",
+  "neu": "Semua orang punya tempat duduk."
+ },
+ {
+  "id": "en-classic-r1:23.46",
+  "loc": "id",
+  "target": "The back door must be kept clear.",
+  "old": "Pintu belakang harus tetap terbuka.",
+  "neu": "Pintu belakang harus tetap tidak terhalang."
+ },
+ {
+  "id": "en-classic-r1:23.46",
+  "loc": "pl",
+  "target": "The back door must be kept clear.",
+  "old": "Tylne drzwi muszą być czyste.",
+  "neu": "Tylne drzwi muszą być niezastawione."
+ },
+ {
+  "id": "en-classic-r1:25.08",
+  "loc": "pt-BR",
+  "target": "You were standing by the lift.",
+  "old": "Você estava perto do elevador.",
+  "neu": "Você estava em pé perto do elevador."
+ },
+ {
+  "id": "en-classic-r1:25.15",
+  "loc": "pt-BR",
+  "target": "They were travelling all afternoon.",
+  "old": "Eles viajaram a tarde toda.",
+  "neu": "Eles estavam viajando a tarde toda."
+ },
+ {
+  "id": "en-classic-r1:25.23",
+  "loc": "pl",
+  "target": "We were waiting when the taxi arrived.",
+  "old": "Czekaliśmy, aż przyjechała taksówka.",
+  "neu": "Czekaliśmy, kiedy przyjechała taksówka."
+ },
+ {
+  "id": "en-classic-r1:25.36",
+  "loc": "pl",
+  "target": "Why was the smoke alarm ringing?",
+  "old": "Dlaczego zadzwonił alarm przeciwpożarowy?",
+  "neu": "Dlaczego dzwonił alarm przeciwpożarowy?"
+ },
+ {
+  "id": "en-classic-r1:25.42",
+  "loc": "es",
+  "target": "While he was reading, I was cooking our meal.",
+  "old": "Mientras él leía, yo cocinaba.",
+  "neu": "Mientras él leía, yo cocinaba nuestra comida."
+ },
+ {
+  "id": "en-classic-r1:25.48",
+  "loc": "pl",
+  "target": "The shop was closing as we arrived.",
+  "old": "Sklep był już zamykany, kiedy dojeżdżaliśmy.",
+  "neu": "Sklep się zamykał, kiedy przyjechaliśmy."
+ },
+ {
+  "id": "en-classic-r1:26.05",
+  "loc": "pl",
+  "target": "If the latch sticks, lift the handle.",
+  "old": "Jeśli zatrzaśnie się zamek, podnieś klamkę.",
+  "neu": "Jeśli zasuwka się zacina, podnieś klamkę."
+ },
+ {
+  "id": "en-classic-r1:26.09",
+  "loc": "es",
+  "target": "If you wait in the shade, I will get the key.",
+  "old": "Si esperas a la sombra, te daré la llave.",
+  "neu": "Si esperas a la sombra, traeré la llave."
+ },
+ {
+  "id": "en-classic-r1:26.38",
+  "loc": "pl",
+  "target": "Who will lock up if you leave early?",
+  "old": "Kto zamknie drzwi, jeśli wyjadę wcześniej?",
+  "neu": "Kto zamknie drzwi, jeśli wyjdziesz wcześnie?"
+ },
+ {
+  "id": "en-classic-r1:27.16",
+  "loc": "vi",
+  "target": "They told me the price included breakfast.",
+  "old": "Họ nói với tôi giá vé đã bao gồm bữa sáng.",
+  "neu": "Họ nói với tôi giá đã bao gồm bữa sáng."
+ },
+ {
+  "id": "en-classic-r1:27.28",
+  "loc": "id",
+  "target": "I told her I would keep a seat.",
+  "old": "Saya memberi tahu dia bahwa saya akan tetap duduk.",
+  "neu": "Saya memberi tahu dia bahwa saya akan menyimpan satu tempat duduk."
+ },
+ {
+  "id": "en-classic-r1:27.37",
+  "loc": "pl",
+  "target": "She asked whether we wanted a replacement.",
+  "old": "Zapytała, czy chcemy nową bramkę.",
+  "neu": "Zapytała, czy chcieliśmy zamiennik."
+ },
+ {
+  "id": "en-classic-r1:27.49",
+  "loc": "id",
+  "target": "She told me the parcel would arrive the next day.",
+  "old": "Dia bilang paketnya akan tiba besok.",
+  "neu": "Dia bilang paketnya akan tiba keesokan harinya."
+ },
+ {
+  "id": "en-classic-r1:28.19",
+  "loc": "vi",
+  "target": "We gave ourselves extra time.",
+  "old": "Chúng tôi dành thêm thời gian cho nhau.",
+  "neu": "Chúng tôi dành thêm thời gian cho bản thân."
+ },
+ {
+  "id": "en-classic-r1:28.45",
+  "loc": "vi",
+  "target": "She cut the bread, not herself.",
+  "old": "Cô ấy cắt bánh mì, chứ không phải tự mình cắt.",
+  "neu": "Cô ấy cắt bánh mì, chứ không cắt vào chính mình."
+ },
+ {
+  "id": "en-classic-r1:28.45",
+  "loc": "pl",
+  "target": "She cut the bread, not herself.",
+  "old": "To ona kroiła chleb, a nie ona.",
+  "neu": "Ona pokroiła chleb, a nie siebie."
+ },
+ {
+  "id": "en-classic-r1:29.03",
+  "loc": "uk",
+  "target": "We used to share a flat.",
+  "old": "Ми ділили квартиру.",
+  "neu": "Раніше ми ділили квартиру."
+ },
+ {
+  "id": "en-classic-r1:29.35",
+  "loc": "vi",
+  "target": "Where did you use to buy your tickets?",
+  "old": "Bạn có từng mua vé ở đâu?",
+  "neu": "Trước đây bạn thường mua vé ở đâu?"
+ },
+ {
+  "id": "en-classic-r1:29.36",
+  "loc": "vi",
+  "target": "Who did you use to share a flat with?",
+  "old": "Bạn có từng ở chung căn hộ với ai?",
+  "neu": "Trước đây bạn từng ở chung căn hộ với ai?"
+ },
+ {
+  "id": "en-classic-r1:29.39",
+  "loc": "vi",
+  "target": "Was this the shop you used to visit?",
+  "old": "Đây có phải là cửa hàng bạn thường đến không?",
+  "neu": "Đây có phải là cửa hàng trước đây bạn hay đến không?"
+ },
+ {
+  "id": "en-classic-r1:29.39",
+  "loc": "tr",
+  "target": "Was this the shop you used to visit?",
+  "old": "Eskiden bu dükkana mı gidiyordunuz?",
+  "neu": "Eskiden gittiğiniz dükkan bu muydu?"
+ },
+ {
+  "id": "en-classic-r1:29.44",
+  "loc": "pl",
+  "target": "He used to print every ticket; now he uses his phone.",
+  "old": "Kiedyś drukował każdy paragon, teraz korzysta z telefonu.",
+  "neu": "Kiedyś drukował każdy bilet, teraz korzysta z telefonu."
+ },
+ {
+  "id": "en-classic-r1:30.09",
+  "loc": "ru",
+  "target": "The key that opens the barrier is missing.",
+  "old": "Ключ, который открывает шлагбаум, пропал.",
+  "neu": "Ключа, который открывает шлагбаум, нет на месте."
+ },
+ {
+  "id": "en-classic-r1:30.43",
+  "loc": "vi",
+  "target": "The route we took went past the playground.",
+  "old": "Tuyến đường chúng tôi đi qua có sân chơi.",
+  "neu": "Con đường chúng tôi đi chạy ngang qua sân chơi."
+ },
+ {
+  "id": "en-classic-r1:30.50",
+  "loc": "es",
+  "target": "Who is the person who handles complaints?",
+  "old": "¿Quién se encarga de las quejas?",
+  "neu": "¿Quién es la persona que se encarga de las quejas?"
+ },
+ {
+  "id": "en-classic-r1:30.50",
+  "loc": "tr",
+  "target": "Who is the person who handles complaints?",
+  "old": "Şikayetlerle kim ilgileniyor?",
+  "neu": "Şikayetlerle ilgilenen kişi kim?"
+ },
+ {
+  "id": "en-classic-r1:30.50",
+  "loc": "pl",
+  "target": "Who is the person who handles complaints?",
+  "old": "Kto zajmuje się reklamacjami?",
+  "neu": "Kto jest osobą, która zajmuje się reklamacjami?"
+ },
+ {
+  "id": "en-classic-r1:31.12",
+  "loc": "vi",
+  "target": "We heard her pour water into the pan.",
+  "old": "Chúng tôi nghe thấy cô ấy đổ nước vào chậu.",
+  "neu": "Chúng tôi nghe thấy cô ấy đổ nước vào nồi."
+ },
+ {
+  "id": "en-classic-r1:31.12",
+  "loc": "pl",
+  "target": "We heard her pour water into the pan.",
+  "old": "Słyszeliśmy, jak nalewa wodę do miski.",
+  "neu": "Słyszeliśmy, jak nalewa wodę do garnka."
+ },
+ {
+  "id": "en-classic-r1:31.15",
+  "loc": "pt-BR",
+  "target": "I felt it move.",
+  "old": "Eu senti o movimento.",
+  "neu": "Eu senti aquilo se mexer."
+ },
+ {
+  "id": "en-classic-r1:31.28",
+  "loc": "vi",
+  "target": "We saw Anna lend the driver a pen.",
+  "old": "Chúng tôi thấy Anna đưa cho tài xế một cây bút.",
+  "neu": "Chúng tôi thấy Anna cho tài xế mượn một cây bút."
+ },
+ {
+  "id": "en-classic-r1:31.37",
+  "loc": "es",
+  "target": "The smoke made my eyes water.",
+  "old": "El humo me hizo llorar.",
+  "neu": "El humo hizo que me lagrimearan los ojos."
+ },
+ {
+  "id": "en-classic-r1:31.48",
+  "loc": "ru",
+  "target": "She let me borrow her waterproof jacket.",
+  "old": "Она одолжила мне свою водонепроницаемую куртку.",
+  "neu": "Она разрешила мне взять на время её водонепроницаемую куртку."
+ },
+ {
+  "id": "en-classic-r1:31.48",
+  "loc": "uk",
+  "target": "She let me borrow her waterproof jacket.",
+  "old": "Вона позичила мені свою водонепроникну куртку.",
+  "neu": "Вона дозволила мені позичити її водонепроникну куртку."
+ },
+ {
+  "id": "en-classic-r1:31.48",
+  "loc": "es",
+  "target": "She let me borrow her waterproof jacket.",
+  "old": "Me prestó su chaqueta impermeable.",
+  "neu": "Me dejó tomar prestada su chaqueta impermeable."
+ },
+ {
+  "id": "en-classic-r1:31.48",
+  "loc": "pt-BR",
+  "target": "She let me borrow her waterproof jacket.",
+  "old": "Ela me emprestou sua jaqueta impermeável.",
+  "neu": "Ela me deixou pegar emprestada sua jaqueta impermeável."
+ },
+ {
+  "id": "en-classic-r1:31.48",
+  "loc": "id",
+  "target": "She let me borrow her waterproof jacket.",
+  "old": "Dia meminjamkan jaket tahan airnya kepada saya.",
+  "neu": "Dia mengizinkan saya meminjam jaket tahan airnya."
+ },
+ {
+  "id": "en-classic-r1:31.48",
+  "loc": "tr",
+  "target": "She let me borrow her waterproof jacket.",
+  "old": "Su geçirmez ceketini bana ödünç verdi.",
+  "neu": "Su geçirmez ceketini ödünç almama izin verdi."
+ },
+ {
+  "id": "en-classic-r1:32.08",
+  "loc": "ru",
+  "target": "Please keep the fire exit clear.",
+  "old": "Пожалуйста, не закрывайте пожарный выход.",
+  "neu": "Пожалуйста, держите пожарный выход свободным."
+ },
+ {
+  "id": "en-classic-r1:32.38",
+  "loc": "ru",
+  "target": "Would you mind checking the doorbell before you leave?",
+  "old": "Не могли бы вы проверить дверной звонок перед отъездом?",
+  "neu": "Вас не затруднит проверить дверной звонок перед отъездом?"
+ },
+ {
+  "id": "en-classic-r1:32.38",
+  "loc": "uk",
+  "target": "Would you mind checking the doorbell before you leave?",
+  "old": "Не могли б ви перевірити дзвінок перед тим, як піти?",
+  "neu": "Вам не важко перевірити дзвінок перед тим, як піти?"
+ },
+ {
+  "id": "en-classic-r1:32.38",
+  "loc": "tr",
+  "target": "Would you mind checking the doorbell before you leave?",
+  "old": "Ayrılmadan önce kapı zilini kontrol eder misiniz?",
+  "neu": "Ayrılmadan önce kapı zilini kontrol etmenizin sakıncası var mı?"
+ },
+ {
+  "id": "en-classic-r1:32.38",
+  "loc": "pl",
+  "target": "Would you mind checking the doorbell before you leave?",
+  "old": "Czy mógłby Pan sprawdzić dzwonek przed wyjściem?",
+  "neu": "Czy miałby Pan coś przeciwko sprawdzeniu dzwonka przed wyjściem?"
+ },
+ {
+  "id": "en-classic-r1:27.01",
+  "loc": "pl",
+  "target": "Anna said she was tired.",
+  "old": "Anna powiedziała, że ​​jest zmęczona.",
+  "neu": "Anna powiedziała, że była zmęczona."
+ },
+ {
+  "id": "en-classic-r1:27.02",
+  "loc": "ru",
+  "target": "Tom said he was ready.",
+  "old": "Том сказал, что готов.",
+  "neu": "Том сказал, что был готов."
+ },
+ {
+  "id": "en-classic-r1:27.02",
+  "loc": "uk",
+  "target": "Tom said he was ready.",
+  "old": "Том сказав, що готовий.",
+  "neu": "Том сказав, що був готовий."
+ },
+ {
+  "id": "en-classic-r1:27.02",
+  "loc": "pl",
+  "target": "Tom said he was ready.",
+  "old": "Tom powiedział, że jest gotowy.",
+  "neu": "Tom powiedział, że był gotowy."
+ },
+ {
+  "id": "en-classic-r1:27.03",
+  "loc": "ru",
+  "target": "She said the new shift was less stressful.",
+  "old": "Она сказала, что новая смена менее стрессовая.",
+  "neu": "Она сказала, что новая смена была менее стрессовой."
+ },
+ {
+  "id": "en-classic-r1:27.03",
+  "loc": "uk",
+  "target": "She said the new shift was less stressful.",
+  "old": "Вона сказала, що нова зміна менш стресова.",
+  "neu": "Вона сказала, що нова зміна була менш стресовою."
+ },
+ {
+  "id": "en-classic-r1:27.03",
+  "loc": "pl",
+  "target": "She said the new shift was less stressful.",
+  "old": "Powiedziała, że ​​nowa zmiana jest mniej stresująca.",
+  "neu": "Powiedziała, że nowa zmiana była mniej stresująca."
+ },
+ {
+  "id": "en-classic-r1:27.04",
+  "loc": "ru",
+  "target": "He said the shop was closed.",
+  "old": "Он сказал, что магазин закрыт.",
+  "neu": "Он сказал, что магазин был закрыт."
+ },
+ {
+  "id": "en-classic-r1:27.04",
+  "loc": "uk",
+  "target": "He said the shop was closed.",
+  "old": "Він сказав, що магазин закритий.",
+  "neu": "Він сказав, що магазин був закритий."
+ },
+ {
+  "id": "en-classic-r1:27.04",
+  "loc": "pl",
+  "target": "He said the shop was closed.",
+  "old": "Powiedział, że sklep jest zamknięty.",
+  "neu": "Powiedział, że sklep był zamknięty."
+ },
+ {
+  "id": "en-classic-r1:27.05",
+  "loc": "ru",
+  "target": "They said there was a fee for storage.",
+  "old": "Они сказали, что за хранение взимается плата.",
+  "neu": "Они сказали, что за хранение была плата."
+ },
+ {
+  "id": "en-classic-r1:27.05",
+  "loc": "uk",
+  "target": "They said there was a fee for storage.",
+  "old": "Вони сказали, що за зберігання стягується плата.",
+  "neu": "Вони сказали, що за зберігання була плата."
+ },
+ {
+  "id": "en-classic-r1:27.05",
+  "loc": "pl",
+  "target": "They said there was a fee for storage.",
+  "old": "Powiedzieli, że jest opłata za magazynowanie.",
+  "neu": "Powiedzieli, że była opłata za magazynowanie."
+ },
+ {
+  "id": "en-classic-r1:27.06",
+  "loc": "ru",
+  "target": "I said I needed a receipt.",
+  "old": "Я сказал, что мне нужен чек.",
+  "neu": "Я сказал, что мне был нужен чек."
+ },
+ {
+  "id": "en-classic-r1:27.06",
+  "loc": "uk",
+  "target": "I said I needed a receipt.",
+  "old": "Я сказав, що мені потрібен чек.",
+  "neu": "Я сказав, що мені був потрібен чек."
+ },
+ {
+  "id": "en-classic-r1:27.06",
+  "loc": "pl",
+  "target": "I said I needed a receipt.",
+  "old": "Powiedziałem, że potrzebuję paragonu.",
+  "neu": "Powiedziałem, że potrzebowałem paragonu."
+ },
+ {
+  "id": "en-classic-r1:27.07",
+  "loc": "ru",
+  "target": "We said we wanted two seats.",
+  "old": "Мы сказали, что хотим два места.",
+  "neu": "Мы сказали, что хотели два места."
+ },
+ {
+  "id": "en-classic-r1:27.07",
+  "loc": "uk",
+  "target": "We said we wanted two seats.",
+  "old": "Ми сказали, що хочемо два місця.",
+  "neu": "Ми сказали, що хотіли два місця."
+ },
+ {
+  "id": "en-classic-r1:27.07",
+  "loc": "pl",
+  "target": "We said we wanted two seats.",
+  "old": "Powiedzieliśmy, że chcemy dwa miejsca.",
+  "neu": "Powiedzieliśmy, że chcieliśmy dwa miejsca."
+ },
+ {
+  "id": "en-classic-r1:27.08",
+  "loc": "ru",
+  "target": "She said she knew the address.",
+  "old": "Она сказала, что знает адрес.",
+  "neu": "Она сказала, что знала адрес."
+ },
+ {
+  "id": "en-classic-r1:27.08",
+  "loc": "uk",
+  "target": "She said she knew the address.",
+  "old": "Вона сказала, що знає адресу.",
+  "neu": "Вона сказала, що знала адресу."
+ },
+ {
+  "id": "en-classic-r1:27.08",
+  "loc": "pl",
+  "target": "She said she knew the address.",
+  "old": "Powiedziała, że ​​zna adres.",
+  "neu": "Powiedziała, że znała adres."
+ },
+ {
+  "id": "en-classic-r1:27.09",
+  "loc": "ru",
+  "target": "He said he had a spare key.",
+  "old": "Он сказал, что у него есть запасной ключ.",
+  "neu": "Он сказал, что у него был запасной ключ."
+ },
+ {
+  "id": "en-classic-r1:27.09",
+  "loc": "uk",
+  "target": "He said he had a spare key.",
+  "old": "Він сказав, що в нього є запасний ключ.",
+  "neu": "Він сказав, що в нього був запасний ключ."
+ },
+ {
+  "id": "en-classic-r1:27.09",
+  "loc": "pl",
+  "target": "He said he had a spare key.",
+  "old": "Powiedział, że ma zapasowy klucz.",
+  "neu": "Powiedział, że miał zapasowy klucz."
+ },
+ {
+  "id": "en-classic-r1:27.11",
+  "loc": "ru",
+  "target": "She told me she was downstairs.",
+  "old": "Она сказала мне, что она внизу.",
+  "neu": "Она сказала мне, что была внизу."
+ },
+ {
+  "id": "en-classic-r1:27.11",
+  "loc": "uk",
+  "target": "She told me she was downstairs.",
+  "old": "Вона сказала мені, що вона внизу.",
+  "neu": "Вона сказала мені, що була внизу."
+ },
+ {
+  "id": "en-classic-r1:27.11",
+  "loc": "pl",
+  "target": "She told me she was downstairs.",
+  "old": "Powiedziała mi, że jest na dole.",
+  "neu": "Powiedziała mi, że była na dole."
+ },
+ {
+  "id": "en-classic-r1:27.12",
+  "loc": "ru",
+  "target": "He told us the bus was full.",
+  "old": "Он сказал нам, что автобус полон.",
+  "neu": "Он сказал нам, что автобус был полон."
+ },
+ {
+  "id": "en-classic-r1:27.12",
+  "loc": "uk",
+  "target": "He told us the bus was full.",
+  "old": "Він сказав нам, що автобус повний.",
+  "neu": "Він сказав нам, що автобус був повний."
+ },
+ {
+  "id": "en-classic-r1:27.12",
+  "loc": "pl",
+  "target": "He told us the bus was full.",
+  "old": "Powiedział nam, że autobus jest pełny.",
+  "neu": "Powiedział nam, że autobus był pełny."
+ },
+ {
+  "id": "en-classic-r1:27.13",
+  "loc": "ru",
+  "target": "I told her I was at the station.",
+  "old": "Я сказал ей, что я на вокзале.",
+  "neu": "Я сказал ей, что был на вокзале."
+ },
+ {
+  "id": "en-classic-r1:27.13",
+  "loc": "uk",
+  "target": "I told her I was at the station.",
+  "old": "Я сказав їй, що я на станції.",
+  "neu": "Я сказав їй, що був на станції."
+ },
+ {
+  "id": "en-classic-r1:27.13",
+  "loc": "pl",
+  "target": "I told her I was at the station.",
+  "old": "Powiedziałem jej, że jestem na stacji.",
+  "neu": "Powiedziałem jej, że byłem na stacji."
+ },
+ {
+  "id": "en-classic-r1:27.14",
+  "loc": "ru",
+  "target": "We told them we needed more time.",
+  "old": "Мы сказали им, что нам нужно больше времени.",
+  "neu": "Мы сказали им, что нам было нужно больше времени."
+ },
+ {
+  "id": "en-classic-r1:27.14",
+  "loc": "uk",
+  "target": "We told them we needed more time.",
+  "old": "Ми сказали їм, що нам потрібно більше часу.",
+  "neu": "Ми сказали їм, що нам було потрібно більше часу."
+ },
+ {
+  "id": "en-classic-r1:27.14",
+  "loc": "pl",
+  "target": "We told them we needed more time.",
+  "old": "Powiedzieliśmy im, że potrzebujemy więcej czasu.",
+  "neu": "Powiedzieliśmy im, że potrzebowaliśmy więcej czasu."
+ },
+ {
+  "id": "en-classic-r1:27.16",
+  "loc": "ru",
+  "target": "They told me the price included breakfast.",
+  "old": "Они сказали мне, что цена включает завтрак.",
+  "neu": "Они сказали мне, что цена включала завтрак."
+ },
+ {
+  "id": "en-classic-r1:27.16",
+  "loc": "uk",
+  "target": "They told me the price included breakfast.",
+  "old": "Вони сказали мені, що у вартість входить сніданок.",
+  "neu": "Вони сказали мені, що у вартість входив сніданок."
+ },
+ {
+  "id": "en-classic-r1:27.16",
+  "loc": "pl",
+  "target": "They told me the price included breakfast.",
+  "old": "Powiedzieli mi, że cena obejmuje śniadanie.",
+  "neu": "Powiedzieli mi, że cena obejmowała śniadanie."
+ },
+ {
+  "id": "en-classic-r1:27.17",
+  "loc": "ru",
+  "target": "She told us there was somewhere quiet to sit.",
+  "old": "Она сказала нам, что есть тихое место, где можно посидеть.",
+  "neu": "Она сказала нам, что было тихое место, где можно посидеть."
+ },
+ {
+  "id": "en-classic-r1:27.17",
+  "loc": "uk",
+  "target": "She told us there was somewhere quiet to sit.",
+  "old": "Вона сказала нам, що є тихе місце, де можна посидіти.",
+  "neu": "Вона сказала нам, що було тихе місце, де можна посидіти."
+ },
+ {
+  "id": "en-classic-r1:27.17",
+  "loc": "pl",
+  "target": "She told us there was somewhere quiet to sit.",
+  "old": "Powiedziała nam, że jest jakieś ciche miejsce, gdzie można usiąść.",
+  "neu": "Powiedziała nam, że było jakieś ciche miejsce, gdzie można usiąść."
+ },
+ {
+  "id": "en-classic-r1:27.18",
+  "loc": "ru",
+  "target": "I told Tom his coat was in the hall.",
+  "old": "Я сказал Тому, что его пальто в прихожей.",
+  "neu": "Я сказал Тому, что его пальто было в прихожей."
+ },
+ {
+  "id": "en-classic-r1:27.18",
+  "loc": "uk",
+  "target": "I told Tom his coat was in the hall.",
+  "old": "Я сказав Тому, що його пальто в коридорі.",
+  "neu": "Я сказав Тому, що його пальто було в коридорі."
+ },
+ {
+  "id": "en-classic-r1:27.18",
+  "loc": "pl",
+  "target": "I told Tom his coat was in the hall.",
+  "old": "Powiedziałem Tomowi, że jego płaszcz jest w holu.",
+  "neu": "Powiedziałem Tomowi, że jego płaszcz był w holu."
+ },
+ {
+  "id": "en-classic-r1:27.19",
+  "loc": "ru",
+  "target": "He told the driver he felt sick.",
+  "old": "Он сказал водителю, что ему плохо.",
+  "neu": "Он сказал водителю, что ему было плохо."
+ },
+ {
+  "id": "en-classic-r1:27.19",
+  "loc": "uk",
+  "target": "He told the driver he felt sick.",
+  "old": "Він сказав водієві, що йому погано.",
+  "neu": "Він сказав водієві, що йому було погано."
+ },
+ {
+  "id": "en-classic-r1:27.19",
+  "loc": "pl",
+  "target": "He told the driver he felt sick.",
+  "old": "Powiedział kierowcy, że źle się czuje.",
+  "neu": "Powiedział kierowcy, że źle się czuł."
+ },
+ {
+  "id": "en-classic-r1:27.20",
+  "loc": "ru",
+  "target": "We told the manager the lift did not work.",
+  "old": "Мы сказали менеджеру, что лифт не работает.",
+  "neu": "Мы сказали менеджеру, что лифт не работал."
+ },
+ {
+  "id": "en-classic-r1:27.20",
+  "loc": "uk",
+  "target": "We told the manager the lift did not work.",
+  "old": "Ми сказали менеджеру, що ліфт не працює.",
+  "neu": "Ми сказали менеджеру, що ліфт не працював."
+ },
+ {
+  "id": "en-classic-r1:27.20",
+  "loc": "pl",
+  "target": "We told the manager the lift did not work.",
+  "old": "Powiedzieliśmy kierownikowi, że winda nie działa.",
+  "neu": "Powiedzieliśmy kierownikowi, że winda nie działała."
+ },
+ {
+  "id": "en-classic-r1:27.21",
+  "loc": "ru",
+  "target": "She said she could wait.",
+  "old": "Она сказала, что может подождать.",
+  "neu": "Она сказала, что могла подождать."
+ },
+ {
+  "id": "en-classic-r1:27.21",
+  "loc": "uk",
+  "target": "She said she could wait.",
+  "old": "Вона сказала, що може почекати.",
+  "neu": "Вона сказала, що могла почекати."
+ },
+ {
+  "id": "en-classic-r1:27.21",
+  "loc": "pl",
+  "target": "She said she could wait.",
+  "old": "Powiedziała, że ​​może poczekać.",
+  "neu": "Powiedziała, że mogła poczekać."
+ },
+ {
+  "id": "en-classic-r1:27.24",
+  "loc": "ru",
+  "target": "I said I could not hear the announcement.",
+  "old": "Я сказал, что не слышу объявления.",
+  "neu": "Я сказал, что не мог расслышать объявление."
+ },
+ {
+  "id": "en-classic-r1:27.24",
+  "loc": "uk",
+  "target": "I said I could not hear the announcement.",
+  "old": "Я сказав, що не чую оголошення.",
+  "neu": "Я сказав, що не міг розчути оголошення."
+ },
+ {
+  "id": "en-classic-r1:27.24",
+  "loc": "pl",
+  "target": "I said I could not hear the announcement.",
+  "old": "Powiedziałem, że nie słyszałem komunikatu.",
+  "neu": "Powiedziałem, że nie mogłem usłyszeć komunikatu."
+ },
+ {
+  "id": "en-classic-r1:27.29",
+  "loc": "ru",
+  "target": "They said they could not find the flat.",
+  "old": "Они сказали, что не могут найти квартиру.",
+  "neu": "Они сказали, что не могли найти квартиру."
+ },
+ {
+  "id": "en-classic-r1:27.29",
+  "loc": "uk",
+  "target": "They said they could not find the flat.",
+  "old": "Вони сказали, що не можуть знайти квартиру.",
+  "neu": "Вони сказали, що не могли знайти квартиру."
+ },
+ {
+  "id": "en-classic-r1:27.29",
+  "loc": "pl",
+  "target": "They said they could not find the flat.",
+  "old": "Powiedzieli, że nie mogą znaleźć mieszkania.",
+  "neu": "Powiedzieli, że nie mogli znaleźć mieszkania."
+ },
+ {
+  "id": "en-classic-r1:27.31",
+  "loc": "ru",
+  "target": "He asked who could look after his dog.",
+  "old": "Он спросил, кто может присмотреть за его собакой.",
+  "neu": "Он спросил, кто мог бы присмотреть за его собакой."
+ },
+ {
+  "id": "en-classic-r1:27.31",
+  "loc": "uk",
+  "target": "He asked who could look after his dog.",
+  "old": "Він запитав, хто може доглянути за його собакою.",
+  "neu": "Він запитав, хто міг би доглянути за його собакою."
+ },
+ {
+  "id": "en-classic-r1:27.32",
+  "loc": "ru",
+  "target": "She asked what I needed.",
+  "old": "Она спросила, что мне нужно.",
+  "neu": "Она спросила, что мне было нужно."
+ },
+ {
+  "id": "en-classic-r1:27.32",
+  "loc": "uk",
+  "target": "She asked what I needed.",
+  "old": "Вона запитала, що мені потрібно.",
+  "neu": "Вона запитала, що мені було потрібно."
+ },
+ {
+  "id": "en-classic-r1:27.32",
+  "loc": "pl",
+  "target": "She asked what I needed.",
+  "old": "Zapytała, czego potrzebuję.",
+  "neu": "Zapytała, czego potrzebowałem."
+ },
+ {
+  "id": "en-classic-r1:27.33",
+  "loc": "ru",
+  "target": "They asked when the shop closed.",
+  "old": "Они спросили, когда закрывается магазин.",
+  "neu": "Они спросили, когда закрывался магазин."
+ },
+ {
+  "id": "en-classic-r1:27.33",
+  "loc": "uk",
+  "target": "They asked when the shop closed.",
+  "old": "Вони запитали, коли магазин закривається.",
+  "neu": "Вони запитали, коли магазин закривався."
+ },
+ {
+  "id": "en-classic-r1:27.33",
+  "loc": "pl",
+  "target": "They asked when the shop closed.",
+  "old": "Zapytali, kiedy zamykają sklep.",
+  "neu": "Zapytali, kiedy sklep się zamykał."
+ },
+ {
+  "id": "en-classic-r1:27.34",
+  "loc": "ru",
+  "target": "I asked why the bus was late.",
+  "old": "Я спросил, почему автобус опаздывает.",
+  "neu": "Я спросил, почему автобус опаздывал."
+ },
+ {
+  "id": "en-classic-r1:27.34",
+  "loc": "uk",
+  "target": "I asked why the bus was late.",
+  "old": "Я запитав, чому автобус запізнюється.",
+  "neu": "Я запитав, чому автобус запізнювався."
+ },
+ {
+  "id": "en-classic-r1:27.34",
+  "loc": "pl",
+  "target": "I asked why the bus was late.",
+  "old": "Zapytałem, dlaczego autobus się spóźnia.",
+  "neu": "Zapytałem, dlaczego autobus się spóźniał."
+ },
+ {
+  "id": "en-classic-r1:27.35",
+  "loc": "ru",
+  "target": "We asked which gate we needed.",
+  "old": "Мы спросили, какие нам нужны ворота.",
+  "neu": "Мы спросили, какие ворота нам были нужны."
+ },
+ {
+  "id": "en-classic-r1:27.35",
+  "loc": "uk",
+  "target": "We asked which gate we needed.",
+  "old": "Ми запитали, які ворота нам потрібні.",
+  "neu": "Ми запитали, які ворота нам були потрібні."
+ },
+ {
+  "id": "en-classic-r1:27.35",
+  "loc": "pl",
+  "target": "We asked which gate we needed.",
+  "old": "Zapytaliśmy, której bramki potrzebujemy.",
+  "neu": "Zapytaliśmy, której bramki potrzebowaliśmy."
+ },
+ {
+  "id": "en-classic-r1:27.36",
+  "loc": "ru",
+  "target": "He asked if I had a reference number.",
+  "old": "Он спросил, есть ли у меня номер заявки.",
+  "neu": "Он спросил, был ли у меня номер заявки."
+ },
+ {
+  "id": "en-classic-r1:27.36",
+  "loc": "uk",
+  "target": "He asked if I had a reference number.",
+  "old": "Він запитав, чи є у мене номер заявки.",
+  "neu": "Він запитав, чи був у мене номер заявки."
+ },
+ {
+  "id": "en-classic-r1:27.36",
+  "loc": "pl",
+  "target": "He asked if I had a reference number.",
+  "old": "Zapytał, czy mam numer referencyjny.",
+  "neu": "Zapytał, czy miałem numer referencyjny."
+ },
+ {
+  "id": "en-classic-r1:27.37",
+  "loc": "ru",
+  "target": "She asked whether we wanted a replacement.",
+  "old": "Она спросила, хотим ли мы замену.",
+  "neu": "Она спросила, хотели ли мы замену."
+ },
+ {
+  "id": "en-classic-r1:27.37",
+  "loc": "uk",
+  "target": "She asked whether we wanted a replacement.",
+  "old": "Вона запитала, чи хочемо ми заміну.",
+  "neu": "Вона запитала, чи хотіли ми заміну."
+ },
+ {
+  "id": "en-classic-r1:27.38",
+  "loc": "ru",
+  "target": "They asked if the room was free.",
+  "old": "Они спросили, свободна ли комната.",
+  "neu": "Они спросили, была ли комната свободна."
+ },
+ {
+  "id": "en-classic-r1:27.38",
+  "loc": "uk",
+  "target": "They asked if the room was free.",
+  "old": "Вони запитали, чи вільна кімната.",
+  "neu": "Вони запитали, чи була кімната вільна."
+ },
+ {
+  "id": "en-classic-r1:27.38",
+  "loc": "pl",
+  "target": "They asked if the room was free.",
+  "old": "Zapytali, czy pokój jest wolny.",
+  "neu": "Zapytali, czy pokój był wolny."
+ },
+ {
+  "id": "en-classic-r1:27.40",
+  "loc": "ru",
+  "target": "We asked who dealt with complaints.",
+  "old": "Мы спросили, кто занимается жалобами.",
+  "neu": "Мы спросили, кто занимался жалобами."
+ },
+ {
+  "id": "en-classic-r1:27.40",
+  "loc": "uk",
+  "target": "We asked who dealt with complaints.",
+  "old": "Ми запитали, хто розглядає скарги.",
+  "neu": "Ми запитали, хто розглядав скарги."
+ },
+ {
+  "id": "en-classic-r1:27.40",
+  "loc": "pl",
+  "target": "We asked who dealt with complaints.",
+  "old": "Zapytaliśmy, kto zajmuje się reklamacjami.",
+  "neu": "Zapytaliśmy, kto zajmował się reklamacjami."
+ }
+]

@@ -1,0 +1,3656 @@
+[
+ {
+  "id": "it:01:08",
+  "loc": "pl",
+  "target": "Siete qui.",
+  "old": "Ty jesteś tutaj.",
+  "neu": "Wy jesteście tutaj."
+ },
+ {
+  "id": "it:01:11",
+  "loc": "vi",
+  "target": "Sono a casa.",
+  "old": "Tôi về nhà rồi.",
+  "neu": "Tôi ở nhà."
+ },
+ {
+  "id": "it:01:12",
+  "loc": "vi",
+  "target": "Sei a casa.",
+  "old": "Bạn về nhà rồi.",
+  "neu": "Bạn ở nhà."
+ },
+ {
+  "id": "it:01:13",
+  "loc": "vi",
+  "target": "Paolo è a casa.",
+  "old": "Paolo về nhà rồi.",
+  "neu": "Paolo ở nhà."
+ },
+ {
+  "id": "it:01:16",
+  "loc": "pt-BR",
+  "target": "Siete in stazione.",
+  "old": "Você está na estação de trem.",
+  "neu": "Vocês estão na estação de trem."
+ },
+ {
+  "id": "it:01:16",
+  "loc": "pl",
+  "target": "Siete in stazione.",
+  "old": "Jesteś na dworcu kolejowym.",
+  "neu": "Jesteście na dworcu kolejowym."
+ },
+ {
+  "id": "it:01:27",
+  "loc": "pt-BR",
+  "target": "Siete pronti.",
+  "old": "Você está pronto.",
+  "neu": "Vocês estão prontos."
+ },
+ {
+  "id": "it:01:30",
+  "loc": "es",
+  "target": "Sono libero.",
+  "old": "Soy libre.",
+  "neu": "Estoy libre."
+ },
+ {
+  "id": "it:01:30",
+  "loc": "tr",
+  "target": "Sono libero.",
+  "old": "Özgürüm.",
+  "neu": "Müsaitim."
+ },
+ {
+  "id": "it:01:48",
+  "loc": "pt-BR",
+  "target": "Siete vicino alla stazione.",
+  "old": "Você está perto da estação de trem.",
+  "neu": "Vocês estão perto da estação de trem."
+ },
+ {
+  "id": "it:01:48",
+  "loc": "pl",
+  "target": "Siete vicino alla stazione.",
+  "old": "Jesteś blisko dworca kolejowego.",
+  "neu": "Jesteście blisko dworca kolejowego."
+ },
+ {
+  "id": "it:02:05",
+  "loc": "pl",
+  "target": "Paolo non è in ufficio.",
+  "old": "Paolo nie ma w biurze.",
+  "neu": "Paola nie ma w biurze."
+ },
+ {
+  "id": "it:02:08",
+  "loc": "pt-BR",
+  "target": "Non siete a casa.",
+  "old": "Você não está em casa.",
+  "neu": "Vocês não estão em casa."
+ },
+ {
+  "id": "it:02:08",
+  "loc": "pl",
+  "target": "Non siete a casa.",
+  "old": "Nie ma cię w domu.",
+  "neu": "Nie ma was w domu."
+ },
+ {
+  "id": "it:02:14",
+  "loc": "vi",
+  "target": "Non sei solo.",
+  "old": "Bạn không cô đơn.",
+  "neu": "Bạn không ở một mình."
+ },
+ {
+  "id": "it:02:19",
+  "loc": "ru",
+  "target": "Non siete in ritardo.",
+  "old": "Вы не опоздали.",
+  "neu": "Вы не опаздываете."
+ },
+ {
+  "id": "it:02:19",
+  "loc": "uk",
+  "target": "Non siete in ritardo.",
+  "old": "Ти не запізнився.",
+  "neu": "Ви не запізнюєтеся."
+ },
+ {
+  "id": "it:02:19",
+  "loc": "pt-BR",
+  "target": "Non siete in ritardo.",
+  "old": "Você não está atrasado(a).",
+  "neu": "Vocês não estão atrasados."
+ },
+ {
+  "id": "it:02:19",
+  "loc": "tr",
+  "target": "Non siete in ritardo.",
+  "old": "Geç kalmadınız.",
+  "neu": "Geç değilsiniz."
+ },
+ {
+  "id": "it:02:19",
+  "loc": "pl",
+  "target": "Non siete in ritardo.",
+  "old": "Nie spóźniłeś się.",
+  "neu": "Nie jesteście spóźnieni."
+ },
+ {
+  "id": "it:02:20",
+  "loc": "ru",
+  "target": "Non siamo in anticipo.",
+  "old": "Мы не пришли заранее.",
+  "neu": "Мы не рано."
+ },
+ {
+  "id": "it:02:20",
+  "loc": "uk",
+  "target": "Non siamo in anticipo.",
+  "old": "Ми не прийшли заздалегідь.",
+  "neu": "Ми не рано."
+ },
+ {
+  "id": "it:02:20",
+  "loc": "vi",
+  "target": "Non siamo in anticipo.",
+  "old": "Chúng tôi đã không đến sớm.",
+  "neu": "Chúng tôi không đến sớm."
+ },
+ {
+  "id": "it:02:20",
+  "loc": "tr",
+  "target": "Non siamo in anticipo.",
+  "old": "Erken gelmedik.",
+  "neu": "Erken değiliz."
+ },
+ {
+  "id": "it:02:20",
+  "loc": "pl",
+  "target": "Non siamo in anticipo.",
+  "old": "Nie przybyliśmy wcześnie.",
+  "neu": "Nie jesteśmy przed czasem."
+ },
+ {
+  "id": "it:02:21",
+  "loc": "pl",
+  "target": "La porta non è aperta.",
+  "old": "Drzwi są zamknięte.",
+  "neu": "Drzwi nie są otwarte."
+ },
+ {
+  "id": "it:02:23",
+  "loc": "pl",
+  "target": "I negozi non sono aperti.",
+  "old": "Sklepy są zamknięte.",
+  "neu": "Sklepy nie są otwarte."
+ },
+ {
+  "id": "it:02:30",
+  "loc": "pl",
+  "target": "Il bicchiere non è sporco.",
+  "old": "Szyba nie jest brudna.",
+  "neu": "Szklanka nie jest brudna."
+ },
+ {
+  "id": "it:02:32",
+  "loc": "pt-BR",
+  "target": "I bagni non sono in fondo.",
+  "old": "Os banheiros não estão localizados na parte de trás do prédio.",
+  "neu": "Os banheiros não ficam no fundo."
+ },
+ {
+  "id": "it:02:32",
+  "loc": "vi",
+  "target": "I bagni non sono in fondo.",
+  "old": "Nhà vệ sinh không nằm ở phía sau tòa nhà.",
+  "neu": "Nhà vệ sinh không ở phía cuối."
+ },
+ {
+  "id": "it:02:32",
+  "loc": "id",
+  "target": "I bagni non sono in fondo.",
+  "old": "Toilet tidak terletak di belakang gedung.",
+  "neu": "Toilet tidak ada di bagian belakang."
+ },
+ {
+  "id": "it:02:32",
+  "loc": "tr",
+  "target": "I bagni non sono in fondo.",
+  "old": "Tuvaletler binanın arka tarafında bulunmuyor.",
+  "neu": "Tuvaletler arkada değil."
+ },
+ {
+  "id": "it:02:32",
+  "loc": "pl",
+  "target": "I bagni non sono in fondo.",
+  "old": "Toalety nie znajdują się z tyłu budynku.",
+  "neu": "Toalety nie są z tyłu."
+ },
+ {
+  "id": "it:02:37",
+  "loc": "pl",
+  "target": "Il museo non è aperto.",
+  "old": "Muzeum jest zamknięte.",
+  "neu": "Muzeum nie jest otwarte."
+ },
+ {
+  "id": "it:02:40",
+  "loc": "tr",
+  "target": "Il treno non è in ritardo.",
+  "old": "Tren gecikmedi.",
+  "neu": "Tren rötarlı değil."
+ },
+ {
+  "id": "it:02:48",
+  "loc": "pt-BR",
+  "target": "Non siete soli qui.",
+  "old": "Você não está sozinho aqui.",
+  "neu": "Vocês não estão sozinhos aqui."
+ },
+ {
+  "id": "it:02:48",
+  "loc": "pl",
+  "target": "Non siete soli qui.",
+  "old": "Nie jesteś tu sam.",
+  "neu": "Nie jesteście tu sami."
+ },
+ {
+  "id": "it:03:07",
+  "loc": "pt-BR",
+  "target": "Siete a casa?",
+  "old": "Você está em casa?",
+  "neu": "Vocês estão em casa?"
+ },
+ {
+  "id": "it:03:07",
+  "loc": "pl",
+  "target": "Siete a casa?",
+  "old": "Jesteś w domu?",
+  "neu": "Jesteście w domu?"
+ },
+ {
+  "id": "it:03:17",
+  "loc": "ru",
+  "target": "Siete in anticipo?",
+  "old": "Вы пришли раньше?",
+  "neu": "Вы рано?"
+ },
+ {
+  "id": "it:03:17",
+  "loc": "uk",
+  "target": "Siete in anticipo?",
+  "old": "Ви прийшли раніше?",
+  "neu": "Ви рано?"
+ },
+ {
+  "id": "it:03:17",
+  "loc": "pt-BR",
+  "target": "Siete in anticipo?",
+  "old": "Você chegou cedo?",
+  "neu": "Vocês estão adiantados?"
+ },
+ {
+  "id": "it:03:17",
+  "loc": "tr",
+  "target": "Siete in anticipo?",
+  "old": "Erken mi geldiniz?",
+  "neu": "Erken misiniz?"
+ },
+ {
+  "id": "it:03:17",
+  "loc": "pl",
+  "target": "Siete in anticipo?",
+  "old": "Czy jesteś wcześniej?",
+  "neu": "Czy jesteście przed czasem?"
+ },
+ {
+  "id": "it:03:30",
+  "loc": "pl",
+  "target": "La farmacia è aperta stasera?",
+  "old": "Czy apteka jest dziś otwarta?",
+  "neu": "Czy apteka jest dziś wieczorem otwarta?"
+ },
+ {
+  "id": "it:03:35",
+  "loc": "pt-BR",
+  "target": "I biglietti sono nella tua tasca?",
+  "old": "Você tem seus bilhetes?",
+  "neu": "Os bilhetes estão no seu bolso?"
+ },
+ {
+  "id": "it:03:35",
+  "loc": "vi",
+  "target": "I biglietti sono nella tua tasca?",
+  "old": "Bạn có vé không?",
+  "neu": "Vé có trong túi của bạn không?"
+ },
+ {
+  "id": "it:03:35",
+  "loc": "id",
+  "target": "I biglietti sono nella tua tasca?",
+  "old": "Apakah Anda membawa tiket?",
+  "neu": "Apakah tiketnya ada di saku Anda?"
+ },
+ {
+  "id": "it:03:35",
+  "loc": "tr",
+  "target": "I biglietti sono nella tua tasca?",
+  "old": "Biletleriniz var mı?",
+  "neu": "Biletler cebinde mi?"
+ },
+ {
+  "id": "it:03:35",
+  "loc": "pl",
+  "target": "I biglietti sono nella tua tasca?",
+  "old": "Czy masz bilety?",
+  "neu": "Czy bilety są w twojej kieszeni?"
+ },
+ {
+  "id": "it:03:40",
+  "loc": "pt-BR",
+  "target": "Siete vicino all’ingresso?",
+  "old": "Você está perto da entrada?",
+  "neu": "Vocês estão perto da entrada?"
+ },
+ {
+  "id": "it:03:40",
+  "loc": "pl",
+  "target": "Siete vicino all’ingresso?",
+  "old": "Czy jesteś blisko wejścia?",
+  "neu": "Czy jesteście blisko wejścia?"
+ },
+ {
+  "id": "it:03:42",
+  "loc": "pl",
+  "target": "Entrambe le porte sono chiuse?",
+  "old": "Czy drzwi są zamknięte?",
+  "neu": "Czy oboje drzwi są zamknięte?"
+ },
+ {
+  "id": "it:03:46",
+  "loc": "pl",
+  "target": "Sei solo stasera?",
+  "old": "Jesteś dziś sam?",
+  "neu": "Jesteś dziś wieczorem sam?"
+ },
+ {
+  "id": "it:03:47",
+  "loc": "pt-BR",
+  "target": "Siete qui per il concerto?",
+  "old": "Você está aqui para o concerto?",
+  "neu": "Vocês estão aqui para o concerto?"
+ },
+ {
+  "id": "it:03:47",
+  "loc": "pl",
+  "target": "Siete qui per il concerto?",
+  "old": "Przyszedłeś na koncert?",
+  "neu": "Czy jesteście tu z powodu koncertu?"
+ },
+ {
+  "id": "it:03:49",
+  "loc": "pt-BR",
+  "target": "I bambini sono con voi?",
+  "old": "As crianças estão com você?",
+  "neu": "As crianças estão com vocês?"
+ },
+ {
+  "id": "it:03:49",
+  "loc": "pl",
+  "target": "I bambini sono con voi?",
+  "old": "Czy są z tobą dzieci?",
+  "neu": "Czy dzieci są z wami?"
+ },
+ {
+  "id": "it:04:01",
+  "loc": "vi",
+  "target": "Questo è Paolo.",
+  "old": "Tôi là Paolo.",
+  "neu": "Đây là Paolo."
+ },
+ {
+  "id": "it:04:01",
+  "loc": "tr",
+  "target": "Questo è Paolo.",
+  "old": "Ben Paolo.",
+  "neu": "Bu Paolo."
+ },
+ {
+  "id": "it:04:02",
+  "loc": "vi",
+  "target": "Questa è Lea.",
+  "old": "Tôi là Lea.",
+  "neu": "Đây là Lea."
+ },
+ {
+  "id": "it:04:02",
+  "loc": "tr",
+  "target": "Questa è Lea.",
+  "old": "Ben Lea.",
+  "neu": "Bu Lea."
+ },
+ {
+  "id": "it:04:07",
+  "loc": "pt-BR",
+  "target": "Questo è un vicino.",
+  "old": "Este é meu vizinho.",
+  "neu": "Este é um vizinho."
+ },
+ {
+  "id": "it:04:07",
+  "loc": "vi",
+  "target": "Questo è un vicino.",
+  "old": "Đây là hàng xóm của tôi.",
+  "neu": "Đây là một người hàng xóm."
+ },
+ {
+  "id": "it:04:07",
+  "loc": "id",
+  "target": "Questo è un vicino.",
+  "old": "Ini tetangga saya.",
+  "neu": "Ini seorang tetangga."
+ },
+ {
+  "id": "it:04:07",
+  "loc": "tr",
+  "target": "Questo è un vicino.",
+  "old": "Bu benim komşum.",
+  "neu": "Bu bir komşu."
+ },
+ {
+  "id": "it:04:07",
+  "loc": "pl",
+  "target": "Questo è un vicino.",
+  "old": "To mój sąsiad.",
+  "neu": "To sąsiad."
+ },
+ {
+  "id": "it:04:08",
+  "loc": "pt-BR",
+  "target": "Questa è una vicina.",
+  "old": "Este é meu vizinho.",
+  "neu": "Esta é uma vizinha."
+ },
+ {
+  "id": "it:04:08",
+  "loc": "vi",
+  "target": "Questa è una vicina.",
+  "old": "Đây là hàng xóm của tôi.",
+  "neu": "Đây là một người hàng xóm."
+ },
+ {
+  "id": "it:04:08",
+  "loc": "id",
+  "target": "Questa è una vicina.",
+  "old": "Ini tetangga saya.",
+  "neu": "Ini seorang tetangga."
+ },
+ {
+  "id": "it:04:08",
+  "loc": "tr",
+  "target": "Questa è una vicina.",
+  "old": "Bu benim komşum.",
+  "neu": "Bu bir komşu."
+ },
+ {
+  "id": "it:04:08",
+  "loc": "pl",
+  "target": "Questa è una vicina.",
+  "old": "To mój sąsiad.",
+  "neu": "To sąsiadka."
+ },
+ {
+  "id": "it:04:14",
+  "loc": "uk",
+  "target": "Questa è una tessera.",
+  "old": "Це мапа.",
+  "neu": "Це картка."
+ },
+ {
+  "id": "it:04:14",
+  "loc": "pt-BR",
+  "target": "Questa è una tessera.",
+  "old": "Este é um mapa.",
+  "neu": "Este é um cartão."
+ },
+ {
+  "id": "it:04:14",
+  "loc": "vi",
+  "target": "Questa è una tessera.",
+  "old": "Đây là một bản đồ.",
+  "neu": "Đây là một tấm thẻ."
+ },
+ {
+  "id": "it:04:14",
+  "loc": "id",
+  "target": "Questa è una tessera.",
+  "old": "Ini peta.",
+  "neu": "Ini kartu."
+ },
+ {
+  "id": "it:04:14",
+  "loc": "tr",
+  "target": "Questa è una tessera.",
+  "old": "Bu bir harita.",
+  "neu": "Bu bir kart."
+ },
+ {
+  "id": "it:04:14",
+  "loc": "pl",
+  "target": "Questa è una tessera.",
+  "old": "To jest mapa.",
+  "neu": "To jest karta."
+ },
+ {
+  "id": "it:04:15",
+  "loc": "pt-BR",
+  "target": "Questa è una piantina.",
+  "old": "Este é um plano.",
+  "neu": "Este é um mapa."
+ },
+ {
+  "id": "it:04:15",
+  "loc": "vi",
+  "target": "Questa è una piantina.",
+  "old": "Đây là một kế hoạch.",
+  "neu": "Đây là một tấm bản đồ."
+ },
+ {
+  "id": "it:04:15",
+  "loc": "id",
+  "target": "Questa è una piantina.",
+  "old": "Ini adalah rencana.",
+  "neu": "Ini peta."
+ },
+ {
+  "id": "it:04:15",
+  "loc": "tr",
+  "target": "Questa è una piantina.",
+  "old": "Bu bir plan.",
+  "neu": "Bu bir harita."
+ },
+ {
+  "id": "it:04:15",
+  "loc": "pl",
+  "target": "Questa è una piantina.",
+  "old": "To jest plan.",
+  "neu": "To jest mapa."
+ },
+ {
+  "id": "it:04:19",
+  "loc": "pt-BR",
+  "target": "Questa è una ricevuta.",
+  "old": "Este é um cheque.",
+  "neu": "Este é um recibo."
+ },
+ {
+  "id": "it:04:19",
+  "loc": "vi",
+  "target": "Questa è una ricevuta.",
+  "old": "Đây là một tấm séc.",
+  "neu": "Đây là một tấm biên lai."
+ },
+ {
+  "id": "it:04:19",
+  "loc": "id",
+  "target": "Questa è una ricevuta.",
+  "old": "Ini adalah cek.",
+  "neu": "Ini adalah tanda terima."
+ },
+ {
+  "id": "it:04:19",
+  "loc": "tr",
+  "target": "Questa è una ricevuta.",
+  "old": "Bu bir çek.",
+  "neu": "Bu bir makbuz."
+ },
+ {
+  "id": "it:04:19",
+  "loc": "pl",
+  "target": "Questa è una ricevuta.",
+  "old": "To jest czek.",
+  "neu": "To jest paragon."
+ },
+ {
+  "id": "it:04:24",
+  "loc": "tr",
+  "target": "Questi sono dei vicini.",
+  "old": "Bunlar komşularımız.",
+  "neu": "Bunlar komşular."
+ },
+ {
+  "id": "it:04:28",
+  "loc": "pl",
+  "target": "Queste sono le vostre ricevute.",
+  "old": "To są twoje paragony.",
+  "neu": "To są wasze paragony."
+ },
+ {
+  "id": "it:04:40",
+  "loc": "vi",
+  "target": "Questo è il numero dell’ufficio.",
+  "old": "Đó là số điện thoại văn phòng.",
+  "neu": "Đó là số của văn phòng."
+ },
+ {
+  "id": "it:04:40",
+  "loc": "pl",
+  "target": "Questo è il numero dell’ufficio.",
+  "old": "To numer telefonu do biura.",
+  "neu": "To numer biura."
+ },
+ {
+  "id": "it:05:05",
+  "loc": "pt-BR",
+  "target": "Abbiamo una piantina.",
+  "old": "Nós temos um plano.",
+  "neu": "Nós temos um mapa."
+ },
+ {
+  "id": "it:05:05",
+  "loc": "vi",
+  "target": "Abbiamo una piantina.",
+  "old": "Chúng tôi có một kế hoạch.",
+  "neu": "Chúng tôi có một tấm bản đồ."
+ },
+ {
+  "id": "it:05:05",
+  "loc": "id",
+  "target": "Abbiamo una piantina.",
+  "old": "Kami punya rencana.",
+  "neu": "Kami punya peta."
+ },
+ {
+  "id": "it:05:05",
+  "loc": "tr",
+  "target": "Abbiamo una piantina.",
+  "old": "Bizim bir planımız var.",
+  "neu": "Bizim bir haritamız var."
+ },
+ {
+  "id": "it:05:06",
+  "loc": "pt-BR",
+  "target": "Avete una piantina.",
+  "old": "Você tem um plano.",
+  "neu": "Você tem um mapa."
+ },
+ {
+  "id": "it:05:06",
+  "loc": "vi",
+  "target": "Avete una piantina.",
+  "old": "Bạn có một kế hoạch.",
+  "neu": "Bạn có một tấm bản đồ."
+ },
+ {
+  "id": "it:05:06",
+  "loc": "id",
+  "target": "Avete una piantina.",
+  "old": "Kamu punya rencana.",
+  "neu": "Kamu punya peta."
+ },
+ {
+  "id": "it:05:06",
+  "loc": "tr",
+  "target": "Avete una piantina.",
+  "old": "Bir planın var.",
+  "neu": "Bir haritan var."
+ },
+ {
+  "id": "it:05:07",
+  "loc": "tr",
+  "target": "Loro hanno un biglietto.",
+  "old": "Onların bir cezası var.",
+  "neu": "Onların bir bileti var."
+ },
+ {
+  "id": "it:05:16",
+  "loc": "pt-BR",
+  "target": "Avete caldo.",
+  "old": "Você é atraente.",
+  "neu": "Você está com calor."
+ },
+ {
+  "id": "it:05:16",
+  "loc": "vi",
+  "target": "Avete caldo.",
+  "old": "Bạn thật quyến rũ.",
+  "neu": "Bạn thấy nóng."
+ },
+ {
+  "id": "it:05:16",
+  "loc": "id",
+  "target": "Avete caldo.",
+  "old": "Kamu seksi.",
+  "neu": "Kamu kepanasan."
+ },
+ {
+  "id": "it:05:16",
+  "loc": "tr",
+  "target": "Avete caldo.",
+  "old": "Çok çekicisin.",
+  "neu": "Sıcaklıyorsun."
+ },
+ {
+  "id": "it:06:09",
+  "loc": "vi",
+  "target": "I bicchieri sono puliti.",
+  "old": "Những chiếc ly đã được lau sạch.",
+  "neu": "Những chiếc ly sạch."
+ },
+ {
+  "id": "it:06:09",
+  "loc": "id",
+  "target": "I bicchieri sono puliti.",
+  "old": "Kacamata itu bersih.",
+  "neu": "Gelas-gelas itu bersih."
+ },
+ {
+  "id": "it:06:36",
+  "loc": "pt-BR",
+  "target": "Gli spiccioli sono in tasca.",
+  "old": "Você tem algum troco no bolso?",
+  "neu": "O troco está no bolso."
+ },
+ {
+  "id": "it:06:36",
+  "loc": "vi",
+  "target": "Gli spiccioli sono in tasca.",
+  "old": "Có chút tiền lẻ trong túi của bạn không?",
+  "neu": "Tiền lẻ ở trong túi."
+ },
+ {
+  "id": "it:06:36",
+  "loc": "id",
+  "target": "Gli spiccioli sono in tasca.",
+  "old": "Ada uang receh di saku Anda.",
+  "neu": "Uang receh ada di saku."
+ },
+ {
+  "id": "it:06:36",
+  "loc": "tr",
+  "target": "Gli spiccioli sono in tasca.",
+  "old": "Cebinizde biraz bozuk para var.",
+  "neu": "Bozuk paralar cepte."
+ },
+ {
+  "id": "it:07:22",
+  "loc": "pt-BR",
+  "target": "Cerchi la tua borsa.",
+  "old": "Você está procurando sua mala.",
+  "neu": "Você está procurando sua bolsa."
+ },
+ {
+  "id": "it:07:26",
+  "loc": "pl",
+  "target": "Cercano un posto.",
+  "old": "Szukają mieszkania.",
+  "neu": "Szukają miejsca."
+ },
+ {
+  "id": "it:07:31",
+  "loc": "pl",
+  "target": "Preparo la cena.",
+  "old": "Przygotowuję obiad.",
+  "neu": "Przygotowuję kolację."
+ },
+ {
+  "id": "it:08:12",
+  "loc": "pl",
+  "target": "Chi è alla porta?",
+  "old": "Kto jest za drzwiami?",
+  "neu": "Kto jest przy drzwiach?"
+ },
+ {
+  "id": "it:08:16",
+  "loc": "pl",
+  "target": "Chi prepara la cena?",
+  "old": "Kto przygotowuje obiad?",
+  "neu": "Kto przygotowuje kolację?"
+ },
+ {
+  "id": "it:08:36",
+  "loc": "uk",
+  "target": "Quante persone arriveranno?",
+  "old": "Скільки людей приїжджає?",
+  "neu": "Скільки людей приїде?"
+ },
+ {
+  "id": "it:08:48",
+  "loc": "id",
+  "target": "Cosa sta facendo Paolo?",
+  "old": "Apa yang sedang dilakukan Paulus?",
+  "neu": "Apa yang sedang dilakukan Paolo?"
+ },
+ {
+  "id": "it:09:12",
+  "loc": "pl",
+  "target": "Il vostro treno è al binario.",
+  "old": "Twój pociąg jest na peronie.",
+  "neu": "Wasz pociąg jest na peronie."
+ },
+ {
+  "id": "it:09:14",
+  "loc": "pl",
+  "target": "I vostri biglietti sono pronti.",
+  "old": "Twoje bilety są gotowe.",
+  "neu": "Wasze bilety są gotowe."
+ },
+ {
+  "id": "it:09:26",
+  "loc": "pt-BR",
+  "target": "Cercate i vostri bagagli.",
+  "old": "Você está procurando sua bagagem.",
+  "neu": "Vocês estão procurando suas bagagens."
+ },
+ {
+  "id": "it:09:26",
+  "loc": "pl",
+  "target": "Cercate i vostri bagagli.",
+  "old": "Szukasz swojego bagażu.",
+  "neu": "Szukacie swojego bagażu."
+ },
+ {
+  "id": "it:09:29",
+  "loc": "pt-BR",
+  "target": "State prendendo il vostro casco.",
+  "old": "Você está pegando seu capacete.",
+  "neu": "Vocês estão pegando seu capacete."
+ },
+ {
+  "id": "it:09:29",
+  "loc": "pl",
+  "target": "State prendendo il vostro casco.",
+  "old": "Chwytasz kask.",
+  "neu": "Bierzecie swój kask."
+ },
+ {
+  "id": "it:09:42",
+  "loc": "id",
+  "target": "Dove sono le vostre valigie?",
+  "old": "Di mana kopermu?",
+  "neu": "Di mana koper kalian?"
+ },
+ {
+  "id": "it:09:42",
+  "loc": "pl",
+  "target": "Dove sono le vostre valigie?",
+  "old": "Gdzie są twoje walizki?",
+  "neu": "Gdzie są wasze walizki?"
+ },
+ {
+  "id": "it:09:47",
+  "loc": "vi",
+  "target": "Conserviamo le nostre ricevute.",
+  "old": "Chúng tôi sẽ giữ lại biên lai.",
+  "neu": "Chúng tôi giữ lại biên lai của mình."
+ },
+ {
+  "id": "it:09:50",
+  "loc": "uk",
+  "target": "Nostra figlia prepara le sue cose.",
+  "old": "Наша донька пакує свою сумку.",
+  "neu": "Наша донька збирає свої речі."
+ },
+ {
+  "id": "it:09:50",
+  "loc": "pt-BR",
+  "target": "Nostra figlia prepara le sue cose.",
+  "old": "Nossa filha está arrumando a mala.",
+  "neu": "Nossa filha está arrumando as coisas dela."
+ },
+ {
+  "id": "it:09:50",
+  "loc": "id",
+  "target": "Nostra figlia prepara le sue cose.",
+  "old": "Putri kami sedang mengemas tasnya.",
+  "neu": "Putri kami sedang menyiapkan barang-barangnya."
+ },
+ {
+  "id": "it:09:50",
+  "loc": "tr",
+  "target": "Nostra figlia prepara le sue cose.",
+  "old": "Kızımız çantasını topluyor.",
+  "neu": "Kızımız eşyalarını topluyor."
+ },
+ {
+  "id": "it:09:50",
+  "loc": "pl",
+  "target": "Nostra figlia prepara le sue cose.",
+  "old": "Nasza córka pakuje torbę.",
+  "neu": "Nasza córka pakuje swoje rzeczy."
+ },
+ {
+  "id": "it:10:13",
+  "loc": "tr",
+  "target": "In tasca c’è un biglietto.",
+  "old": "Cebinde bir bilet var.",
+  "neu": "Cepte bir bilet var."
+ },
+ {
+  "id": "it:10:37",
+  "loc": "pt-BR",
+  "target": "Ci sono ancora due posti liberi.",
+  "old": "Ainda há dois assentos.",
+  "neu": "Ainda há dois assentos livres."
+ },
+ {
+  "id": "it:10:37",
+  "loc": "vi",
+  "target": "Ci sono ancora due posti liberi.",
+  "old": "Vẫn còn hai chỗ ngồi.",
+  "neu": "Vẫn còn hai chỗ ngồi trống."
+ },
+ {
+  "id": "it:10:37",
+  "loc": "id",
+  "target": "Ci sono ancora due posti liberi.",
+  "old": "Masih ada dua kursi.",
+  "neu": "Masih ada dua kursi kosong."
+ },
+ {
+  "id": "it:10:37",
+  "loc": "tr",
+  "target": "Ci sono ancora due posti liberi.",
+  "old": "Hala iki koltuk var.",
+  "neu": "Hala iki boş koltuk var."
+ },
+ {
+  "id": "it:10:37",
+  "loc": "pl",
+  "target": "Ci sono ancora due posti liberi.",
+  "old": "Nadal są dwa miejsca.",
+  "neu": "Nadal są dwa wolne miejsca."
+ },
+ {
+  "id": "it:10:50",
+  "loc": "pl",
+  "target": "C’è una fermata dell’autobus proprio di fronte.",
+  "old": "Tuż przed kasą jest przystanek autobusowy.",
+  "neu": "Tuż naprzeciwko jest przystanek autobusowy."
+ },
+ {
+  "id": "it:11:06",
+  "loc": "pt-BR",
+  "target": "Andate a scuola.",
+  "old": "Você vai para a escola.",
+  "neu": "Vocês vão para a escola."
+ },
+ {
+  "id": "it:11:06",
+  "loc": "id",
+  "target": "Andate a scuola.",
+  "old": "Kamu akan pergi ke sekolah.",
+  "neu": "Kalian pergi ke sekolah."
+ },
+ {
+  "id": "it:11:06",
+  "loc": "tr",
+  "target": "Andate a scuola.",
+  "old": "Okula gidiyorsun.",
+  "neu": "Okula gidiyorsunuz."
+ },
+ {
+  "id": "it:11:06",
+  "loc": "pl",
+  "target": "Andate a scuola.",
+  "old": "Idziesz do szkoły.",
+  "neu": "Idziecie do szkoły."
+ },
+ {
+  "id": "it:11:20",
+  "loc": "pt-BR",
+  "target": "Lui va in officina.",
+  "old": "Ele vai para a garagem.",
+  "neu": "Ele vai para a oficina mecânica."
+ },
+ {
+  "id": "it:11:26",
+  "loc": "pt-BR",
+  "target": "Andate in Portogallo.",
+  "old": "Você vai para Portugal.",
+  "neu": "Vocês vão para Portugal."
+ },
+ {
+  "id": "it:11:26",
+  "loc": "pl",
+  "target": "Andate in Portogallo.",
+  "old": "Jedziesz do Portugalii.",
+  "neu": "Jedziecie do Portugalii."
+ },
+ {
+  "id": "it:11:37",
+  "loc": "pl",
+  "target": "I bambini vanno a scuola a piedi.",
+  "old": "Dzieci idą do szkoły.",
+  "neu": "Dzieci idą do szkoły pieszo."
+ },
+ {
+  "id": "it:11:47",
+  "loc": "pt-BR",
+  "target": "Vado al reparto calzature.",
+  "old": "Vou à loja de calçados.",
+  "neu": "Vou à seção de calçados."
+ },
+ {
+  "id": "it:12:06",
+  "loc": "pt-BR",
+  "target": "Prendete del latte.",
+  "old": "Você vai comprar leite.",
+  "neu": "Vocês pegam leite."
+ },
+ {
+  "id": "it:12:06",
+  "loc": "vi",
+  "target": "Prendete del latte.",
+  "old": "Bạn sẽ đi mua sữa.",
+  "neu": "Các bạn lấy sữa."
+ },
+ {
+  "id": "it:12:06",
+  "loc": "id",
+  "target": "Prendete del latte.",
+  "old": "Anda akan membeli susu.",
+  "neu": "Kalian mengambil susu."
+ },
+ {
+  "id": "it:12:06",
+  "loc": "pl",
+  "target": "Prendete del latte.",
+  "old": "Idziesz po mleko.",
+  "neu": "Bierzecie mleko."
+ },
+ {
+  "id": "it:12:18",
+  "loc": "ru",
+  "target": "Mangi della composta di mele.",
+  "old": "Ты ешь фруктовое пюре.",
+  "neu": "Ты ешь яблочное пюре."
+ },
+ {
+  "id": "it:12:18",
+  "loc": "uk",
+  "target": "Mangi della composta di mele.",
+  "old": "Ти їж фруктове пюре.",
+  "neu": "Ти їси яблучне пюре."
+ },
+ {
+  "id": "it:12:18",
+  "loc": "pt-BR",
+  "target": "Mangi della composta di mele.",
+  "old": "Você está comendo purê de frutas.",
+  "neu": "Você está comendo compota de maçã."
+ },
+ {
+  "id": "it:12:18",
+  "loc": "vi",
+  "target": "Mangi della composta di mele.",
+  "old": "Bạn đang ăn trái cây nghiền.",
+  "neu": "Bạn đang ăn táo hầm."
+ },
+ {
+  "id": "it:12:18",
+  "loc": "id",
+  "target": "Mangi della composta di mele.",
+  "old": "Kamu sedang makan bubur buah.",
+  "neu": "Kamu sedang makan kompot apel."
+ },
+ {
+  "id": "it:12:18",
+  "loc": "tr",
+  "target": "Mangi della composta di mele.",
+  "old": "Meyve püresi yiyorsunuz.",
+  "neu": "Elma kompostosu yiyorsunuz."
+ },
+ {
+  "id": "it:12:18",
+  "loc": "pl",
+  "target": "Mangi della composta di mele.",
+  "old": "Jesz mus owocowy.",
+  "neu": "Jesz mus jabłkowy."
+ },
+ {
+  "id": "it:12:27",
+  "loc": "pt-BR",
+  "target": "Aggiungi della senape.",
+  "old": "Você adiciona mostarda?",
+  "neu": "Você adiciona mostarda."
+ },
+ {
+  "id": "it:12:27",
+  "loc": "vi",
+  "target": "Aggiungi della senape.",
+  "old": "Bạn có cho thêm mù tạt không?",
+  "neu": "Bạn cho thêm mù tạt."
+ },
+ {
+  "id": "it:12:27",
+  "loc": "id",
+  "target": "Aggiungi della senape.",
+  "old": "Apakah Anda menambahkan mustard?",
+  "neu": "Anda menambahkan mustard."
+ },
+ {
+  "id": "it:12:27",
+  "loc": "tr",
+  "target": "Aggiungi della senape.",
+  "old": "Hardal ekler misiniz?",
+  "neu": "Hardal ekliyorsun."
+ },
+ {
+  "id": "it:12:27",
+  "loc": "pl",
+  "target": "Aggiungi della senape.",
+  "old": "Czy dodajesz musztardę?",
+  "neu": "Dodajesz musztardę."
+ },
+ {
+  "id": "it:12:31",
+  "loc": "pt-BR",
+  "target": "Non bevo latte.",
+  "old": "Eu não vou comprar leite.",
+  "neu": "Eu não bebo leite."
+ },
+ {
+  "id": "it:12:31",
+  "loc": "vi",
+  "target": "Non bevo latte.",
+  "old": "Tôi không mua sữa.",
+  "neu": "Tôi không uống sữa."
+ },
+ {
+  "id": "it:12:31",
+  "loc": "id",
+  "target": "Non bevo latte.",
+  "old": "Saya tidak membeli susu.",
+  "neu": "Saya tidak minum susu."
+ },
+ {
+  "id": "it:12:31",
+  "loc": "tr",
+  "target": "Non bevo latte.",
+  "old": "Süt almıyorum.",
+  "neu": "Süt içmiyorum."
+ },
+ {
+  "id": "it:12:31",
+  "loc": "pl",
+  "target": "Non bevo latte.",
+  "old": "Nie kupuję mleka.",
+  "neu": "Nie piję mleka."
+ },
+ {
+  "id": "it:12:34",
+  "loc": "pt-BR",
+  "target": "Lei non compra burro.",
+  "old": "Ela não vai comprar manteiga.",
+  "neu": "Ela não compra manteiga."
+ },
+ {
+  "id": "it:12:40",
+  "loc": "ru",
+  "target": "Lei mangia molte verdure.",
+  "old": "Она берёт много овощей.",
+  "neu": "Она ест много овощей."
+ },
+ {
+  "id": "it:12:40",
+  "loc": "uk",
+  "target": "Lei mangia molte verdure.",
+  "old": "Вона бере багато овочів.",
+  "neu": "Вона їсть багато овочів."
+ },
+ {
+  "id": "it:12:40",
+  "loc": "pt-BR",
+  "target": "Lei mangia molte verdure.",
+  "old": "Ela pega muitos vegetais.",
+  "neu": "Ela come muitos vegetais."
+ },
+ {
+  "id": "it:12:40",
+  "loc": "vi",
+  "target": "Lei mangia molte verdure.",
+  "old": "Cô ấy lấy rất nhiều rau.",
+  "neu": "Cô ấy ăn rất nhiều rau."
+ },
+ {
+  "id": "it:12:40",
+  "loc": "tr",
+  "target": "Lei mangia molte verdure.",
+  "old": "Çok miktarda sebze alıyor.",
+  "neu": "Çok miktarda sebze yiyor."
+ },
+ {
+  "id": "it:12:40",
+  "loc": "pl",
+  "target": "Lei mangia molte verdure.",
+  "old": "Ona bierze dużo warzyw.",
+  "neu": "Ona je dużo warzyw."
+ },
+ {
+  "id": "it:12:45",
+  "loc": "pl",
+  "target": "Aggiunge un cucchiaio di miele.",
+  "old": "Dodaje łyżeczkę miodu.",
+  "neu": "Dodaje łyżkę miodu."
+ },
+ {
+  "id": "it:12:49",
+  "loc": "pt-BR",
+  "target": "Dividiamo un piatto di patatine.",
+  "old": "Nós pegamos um prato de batatas fritas para todos.",
+  "neu": "Nós dividimos um prato de batatas fritas."
+ },
+ {
+  "id": "it:12:49",
+  "loc": "vi",
+  "target": "Dividiamo un piatto di patatine.",
+  "old": "Chúng tôi lấy một đĩa khoai tây chiên cho mọi người.",
+  "neu": "Chúng tôi chia nhau một đĩa khoai tây chiên."
+ },
+ {
+  "id": "it:12:49",
+  "loc": "id",
+  "target": "Dividiamo un piatto di patatine.",
+  "old": "Kami membawa satu piring kentang goreng untuk semua orang.",
+  "neu": "Kami berbagi satu piring kentang goreng."
+ },
+ {
+  "id": "it:12:49",
+  "loc": "tr",
+  "target": "Dividiamo un piatto di patatine.",
+  "old": "Herkes için bir tabak patates kızartması alıyoruz.",
+  "neu": "Bir tabak patates kızartmasını paylaşıyoruz."
+ },
+ {
+  "id": "it:12:49",
+  "loc": "pl",
+  "target": "Dividiamo un piatto di patatine.",
+  "old": "Bierzemy po jednym talerzu frytek dla każdego.",
+  "neu": "Dzielimy jeden talerz frytek."
+ },
+ {
+  "id": "it:13:23",
+  "loc": "ru",
+  "target": "Lui porta dei pantaloni blu.",
+  "old": "На ней синие брюки.",
+  "neu": "На нём синие брюки."
+ },
+ {
+  "id": "it:13:23",
+  "loc": "uk",
+  "target": "Lui porta dei pantaloni blu.",
+  "old": "Вона в синіх штанях.",
+  "neu": "Він у синіх штанях."
+ },
+ {
+  "id": "it:13:23",
+  "loc": "pt-BR",
+  "target": "Lui porta dei pantaloni blu.",
+  "old": "Ela está usando calças azuis.",
+  "neu": "Ele está usando calças azuis."
+ },
+ {
+  "id": "it:13:23",
+  "loc": "vi",
+  "target": "Lui porta dei pantaloni blu.",
+  "old": "Cô ấy đang mặc quần màu xanh dương.",
+  "neu": "Anh ấy đang mặc quần màu xanh dương."
+ },
+ {
+  "id": "it:13:23",
+  "loc": "pl",
+  "target": "Lui porta dei pantaloni blu.",
+  "old": "Ona ma na sobie niebieskie spodnie.",
+  "neu": "On ma na sobie niebieskie spodnie."
+ },
+ {
+  "id": "it:13:24",
+  "loc": "ru",
+  "target": "Lei porta una camicia blu.",
+  "old": "На нем синяя рубашка.",
+  "neu": "На ней синяя рубашка."
+ },
+ {
+  "id": "it:13:24",
+  "loc": "uk",
+  "target": "Lei porta una camicia blu.",
+  "old": "Він у синій сорочці.",
+  "neu": "Вона в синій сорочці."
+ },
+ {
+  "id": "it:13:24",
+  "loc": "pt-BR",
+  "target": "Lei porta una camicia blu.",
+  "old": "Ele está usando uma camisa azul.",
+  "neu": "Ela está usando uma camisa azul."
+ },
+ {
+  "id": "it:13:24",
+  "loc": "vi",
+  "target": "Lei porta una camicia blu.",
+  "old": "Anh ấy đang mặc một chiếc áo sơ mi màu xanh dương.",
+  "neu": "Cô ấy đang mặc một chiếc áo sơ mi màu xanh dương."
+ },
+ {
+  "id": "it:13:24",
+  "loc": "pl",
+  "target": "Lei porta una camicia blu.",
+  "old": "On ma na sobie niebieską koszulę.",
+  "neu": "Ona ma na sobie niebieską koszulę."
+ },
+ {
+  "id": "it:14:03",
+  "loc": "pl",
+  "target": "Lei può venire.",
+  "old": "Ona może wejść.",
+  "neu": "Ona może przyjść."
+ },
+ {
+  "id": "it:14:05",
+  "loc": "uk",
+  "target": "Potete passare.",
+  "old": "Ти можеш пройти.",
+  "neu": "Ви можете пройти."
+ },
+ {
+  "id": "it:14:05",
+  "loc": "pt-BR",
+  "target": "Potete passare.",
+  "old": "Você pode passar.",
+  "neu": "Vocês podem passar."
+ },
+ {
+  "id": "it:14:05",
+  "loc": "id",
+  "target": "Potete passare.",
+  "old": "Kamu bisa masuk.",
+  "neu": "Kalian bisa lewat."
+ },
+ {
+  "id": "it:14:05",
+  "loc": "tr",
+  "target": "Potete passare.",
+  "old": "Geçebilirsin.",
+  "neu": "Geçebilirsiniz."
+ },
+ {
+  "id": "it:14:05",
+  "loc": "pl",
+  "target": "Potete passare.",
+  "old": "Możesz przejść.",
+  "neu": "Możecie przejść."
+ },
+ {
+  "id": "it:14:43",
+  "loc": "pt-BR",
+  "target": "Mi può prestare il suo caricabatterie?",
+  "old": "Posso pegar seu carregador emprestado?",
+  "neu": "Pode me emprestar seu carregador?"
+ },
+ {
+  "id": "it:14:43",
+  "loc": "vi",
+  "target": "Mi può prestare il suo caricabatterie?",
+  "old": "Tôi có thể mượn sạc điện thoại của bạn được không?",
+  "neu": "Bạn có thể cho tôi mượn sạc điện thoại của bạn được không?"
+ },
+ {
+  "id": "it:14:43",
+  "loc": "id",
+  "target": "Mi può prestare il suo caricabatterie?",
+  "old": "Bolehkah saya meminjam pengisi daya Anda?",
+  "neu": "Bisakah Anda meminjamkan saya pengisi daya Anda?"
+ },
+ {
+  "id": "it:14:43",
+  "loc": "tr",
+  "target": "Mi può prestare il suo caricabatterie?",
+  "old": "Şarj cihazınızı ödünç alabilir miyim?",
+  "neu": "Şarj cihazınızı bana ödünç verebilir misiniz?"
+ },
+ {
+  "id": "it:14:43",
+  "loc": "pl",
+  "target": "Mi può prestare il suo caricabatterie?",
+  "old": "Czy mogę pożyczyć ładowarkę?",
+  "neu": "Czy możesz pożyczyć mi swoją ładowarkę?"
+ },
+ {
+  "id": "it:15:02",
+  "loc": "pt-BR",
+  "target": "Stai leggendo il libro.",
+  "old": "Você está lendo um livro?",
+  "neu": "Você está lendo o livro agora."
+ },
+ {
+  "id": "it:15:02",
+  "loc": "vi",
+  "target": "Stai leggendo il libro.",
+  "old": "Bạn có đang đọc sách không?",
+  "neu": "Bạn đang đọc sách."
+ },
+ {
+  "id": "it:15:02",
+  "loc": "id",
+  "target": "Stai leggendo il libro.",
+  "old": "Apakah Anda sedang membaca buku?",
+  "neu": "Anda sedang membaca buku."
+ },
+ {
+  "id": "it:15:02",
+  "loc": "tr",
+  "target": "Stai leggendo il libro.",
+  "old": "Şu anda kitap mı okuyorsunuz?",
+  "neu": "Şu anda kitap okuyorsunuz."
+ },
+ {
+  "id": "it:15:02",
+  "loc": "pl",
+  "target": "Stai leggendo il libro.",
+  "old": "Czy czytasz książkę?",
+  "neu": "Czytasz książkę."
+ },
+ {
+  "id": "it:15:04",
+  "loc": "pt-BR",
+  "target": "Stai leggendo il messaggio.",
+  "old": "Você está lendo uma mensagem?",
+  "neu": "Você está lendo a mensagem."
+ },
+ {
+  "id": "it:15:04",
+  "loc": "vi",
+  "target": "Stai leggendo il messaggio.",
+  "old": "Bạn có đang đọc tin nhắn không?",
+  "neu": "Bạn đang đọc tin nhắn."
+ },
+ {
+  "id": "it:15:04",
+  "loc": "id",
+  "target": "Stai leggendo il messaggio.",
+  "old": "Apakah Anda sedang membaca pesan?",
+  "neu": "Anda sedang membaca pesan."
+ },
+ {
+  "id": "it:15:04",
+  "loc": "tr",
+  "target": "Stai leggendo il messaggio.",
+  "old": "Şu anda bir mesaj mı okuyorsunuz?",
+  "neu": "Şu anda mesaj okuyorsunuz."
+ },
+ {
+  "id": "it:15:04",
+  "loc": "pl",
+  "target": "Stai leggendo il messaggio.",
+  "old": "Czy czytasz wiadomość?",
+  "neu": "Czytasz wiadomość."
+ },
+ {
+  "id": "it:15:09",
+  "loc": "pl",
+  "target": "Luis sta mangiando a casa.",
+  "old": "Luis je obecnie w domu.",
+  "neu": "Luis je teraz w domu."
+ },
+ {
+  "id": "it:15:13",
+  "loc": "pt-BR",
+  "target": "Stai preparando la cena.",
+  "old": "Você está preparando o jantar agora?",
+  "neu": "Você está preparando o jantar agora."
+ },
+ {
+  "id": "it:15:13",
+  "loc": "vi",
+  "target": "Stai preparando la cena.",
+  "old": "Bạn có đang nấu bữa tối không?",
+  "neu": "Bạn đang nấu bữa tối."
+ },
+ {
+  "id": "it:15:13",
+  "loc": "id",
+  "target": "Stai preparando la cena.",
+  "old": "Apakah kamu sedang memasak makan malam sekarang?",
+  "neu": "Kamu sedang memasak makan malam sekarang."
+ },
+ {
+  "id": "it:15:13",
+  "loc": "tr",
+  "target": "Stai preparando la cena.",
+  "old": "Şu anda akşam yemeği mi pişiriyorsun?",
+  "neu": "Şu anda akşam yemeği pişiriyorsun."
+ },
+ {
+  "id": "it:15:13",
+  "loc": "pl",
+  "target": "Stai preparando la cena.",
+  "old": "Czy teraz gotujesz obiad?",
+  "neu": "Teraz gotujesz obiad."
+ },
+ {
+  "id": "it:15:18",
+  "loc": "pt-BR",
+  "target": "Ana sta asciugando i piatti.",
+  "old": "Ana está secando a louça agora?",
+  "neu": "Ana está secando a louça agora."
+ },
+ {
+  "id": "it:15:18",
+  "loc": "vi",
+  "target": "Ana sta asciugando i piatti.",
+  "old": "Ana có đang lau khô bát đĩa không?",
+  "neu": "Ana đang lau khô bát đĩa."
+ },
+ {
+  "id": "it:15:18",
+  "loc": "id",
+  "target": "Ana sta asciugando i piatti.",
+  "old": "Apakah Ana sedang mengeringkan piring sekarang?",
+  "neu": "Ana sedang mengeringkan piring sekarang."
+ },
+ {
+  "id": "it:15:18",
+  "loc": "tr",
+  "target": "Ana sta asciugando i piatti.",
+  "old": "Ana şu anda bulaşıkları mı yıkıyor?",
+  "neu": "Ana şu anda bulaşıkları kuruluyor."
+ },
+ {
+  "id": "it:15:18",
+  "loc": "pl",
+  "target": "Ana sta asciugando i piatti.",
+  "old": "Czy Ana wyciera teraz naczynia?",
+  "neu": "Ana wyciera teraz naczynia."
+ },
+ {
+  "id": "it:15:20",
+  "loc": "pt-BR",
+  "target": "Stai pagando con la carta.",
+  "old": "Você está pagando com cartão?",
+  "neu": "Você está pagando com o cartão."
+ },
+ {
+  "id": "it:15:20",
+  "loc": "vi",
+  "target": "Stai pagando con la carta.",
+  "old": "Bạn có đang thanh toán bằng thẻ không?",
+  "neu": "Bạn đang thanh toán bằng thẻ."
+ },
+ {
+  "id": "it:15:20",
+  "loc": "id",
+  "target": "Stai pagando con la carta.",
+  "old": "Apakah Anda sedang membayar dengan kartu?",
+  "neu": "Anda sedang membayar dengan kartu."
+ },
+ {
+  "id": "it:15:20",
+  "loc": "tr",
+  "target": "Stai pagando con la carta.",
+  "old": "Şu anda kartla mı ödeme yapıyorsunuz?",
+  "neu": "Şu anda kartla ödeme yapıyorsunuz."
+ },
+ {
+  "id": "it:15:20",
+  "loc": "pl",
+  "target": "Stai pagando con la carta.",
+  "old": "Czy płacisz kartą?",
+  "neu": "Płacisz kartą."
+ },
+ {
+  "id": "it:15:22",
+  "loc": "pt-BR",
+  "target": "State leggendo il messaggio.",
+  "old": "Você está lendo uma mensagem neste momento.",
+  "neu": "Vocês estão lendo a mensagem neste momento."
+ },
+ {
+  "id": "it:15:22",
+  "loc": "pl",
+  "target": "State leggendo il messaggio.",
+  "old": "Czytasz wiadomość.",
+  "neu": "Czytacie wiadomość."
+ },
+ {
+  "id": "it:15:27",
+  "loc": "pt-BR",
+  "target": "Stai tagliando le verdure.",
+  "old": "Você está cortando legumes?",
+  "neu": "Você está cortando os legumes."
+ },
+ {
+  "id": "it:15:27",
+  "loc": "vi",
+  "target": "Stai tagliando le verdure.",
+  "old": "Bạn có đang thái rau không?",
+  "neu": "Bạn đang thái rau."
+ },
+ {
+  "id": "it:15:27",
+  "loc": "id",
+  "target": "Stai tagliando le verdure.",
+  "old": "Apakah Anda sedang memotong sayuran?",
+  "neu": "Anda sedang memotong sayuran."
+ },
+ {
+  "id": "it:15:27",
+  "loc": "tr",
+  "target": "Stai tagliando le verdure.",
+  "old": "Şu anda sebze mi doğruyorsunuz?",
+  "neu": "Şu anda sebze doğruyorsunuz."
+ },
+ {
+  "id": "it:15:27",
+  "loc": "pl",
+  "target": "Stai tagliando le verdure.",
+  "old": "Czy kroisz warzywa?",
+  "neu": "Kroisz warzywa."
+ },
+ {
+  "id": "it:15:30",
+  "loc": "pt-BR",
+  "target": "State mangiando in cucina.",
+  "old": "Você está comendo na cozinha neste momento.",
+  "neu": "Vocês estão comendo na cozinha neste momento."
+ },
+ {
+  "id": "it:15:30",
+  "loc": "pl",
+  "target": "State mangiando in cucina.",
+  "old": "Jesz w kuchni.",
+  "neu": "Jecie w kuchni."
+ },
+ {
+  "id": "it:16:15",
+  "loc": "vi",
+  "target": "Prendi la giacca!",
+  "old": "Cởi áo khoác của bạn!",
+  "neu": "Lấy áo khoác của bạn!"
+ },
+ {
+  "id": "it:16:21",
+  "loc": "pt-BR",
+  "target": "Firmi in fondo, per favore.",
+  "old": "Assine abaixo.",
+  "neu": "Por favor, assine abaixo."
+ },
+ {
+  "id": "it:16:31",
+  "loc": "pl",
+  "target": "Non correre!",
+  "old": "Nie uciekaj!",
+  "neu": "Nie biegnij!"
+ },
+ {
+  "id": "it:16:34",
+  "loc": "pl",
+  "target": "Non chiudere la porta a chiave!",
+  "old": "Nie zamykaj drzwi!",
+  "neu": "Nie zamykaj drzwi na klucz!"
+ },
+ {
+  "id": "it:16:39",
+  "loc": "pt-BR",
+  "target": "Non aspetti vicino all’uscita!",
+  "old": "Não espere para sair!",
+  "neu": "Não espere perto da saída!"
+ },
+ {
+  "id": "it:16:39",
+  "loc": "vi",
+  "target": "Non aspetti vicino all’uscita!",
+  "old": "Đừng đợi trước khi rời đi!",
+  "neu": "Đừng đợi gần lối ra!"
+ },
+ {
+  "id": "it:16:39",
+  "loc": "id",
+  "target": "Non aspetti vicino all’uscita!",
+  "old": "Jangan menunggu sebelum pergi!",
+  "neu": "Jangan menunggu dekat pintu keluar!"
+ },
+ {
+  "id": "it:16:39",
+  "loc": "tr",
+  "target": "Non aspetti vicino all’uscita!",
+  "old": "Ayrılmadan önce beklemeyin!",
+  "neu": "Çıkışın yakınında beklemeyin!"
+ },
+ {
+  "id": "it:16:39",
+  "loc": "pl",
+  "target": "Non aspetti vicino all’uscita!",
+  "old": "Nie czekaj, aż wyjdziesz!",
+  "neu": "Nie czekaj blisko wyjścia!"
+ },
+ {
+  "id": "it:16:46",
+  "loc": "pl",
+  "target": "Allaccia la cintura!",
+  "old": "Zapnijcie pasy!",
+  "neu": "Zapnij pas!"
+ },
+ {
+  "id": "it:17:05",
+  "loc": "pt-BR",
+  "target": "Vi alzate.",
+  "old": "Levante-se.",
+  "neu": "Vocês se levantam."
+ },
+ {
+  "id": "it:17:05",
+  "loc": "tr",
+  "target": "Vi alzate.",
+  "old": "Kalkın.",
+  "neu": "Siz kalkıyorsunuz."
+ },
+ {
+  "id": "it:17:05",
+  "loc": "pl",
+  "target": "Vi alzate.",
+  "old": "Wstajesz.",
+  "neu": "Wy wstajecie."
+ },
+ {
+  "id": "it:17:08",
+  "loc": "pt-BR",
+  "target": "Ti prepari.",
+  "old": "Vocês se preparam.",
+  "neu": "Você se prepara."
+ },
+ {
+  "id": "it:17:24",
+  "loc": "pt-BR",
+  "target": "Vi vestite per uscire.",
+  "old": "Você se veste para sair?",
+  "neu": "Vocês se vestem para sair."
+ },
+ {
+  "id": "it:17:24",
+  "loc": "vi",
+  "target": "Vi vestite per uscire.",
+  "old": "Bạn có ăn mặc chỉnh tề để ra ngoài không?",
+  "neu": "Các bạn mặc quần áo để ra ngoài."
+ },
+ {
+  "id": "it:17:24",
+  "loc": "id",
+  "target": "Vi vestite per uscire.",
+  "old": "Apakah Anda berdandan untuk pergi keluar?",
+  "neu": "Kalian berpakaian untuk pergi keluar."
+ },
+ {
+  "id": "it:17:24",
+  "loc": "tr",
+  "target": "Vi vestite per uscire.",
+  "old": "Dışarı çıkarken giyiniyor musunuz?",
+  "neu": "Dışarı çıkmak için giyiniyorsunuz."
+ },
+ {
+  "id": "it:17:24",
+  "loc": "pl",
+  "target": "Vi vestite per uscire.",
+  "old": "Czy ubierasz się, żeby wyjść?",
+  "neu": "Wy ubieracie się, żeby wyjść."
+ },
+ {
+  "id": "it:17:34",
+  "loc": "vi",
+  "target": "Non si riposa mai?",
+  "old": "Bạn có bao giờ nghỉ ngơi không?",
+  "neu": "Bạn không bao giờ nghỉ ngơi sao?"
+ },
+ {
+  "id": "it:17:37",
+  "loc": "pt-BR",
+  "target": "Ti prepari qui.",
+  "old": "Você vai se arrumar aqui.",
+  "neu": "Você se prepara aqui."
+ },
+ {
+  "id": "it:17:37",
+  "loc": "vi",
+  "target": "Ti prepari qui.",
+  "old": "Anh/Chị sẽ chuẩn bị ở đây.",
+  "neu": "Bạn chuẩn bị ở đây."
+ },
+ {
+  "id": "it:17:37",
+  "loc": "id",
+  "target": "Ti prepari qui.",
+  "old": "Kamu akan bersiap-siap di sini.",
+  "neu": "Kamu bersiap-siap di sini."
+ },
+ {
+  "id": "it:17:37",
+  "loc": "tr",
+  "target": "Ti prepari qui.",
+  "old": "Burada hazırlanacaksın.",
+  "neu": "Burada hazırlanıyorsun."
+ },
+ {
+  "id": "it:17:37",
+  "loc": "pl",
+  "target": "Ti prepari qui.",
+  "old": "Przygotujesz się tutaj.",
+  "neu": "Przygotowujesz się tutaj."
+ },
+ {
+  "id": "it:17:45",
+  "loc": "ru",
+  "target": "Come si chiama il tuo vicino?",
+  "old": "Как зовут твою соседку?",
+  "neu": "Как зовут твоего соседа?"
+ },
+ {
+  "id": "it:17:49",
+  "loc": "uk",
+  "target": "Paolo si accorge di essere sul binario sbagliato.",
+  "old": "Паоло зауважує, що стоїть не на тому шляху.",
+  "neu": "Паоло помічає, що стоїть не на тій платформі."
+ },
+ {
+  "id": "it:17:49",
+  "loc": "pt-BR",
+  "target": "Paolo si accorge di essere sul binario sbagliato.",
+  "old": "Paolo percebe que está parado na direção errada.",
+  "neu": "Paolo percebe que está na plataforma errada."
+ },
+ {
+  "id": "it:17:49",
+  "loc": "vi",
+  "target": "Paolo si accorge di essere sul binario sbagliato.",
+  "old": "Paolo nhận thấy mình đang đứng sai hướng.",
+  "neu": "Paolo nhận ra mình đang ở nhầm sân ga."
+ },
+ {
+  "id": "it:17:49",
+  "loc": "id",
+  "target": "Paolo si accorge di essere sul binario sbagliato.",
+  "old": "Paolo menyadari dia berdiri menghadap arah yang salah.",
+  "neu": "Paolo menyadari dia berada di peron yang salah."
+ },
+ {
+  "id": "it:17:49",
+  "loc": "tr",
+  "target": "Paolo si accorge di essere sul binario sbagliato.",
+  "old": "Paolo yanlış yönde durduğunu fark ediyor.",
+  "neu": "Paolo yanlış perondan olduğunu fark ediyor."
+ },
+ {
+  "id": "it:17:49",
+  "loc": "pl",
+  "target": "Paolo si accorge di essere sul binario sbagliato.",
+  "old": "Paolo zauważa, że ​​stoi w złym kierunku.",
+  "neu": "Paolo zauważa, że stoi na złym peronie."
+ },
+ {
+  "id": "it:18:05",
+  "loc": "pt-BR",
+  "target": "Avete chiuso il garage.",
+  "old": "Você fechou a garagem.",
+  "neu": "Vocês fecharam a garagem."
+ },
+ {
+  "id": "it:18:05",
+  "loc": "pl",
+  "target": "Avete chiuso il garage.",
+  "old": "Zamknąłeś garaż.",
+  "neu": "Zamknęliście garaż."
+ },
+ {
+  "id": "it:18:06",
+  "loc": "pl",
+  "target": "Hanno chiuso la sala.",
+  "old": "Zamknęli korytarz.",
+  "neu": "Zamknęli salę."
+ },
+ {
+  "id": "it:18:33",
+  "loc": "tr",
+  "target": "Lei non ha trovato il suo badge.",
+  "old": "Biletini bulamadı.",
+  "neu": "Giriş kartını bulamadı."
+ },
+ {
+  "id": "it:18:39",
+  "loc": "pt-BR",
+  "target": "Chi ha rotto il bicchiere?",
+  "old": "Quem quebrou o vidro?",
+  "neu": "Quem quebrou o copo?"
+ },
+ {
+  "id": "it:18:39",
+  "loc": "vi",
+  "target": "Chi ha rotto il bicchiere?",
+  "old": "Ai đã làm vỡ kính?",
+  "neu": "Ai đã làm vỡ cái ly?"
+ },
+ {
+  "id": "it:18:39",
+  "loc": "pl",
+  "target": "Chi ha rotto il bicchiere?",
+  "old": "Kto stłukł szybę?",
+  "neu": "Kto stłukł szklankę?"
+ },
+ {
+  "id": "it:18:46",
+  "loc": "ru",
+  "target": "Hai dimenticato di chiedere il conto.",
+  "old": "Ты забыл взять счёт.",
+  "neu": "Ты забыл попросить счёт."
+ },
+ {
+  "id": "it:18:46",
+  "loc": "uk",
+  "target": "Hai dimenticato di chiedere il conto.",
+  "old": "Ти забув взяти рахунок.",
+  "neu": "Ти забув попросити рахунок."
+ },
+ {
+  "id": "it:18:46",
+  "loc": "pt-BR",
+  "target": "Hai dimenticato di chiedere il conto.",
+  "old": "Você se esqueceu de pegar a conta.",
+  "neu": "Você esqueceu de pedir a conta."
+ },
+ {
+  "id": "it:18:46",
+  "loc": "vi",
+  "target": "Hai dimenticato di chiedere il conto.",
+  "old": "Bạn quên lấy hóa đơn.",
+  "neu": "Bạn quên xin hóa đơn."
+ },
+ {
+  "id": "it:18:46",
+  "loc": "id",
+  "target": "Hai dimenticato di chiedere il conto.",
+  "old": "Anda lupa mengambil tagihan.",
+  "neu": "Kamu lupa meminta tagihan."
+ },
+ {
+  "id": "it:18:46",
+  "loc": "tr",
+  "target": "Hai dimenticato di chiedere il conto.",
+  "old": "Hesabı almayı unuttunuz.",
+  "neu": "Hesabı istemeyi unuttun."
+ },
+ {
+  "id": "it:18:46",
+  "loc": "pl",
+  "target": "Hai dimenticato di chiedere il conto.",
+  "old": "Zapomniałeś/aś wziąć rachunek.",
+  "neu": "Zapomniałeś/aś poprosić o rachunek."
+ },
+ {
+  "id": "it:18:48",
+  "loc": "pt-BR",
+  "target": "Avete scelto la camera blu.",
+  "old": "Você escolheu o quarto azul.",
+  "neu": "Vocês escolheram o quarto azul."
+ },
+ {
+  "id": "it:18:48",
+  "loc": "pl",
+  "target": "Avete scelto la camera blu.",
+  "old": "Wybrałeś niebieski pokój.",
+  "neu": "Wybraliście niebieski pokój."
+ },
+ {
+  "id": "it:19:15",
+  "loc": "pl",
+  "target": "Mia madre è tornata a casa presto.",
+  "old": "Moja mama wróciła wcześniej.",
+  "neu": "Moja mama wróciła do domu wcześnie."
+ },
+ {
+  "id": "it:19:17",
+  "loc": "ru",
+  "target": "Gli ospiti sono rimasti qui per la notte.",
+  "old": "Гости остались здесь.",
+  "neu": "Гости остались здесь на ночь."
+ },
+ {
+  "id": "it:19:17",
+  "loc": "uk",
+  "target": "Gli ospiti sono rimasti qui per la notte.",
+  "old": "Гості залишилися тут.",
+  "neu": "Гості залишилися тут на ніч."
+ },
+ {
+  "id": "it:19:17",
+  "loc": "pt-BR",
+  "target": "Gli ospiti sono rimasti qui per la notte.",
+  "old": "Os hóspedes ficaram aqui.",
+  "neu": "Os hóspedes ficaram aqui para passar a noite."
+ },
+ {
+  "id": "it:19:17",
+  "loc": "vi",
+  "target": "Gli ospiti sono rimasti qui per la notte.",
+  "old": "Khách khứa ở lại đây.",
+  "neu": "Khách ở lại đây qua đêm."
+ },
+ {
+  "id": "it:19:17",
+  "loc": "tr",
+  "target": "Gli ospiti sono rimasti qui per la notte.",
+  "old": "Misafirler burada kaldılar.",
+  "neu": "Misafirler geceyi burada geçirdi."
+ },
+ {
+  "id": "it:19:17",
+  "loc": "pl",
+  "target": "Gli ospiti sono rimasti qui per la notte.",
+  "old": "Goście zostali tutaj.",
+  "neu": "Goście zostali tutaj na noc."
+ },
+ {
+  "id": "it:19:18",
+  "loc": "vi",
+  "target": "I vicini sono rimasti fuori.",
+  "old": "Những người hàng xóm bị bỏ lại trên đường.",
+  "neu": "Những người hàng xóm ở lại bên ngoài."
+ },
+ {
+  "id": "it:19:18",
+  "loc": "id",
+  "target": "I vicini sono rimasti fuori.",
+  "old": "Para tetangga ditinggalkan di jalan.",
+  "neu": "Para tetangga tetap berada di luar."
+ },
+ {
+  "id": "it:19:34",
+  "loc": "vi",
+  "target": "I clienti non sono entrati.",
+  "old": "Khách hàng không đến.",
+  "neu": "Khách hàng không vào."
+ },
+ {
+  "id": "it:19:34",
+  "loc": "id",
+  "target": "I clienti non sono entrati.",
+  "old": "Para pelanggan tidak datang.",
+  "neu": "Para pelanggan tidak masuk."
+ },
+ {
+  "id": "it:19:43",
+  "loc": "pt-BR",
+  "target": "I due amici sono venuti a piedi.",
+  "old": "Dois amigos entraram.",
+  "neu": "Os dois amigos vieram a pé."
+ },
+ {
+  "id": "it:19:43",
+  "loc": "vi",
+  "target": "I due amici sono venuti a piedi.",
+  "old": "Hai người bạn bước vào.",
+  "neu": "Hai người bạn đi bộ đến."
+ },
+ {
+  "id": "it:19:43",
+  "loc": "id",
+  "target": "I due amici sono venuti a piedi.",
+  "old": "Dua teman masuk.",
+  "neu": "Dua teman datang dengan berjalan kaki."
+ },
+ {
+  "id": "it:19:43",
+  "loc": "tr",
+  "target": "I due amici sono venuti a piedi.",
+  "old": "İki arkadaş içeri girdi.",
+  "neu": "İki arkadaş yürüyerek geldi."
+ },
+ {
+  "id": "it:19:43",
+  "loc": "pl",
+  "target": "I due amici sono venuti a piedi.",
+  "old": "Weszło dwóch przyjaciół.",
+  "neu": "Dwóch przyjaciół przyszło pieszo."
+ },
+ {
+  "id": "it:19:44",
+  "loc": "pl",
+  "target": "Suo padre è arrivato presto.",
+  "old": "Jej ojciec przybył wcześniej.",
+  "neu": "Jej ojciec przybył wcześnie."
+ },
+ {
+  "id": "it:20:05",
+  "loc": "pt-BR",
+  "target": "Abitavate in città.",
+  "old": "Você morava na cidade.",
+  "neu": "Vocês moravam na cidade."
+ },
+ {
+  "id": "it:20:05",
+  "loc": "pl",
+  "target": "Abitavate in città.",
+  "old": "Mieszkałeś/aś w mieście.",
+  "neu": "Mieszkaliście w mieście."
+ },
+ {
+  "id": "it:20:35",
+  "loc": "ru",
+  "target": "I negozi erano chiusi il lunedì.",
+  "old": "Магазины не работали по понедельникам.",
+  "neu": "Магазины были закрыты по понедельникам."
+ },
+ {
+  "id": "it:20:35",
+  "loc": "uk",
+  "target": "I negozi erano chiusi il lunedì.",
+  "old": "Магазини не працювали по понеділках.",
+  "neu": "Магазини були зачинені по понеділках."
+ },
+ {
+  "id": "it:20:35",
+  "loc": "en",
+  "target": "I negozi erano chiusi il lunedì.",
+  "old": "The shops weren’t open on Mondays.",
+  "neu": "The shops were closed on Mondays."
+ },
+ {
+  "id": "it:20:35",
+  "loc": "es",
+  "target": "I negozi erano chiusi il lunedì.",
+  "old": "Las tiendas no abrían los lunes.",
+  "neu": "Las tiendas estaban cerradas los lunes."
+ },
+ {
+  "id": "it:20:35",
+  "loc": "pt-BR",
+  "target": "I negozi erano chiusi il lunedì.",
+  "old": "As lojas não abriam às segundas-feiras.",
+  "neu": "As lojas estavam fechadas às segundas-feiras."
+ },
+ {
+  "id": "it:20:35",
+  "loc": "vi",
+  "target": "I negozi erano chiusi il lunedì.",
+  "old": "Các cửa hàng không mở cửa vào thứ Hai.",
+  "neu": "Các cửa hàng đóng cửa vào thứ Hai."
+ },
+ {
+  "id": "it:20:35",
+  "loc": "id",
+  "target": "I negozi erano chiusi il lunedì.",
+  "old": "Toko-toko tidak buka pada hari Senin.",
+  "neu": "Toko-toko tutup pada hari Senin."
+ },
+ {
+  "id": "it:20:35",
+  "loc": "tr",
+  "target": "I negozi erano chiusi il lunedì.",
+  "old": "Pazartesi günleri dükkanlar açık değildi.",
+  "neu": "Pazartesi günleri dükkanlar kapalıydı."
+ },
+ {
+  "id": "it:20:35",
+  "loc": "pl",
+  "target": "I negozi erano chiusi il lunedì.",
+  "old": "Sklepy nie były otwarte w poniedziałki.",
+  "neu": "Sklepy były zamknięte w poniedziałki."
+ },
+ {
+  "id": "it:20:39",
+  "loc": "ru",
+  "target": "Era spesso libero?",
+  "old": "Вы часто дежурили?",
+  "neu": "Вы часто были свободны?"
+ },
+ {
+  "id": "it:20:39",
+  "loc": "uk",
+  "target": "Era spesso libero?",
+  "old": "Ви часто чергували?",
+  "neu": "Ви часто були вільні?"
+ },
+ {
+  "id": "it:20:39",
+  "loc": "pt-BR",
+  "target": "Era spesso libero?",
+  "old": "Você estava frequentemente de plantão?",
+  "neu": "Você estava frequentemente livre?"
+ },
+ {
+  "id": "it:20:39",
+  "loc": "vi",
+  "target": "Era spesso libero?",
+  "old": "Bạn có thường trực ca không?",
+  "neu": "Bạn có thường rảnh không?"
+ },
+ {
+  "id": "it:20:39",
+  "loc": "id",
+  "target": "Era spesso libero?",
+  "old": "Apakah Anda sering bertugas?",
+  "neu": "Apakah Anda sering senggang?"
+ },
+ {
+  "id": "it:20:39",
+  "loc": "tr",
+  "target": "Era spesso libero?",
+  "old": "Sık sık nöbette miydiniz?",
+  "neu": "Sık sık boş muydunuz?"
+ },
+ {
+  "id": "it:20:39",
+  "loc": "pl",
+  "target": "Era spesso libero?",
+  "old": "Czy często byłeś/aś na służbie?",
+  "neu": "Czy często byłeś/aś wolny/a?"
+ },
+ {
+  "id": "it:20:47",
+  "loc": "vi",
+  "target": "Ci incontravamo davanti alla fontana.",
+  "old": "Chúng tôi sẽ gặp nhau trước đài phun nước.",
+  "neu": "Chúng tôi thường gặp nhau trước đài phun nước."
+ },
+ {
+  "id": "it:20:47",
+  "loc": "id",
+  "target": "Ci incontravamo davanti alla fontana.",
+  "old": "Kami akan bertemu di depan air mancur.",
+  "neu": "Dulu kami bertemu di depan air mancur."
+ },
+ {
+  "id": "it:21:18",
+  "loc": "tr",
+  "target": "Avevamo fame quando è arrivata la zuppa.",
+  "old": "Çorba geldiğinde acıkmıştık.",
+  "neu": "Çorba geldiğinde açtık."
+ },
+ {
+  "id": "it:21:19",
+  "loc": "pt-BR",
+  "target": "Gli studenti aspettavano quando hanno annunciato la partenza.",
+  "old": "Os alunos esperaram até o anúncio da partida.",
+  "neu": "Os alunos estavam esperando quando anunciaram a partida."
+ },
+ {
+  "id": "it:21:19",
+  "loc": "vi",
+  "target": "Gli studenti aspettavano quando hanno annunciato la partenza.",
+  "old": "Các học sinh đợi cho đến khi có thông báo khởi hành.",
+  "neu": "Các học sinh đang đợi khi họ thông báo khởi hành."
+ },
+ {
+  "id": "it:21:19",
+  "loc": "id",
+  "target": "Gli studenti aspettavano quando hanno annunciato la partenza.",
+  "old": "Para siswa menunggu hingga pengumuman keberangkatan.",
+  "neu": "Para siswa sedang menunggu ketika mereka mengumumkan keberangkatan."
+ },
+ {
+  "id": "it:21:19",
+  "loc": "tr",
+  "target": "Gli studenti aspettavano quando hanno annunciato la partenza.",
+  "old": "Öğrenciler kalkış anonsunu beklediler.",
+  "neu": "Kalkışı duyurduklarında öğrenciler bekliyordu."
+ },
+ {
+  "id": "it:21:19",
+  "loc": "pl",
+  "target": "Gli studenti aspettavano quando hanno annunciato la partenza.",
+  "old": "Uczniowie czekali do ogłoszenia o odjeździe.",
+  "neu": "Uczniowie czekali, kiedy ogłosili odjazd."
+ },
+ {
+  "id": "it:21:26",
+  "loc": "vi",
+  "target": "Mentre la zuppa si scaldava, ho apparecchiato la tavola.",
+  "old": "Trong lúc súp đang nóng, tôi đã dọn bàn.",
+  "neu": "Trong lúc súp đang được hâm nóng, tôi đã dọn bàn."
+ },
+ {
+  "id": "it:21:27",
+  "loc": "pl",
+  "target": "Mentre i bambini giocavano, la palla è scoppiata.",
+  "old": "Podczas gdy dzieci się bawiły, piłka wyskoczyła.",
+  "neu": "Podczas gdy dzieci się bawiły, piłka pękła."
+ },
+ {
+  "id": "it:21:30",
+  "loc": "pt-BR",
+  "target": "Mentre dormiva, è arrivato il postino.",
+  "old": "O carteiro passou enquanto você estava dormindo.",
+  "neu": "Enquanto ele dormia, o carteiro chegou."
+ },
+ {
+  "id": "it:21:30",
+  "loc": "vi",
+  "target": "Mentre dormiva, è arrivato il postino.",
+  "old": "Người đưa thư đến khi bạn đang ngủ.",
+  "neu": "Trong khi anh ấy đang ngủ, người đưa thư đến."
+ },
+ {
+  "id": "it:21:30",
+  "loc": "id",
+  "target": "Mentre dormiva, è arrivato il postino.",
+  "old": "Tukang pos datang saat Anda sedang tidur.",
+  "neu": "Saat dia sedang tidur, tukang pos datang."
+ },
+ {
+  "id": "it:21:30",
+  "loc": "tr",
+  "target": "Mentre dormiva, è arrivato il postino.",
+  "old": "Siz uyurken postacı geldi.",
+  "neu": "O uyurken postacı geldi."
+ },
+ {
+  "id": "it:21:30",
+  "loc": "pl",
+  "target": "Mentre dormiva, è arrivato il postino.",
+  "old": "Listonosz przyszedł, kiedy spałeś/aś.",
+  "neu": "Kiedy spał, przyszedł listonosz."
+ },
+ {
+  "id": "it:21:45",
+  "loc": "pl",
+  "target": "La radio stava trasmettendo una canzone quando è andata via la corrente.",
+  "old": "Radio grało piosenkę, kiedy wyłączyli prąd.",
+  "neu": "Radio grało piosenkę, kiedy zabrakło prądu."
+ },
+ {
+  "id": "it:21:49",
+  "loc": "pt-BR",
+  "target": "I passeggeri aspettavano quando sono cambiate le informazioni sullo schermo.",
+  "old": "Os passageiros esperaram até que as informações na tela mudassem.",
+  "neu": "Os passageiros estavam esperando quando as informações na tela mudaram."
+ },
+ {
+  "id": "it:21:49",
+  "loc": "vi",
+  "target": "I passeggeri aspettavano quando sono cambiate le informazioni sullo schermo.",
+  "old": "Hành khách đợi cho đến khi thông tin trên màn hình thay đổi.",
+  "neu": "Hành khách đang đợi khi thông tin trên màn hình thay đổi."
+ },
+ {
+  "id": "it:21:49",
+  "loc": "id",
+  "target": "I passeggeri aspettavano quando sono cambiate le informazioni sullo schermo.",
+  "old": "Para penumpang menunggu hingga informasi di layar berubah.",
+  "neu": "Para penumpang sedang menunggu ketika informasi di layar berubah."
+ },
+ {
+  "id": "it:21:49",
+  "loc": "tr",
+  "target": "I passeggeri aspettavano quando sono cambiate le informazioni sullo schermo.",
+  "old": "Yolcular ekrandaki bilgiler değişene kadar beklediler.",
+  "neu": "Ekrandaki bilgiler değiştiğinde yolcular bekliyordu."
+ },
+ {
+  "id": "it:21:49",
+  "loc": "pl",
+  "target": "I passeggeri aspettavano quando sono cambiate le informazioni sullo schermo.",
+  "old": "Pasażerowie czekali, aż zmienią się informacje na ekranie.",
+  "neu": "Pasażerowie czekali, kiedy zmieniły się informacje na ekranie."
+ },
+ {
+  "id": "it:22:15",
+  "loc": "tr",
+  "target": "Il pane, lo taglio io.",
+  "old": "Ekmeği kestim.",
+  "neu": "Ekmeği ben kesiyorum."
+ },
+ {
+  "id": "it:22:16",
+  "loc": "tr",
+  "target": "I bicchieri, li lavo io.",
+  "old": "Bardakları yıkadım.",
+  "neu": "Bardakları ben yıkıyorum."
+ },
+ {
+  "id": "it:22:17",
+  "loc": "tr",
+  "target": "I biglietti, li stampo io.",
+  "old": "Biletleri yazdırdım.",
+  "neu": "Biletleri ben yazdırıyorum."
+ },
+ {
+  "id": "it:22:20",
+  "loc": "tr",
+  "target": "Questa canzone, l’ascolto io.",
+  "old": "Bu şarkıyı dinledim.",
+  "neu": "Bu şarkıyı ben dinliyorum."
+ },
+ {
+  "id": "it:22:25",
+  "loc": "pt-BR",
+  "target": "Loro non lo prendono.",
+  "old": "Eles não vão aceitá-lo.",
+  "neu": "Eles não o pegam."
+ },
+ {
+  "id": "it:22:25",
+  "loc": "vi",
+  "target": "Loro non lo prendono.",
+  "old": "Họ sẽ không lấy nó.",
+  "neu": "Họ không lấy nó."
+ },
+ {
+  "id": "it:22:25",
+  "loc": "id",
+  "target": "Loro non lo prendono.",
+  "old": "Mereka tidak mau mengambilnya.",
+  "neu": "Mereka tidak mengambilnya."
+ },
+ {
+  "id": "it:22:25",
+  "loc": "tr",
+  "target": "Loro non lo prendono.",
+  "old": "Almayacaklar.",
+  "neu": "Onu almıyorlar."
+ },
+ {
+  "id": "it:22:25",
+  "loc": "pl",
+  "target": "Loro non lo prendono.",
+  "old": "Nie chcą go wziąć.",
+  "neu": "Oni go nie biorą."
+ },
+ {
+  "id": "it:22:34",
+  "loc": "pt-BR",
+  "target": "Puoi lasciarla qui.",
+  "old": "Você pode deixá-los aqui.",
+  "neu": "Você pode deixá-la aqui."
+ },
+ {
+  "id": "it:22:40",
+  "loc": "pl",
+  "target": "Vuole tenerla al fresco.",
+  "old": "Ona chce, żeby to było fajne.",
+  "neu": "Ona chce trzymać to w chłodzie."
+ },
+ {
+  "id": "it:22:47",
+  "loc": "ru",
+  "target": "La crostata, la dividiamo dopo cena.",
+  "old": "Пирог мы разделим после ужина.",
+  "neu": "Пирог мы делим после ужина."
+ },
+ {
+  "id": "it:22:47",
+  "loc": "uk",
+  "target": "La crostata, la dividiamo dopo cena.",
+  "old": "Пиріг ми розділимо після вечері.",
+  "neu": "Пиріг ми ділимо після вечері."
+ },
+ {
+  "id": "it:22:47",
+  "loc": "en",
+  "target": "La crostata, la dividiamo dopo cena.",
+  "old": "We'll share the shortcrust pastry pie after dinner.",
+  "neu": "We share the shortcrust pastry pie after dinner."
+ },
+ {
+  "id": "it:22:47",
+  "loc": "es",
+  "target": "La crostata, la dividiamo dopo cena.",
+  "old": "Compartiremos la tarta de masa quebrada después de cenar.",
+  "neu": "Compartimos la tarta de masa quebrada después de cenar."
+ },
+ {
+  "id": "it:22:47",
+  "loc": "pt-BR",
+  "target": "La crostata, la dividiamo dopo cena.",
+  "old": "Dividiremos a torta de massa quebrada depois do jantar.",
+  "neu": "Dividimos a torta de massa quebrada depois do jantar."
+ },
+ {
+  "id": "it:22:47",
+  "loc": "tr",
+  "target": "La crostata, la dividiamo dopo cena.",
+  "old": "Akşam yemeğinden sonra tart hamurlu turtayı paylaşacağız.",
+  "neu": "Akşam yemeğinden sonra tart hamurlu turtayı paylaşıyoruz."
+ },
+ {
+  "id": "it:22:47",
+  "loc": "pl",
+  "target": "La crostata, la dividiamo dopo cena.",
+  "old": "Podzielimy się ciastem kruchym po obiedzie.",
+  "neu": "Dzielimy się ciastem kruchym po obiedzie."
+ },
+ {
+  "id": "it:23:06",
+  "loc": "pt-BR",
+  "target": "Parlate con loro.",
+  "old": "Você fala com eles.",
+  "neu": "Vocês falam com eles."
+ },
+ {
+  "id": "it:23:06",
+  "loc": "vi",
+  "target": "Parlate con loro.",
+  "old": "Bạn nói chuyện với họ.",
+  "neu": "Các bạn nói chuyện với họ."
+ },
+ {
+  "id": "it:23:06",
+  "loc": "id",
+  "target": "Parlate con loro.",
+  "old": "Kamu bicara dengan mereka.",
+  "neu": "Kalian bicara dengan mereka."
+ },
+ {
+  "id": "it:23:06",
+  "loc": "tr",
+  "target": "Parlate con loro.",
+  "old": "Onlarla konuşuyorsun.",
+  "neu": "Onlarla konuşuyorsunuz."
+ },
+ {
+  "id": "it:23:06",
+  "loc": "pl",
+  "target": "Parlate con loro.",
+  "old": "Rozmawiasz z nimi.",
+  "neu": "Rozmawiacie z nimi."
+ },
+ {
+  "id": "it:23:18",
+  "loc": "uk",
+  "target": "Gli mostrate l’uscita.",
+  "old": "Ти показуєш їм вихід.",
+  "neu": "Ви показуєте їм вихід."
+ },
+ {
+  "id": "it:23:18",
+  "loc": "pt-BR",
+  "target": "Gli mostrate l’uscita.",
+  "old": "Você lhes mostra a saída.",
+  "neu": "Vocês lhes mostram a saída."
+ },
+ {
+  "id": "it:23:18",
+  "loc": "vi",
+  "target": "Gli mostrate l’uscita.",
+  "old": "Bạn chỉ đường cho họ ra ngoài.",
+  "neu": "Các bạn chỉ đường cho họ ra ngoài."
+ },
+ {
+  "id": "it:23:18",
+  "loc": "id",
+  "target": "Gli mostrate l’uscita.",
+  "old": "Anda menunjukkan jalan keluar kepada mereka.",
+  "neu": "Kalian menunjukkan jalan keluar kepada mereka."
+ },
+ {
+  "id": "it:23:18",
+  "loc": "pl",
+  "target": "Gli mostrate l’uscita.",
+  "old": "Ty pokazujesz im wyjście.",
+  "neu": "Wy pokazujecie im wyjście."
+ },
+ {
+  "id": "it:23:26",
+  "loc": "id",
+  "target": "Le restituisco la carta dopo il pagamento.",
+  "old": "Saya mengembalikan kartu mereka setelah pembayaran.",
+  "neu": "Saya mengembalikan kartunya setelah pembayaran."
+ },
+ {
+  "id": "it:23:42",
+  "loc": "uk",
+  "target": "Abbiamo proposto loro un’altra data.",
+  "old": "Ми запропонували їм інше побачення.",
+  "neu": "Ми запропонували їм іншу дату."
+ },
+ {
+  "id": "it:24:05",
+  "loc": "pt-BR",
+  "target": "Andiamo in ufficio e ci andate anche voi.",
+  "old": "Nós vamos para o escritório, e você também vai.",
+  "neu": "Nós vamos para o escritório, e vocês também vão."
+ },
+ {
+  "id": "it:24:05",
+  "loc": "vi",
+  "target": "Andiamo in ufficio e ci andate anche voi.",
+  "old": "Chúng ta sẽ đến văn phòng, và anh cũng sẽ đến đó.",
+  "neu": "Chúng tôi sẽ đến văn phòng, và các bạn cũng sẽ đến đó."
+ },
+ {
+  "id": "it:24:05",
+  "loc": "id",
+  "target": "Andiamo in ufficio e ci andate anche voi.",
+  "old": "Kita akan ke kantor, dan kamu juga akan ke sana.",
+  "neu": "Kami akan ke kantor, dan kalian juga akan ke sana."
+ },
+ {
+  "id": "it:24:05",
+  "loc": "pl",
+  "target": "Andiamo in ufficio e ci andate anche voi.",
+  "old": "Jedziemy do biura, a ty też tam idziesz.",
+  "neu": "Idziemy do biura, a wy też tam idziecie."
+ },
+ {
+  "id": "it:24:42",
+  "loc": "pt-BR",
+  "target": "Il mercato è lontano, ma ci andremo a piedi.",
+  "old": "O mercado é longe, mas podemos ir a pé.",
+  "neu": "O mercado é longe, mas iremos a pé."
+ },
+ {
+  "id": "it:24:45",
+  "loc": "pt-BR",
+  "target": "Questo parco è aperto e possiamo entrarci.",
+  "old": "Este parque está aberto e você pode entrar.",
+  "neu": "Este parque está aberto e podemos entrar."
+ },
+ {
+  "id": "it:24:45",
+  "loc": "vi",
+  "target": "Questo parco è aperto e possiamo entrarci.",
+  "old": "Công viên này đang mở cửa và bạn có thể vào.",
+  "neu": "Công viên này đang mở cửa và chúng ta có thể vào."
+ },
+ {
+  "id": "it:24:45",
+  "loc": "id",
+  "target": "Questo parco è aperto e possiamo entrarci.",
+  "old": "Taman ini buka dan Anda bisa masuk.",
+  "neu": "Taman ini buka dan kita bisa masuk."
+ },
+ {
+  "id": "it:24:45",
+  "loc": "tr",
+  "target": "Questo parco è aperto e possiamo entrarci.",
+  "old": "Bu park açık ve içeri girebilirsiniz.",
+  "neu": "Bu park açık ve içeri girebiliriz."
+ },
+ {
+  "id": "it:24:45",
+  "loc": "pl",
+  "target": "Questo parco è aperto e possiamo entrarci.",
+  "old": "Ten park jest otwarty i możesz wejść.",
+  "neu": "Ten park jest otwarty i możemy wejść."
+ },
+ {
+  "id": "it:24:48",
+  "loc": "pl",
+  "target": "Il laboratorio chiude presto e devo andarci adesso.",
+  "old": "Warsztat zamyka się wcześniej i muszę tam teraz iść.",
+  "neu": "Warsztat zamyka się wcześnie i muszę tam teraz iść."
+ },
+ {
+  "id": "it:25:03",
+  "loc": "uk",
+  "target": "Ne prendi uno.",
+  "old": "Ти бери один.",
+  "neu": "Ти береш один."
+ },
+ {
+  "id": "it:25:03",
+  "loc": "tr",
+  "target": "Ne prendi uno.",
+  "old": "Bir tane sen al.",
+  "neu": "Sen bir tane alırsın."
+ },
+ {
+  "id": "it:25:03",
+  "loc": "pl",
+  "target": "Ne prendi uno.",
+  "old": "Ty weź jednego.",
+  "neu": "Ty bierzesz jednego."
+ },
+ {
+  "id": "it:25:04",
+  "loc": "uk",
+  "target": "Ne prendi due.",
+  "old": "Ти бери два.",
+  "neu": "Ти береш два."
+ },
+ {
+  "id": "it:25:04",
+  "loc": "tr",
+  "target": "Ne prendi due.",
+  "old": "İki tane sen al.",
+  "neu": "Sen iki tane alırsın."
+ },
+ {
+  "id": "it:25:04",
+  "loc": "pl",
+  "target": "Ne prendi due.",
+  "old": "Ty weź dwa.",
+  "neu": "Ty bierzesz dwa."
+ },
+ {
+  "id": "it:25:07",
+  "loc": "pt-BR",
+  "target": "Ne vuole cinque?",
+  "old": "Você quer cinco mil?",
+  "neu": "Você quer cinco?"
+ },
+ {
+  "id": "it:25:07",
+  "loc": "vi",
+  "target": "Ne vuole cinque?",
+  "old": "Anh muốn năm nghìn đô không?",
+  "neu": "Anh muốn năm cái không?"
+ },
+ {
+  "id": "it:25:07",
+  "loc": "id",
+  "target": "Ne vuole cinque?",
+  "old": "Apakah kamu mau lima ribu dolar?",
+  "neu": "Apakah kamu mau lima?"
+ },
+ {
+  "id": "it:25:07",
+  "loc": "tr",
+  "target": "Ne vuole cinque?",
+  "old": "Beş bin ister misiniz?",
+  "neu": "Beş tane ister misiniz?"
+ },
+ {
+  "id": "it:25:07",
+  "loc": "pl",
+  "target": "Ne vuole cinque?",
+  "old": "Chcesz pięć tysięcy?",
+  "neu": "Chcesz pięć?"
+ },
+ {
+  "id": "it:25:08",
+  "loc": "tr",
+  "target": "Ne hanno sei.",
+  "old": "Altı tane var.",
+  "neu": "Onların altı tane var."
+ },
+ {
+  "id": "it:25:17",
+  "loc": "uk",
+  "target": "Di miele ne aggiungo un cucchiaio.",
+  "old": "Люба, я додам ложку.",
+  "neu": "Меду я додаю ложку."
+ },
+ {
+  "id": "it:25:17",
+  "loc": "pl",
+  "target": "Di miele ne aggiungo un cucchiaio.",
+  "old": "Kochanie, dodam łyżeczkę.",
+  "neu": "Miodu dodam łyżkę."
+ },
+ {
+  "id": "it:25:25",
+  "loc": "pt-BR",
+  "target": "Non ne prendi mai?",
+  "old": "Você nunca compra?",
+  "neu": "Você nunca leva?"
+ },
+ {
+  "id": "it:25:25",
+  "loc": "vi",
+  "target": "Non ne prendi mai?",
+  "old": "Anh không bao giờ mua chúng à?",
+  "neu": "Anh không bao giờ lấy chúng à?"
+ },
+ {
+  "id": "it:25:25",
+  "loc": "id",
+  "target": "Non ne prendi mai?",
+  "old": "Kamu tidak pernah membelinya?",
+  "neu": "Kamu tidak pernah mengambilnya?"
+ },
+ {
+  "id": "it:25:25",
+  "loc": "pl",
+  "target": "Non ne prendi mai?",
+  "old": "Nigdy ich nie kupujesz?",
+  "neu": "Nigdy ich nie bierzesz?"
+ },
+ {
+  "id": "it:25:26",
+  "loc": "tr",
+  "target": "Di bottiglie ne mettiamo due sullo scaffale.",
+  "old": "Rafa iki şişe koyduk.",
+  "neu": "Rafa iki şişe koyuyoruz."
+ },
+ {
+  "id": "it:25:26",
+  "loc": "pl",
+  "target": "Di bottiglie ne mettiamo due sullo scaffale.",
+  "old": "Postawiliśmy dwie butelki na półce.",
+  "neu": "Stawiamy dwie butelki na półce."
+ },
+ {
+  "id": "it:25:27",
+  "loc": "vi",
+  "target": "Qui non ne trovano.",
+  "old": "Ở đây không có bán.",
+  "neu": "Ở đây họ không tìm thấy chúng."
+ },
+ {
+  "id": "it:25:27",
+  "loc": "pl",
+  "target": "Qui non ne trovano.",
+  "old": "Tutaj ich nie ma.",
+  "neu": "Tutaj ich nie znajdują."
+ },
+ {
+  "id": "it:25:33",
+  "loc": "tr",
+  "target": "Ne abbiamo prenotati tre.",
+  "old": "Üç tane ayırmıştık.",
+  "neu": "Üç tane ayırttık."
+ },
+ {
+  "id": "it:25:44",
+  "loc": "es",
+  "target": "Queste pere sono mature, ne vorrei tre.",
+  "old": "Estas peras están maduras, quiero tres.",
+  "neu": "Estas peras están maduras, quisiera tres."
+ },
+ {
+  "id": "it:26:10",
+  "loc": "id",
+  "target": "Il nuovo modulo è più chiaro di quello vecchio.",
+  "old": "Bentuk baru lebih jelas daripada yang lama.",
+  "neu": "Formulir baru lebih jelas daripada yang lama."
+ },
+ {
+  "id": "it:26:28",
+  "loc": "pl",
+  "target": "Questa torta è migliore dell’altra.",
+  "old": "To ciasto jest smaczniejsze niż poprzednie.",
+  "neu": "To ciasto jest lepsze niż to drugie."
+ },
+ {
+  "id": "it:26:40",
+  "loc": "vi",
+  "target": "Vicino alla finestra hai più spazio.",
+  "old": "Bạn có nhiều không gian cửa sổ hơn.",
+  "neu": "Gần cửa sổ bạn có nhiều chỗ hơn."
+ },
+ {
+  "id": "it:26:40",
+  "loc": "id",
+  "target": "Vicino alla finestra hai più spazio.",
+  "old": "Kamu memiliki lebih banyak ruang jendela.",
+  "neu": "Di dekat jendela kamu punya lebih banyak ruang."
+ },
+ {
+  "id": "it:26:40",
+  "loc": "tr",
+  "target": "Vicino alla finestra hai più spazio.",
+  "old": "Senin daha fazla pencere alanın var.",
+  "neu": "Pencerenin yanında senin daha fazla yerin var."
+ },
+ {
+  "id": "it:27:08",
+  "loc": "pt-BR",
+  "target": "Andrai in officina dopo la mostra.",
+  "old": "Você virá ao estúdio após a exposição.",
+  "neu": "Você irá à oficina depois da exposição."
+ },
+ {
+  "id": "it:27:08",
+  "loc": "vi",
+  "target": "Andrai in officina dopo la mostra.",
+  "old": "Bạn sẽ đến studio sau khi triển lãm kết thúc.",
+  "neu": "Bạn sẽ đi đến xưởng sau triển lãm."
+ },
+ {
+  "id": "it:27:08",
+  "loc": "id",
+  "target": "Andrai in officina dopo la mostra.",
+  "old": "Anda akan datang ke studio setelah pameran.",
+  "neu": "Kamu akan pergi ke bengkel setelah pameran."
+ },
+ {
+  "id": "it:27:08",
+  "loc": "tr",
+  "target": "Andrai in officina dopo la mostra.",
+  "old": "Sergi bittikten sonra stüdyoya geleceksiniz.",
+  "neu": "Sergiden sonra atölyeye gideceksin."
+ },
+ {
+  "id": "it:27:08",
+  "loc": "pl",
+  "target": "Andrai in officina dopo la mostra.",
+  "old": "Przyjdziesz do studia po wystawie.",
+  "neu": "Pójdziesz do warsztatu po wystawie."
+ },
+ {
+  "id": "it:27:11",
+  "loc": "vi",
+  "target": "Sarò a casa alle sei.",
+  "old": "Tôi sẽ về nhà lúc sáu giờ.",
+  "neu": "Tôi sẽ ở nhà lúc sáu giờ."
+ },
+ {
+  "id": "it:27:11",
+  "loc": "id",
+  "target": "Sarò a casa alle sei.",
+  "old": "Saya akan pulang pukul enam.",
+  "neu": "Saya akan ada di rumah pukul enam."
+ },
+ {
+  "id": "it:27:15",
+  "loc": "ru",
+  "target": "Potrà pagare sul posto.",
+  "old": "Оплатить можно там.",
+  "neu": "Вы сможете оплатить на месте."
+ },
+ {
+  "id": "it:27:15",
+  "loc": "uk",
+  "target": "Potrà pagare sul posto.",
+  "old": "Ви можете заплатити там.",
+  "neu": "Ви зможете заплатити на місці."
+ },
+ {
+  "id": "it:27:15",
+  "loc": "pt-BR",
+  "target": "Potrà pagare sul posto.",
+  "old": "Você pode pagar lá.",
+  "neu": "Você poderá pagar no local."
+ },
+ {
+  "id": "it:27:15",
+  "loc": "tr",
+  "target": "Potrà pagare sul posto.",
+  "old": "Orada ödeme yapabilirsiniz.",
+  "neu": "Orada ödeme yapabileceksiniz."
+ },
+ {
+  "id": "it:27:15",
+  "loc": "pl",
+  "target": "Potrà pagare sul posto.",
+  "old": "Możesz tam zapłacić.",
+  "neu": "Będziesz mógł tam zapłacić."
+ },
+ {
+  "id": "it:27:25",
+  "loc": "en",
+  "target": "L’idraulico verrà domattina.",
+  "old": "The plumber will come in the morning.",
+  "neu": "The plumber will come tomorrow morning."
+ },
+ {
+  "id": "it:27:25",
+  "loc": "es",
+  "target": "L’idraulico verrà domattina.",
+  "old": "El fontanero vendrá por la mañana.",
+  "neu": "El fontanero vendrá mañana por la mañana."
+ },
+ {
+  "id": "it:27:25",
+  "loc": "pt-BR",
+  "target": "L’idraulico verrà domattina.",
+  "old": "O encanador virá pela manhã.",
+  "neu": "O encanador virá amanhã de manhã."
+ },
+ {
+  "id": "it:27:25",
+  "loc": "vi",
+  "target": "L’idraulico verrà domattina.",
+  "old": "Thợ sửa ống nước sẽ đến vào buổi sáng.",
+  "neu": "Thợ sửa ống nước sẽ đến vào sáng mai."
+ },
+ {
+  "id": "it:27:25",
+  "loc": "id",
+  "target": "L’idraulico verrà domattina.",
+  "old": "Tukang ledeng akan datang pagi hari.",
+  "neu": "Tukang ledeng akan datang besok pagi."
+ },
+ {
+  "id": "it:27:25",
+  "loc": "tr",
+  "target": "L’idraulico verrà domattina.",
+  "old": "Tesisatçı sabah gelecek.",
+  "neu": "Tesisatçı yarın sabah gelecek."
+ },
+ {
+  "id": "it:27:25",
+  "loc": "pl",
+  "target": "L’idraulico verrà domattina.",
+  "old": "Hydraulik przyjdzie rano.",
+  "neu": "Hydraulik przyjdzie jutro rano."
+ },
+ {
+  "id": "it:27:27",
+  "loc": "pl",
+  "target": "La banca chiuderà prima stasera.",
+  "old": "Bank zostanie zamknięty dziś wieczorem.",
+  "neu": "Bank zamknie się dziś wieczorem wcześniej."
+ },
+ {
+  "id": "it:27:37",
+  "loc": "pt-BR",
+  "target": "Quando riceverò la fattura?",
+  "old": "Quando receberei a conta?",
+  "neu": "Quando vou receber a conta?"
+ },
+ {
+  "id": "it:27:45",
+  "loc": "uk",
+  "target": "Il dossier sarà spedito per posta.",
+  "old": "Вони надішлють файл поштою.",
+  "neu": "Файл буде надіслано поштою."
+ },
+ {
+  "id": "it:27:45",
+  "loc": "pt-BR",
+  "target": "Il dossier sarà spedito per posta.",
+  "old": "Eles enviarão o arquivo pelo correio.",
+  "neu": "O arquivo será enviado pelo correio."
+ },
+ {
+  "id": "it:27:45",
+  "loc": "vi",
+  "target": "Il dossier sarà spedito per posta.",
+  "old": "Họ sẽ gửi tập tin qua đường bưu điện.",
+  "neu": "Tập tin sẽ được gửi qua đường bưu điện."
+ },
+ {
+  "id": "it:27:45",
+  "loc": "id",
+  "target": "Il dossier sarà spedito per posta.",
+  "old": "Mereka akan mengirimkan berkas melalui pos.",
+  "neu": "Berkas akan dikirim melalui pos."
+ },
+ {
+  "id": "it:27:45",
+  "loc": "tr",
+  "target": "Il dossier sarà spedito per posta.",
+  "old": "Dosyayı posta yoluyla gönderecekler.",
+  "neu": "Dosya posta yoluyla gönderilecek."
+ },
+ {
+  "id": "it:27:48",
+  "loc": "pt-BR",
+  "target": "Troverai la chiave sotto il vaso.",
+  "old": "Você encontrará a chave embaixo da panela.",
+  "neu": "Você encontrará a chave embaixo do vaso."
+ },
+ {
+  "id": "it:27:48",
+  "loc": "id",
+  "target": "Troverai la chiave sotto il vaso.",
+  "old": "Kamu akan menemukan kuncinya di bawah panci.",
+  "neu": "Kamu akan menemukan kuncinya di bawah pot bunga."
+ },
+ {
+  "id": "it:27:48",
+  "loc": "tr",
+  "target": "Troverai la chiave sotto il vaso.",
+  "old": "Anahtarı tencerenin altında bulacaksın.",
+  "neu": "Anahtarı saksının altında bulacaksın."
+ },
+ {
+  "id": "it:27:48",
+  "loc": "pl",
+  "target": "Troverai la chiave sotto il vaso.",
+  "old": "Klucz znajdziesz pod garnkiem.",
+  "neu": "Klucz znajdziesz pod donicą."
+ },
+ {
+  "id": "it:28:20",
+  "loc": "pt-BR",
+  "target": "Posso avere un bicchiere d’acqua?",
+  "old": "Poderia me trazer um copo d’água?",
+  "neu": "Posso pegar um copo d’água?"
+ },
+ {
+  "id": "it:28:24",
+  "loc": "uk",
+  "target": "Preferiresti andare a piedi?",
+  "old": "Ти хотів би піти пішки?",
+  "neu": "Ти б волів піти пішки?"
+ },
+ {
+  "id": "it:28:31",
+  "loc": "pt-BR",
+  "target": "Dovrebbe conservare la ricevuta.",
+  "old": "Você deve guardar o recibo.",
+  "neu": "Você deveria guardar o recibo."
+ },
+ {
+  "id": "it:28:31",
+  "loc": "id",
+  "target": "Dovrebbe conservare la ricevuta.",
+  "old": "Anda harus menyimpan struknya.",
+  "neu": "Sebaiknya Anda menyimpan struknya."
+ },
+ {
+  "id": "it:28:31",
+  "loc": "pl",
+  "target": "Dovrebbe conservare la ricevuta.",
+  "old": "Proszę zachować paragon.",
+  "neu": "Powinien pan zachować paragon."
+ },
+ {
+  "id": "it:28:44",
+  "loc": "pt-BR",
+  "target": "Vorrei riprogrammare il mio appuntamento.",
+  "old": "Gostaria de remarcar nossa reunião.",
+  "neu": "Gostaria de remarcar meu compromisso."
+ },
+ {
+  "id": "it:28:44",
+  "loc": "vi",
+  "target": "Vorrei riprogrammare il mio appuntamento.",
+  "old": "Tôi muốn dời lịch cuộc họp của chúng ta.",
+  "neu": "Tôi muốn dời lịch hẹn của tôi."
+ },
+ {
+  "id": "it:28:44",
+  "loc": "id",
+  "target": "Vorrei riprogrammare il mio appuntamento.",
+  "old": "Saya ingin menjadwal ulang pertemuan kita.",
+  "neu": "Saya ingin menjadwal ulang janji temu saya."
+ },
+ {
+  "id": "it:28:44",
+  "loc": "tr",
+  "target": "Vorrei riprogrammare il mio appuntamento.",
+  "old": "Toplantımızı yeniden planlamak istiyorum.",
+  "neu": "Randevumu yeniden planlamak istiyorum."
+ },
+ {
+  "id": "it:28:44",
+  "loc": "pl",
+  "target": "Vorrei riprogrammare il mio appuntamento.",
+  "old": "Chciałbym/Chciałabym przełożyć nasze spotkanie.",
+  "neu": "Chciałbym/Chciałabym przełożyć moje spotkanie."
+ },
+ {
+  "id": "it:28:49",
+  "loc": "es",
+  "target": "Vorremmo ringraziare tutto il team.",
+  "old": "Queremos agradecer a todo el equipo.",
+  "neu": "Quisiéramos agradecer a todo el equipo."
+ },
+ {
+  "id": "it:29:03",
+  "loc": "pl",
+  "target": "Ecco la chiave che apre la cantina.",
+  "old": "Oto klucz do piwnicy.",
+  "neu": "Oto klucz, który otwiera piwnicę."
+ },
+ {
+  "id": "it:29:22",
+  "loc": "tr",
+  "target": "Il treno che stiamo aspettando è in ritardo.",
+  "old": "Beklediğimiz tren gecikti.",
+  "neu": "Beklediğimiz tren rötarlı."
+ },
+ {
+  "id": "it:29:32",
+  "loc": "ru",
+  "target": "Il biglietto che ha in mano è valido per domani.",
+  "old": "Билет, который он оставляет себе, действителен завтра.",
+  "neu": "Билет, который он держит в руке, действителен завтра."
+ },
+ {
+  "id": "it:29:32",
+  "loc": "uk",
+  "target": "Il biglietto che ha in mano è valido per domani.",
+  "old": "Квиток, який він зберігає, дійсний завтра.",
+  "neu": "Квиток, який він тримає в руці, дійсний завтра."
+ },
+ {
+  "id": "it:29:32",
+  "loc": "pt-BR",
+  "target": "Il biglietto che ha in mano è valido per domani.",
+  "old": "O ingresso que ele está guardando é válido para amanhã.",
+  "neu": "O ingresso que ele está segurando é válido para amanhã."
+ },
+ {
+  "id": "it:29:32",
+  "loc": "id",
+  "target": "Il biglietto che ha in mano è valido per domani.",
+  "old": "Tiket yang dia simpan berlaku besok.",
+  "neu": "Tiket yang dia pegang berlaku besok."
+ },
+ {
+  "id": "it:29:32",
+  "loc": "tr",
+  "target": "Il biglietto che ha in mano è valido per domani.",
+  "old": "Sakladığı bilet yarın geçerli.",
+  "neu": "Elindeki bilet yarın geçerli."
+ },
+ {
+  "id": "it:29:40",
+  "loc": "pl",
+  "target": "L’autobus che ci segue è quasi vuoto.",
+  "old": "Autobus, który jedzie dalej, jest prawie pusty.",
+  "neu": "Autobus, który jedzie za nami, jest prawie pusty."
+ },
+ {
+  "id": "it:29:44",
+  "loc": "pl",
+  "target": "Il treno che dovremmo prendere parte a mezzogiorno.",
+  "old": "Pociąg, który mamy odjechać w południe.",
+  "neu": "Pociąg, którym powinniśmy jechać, odjeżdża w południe."
+ },
+ {
+  "id": "it:29:45",
+  "loc": "ru",
+  "target": "Ho perso il foglio su cui avevo scritto il codice.",
+  "old": "Я потерял клочок бумаги с кодом.",
+  "neu": "Я потерял листок, на котором я написал код."
+ },
+ {
+  "id": "it:29:45",
+  "loc": "uk",
+  "target": "Ho perso il foglio su cui avevo scritto il codice.",
+  "old": "Я загубив клаптик паперу з кодом.",
+  "neu": "Я загубив аркуш, на якому я записав код."
+ },
+ {
+  "id": "it:29:45",
+  "loc": "pt-BR",
+  "target": "Ho perso il foglio su cui avevo scritto il codice.",
+  "old": "Perdi o papel com o código.",
+  "neu": "Perdi a folha em que eu tinha escrito o código."
+ },
+ {
+  "id": "it:29:45",
+  "loc": "id",
+  "target": "Ho perso il foglio su cui avevo scritto il codice.",
+  "old": "Saya kehilangan secarik kertas berisi kode.",
+  "neu": "Saya kehilangan kertas tempat saya menulis kode."
+ },
+ {
+  "id": "it:29:45",
+  "loc": "pl",
+  "target": "Ho perso il foglio su cui avevo scritto il codice.",
+  "old": "Zgubiłem karteczkę z kodem.",
+  "neu": "Zgubiłem kartkę, na której zapisałem kod."
+ },
+ {
+  "id": "it:29:46",
+  "loc": "vi",
+  "target": "Il vaso che cerchi è dietro la menta.",
+  "old": "Chiếc nồi bạn đang tìm ở phía sau cây bạc hà.",
+  "neu": "Chiếc chậu bạn đang tìm ở phía sau cây bạc hà."
+ },
+ {
+  "id": "it:30:05",
+  "loc": "pt-BR",
+  "target": "Bisogna che partiate.",
+  "old": "Você precisa ir embora.",
+  "neu": "Vocês precisam ir embora."
+ },
+ {
+  "id": "it:30:05",
+  "loc": "pl",
+  "target": "Bisogna che partiate.",
+  "old": "Musisz wyjść.",
+  "neu": "Musicie wyjść."
+ },
+ {
+  "id": "it:30:19",
+  "loc": "uk",
+  "target": "Bisogna che facciate una scelta.",
+  "old": "Тобі потрібно зробити вибір.",
+  "neu": "Вам потрібно зробити вибір."
+ },
+ {
+  "id": "it:30:19",
+  "loc": "pt-BR",
+  "target": "Bisogna che facciate una scelta.",
+  "old": "Você precisa fazer uma escolha.",
+  "neu": "Vocês precisam fazer uma escolha."
+ },
+ {
+  "id": "it:30:19",
+  "loc": "pl",
+  "target": "Bisogna che facciate una scelta.",
+  "old": "Musisz podjąć decyzję.",
+  "neu": "Musicie podjąć decyzję."
+ },
+ {
+  "id": "it:30:27",
+  "loc": "tr",
+  "target": "Bisogna che io prenda una porzione piccola.",
+  "old": "Küçük bir porsiyon istiyorum.",
+  "neu": "Küçük bir porsiyon almam gerekiyor."
+ },
+ {
+  "id": "it:31:03",
+  "loc": "pt-BR",
+  "target": "Lea aveva già asciugato il pavimento.",
+  "old": "Leah já limpou o chão.",
+  "neu": "Leah já tinha secado o chão."
+ },
+ {
+  "id": "it:31:03",
+  "loc": "id",
+  "target": "Lea aveva già asciugato il pavimento.",
+  "old": "Leah sudah mengepel lantai.",
+  "neu": "Leah sudah mengeringkan lantai."
+ },
+ {
+  "id": "it:31:03",
+  "loc": "pl",
+  "target": "Lea aveva già asciugato il pavimento.",
+  "old": "Leah już umyła podłogę.",
+  "neu": "Leah już wysuszyła podłogę."
+ },
+ {
+  "id": "it:31:05",
+  "loc": "ru",
+  "target": "Aveva già letto il messaggio?",
+  "old": "Вы уже прочитали сообщение.",
+  "neu": "Вы уже прочитали сообщение?"
+ },
+ {
+  "id": "it:31:05",
+  "loc": "uk",
+  "target": "Aveva già letto il messaggio?",
+  "old": "Ви вже прочитали повідомлення.",
+  "neu": "Ви вже прочитали повідомлення?"
+ },
+ {
+  "id": "it:31:05",
+  "loc": "pt-BR",
+  "target": "Aveva già letto il messaggio?",
+  "old": "Você já tinha lido a mensagem.",
+  "neu": "Você já tinha lido a mensagem?"
+ },
+ {
+  "id": "it:31:05",
+  "loc": "vi",
+  "target": "Aveva già letto il messaggio?",
+  "old": "Bạn đã đọc tin nhắn rồi.",
+  "neu": "Bạn đã đọc tin nhắn chưa?"
+ },
+ {
+  "id": "it:31:05",
+  "loc": "id",
+  "target": "Aveva già letto il messaggio?",
+  "old": "Anda sudah membaca pesan itu.",
+  "neu": "Apakah Anda sudah membaca pesan itu?"
+ },
+ {
+  "id": "it:31:05",
+  "loc": "tr",
+  "target": "Aveva già letto il messaggio?",
+  "old": "Mesajı zaten okumuştunuz.",
+  "neu": "Mesajı zaten okumuş muydunuz?"
+ },
+ {
+  "id": "it:31:05",
+  "loc": "pl",
+  "target": "Aveva già letto il messaggio?",
+  "old": "Przeczytałeś już wiadomość.",
+  "neu": "Czy już przeczytałeś wiadomość?"
+ },
+ {
+  "id": "it:31:45",
+  "loc": "pt-BR",
+  "target": "La riparazione aveva richiesto molto sforzo.",
+  "old": "Os reparos exigiram muito esforço.",
+  "neu": "A reparação tinha exigido muito esforço."
+ },
+ {
+  "id": "it:31:45",
+  "loc": "tr",
+  "target": "La riparazione aveva richiesto molto sforzo.",
+  "old": "Tamirler çok çaba gerektirdi.",
+  "neu": "Onarım çok çaba gerektirmişti."
+ },
+ {
+  "id": "it:32:09",
+  "loc": "pt-BR",
+  "target": "Se Lei fosse d’accordo, cominceremmo.",
+  "old": "Se você tivesse concordado, teríamos começado.",
+  "neu": "Se você concordasse, nós começaríamos."
+ },
+ {
+  "id": "it:32:09",
+  "loc": "vi",
+  "target": "Se Lei fosse d’accordo, cominceremmo.",
+  "old": "Nếu bạn đồng ý, chúng ta đã bắt đầu rồi.",
+  "neu": "Nếu bạn đồng ý, chúng ta sẽ bắt đầu."
+ },
+ {
+  "id": "it:32:09",
+  "loc": "id",
+  "target": "Se Lei fosse d’accordo, cominceremmo.",
+  "old": "Jika Anda setuju, kami pasti sudah mulai.",
+  "neu": "Jika Anda setuju, kami akan mulai."
+ },
+ {
+  "id": "it:32:17",
+  "loc": "pt-BR",
+  "target": "Se conoscessi l’indirizzo, potresti guidarci.",
+  "old": "Se você soubesse o endereço, poderia ter nos mostrado o caminho.",
+  "neu": "Se você soubesse o endereço, poderia nos mostrar o caminho."
+ },
+ {
+  "id": "it:32:17",
+  "loc": "vi",
+  "target": "Se conoscessi l’indirizzo, potresti guidarci.",
+  "old": "Nếu bạn biết địa chỉ, bạn đã có thể chỉ đường cho chúng tôi.",
+  "neu": "Nếu bạn biết địa chỉ, bạn có thể chỉ đường cho chúng tôi."
+ },
+ {
+  "id": "it:32:22",
+  "loc": "ru",
+  "target": "Prenderei la giacca se fosse più calda.",
+  "old": "Я бы взял куртку, если бы было теплее.",
+  "neu": "Я бы взял куртку, если бы она была теплее."
+ },
+ {
+  "id": "it:32:22",
+  "loc": "uk",
+  "target": "Prenderei la giacca se fosse più calda.",
+  "old": "Я б взяв куртку, якби було тепліше.",
+  "neu": "Я б взяв куртку, якби вона була тепліша."
+ },
+ {
+  "id": "it:32:22",
+  "loc": "vi",
+  "target": "Prenderei la giacca se fosse più calda.",
+  "old": "Tôi sẽ mang áo khoác nếu trời ấm hơn.",
+  "neu": "Tôi sẽ mang áo khoác nếu nó ấm hơn."
+ },
+ {
+  "id": "it:32:22",
+  "loc": "id",
+  "target": "Prenderei la giacca se fosse più calda.",
+  "old": "Saya akan membawa jaket jika cuacanya lebih hangat.",
+  "neu": "Saya akan membawa jaket jika jaket itu lebih hangat."
+ },
+ {
+  "id": "it:32:23",
+  "loc": "pt-BR",
+  "target": "Conserverei quel biglietto se fosse il mio ricordo più bello del viaggio.",
+  "old": "Eu teria guardado aquele ingresso se fosse a minha lembrança mais preciosa da viagem.",
+  "neu": "Eu guardaria aquele ingresso se fosse a minha lembrança mais preciosa da viagem."
+ },
+ {
+  "id": "it:32:23",
+  "loc": "vi",
+  "target": "Conserverei quel biglietto se fosse il mio ricordo più bello del viaggio.",
+  "old": "Tôi đã giữ lại tấm vé đó nếu nó là kỷ vật quý giá nhất của chuyến đi.",
+  "neu": "Tôi sẽ giữ lại tấm vé đó nếu nó là kỷ vật quý giá nhất của chuyến đi."
+ },
+ {
+  "id": "it:32:33",
+  "loc": "pt-BR",
+  "target": "Se avessimo una scala a pioli, ripareremmo la lampada.",
+  "old": "Se tivéssemos uma escada, teríamos consertado a lâmpada.",
+  "neu": "Se tivéssemos uma escada, consertaríamos a lâmpada."
+ },
+ {
+  "id": "it:32:33",
+  "loc": "vi",
+  "target": "Se avessimo una scala a pioli, ripareremmo la lampada.",
+  "old": "Nếu chúng tôi có thang, chúng tôi đã sửa được cái đèn.",
+  "neu": "Nếu chúng tôi có thang, chúng tôi sẽ sửa cái đèn."
+ },
+ {
+  "id": "it:32:36",
+  "loc": "pl",
+  "target": "Se il forno funzionasse, preparerebbe una torta.",
+  "old": "Gdyby piekarnik działał, upiekłabym ciasto.",
+  "neu": "Gdyby piekarnik działał, upiekłaby ciasto."
+ },
+ {
+  "id": "it:32:41",
+  "loc": "pt-BR",
+  "target": "Se mi avvertissi il giorno prima, preparerei il letto.",
+  "old": "Se você tivesse me avisado um dia antes, eu teria arrumado a cama.",
+  "neu": "Se você me avisasse um dia antes, eu arrumaria a cama."
+ },
+ {
+  "id": "it:32:41",
+  "loc": "vi",
+  "target": "Se mi avvertissi il giorno prima, preparerei il letto.",
+  "old": "Nếu bạn báo trước cho tôi một ngày, tôi đã dọn giường rồi.",
+  "neu": "Nếu bạn báo trước cho tôi một ngày, tôi sẽ dọn giường."
+ },
+ {
+  "id": "it:32:41",
+  "loc": "id",
+  "target": "Se mi avvertissi il giorno prima, preparerei il letto.",
+  "old": "Jika Anda memperingatkan saya sehari sebelumnya, saya pasti sudah merapikan tempat tidur.",
+  "neu": "Jika Anda memperingatkan saya sehari sebelumnya, saya akan merapikan tempat tidur."
+ },
+ {
+  "id": "it:32:41",
+  "loc": "pl",
+  "target": "Se mi avvertissi il giorno prima, preparerei il letto.",
+  "old": "Gdybyś mnie ostrzegł dzień wcześniej, położyłbym się spać.",
+  "neu": "Gdybyś mnie ostrzegł dzień wcześniej, pościeliłbym łóżko."
+ },
+ {
+  "id": "it:32:42",
+  "loc": "ru",
+  "target": "Se fossi in te, gli scriverei.",
+  "old": "На твоем месте я бы написал ей.",
+  "neu": "На твоем месте я бы написал ему."
+ },
+ {
+  "id": "it:32:42",
+  "loc": "uk",
+  "target": "Se fossi in te, gli scriverei.",
+  "old": "Якби я був на твоєму місці, я б написав їй.",
+  "neu": "Якби я був на твоєму місці, я б написав йому."
+ },
+ {
+  "id": "it:32:42",
+  "loc": "pt-BR",
+  "target": "Se fossi in te, gli scriverei.",
+  "old": "Se eu fosse você, escreveria para ela.",
+  "neu": "Se eu fosse você, escreveria para ele."
+ },
+ {
+  "id": "it:32:42",
+  "loc": "vi",
+  "target": "Se fossi in te, gli scriverei.",
+  "old": "Nếu tôi là bạn, tôi sẽ viết thư cho cô ấy.",
+  "neu": "Nếu tôi là bạn, tôi sẽ viết thư cho anh ấy."
+ },
+ {
+  "id": "it:32:42",
+  "loc": "pl",
+  "target": "Se fossi in te, gli scriverei.",
+  "old": "Na twoim miejscu napisałbym do niej.",
+  "neu": "Na twoim miejscu napisałbym do niego."
+ },
+ {
+  "id": "it:32:44",
+  "loc": "pt-BR",
+  "target": "Se proponessi una soluzione, ti ascolterei.",
+  "old": "Se você tivesse oferecido uma solução, eu teria te escutado.",
+  "neu": "Se você propusesse uma solução, eu te escutaria."
+ },
+ {
+  "id": "it:32:44",
+  "loc": "vi",
+  "target": "Se proponessi una soluzione, ti ascolterei.",
+  "old": "Nếu bạn đưa ra giải pháp, tôi đã lắng nghe bạn.",
+  "neu": "Nếu bạn đưa ra giải pháp, tôi sẽ lắng nghe bạn."
+ },
+ {
+  "id": "it:32:44",
+  "loc": "id",
+  "target": "Se proponessi una soluzione, ti ascolterei.",
+  "old": "Jika Anda menawarkan solusi, saya pasti sudah mendengarkan Anda.",
+  "neu": "Jika Anda menawarkan solusi, saya akan mendengarkan Anda."
+ },
+ {
+  "id": "it:32:45",
+  "loc": "pt-BR",
+  "target": "Se la chiave sparisse, avviserei il custode.",
+  "old": "Se a chave tivesse desaparecido, eu teria alertado o guarda.",
+  "neu": "Se a chave desaparecesse, eu avisaria o guarda."
+ },
+ {
+  "id": "it:32:45",
+  "loc": "vi",
+  "target": "Se la chiave sparisse, avviserei il custode.",
+  "old": "Nếu chìa khóa bị mất, tôi đã báo cho người bảo vệ.",
+  "neu": "Nếu chìa khóa bị mất, tôi sẽ báo cho người bảo vệ."
+ },
+ {
+  "id": "it:32:46",
+  "loc": "pt-BR",
+  "target": "Se promettessi di tornare, terrei il tuo posto.",
+  "old": "Se você tivesse prometido voltar, eu teria guardado o seu lugar.",
+  "neu": "Se você prometesse voltar, eu guardaria o seu lugar."
+ },
+ {
+  "id": "it:32:46",
+  "loc": "vi",
+  "target": "Se promettessi di tornare, terrei il tuo posto.",
+  "old": "Nếu bạn hứa sẽ quay lại, tôi đã giữ chỗ cho bạn.",
+  "neu": "Nếu bạn hứa sẽ quay lại, tôi sẽ giữ chỗ cho bạn."
+ },
+ {
+  "id": "it:32:46",
+  "loc": "id",
+  "target": "Se promettessi di tornare, terrei il tuo posto.",
+  "old": "Jika Anda berjanji untuk kembali, saya pasti sudah menjaga tempat Anda.",
+  "neu": "Jika Anda berjanji untuk kembali, saya akan menjaga tempat Anda."
+ },
+ {
+  "id": "it:32:47",
+  "loc": "pt-BR",
+  "target": "Se avessimo fortuna, troveremmo due posti vicini.",
+  "old": "Se tivéssemos sorte, teríamos encontrado dois assentos um ao lado do outro.",
+  "neu": "Se tivéssemos sorte, encontraríamos dois assentos um ao lado do outro."
+ },
+ {
+  "id": "it:32:47",
+  "loc": "vi",
+  "target": "Se avessimo fortuna, troveremmo due posti vicini.",
+  "old": "Nếu may mắn, chúng tôi đã tìm được hai chỗ ngồi cạnh nhau.",
+  "neu": "Nếu may mắn, chúng tôi sẽ tìm được hai chỗ ngồi cạnh nhau."
+ },
+ {
+  "id": "it:32:48",
+  "loc": "pt-BR",
+  "target": "Se le spese di consegna fossero più basse, ordinerei quell’albero.",
+  "old": "Se o frete tivesse sido mais barato, eu teria encomendado aquela árvore.",
+  "neu": "Se o frete fosse mais barato, eu encomendaria aquela árvore."
+ },
+ {
+  "id": "it:32:48",
+  "loc": "vi",
+  "target": "Se le spese di consegna fossero più basse, ordinerei quell’albero.",
+  "old": "Nếu phí vận chuyển rẻ hơn, tôi đã đặt mua cây đó.",
+  "neu": "Nếu phí vận chuyển rẻ hơn, tôi sẽ đặt mua cây đó."
+ },
+ {
+  "id": "it:32:50",
+  "loc": "pt-BR",
+  "target": "Se il programma cambiasse, la avviseremmo.",
+  "old": "Caso haja alguma alteração no cronograma, entraremos em contato.",
+  "neu": "Se o cronograma mudasse, nós avisaríamos você."
+ }
+]

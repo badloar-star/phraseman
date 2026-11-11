@@ -45,13 +45,25 @@ export function hueOfHex(hex: string, fallback = 260): number {
   return ((Math.atan2(bb, a) * 180) / Math.PI + 360) % 360;
 }
 
-function luminance(hex: string): number {
+function luminanceRaw(hex: string): number {
   const n = Number.parseInt(hex.slice(1, 7), 16);
   const ch = (shift: number) => {
     const c = ((n >> shift) & 255) / 255;
     return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
   };
   return 0.2126 * ch(16) + 0.7152 * ch(8) + 0.0722 * ch(0);
+}
+// зачем (владелец 11.11 «ползунки всё равно тормозят», замер [THEME-SLIDER]): подбор по контрасту спрашивает яркость одних и тех же поверхностей
+// на каждом из до 60 шагов; яркость — чистая функция строки цвета, помним её (результат прежний байт-в-байт, потолок — чтобы память не росла).
+const LUMINANCE_CACHE_LIMIT = 4096;
+const luminanceCache = new Map<string, number>();
+function luminance(hex: string): number {
+  const hit = luminanceCache.get(hex);
+  if (hit !== undefined) return hit;
+  const value = luminanceRaw(hex);
+  if (luminanceCache.size >= LUMINANCE_CACHE_LIMIT) luminanceCache.clear();
+  luminanceCache.set(hex, value);
+  return value;
 }
 
 export function paletteContrast(a: string, b: string): number {

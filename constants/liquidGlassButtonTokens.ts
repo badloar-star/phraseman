@@ -49,13 +49,37 @@ const DANGER_SURFACE_MIN = 1.5;
 const DANGER_INK_MIN = 4.6;
 
 const hex6 = (hex: string): string => (/^#[0-9A-Fa-f]{6}/.test(hex) ? hex.slice(0, 7).toUpperCase() : '#000000');
-const rgb = (hex: string): readonly [number, number, number] => {
+const rgbRaw = (hex: string): readonly [number, number, number] => {
   const h = hex6(hex).slice(1);
   return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
 };
-const lum = (hex: string): number => {
+// зачем (см. lum ниже): подборы смешивают одни и те же концы линии сотни раз — разбор строки цвета помним (тройка неизменяемая, результат прежний).
+const RGB_CACHE_LIMIT = 4096;
+const rgbCache = new Map<string, readonly [number, number, number]>();
+const rgb = (hex: string): readonly [number, number, number] => {
+  const hit = rgbCache.get(hex);
+  if (hit !== undefined) return hit;
+  const value = Object.freeze(rgbRaw(hex)) as readonly [number, number, number];
+  if (rgbCache.size >= RGB_CACHE_LIMIT) rgbCache.clear();
+  rgbCache.set(hex, value);
+  return value;
+};
+const lumRaw = (hex: string): number => {
   const [r, g, b] = rgb(hex).map((v) => v / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)) as [number, number, number];
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+// зачем (владелец 11.11 «ползунки всё равно тормозят»; замер [THEME-SLIDER]: расчёт цветов шага ≈ 9 мс, профиль — 36 % в этом файле): подборы ниже
+// сотни раз спрашивают яркость ОДНИХ И ТЕХ ЖЕ цветов (5 поверхностей под кнопкой на каждого кандидата), а каждая — регулярка, разбор строки и три
+// степени. Яркость — чистая функция строки цвета, поэтому помним её; результат расчёта байт-в-байт прежний. Потолок — чтобы память не росла на ползунках.
+const LUM_CACHE_LIMIT = 4096;
+const lumCache = new Map<string, number>();
+const lum = (hex: string): number => {
+  const hit = lumCache.get(hex);
+  if (hit !== undefined) return hit;
+  const value = lumRaw(hex);
+  if (lumCache.size >= LUM_CACHE_LIMIT) lumCache.clear();
+  lumCache.set(hex, value);
+  return value;
 };
 const ratio = (a: string, b: string): number => {
   const x = lum(a);
@@ -73,7 +97,11 @@ const mix = (from: string, to: string, k: number): string => {
 function underSurfaces(t: Surfaces): readonly string[] {
   return [t.bg, t.bgTop, t.bgBottom, t.opaqueCard, t.opaqueSheet];
 }
-const minOver = (color: string, under: readonly string[]): number => Math.min(...under.map((s) => ratio(color, s)));
+const minOver = (color: string, under: readonly string[]): number => {
+  let min = Infinity; // пустой список — Infinity, как у прежнего Math.min(...[])
+  for (const s of under) { const r = ratio(color, s); if (r < min) min = r; }
+  return min;
+};
 
 const chroma = (hex: string): number => { const c = rgb(hex); return (Math.max(...c) - Math.min(...c)) / 255; };
 /** Нейтральная серая поверхность при цветном акценте темы (светлые градиентные темы на «Акценте/Максимуме»): вторичная кнопка на ней читалась как отключённая. */

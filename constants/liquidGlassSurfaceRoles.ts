@@ -82,13 +82,25 @@ export function mixSurfaceHex(from: string, to: string, k: number): string {
 const withAlpha = (hex: string, opacity: number): string =>
   `${hex6(hex)}${Math.round(opacity * 255).toString(16).padStart(2, '0').toUpperCase()}`;
 
-const lum = (hex: string): number => {
+const lumRaw = (hex: string): number => {
   const n = Number.parseInt(hex6(hex).slice(1), 16);
   const ch = (shift: number) => {
     const c = ((n >> shift) & 255) / 255;
     return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
   };
   return 0.2126 * ch(16) + 0.7152 * ch(8) + 0.0722 * ch(0);
+};
+// зачем (владелец 11.11 «ползунки всё равно тормозят», замер [THEME-SLIDER]): яркость одних и тех же поверхностей спрашивается на каждом шаге
+// подбора; это чистая функция строки цвета — помним её (результат прежний байт-в-байт, потолок — чтобы память не росла на ползунках).
+const LUM_CACHE_LIMIT = 4096;
+const lumCache = new Map<string, number>();
+const lum = (hex: string): number => {
+  const hit = lumCache.get(hex);
+  if (hit !== undefined) return hit;
+  const value = lumRaw(hex);
+  if (lumCache.size >= LUM_CACHE_LIMIT) lumCache.clear();
+  lumCache.set(hex, value);
+  return value;
 };
 const ratio = (a: string, b: string): number => {
   const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);

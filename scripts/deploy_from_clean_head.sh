@@ -48,7 +48,9 @@ echo "[DEPLOY-CLEAN] грязных путей в рабочем дереве (�
 
 # 1) выгрузка HEAD: только то, что нужно сборке functions, правилам и хостингам
 # functions-* — прочие кодовые базы firebase.json: CLI проверяет их папки, сами они не собираются и не выкладываются.
-PATHS=(functions functions-admin functions-english-test modules shared content/arena-multilingual tests scripts app components constants specs knowly-www admin/v2
+# зачем content/spire-expanded (11.11): пул новых механик Пика в бандл функций кладёт copy_generated_assets.js из этой папки;
+# без неё сборка в чистой копии только предупреждает, и сборщик недели уезжает на бой без заданий (overlay_skip_no_pool).
+PATHS=(functions functions-admin functions-english-test modules shared content/arena-multilingual content/spire-expanded tests scripts app components constants specs knowly-www admin/v2
   package.json package-lock.json app.config.js app.json tsconfig.json firebase.json .firebaserc firestore.rules firestore.indexes.json storage.rules
   legal terms.html privacy.html admin/oauth-privacy.html)
 EXIST=()
@@ -121,9 +123,15 @@ if printf '%s
 fi
 
 CMD=(firebase deploy --only "$ONLY" --project "$PROJECT")
+DEPLOY_DEADLINE="${PHRASEMAN_DEPLOY_DEADLINE_SEC:-900}"
+DRYRUN_DEADLINE="${PHRASEMAN_DEPLOY_DRYRUN_DEADLINE_SEC:-300}"
 if [ $EXECUTE -ne 1 ]; then
   # проверка самим Firebase CLI без выкладки (для хостинга — сверка конфига и файлов; ничего не публикует)
-  "${CMD[@]}" --dry-run > "$X.dryrun.log" 2>&1 || { echo "[DEPLOY-CLEAN] FAIL firebase --dry-run — $X.dryrun.log"; tail -15 "$X.dryrun.log"; exit 1; }
+  # зачем (владелец 11.11): запрос к облаку без ответа держал слот светофора 34 минуты — сухой прогон тоже идёт с пределом времени
+  bash "$ROOT/scripts/run_with_deadline.sh" "$DRYRUN_DEADLINE" "firebase --dry-run" -- "${CMD[@]}" --dry-run > "$X.dryrun.log" 2>&1
+  drc=$?
+  if [ $drc -eq 124 ]; then echo "[DEPLOY-CLEAN] FAIL firebase --dry-run не ответил за $DRYRUN_DEADLINE с (облако молчит?) — $X.dryrun.log"; tail -8 "$X.dryrun.log"; exit 124; fi
+  [ $drc -eq 0 ] || { echo "[DEPLOY-CLEAN] FAIL firebase --dry-run — $X.dryrun.log"; tail -15 "$X.dryrun.log"; exit 1; }
   echo "[DEPLOY-CLEAN] firebase --dry-run — OK ($X.dryrun.log)"
   echo "[DEPLOY-CLEAN] PASS сухой прогон HEAD=$SHORT. Выкладка (только по слову владельца): bash scripts/deploy_from_clean_head.sh --only \"$ONLY\" --execute"
   echo "[DEPLOY-CLEAN] Команда, которая выполнится в $X: ${CMD[*]}"
@@ -131,9 +139,15 @@ if [ $EXECUTE -ne 1 ]; then
 fi
 echo "[DEPLOY-CLEAN] ВЫКЛАДКА из $X: ${CMD[*]}"
 echo "[DEPLOY-CLEAN] Если CLI спросит про УДАЛЕНИЕ функций — отвечать «N»."
-"${CMD[@]}"
+# зачем (владелец 11.11): выкладка, зависшая на запросе к облаку, 34 минуты держала слот светофора.
+# Предел по умолчанию равен TTL слота (900 с); длинную выкладку многих функций поднимают осознанно: PHRASEMAN_DEPLOY_DEADLINE_SEC.
+bash "$ROOT/scripts/run_with_deadline.sh" "$DEPLOY_DEADLINE" "firebase deploy $ONLY" -- "${CMD[@]}"
 rc=$?
 echo "[DEPLOY-CLEAN] firebase deploy exit=$rc"
+if [ $rc -eq 124 ]; then
+  echo "[DEPLOY-CLEAN] 🔴 ВЫКЛАДКА ПРЕРВАНА ПО ВРЕМЕНИ ($DEPLOY_DEADLINE с). Она могла уйти частично: проверь состояние и версию функций в облаке,"
+  echo "[DEPLOY-CLEAN]    прежде чем повторять. Повтор — снова через светофор; если облако молчит, это сбой на стороне Google, а не кода."
+fi
 # зачем (координатор 22.10, 🔴 согласие на ИИ): упавшее ПЕРВОЕ создание функции оставляет её без allUsers/run.invoker навсегда
 # (firebase CLI ставит право только при успешном создании) — приложение молча получает 401. Проверяем выложенные функции сразу.
 if [[ "$ONLY" == *functions:* ]]; then

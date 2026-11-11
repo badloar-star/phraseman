@@ -110,7 +110,9 @@ describe('событие instead → данные кадра', () => {
 
   it('реферальное приветствие и первый разговор: прежний путь окна сохранён, отметка — после записи', () => {
     const welcome = read('components/ReferralWelcomeHost.tsx');
-    expect(welcome).toContain('if (storiesReplaceWindows() && !d.needsCodeEntry) {');
+    expect(welcome).toContain('if (storiesReplaceWindows()) {');
+    expect(welcome).toContain('void recordReferralWelcomeStory(d.needsCodeEntry).then((record) => {');
+    expect(welcome).not.toContain('!d.needsCodeEntry');
     expect(welcome).toContain('setWelcomeDecision(d);');
     const dialog = read('components/dialog_moments/FirstDialogHost.tsx');
     expect(dialog).toContain('markFirstDialogShown(studyTarget);\n      setOpen(true);');

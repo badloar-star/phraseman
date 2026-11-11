@@ -80,10 +80,10 @@ export default function ReferralWelcomeHost() {
       .then((d) => {
         if (!alive || !d.show) return;
         // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях приветствие
-        // пишется кадром — слот очереди окон не просим. Пока человеку ещё нужно ввести код друга, окно остаётся: его кнопке «У меня есть код
-        // приглашения» у кадра пока нет действия. Истории выключены (флаг stories_v1) — окно как раньше.
-        if (storiesReplaceWindows() && !d.needsCodeEntry) {
-          void recordReferralWelcomeStory().then((record) => {
+        // пишется кадром — слот очереди окон не просим. Если человеку ещё нужно ввести код друга, признак уходит в событие: у кадра появляется
+        // кнопка «У меня есть код приглашения» (ведёт туда же, куда вторая кнопка окна). Истории выключены (флаг stories_v1) — окно как раньше.
+        if (storiesReplaceWindows()) {
+          void recordReferralWelcomeStory(d.needsCodeEntry).then((record) => {
             if (!insteadStoryLanded(record)) { DebugLogger.warn('[REFERRAL-WELCOME]', `история не записана (${record.recorded ? 'ok' : record.reason}) — «видел» не ставим`); return; }
             DebugLogger.info('[REFERRAL-WELCOME]', 'история вместо окна');
             void markReferralWelcomeSeen().catch(logSeenFailure);

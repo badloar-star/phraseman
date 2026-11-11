@@ -34,6 +34,8 @@ const hidden = (decidedBy: string): LearningSurfaceReadinessCell => Object.freez
 /**
  * Факты из кода на 2026-09-30 (почему клетка такая):
  * - lessons / diagnostic_and_exam — английский (D129); learning_v2 — также испанский (D201).
+ * - diagnostic_and_exam — D205 (владелец 11.11): у es/fr/de/it итоговый экзамен и зачёты уровней собираются из фраз
+ *   классического курса своего языка (app/classic_final_exam_bank.ts); английский банк им не подставляется.
  * - daily_phrase — банк фраз есть у en и fr (daily_phrase_target_gate.ts); у es/de/it — принятые пакеты в сборке
  *   (D163, владелец 12.10: «Фразы дня должны быть подключены для ВСЕХ языков», app/daily_phrase_bundled_packs.ts).
  * - dialogues — es/fr/de выпущены владельцем 2026-09-20 (dialogue_language_activation.ts);
@@ -68,7 +70,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     arena: hidden('D83'),
     videos: ready('D132'),
     flashcards: ready('D129'),
-    diagnostic_and_exam: hidden('D129'),
+    diagnostic_and_exam: ready('D205'),
     spire: ready('D155'),
   }),
   fr: Object.freeze({
@@ -78,7 +80,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     arena: hidden('D83'),
     videos: ready('D132'),
     flashcards: ready('D129'),
-    diagnostic_and_exam: hidden('D129'),
+    diagnostic_and_exam: ready('D205'),
     spire: ready('D156'),
   }),
   de: Object.freeze({
@@ -88,7 +90,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     arena: hidden('D83'),
     videos: ready('D132'),
     flashcards: ready('D129'),
-    diagnostic_and_exam: hidden('D129'),
+    diagnostic_and_exam: ready('D205'),
     spire: ready('D157'),
   }),
   it: Object.freeze({
@@ -98,7 +100,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     arena: hidden('D83'),
     videos: ready('D130'),
     flashcards: ready('D130'),
-    diagnostic_and_exam: hidden('D130'),
+    diagnostic_and_exam: ready('D205'),
     spire: ready('D155'),
   }),
 });

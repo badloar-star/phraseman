@@ -31,10 +31,10 @@ function askOwner(target: string, surface: string): string {
 // Снимок решений владельца. Менять ТОЛЬКО вместе с новой строкой в 03_DECISIONS.md.
 const OWNER_APPROVED_SNAPSHOT: Record<string, Record<string, string>> = {
   en: { lessons: 'ready', learning_v2: 'ready', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'ready', spire: 'ready' },
-  es: { lessons: 'ready', learning_v2: 'ready', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
-  fr: { lessons: 'ready', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
-  de: { lessons: 'ready', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
-  it: { lessons: 'ready', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'hidden', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
+  es: { lessons: 'ready', learning_v2: 'ready', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'ready', spire: 'ready' },
+  fr: { lessons: 'ready', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'ready', spire: 'ready' },
+  de: { lessons: 'ready', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'ready', spire: 'ready' },
+  it: { lessons: 'ready', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'hidden', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'ready', spire: 'ready' },
 };
 
 describe('D129 guard: language × surface readiness', () => {

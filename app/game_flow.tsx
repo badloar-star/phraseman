@@ -18,6 +18,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import GameAnswerTile from '../components/games/GameAnswerTile';
+import GameBumpText from '../components/games/GameBumpText';
 import GameSegments from '../components/games/GameSegments';
 import { V2Button, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
@@ -132,29 +133,6 @@ const TempoBar = memo(function TempoBar({ index, lit, on, off }: Readonly<{ inde
       <Reanimated.View style={[StyleSheet.absoluteFill, s.tempoBarOn, { backgroundColor: on }, style]} />
     </View>
   );
-});
-
-/** Число темпа подскакивает при смене: 650 мс «пружиной», на 35 % — вверх на 5 и крупнее в 1,22 (kit.css:137, `numup`). */
-const BumpText = memo(function BumpText({ value, color }: Readonly<{ value: string; color: string }>) {
-  const reduceMotion = useReduceMotion();
-  const t = useSharedValue(0);
-  const first = useRef(true);
-  useEffect(() => {
-    if (first.current) {
-      first.current = false;
-      return undefined;
-    }
-    if (reduceMotion) return undefined;
-    const spring = bezier(GAME_EASE.spring);
-    t.value = 0;
-    t.value = withSequence(
-      withTiming(1, { duration: GAME_MOTION.bumpMs * GAME_MOTION.bumpPeakAt, easing: spring }),
-      withTiming(0, { duration: GAME_MOTION.bumpMs * (1 - GAME_MOTION.bumpPeakAt), easing: spring }),
-    );
-    return () => cancelAnimation(t);
-  }, [reduceMotion, t, value]);
-  const style = useAnimatedStyle(() => ({ transform: [{ translateY: GAME_MOTION.bumpShift * t.value }, { scale: 1 + (GAME_MOTION.bumpScale - 1) * t.value }] }));
-  return <Reanimated.Text style={[s.pillText, { color }, style]}>{value}</Reanimated.Text>;
 });
 
 /** Подпись под фразой: проявляется и гаснет за 320 мс (elevate-mechanics.css:119, `.fade`); уходя, держит прежний текст. */
@@ -327,7 +305,7 @@ export default function GameFlowScreen() {
               </View>
               <View style={[s.pill, { backgroundColor: p.glass }]}>
                 <Text style={[s.pillText, { color: p.text }]}>{`${triLang(lang, COPY.tempo)} ×`}</Text>
-                <BumpText value={tempo.label} color={p.text} />
+                <GameBumpText value={tempo.label} style={[s.pillText, { color: p.text }]} />
               </View>
             </View>
             <View style={[s.pill, { backgroundColor: p.glass }]}>

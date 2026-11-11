@@ -61,4 +61,8 @@ export const GAME_MOTION = {
   flowWordFadeShare: 0.55,
   flowStillMs: 300,
   flowBeamHideMs: 300,
+  /** elevate-games.js `order()`: перелёт реплики 480 мс `--out` из прозрачности .6; красный тон промаха держится 500 мс. */
+  orderFlyMs: 480,
+  orderFlyFromOpacity: 0.6,
+  orderMissHoldMs: 500,
 } as const;

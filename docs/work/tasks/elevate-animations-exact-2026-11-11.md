@@ -3,6 +3,7 @@
 Governance-ID: TG-165F97C8618F
 Governance-ID: TG-C77DCB3D6DA9
 Governance-ID: TG-BC59D0B97DF0
+Governance-ID: TG-EB50D7D7740C
 Status: In progress
 Owner: сессия макетов Elevate (владелец 11.11.2026: «там нет анимаций! все анимации с макета», «код должен быть в
 точности перенесён», «будь очень точным»; на вопрос «Начать точный перенос анимаций, игра за игрой?» — «Да, начинай»)

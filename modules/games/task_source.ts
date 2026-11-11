@@ -94,6 +94,9 @@ export function isGameAvailable(id: GameId, studyTarget: string, lesson: number)
 /** Взять из длинного списка порцию на одну игру; порция меняется от дня к дню, внутри дня стабильна. */
 export function dailyPortion<T>(items: readonly T[], size: number, daySeed: number): readonly T[] {
   if (items.length <= size) return items;
-  const start = ((Math.floor(daySeed) % items.length) + items.length) % items.length;
+  // зачем: нечисловой день (NaN, бесконечность) давал start = NaN и порцию из пустых мест — игра открывалась без заданий;
+  // сторож: tests/game_content_integrity.test.ts
+  const day = Number.isFinite(daySeed) ? Math.floor(daySeed) : 0;
+  const start = ((day % items.length) + items.length) % items.length;
   return Array.from({ length: size }, (_, i) => items[(start + i) % items.length]);
 }

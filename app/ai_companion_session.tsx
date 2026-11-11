@@ -256,12 +256,23 @@ function AiCompanionSession() {
       let optimisticTurnAppended = false;
       try {
         const generation = captureAccountGeneration();
+        // зачем (аудит загрузок 11.11, ошибка № 1): раньше СБОЙ перепроверки превращался в «Plus нет» и платному человеку
+        // открывался экран оплаты. Упавшая проверка — не ответ «нет»: экран уже пустил сюда по подтверждённому Plus
+        // (hasPremiumAccess выше), а сервер остаётся судьёй — его отказ plus_required ниже откатит реплику и откроет оплату.
+        // Объект, а не let: присваивание из колбэка компилятор не видит и сузил бы переменную до false.
+        const recheck: { failed: boolean } = { failed: false };
+        const recheckStartedAt = Date.now();
         const stillHasPlus = await getVerifiedPremiumAccessStatus({
           generation,
           bypassCache: true,
           allowCloudRefresh: false,
-        }).catch(noteSwallowedAs('ai_companion_session:useCallback.getVerifiedPremiumAccessStatus', false));
-        if (!stillHasPlus) {
+        }).catch((error: unknown) => {
+          recheck.failed = true;
+          return noteSwallowedAs('ai_companion_session:useCallback.getVerifiedPremiumAccessStatus', false)(error);
+        });
+        const recheckOutcome = recheck.failed ? 'failed_proceed' : stillHasPlus ? 'plus' : 'no_plus_paywall';
+        console.log('[THEO-SEND] plus_recheck', JSON.stringify({ outcome: recheckOutcome, ms: Date.now() - recheckStartedAt, contextHasPlus: hasPremiumAccess })); // guard-ok: одна строка на отправку, исход решает ветку
+        if (!stillHasPlus && !recheck.failed) {
           openCompanionPlusPaywall();
           return;
         }

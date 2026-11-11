@@ -123,6 +123,18 @@
   строка намеренно не добавлена. Добавить, когда файл освободится; после этого прогнать сторожа экспортов кодовых баз.
 - Деплой только этой функции: `firebase deploy --only functions:api` — после того как дерево `functions/` станет целым.
 
+### Шаг 1 — выложено 11.11 (слово владельца «Да, выкладывай», «Да, запускай»)
+
+- `bash scripts/deploy_from_clean_head.sh --only "functions:default:api" --execute`, сборка из HEAD `c32abbf38`.
+  Сверка «бой vs HEAD»: создаётся только `default:api`, удалений нет. Итог CLI: `functions[api(europe-west1)] Successful create operation`.
+- Проверено в облаке: `cpu=1`, `512Mi`, concurrency 80, timeout 60, maxScale 10, minScale не задан (0); `roles/run.invoker` = `allUsers`.
+- Живые ответы `https://europe-west1-phraseman-ea0b3.cloudfunctions.net/api`:
+  неизвестное имя → 501 `router_unknown_name` (1,69 с — холодный старт); плохой запрос → 400 `router_bad_request` (0,15 с);
+  `storyAnnouncementsGet` без входа → 401 `Sign in required` (0,14 с) — запрос дошёл до обработчика, тот отказал как положено.
+- `scripts/check_callable_invoker.mjs` функцию не увидел («проверено 0 из 1») — судя по всему, смотрит только us-central1.
+  Право вызова проверено вручную; сторожа стоит научить региону europe-west1 до расширения списка.
+- Приложение функцию ещё не зовёт: `api_router_stage_v1` не задан.
+
 ### Шаг 2 — состояние на 11.11
 
 - Написаны `app/api_router_client.ts` (перехват и правила запасного пути), `app/api_router_boot.ts` (установка на старте),

@@ -1545,7 +1545,9 @@ const LessonContent = React.memo(function LessonContent({
                       // без testID — ничего не подсказывает, какой вариант верный (владелец: «в релизе — ничего»)
                       testID={__DEV__ ? (isCorrectOption ? 'lesson1-word-option-correct' : (wordOptionItems.find((o) => !o.isCorrectOption)?.index === i ? 'lesson1-word-option-wrong' : `lesson1-word-option-${i}`)) : undefined}
                       pressedExternally={isFlashing}
-                      withHaptic={false}
+                      // зачем (аудит микрофризов 11.11): вибрация срабатывает в момент касания, внутри кнопки,
+                      // а не после обработки слова — раньше она ждала конца тяжёлого onPress и запаздывала.
+                      withHaptic
                       disabled={wordDispatchPending}
                       style={{
                         width: '100%',
@@ -1577,8 +1579,7 @@ const LessonContent = React.memo(function LessonContent({
                           handleWordPress(word);
                         }
                         // [FeedbackKit] Решение владельца: плитки слов — БЕЗ клик-звука
-                        // (звук только на управляющих кнопках). Оставляем родную вибрацию.
-                        void hapticTap();
+                        // (звук только на управляющих кнопках). Родная вибрация — на касании (withHaptic выше).
                       }}
                     >
                       {/* зачем: 3 юзера писали, что длинные слова в плитках обрезаны

@@ -1,6 +1,7 @@
 import type { MistakePracticeStorage } from '../app/mistake_practice_store';
 import {
   captureObjectiveAttempt,
+  withGapTokenIndex,
   type ObjectiveMistakeAttempt,
 } from '../app/mistake_practice_capture';
 
@@ -71,6 +72,44 @@ describe('mistake capture adapter', () => {
     expect(second).toMatchObject({ kind: 'captured', appended: true });
     if (second.kind !== 'captured') return;
     expect(second.cycleId).not.toBe(first.cycleId);
+  });
+
+  // зачем (владелец 11.11.2026): итоговый экзамен, пробный тест и Пик слали «пропущенное слово» без номера слова —
+  // запись молча отбрасывалась. Номер берётся из вопроса с «___»; без такого вопроса запись по-прежнему не принимается.
+  test('missing-token answer without a word index is captured when the prompt shows the gap', async () => {
+    const memory = storage();
+    const gap: ObjectiveMistakeAttempt = {
+      ...base,
+      attemptId: 'exam:1:4:2',
+      content: {
+        sourceKind: 'exam', sourceId: '7:She ___ at home.', canonicalTarget: 'She is at home.',
+        sourceMeaning: 'Она дома.', sourcePrompt: 'Она дома.\nShe ___ at home.', lessonId: '7',
+      },
+      facet: { kind: 'missing_token', expected: 'is', given: 'are' },
+    };
+    expect(withGapTokenIndex(gap).facet.tokenIndex).toBe(1);
+    await expect(captureObjectiveAttempt(gap, { storage: memory })).resolves.toMatchObject({ kind: 'captured', appended: true });
+    const stored = JSON.parse([...memory.data.values()].find((value) => value.includes('She is at home.')) ?? '{}');
+    expect(JSON.stringify(stored)).toContain('"tokenIndex":1');
+  });
+
+  test('missing-token answer stays unsupported, with a logged reason, when there is no gap to count from', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const noGap: ObjectiveMistakeAttempt = {
+      ...base,
+      attemptId: 'exam:1:5:2',
+      content: { ...base.content, sourcePrompt: 'Choose the right word.' },
+      facet: { kind: 'missing_token', expected: 'is' },
+    };
+    expect(withGapTokenIndex(noGap)).toBe(noGap);
+    await expect(captureObjectiveAttempt(noGap, { storage: storage() })).resolves.toEqual({ kind: 'ignored', reason: 'unsupported' });
+    expect(warn.mock.calls.some((call) => call[0] === '[MISTAKE-CAPTURE] ignored' && String(call[1]).includes('invalid_facet'))).toBe(true);
+    warn.mockRestore();
+  });
+
+  test('an explicit word index from the caller is kept as is', () => {
+    const explicit: ObjectiveMistakeAttempt = { ...base, content: { ...base.content, sourcePrompt: 'She ___ at home.' }, facet: { kind: 'missing_token', expected: 'is', tokenIndex: 0 } };
+    expect(withGapTokenIndex(explicit)).toBe(explicit);
   });
 
   test('returns unsupported instead of inventing identity for incomplete content', async () => {

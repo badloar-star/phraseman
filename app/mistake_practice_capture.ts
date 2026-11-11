@@ -72,6 +72,29 @@ function logCaptureFailure(
   }));
 }
 
+/**
+ * зачем (владелец 11.11.2026, «Да, почини»): ошибку «пропущенное слово» раздел принимает только с номером слова
+ * (modules/mistake-practice/identity.ts), а итоговый экзамен, пробный тест и Пик номер не передавали — запись молча
+ * отбрасывалась как неподдержанная, и «Мои ошибки» этих ответов не получали. Номер однозначно виден из самого вопроса:
+ * это слово с пропуском «___». Достаём его здесь, в одном месте для всех источников. Вопроса с пропуском нет — ничего не
+ * выдумываем: запись, как и раньше, не принимается, но теперь с причиной в журнале.
+ */
+export function withGapTokenIndex(attempt: ObjectiveMistakeAttempt): ObjectiveMistakeAttempt {
+  if (attempt.facet.kind !== 'missing_token' || attempt.facet.tokenIndex !== undefined) return attempt;
+  const gapLine = (attempt.content.sourcePrompt ?? '').split('\n').find((line) => line.includes('___')) ?? '';
+  const tokenIndex = gapLine.trim().split(/\s+/).findIndex((word) => word.includes('___'));
+  if (tokenIndex < 0) return attempt;
+  const withIndex = { ...attempt, facet: { ...attempt.facet, tokenIndex } };
+  // зачем: ответ из нескольких слов («turn on», «was written») занимает ОДИН пропуск. Раздел при повторе делит эталон на
+  // слова и прячет слово с этим номером — без подсказки вышло бы «Please _____ on the light.» с ответом «turn on».
+  // Поэтому отдаём разбивку, где ответ — одна плитка; только если она в точности складывается в эталонную фразу.
+  const expected = (attempt.facet.expected ?? '').trim();
+  if (attempt.content.tokens || !/\s/.test(expected)) return withIndex;
+  const tokens = gapLine.trim().split(/\s+/).map((word, index) => (index === tokenIndex ? word.replace('___', expected) : word));
+  if (tokens.join(' ') !== attempt.content.canonicalTarget.trim().replace(/\s+/g, ' ')) return withIndex;
+  return { ...withIndex, content: { ...attempt.content, tokens } };
+}
+
 export async function captureObjectiveAttempt(
   attempt: ObjectiveMistakeAttempt,
   dependencies: CaptureDependencies = {},
@@ -85,9 +108,10 @@ export async function captureObjectiveAttempt(
 }
 
 async function captureObjectiveAttemptUnlogged(
-  attempt: ObjectiveMistakeAttempt,
+  rawAttempt: ObjectiveMistakeAttempt,
   dependencies: CaptureDependencies = {},
 ): Promise<CaptureResult> {
+  const attempt = withGapTokenIndex(rawAttempt);
   if (!attempt.objective) {
     return Object.freeze({ kind: 'ignored', reason: 'subjective' });
   }
@@ -107,6 +131,13 @@ async function captureObjectiveAttemptUnlogged(
     facet: attempt.facet,
   });
   if (identity.kind !== 'capturable') {
+    // зачем: этот ранний выход был немым — так запись пропусков и терялась месяцами незамеченной. Только факты, без текста фраз.
+    console.warn('[MISTAKE-CAPTURE] ignored', JSON.stringify({
+      studyTarget: attempt.studyTarget,
+      sourceKind: attempt.content?.sourceKind ?? null,
+      facet: attempt.facet?.kind ?? null,
+      reason: identity.reason,
+    }));
     return Object.freeze({ kind: 'ignored', reason: 'unsupported' });
   }
 

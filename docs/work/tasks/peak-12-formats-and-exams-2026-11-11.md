@@ -112,3 +112,14 @@ Governance-ID: TG-DDFD5327ACC9
 Governance-ID: TG-220AE45C3A50
 
 Governance-ID: TG-2D2E92CDB511
+
+Governance-ID: TG-C2A55E0B92D8
+Governance-ID: TG-61C774F2E38B
+
+## Итоговый экзамен: ошибки «пропущенного слова» терялись (владелец 11.11 «Да, почини»)
+
+Outcome: неверный ответ на вопрос с пропуском в итоговом экзамене попадает в «Мои ошибки». Scope: app/exam.tsx (вызов записи), тест. Security and privacy: данных не добавляется. Verification: точечный тест в слоте. Rollback: revert.
+
+Governance-ID: TG-E9104F74C2DA
+
+Governance-ID: TG-7394FB4DEEDE

@@ -13,6 +13,8 @@ import {
 } from './mistake_breakdown_model';
 
 const FUNCTIONS_REGION = 'us-central1';
+/** Потолок ожидания идущего прогрева перед настоящим запросом (холодный старт по журналу сервера — 7–11 с). */
+const WARM_WAIT_MAX_MS = 12_000;
 const explainMistakeInFlight = new Map<string, Promise<ExplainMistakeResponse>>();
 
 export const MISTAKE_EXPLAIN_OFFLINE_ERROR_CODE = 'mistake_explain_offline';
@@ -177,8 +179,15 @@ export async function callExplainMistake(
     const startedAtMs = Date.now();
     const warming = pendingAiWarm('explainMistake');
     if (warming) {
-      await warming;
-      console.log(`[AI-EXPLAIN] call:waited_for_warm ms=${Date.now() - startedAtMs}`); // guard-ok: видно, сколько ждали прогрев
+      // зачем: у прогрева нет своего таймаута — зависший пинг не должен держать настоящий запрос. Холодный старт
+      // по журналу сервера занимает 7–11 с; ждём не дольше WARM_WAIT_MAX_MS и уходим в сеть в любом случае.
+      let waitTimer: ReturnType<typeof setTimeout> | null = null;
+      const outcome = await Promise.race([
+        warming.then(() => 'warm_done' as const),
+        new Promise<'wait_timeout'>((resolve) => { waitTimer = setTimeout(() => resolve('wait_timeout'), WARM_WAIT_MAX_MS); }),
+      ]);
+      if (waitTimer) clearTimeout(waitTimer);
+      console.log(`[AI-EXPLAIN] call:waited_for_warm outcome=${outcome} ms=${Date.now() - startedAtMs}`); // guard-ok: видно, сколько ждали прогрев и чем кончилось
     }
     const callStartedAtMs = Date.now();
     // зачем: холодный старт (minInstances: 0) изредка отбивается Cloud Run как

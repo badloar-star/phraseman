@@ -840,6 +840,30 @@ async function recordBilling(
   });
 }
 
+/**
+ * Бесплатная часть прогрева: клиент Firestore и токен доступа готовятся заранее, без единого запроса к базе.
+ * Никогда не бросает и ждёт не дольше 4 с — прогрев необязателен и не должен ломать или задерживать ответ.
+ */
+async function warmMistakeExplainRuntime(): Promise<void> {
+  const startedAtMs = Date.now();
+  let outcome = 'ok';
+  try {
+    const app = admin.app();
+    void admin.firestore(app);
+    const credential = app.options.credential;
+    if (credential) {
+      await Promise.race([
+        credential.getAccessToken(),
+        new Promise((resolve) => setTimeout(resolve, 4000)),
+      ]);
+    }
+  } catch (error) {
+    outcome = `failed:${String((error as Error)?.name ?? 'unknown').slice(0, 60)}`;
+    console.warn('[EXPLAIN-MISTAKE] warm:failed', JSON.stringify({ reason: outcome })); // прогрев необязателен — ошибка не идёт дальше, но причина записана
+  }
+  console.log('[EXPLAIN-MISTAKE] warm', JSON.stringify({ outcome, ms: Date.now() - startedAtMs }));
+}
+
 export const explainMistake = onCall({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
@@ -858,6 +882,10 @@ export const explainMistake = onCall({
   // читает свою ошибку, — реальный разбор попадает на тёплый сервер. Ping ОБЯЗАН
   // быть бесплатным: ниже идут чтения Firestore и списание дневного капа.
   if ((request.data as { warmupPing?: unknown } | null)?.warmupPing === true) {
+    // зачем (владелец 11.11: «разбор готовится очень долго»; журнал 17:34 — на уже проснувшемся инстансе 6 с уходило
+    // до первой проверки): прогрев заодно поднимает клиент базы и токен доступа. Ни одного чтения, записи или
+    // обращения к ИИ — прогрев остаётся бесплатным (сторож tests/ai_warmup_ping_contract.test.ts).
+    await warmMistakeExplainRuntime();
     return {
       ok: true,
       text: '',
@@ -873,12 +901,31 @@ export const explainMistake = onCall({
 
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUidForAuth(db, authUid);
-  // зачем (Ревизор 18.10, аудит накрутки п.3/п.4): ферма анонимов с одного адреса — потолок вызовов в сутки на IP.
-  await enforceCallerRateWindow({ scope: 'mistake_explain_ip', authUid, rawRequest: request.rawRequest, maxPerUid: 0, maxPerIp: 30, windowMs: 24 * 60 * 60 * 1000 });
-
   const langKey = resolvePromptLangKey(payload.interfaceLang);
   const mistakeHash = mistakeHashFor(payload.targetAnswer, payload.userAnswer, langKey, payload.studyTarget);
+  // зачем (владелец 11.11: «ускорить серверные проверки»; журнал 17:34 — 6 с до первой проверки и ещё 6 с цепочки):
+  // три независимых шага идут ОДНОВРЕМЕННО, а не по очереди — личность, потолок на адрес и чтение кэша.
+  // Смысл прежний: отказ любого шага роняет вызов, кэш читается бесплатно. stageMs печатается в конце — видно,
+  // какой шаг на самом деле съел время.
+  const handlerStartedAtMs = Date.now();
+  const stageMs: Record<string, number> = {};
+  const timed = async <T>(stage: string, work: Promise<T>): Promise<T> => {
+    try {
+      return await work;
+    } finally {
+      stageMs[stage] = Date.now() - handlerStartedAtMs;
+    }
+  };
+  const [stableUid, , cached] = await Promise.all([
+    timed('stableUid', resolveStableUidForAuth(db, authUid)),
+    // зачем (Ревизор 18.10, аудит накрутки п.3/п.4): ферма анонимов с одного адреса — потолок вызовов в сутки на IP.
+    timed('ipWindow', enforceCallerRateWindow({ scope: 'mistake_explain_ip', authUid, rawRequest: request.rawRequest, maxPerUid: 0, maxPerIp: 30, windowMs: 24 * 60 * 60 * 1000 })),
+    // 1. Cache FIRST — the ≥99% path, $0.
+    timed('cacheRead', readCachedMistakeExplanation(mistakeHash)),
+  ]);
+  const logTiming = (result: string): void => {
+    console.log('[EXPLAIN-MISTAKE] timing', JSON.stringify({ result, variant: payload.variant, totalMs: Date.now() - handlerStartedAtMs, stageDoneAtMs: stageMs }));
+  };
   // зачем (владелец 11.11, все языковые курсы): видно, какой язык курса прислал телефон и каким его понял сервер —
   // расхождение (прислали «es», поняли «en») раньше было немым. Тексты ответов не пишем.
   console.log('[EXPLAIN-MISTAKE] request', JSON.stringify({
@@ -890,8 +937,6 @@ export const explainMistake = onCall({
   }));
   const RQ = 999; // Legacy response sentinel; miss-only free cap is enforced server-side.
 
-  // 1. Cache FIRST — the ≥99% path, $0.
-  const cached = await readCachedMistakeExplanation(mistakeHash);
   const cachedModel = text(cached?.model, 100) || MODEL_DEFAULT;
   const resolveProvider = async (): Promise<{ apiKey: string; model: string }> => {
     // зачем (PM-224): глобальный рубильник ИИ «Пульта» останавливал диалоги и объяснения фраз,
@@ -1006,6 +1051,7 @@ export const explainMistake = onCall({
       await invalidateMistakeCachedVariant(mistakeHash, 'eli5');
       cachedEli5 = undefined;
     }
+    logTiming('cache_hit');
     return {
       ok: true,
       text: cached.full,
@@ -1029,7 +1075,14 @@ export const explainMistake = onCall({
   // Claim before charging/generating. A concurrent caller waits briefly for the
   // winner, then returns a retryable pending signal instead of paying twice.
   const fullClaimedAtMs = Date.now();
-  const claimed = await claimMistakePendingLock(mistakeHash, fullClaimedAtMs);
+  // зачем (владелец 11.11): настройки ИИ читаются одновременно с захватом замка — это только чтения, без списаний.
+  // Ошибку (например, ИИ выключен рубильником) не теряем: она всплывёт в try ниже, где замок снимается штатно.
+  const providerPromise = timed('provider', resolveProvider());
+  providerPromise.catch((error: unknown) => {
+    // Причина не теряется: тот же промис ждётся в try ниже и бросит там; здесь только метка, чтобы отказ не считался необработанным.
+    console.warn('[EXPLAIN-MISTAKE] provider:early_failure', JSON.stringify({ code: String((error as { code?: unknown })?.code ?? 'unknown').slice(0, 60) }));
+  });
+  const claimed = await timed('claimLock', claimMistakePendingLock(mistakeHash, fullClaimedAtMs));
   if (!claimed) {
     for (let poll = 0; poll < PENDING_POLL_ATTEMPTS; poll += 1) {
       await new Promise((resolve) => setTimeout(resolve, PENDING_POLL_DELAY_MS));
@@ -1061,13 +1114,14 @@ export const explainMistake = onCall({
   let model = MODEL_DEFAULT;
   let generationStartedAtMs = 0;
   try {
-    const provider = await resolveProvider();
+    const provider = await providerPromise;
     model = provider.model;
-    freeCapReservation = await reserveFreeDailyGenCap(db, authUid, stableUid);
-    await enforceRateLimit(db, authUid, stableUid);
+    freeCapReservation = await timed('freeCap', reserveFreeDailyGenCap(db, authUid, stableUid));
+    await timed('uidRate', enforceRateLimit(db, authUid, stableUid));
     generationStartedAtMs = Date.now();
-    gen = await generateCheckedMistakeBundle(provider.apiKey, model, payload);
+    gen = await timed('generation', generateCheckedMistakeBundle(provider.apiKey, model, payload));
   } catch (error) {
+    logTiming(`failed:${String((error as { code?: unknown })?.code ?? (error as Error)?.name ?? 'unknown').slice(0, 60)}`);
     let finalError = error;
     const paidFailure = paidOutputFailure(error);
     if (paidFailure) {
@@ -1142,6 +1196,7 @@ export const explainMistake = onCall({
     bundleGenerated: true,
     durationMs: Math.max(0, Date.now() - generationStartedAtMs),
   });
+  logTiming('generated');
 
   return {
     ok: true,

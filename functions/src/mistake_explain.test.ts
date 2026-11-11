@@ -346,6 +346,38 @@ describe('explainMistake PM-231 limits', () => {
   });
 });
 
+// зачем (владелец 11.11: «разбор готовится очень долго», «ускорить серверные проверки»): прогрев заранее поднимает
+// клиент базы, но обязан остаться бесплатным и не падать; проверки перед ИИ идут одновременно, но отказ любой из них
+// по-прежнему останавливает вызов до платного обращения.
+describe('explainMistake speed-up (11.11)', () => {
+  it('warm-up ping answers without touching the database or the provider, even when the runtime warm fails', async () => {
+    const before = new Map(docs);
+    await expect(callExplain({ warmupPing: true })).resolves.toMatchObject({ ok: true, text: '', model: 'warmup-ping' });
+    expect(global.fetch).not.toHaveBeenCalled();
+    expect(new Map(docs)).toEqual(before);
+  });
+
+  it('warm-up ping still requires auth', async () => {
+    await expect(callExplain({ warmupPing: true }, null)).rejects.toMatchObject({ code: 'unauthenticated' });
+  });
+
+  it('a failed identity check stops the call before any paid generation, with pre-checks running in parallel', async () => {
+    const { resolveStableUidForAuth } = jest.requireMock('./auth_identity') as { resolveStableUidForAuth: jest.Mock };
+    resolveStableUidForAuth.mockRejectedValueOnce(new FakeHttpsError('failed-precondition', 'account_deletion_pending'));
+    await expect(callExplain(validPayload)).rejects.toMatchObject({ code: 'failed-precondition', message: 'account_deletion_pending' });
+    expect(global.fetch).not.toHaveBeenCalled();
+    expect(billingDocs()).toHaveLength(0);
+  });
+
+  it('a cache hit is served without resolving the AI provider settings', async () => {
+    await expect(callExplain(validPayload)).resolves.toMatchObject({ ok: true, fromCache: false });
+    const { resolveConfiguredDialogModel } = jest.requireMock('./openai_dialog_model_config') as { resolveConfiguredDialogModel: jest.Mock };
+    resolveConfiguredDialogModel.mockClear();
+    await expect(callExplain(validPayload, 'auth-2')).resolves.toMatchObject({ ok: true, fromCache: true });
+    expect(resolveConfiguredDialogModel).not.toHaveBeenCalled();
+  });
+});
+
 describe('explainMistake', () => {
   it('rejects unauthenticated callers before the provider call', async () => {
     await expect(callExplain(validPayload, null)).rejects.toMatchObject({ code: 'unauthenticated' });

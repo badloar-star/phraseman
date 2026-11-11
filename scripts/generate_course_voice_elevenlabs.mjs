@@ -10,6 +10,7 @@
 import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('generate_course_voice_elevenlabs.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'node:fs';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 
 const TAG = '[COURSE-VOICE]';
 const OUT_DIR = path.resolve('output/course-voice');
@@ -18,7 +19,16 @@ const API = 'https://api.elevenlabs.io';
 const MODEL_ID = 'eleven_multilingual_v2';
 const OUTPUT_FORMAT = 'mp3_44100_64'; // зачем: записи не лежат в сборке и докачиваются — 64 кбит/с вдвое легче 128 при той же разборчивости речи
 const SPEED = 0.9; // зачем: та же скорость, что в пробах, которые владелец прослушал и одобрил
-const VOICE_SETTINGS = Object.freeze({ stability: 0.45, similarity_boost: 0.8, style: 0.1, use_speaker_boost: true, speed: SPEED });
+// зачем (владелец 11.11, после первых записей: «тут глючно, очень… вначале у некоторых какой-то эээ или левый звук»):
+// при стабильности 0.45 и стиле 0.1 у 27 % записей (1 808 из 6 649) был призвук с первого мгновения или шум под голосом.
+// Те же фразы со стабильностью 0.75 и без стиля чисты во всех 12 контрольных попытках.
+const VOICE_SETTINGS = Object.freeze({ stability: 0.75, similarity_boost: 0.8, style: 0, use_speaker_boost: true, speed: SPEED });
+// Признак брака (замер кадрами по 20 мс, 16 кГц): чистая запись начинается с цифровой тишины (−85…−90 дБ) и имеет тихие
+// кадры; бракованная звучит с первого кадра или тихих кадров не имеет вовсе (шум под голосом).
+// −35, а не −50: тихое начало (−37…−45 дБ) — это вдох на 30 дБ тише речи, а не призвук; при −50 попытки уходили в брак зря
+const QA_HEAD_MAX_DB = -35;
+const QA_MIN_MAX_DB = -55;
+const QA_TRIES = 4; // сколько раз перезаписать фразу, пока не выйдет чистая; дальше — в suspects.json на слух владельцу
 const CONCURRENCY = 5;
 const MAX_ATTEMPTS = 5;
 const MIN_VALID_BYTES = 1024;
@@ -50,7 +60,41 @@ async function balance(key) {
   return { used: body.character_count, limit: body.character_limit, left: body.character_limit - body.character_count };
 }
 
+/** Замер записи: уровень первых двух кадров и самый тихий кадр. null — ffmpeg не смог прочитать файл. */
+export function measureClip(bytes) {
+  const result = spawnSync('ffmpeg', ['-v', 'error', '-i', 'pipe:0', '-ac', '1', '-ar', '16000', '-f', 's16le', '-'], { input: bytes, maxBuffer: 1 << 26 });
+  if (result.error) throw new Error(`${TAG} ffmpeg не запустился — без него брак не отличить от чистой записи: ${result.error.message}`);
+  const pcm = new Int16Array(result.stdout.buffer, result.stdout.byteOffset, result.stdout.length >> 1);
+  const FRAME = 320;
+  const levels = [];
+  for (let i = 0; i + FRAME <= pcm.length; i += FRAME) {
+    let sum = 0;
+    for (let j = 0; j < FRAME; j += 1) sum += pcm[i + j] * pcm[i + j];
+    levels.push(10 * Math.log10(sum / FRAME / (32768 * 32768) + 1e-12));
+  }
+  if (levels.length < 3) return null;
+  const head = Math.min(levels[0], levels[1]);
+  const min = Math.min(...levels);
+  return { head, min, clean: head <= QA_HEAD_MAX_DB && min <= QA_MIN_MAX_DB };
+}
+
+/** Записывает фразу; при браке перезаписывает до QA_TRIES раз и оставляет лучшую попытку. Возвращает итог замера. */
 async function synth(key, row, file) {
+  let best = null;
+  for (let take = 1; take <= QA_TRIES; take += 1) {
+    const bytes = await request(key, row);
+    const quality = measureClip(bytes);
+    const score = quality ? Math.max(quality.head - QA_HEAD_MAX_DB, quality.min - QA_MIN_MAX_DB) : Infinity;
+    if (!best || score < best.score) best = { bytes, quality, score, take };
+    if (quality?.clean) break;
+  }
+  // зачем: пишем во временный файл и переименовываем — обрыв на полпути не оставит битый mp3, который повторный запуск примет за готовый
+  fs.writeFileSync(`${file}.part`, best.bytes);
+  fs.renameSync(`${file}.part`, file);
+  return { clean: !!best.quality?.clean, takes: best.take, head: best.quality?.head ?? null, min: best.quality?.min ?? null };
+}
+
+async function request(key, row) {
   let lastError = '';
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
     const started = Date.now();
@@ -64,12 +108,7 @@ async function synth(key, row, file) {
       if (response.ok) {
         const bytes = Buffer.from(await response.arrayBuffer());
         if (bytes.length < MIN_VALID_BYTES) { lastError = `слишком короткий ответ: ${bytes.length} байт`; }
-        else {
-          // зачем: пишем во временный файл и переименовываем — обрыв на полпути не оставит битый mp3, который повторный запуск примет за готовый
-          fs.writeFileSync(`${file}.part`, bytes);
-          fs.renameSync(`${file}.part`, file);
-          return;
-        }
+        else return bytes;
       } else {
         lastError = `HTTP ${response.status} за ${Date.now() - started} мс: ${(await response.text()).slice(0, 200)}`;
         // зачем: 4xx кроме «слишком часто» повтором не лечится (нет денег, нет голоса, плохой текст) — не жжём попытки
@@ -106,6 +145,8 @@ async function main() {
   if (before.left < todoChars) throw new Error(`${TAG} не хватает символов: нужно ${todoChars}, осталось ${before.left} — запись не начата`);
 
   const failed = [];
+  const suspects = [];
+  let retakes = 0;
   let done = 0;
   let spent = 0;
   let cursor = 0;
@@ -116,8 +157,10 @@ async function main() {
       const row = todo[cursor];
       cursor += 1;
       try {
-        await synth(key, row, fileOf(row));
-        spent += row.text.length;
+        const result = await synth(key, row, fileOf(row));
+        spent += row.text.length * result.takes;
+        retakes += result.takes - 1;
+        if (!result.clean) suspects.push({ lang: row.lang, key: row.key, text: row.text, voice: row.voiceName, head: result.head, min: result.min });
       } catch (error) {
         failed.push({ lang: row.lang, key: row.key, text: row.text, voice: row.voiceName, reason: String(error.message || error) });
         console.error(`${TAG} ОТКАЗ ${row.lang}/${row.key} «${row.text.slice(0, 40)}» (${row.voiceName}): ${error.message || error}`);
@@ -125,14 +168,16 @@ async function main() {
         if (failed.length >= 20 && failed.length > done) { stop = true; console.error(`${TAG} слишком много отказов — остановка`); }
       }
       done += 1;
-      if (done % 250 === 0) console.log(`${TAG} ${done}/${todo.length}, символов ${spent}, отказов ${failed.length}, ${Math.round((Date.now() - started) / 1000)} с`);
+      if (done % 250 === 0) console.log(`${TAG} ${done}/${todo.length}, символов ${spent}, перезаписей ${retakes}, остались с браком ${suspects.length}, отказов ${failed.length}, ${Math.round((Date.now() - started) / 1000)} с`);
     }
   }
   await Promise.all(Array.from({ length: CONCURRENCY }, worker));
 
   fs.writeFileSync(path.join(OUT_DIR, 'failed.json'), JSON.stringify(failed, null, 1));
+  // зачем: имя с меткой запуска — повторный запуск не затирает список брака предыдущего
+  fs.writeFileSync(path.join(OUT_DIR, `suspects-${started}.json`), JSON.stringify(suspects, null, 1));
   const after = await balance(key);
-  console.log(`${TAG} готово: записано ${done - failed.length}, отказов ${failed.length}, символов по списку ${spent}, со счёта ушло ${after.used - before.used}, осталось ${after.left}`);
+  console.log(`${TAG} готово: записано ${done - failed.length}, перезаписей ${retakes}, остались с браком ${suspects.length}, отказов ${failed.length}, символов с перезаписями ${spent}, со счёта ушло ${after.used - before.used}, осталось ${after.left}`);
   if (failed.length) process.exitCode = 1;
 }
 

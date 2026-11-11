@@ -9,7 +9,7 @@
  */
 import type { SkillId } from '../skills/skill_points_table';
 
-export type WarmupGameId = 'flow' | 'odd_word' | 'sort' | 'memory' | 'exact' | 'forms' | 'hunt' | 'order';
+export type WarmupGameId = 'flow' | 'odd_word' | 'sort' | 'listen' | 'memory' | 'exact' | 'forms' | 'hunt' | 'order';
 
 type Copy = Readonly<{ ru: string; uk: string; es: string; en: string }>;
 
@@ -17,7 +17,7 @@ export interface WarmupGame {
   readonly id: WarmupGameId;
   readonly route: string;
   readonly skill: SkillId;
-  readonly icon: 'flash' | 'checkmark' | 'layers' | 'albums' | 'locate' | 'git-branch' | 'search' | 'chatbubbles';
+  readonly icon: 'flash' | 'checkmark' | 'layers' | 'albums' | 'locate' | 'git-branch' | 'search' | 'chatbubbles' | 'ear';
   readonly name: Copy;
   readonly description: Copy;
 }
@@ -38,6 +38,11 @@ export const WARMUP_POOL: readonly WarmupGame[] = [
     id: 'sort', route: '/game_sort', skill: 'grammar', icon: 'layers',
     name: { ru: 'Сортировка', uk: 'Сортування', es: 'Clasificación', en: 'Sorting' },
     description: { ru: 'Разложи фразы: сейчас или обычно', uk: 'Розклади фрази: зараз чи зазвичай', es: 'Ordena las frases: ahora o normalmente', en: 'Sort the phrases: now or usually' },
+  },
+  {
+    id: 'listen', route: '/game_quiz?kind=listen', skill: 'listening', icon: 'ear',
+    name: { ru: 'На слух', uk: 'На слух', es: 'De oído', en: 'By ear' },
+    description: { ru: 'Послушай фразу и выбери, что прозвучало', uk: 'Послухай фразу й обери, що прозвучало', es: 'Escucha la frase y elige qué sonó', en: 'Listen to the phrase and choose what was said' },
   },
   {
     id: 'memory', route: '/game_quiz?kind=memory', skill: 'vocab', icon: 'albums',

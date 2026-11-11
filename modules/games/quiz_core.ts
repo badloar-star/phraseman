@@ -1,12 +1,14 @@
 /**
- * Игры-викторины «Память», «Точное слово», «Три формы» — правила без React.
- * Эталон: docs/design/v2-app/elevate-games.js (`memory`, `exact`, `forms`) — одна механика «показали → выбери ответ».
+ * Игры-викторины «На слух», «Память», «Точное слово», «Три формы» — правила без React.
+ * Эталон: docs/design/v2-app/elevate-games.js (`listen`, `memory`, `exact`, `forms`) — одна механика «показали → выбери ответ».
  */
 import type { SkillAction } from '../skills/skill_points_table';
 
-export type QuizKind = 'memory' | 'exact' | 'forms';
+export type QuizKind = 'listen' | 'memory' | 'exact' | 'forms';
 
 export type QuizPrompt =
+  /** «На слух»: фраза произносится голосом телефона; `rate` — множитель скорости речи. */
+  | { readonly kind: 'audio'; readonly text: string; readonly rate: number }
   /** «Память»: пары показываются, затем скрываются; спрашивается пара `askIndex`. */
   | { readonly kind: 'pairs'; readonly pairs: readonly (readonly [string, string])[]; readonly askIndex: number }
   /** «Точное слово»: фраза с пропуском. */
@@ -41,6 +43,14 @@ const MEMORY_PAIRS: readonly (readonly [string, string])[] = [
 
 /** Утверждённые владельцем примеры из макета (11.11.2026). Банки по урокам и наборам — отдельная задача с вычиткой. */
 export const QUIZ_SEED_DECKS: Readonly<Record<QuizKind, QuizDeck>> = {
+  listen: {
+    kind: 'listen', pill: 'На слух', skillAction: 'by_ear_correct', showMs: 2400,
+    rounds: [
+      { id: 'l1', ask: 'Что прозвучало?', options: ['We are waiting here', 'We were waiting here', 'We are waiting there'], correctIndex: 0, prompt: { kind: 'audio', text: 'We are waiting here', rate: 1 }, note: 'Мы ждём здесь' },
+      { id: 'l2', ask: 'Что прозвучало?', options: ['He is cooking dinner', 'She is cooking dinner', 'He is cooking a dinner'], correctIndex: 0, prompt: { kind: 'audio', text: 'He is cooking dinner', rate: 1.25 }, note: 'Он готовит ужин' },
+      { id: 'l3', ask: 'Что прозвучало?', options: ['I listen to music', 'I am listening to music', 'I am listening music'], correctIndex: 1, prompt: { kind: 'audio', text: 'I am listening to music', rate: 1.5 }, note: 'Я слушаю музыку' },
+    ],
+  },
   memory: {
     kind: 'memory', pill: 'Запомни пары', skillAction: 'memory_exact_word_correct', showMs: 3600,
     rounds: [
@@ -67,13 +77,14 @@ export const QUIZ_SEED_DECKS: Readonly<Record<QuizKind, QuizDeck>> = {
 };
 
 export function isQuizKind(value: unknown): value is QuizKind {
-  return value === 'memory' || value === 'exact' || value === 'forms';
+  return value === 'listen' || value === 'memory' || value === 'exact' || value === 'forms';
 }
 
 export function isValidQuizRound(round: QuizRound): boolean {
   const unique = new Set(round.options.map((o) => o.trim().toLowerCase()));
   return Boolean(round.id) && round.options.length >= 2 && unique.size === round.options.length
     && Number.isInteger(round.correctIndex) && round.correctIndex >= 0 && round.correctIndex < round.options.length
+    && (round.prompt.kind !== 'audio' || (round.prompt.text.trim().length > 0 && round.options[round.correctIndex].trim() === round.prompt.text.trim()))
     && (round.prompt.kind !== 'pairs' || (round.prompt.askIndex >= 0 && round.prompt.askIndex < round.prompt.pairs.length));
 }
 

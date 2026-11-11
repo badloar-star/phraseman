@@ -12,12 +12,19 @@ it('все примеры из макета годны и ссылаются н�
   }
   expect(SKILL_POINT_RULES[QUIZ_SEED_DECKS.forms.skillAction].skill).toBe('grammar');
   expect(SKILL_POINT_RULES[QUIZ_SEED_DECKS.memory.skillAction].skill).toBe('vocab');
+  expect(SKILL_POINT_RULES[QUIZ_SEED_DECKS.listen.skillAction].skill).toBe('listening');
 });
 
 it('негодный раунд отсекается', () => {
   const round = QUIZ_SEED_DECKS.exact.rounds[0];
   expect(isValidQuizRound({ ...round, correctIndex: 5 })).toBe(false);
   expect(isValidQuizRound({ ...round, options: ['listen', 'Listen'] })).toBe(false);
+});
+
+it('«На слух»: верный вариант обязан дословно совпадать с тем, что произносится', () => {
+  const round = QUIZ_SEED_DECKS.listen.rounds[2];
+  expect(isValidQuizRound(round)).toBe(true);
+  expect(isValidQuizRound({ ...round, correctIndex: 0 })).toBe(false);
 });
 
 it('ответ считается, раунд двигается отдельным шагом', () => {
@@ -30,5 +37,6 @@ it('ответ считается, раунд двигается отдельн�
 
 it('узнаёт только известные виды игр', () => {
   expect(isQuizKind('memory')).toBe(true);
-  expect(isQuizKind('listen')).toBe(false);
+  expect(isQuizKind('listen')).toBe(true);
+  expect(isQuizKind('nope')).toBe(false);
 });

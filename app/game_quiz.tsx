@@ -1,6 +1,6 @@
 /**
- * Игры «Память», «Точное слово», «Три формы» — перенос утверждённого макета
- * (docs/design/v2-app/elevate-games.js: `memory`, `exact`, `forms` на общем движке `quiz`).
+ * Игры «На слух», «Память», «Точное слово», «Три формы» — перенос утверждённого макета
+ * (docs/design/v2-app/elevate-games.js: `listen`, `memory`, `exact`, `forms` на общем движке `quiz`).
  * Владелец 11.11.2026: «самое главное — механики».
  *
  * Ход раунда: задание показывается → появляются варианты → ответ фиксируется → пояснение → следующий раунд → итог.
@@ -8,7 +8,8 @@
  * зачем так: один экран на три игры — они различаются только видом задания; правила и задания — в quiz_core.
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -20,6 +21,7 @@ import { V2AnswerOption, V2Button, V2Card, V2IconButton } from '../components/v2
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
+import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
 import { hapticTap } from '../hooks/use-haptics';
 import {
   INITIAL_QUIZ_STATE, QUIZ_SEED_DECKS, answerQuiz, isQuizKind, isValidQuizRound, nextQuizRound, type QuizRound,
@@ -40,11 +42,25 @@ const COPY = {
 
 type Phase = 'show' | 'answer' | 'verdict' | 'done';
 
-function Prompt({ round, phase, picked }: Readonly<{ round: QuizRound; phase: Phase; picked: number | null }>) {
+function Prompt({ round, phase, picked, onReplay }: Readonly<{ round: QuizRound; phase: Phase; picked: number | null; onReplay: () => void }>) {
   const p = useV2Palette();
   const prompt = round.prompt;
   const answered = phase === 'verdict';
   const ok = picked === round.correctIndex;
+
+  if (prompt.kind === 'audio') {
+    // зачем: фразу можно переслушать нажатием — проверяется слух, а не память на один показ
+    return (
+      <Pressable testID="game-quiz-replay" accessibilityRole="button" accessibilityLabel={round.ask} onPressIn={() => { void hapticTap(); }} onPress={onReplay} style={({ pressed }) => [s.audio, { backgroundColor: p.glass }, pressed && s.pressed]}>
+        <Ionicons name="volume-high" size={36} color={p.text} />
+        <View style={s.wave}>
+          {Array.from({ length: 22 }, (_, k) => (
+            <View key={`wave-${k}`} style={[s.waveBar, { height: 12 + ((k * 37) % 44), backgroundColor: p.text, opacity: answered ? 0.3 : 0.8 }]} />
+          ))}
+        </View>
+      </Pressable>
+    );
+  }
 
   if (prompt.kind === 'pairs') {
     // пары видны, пока идёт показ и после ответа; во время вопроса открыта только левая часть спрашиваемой пары
@@ -106,6 +122,18 @@ export default function GameQuizScreen() {
   const lock = useRef(false);
 
   const round = rounds[Math.min(game.index, Math.max(0, rounds.length - 1))];
+  const audio = useAudio();
+  const speakRound = useCallback(() => {
+    if (!round || round.prompt.kind !== 'audio') return;
+    audio.speak(round.prompt.text, round.prompt.rate, { language: inferExpoSpeechLanguage(round.prompt.text) });
+  }, [audio, round]);
+
+  // «На слух»: фраза произносится в начале раунда; уход с экрана останавливает речь
+  useEffect(() => {
+    if (phase === 'show') speakRound();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game.index, phase]);
+  useEffect(() => () => audio.stop(), [audio]);
 
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
@@ -179,7 +207,7 @@ export default function GameQuizScreen() {
             <>
               <View style={s.stageTop} />
               <View style={s.promptBox}>
-                <Prompt key={round.id} round={round} phase={phase} picked={picked} />
+                <Prompt key={round.id} round={round} phase={phase} picked={picked} onReplay={speakRound} />
               </View>
               <Text style={[s.note, { color: p.textSecondary, opacity: phase === 'verdict' && round.note ? 1 : 0 }]}>{round.note ?? ''}</Text>
               <View style={s.stageBottom} />
@@ -215,6 +243,10 @@ const s = StyleSheet.create({
   stageTop: { flex: 0.6 },
   stageBottom: { flex: 1 },
   promptBox: { minHeight: 200, justifyContent: 'center' },
+  audio: { alignSelf: 'center', alignItems: 'center', gap: 16, paddingVertical: 24, paddingHorizontal: 28, borderRadius: 28 },
+  pressed: { opacity: 0.86 },
+  wave: { flexDirection: 'row', alignItems: 'center', gap: 4, height: 60 },
+  waveBar: { width: 4, borderRadius: 2 },
   pairs: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   pairSlot: { width: '48%', flexGrow: 1 },
   pair: { minHeight: 92, padding: 14, justifyContent: 'center', gap: 4 },

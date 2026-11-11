@@ -1,7 +1,47 @@
 /** Игры «Память», «Точное слово», «Три формы»: примеры из макета годны, ответ считается один раз. */
 import {
-  INITIAL_QUIZ_STATE, QUIZ_SEED_DECKS, answerQuiz, isQuizKind, isValidQuizRound, nextQuizRound,
+  INITIAL_QUIZ_STATE, QUIZ_SEED_DECKS, answerQuiz, isQuizKind, isValidQuizRound, nextQuizRound, shuffledQuizRound,
 } from '../modules/games/quiz_core';
+import { quizDeckFor } from '../modules/games/task_source';
+
+describe('shuffledQuizRound — верный вариант нельзя угадать по месту', () => {
+  const round = QUIZ_SEED_DECKS.listen.rounds[0];
+
+  it('после перемешивания верный вариант — тот же текст, раунд остаётся корректным', () => {
+    for (let seed = 0; seed < 50; seed += 1) {
+      let s = seed + 1;
+      const rng = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
+      const out = shuffledQuizRound(round, rng);
+      expect(out.options[out.correctIndex]).toBe(round.options[round.correctIndex]);
+      expect([...out.options].sort()).toEqual([...round.options].sort());
+      expect(isValidQuizRound(out)).toBe(true);
+    }
+  });
+
+  it('исходный раунд не меняется', () => {
+    const before = JSON.stringify(round);
+    shuffledQuizRound(round, () => 0.9);
+    expect(JSON.stringify(round)).toBe(before);
+  });
+
+  it('странный генератор (NaN, 1, отрицательное) не ломает раунд', () => {
+    for (const bad of [Number.NaN, 1, -5, Number.POSITIVE_INFINITY]) {
+      const out = shuffledQuizRound(round, () => bad);
+      expect(out.options[out.correctIndex]).toBe(round.options[round.correctIndex]);
+      expect(isValidQuizRound(out)).toBe(true);
+    }
+  });
+
+  it('нажатия «сверху вниз по кругу» больше не дают все верные ответы в немецком «На слух»', () => {
+    const rounds = quizDeckFor('listen', 'de', 1)?.rounds ?? [];
+    expect(rounds.length).toBeGreaterThan(2);
+    let s = 7;
+    const rng = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
+    const shuffled = rounds.map((r) => shuffledQuizRound(r, rng));
+    const cyclicHits = shuffled.filter((r, i) => r.correctIndex === i % r.options.length).length;
+    expect(cyclicHits).toBeLessThan(shuffled.length);
+  });
+});
 import { SKILL_POINT_RULES } from '../modules/skills/skill_points_table';
 
 it('все примеры из макета годны и ссылаются на строки таблицы навыков', () => {

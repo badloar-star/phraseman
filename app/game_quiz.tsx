@@ -27,7 +27,7 @@ import { V2 } from '../constants/v2Style';
 import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
 import { hapticTap } from '../hooks/use-haptics';
 import {
-  INITIAL_QUIZ_STATE, QUIZ_SEED_DECKS, answerQuiz, isQuizKind, isValidQuizRound, nextQuizRound, type QuizRound,
+  INITIAL_QUIZ_STATE, QUIZ_SEED_DECKS, answerQuiz, isQuizKind, isValidQuizRound, nextQuizRound, shuffledQuizRound, type QuizRound,
 } from '../modules/games/quiz_core';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { currentGameLesson, dailyPortion, quizDeckFor } from '../modules/games/task_source';
@@ -126,7 +126,8 @@ export default function GameQuizScreen() {
   // зачем (владелец 11.11: «фразы должны корректно подбираться»): задания — из банка по уроку, на котором сейчас человек,
   // и только для языка, который он учит; порция меняется от дня к дню и не тасуется при повторном рендере
   const deck = useMemo(() => quizDeckFor(kind, studyTarget, currentGameLesson(studyTarget)) ?? { ...QUIZ_SEED_DECKS[kind], rounds: [] }, [kind, studyTarget]);
-  const rounds = useMemo(() => dailyPortion(deck.rounds.filter(isValidQuizRound), ROUNDS, Math.floor(Date.now() / 86400000)), [deck]);
+  // зачем (прогон на телефоне 11.11): верный вариант в банке стоит по кругу — перемешиваем порядок один раз на вход
+  const rounds = useMemo(() => dailyPortion(deck.rounds.filter(isValidQuizRound), ROUNDS, Math.floor(Date.now() / 86400000)).map((round) => shuffledQuizRound(round)), [deck]);
 
   const [game, setGame] = useState(INITIAL_QUIZ_STATE);
   const [phase, setPhase] = useState<Phase>(rounds.length > 0 ? 'show' : 'done');

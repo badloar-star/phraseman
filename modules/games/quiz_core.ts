@@ -88,6 +88,24 @@ export function isValidQuizRound(round: QuizRound): boolean {
     && (round.prompt.kind !== 'pairs' || (round.prompt.askIndex >= 0 && round.prompt.askIndex < round.prompt.pairs.length));
 }
 
+/**
+ * Раунд с вариантами в случайном порядке; верный вариант находится заново по тексту.
+ * зачем (прогон на телефоне 11.11): в банках верный вариант стоит по кругу — 1-й, 2-й, 3-й, 1-й… Нажимая сверху вниз
+ * по очереди, человек набирал «6 из 6», не слушая. Порядок перемешивается один раз на вход в игру.
+ */
+export function shuffledQuizRound(round: QuizRound, rng: () => number = Math.random): QuizRound {
+  const correct = round.options[round.correctIndex];
+  const options = [...round.options];
+  for (let i = options.length - 1; i > 0; i -= 1) {
+    const raw = rng();
+    const j = Math.floor((Number.isFinite(raw) ? Math.min(Math.max(raw, 0), 0.999999) : 0) * (i + 1));
+    [options[i], options[j]] = [options[j], options[i]];
+  }
+  const correctIndex = options.indexOf(correct);
+  // зачем: варианты уникальны (isValidQuizRound), но если индекс всё же потерялся — оставляем исходный раунд
+  return correctIndex >= 0 ? { ...round, options, correctIndex } : round;
+}
+
 export interface QuizState {
   readonly index: number;
   readonly correct: number;

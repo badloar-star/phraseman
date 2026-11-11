@@ -32,7 +32,7 @@ ${read('app/lesson_locale_utils.ts')}`;
       expect(m).not.toBeNull();
       expect(m![1]).toContain('{time}');
     }
-    expect(pool).toContain('Дай знаниям немного уложиться. +1 ⚡ вернётся через {time}. Или забудь о паузах с Плюс прямо сейчас.');
+    expect(pool).toContain('Дай знаниям немного уложиться. +1 ⚡ вернётся через {time}. Или забудь о паузах с Plus прямо сейчас.');
   });
 
   it('DEV-кнопка «grammar hint» в уроке скрыта при dev overlays=off', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { MAIN_TABS } from '../../constants/mainTabs';
 import { triLang, type Lang } from '../../constants/i18n';
-import { isLogicalTabHidden } from '../../app/tab_page_model';
+import { visibleLogicalTabs } from '../../app/tab_page_model';
 import { useTabPageLayout } from '../../app/use_tab_page_layout';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import V2TabBar from '../v2/V2TabBar';
@@ -13,7 +13,8 @@ export function CommunityRootTabs({ lang, bottomInset, onSelectRoute }: Readonly
   const reduceMotion = useReduceMotion();
   // зачем (владелец 30.10 и 05.11): тот же таббар, что в _layout, — «Видео» скрыта до ранга 1, Plus только при 4 иконках и без подписки (общий хук раскладки)
   const { layout } = useTabPageLayout();
-  const tabs = MAIN_TABS.filter((_, index) => !isLogicalTabHidden(index, layout));
+  // зачем (слово владельца 11.11): порядок — из модели (Plus перед «Настройками»), тот же, что в основной панели.
+  const tabs = visibleLogicalTabs(layout).map((index) => MAIN_TABS[index]!);
   const items = tabs.map(tab => ({ key: tab.key, icon: tab.icon, activeIcon: tab.active, capGradient: tab.capGradient, capInk: tab.capInk, label: triLang(lang, tab.label) ?? tab.label.ru }));
   return <V2TabBar items={items} activeIndex={tabs.findIndex(tab => tab.key === 'community')}
     bottomOffset={tabPillBottomOffset(bottomInset)} reduceMotion={reduceMotion}

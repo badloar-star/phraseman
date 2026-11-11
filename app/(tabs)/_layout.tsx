@@ -91,6 +91,7 @@ import {
 import {
   isLogicalTabHidden,
   logicalTabToPhysicalPage,
+  visibleLogicalTabs,
   physicalPageCount,
   physicalPageToLogicalTab,
   physicalPageToRuntimeOwner,
@@ -677,7 +678,8 @@ function TabScaffold({
   const firstContentReadyEmittedRef = useRef(false);
   // зачем D129: вкладка «Обучение» есть в таббаре только для языка с готовым курсом.
   const barTabs = useMemo(
-    () => TAB_BAR_TABS.filter((tab) => !isLogicalTabHidden(tab.logicalIdx, pageLayout)),
+    // зачем (слово владельца 11.11): порядок значков — из модели (Plus перед «Настройками»), а не по возрастанию индекса.
+    () => visibleLogicalTabs(pageLayout).map((logicalIdx) => TAB_BAR_TABS[logicalIdx]!),
     [pageLayout],
   );
   const activeBarTabIdx = barTabs.findIndex((tab) => tab.logicalIdx === visualIdx);
@@ -1579,7 +1581,9 @@ function ReleasedTabLayout() {
       // зачем (слово владельца 05.11): шестая страница — вкладка Plus; раскладка выкидывает её из ленты, пока правило видимости её не открыло
       show(5) ? <TabPane key="plus" freezeWanted={freezeWanted(5)}><TabRenderProbe id="tab:plus"><DeferredTabScreen shouldLoad={shouldLoad(5)} loadScreen={loadPlusScreen} /></TabRenderProbe></TabPane> : placeholder('ph-plus'),
     ];
-    return screens.filter((_, logicalIdx) => !isLogicalTabHidden(logicalIdx, pageLayout));
+    // зачем (слово владельца 11.11): страницы ленты идут в том же порядке, что значки панели, — иначе тап по алмазику
+    // открывал бы соседнюю страницу. Порядок один, из модели.
+    return visibleLogicalTabs(pageLayout).map((logicalIdx) => screens[logicalIdx]!);
   }, [activeIdx, mountedTabs, openDevHub, pageLayout, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
   // зачем (Сверка 18.10, пустые Настройки ≥ 6 с; «сперва логи»): в каком состоянии была выбранная вкладка — смонтирована ли, посещалась ли,
   // попадает ли под заморозку; экран Настроек пишет свой первый кадр относительно этой отметки ([TAB-FIRST-FRAME]). Временная трасса.

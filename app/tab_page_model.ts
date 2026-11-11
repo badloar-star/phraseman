@@ -81,9 +81,17 @@ export function tabPageLayoutFor(options: { learnTabVisible: boolean; videoTabVi
   return layoutFor(hidden);
 }
 
-/** Логические индексы, у которых есть физическая страница, в порядке свайпа. */
+/**
+ * Порядок вкладок В ПАНЕЛИ И В ЛЕНТЕ СВАЙПА — не равен порядку логических индексов.
+ * зачем (слово владельца 11.11: «алмазик на таббаре перемести между Сообщество и Настройки… чтобы он не в конце таббара
+ * был»): Plus (индекс 5) стоит ПЕРЕД «Настройками» (индекс 4), Настройки остаются крайними справа. Логические индексы
+ * и маршруты не меняются — меняется только порядок показа. Панель, лента и копия панели обязаны брать порядок отсюда.
+ */
+export const TAB_DISPLAY_ORDER: readonly LogicalTabIndex[] = Object.freeze([0, 1, 2, 3, PLUS_TAB_INDEX, 4]) as readonly LogicalTabIndex[];
+
+/** Логические индексы, у которых есть физическая страница, в порядке панели и свайпа (см. TAB_DISPLAY_ORDER). */
 export function visibleLogicalTabs(layout: TabPageLayout = FULL_TAB_PAGE_LAYOUT): readonly LogicalTabIndex[] {
-  return ([0, 1, 2, 3, 4, 5] as const).filter((index) => !layout.hiddenLogicalTabs.includes(index));
+  return TAB_DISPLAY_ORDER.filter((index) => !layout.hiddenLogicalTabs.includes(index));
 }
 
 export function isLogicalTabHidden(index: number, layout: TabPageLayout = FULL_TAB_PAGE_LAYOUT): boolean {

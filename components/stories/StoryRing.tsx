@@ -5,6 +5,8 @@
 // слот аватара остаётся 48 × 48 — шапка не сдвигается. Кольцо 3 dp тёплым градиентом 45° (#FF2D55 → #FF3B30 → #FF6A1A → #FF9500), зазор 2 dp, внутри монета 38.
 // Зазор прозрачный (в образце он цвета фона — на любой теме это то же самое), поэтому кольцу не нужен токен фона. «Дышит» scale 1 → 1,06 за 1,8 с на UI-треде и только пока
 // экран в фокусе и приложение активно (perf_freeze_contract); reduceMotion — кольцо стоит. Монета тут только аватар ранга, не персонаж.
+// Владелец 11.11: «когда есть история, пусть аватарка пульсирует всегда, пока есть непросмотренная история» — цикл вечный (образец: srPulse 1.8s infinite).
+// Кольцо смонтировано, только пока непросмотренное есть (решает StoryAvatarSlot), поэтому «всё просмотрено» = размонтирование = конец пульсации.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -35,7 +37,9 @@ function StoryRing({ children, testID = 'story-ring' }: StoryRingProps) {
   useEffect(() => {
     if (reduceMotion || !runtimeActive) { cancelAnimation(breath); breath.value = 0; return; }
     const ease = Easing.inOut(Easing.quad);
-    breath.value = withRepeat(withSequence(withTiming(1, { duration: BREATH_HALF_MS, easing: ease }), withTiming(0, { duration: BREATH_HALF_MS, easing: ease })), 4, false); // зачем (сторож motion_allowlist, координатор 15.10 после R08): вечный цикл съедал кадры в фоне — конечное число повторов покрывает время показа
+    // зачем (владелец 11.11): прежние 4 повтора (15.10, после R08) гасли через ~7 с — человек, открывший Главную позже, видел мёртвое кольцо. Теперь цикл вечный;
+    // кадры в фоне не ест: гейт фокуса и активности выше останавливает его, возврат на экран запускает заново. Причина записана в motion_allowlist_contract.
+    breath.value = withRepeat(withSequence(withTiming(1, { duration: BREATH_HALF_MS, easing: ease }), withTiming(0, { duration: BREATH_HALF_MS, easing: ease })), -1, false);
     return () => cancelAnimation(breath);
   }, [breath, reduceMotion, runtimeActive]);
 

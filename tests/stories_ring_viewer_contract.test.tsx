@@ -371,7 +371,11 @@ describe('тексты и исходники', () => {
     }
     const ring = read('components/stories/StoryRing.tsx');
     expect(ring).toContain('useRuntimeActive');
-    expect(ring).toContain('4, false'); // 15.10: конечное «дыхание» (сторож motion_allowlist после R08)
+    // владелец 11.11: «пусть аватарка пульсирует всегда, пока есть непросмотренная история» — цикл вечный (прежние 4 повтора от 15.10 гасли через ~7 с);
+    // фон и чужой экран его останавливают (useRuntimeActive выше), «уменьшить движение» — тоже
+    expect(ring).toContain('-1, false');
+    expect(ring).toContain('useReducedMotion');
+    expect(ring).toMatch(/if \(reduceMotion \|\| !runtimeActive\) \{ cancelAnimation\(breath\); breath\.value = 0; return; \}/);
     expect(read('components/stories/StoryViewer.tsx')).not.toContain('withRepeat');
   });
 

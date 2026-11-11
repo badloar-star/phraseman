@@ -9,6 +9,7 @@ import {
   type DialogueV2FreeformSessionStart,
   type DialogueV2FreeformSessionTurn,
 } from '../shared/dialogue_v2_freeform_session_contract';
+import { sanitizeDialogSayHints, type DialogSayHint } from '../components/dialogs/hints/dialog_say_hints_model';
 
 const FUNCTIONS_REGION = 'us-central1';
 /**
@@ -22,6 +23,10 @@ const SESSION_ID_RE = /^d2fs_[A-Za-z0-9_-]{32,96}$/;
 const TURN_ID_RE = /^d2ft_[A-Za-z0-9_-]{16,80}$/;
 const UNSAFE_TEXT_RE = /[\u0000-\u0009\u000b-\u001f\u007f-\u009f]/u;
 const FREEFORM_STUDY_TARGETS = new Set(['en', 'es', 'fr', 'de']);
+const TURN_REQUEST_INVALID_MESSAGE = 'dialogue_v2_freeform_session_turn_request_invalid';
+const NO_SAY_HINTS: readonly DialogSayHint[] = Object.freeze([]);
+/** Сервер этой сессии приложения не знает поле hintsLang (выяснено отказом) — до перезапуска ходы идут без него. */
+let serverLacksSayHints = false;
 
 export type DialogueV2FreeformSessionStartResponse = Readonly<{
   ok: true;
@@ -36,6 +41,12 @@ export type DialogueV2FreeformTurnResponse = Readonly<{
   expiresAtMs: number;
   /** Перевод ответа на язык интерфейса (решение координатора 25.10: та же генерация, без второго вызова); старый сервер — нет поля. */
   assistantTranslation?: string;
+  /**
+   * Готовые ответы «Можно сказать…» на эту реплику ИИ (сервер шлёт, когда запрос нёс hintsLang; нет ответов — нет поля).
+   * зачем (жалоба владельца 11.11: «подсказки чаще всего невпопад, не в ответ на реплику собеседника»): их пишет модель тем же
+   * вызовом, что и реплику, — заготовленный набор на телефоне остаётся запасным.
+   */
+  sayHints?: readonly DialogSayHint[];
 }>;
 
 export type DialogueV2FreeformPreparedBotVoiceRequest = Readonly<{
@@ -154,9 +165,10 @@ function validTurnResponse(
   // зачем (жалоба владельца 25.10 «нет кнопки Перевести»; решение координатора): необязательное поле перевода — новый сервер его шлёт,
   // старый нет; битый перевод не роняет ход, а просто не показывается (кнопки нет, [DIALOG-BUBBLE] reason=no_translation).
   const withTranslation = response !== null && 'assistantTranslation' in response;
-  if (!response || !hasExactKeys(response, withTranslation
-    ? ['ok', 'assistantMessage', 'sessionId', 'expiresAtMs', 'assistantTranslation']
-    : ['ok', 'assistantMessage', 'sessionId', 'expiresAtMs'])
+  // зачем (11.11): sayHints тоже необязателен — сервер до выкладки его не шлёт; битый список не роняет ход, а даёт пусто.
+  const withSayHints = response !== null && 'sayHints' in response;
+  if (!response || !hasExactKeys(response, ['ok', 'assistantMessage', 'sessionId', 'expiresAtMs',
+    ...(withTranslation ? ['assistantTranslation'] : []), ...(withSayHints ? ['sayHints'] : [])])
     || response.ok !== true || response.sessionId !== request.sessionId
     || !validAssistantMessage(response.assistantMessage)
     || !Number.isSafeInteger(response.expiresAtMs) || Number(response.expiresAtMs) <= 0) return null;
@@ -164,13 +176,29 @@ function validTurnResponse(
   if (withTranslation && translation === null) {
     console.warn('[DIALOG-BUBBLE] freeform: перевод ответа отброшен — не прошёл проверку текста', JSON.stringify({ type: typeof response.assistantTranslation }));
   }
+  const sayHints = withSayHints ? parseSayHints(response.sayHints) : NO_SAY_HINTS;
   return Object.freeze({
     ok: true,
     assistantMessage: response.assistantMessage,
     sessionId: request.sessionId,
     expiresAtMs: Number(response.expiresAtMs),
     ...(translation ? { assistantTranslation: translation } : {}),
+    ...(sayHints.length > 0 ? { sayHints } : {}),
   });
+}
+
+/** Готовые ответы из ответа хода: негодный элемент выбрасывается, остальные остаются; не массив — пусто. */
+function parseSayHints(value: unknown): readonly DialogSayHint[] {
+  if (!Array.isArray(value)) {
+    console.warn('[DIALOG-HINTS] freeform:parse → sayHints is not an array', JSON.stringify({ type: value === null ? 'null' : typeof value })); // guard-ok: ранний выход пишет причину
+    return NO_SAY_HINTS;
+  }
+  const items = value.map((item) => exactPlainRecord(item)).filter((item): item is PlainRecord => item !== null);
+  const hints = sanitizeDialogSayHints(items.map((item) => ({ text: item.text, meaning: item.meaning })));
+  if (hints.length !== value.length) {
+    console.warn('[DIALOG-HINTS] freeform:parse → some sayHints dropped', JSON.stringify({ received: value.length, kept: hints.length })); // guard-ok: причина потери
+  }
+  return hints;
 }
 
 function validPreparedBotVoiceRequest(
@@ -246,6 +274,8 @@ function logFreeformFailure(stage: 'start' | 'turn' | 'voice', startedAt: number
 
 export async function sendDialogueV2FreeformTurn(
   selection: DialogueV2FreeformSessionTurn,
+  /** hintsLang — язык интерфейса: сервер вместе с репликой пришлёт готовые ответы «Можно сказать…» с переводом на него. */
+  options?: Readonly<{ hintsLang?: string }>,
 ): Promise<DialogueV2FreeformTurnResponse | null> {
   const request = parseDialogueV2FreeformSessionTurnShape(selection);
   if (!request) return null;
@@ -261,12 +291,26 @@ export async function sendDialogueV2FreeformTurn(
   const startedAt = Date.now();
   console.log('[FREEFORM-HANG] turn:send', JSON.stringify({ turnId: request.turnId, studyTarget: request.studyTarget, length: request.userMessage.length, timeoutMs: DIALOGUE_V2_FREEFORM_TURN_TIMEOUT_MS }));
   try {
-    const callable = httpsCallable<DialogueV2FreeformSessionTurn, unknown>(
+    const callable = httpsCallable<DialogueV2FreeformSessionTurn & Readonly<{ hintsLang?: string }>, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2FreeformSessionTurn',
       { timeout: DIALOGUE_V2_FREEFORM_TURN_TIMEOUT_MS },
     );
-    const response = validTurnResponse((await callable(request)).data, request);
+    const hintsLang = options?.hintsLang && !serverLacksSayHints ? options.hintsLang : null;
+    let data: unknown;
+    try {
+      data = (await callable(hintsLang ? { ...request, hintsLang } : request)).data;
+    } catch (error) {
+      // зачем: сервер до выкладки поле hintsLang не знает и отклоняет запрос ЕЩЁ ДО лимитов, журнала хода и модели — повторяем
+      // этот же ход без поля, чтобы разговор не зависел от порядка «сервер → приложение». Запоминаем до перезапуска, только
+      // если ход без поля прошёл: значит, дело было именно в поле, а не в самом запросе.
+      const message = error instanceof Error ? error.message : String((error as { message?: unknown })?.message ?? '');
+      if (!hintsLang || !message.includes(TURN_REQUEST_INVALID_MESSAGE)) throw error;
+      console.warn('[DIALOG-HINTS] freeform:send → server rejected hintsLang, retrying without it', JSON.stringify({ turnId: request.turnId, ms: Date.now() - startedAt })); // guard-ok: причина повтора
+      data = (await callable(request)).data;
+      serverLacksSayHints = true;
+    }
+    const response = validTurnResponse(data, request);
     console.log('[FREEFORM-HANG] turn:response', JSON.stringify({ turnId: request.turnId, ms: Date.now() - startedAt, valid: response !== null }));
     return response;
   } catch (error) {

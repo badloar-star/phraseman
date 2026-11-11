@@ -28,7 +28,12 @@ import {
 import {
   createDialogueV2FreeformServerTextProducer,
   type DialogueV2FreeformMemoryAwareServerTurnInput,
+  type DialogueV2FreeformSayHintsOptions,
 } from './dialogue_v2_freeform_text_provider';
+import {
+  dialogueV2FreeformSayHintsLanguage,
+  type DialogueV2FreeformSayHint,
+} from './dialogue_v2_freeform_say_hints';
 import {
   createDialogueV2FreeformOpenAiTransport,
 } from './dialogue_v2_freeform_openai_transport';
@@ -96,12 +101,15 @@ type TurnPublicResult = Readonly<{
   assistantMessage: string;
   sessionId: string;
   expiresAtMs: number;
+  /** Готовые ответы «Можно сказать…» — только когда запрос нёс hintsLang (старые клиенты сверяют точный набор полей). */
+  sayHints?: readonly DialogueV2FreeformSayHint[];
 }>;
 
 export type DialogueV2FreeformSessionTurnDependencies = Readonly<{
   runAuthorizedTurn(
     authUid: string,
     input: DialogueV2FreeformSessionTurn,
+    sayHints?: DialogueV2FreeformSayHintsOptions,
   ): Promise<DialogueV2FreeformSessionTurnResult>;
 }>;
 
@@ -122,7 +130,10 @@ export type DialogueV2FreeformAtomicSessionTurnRuntime = Readonly<{
     authUid: string,
     studyTarget: DialogueV2FreeformSessionTurn['studyTarget'],
   ): Promise<DialogueV2FreeformMemoryReadEnvelope>;
-  produceAssistant(input: DialogueV2FreeformMemoryAwareServerTurnInput): Promise<unknown>;
+  produceAssistant(
+    input: DialogueV2FreeformMemoryAwareServerTurnInput,
+    sayHints?: DialogueV2FreeformSayHintsOptions,
+  ): Promise<unknown>;
 }>;
 
 export type DialogueV2FreeformMemoryAwareTurnProducerDependencies = Readonly<{
@@ -145,6 +156,28 @@ const SAFE_FAILED_PRECONDITION_MESSAGES = new Set([
 function exactInput(value: unknown): DialogueV2FreeformSessionTurn | null {
   if (value && typeof value === 'object' && nodeTypes.isProxy(value)) return null;
   return parseDialogueV2FreeformSessionTurnShape(value);
+}
+
+/**
+ * Запрос хода с необязательным hintsLang — языком интерфейса для готовых ответов «Можно сказать…».
+ * зачем (жалоба владельца 11.11: подсказки были невпопад; решение «Да, сделай» — ответы от ИИ и в свободном разговоре):
+ * поле шлёт только новый клиент. Оно снимается здесь, до строгого разбора хода: журнал сессии, подпись хода и общий
+ * контракт запроса остаются прежними. Неизвестный язык — неверный запрос.
+ */
+function exactInputWithSayHintsLanguage(
+  value: unknown,
+): Readonly<{ input: DialogueV2FreeformSessionTurn; hintsLang: string | null }> | null {
+  if (value && typeof value === 'object' && nodeTypes.isProxy(value)) return null;
+  const record = exactPlainRecord(value);
+  if (!record || !Object.prototype.hasOwnProperty.call(record, 'hintsLang')) {
+    const input = exactInput(value);
+    return input ? Object.freeze({ input, hintsLang: null }) : null;
+  }
+  const hintsLang = dialogueV2FreeformSayHintsLanguage(record.hintsLang);
+  if (!hintsLang) return null;
+  const { hintsLang: _removed, ...turn } = record;
+  const input = parseDialogueV2FreeformSessionTurnShape({ ...turn });
+  return input ? Object.freeze({ input, hintsLang }) : null;
 }
 
 function exactPlainRecord(value: unknown): Record<string, unknown> | null {
@@ -361,7 +394,9 @@ export function createDialogueV2FreeformSessionTurnHandler(
       logFreeformTurnRefusal('auth_required');
       throw new HttpsError('unauthenticated', 'auth_required');
     }
-    const input = exactInput(request.data);
+    const parsedRequest = exactInputWithSayHintsLanguage(request.data);
+    const input = parsedRequest?.input ?? null;
+    const hintsLang = parsedRequest?.hintsLang ?? null;
     if (!input) {
       logFreeformTurnRefusal('request_invalid');
       throw new HttpsError(
@@ -373,8 +408,15 @@ export function createDialogueV2FreeformSessionTurnHandler(
     await enforceCallerRateWindow({ scope: 'ff_turn', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 120, maxPerIp: 600 });
 
     let rawResult: unknown;
+    let sayHints: readonly DialogueV2FreeformSayHint[] = Object.freeze([]);
     try {
-      rawResult = await dependencies.runAuthorizedTurn(authUid, input);
+      // Без hintsLang вызов прежний — два аргумента, ответ без нового поля.
+      rawResult = hintsLang
+        ? await dependencies.runAuthorizedTurn(authUid, input, Object.freeze({
+          hintsLang,
+          onSayHints: (accepted: readonly DialogueV2FreeformSayHint[]) => { sayHints = accepted; },
+        }))
+        : await dependencies.runAuthorizedTurn(authUid, input);
     } catch (error) {
       const safe = safeAuthorizationError(error);
       logFreeformTurnRefusal(safe ? 'authorization' : 'turn_failed', error);
@@ -391,12 +433,16 @@ export function createDialogueV2FreeformSessionTurnHandler(
     console.log('[DIALOGUE-V2-FREEFORM-TURN] ok', JSON.stringify({
       ms: Date.now() - startedAtMs,
       assistantChars: result.assistantMessage.length,
+      sayHints: hintsLang ? sayHints.length : null,
+      kind: result.kind,
     }));
     return Object.freeze({
       ok: true,
       assistantMessage: result.assistantMessage,
       sessionId: result.sessionId,
       expiresAtMs: result.expiresAtMs,
+      // При повторе уже принятого хода модель не вызывается — готовых ответов нет, поле пустое.
+      ...(hintsLang ? { sayHints } : {}),
     });
   };
 }
@@ -411,7 +457,7 @@ function sameActor(
 export function createDialogueV2FreeformAtomicSessionTurner(
   runtime: DialogueV2FreeformAtomicSessionTurnRuntime,
 ): DialogueV2FreeformSessionTurnDependencies['runAuthorizedTurn'] {
-  return async (authUid, input) => {
+  return async (authUid, input, sayHints) => {
     const actor = await runAuthorizedSessionTransaction(
       Object.freeze({ db: runtime.db, nowMs: runtime.nowMs }),
       authUid,
@@ -465,7 +511,9 @@ export function createDialogueV2FreeformAtomicSessionTurner(
           authUid,
           async (canonicalActor) => canonicalActor,
         ),
-        produceAssistant: runtime.produceAssistant,
+        produceAssistant: sayHints
+          ? (turnInput) => runtime.produceAssistant(turnInput, sayHints)
+          : runtime.produceAssistant,
       }),
     );
   };
@@ -507,6 +555,7 @@ function productionDependencies(): DialogueV2FreeformSessionTurnDependencies {
     runAuthorizedTurn: async (
       authUid: string,
       input: DialogueV2FreeformSessionTurn,
+      sayHints?: DialogueV2FreeformSayHintsOptions,
     ) => {
       const db = database();
       const bindOwner = (bindingInput: Readonly<{
@@ -539,7 +588,7 @@ function productionDependencies(): DialogueV2FreeformSessionTurnDependencies {
       // контекст асинхронного вызова только на время этого хода.
       return freeformBillingContext.run(
         Object.freeze({ authUid }),
-        () => turner(authUid, input),
+        () => turner(authUid, input, sayHints),
       );
     },
   });

@@ -146,7 +146,8 @@ describe('Dialogue V2 freeform route', () => {
       turnId: expect.stringMatching(/^d2ft_[a-f0-9]{36}$/),
       studyTarget: 'de',
       userMessage: 'Guten Tag!',
-    });
+    // зачем (11.11): вторым аргументом — язык интерфейса для готовых ответов «Можно сказать…»; сам ход прежний, без лишних полей
+    }, { hintsLang: 'ru' });
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([
       { id: 'learner_1', author: 'learner', text: 'Guten Tag!' },
       // зачем (aafa29de4): реплика ИИ несёт ход сервера — по нему «Перевести» просит перевод тапом
@@ -176,7 +177,8 @@ describe('Dialogue V2 freeform route', () => {
     expect(mockVoice.takeVoiceAttachment).toHaveBeenCalledWith('Guten   Tag!');
     expect(mockTurn).toHaveBeenCalledWith(expect.objectContaining({
       userMessage: 'Guten   Tag!',
-    }));
+    }), { hintsLang: 'ru' });
+    expect(Object.keys(mockTurn.mock.calls[0][0]).sort()).toEqual(['sessionId', 'studyTarget', 'turnId', 'userMessage']);
     expect(mockTurn.mock.calls[0][0]).not.toHaveProperty('voice');
     expect(mockTurn.mock.calls[0][0]).not.toHaveProperty('uri');
     expect(mockScreen.mock.calls.at(-1)[0].messages[0]).toEqual({

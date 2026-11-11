@@ -26,6 +26,22 @@ import {
   injectionTurnInstruction,
   leaksPrivatePrompt,
 } from './dialogue_prompt_injection';
+import {
+  DIALOGUE_V2_FREEFORM_SAY_HINTS_FIXED_SENTENCES,
+  dialogueV2FreeformSayHintsInstruction,
+  dialogueV2FreeformSayHintsLanguage,
+  splitDialogueV2FreeformSayHints,
+  type DialogueV2FreeformSayHint,
+} from './dialogue_v2_freeform_say_hints';
+
+/**
+ * Клиент попросил готовые ответы «Можно сказать…» на реплику этого хода (жалоба владельца 11.11: подсказки были невпопад).
+ * hintsLang — язык интерфейса для перевода; onSayHints получает принятые ответы, когда реплика прошла все проверки.
+ */
+export type DialogueV2FreeformSayHintsOptions = Readonly<{
+  hintsLang: string;
+  onSayHints(hints: readonly DialogueV2FreeformSayHint[]): void;
+}>;
 
 export const DIALOGUE_V2_FREEFORM_PROVIDER_MAX_OUTPUT_BYTES = 3_072 as const;
 export const DIALOGUE_V2_FREEFORM_PRIVATE_POLICY_CANARY =
@@ -150,6 +166,8 @@ const ALL_PRIVATE_POLICY_SENTENCES = Object.freeze([
   ...DIALOGUE_V2_STUDY_TARGETS.flatMap((target) => (
     [...privateTargetPolicySentences(target), beginnerHelpPolicySentence(target)]
   )),
+  // зачем (11.11): добавка про готовые ответы — тоже закрытая инструкция, в ленту она попасть не должна.
+  ...DIALOGUE_V2_FREEFORM_SAY_HINTS_FIXED_SENTENCES,
 ]);
 
 function privateTutorPolicy(target: DialogueV2StudyTarget): string {
@@ -174,6 +192,8 @@ function invalidRequest(): Error {
 export function buildDialogueV2FreeformTextProducerRequest(
   value: unknown,
   nowMs: number,
+  /** Язык интерфейса для готовых ответов; нет — инструкция прежняя байт в байт (старые клиенты). */
+  sayHintsLang?: string,
 ): DialogueV2FreeformTextProducerRequest {
   const input = exactPlainRecord(value);
   if (!input || !hasExactKeys(input, [
@@ -269,6 +289,14 @@ export function buildDialogueV2FreeformTextProducerRequest(
     studyTarget: target,
     systemInstruction: [
       privateTutorPolicy(target),
+      // зачем (11.11): сразу после правила «верни только сообщение» — исключение для хвоста с готовыми ответами.
+      ...(sayHintsLang && dialogueV2FreeformSayHintsLanguage(sayHintsLang)
+        ? [dialogueV2FreeformSayHintsInstruction({
+          studyLanguageName: TARGET_LANGUAGE_NAMES[target],
+          studyTarget: target,
+          hintsLang: sayHintsLang,
+        })]
+        : []),
       FREEFORM_PROMPT_INJECTION_GUARD_INSTRUCTION,
       LEARNER_MESSAGE_WRAPPER_INSTRUCTION,
       ...(injection.injection ? [injectionTurnInstruction(injection.rule)] : []),
@@ -308,7 +336,10 @@ function canonicalAssistantOutput(value: unknown): string | null {
  */
 export function createDialogueV2FreeformServerTextProducer(
   configuration: DialogueV2FreeformServerTextProducerConfiguration,
-): (input: DialogueV2FreeformMemoryAwareServerTurnInput) => Promise<unknown> {
+): (
+  input: DialogueV2FreeformMemoryAwareServerTurnInput,
+  sayHints?: DialogueV2FreeformSayHintsOptions,
+) => Promise<unknown> {
   const transport = configuration.enabled === true
     && typeof configuration.transport === 'function'
     ? configuration.transport
@@ -317,14 +348,37 @@ export function createDialogueV2FreeformServerTextProducer(
     ? configuration.nowMs
     : null;
 
-  return async (input: DialogueV2FreeformServerTurnInput): Promise<unknown> => {
+  return async (
+    input: DialogueV2FreeformServerTurnInput,
+    sayHints?: DialogueV2FreeformSayHintsOptions,
+  ): Promise<unknown> => {
     if (!transport || !nowMs) {
       throw new Error('dialogue_v2_freeform_provider_unavailable');
     }
     try {
-      const request = buildDialogueV2FreeformTextProducerRequest(input, nowMs());
-      const output = canonicalAssistantOutput(await transport(request));
+      const hintsLang = sayHints ? dialogueV2FreeformSayHintsLanguage(sayHints.hintsLang) : null;
+      const request = buildDialogueV2FreeformTextProducerRequest(input, nowMs(), hintsLang ?? undefined);
+      const raw = await transport(request);
+      // Готовые ответы не просили — путь прежний: весь ответ модели и есть реплика.
+      if (!sayHints || !hintsLang || typeof raw !== 'string') {
+        const output = canonicalAssistantOutput(raw);
+        if (!output) throw new Error('provider_output_invalid');
+        return output;
+      }
+      const split = splitDialogueV2FreeformSayHints(raw, { studyTarget: request.studyTarget, hintsLang });
+      const output = canonicalAssistantOutput(split.message);
+      // зачем (правило «сперва логи»): поставила ли модель метку и сколько ответов прошло проверку — без текстов.
+      console.log('[DIALOG-HINTS]', JSON.stringify({
+        surface: 'freeform_turn',
+        studyTarget: request.studyTarget,
+        hintsLang,
+        marker: split.marker,
+        accepted: output ? split.hints.length : 0,
+        rejected: split.rejected,
+        replyValid: output !== null,
+      }));
       if (!output) throw new Error('provider_output_invalid');
+      sayHints.onSayHints(split.hints);
       return output;
     } catch {
       throw new Error('dialogue_v2_freeform_provider_failed');

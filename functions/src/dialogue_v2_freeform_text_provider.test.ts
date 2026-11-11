@@ -350,3 +350,27 @@ describe('Dialogue V2 Plus freeform provider boundary', () => {
     expect(source).not.toMatch(/scenarioId|rank|persona|objectives|completion/i);
   });
 });
+
+// зачем (жалоба владельца 11.11: подсказки «Можно сказать…» были невпопад; решение «Да, сделай» — ответы от ИИ и в свободном
+// разговоре): добавка про готовые ответы появляется в инструкции ТОЛЬКО когда клиент прислал язык интерфейса; без него
+// инструкция прежняя байт в байт. Подробные случаи — dialogue_v2_freeform_say_hints.test.ts.
+describe('Dialogue V2 Plus freeform provider: готовые ответы «Можно сказать…»', () => {
+  test('инструкция меняется только по просьбе клиента, остальной запрос тот же', () => {
+    const legacy = buildDialogueV2FreeformTextProducerRequest(serverTurn(), NOW_MS);
+    const withHints = buildDialogueV2FreeformTextProducerRequest(serverTurn(), NOW_MS, 'ru');
+    expect(legacy.systemInstruction).not.toContain('###HINTS###');
+    expect(withHints.systemInstruction).toContain('###HINTS###');
+    expect(withHints.systemInstruction).toContain(DIALOGUE_V2_FREEFORM_PRIVATE_POLICY_CANARY);
+    expect(withHints.systemInstruction.startsWith(legacy.systemInstruction.slice(0, 200))).toBe(true);
+    expect({ ...withHints, systemInstruction: '' }).toEqual({ ...legacy, systemInstruction: '' });
+  });
+
+  test('производитель без опций не отдаёт готовых ответов и не режет реплику', async () => {
+    const producer = createDialogueV2FreeformServerTextProducer({
+      enabled: true,
+      transport: async () => 'Sounds good. What do you do at weekends?',
+      nowMs: () => NOW_MS,
+    });
+    await expect(producer(serverTurn() as never)).resolves.toBe('Sounds good. What do you do at weekends?');
+  });
+});

@@ -18,7 +18,7 @@ import { speechUnavailableOnDeviceText } from './speech_device_availability';
 import { triLang } from '../constants/i18n';
 import AiDialogConsentGate, { useAiDialogConsentAskAgain } from './ai_dialog_consent_gate';
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
-import { dialogueV2SayHintsForPartnerReply, lastPartnerReplyForHints } from './dialogue_v2_say_hints_pick';
+import { dialogueV2SayHintsForPartnerReply, lastPartnerReplyForHints, type ServerSayHintsForReply } from './dialogue_v2_say_hints_pick';
 import {
   requestDialogueV2FreeformPreparedBotVoice,
   sendDialogueV2FreeformTurn,
@@ -168,6 +168,12 @@ function DialogueV2FreeformContent() {
   const [turnFailureKind, setTurnFailureKind] = useState<'network' | 'service'>('service');
   const [session, setSession] = useState<ServerSession | null>(null);
   const [messages, setMessages] = useState<readonly DialogueV2FreeformMessage[]>(() => freeformOpeningMessages(studyTarget));
+  // зачем (жалоба владельца 11.11: «подсказки невпопад, не в ответ на реплику собеседника»): готовые ответы «Можно сказать…»
+  // сервер присылает вместе с репликой ИИ; привязаны к её тексту — у другой реплики не покажутся (сработает запасной набор).
+  const [serverSayHints, setServerSayHints] = useState<ServerSayHintsForReply | null>(null);
+  // Язык интерфейса для запроса хода — через ссылку, чтобы смена языка не пересоздавала отправку хода.
+  const hintsLangRef = useRef(lang);
+  hintsLangRef.current = lang;
   // зачем (владелец 18.10): ответы «не понимаю» на чужой язык не повторяются подряд.
   const offLanguageReplyIndexRef = useRef<number | null>(null);
   const lastOffLanguageSendRef = useRef<{ text: string; at: number } | null>(null);
@@ -396,7 +402,7 @@ function DialogueV2FreeformContent() {
         turnId: pending.turnId,
         studyTarget: pending.studyTarget,
         userMessage: pending.userMessage,
-      });
+      }, { hintsLang: hintsLangRef.current });
       if (!result) throw new Error('freeform_turn_unavailable');
       if (!isCurrentPending(pending)) {
         console.log('[DIALOGUE-V2] freeform: late turn result ignored — contour changed', { turnId: pending.turnId }); // guard-ok
@@ -419,6 +425,9 @@ function DialogueV2FreeformContent() {
       })]));
       // поздний настоящий ответ после стража «•••» — плашку сбоя убираем, ответ уже в ленте
       setTurnFailed(false);
+      setServerSayHints(result.sayHints && result.sayHints.length > 0
+        ? Object.freeze({ replyText: result.assistantMessage, hints: result.sayHints })
+        : null);
       translateSessionByTurnRef.current.set(pending.turnId, pending.sessionId);
       console.log('[FREEFORM-HANG] turn:shown', JSON.stringify({ turnId: pending.turnId, shown: 'assistant_reply', chars: result.assistantMessage.length }));
       // The reviewed catalog is deliberately null, so this bridge is inert:
@@ -667,6 +676,7 @@ function DialogueV2FreeformContent() {
   const hintsReply = lastPartnerReplyForHints(messages, (message) => message.author === 'assistant');
   const sayHints = dialogueV2SayHintsForPartnerReply({
     screen: 'freeform', studyTarget: String(studyTarget), interfaceLang: lang, reply: hintsReply.reply, skippedNudge: hintsReply.skippedNudge,
+    serverHints: serverSayHints,
   });
   // зачем (координатор 25.10): нет сети (NetInfo) — «Нет связи» (u31 C18), сеть есть, а старт не прошёл — «Сервис временно недоступен» (C19)
   const connectionNotice = startOffline && !session ? {

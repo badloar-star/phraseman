@@ -49,7 +49,7 @@ import SpireLockedState from './SpireLockedState';
 import { useSpireConfigQuietRetry } from './use_spire_config_quiet_retry';
 import SpirePodium from './SpirePodium'; import SpireResultPanel from './SpireResultPanel';
 import { useMomentsV3Enabled } from '../streak/moments/use_moments_v3_flag';
-const SpireMomentsLayer = lazy(() => import('./moments/SpireMomentsLayer'));
+const SpireMomentsLayer = lazy(() => import('./moments/SpireMomentsLayer')); const SpireOutcomeMomentHost = lazy(() => import('./moments/SpireOutcomeMomentHost'));
 import SpireHomeSkeleton from './SpireHomeSkeleton';
 import { useSpireTowerBudget } from './use_spire_tower_budget'; import { useSpirePikRenderTrace, useSpireRoomCeiling } from './use_spire_room_ceiling'; // зачем (Сверка 18.10 находка 13): потолок скелета подиума + [PIK-LOAD]
 import { useSpireTowerTouchLock } from './use_spire_tower_touch_lock'; import { spirePageScrollLogProps, useSpireScrollStateLog } from './spire_scroll_log'; // зачем (владелец 25.10, iPhone: «скролл Пика то не работает, то появляется»): журнал [SPIRE-SCROLL]
@@ -371,12 +371,12 @@ export default function SpireHomeScreen() {
           session={game.session}
           pending={game.pending}
           onCancelPending={game.cancelPendingStep}
-          uid={game.uid}
-          stableId={game.stableId}
+          uid={game.uid} stableId={game.stableId}
           studyTarget={String(studyTarget)}
           showEnergy={!hasPremiumAccess}
           onFinish={game.onStepFinish}
-          onAbort={game.onStepAbort}
+          onAbort={game.onStepAbort} onAfterBack={game.dismissOutcome} // зачем (владелец 11.11.2026, [PEAK-EXIT]): итог ступени — в той же модалке, без мелькания башни между ступенью и итогом
+          after={momentOutcome && game.outcome ? <Suspense fallback={null}><SpireOutcomeMomentHost embedded lang={lang} outcome={game.outcome} coins={config.coins} coinRank={myCoinRank} busy={game.starting} onClimb={climb} onLater={game.dismissOutcome} /></Suspense> : null}
         />
       ) : null}
       <SpireTour lang={lang} visible={game.live && tourSeen === false && !peakScreenV2On()} onDone={finishTour} />{/* зачем (тур Пика, владелец 04.11): при новом экране B вместо этой картинки-тура — оверлей PeakTour поверх самого экрана (один раз на аккаунт) */}

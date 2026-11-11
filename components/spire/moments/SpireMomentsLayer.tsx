@@ -9,7 +9,6 @@ import type { Lang } from '../../../constants/i18n';
 import type { SpireStepOutcome } from '../../../app/spire/use_spire_game';
 import { useSpirePositionMoments } from '../../../app/spire/use_spire_position_moments';
 import type { SpireCoinsConfig } from '../../../modules/spire/config_contract';
-import SpireOutcomeMomentHost from './SpireOutcomeMomentHost';
 import SpirePositionMomentsHost from './SpirePositionMomentsHost';
 import { useTabNav } from '../../../app/TabContext';
 import { useIsScreenFocused } from '../../../hooks/use_is_screen_focused';
@@ -17,7 +16,7 @@ import { prewarmMomentCoin } from '../../moments/moment_coin_prewarm';
 
 export type SpireMomentsLayerProps = Readonly<{
   lang: Lang;
-  /** Итог ступени для окна m06/m07; null — окна итога нет. */
+  /** Итог ступени m06/m07: само окно рисует модалка ступени (SpireHomeScreen → SpireStepScreen after), здесь он только держит позиционные окна; null — итога нет. */
   outcome: SpireStepOutcome | null;
   coins: SpireCoinsConfig;
   coinRank: number | null;
@@ -30,7 +29,7 @@ export type SpireMomentsLayerProps = Readonly<{
   onLater: () => void;
 }>;
 
-function SpireMomentsLayer({ lang, outcome, coins, coinRank, busy, stepActive = false, climbClosed = false, onClimb, onLater }: SpireMomentsLayerProps) {
+function SpireMomentsLayer({ lang, outcome, coinRank, busy, stepActive = false, climbClosed = false, onClimb }: SpireMomentsLayerProps) {
   const positions = useSpirePositionMoments();
   // зачем (координатор 26.10, аудит скорости Моментов №3 и №9): человек вошёл в Пик — окна итога ступени/этажа, недели и позиции стали вероятны.
   // Заранее греем арт своей монеты (герой каждого окна) и модули ленивых окон итога, чтобы первый кадр окна не ждал декода и загрузки кода.
@@ -60,7 +59,7 @@ function SpireMomentsLayer({ lang, outcome, coins, coinRank, busy, stepActive = 
   }, [blockReason, blocked, busy, outcome, positions.lastChance?.key, positions.overtake?.key, positions.rise?.key, stepActive]);
   return (
     <>
-      {outcome ? <SpireOutcomeMomentHost lang={lang} outcome={outcome} coins={coins} coinRank={coinRank} busy={busy} onClimb={onClimb} onLater={onLater} /> : null}
+      {/* зачем (владелец 11.11.2026, [PEAK-EXIT]): окно итога — внутри модалки ступени, отдельная модалка открывалась после закрытия ступени и между ними мелькала башня */}
       <SpirePositionMomentsHost lang={lang} coinRank={coinRank} positions={positions} blocked={blocked} busy={busy} onClimb={onClimb} />
     </>
   );

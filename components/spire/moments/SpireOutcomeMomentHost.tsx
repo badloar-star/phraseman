@@ -27,9 +27,14 @@ export type SpireOutcomeMomentHostProps = Readonly<{
   onClimb: () => void;
   /** «Потом» и закрытие окна. */
   onLater: () => void;
+  /**
+   * true — окно рисуется внутри модалки ступени (SpireStepScreen, слот after), без своей модалки.
+   * зачем (владелец 11.11.2026: «мелькает главная пика а затем экран что мы не прошли»): своя модалка открывалась уже после закрытия ступени — между ними была видна башня.
+   */
+  embedded?: boolean;
 }>;
 
-function SpireOutcomeMomentHost({ lang, outcome, coins, coinRank, busy, onClimb, onLater }: SpireOutcomeMomentHostProps) {
+function SpireOutcomeMomentHost({ lang, outcome, coins, coinRank, busy, onClimb, onLater, embedded = false }: SpireOutcomeMomentHostProps) {
   // зачем ([SPIRE-AFTER-ROUND], Сверка 25.10: итог «Время вышло» висит 7+ с после «В раздел Пик»): монтирование и снятие окна в журнал
   const kind = outcome.kind;
   useEffect(() => {
@@ -38,20 +43,27 @@ function SpireOutcomeMomentHost({ lang, outcome, coins, coinRank, busy, onClimb,
   }, [kind]);
   // зачем (владелец 05.11: два полноэкранных окна на одном кадре — «такое нельзя допускать»): итог ступени ждёт слот арбитра окон, а не рисуется поверх другого окна (ключ spireOutcome).
   const slot = useOverlayVisible('spireOutcome', true);
-  if (!slot) return null;
+  if (!slot) {
+    if (embedded) console.log(`[SPIRE][PEAK-EXIT] окно итога ждёт слот арбитра kind=${kind} — в модалке ступени пока фон темы`); // guard-ok: ранний выход с причиной
+    return null;
+  }
+  const body = (
+    <SheetSwipeRoot>
+      <Suspense fallback={null}>
+        {outcome.kind === 'passed' || outcome.kind === 'failed' ? (
+          <SpireStepResultMoment lang={lang} outcome={outcome} coins={coins} coinRank={coinRank} busy={busy} onAgain={onClimb} onLater={onLater} />
+        ) : (
+          <SpireFloorMoment lang={lang} outcome={outcome} coins={coins} coinRank={coinRank} busy={busy} onNext={onClimb} onLater={onLater} />
+        )}
+      </Suspense>
+    </SheetSwipeRoot>
+  );
+  if (embedded) return body; // «назад» ведёт в onLater модалка ступени (onAfterBack)
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={onLater}
       onShow={() => console.log(`[SPIRE-AFTER-ROUND] натив: окно итога показано kind=${kind}`)} // guard-ok: трасса показа нативного окна
       onDismiss={() => console.log(`[SPIRE-AFTER-ROUND] натив: окно итога закрыто kind=${kind} (onDismiss, только iOS)`)}>
-      <SheetSwipeRoot>
-        <Suspense fallback={null}>
-          {outcome.kind === 'passed' || outcome.kind === 'failed' ? (
-            <SpireStepResultMoment lang={lang} outcome={outcome} coins={coins} coinRank={coinRank} busy={busy} onAgain={onClimb} onLater={onLater} />
-          ) : (
-            <SpireFloorMoment lang={lang} outcome={outcome} coins={coins} coinRank={coinRank} busy={busy} onNext={onClimb} onLater={onLater} />
-          )}
-        </Suspense>
-      </SheetSwipeRoot>
+      {body}
     </Modal>
   );
 }

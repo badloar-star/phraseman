@@ -189,7 +189,8 @@ describe('п.1 «Подняться» без прогретого пакета',
 
   it('экран ступени открывается при session ИЛИ pending (контракт по исходнику)', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'components/spire/SpireStepScreen.tsx'), 'utf8');
-    expect(src).toContain('visible={session !== null || pending !== null}');
+    // зачем (владелец 11.11.2026, [PEAK-EXIT]): та же модалка держит и окно итога (after) — иначе между ступенью и итогом мелькала башня
+    expect(src).toContain('visible={session !== null || pending !== null || after !== null}');
     expect(src).toContain('<PendingStepBody');
     const home = fs.readFileSync(path.join(__dirname, '..', 'components/spire/SpireHomeScreen.tsx'), 'utf8');
     expect(home).toContain('onCancelPending={game.cancelPendingStep}');

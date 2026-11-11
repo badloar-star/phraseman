@@ -41,6 +41,7 @@ import ScreenBackButton, { SCREEN_BACK_SIZE, ScreenOriginReset } from '../v2/Scr
 import { usePeakPerfProbe } from '../../app/spire/peak_perf_probe';
 import SpireGhostLayer from './SpireGhostLayer';
 import { useSpireGhost, type SpireGhostView } from '../../app/spire/use_spire_ghost';
+import { useSpireStepModalContent } from './spire_step_modal_content';
 
 type Props = Readonly<{
   lang: Lang;
@@ -340,16 +341,24 @@ function SpireStepScreen(props: Readonly<Omit<Props, 'session'> & {
   session: SpireStepSession | null;
   pending: SpirePendingStep | null;
   onCancelPending: () => void;
+  /** Окно итога ступени, показанное внутри этой же модалки (null — итога нет или он идёт прежней плашкой на башне). */
+  after?: React.ReactNode;
+  /** «Назад» Android, пока в модалке окно итога (как «В раздел Пик»). */
+  onAfterBack?: () => void;
 }>) {
-  const { session, pending, onCancelPending, ...rest } = props;
+  const { session, pending, onCancelPending, after = null, onAfterBack, ...rest } = props;
   const exitRef = useRef<(() => void) | null>(null);
+  const p = useSpirePalette();
+  // зачем (владелец 11.11.2026, [PEAK-EXIT]): итог ступени — в той же модалке, иначе между закрытием ступени и окном итога мелькала главная Пика
+  const { content, onRequestClose } = useSpireStepModalContent(session !== null, pending !== null, after !== null, exitRef, onAfterBack);
   // зачем (обзор R1 п.1): модалка открывается в тот же тап — сначала подготовка, затем та же модалка показывает ступень.
   return (
-    <Modal visible={session !== null || pending !== null} animationType="slide" presentationStyle="fullScreen" onRequestClose={() => exitRef.current?.()} statusBarTranslucent>
+    <Modal visible={session !== null || pending !== null || after !== null} animationType="slide" presentationStyle="fullScreen" onRequestClose={onRequestClose} statusBarTranslucent>
       <ScreenOriginReset>
       {session ? <StepBody key={session.runId} {...rest} session={session} exitRef={exitRef} />
         : pending ? <PendingStepBody key={pending.prepId} lang={rest.lang} pending={pending} studyTarget={rest.studyTarget} showEnergy={rest.showEnergy} onCancel={onCancelPending} exitRef={exitRef} />
-          : null}
+          : content === 'after' ? <View style={[s.root, { backgroundColor: p.bg }]} testID="spire-step-after">{after}</View>
+            : null}
       </ScreenOriginReset>
     </Modal>
   );

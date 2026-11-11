@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError } from 'firebase-functions/v2/https';
+import { starOpCountsForWeek } from './stars_week_policy';
 
 /**
  * Единый журнал звёзд — ЕДИНСТВЕННЫЙ писатель звёздного баланса во всём
@@ -707,16 +708,21 @@ export async function prepareStarOperations(
     if (cls === 'earn') {
       after.earnedTotal += op.delta;
       after.seasonEarned += op.delta;
+    } else if (cls === 'grant') {
+      after.grantedTotal += op.delta;
+    } else {
+      after.spentTotal += -op.delta;
+    }
+    // зачем (U35, владелец 11.11: «все монеты заработанные везде считать!» — был на 6 месте Пика, монеты за уроки и бонусы
+    // в счёт не шли): недельный счётчик растит не только класс earn, но и бонусы за действия (stars_week_policy.ts);
+    // приз прошлой недели и подарки — нет. earnedTotal / seasonEarned / grantedTotal выше остаются по классу, как были.
+    if (starOpCountsForWeek(op.reason, cls)) {
       // Задним числом заработанное попадает в свою неделю, если она ещё
       // хранится; более старое учитывается только в счётчике за всё время.
       const opWeekKey = ctx.weekKeyForMs ? ctx.weekKeyForMs(earnedAtMs) : ctx.weekKeyNow;
       if (op.reason === 'practice_session') receiptWeekKey = opWeekKey;
       if (opWeekKey === after.weekKey) after.weekEarned += op.delta;
       else if (opWeekKey === after.prevWeekKey) after.prevWeekEarned += op.delta;
-    } else if (cls === 'grant') {
-      after.grantedTotal += op.delta;
-    } else {
-      after.spentTotal += -op.delta;
     }
 
     // Разрез притока: только приход, только положительная дельта. Траты сюда

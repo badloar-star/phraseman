@@ -168,7 +168,9 @@ test('U33: the ack carries the weekly snapshot of the same ledger state, on cred
     previous: null,
   });
   expect(first.starsBalance).toBe(500);
-  expect(stars.weekEarned).toBe(0);
+  // зачем (U35, владелец 11.11: «все монеты заработанные везде считать!»): бонус кошелька теперь входит в монеты недели Пика
+  // (stars_week_policy.ts) — снимок несёт те же 500, что и журнал; прежнее «выдача в недельный счёт не входит» отменено.
+  expect(stars.weekEarned).toBe(500);
   const second = await credit(world, value);
   expect(second.replayed).toBe(true);
   expect(second.starsWeek).toEqual(first.starsWeek);

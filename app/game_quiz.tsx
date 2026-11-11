@@ -34,6 +34,8 @@ import { useSkillSession } from '../modules/skills/use_skill_session';
 import { safeRouterBack } from './navigation_back';
 
 const AFTER_OK_MS = 1500;
+/** Язык речи телефона для каждого курса. */
+const SPEECH_LANGUAGE: Readonly<Record<string, string>> = { en: 'en-US', de: 'de-DE', fr: 'fr-FR', es: 'es-ES', it: 'it-IT' };
 const AFTER_MISS_MS = 2300;
 const ROUNDS = 6;
 
@@ -134,8 +136,10 @@ export default function GameQuizScreen() {
   const audio = useAudio();
   const speakRound = useCallback(() => {
     if (!round || round.prompt.kind !== 'audio') return;
-    audio.speak(round.prompt.text, round.prompt.rate, { language: inferExpoSpeechLanguage(round.prompt.text) });
-  }, [audio, round]);
+    // зачем: язык речи берётся из языка обучения, а не угадывается по тексту — немецкую фразу без умлаутов телефон
+    // прочитал бы с английским произношением
+    audio.speak(round.prompt.text, round.prompt.rate, { language: SPEECH_LANGUAGE[studyTarget] ?? inferExpoSpeechLanguage(round.prompt.text) });
+  }, [audio, round, studyTarget]);
 
   // «На слух»: фраза произносится в начале раунда; уход с экрана останавливает речь
   useEffect(() => {

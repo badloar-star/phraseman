@@ -44,10 +44,22 @@ test('store Plus remains valid for A, while a legacy A -> B hold never grants B'
   const guard = require('../app/premium_guard');
   const hold = require('../app/plus_transfer_hold');
 
-  generation.beginAccountGeneration(STABLE_A);
+  const storage = require('../app/premium_real_storage');
+
+  const tokenA = generation.beginAccountGeneration(STABLE_A);
+  // зачем (владелец 11.11, U23 «оставить строго»): старые общие ключи premium_* не знают, чьи они, поэтому доступа
+  // не дают никому — даже аккаунту A после обновления; Plus возвращает облако. Тест раньше сеял именно их и ждал «да».
   asyncStore.premium_active = 'true';
   asyncStore.premium_plan = 'yearly';
   asyncStore.premium_rc_last_seen_at = String(Date.now());
+  await expect(guard.getVerifiedRealPremiumStatus({ bypassCache: true })).resolves.toBe(false);
+
+  // Plus у A — это снимок, привязанный к аккаунту (его пишут покупка и ответ облака).
+  await expect(storage.replaceRealPremiumSnapshotForGeneration(tokenA, {
+    active: true, plan: 'yearly', premiumExpiryMs: 0, rcExpiryMs: 0, rcLastSeenAtMs: Date.now(),
+    rcProductId: null, rcPeriodType: null, rcStore: null, rcPurchasedAtMs: 0, rcUpdatedAtMs: 0,
+    evidenceSource: 'store_purchase',
+  })).resolves.toBe(true);
   await expect(guard.getVerifiedRealPremiumStatus({ bypassCache: true })).resolves.toBe(true);
 
   // Account switch: wipe removed A's premium_*; a legacy hold record exists.

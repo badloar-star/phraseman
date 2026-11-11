@@ -1258,7 +1258,7 @@ export default function CommunityPackCreateScreen() {
               </View>
             )}
           />
-          <BouncyScrollView
+          <BouncyScrollView softTopEdge
             ref={scrollViewRef}
             style={{ flex: 1 }}
             nestedScrollEnabled

@@ -1155,7 +1155,7 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   const pack = stringsForLang(lang);
   const learnedTotal = useMemo(() => allVerbs.filter(v => (globalCounts[v.base] ?? 0) >= REQUIRED).length, [allVerbs, globalCounts]);
   return (
-    <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingBottom: 30 }}>
+    <BouncyScrollView softTopEdge decelerationRate="fast" contentContainerStyle={{ paddingBottom: 30 }}>
       {/* Полоса выученного (макет verbsDict): «6 / 18 выучено» */}
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 16, marginTop: 22 }}>
         <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>

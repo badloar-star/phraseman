@@ -1,6 +1,6 @@
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -12,6 +12,7 @@ import { shouldPromptFeedback } from './feedback_prompt_throttle';
 import { getDevDialogCompletion } from './dev_dialog_state';
 import { readDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import PlusBadge from '../components/PlusBadge';
@@ -545,7 +546,7 @@ export default function DialogueV2CompletionRoute() {
           <View style={styles.headerSpacer} />
           <BalancePill g={lv2Glass} lang={lang} />
         </View>
-        <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
+        <SoftTopEdgeScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
           {DlgChain ? (
             <DlgChain.DialogueChainHeader
               lang={lang}
@@ -678,7 +679,7 @@ export default function DialogueV2CompletionRoute() {
               {errorsAndFeedback}
             </DlgChain.DialogueChainBeat>
           ) : null}
-        </ScrollView>
+        </SoftTopEdgeScrollView>
         {footer(<>
           <DialogueGlassCta glass={glass} label={labels.done} trailingArrow onPress={close} testID="dialogue-v2-completion-done" />
           {scenarioId || finishableMistakes ? (

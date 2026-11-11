@@ -1,9 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { useLang } from '../components/LangContext';
 import { THEORY_FALLBACK, triLang, type Lang } from '../constants/i18n';
 import { lessonNamesForLang } from '../constants/lessons';
@@ -462,7 +463,7 @@ function LessonHelp() {
         </View>
 
         {/* Content */}
-        <ScrollView
+        <SoftTopEdgeScrollView
           decelerationRate="fast"
           contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
           showsVerticalScrollIndicator={true}
@@ -511,7 +512,7 @@ function LessonHelp() {
             style={{ alignSelf: 'flex-end', marginTop: 16 }}
           />
 
-        </ScrollView>
+        </SoftTopEdgeScrollView>
       </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>

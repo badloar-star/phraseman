@@ -8,6 +8,7 @@ import { mistakeClearAllConfirmTitle, mistakeClearAllCopy } from './mistake_clea
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { GlassRim } from '../components/mistakes-panel/GlassRim';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { useScaledTextStyles } from '../hooks/useLineScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -401,7 +402,7 @@ export default function MistakesListScreen() {
             </View>
           )}
         </View>
-        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} onScroll={onScroll} scrollEventThrottle={64} keyboardShouldPersistTaps="handled" decelerationRate="fast">
+        <SoftTopEdgeScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} onScroll={onScroll} scrollEventThrottle={64} keyboardShouldPersistTaps="handled" decelerationRate="fast">
           <ScreenTitle g={g} text={copy.title} />
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabsScroll} contentContainerStyle={styles.tabs} keyboardShouldPersistTaps="handled">
             {tabs.map((entry) => {
@@ -449,7 +450,7 @@ export default function MistakesListScreen() {
               );
             })}
           </Panel>
-        </ScrollView>
+        </SoftTopEdgeScrollView>
         {tab === 'corrected' && correctedInGroup > 0 ? (
           <PanelDock><PanelCta g={g} testID="mistakes-list-review" label={copy.repeatFixed} onPress={startReview} /></PanelDock>
         ) : null}

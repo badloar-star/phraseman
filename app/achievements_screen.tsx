@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getRunesBalanceRead, peekRunes } from './runes_system';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from './personal_progress_store';
 import { useTheme } from '../components/ThemeContext';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -1198,7 +1199,7 @@ export default function AchievementsScreen() {
           <ResultsGlassCountPill glass={glass} label={headerCountLabel} accessibilityLabel={visibleCountLabel} testID="achievements-count" />
         </View>
 
-        <ScrollView decelerationRate="fast"
+        <SoftTopEdgeScrollView decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 128, gap: 16 }}
         >
@@ -1246,7 +1247,7 @@ export default function AchievementsScreen() {
               })}
             />
           </View>
-        </ScrollView>
+        </SoftTopEdgeScrollView>
 
       </ContentWrap>
 

@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { dialogLimitPaywallParams } from './dialog_first_free_summary';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
@@ -26,6 +26,7 @@ import {
 import { triLang } from '../constants/i18n';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useLang } from '../components/LangContext';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { SoftAppear } from '../components/SoftAppear';
 import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 import { usePremium } from '../components/PremiumContext';
@@ -381,7 +382,7 @@ export default function DialogueV2MemoryRoute() {
     <View style={{ flex: 1, backgroundColor: p.bg }} testID="dialogue-v2-memory-screen">
       <SafeAreaView style={{ flex: 1 }}>
         {renderHeader()}
-        <ScrollView contentContainerStyle={{ paddingHorizontal: V2.screenPad, paddingBottom: 32, gap: V2.gap }} decelerationRate="fast">
+        <SoftTopEdgeScrollView contentContainerStyle={{ paddingHorizontal: V2.screenPad, paddingBottom: 32, gap: V2.gap }} decelerationRate="fast">
           <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.intro}</Text>
 
           {memory && !hasMemory ? <SoftAppear><Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.empty}</Text></SoftAppear> : null}
@@ -426,7 +427,7 @@ export default function DialogueV2MemoryRoute() {
 
           {renderClearControl()}
           {renderClearFeedback()}
-        </ScrollView>
+        </SoftTopEdgeScrollView>
       </SafeAreaView>
     </View>
   );

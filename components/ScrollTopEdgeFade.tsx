@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
+import { Animated, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 
 import { LinearGradient } from './SafeLinearGradient';
@@ -35,14 +35,16 @@ type Props = Readonly<{
    * зачем (владелец 11.11: «во всех экранах… с размытым фейд краем»): отдельный экран вне оболочки вкладок считает прокрутку сам (useSoftTopEdge).
    */
   cover?: Animated.Value;
+  /** Раскладка обёртки вместо «заполнить родителя» — когда маска встаёт на место самого списка (SoftTopEdgeScrollView). */
+  style?: StyleProp<ViewStyle>;
 }>;
 
-export default function ScrollTopEdgeFade({ children, enabled = true, cover }: Props) {
+export default function ScrollTopEdgeFade({ children, enabled = true, cover, style }: Props) {
   const sharedCover = useTopFadeScrolled({ rest: 1, stepOnAndroid: true });
   const restCover = cover ?? sharedCover;
   return (
     <MaskedView
-      style={styles.fill}
+      style={style ?? styles.fill}
       maskElement={
         <View style={styles.fill} pointerEvents="none">
           <LinearGradient colors={['transparent', 'black']} style={styles.edge} />

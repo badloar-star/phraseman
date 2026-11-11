@@ -12,8 +12,9 @@
  * Первый кадр — синхронно из снапшота (peekRunesBalance): никакого «0 и прыжка».
  */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, Easing, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import KitProgressFill from '../components/KitProgressFill';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -134,7 +135,7 @@ export default function RunesWalletScreen() {
         {/* зачем (coins.html back()): «назад» голым шевроном, ниже крупный заголовок 34 слева — как во всех экранах профиля. */}
         <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{title}</Text>
 
-        <ScrollView
+        <SoftTopEdgeScrollView
           decelerationRate="fast"
           style={styles.scroll}
           contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + 28 }]}
@@ -205,7 +206,7 @@ export default function RunesWalletScreen() {
             </View>
             <Text testID="runes-wallet-earned" style={[styles.earnedValue, { color: p.textSecondary }]}>{formatCoins(shownWallet.earnedTotal, lang)}</Text>
           </View>
-        </ScrollView>
+        </SoftTopEdgeScrollView>
       </ContentWrap>
     </View>
   );

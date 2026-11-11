@@ -8,12 +8,12 @@ import {
   BackHandler,
   Easing,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 import { useLang } from '../components/LangContext';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -377,7 +377,7 @@ function ShopScreenImpl() {
         ))}
       </View>
 
-      <ScrollView decelerationRate="fast"
+      <SoftTopEdgeScrollView decelerationRate="fast"
         testID="shop-scroll"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[styles.scrollContent, { paddingBottom: menuBottom + 40 }]}
@@ -400,7 +400,7 @@ function ShopScreenImpl() {
             </Text>
           </View>
         ) : null}
-      </ScrollView>
+      </SoftTopEdgeScrollView>
 
       {notice ? (
         <View style={[styles.toast, { backgroundColor: t.bgSurface2, bottom: menuBottom + 12 }]}>

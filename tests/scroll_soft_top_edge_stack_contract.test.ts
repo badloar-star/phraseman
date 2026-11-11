@@ -43,6 +43,9 @@ describe('Soft top edge on scroll: standalone screens', () => {
     'app/settings_notifications.tsx',
     'app/settings_themes.tsx',
     'app/hint.tsx',
+    'app/support_report.tsx',
+    'app/community_pack_create.tsx',
+    'app/lesson_irregular_verbs.tsx',
   ])('%s turns the soft edge on', (file) => {
     expect(read(file)).toContain('<BouncyScrollView softTopEdge');
   });
@@ -60,5 +63,27 @@ describe('Soft top edge on scroll: standalone screens', () => {
     expect(skeleton).toBeGreaterThan(-1);
     expect(skeleton).toBeLessThan(open);
     expect(stats.split('<ScrollTopEdgeFade').length).toBe(2);
+  });
+
+  it('plain page scrolls: the drop-in keeps the list place, the screen onScroll and the fast deceleration', () => {
+    const drop = read('components/SoftTopEdgeScrollView.tsx');
+    expect(drop).toContain('const SHOW_THRESHOLD = 6;');
+    expect(drop).toContain('wrap: { flexGrow: 1, flexShrink: 1 },');
+    expect(drop).toContain('<ScrollTopEdgeFade cover={cover} style={[styles.wrap, style]}>');
+    expect(drop).toContain("if (typeof onScroll === 'function') onScroll(e);");
+    expect(drop).toContain('{...rest} decelerationRate="fast">');
+    expect(drop).toContain('useNativeDriver: true');
+    expect(read('components/ScrollTopEdgeFade.tsx')).toContain('style={style ?? styles.fill}');
+  });
+
+  it.each([
+    'achievements_screen', 'coin_rank', 'coin_rank_catalog', 'combined_lesson_pick', 'dialogue_v2_completion', 'dialogue_v2_memory',
+    'friends_duel', 'friends_week_mine', 'lesson_help', 'lingman_playlist', 'lingman_video_watch', 'mistakes_hub', 'mistakes_list',
+    'promo_code_entry', 'referrals', 'runes_wallet', 'shop', 'today_tasks',
+  ])('app/%s.tsx scrolls its page through the soft-edge list', (name) => {
+    const src = read(`app/${name}.tsx`);
+    expect(src).toContain("import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';");
+    expect(src).toContain('<SoftTopEdgeScrollView');
+    expect(src.split('<SoftTopEdgeScrollView').length).toBe(src.split('</SoftTopEdgeScrollView>').length);
   });
 });

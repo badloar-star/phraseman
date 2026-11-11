@@ -14,12 +14,12 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   ActivityIndicator,
   InteractionManager,
-  ScrollView,
   Share,
   Text,
   View,
 } from 'react-native';
 import KitTouchable from '../components/KitTouchable';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -761,7 +761,7 @@ export default function ReferralsScreen() {
             </TapScale>
           ) : undefined}
         />
-        <ScrollView decelerationRate="fast"
+        <SoftTopEdgeScrollView decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={refresh} />}
           contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34, gap: 16 }}
@@ -972,7 +972,7 @@ export default function ReferralsScreen() {
               </Text>
             </View>
           ))}
-        </ScrollView>
+        </SoftTopEdgeScrollView>
 
         <ReferralCodeSheet visible={codeSheetOpen} onClose={() => setCodeSheetOpen(false)} />
         <ReferralHowSheet visible={howSheetOpen} onClose={() => setHowSheetOpen(false)} />

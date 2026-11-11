@@ -1,6 +1,7 @@
 import VideoSectionGate from '../components/video/VideoSectionGate';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AppState, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AppState, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -185,7 +186,7 @@ function LingmanPlaylistScreenContent() {
             <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.emptyPlaylist}</Text>
           </View>
         ) : !playlist ? <View testID="youtube-playlist-skeleton" style={styles.loading}><SkeletonBlock width="70%" height={32} borderRadius={10} /><SkeletonBlock width="40%" height={18} borderRadius={8} /><SkeletonBlock width="100%" height={48} borderRadius={24} /><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View> : (
-          <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
+          <SoftTopEdgeScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
             <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
             <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text>
             {/* зачем (Сверка video-009, координатор 05.10): в макете под заголовком сразу «Воспроизвести всё» — блока описания нет. */}
@@ -209,7 +210,7 @@ function LingmanPlaylistScreenContent() {
                 <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.emptyPlaylist}</Text>
               </View>
             ) : <View style={styles.loading}><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View>}</View>
-          </ScrollView>
+          </SoftTopEdgeScrollView>
         )}
       </SafeAreaView>
     </ScreenGradient>

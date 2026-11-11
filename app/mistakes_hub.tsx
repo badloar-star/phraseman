@@ -1,12 +1,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AppState, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { AppState, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../hooks/useLineScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // зачем: тот же контрол обновления, что в лиге — один язык жеста по приложению.
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -410,14 +411,14 @@ export default function MistakesHubScreen() {
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
         <ScreenBackZone />
-        <ScrollView
+        <SoftTopEdgeScrollView
           contentContainerStyle={styles.content}
           showsVerticalScrollIndicator={false}
           refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={onPullRefresh} />} decelerationRate="fast"
         >
           <ScreenTitle g={g} text={copy.title} />
           {body}
-        </ScrollView>
+        </SoftTopEdgeScrollView>
         {showDock ? <PanelDock>{dockCta}</PanelDock> : null}
         <PanelSheet visible={sheetOpen} onClose={closeSheet} testID="mistakes-hub-sheet">
           <View style={styles.sheetHead}>

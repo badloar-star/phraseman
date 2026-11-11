@@ -10,13 +10,14 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { triLang } from '../constants/i18n';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useLang } from '../components/LangContext';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import HomeV2TodayCard from '../components/home/v2/HomeV2TodayCard';
 import { useHomeTrialRow } from '../hooks/use_home_trial_row';
@@ -167,7 +168,7 @@ export default function TodayTasksScreen() {
           <View style={s.backSlot} />
           <Text accessibilityRole="header" numberOfLines={1} style={[s.title, { color: p.text }]}>{title}</Text>
         </View>
-        <ScrollView contentContainerStyle={s.content} decelerationRate="fast">
+        <SoftTopEdgeScrollView contentContainerStyle={s.content} decelerationRate="fast">
           {TodayRingsSlot ? (
             <View testID="today-tasks-rings" style={s.rings}>
               {ringReady ? (
@@ -179,7 +180,7 @@ export default function TodayTasksScreen() {
           ) : null}
           <HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} trialRow={trial.row} />
           <TodayActivityHistory dayKey={todayTasks.dayKey} tasks={tasks} />
-        </ScrollView>
+        </SoftTopEdgeScrollView>
       </SafeAreaView>
       <ScreenBackButton
         testID="today-tasks-back"

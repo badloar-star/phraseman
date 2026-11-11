@@ -9,11 +9,12 @@
  * плеер, полоса прогресса, название, фразы по таймкодам, внизу закреплена «Добавить набор себе · N карточек».
  */
 import VideoSectionGate from '../components/video/VideoSectionGate';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { useVideoSectionPreference } from './video_section_preference';
 import { SaveStar } from '../components/youtube/SaveStar';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { InteractionManager, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { InteractionManager, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -308,7 +309,7 @@ function LingmanVideoWatchScreenContent({ params, videoEnabled }: { params: Para
             ) : null}
           </>
         ) : null}
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, { paddingBottom: pack ? 132 + insets.bottom : 32 }]} decelerationRate="fast">
+        <SoftTopEdgeScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, { paddingBottom: pack ? 132 + insets.bottom : 32 }]} decelerationRate="fast">
           {title ? <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text> : null}
           {meta ? <Text style={[styles.meta, { color: g.secondary }]}>{meta}</Text> : null}
           {videoEnabled && videoId && quizReady ? (
@@ -328,7 +329,7 @@ function LingmanVideoWatchScreenContent({ params, videoEnabled }: { params: Para
               />
             </View>
           ) : null}
-        </ScrollView>
+        </SoftTopEdgeScrollView>
         {pack ? (
           // зачем (макет `.bot2`): главная кнопка «Добавить набор себе · N карточек» закреплена внизу под большим пальцем.
           <PanelDock>

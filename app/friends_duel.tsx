@@ -9,11 +9,12 @@
  * Адрес — граница системы: всё проверяет duel_launch. За выключателем FRIENDS_TOGETHER_UI_ENABLED.
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 
 import ContentWrap from '../components/ContentWrap';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { FlowText } from '../components/text-integrity';
@@ -262,7 +263,7 @@ function FriendsDuelScreen() {
           <ScreenBackSlot />
         </View>
         <ScreenCloseButton screen="friends_duel_result" testID="friend-duel-close" accessibilityLabel={duelPlayCopy(lang, 'close')} onPress={close} />
-        <ScrollView decelerationRate="fast" style={styles.scroll} contentContainerStyle={styles.resultContent} showsVerticalScrollIndicator={false}>
+        <SoftTopEdgeScrollView decelerationRate="fast" style={styles.scroll} contentContainerStyle={styles.resultContent} showsVerticalScrollIndicator={false}>
           <FriendDuelResultView
             mode={summary.kind}
             me={meSide}
@@ -273,7 +274,7 @@ function FriendsDuelScreen() {
             onRematch={summary.kind === 'result' ? rematch : undefined}
             onToFriends={close}
           />
-        </ScrollView>
+        </SoftTopEdgeScrollView>
       </View>
     );
   }
@@ -293,11 +294,11 @@ function FriendsDuelScreen() {
         onClose={close}
       />
       <ScreenCloseButton screen="friends_duel_play" testID="friend-duel-close" accessibilityLabel={duelPlayCopy(lang, 'close')} onPress={close} />
-      <ScrollView decelerationRate="fast" style={styles.scroll} contentContainerStyle={styles.playContent} showsVerticalScrollIndicator={false}>
+      <SoftTopEdgeScrollView decelerationRate="fast" style={styles.scroll} contentContainerStyle={styles.playContent} showsVerticalScrollIndicator={false}>
         {play.phrase ? (
           <DuelPhraseBoard key={play.phrase.id} phrase={play.phrase} picked={state.picked} verdict={state.verdict} lang={lang} textScale={textScale} onAppend={play.append} onRemoveAt={play.removeAt} />
         ) : null}
-      </ScrollView>
+      </SoftTopEdgeScrollView>
       <View style={styles.footer}>
         {state.verdict ? (
           <FriendSheetButton glass={glass} textScale={textScale} tone="primary" pill="l" label={duelPlayCopy(lang, 'next')} testID="friend-duel-next" onPress={play.next} />

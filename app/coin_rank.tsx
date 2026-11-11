@@ -1,9 +1,10 @@
 import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { getAppSnapshot, subscribeAppSnapshot } from './app_snapshot_store';
 import {
@@ -379,7 +380,7 @@ export default function CoinRankScreen() {
       {/* зачем (coins.html back()): «назад» голым шевроном, ниже крупный заголовок 34 слева — как кошелёк и профиль. */}
       <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{copy.title}</Text>
 
-      <ScrollView
+      <SoftTopEdgeScrollView
         style={styles.scroll}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false} decelerationRate="fast"
@@ -505,7 +506,7 @@ export default function CoinRankScreen() {
           </V2Pressable>
         ) : null}
 
-      </ScrollView>
+      </SoftTopEdgeScrollView>
 
       {ctaInFlow ? null : (
         <View style={[styles.footer, { paddingBottom: insets.bottom + 18, backgroundColor: g.bgBottom }]}>

@@ -11,10 +11,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import ContentWrap from '../components/ContentWrap';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import CustomSwitch from '../components/CustomSwitch';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
@@ -169,7 +170,7 @@ export default function FriendsWeekMine() {
           </ScreenOriginBelowSafeTop>
           {/* зачем (замок владельца 22.10 «назад не пересекается»): полоса под кнопкой «назад» — вне прокрутки, контент начинается ниже */}
           <ScreenBackZone />
-          <ScrollView decelerationRate="fast" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+          <SoftTopEdgeScrollView decelerationRate="fast" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
             <FlowText testID="my-week-title" provenance="authored" accessibilityRole="header" style={{ color: glass.text, fontSize: 25 * textScale, lineHeight: 31 * textScale, fontWeight: '700' }}>
               {weekCopy(l, 'myWeek')}
             </FlowText>
@@ -217,7 +218,7 @@ export default function FriendsWeekMine() {
               </FlowText>
               <CustomSwitch testID="my-week-show-switch" accessibilityLabel={weekCopy(l, 'showMyWeek')} value={shown} onValueChange={onToggle} />
             </View>
-          </ScrollView>
+          </SoftTopEdgeScrollView>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>

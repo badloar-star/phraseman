@@ -1,11 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useLang } from '../components/LangContext';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import { useTheme } from '../components/ThemeContext';
 import CoinRankCatalog, { coinRankCatalogTitle } from '../components/coins/CoinRankCatalog';
 import V2Backdrop from '../components/v2/V2Backdrop';
@@ -40,14 +41,14 @@ export default function CoinRankCatalogScreen() {
       </View>
       <ScreenBackButton screen="coin_rank_catalog" testID="coin-rank-catalog-back" accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={goBack} />
       <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{coinRankCatalogTitle(lang)}</Text>
-      <ScrollView
+      <SoftTopEdgeScrollView
         style={styles.scroll}
         contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + 28 }]}
         showsVerticalScrollIndicator={false}
         decelerationRate="fast"
       >
         <CoinRankCatalog glass={g} lang={lang} currentRank={rank} showTitle={false} />
-      </ScrollView>
+      </SoftTopEdgeScrollView>
     </View>
   );
 }

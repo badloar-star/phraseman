@@ -6,12 +6,12 @@ import {
   BackHandler,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
   Text,
   TextInput,
   View,
 } from 'react-native';
 import KitTouchable from '../components/KitTouchable';
+import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -413,7 +413,7 @@ export default function PromoCodeEntryScreen() {
           onClose={closePromo}
         />
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          <ScrollView decelerationRate="fast"
+          <SoftTopEdgeScrollView decelerationRate="fast"
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34 }}
@@ -507,7 +507,7 @@ export default function PromoCodeEntryScreen() {
                 </View>
               )}
             </View>
-          </ScrollView>
+          </SoftTopEdgeScrollView>
         </KeyboardAvoidingView>
         <VipCelebrationModal visible={celebrationVisible} onClose={closeCelebration} promoCode={celebrationCode} promoReward={celebrationReward} />
       </SafeAreaView>

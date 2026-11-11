@@ -15,18 +15,20 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../../constants/i18n';
 import { spireTierName } from '../../../modules/spire/tier_names';
 import SpireRankCoin from '../../spire/SpireRankCoin';
-import { Art, Confetti, FrameRoot, H1, Ov, P, Ring, Stat, Stats, k, statNumberStyle } from './story_template_kit';
-import { CountUp, Enter } from './story_template_motion';
-import { FromSide, Grow, LevelSwap } from './story_template_parts';
+import { Art, Confetti, FrameRoot, H1, Ov, P, Ring, k } from './story_template_kit';
+import { Enter } from './story_template_motion';
+import { Grow, LevelSwap } from './story_template_parts';
 import { mix, useStoryTemplatePalette } from './story_template_palette';
-import type { StoryBubble, StoryPodiumEntry } from './story_template_registry';
-import { tplMonthIn, tplNumber, tplText, tplWord } from './story_template_strings';
-import { plusOfferText } from './story_plus_offer_strings';
-import { Bubbles, IconDisc } from './story_instead_parts';
+import type { StoryPodiumEntry } from './story_template_registry';
+import { tplMonthIn, tplNumber, tplText } from './story_template_strings';
+import { IconDisc } from './story_instead_parts';
+import { firstDialogStats, firstDialogText } from '../../dialog_moments/first_dialog_strings';
+import { studyLanguageWord } from '../../../constants/study_language_words';
 import { insteadText } from './story_instead_strings';
 
 /** Данные кадров — только то, что событие уже знает. При подключении переезжают в story_template_registry. */
-export type ReferralWelcomeStory = Readonly<{ friendName: string; friendRank: number | null; giftDays: number }>;
+/** `needsCodeEntry` — человеку ещё нужно ввести код друга (тогда у кадра кнопка «У меня есть код приглашения»). Имени друга и подарка окно не знало. */
+export type ReferralWelcomeStory = Readonly<{ needsCodeEntry: boolean }>;
 /** Момент конца окна доступа (его хранит трекер) — только ключ повтора; текст кадра от него не зависит. */
 export type ReferralEndedStory = Readonly<{ windowEndMs: number }>;
 export type PerfectLessonStory = Readonly<{ lessonNo: number; correct: number; total: number; coins: number }>;
@@ -34,29 +36,20 @@ export type LessonOpenStory = Readonly<{ lessonNo: number; nextLessonNo: number;
 export type RateAppStory = Readonly<{ lessonsDone: number }>;
 /** `month` — 1…12; `podium` — тройка месяца, своя строка помечена `me`. */
 export type PackPrizeStory = Readonly<{ place: 1 | 2 | 3; month: number; packName: string; saves: number; coins: number; podium: readonly StoryPodiumEntry[] }>;
-export type FirstDialogStory = Readonly<{ turns: number; minutes: number; bubbles: readonly StoryBubble[] }>;
+/** То, что знает итог диалога: изучаемый язык (для «по-английски»), реплики человека и задания. Минут и текста реплик у окна не было. */
+export type FirstDialogStory = Readonly<{ studyTarget: string; turns: number; goalsDone: number; goalsTotal: number }>;
 export type PeakOvertakeStory = Readonly<{ tier: number; rivalName: string; rivalRank: number | null; rivalScore: number; myScore: number; daysLeft: number }>;
 
 type FrameProps<D> = Readonly<{ tpl: D; lang: Lang; myRank: number | null }>;
 
 // ── 9 · подарок по приглашению (взамен реферального окна-приветствия) ────────────────────────────────
 
-export const ReferralWelcomeFrame = memo(function ReferralWelcomeFrame({ tpl, lang, myRank }: FrameProps<ReferralWelcomeStory>) {
-  const pal = useStoryTemplatePalette();
+export const ReferralWelcomeFrame = memo(function ReferralWelcomeFrame({ lang }: FrameProps<ReferralWelcomeStory>) {
   return (
     <FrameRoot testID="story-tpl-instead-ref-welcome">
-      <Art>
-        <View style={f.pair}>
-          <FromSide side="left"><SpireRankCoin rank={tpl.friendRank} size={96} /></FromSide>
-          <FromSide side="right" style={f.pairSecond}><SpireRankCoin rank={myRank} size={96} /></FromSide>
-          <Enter kind="pop" d={800} style={[f.ok, { backgroundColor: pal.accG }]}>
-            <Ionicons name="checkmark" size={22} color={pal.accInk} style={f.okIcon} />
-          </Enter>
-        </View>
-      </Art>
-      <Ov text={insteadText(lang, 'refInvites', { name: tpl.friendName })} d={500} />
-      <H1 text={insteadText(lang, 'refTitle', { plusDays: tpl.giftDays })} d0={580} />
-      <P text={insteadText(lang, 'refText', { name: tpl.friendName })} d={900} />
+      <Art><IconDisc icon="people" /></Art>
+      <H1 text={insteadText(lang, 'refTitle')} d0={380} />
+      <P text={insteadText(lang, 'refText')} d={700} />
     </FrameRoot>
   );
 });
@@ -180,16 +173,14 @@ export const PackPrizeFrame = memo(function PackPrizeFrame({ tpl, lang }: FrameP
 // ── 15 · первый разговор (взамен окна «Первый разговор» в конце первого диалога с ИИ) ────────────────
 
 export const FirstDialogFrame = memo(function FirstDialogFrame({ tpl, lang }: FrameProps<FirstDialogStory>) {
-  const pal = useStoryTemplatePalette();
+  // «по-английски / по-испански…» — тем же словарём, что у окна «Первый разговор»
+  const adv = studyLanguageWord(lang, tpl.studyTarget, 'adv');
   return (
     <FrameRoot testID="story-tpl-instead-first-dialog">
-      <Bubbles bubbles={tpl.bubbles.slice(0, 3)} d0={200} step={360} />
-      <Ov text={plusOfferText(lang, 'dialogOverline')} d={1200} />
-      <H1 text={insteadText(lang, 'firstDialogTitle')} d0={1280} small />
-      <Stats>
-        <Stat d={1600} value={<CountUp to={tpl.turns} d={1700} dur={700} style={statNumberStyle(pal)} />} label={tplWord(lang, 'turn', tpl.turns)} />
-        <Stat d={1680} value={<CountUp to={tpl.minutes} d={1780} dur={700} style={statNumberStyle(pal)} />} label={tplWord(lang, 'minute', tpl.minutes)} />
-      </Stats>
+      <Art><IconDisc icon="chatbubbles" /></Art>
+      <Ov text={firstDialogText(lang, 'overline')} d={380} />
+      <H1 text={firstDialogText(lang, 'title', { adv })} d0={460} small />
+      <P text={firstDialogStats(lang, tpl.turns, tpl.goalsDone, tpl.goalsTotal)} d={900} />
     </FrameRoot>
   );
 });
@@ -230,11 +221,6 @@ export const PeakOvertakeFrame = memo(function PeakOvertakeFrame({ tpl, lang, my
 });
 
 const f = StyleSheet.create({
-  // .pair: высота 110; вторая монета −14; галочка 40 по центру (как у кадра «Новый друг»)
-  pair: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 110 },
-  pairSecond: { marginLeft: -14 },
-  ok: { position: 'absolute', left: '50%', top: '50%', width: 40, height: 40, marginLeft: -20, marginTop: -20, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
-  okIcon: { lineHeight: 22 },
   // .stars: высота 90, зазор 8; средняя 74 с подъёмом −10 (как у кадра «Урок пройден»)
   stars: { flexDirection: 'row', alignItems: 'center', gap: 8, height: 90 },
   star54: { lineHeight: 54 },

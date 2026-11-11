@@ -10,6 +10,7 @@ import { Modal } from 'react-native';
 import { hydrateDialogueV2DoneIds, peekDialogueV2DoneIds } from '../../app/dialogue_v2_done_store';
 import type { Lang } from '../../constants/i18n';
 import { useOverlayVisible } from '../OverlayArbiter';
+import { insteadStoryLanded, recordFirstDialogStory, storiesReplaceWindows } from '../../modules/story_events/story_instead_sources';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useFireOnce } from '../moments/use_fire_once';
 import FirstDialogMoment from './FirstDialogMoment';
@@ -51,6 +52,18 @@ function FirstDialogHost({ lang, studyTarget, scenarioId, endedBy, turns, goalsD
       const final = decideFirstDialogMoment({ momentsV3: true, endedBy, learnerTurns: turns, scenarioId, doneIds: diskDoneIds, goalsTotal, alreadyShown });
       console.log(`[FIRST-DIALOG] ${final.show ? 'показ' : 'нет показа'}: ${final.reason} target=${studyTarget} scenario=${String(scenarioId)} цели=${goalsDone}/${goalsTotal}`); // guard-ok: итог решения
       if (!final.show) return;
+      // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях «Первый разговор»
+      // пишется кадром — окно поверх итога диалога не открывается; отметка показа — только после записи. Истории выключены — окно как раньше.
+      if (storiesReplaceWindows()) {
+        void recordFirstDialogStory({ studyTarget, turns, goalsDone, goalsTotal }).then((record) => {
+          if (!insteadStoryLanded(record)) { console.warn(`[FIRST-DIALOG] история не записана (${record.recorded ? 'ok' : record.reason}) — отметку показа не ставим`); return; } // guard-ok: ранний выход с причиной
+          console.log(`[FIRST-DIALOG] история вместо окна target=${studyTarget}`); // guard-ok: одна строка на запись
+          markFirstDialogShown(studyTarget);
+        }).catch((error: unknown) => {
+          console.warn('[FIRST-DIALOG] запись истории упала — отметку показа не ставим', String(error)); // guard-ok: catch пишет причину
+        });
+        return;
+      }
       markFirstDialogShown(studyTarget);
       setOpen(true);
     });

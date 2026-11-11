@@ -41,9 +41,9 @@ const TPL = [
     cta: { label: 'Вернуть Plus', icon: 'sparkles' },
     render: () => `<div class="art">${pbig(160, 'off')}</div><div class="ov a" style="--d:380ms">До 10 ноября</div><div class="h1">${words('Plus закончился', 460)}</div>${rows([['Защита серии, 3 в месяц', 'lock'], ['Диалоги без счётчика', 'lock'], ['Все уроки курса', 'lock']], 700)}` },
 
-  { id: 'ref_welcome', name: 'Подарок по приглашению', group: 'Друзья', kind: 'new', ev: 'referral_welcome (новое)', when: 'взамен реферального окна-приветствия · вход по ссылке друга', data: 'friendName, friendRank, giftDays', motion: 'две монеты сходятся, между ними встаёт отметка',
-    cta: { label: 'Ввести код', icon: 'key' },
-    render: () => `<div class="art"><div class="pair">${coin(7, 96, 'c1')}${coin(1, 96, 'c2')}<span class="ok pop" style="--d:800ms">${io('check', 22)}</span></div></div><div class="ov a" style="--d:500ms">Анна приглашает</div><div class="h1">${words('7 дней Plus в подарок', 580)}</div><div class="p a" style="--d:900ms">Введи код друга, и Plus включится сразу. Анна тоже получит награду.</div>` },
+  { id: 'ref_welcome', name: 'Тебя пригласили', group: 'Друзья', kind: 'new', ev: 'referral_welcome (новое)', when: 'взамен реферального окна-приветствия · вход по ссылке друга', data: 'needsCodeEntry', motion: 'знак появляется, заголовок встаёт по словам',
+    cta: { label: 'У меня есть код приглашения', icon: 'key' },
+    render: () => `<div class="art">${icn('people')}</div><div class="h1">${words('Тебя пригласили', 380)}</div><div class="p a" style="--d:700ms">Тебя позвал друг. Начни учиться — мы рады, что ты с нами.</div>` },
 
   { id: 'ref_ended', name: 'Доступ можно открыть снова', group: 'Друзья', kind: 'new', ev: 'referral_access_ended (новое)', when: 'взамен окна «Реферальный доступ закончился» на вкладке «Друзья»', data: 'friendName, endedAt', motion: 'знак появляется, текст встаёт по словам',
     cta: { label: 'Пригласить друга', icon: 'personAdd' },
@@ -64,9 +64,8 @@ const TPL = [
     cta: { label: 'Забрать 500 монет', icon: 'wallet' },
     render: () => `<div class="art"><div class="podium" style="height:190px">${[[2, 3, 'Ты', 96, true], [1, 8, 'Лена', 130, false], [3, 2, 'Олег', 70, false]].map(([pl, rk, nm, h, me], i) => `<div class="pc ${me ? 'me' : ''}">${coin(rk, 40)}<div class="nm">${nm}</div><div class="bar" style="height:${h}px;--d:${200 + i * 120}ms">${pl}</div></div>`).join('')}</div></div><div class="ov a" style="--d:700ms">Набор месяца за октябрь</div><div class="h1 s">${words('Твой набор на 2-м месте', 780)}</div><div class="p a" style="--d:1100ms">«Фразы для кафе» · сохранений: 214</div>` },
 
-  { id: 'first_dialog', name: 'Первый разговор', group: 'Диалоги', kind: 'new', ev: 'first_dialog_done (новое)', when: 'взамен окна «Первый разговор» в конце первого диалога с ИИ', data: 'replies, minutes', motion: 'реплики всплывают по очереди, числа досчитываются',
-    render: () => `<div class="bubs"><div class="b a" style="--d:200ms">What would you like to drink?</div><div class="b me a" style="--d:560ms">A coffee, please.</div><div class="b a" style="--d:920ms">Sure. Anything else?</div></div><div class="ov a" style="--d:1200ms">Диалоги с ИИ</div><div class="h1 s">${words('Первый разговор состоялся', 1280)}</div>
-      <div class="stats"><div class="stt a" style="--d:1600ms">${cnt(12, 1700, 700)}<span>реплик</span></div><div class="stt a" style="--d:1680ms">${cnt(4, 1780, 700)}<span>минуты</span></div></div>` },
+  { id: 'first_dialog', name: 'Первый разговор', group: 'Диалоги', kind: 'new', ev: 'first_dialog_done (новое)', when: 'взамен окна «Первый разговор» в конце первого диалога с ИИ', data: 'studyTarget, turns, goalsDone, goalsTotal', motion: 'знак появляется, заголовок встаёт по словам',
+    render: () => `<div class="art">${icn('chats')}</div><div class="ov a" style="--d:380ms">Первый диалог</div><div class="h1 s">${words('Первый разговор по-английски — есть!', 460)}</div><div class="p a" style="--d:900ms">6 реплик · 5 заданий из 5</div>` },
 
   { id: 'plus_on', name: 'Plus подключён', group: 'Plus', kind: 'new', ev: 'plus_activated (новое)', when: 'взамен праздничного окна после покупки или выдачи Plus', data: 'kind, until', motion: 'знак Plus встаёт, три возможности отмечаются, конфетти один раз',
     render: () => `${confetti(18, 600)}<div class="art">${pbig(160)}</div><div class="ov a" style="--d:380ms">До 11 декабря</div><div class="h1">${words('Plus подключён', 460)}</div>${rows([['Все уроки курса'], ['Диалоги без счётчика'], ['Защита серии, 3 в месяц']], 700)}` },

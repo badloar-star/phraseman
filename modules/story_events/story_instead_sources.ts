@@ -60,6 +60,16 @@ export function recordReferralEndedStory(input: Readonly<{ windowEndMs: number }
   return record('ref_ended', String(input.windowEndMs), { windowEndMs: input.windowEndMs });
 }
 
+/** «Тебя пригласили» (взамен реферального окна-приветствия, когда код вводить не нужно): один раз на аккаунт, как отметка «видел» у окна. */
+export function recordReferralWelcomeStory(): Promise<StoryRecordResult> {
+  return record('ref_welcome', 'once', { needsCodeEntry: false });
+}
+
+/** «Первый разговор» (взамен окна в конце первого диалога): один раз на изучаемый язык, как отметка показа у окна. */
+export function recordFirstDialogStory(input: Readonly<{ studyTarget: string; turns: number; goalsDone: number; goalsTotal: number }>): Promise<StoryRecordResult> {
+  return record('first_dialog', input.studyTarget, { studyTarget: input.studyTarget, turns: input.turns, goalsDone: input.goalsDone, goalsTotal: input.goalsTotal });
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

@@ -22,6 +22,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import KitTouchable from './KitTouchable';
 import { useOverlayVisible } from './OverlayArbiter';
+import { insteadStoryLanded, recordReferralWelcomeStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
 import { triLang, type Lang } from '../constants/i18n';
 import {
   decideReferralWelcome,
@@ -72,7 +73,21 @@ export default function ReferralWelcomeHost() {
     }
     decideReferralWelcome()
       .then((d) => {
-        if (alive && d.show) setWelcomeDecision(d);
+        if (!alive || !d.show) return;
+        // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях приветствие
+        // пишется кадром — слот очереди окон не просим. Пока человеку ещё нужно ввести код друга, окно остаётся: его кнопке «У меня есть код
+        // приглашения» у кадра пока нет действия. Истории выключены (флаг stories_v1) — окно как раньше.
+        if (storiesReplaceWindows() && !d.needsCodeEntry) {
+          void recordReferralWelcomeStory().then((record) => {
+            if (!insteadStoryLanded(record)) { DebugLogger.warn('[REFERRAL-WELCOME]', `история не записана (${record.recorded ? 'ok' : record.reason}) — «видел» не ставим`); return; }
+            DebugLogger.info('[REFERRAL-WELCOME]', 'история вместо окна');
+            void markReferralWelcomeSeen().catch(logSeenFailure);
+          }).catch((e: unknown) => {
+            DebugLogger.error('ReferralWelcomeHost:story', e instanceof Error ? e : new Error(String(e)), 'warning');
+          });
+          return;
+        }
+        setWelcomeDecision(d);
       })
       .catch((e) => {
         DebugLogger.error('ReferralWelcomeHost:decide', e instanceof Error ? e : new Error(String(e)), 'warning');

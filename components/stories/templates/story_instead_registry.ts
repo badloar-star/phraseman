@@ -59,7 +59,7 @@ export const STORY_INSTEAD_TEMPLATE_SAMPLES: Readonly<{ [I in StoryInsteadTempla
   // макет: четыре дня с занятиями и три пропущенных в конце недели
   instead_nudge: { id: 'instead_nudge', missedDays: 3, endMs: day(2025, 10, 26) },
   instead_plus_expired: { id: 'instead_plus_expired', untilLabel: '10 ноября', freezesPerMonth: 3 },
-  instead_ref_welcome: { id: 'instead_ref_welcome', friendName: 'Анна', friendRank: 7, giftDays: 7 },
+  instead_ref_welcome: { id: 'instead_ref_welcome', needsCodeEntry: true },
   instead_ref_ended: { id: 'instead_ref_ended', windowEndMs: day(2026, 11, 10) },
   instead_perfect: { id: 'instead_perfect', lessonNo: 12, correct: 45, total: 45, coins: 120 },
   instead_lesson_open: { id: 'instead_lesson_open', lessonNo: 12, nextLessonNo: 13, topic: 'планы на выходные' },
@@ -72,10 +72,8 @@ export const STORY_INSTEAD_TEMPLATE_SAMPLES: Readonly<{ [I in StoryInsteadTempla
       { place: 3, name: 'Олег', rank: 2, coins: 0, me: false },
     ],
   },
-  instead_first_dialog: {
-    id: 'instead_first_dialog', turns: 12, minutes: 4,
-    bubbles: [{ text: 'What would you like to drink?', me: false }, { text: 'A coffee, please.', me: true }, { text: 'Sure. Anything else?', me: false }],
-  },
+  // пример окна «Первый разговор»: «6 реплик · 5 заданий из 5»
+  instead_first_dialog: { id: 'instead_first_dialog', studyTarget: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 },
   instead_plus_on: { id: 'instead_plus_on', untilLabel: '11 декабря', freezesPerMonth: 3 },
   instead_peak_overtake: { id: 'instead_peak_overtake', tier: 0, rivalName: 'Марк', rivalRank: 8, rivalScore: 1240, myScore: 1200, daysLeft: 3 },
 };
@@ -102,7 +100,8 @@ export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryIns
     case 'instead_message': return { action: 'reply_team', text: insteadText(lang, 'ctaReply'), icon: 'chatbubble' };
     case 'instead_nudge': return { action: 'enable_reminder', text: insteadText(lang, 'ctaEnableReminder'), icon: 'time' };
     case 'instead_plus_expired': return { action: 'open_plus', text: insteadText(lang, 'ctaRestorePlus'), icon: 'sparkles' };
-    case 'instead_ref_welcome': return { action: 'enter_referral_code', text: insteadText(lang, 'ctaEnterCode'), icon: 'key' };
+    // кнопка — только когда код ещё не введён; у окна это была вторая кнопка «У меня есть код приглашения»
+    case 'instead_ref_welcome': return tpl.needsCodeEntry ? { action: 'enter_referral_code', text: insteadText(lang, 'ctaEnterCode'), icon: 'key' } : null;
     // зачем: «Пригласить друга» в окне открывала отправку приглашения — у историй это готовое действие share_link (use_story_cta_action)
     case 'instead_ref_ended': return { action: 'share_link', text: insteadText(lang, 'ctaInviteFriend'), icon: 'person-add' };
     case 'instead_lesson_open': return { action: 'start_lesson', text: insteadText(lang, 'ctaStartLesson', { lessonNo: tpl.nextLessonNo }), icon: 'play' };

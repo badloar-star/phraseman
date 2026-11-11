@@ -28,7 +28,7 @@ const S = {
   ctaReply: ['Ответить', 'Відповісти', 'Reply', 'Responder', 'Responder', 'Trả lời', 'Balas', 'Yanıtla', 'Odpowiedz'],
   ctaEnableReminder: ['Включить напоминание', 'Увімкнути нагадування', 'Turn on reminder', 'Activar recordatorio', 'Ativar lembrete', 'Bật nhắc nhở', 'Aktifkan pengingat', 'Hatırlatıcıyı aç', 'Włącz przypomnienie'],
   ctaRestorePlus: ['Вернуть Plus', 'Повернути Plus', 'Get Plus back', 'Recuperar Plus', 'Recuperar Plus', 'Lấy lại Plus', 'Aktifkan Plus lagi', 'Plus’ı geri al', 'Odzyskaj Plus'],
-  ctaEnterCode: ['Ввести код', 'Ввести код', 'Enter code', 'Ingresar código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod'],
+  ctaEnterCode: ['У меня есть код приглашения', 'У мене є код запрошення', 'I have an invite code', 'Tengo un código de invitación', 'Tenho um código de convite', 'Tôi có mã mời', 'Saya punya kode undangan', 'Davet kodum var', 'Mam kod zaproszenia'], // дословно как кнопка окна
   ctaInviteFriend: ['Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời một người bạn', 'Ajak teman', 'Arkadaş davet et', 'Zaproś znajomego'], // дословно как кнопка окна
   ctaStartLesson: ['Начать урок {lessonNo}', 'Почати урок {lessonNo}', 'Start lesson {lessonNo}', 'Empezar la lección {lessonNo}', 'Começar a lição {lessonNo}', 'Bắt đầu bài {lessonNo}', 'Mulai pelajaran {lessonNo}', '{lessonNo}. derse başla', 'Zacznij lekcję {lessonNo}'],
   ctaRate: ['Оценить', 'Оцінити', 'Rate', 'Calificar', 'Avaliar', 'Đánh giá', 'Beri nilai', 'Puan ver', 'Oceń'],
@@ -110,19 +110,14 @@ const S = {
   perkDialogs: ['Диалоги без счётчика', 'Діалоги без лічильника', 'Dialogues with no counter', 'Diálogos sin contador', 'Diálogos sem contador', 'Hội thoại không giới hạn', 'Dialog tanpa penghitung', 'Sayaçsız diyaloglar', 'Dialogi bez licznika'],
   perkLessons: ['Все уроки курса', 'Усі уроки курсу', 'Every lesson in the course', 'Todas las lecciones del curso', 'Todas as lições do curso', 'Tất cả bài học của khóa', 'Semua pelajaran kursus', 'Kursun tüm dersleri', 'Wszystkie lekcje kursu'],
 
-  // ── 9 · подарок по приглашению (имя друга не склоняем — оно стоит подлежащим) ──
-  refInvites: ['{name} приглашает', '{name} запрошує', '{name} invited you', '{name} te invita', '{name} convida você', '{name} mời bạn', '{name} mengundangmu', '{name} seni davet ediyor', '{name} zaprasza'],
-  refTitle: ['{plusDays} {plusDays_w} Plus в подарок', '{plusDays} {plusDays_w} Plus у подарунок', '{plusDays} {plusDays_w} of Plus as a gift', '{plusDays} {plusDays_w} de Plus de regalo', '{plusDays} {plusDays_w} de Plus de presente', 'Tặng {plusDays} {plusDays_w} Plus', 'Hadiah {plusDays} {plusDays_w} Plus', '{plusDays} {plusDays_w} Plus hediye', '{plusDays} {plusDays_w} Plus w prezencie'],
+  // ── 9 · тебя пригласили ──
+  // зачем: текст — дословно из окна ReferralWelcomeHost, он уже выверен Переводчиком; придуманные в макете «7 дней Plus в подарок» и
+  // «друг тоже получит награду» убраны — таких обещаний окно не давало
+  refTitle: ['Тебя пригласили', 'Тебе запросили', 'You were invited', 'Te invitaron', 'Você foi convidado', 'Bạn được mời', 'Kamu diundang', 'Davet edildin', 'Masz zaproszenie'],
   refText: [
-    'Введи код друга, и Plus включится сразу. {name} тоже получит награду.',
-    'Введи код друга, і Plus увімкнеться одразу. {name} теж отримає нагороду.',
-    'Enter your friend’s code and Plus turns on right away. {name} gets a reward too.',
-    'Ingresa el código de tu amigo y Plus se activa al instante. {name} también recibe una recompensa.',
-    'Insira o código do seu amigo e o Plus ativa na hora. {name} também ganha uma recompensa.',
-    'Nhập mã của bạn bè và Plus bật ngay. {name} cũng nhận được phần thưởng.',
-    'Masukkan kode temanmu dan Plus langsung aktif. {name} juga mendapat hadiah.',
-    'Arkadaşının kodunu gir, Plus hemen açılsın. {name} de ödül kazanır.',
-    'Wpisz kod znajomego, a Plus włączy się od razu. {name} też dostanie nagrodę.',
+    'Тебя позвал друг. Начни учиться — мы рады, что ты с нами.', 'Тебе покликав друг. Починай навчання — ми раді, що ти з нами.', 'A friend invited you. Start learning — we are glad you are here.',
+    'Te invitó un amigo. Empieza a aprender: nos alegra que estés aquí.', 'Um amigo convidou você. Comece a aprender: que bom ter você aqui.', 'Một người bạn đã mời bạn. Bắt đầu học nào — chúng tôi rất vui vì có bạn.',
+    'Seorang teman mengundangmu. Mulai belajar — kami senang kamu di sini.', 'Bir arkadaşın seni davet etti. Öğrenmeye başla — burada olmana sevindik.', 'Zaprosił cię znajomy. Zacznij naukę — cieszymy się, że tu jesteś.',
   ],
 
   // ── 10 · доступ можно открыть снова ──
@@ -162,8 +157,7 @@ const S = {
   prizeTitle: ['Твой набор на {place}-м месте', 'Твій набір на {place}-му місці', 'Your pack took place {place}', 'Tu pack quedó en el puesto {place}', 'Seu pacote ficou em {place}º lugar', 'Bộ thẻ của bạn đứng hạng {place}', 'Paketmu meraih peringkat {place}', 'Paketin {place}. oldu', 'Twój zestaw zajął {place}. miejsce'],
   prizeText: ['«{pack}» · сохранений: {count}', '«{pack}» · збережень: {count}', '“{pack}” · saves: {count}', '«{pack}» · guardados: {count}', '“{pack}” · salvamentos: {count}', '“{pack}” · lượt lưu: {count}', '“{pack}” · disimpan: {count}', '“{pack}” · kaydetme: {count}', '„{pack}” · zapisań: {count}'],
 
-  // ── 15 · первый разговор ──
-  firstDialogTitle: ['Первый разговор состоялся', 'Перша розмова відбулася', 'Your first conversation is done', 'Tu primera conversación está hecha', 'Sua primeira conversa está feita', 'Cuộc trò chuyện đầu tiên đã xong', 'Percakapan pertamamu selesai', 'İlk sohbetin tamam', 'Pierwsza rozmowa za tobą'],
+  // 15 · первый разговор — своих строк нет: кадр берёт тексты окна из components/dialog_moments/first_dialog_strings.ts
 } as const satisfies Readonly<Record<string, Nine>>;
 
 export type StoryInsteadStringKey = keyof typeof S;

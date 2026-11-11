@@ -31,8 +31,10 @@ describe('тексты кадров «истории вместо окон»', (
     expect(ru('nudgeTitle', { days: 3 })).toBe('3 дня без занятий');
     expect(ru('expiredTitle')).toBe('Plus закончился');
     expect(ru('perkShield')).toBe('Защита серии, 3 в месяц');
-    expect(ru('refInvites')).toBe('Анна приглашает');
-    expect(ru('refTitle')).toBe('7 дней Plus в подарок');
+    // текст реферального окна — дословно
+    expect(ru('refTitle')).toBe('Тебя пригласили');
+    expect(ru('refText')).toBe('Тебя позвал друг. Начни учиться — мы рады, что ты с нами.');
+    expect(ru('ctaEnterCode')).toBe('У меня есть код приглашения');
     // текст окна «реферальный доступ закончился» — дословно
     expect(ru('refEndedTitle')).toBe('Доступ можно открыть снова');
     expect(ru('refEndedKeep')).toBe('Всё, что ты открыл — осталось с тобой.');
@@ -46,7 +48,6 @@ describe('тексты кадров «истории вместо окон»', (
     expect(ru('prizeTitle')).toBe('Твой набор на 2-м месте');
     expect(ru('prizeText')).toBe('«Фразы для кафе» · сохранений: 214');
     expect(ru('ctaClaim', { coins: 500 })).toBe('Забрать 500 монет');
-    expect(ru('firstDialogTitle')).toBe('Первый разговор состоялся');
     expect(ru('plusOnTitle')).toBe('Plus подключён');
   });
 
@@ -55,7 +56,6 @@ describe('тексты кадров «истории вместо окон»', (
     expect(ru('backOverline', { days: 21 })).toBe('21 день перерыва');
     expect(ru('backCardsLabel', { cards: 1 })).toBe('карточка на повтор');
     expect(ru('backCardsLabel', { cards: 5 })).toBe('карточек на повтор');
-    expect(ru('refTitle', { plusDays: 3 })).toBe('3 дня Plus в подарок');
     expect(plain(insteadText('en', 'backOverline', { days: 1 }))).toBe('1 day away');
   });
 
@@ -138,11 +138,11 @@ describe('кадры «истории вместо окон» — разметк
     expect(registry).toContain('...STORY_INSTEAD_TEMPLATE_SAMPLES,');
   });
 
-  it('шаг 2: у пяти кадров есть источник — событие instead; остальные 12 ждут своих партий', () => {
+  it('шаг 2: у семи кадров есть источник — событие instead; остальные 10 ждут своих партий', () => {
     const fromEvent = read('components/stories/templates/story_template_from_event.ts');
     expect(fromEvent).toContain("case 'instead': return insteadTemplateFromPayload(p);");
     const own = read('components/stories/templates/story_instead_from_event.ts');
-    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended'] as const;");
+    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog'] as const;");
   });
 });
 
@@ -151,7 +151,7 @@ describe('макет и код говорят одно и то же', () => {
 
   it('в макете 17 кадров и тексты, приведённые к коду', () => {
     expect((mock.match(/\{ id: '/g) ?? [])).toHaveLength(17);
-    for (const text of ['карточки на повтор', 'фраз выучено', 'уроков позади', 'Анна приглашает', 'Доступ можно открыть снова', 'Набор месяца за октябрь', 'сохранений: 214', 'Марк обходит тебя']) {
+    for (const text of ['карточки на повтор', 'фраз выучено', 'уроков позади', 'Тебя пригласили', 'Первый разговор по-английски — есть!', 'Доступ можно открыть снова', 'Набор месяца за октябрь', 'сохранений: 214', 'Марк обходит тебя']) {
       expect(mock).toContain(text);
     }
   });

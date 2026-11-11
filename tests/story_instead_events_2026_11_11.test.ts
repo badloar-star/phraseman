@@ -94,8 +94,26 @@ describe('событие instead → данные кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'ref_ended', key: 'x' })).toBeNull();
   });
 
-  it('список видов с источником — пять; остальные 12 кадров ждут своих партий', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended']);
+  it('«Тебя пригласили» и «Первый разговор»: данные события → кадр; битые — нет кадра', () => {
+    expect(insteadTemplateFromPayload({ kind: 'ref_welcome', key: 'once', needsCodeEntry: false })).toEqual({ id: 'instead_ref_welcome', needsCodeEntry: false });
+    expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', studyTarget: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 }))
+      .toEqual({ id: 'instead_first_dialog', studyTarget: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 });
+    expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', studyTarget: 'en', turns: 0, goalsDone: 0, goalsTotal: 5 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', studyTarget: 'en', turns: 6, goalsDone: 6, goalsTotal: 5 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 })).toBeNull();
+  });
+
+  it('список видов с источником — семь; остальные 10 кадров ждут своих партий', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog']);
+  });
+
+  it('реферальное приветствие и первый разговор: прежний путь окна сохранён, отметка — после записи', () => {
+    const welcome = read('components/ReferralWelcomeHost.tsx');
+    expect(welcome).toContain('if (storiesReplaceWindows() && !d.needsCodeEntry) {');
+    expect(welcome).toContain('setWelcomeDecision(d);');
+    const dialog = read('components/dialog_moments/FirstDialogHost.tsx');
+    expect(dialog).toContain('markFirstDialogShown(studyTarget);\n      setOpen(true);');
+    expect(dialog.indexOf('if (!insteadStoryLanded(record))')).toBeLessThan(dialog.indexOf('markFirstDialogShown(studyTarget);\n        }).catch('));
   });
 
   it('вкладка «Друзья»: при выключенных историях окно как раньше, «видел» — после записи', () => {

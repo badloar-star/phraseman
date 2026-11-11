@@ -62,6 +62,15 @@ describe('F18 — lesson words prompt per interface language', () => {
     }
   });
 
+  // зачем (F18, 11.11): у 175 слов испанского курса (уроки 7–32) испанским «пояснением» стояло само слово —
+  // при испанском интерфейсе вопрос совпадал с ответом. Пояснения дописаны (docs/work/classic_gloss_overrides.json).
+  it('Spanish UI on the Spanish course never asks the studied word with the word itself', () => {
+    const same = readLemmas('es')
+      .filter((item) => lessonWordRecognitionPrompt(toWord(item), 'es').trim().toLowerCase() === item.lemma.trim().toLowerCase())
+      .map((item) => item.lemma);
+    expect(same).toEqual([]);
+  });
+
   it('keeps the previous prompt when a word has no separate English meaning', () => {
     const legacy: LessonWordGlossInput = { en: 'book', ru: 'Книга', uk: 'Книжка', es: 'libro', pos: 'nouns' };
     expect(lessonWordRecognitionPrompt(legacy, 'en')).toBe('book');

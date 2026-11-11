@@ -1,4 +1,4 @@
-// Сборщик макета «Pro и VIP — кадрами историй» (владелец 11.11: «Сделать макет»).
+// Сборщик макета «Plus и Ultra — кадрами историй» (владелец 11.11: «Pro нету! есть Ультра и Плюс! переделай!»).
 // зачем: плеер, темы, стили и движение берём 1:1 из одобренного макета историй (stories-plus-offers.html ← stories-templates-v1.html),
 // как у макета «Истории вместо окон»; меняем только список кадров и шапку. Так макет не расходится с плеером приложения.
 // Запуск: node docs/design/v2-app/stories-pro-vip.make.cjs
@@ -23,15 +23,17 @@ let html = fs.readFileSync(SRC, 'utf8');
 const frames = fs.readFileSync(FRAMES, 'utf8');
 
 // 1. заголовок вкладки
-html = between(html, '<title>', '</title>', '<title>Pro и VIP · Шаблоны историй v1', 'title');
+html = between(html, '<title>', '</title>', '<title>Plus и Ultra · Шаблоны историй v1', 'title');
 
 // 2. стили новых кадров: знак в круге (как у макета «Истории вместо окон») и картинка медали
 const CSS = `
-/* ── Pro и VIP (владелец 11.11). Новое — только большой знак Plus (как в макете «Истории вместо окон»). ── */
+/* ── Plus и Ultra (владелец 11.11). Новое — большой знак уровня: Ultra коралловый ✦, Plus фиолетово-синий ◆ (как в пейволе «Два пути»). ── */
 .icn { width: 124px; height: 124px; border-radius: 50%; display: grid; place-items: center; color: var(--acc-b); background: color-mix(in srgb, var(--acc-g) 18%, transparent); box-shadow: 0 0 70px -14px var(--acc-glow); }
 .ph.lt .icn { color: var(--acc-g); }
 .pmark.inl.pbig { width: 112px; height: 112px; filter: drop-shadow(0 16px 34px rgba(255, 95, 143, .5)); }
 .pmark.inl.pbig i { font-size: 50px; }
+.pmark.tplus { filter: drop-shadow(0 16px 34px rgba(142, 124, 255, .5)); }
+.pmark.tplus i { color: #0F0A33; background: linear-gradient(135deg, #A99BFF, #8E7CFF 52%, #5F90DB); }
 .st-swap td:nth-child(3) b { color: #ECECEE; }
 .st-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin: 16px 0 6px; max-width: 1240px; }
 .st-rules div { background: #17181B; border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 21px; color: #C9C9CE; }
@@ -43,19 +45,19 @@ must(html.includes('.pmark.inl.pbig {'), 'вставка стилей');
 
 // 3. шапка страницы и секции
 const swapRows = [
-  ['Праздник после покупки Phraseman Pro', 'Главная, после оплаты', 'кадр 1 «Pro активирован»'],
-  ['Праздник после выдачи VIP командой', 'Главная, после выдачи', 'кадр 2 «Plus активирован» — слова окна VIP'],
+  ['Праздник после покупки месячной подписки или выдачи командой', 'Главная', 'кадр 1 «Plus активирован» — фиолетово-синий знак ◆'],
+  ['Праздник после покупки годовой подписки', 'Главная', 'кадр 2 «Ultra активирован» — коралловый знак ✦'],
   ['Праздник после ввода промокода', 'экран ввода промокода', 'остаётся окном: это ответ на нажатие самого человека'],
 ];
 const swapTable = `<tr><th>Что всплывало</th><th>Когда</th><th>Что стало</th></tr>` +
   swapRows.map(([was, when, now]) => `<tr><td>${was}</td><td>${when}</td><td>${now}</td></tr>`).join('');
 
-const HEAD = `<h1>Pro и VIP · ${COUNT} кадра историй</h1>
-  <p class="st-lead">Праздничные окна после покупки Pro и после выдачи VIP открывались сами поверх Главной. Теперь это кадры в «Историях».</p>
+const HEAD = `<h1>Plus и Ultra · ${COUNT} кадра историй</h1>
+  <p class="st-lead">Праздничное окно после покупки или выдачи подписки открывалось само поверх Главной. Теперь это кадр в «Историях» — свой у каждого уровня.</p>
   <div class="st-rules">
-    <div><b>Слова те же, что в окне</b>«Pro активирован», «Plus активирован», «Уроки и тренировки не уменьшают запас энергии», «К занятиям» — из окна дословно.</div>
-    <div><b>VIP говорит «Plus»</b>Так устроено окно VIP в приложении: своя у него только зелёная палитра. Кадр повторяет слова окна, нового названия не придумывает.</div>
-    <div><b>Промокод остаётся окном</b>Праздник после ввода промокода появляется на экране ввода кода в ответ на нажатие самого человека — это не всплывающее окно.</div>
+    <div><b>Уровень — как во всём приложении</b>Месячная подписка — Plus, годовая — Ultra. Выдача командой и неизвестный план — Plus: Ultra по догадке не показываем.</div>
+    <div><b>Различаются знаком</b>Ultra — коралловый градиент и звезда ✦, Plus — фиолетово-синий и ромб ◆, ровно как в окне покупки «Два пути».</div>
+    <div><b>Промокод остаётся окном</b>Праздник после ввода промокода появляется на экране ввода кода в ответ на нажатие самого человека.</div>
   </div>
   `;
 html = between(html, '<h1>', '<div class="st-bar" id="bar">', HEAD, 'шапка страницы');
@@ -66,7 +68,7 @@ html = between(html, '<h2 id="gallery-h">', '<div class="st-grid" id="gallery">'
   <p class="st-lead">Над телефоном написано, какое окно заменяет кадр. Каждый телефон повторяет свой кадр каждые 10 с. Тап влево и вправо листает.</p>
   `, 'секция галереи');
 html = between(html, '<h2 id="map-h">', '</div>\n\n<script>window.__THEMES', `<h2 id="swap-h">Было окно → стало кадр</h2>
-  <p class="st-lead">Праздничные окна открывались сами поверх Главной после оплаты или выдачи.</p>
+  <p class="st-lead">Праздничное окно открывалось само поверх Главной после оплаты или выдачи.</p>
   <div class="st-map-wrap"><table class="st-map st-swap" id="swap">${swapTable}</table></div>
 
   <h2 id="map-h">Опись новых кадров</h2>

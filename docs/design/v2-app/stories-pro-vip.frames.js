@@ -1,16 +1,17 @@
-/* ── помощники кадров поздравлений Pro и VIP ── */
-const pbig = (d = 160, cls = '') => `<span class="pmark inl pbig pop ${cls}" style="--d:${d}ms"><i>✦</i></span>`;
+/* ── помощники кадров «подписка подключена» ──
+   знак уровня — как в пейволе «Два пути» (PaywallDuoHero): Ultra — коралловый градиент и звезда ✦, Plus — фиолетово-синий и ромб ◆ */
+const pbig = (tier, d = 160) => `<span class="pmark inl pbig pop ${tier === 'plus' ? 'tplus' : ''}" style="--d:${d}ms"><i>${tier === 'plus' ? '◆' : '✦'}</i></span>`;
 
 /* ── шаблоны: id · имя · группа · статус · когда · данные · кадр ──
-   зачем (владелец 11.11: «Сделать макет»): праздничные окна после покупки Phraseman Pro и после выдачи VIP командой.
-   Тексты — дословно из окна (components/premium_celebration/celebrationLiquidCopy.ts). У VIP окно говорит «Plus» —
-   так устроено в приложении (у VIP своя только зелёная палитра окна), кадр повторяет это. Данные — пример. */
+   зачем (владелец 11.11: «Pro нету! есть Ультра и Плюс! переделай! они отличаются иконки по цвету»): праздничное окно после покупки
+   или выдачи подписки приходит кадром. Уровень берётся из продукта магазина (месячная — Plus, годовая — Ultra; выдача командой и
+   прочее — Plus), как во всём приложении (app/subscription_tier.ts). Тексты — из окна (celebrationLiquidCopy). Данные — пример. */
 const TPL = [
-  { id: 'pro_on', name: 'Pro активирован', group: 'Plus', kind: 'new', ev: 'pro_activated (новое)', when: 'взамен праздничного окна после покупки Phraseman Pro на Главной', data: '—', motion: 'знак встаёт, конфетти один раз',
+  { id: 'sub_plus', name: 'Plus активирован', group: 'Подписка', kind: 'new', ev: 'plus_activated (уровень plus)', when: 'взамен праздничного окна на Главной после покупки месячной подписки или выдачи командой', data: 'tier', motion: 'знак встаёт, конфетти один раз',
     cta: { label: 'К занятиям', icon: 'play' },
-    render: () => `${confetti(18, 600)}<div class="art">${pbig(160)}</div><div class="ov a" style="--d:380ms">Pro</div><div class="h1">${words('Pro активирован', 460)}</div><div class="p a" style="--d:760ms">Уроки и тренировки не уменьшают запас энергии.</div>` },
+    render: () => `${confetti(18, 600)}<div class="art">${pbig('plus')}</div><div class="ov a" style="--d:380ms">Plus</div><div class="h1">${words('Plus активирован', 460)}</div><div class="p a" style="--d:760ms">Уроки и тренировки не уменьшают запас энергии.</div>` },
 
-  { id: 'vip_on', name: 'VIP · Plus активирован', group: 'Plus', kind: 'new', ev: 'vip_granted (новое)', when: 'взамен праздничного окна после выдачи VIP командой на Главной · окно активации промокода на своём экране остаётся: это ответ на ввод кода', data: '—', motion: 'знак встаёт, конфетти один раз',
+  { id: 'sub_ultra', name: 'Ultra активирован', group: 'Подписка', kind: 'new', ev: 'plus_activated (уровень ultra)', when: 'взамен праздничного окна на Главной после покупки годовой подписки', data: 'tier', motion: 'знак встаёт, конфетти один раз',
     cta: { label: 'К занятиям', icon: 'play' },
-    render: () => `${confetti(18, 600)}<div class="art">${pbig(160)}</div><div class="ov a" style="--d:380ms">Plus включён</div><div class="h1">${words('Plus активирован', 460)}</div><div class="p a" style="--d:760ms">Всё на месте — теперь ещё и с Plus.</div>` },
+    render: () => `${confetti(18, 600)}<div class="art">${pbig('ultra')}</div><div class="ov a" style="--d:380ms">Ultra</div><div class="h1">${words('Ultra активирован', 460)}</div><div class="p a" style="--d:760ms">Уроки и тренировки не уменьшают запас энергии.</div>` },
 ];

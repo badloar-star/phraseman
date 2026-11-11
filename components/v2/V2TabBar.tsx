@@ -56,9 +56,11 @@ const ICON_SIZE = 28;
 const HOLD_TO_DRAG_MS = 170;
 const DRAG_SLOP = 8;
 // зачем: на Android BlurView без экспериментального режима ничего не размывает,
-// а экспериментальный режим пересчитывается каждый кадр скролла. Поэтому там
-// та же тёмная стеклянная заливка, но плотнее — текст под капсулой не читается
-// (владелец: «прозрачный с затемнением, не насквозь»).
+// а экспериментальный режим пересчитывается каждый кадр скролла — там размытия нет вовсе.
+// Заливка капсулы плотная на ОБЕИХ платформах — содержимое под панелью не читается и не красит её
+// (владелец: «прозрачный с затемнением, не насквозь»; 24.09: «ТАББАР НЕ ДОЛЖЕН БЫТЬ ПРОЗРАЧНЫМ»).
+const TAB_GLASS_ALPHA_TOP = 0.90;
+const TAB_GLASS_ALPHA_BOTTOM = 0.94;
 const CAP_SPRING = { stiffness: 260, damping: 19, mass: 1, useNativeDriver: true } as const;
 // Слежение за пальцем: быстро, без перелёта — капсула «едет» за ним, а не прыгает.
 const CAP_FOLLOW_SPRING = { stiffness: 700, damping: 48, mass: 0.7, useNativeDriver: true } as const;
@@ -143,9 +145,10 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     ? (liquidGlassThemeId.includes('_ref_')
         ? ([palette.premiumDock, palette.bg] as const)
         : ([palette.premiumDock, palette.premiumDock] as const))
-    : Platform.OS === 'ios'
-      ? ([alphaHex(palette.opaqueControl, 0.64), alphaHex(palette.bgBottom, 0.76)] as const)
-      : ([alphaHex(palette.opaqueControl, 0.90), alphaHex(palette.bgBottom, 0.94)] as const),
+    // зачем (владелец 11.11: «когда перемещается по вкладкам, цвет вкладки и иконки меняется и становится прозрачным»; правило 24.09 «ТАББАР НЕ ДОЛЖЕН БЫТЬ ПРОЗРАЧНЫМ»):
+    // на iOS заливка была 0,64 → 0,76 — сквозь панель было видно страницу, и при перелистывании цвет панели, плашки и значков «плавал» вслед за тем, что проезжает под ней.
+    // Плотность одна на обе платформы (как была на Android); размытие на iOS остаётся — лёгкая глубина, а не окно. Сторож: tests/tabbar_glass_opaque_2026_11_11.test.cjs
+    : ([alphaHex(palette.opaqueControl, TAB_GLASS_ALPHA_TOP), alphaHex(palette.bgBottom, TAB_GLASS_ALPHA_BOTTOM)] as const),
   [liquidGlassThemeId, palette.aurora, palette.bg, palette.bgBottom, palette.opaqueControl, palette.premiumDock]);
   const count = items.length;
   // зачем (владелец 11.10, «кнопки справа обрезаны»): боковые отступы считаем от ширины ОКНА и безопасных зон слева/справа, а капсула

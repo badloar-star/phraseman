@@ -11,6 +11,7 @@ import auth from '@react-native-firebase/auth';
 import { isDevCardsFail, isDevPublishOk } from '../dev_cards_state';
 
 import { getCanonicalUserId } from '../user_id_policy';
+import { withCallableTimeout } from '../callable_timeout';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { callCommunitySubmitPackForReview, callCommunityAuthorRemovePack, isCommunityPacksCloudEnabled } from './functionsClient';
 import { loadLocalAuthorPacks, updateLocalPackPublication } from './localAuthorPacks';
@@ -186,13 +187,20 @@ export async function publishLocalAuthorPack(
     });
 
     const sendWithKey = async (key: string, attempt: 'first' | 'retry-after-withdrawn') => {
-      const result = await callCommunitySubmitPackForReview({
-        authorStableId: authorStableId ?? '',
-        payload: buildCommunityPackPayloadForCloud(payload),
-        submissionKey: key,
-        replacePending: true,
-        ...(cloudPackId ? { updatePackId: cloudPackId } : {}),
-      });
+      // зачем (аудит загрузок 11.11, владелец «публикация набора»): у вызова не было потолка — на «висящей» сети экран создания
+      // набора был занят больше минуты (дефолт Firebase ~70 с). Теперь 30 с (общий порог callable_timeout): отказ уходит в
+      // общий catch ниже → 'error' → «Набор сохранён, публикация не завершена». Повтор безопасен: ключ заявки стабилен,
+      // сервер обновит ту же заявку, даже если первый запрос всё-таки дошёл.
+      const result = await withCallableTimeout(
+        callCommunitySubmitPackForReview({
+          authorStableId: authorStableId ?? '',
+          payload: buildCommunityPackPayloadForCloud(payload),
+          submissionKey: key,
+          replacePending: true,
+          ...(cloudPackId ? { updatePackId: cloudPackId } : {}),
+        }),
+        'communitySubmitPackForReview',
+      );
       if (!isCurrentAccountGeneration(token)) {
         logPublish('exit:account_changed', { packId: id, at: 'after submit returned', attempt, submissionId: result.submissionId });
         return null;

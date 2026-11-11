@@ -5,6 +5,7 @@ import {
   subscribeAccountGeneration,
   type AccountGenerationToken,
 } from '../account_generation';
+import { starsWeekBuckets } from '../stars_view';
 
 export const STARS_WEEK_SNAPSHOT_SCHEMA_VERSION = 'stars-week-snapshot.v1' as const;
 export const OWN_AUTHORITATIVE_WEEK_SCORE_SCHEMA_VERSION = 'own-authoritative-week-score.v1' as const;
@@ -71,30 +72,15 @@ export function parseStarsWeekSnapshotV1(value: unknown): StarsWeekSnapshotV1 | 
 }
 
 export function parseRawStarsWeekSnapshotV1(value: unknown): StarsWeekSnapshotV1 | null {
-  if (
-    !isRecord(value)
-    || !isNonNegativeSafeInteger(value.seq)
-    || !isWeekKey(value.weekKey)
-    || !isNonNegativeSafeInteger(value.weekEarned)
-  ) return null;
-  const prevWeekKey = value.prevWeekKey;
-  const prevWeekEarned = value.prevWeekEarned;
-  let previous: StarsWeekSnapshotV1['previous'] = null;
-  if (prevWeekKey !== undefined && prevWeekKey !== '') {
-    if (
-      !isWeekKey(prevWeekKey)
-      || prevWeekKey === value.weekKey
-      || !isNonNegativeSafeInteger(prevWeekEarned)
-    ) return null;
-    previous = Object.freeze({ weekKey: prevWeekKey, earned: prevWeekEarned });
-  } else if (prevWeekEarned !== undefined && prevWeekEarned !== 0) {
-    return null;
-  }
+  if (!isRecord(value) || !isNonNegativeSafeInteger(value.seq)) return null;
+  // зачем: недельный счётчик читается только вместе со своим ключом недели — через проекцию (правило линта D-11).
+  const buckets = starsWeekBuckets(value);
+  if (!buckets) return null;
   return Object.freeze({
     schemaVersion: STARS_WEEK_SNAPSHOT_SCHEMA_VERSION,
     seq: value.seq,
-    current: Object.freeze({ weekKey: value.weekKey, earned: value.weekEarned }),
-    previous,
+    current: buckets.current,
+    previous: buckets.previous,
   });
 }
 

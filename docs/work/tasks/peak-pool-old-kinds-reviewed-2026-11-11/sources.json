@@ -1,0 +1,125 @@
+{
+ "note": "Источник: папка автора (только чтение). Последние версии candidates и ui-en-ru каждого батча на 11.11.2026.",
+ "sources": [
+  {
+   "batch": "en-b008",
+   "candidates": "candidates-v2.json",
+   "candidatesSha256": "66927d77d07c86a7776c2c57a7a3d038644f58e77496befc41e6d99a880d5faf",
+   "ui": "ui-en-ru-v2.json",
+   "uiSha256": "1fc883619be093a75ccfa4f6456713f1972715cc2d7faf28ebdfc6e9fd9a0ae8",
+   "records": 50
+  },
+  {
+   "batch": "en-b009",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "539090db196806fe78da62252d5944c1c8ed6ce50ef548093d2b25416349a440",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "52ebace431b0e5c06ca91f743ef82b3ce6d419e04c5e402083c8b04216688066",
+   "records": 50
+  },
+  {
+   "batch": "en-b010",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "ca18b1ad0215eee5a98e4b5b5712605710b0f52660305eb9d597e5255733df21",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "b7c8ac7dd2354059ba339643328ade6de8ceb4681f9b8dab94df3e0a7ba4e6a9",
+   "records": 50
+  },
+  {
+   "batch": "es-b008",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "09ace91cbd4b93c626ab6aa93aef16951587399d0088030d6f4d423de5656358",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "9c275ef9f693373d7ec831d4d864cbe8614b02f1bb75ce3e9ffc84a9856e1967",
+   "records": 50
+  },
+  {
+   "batch": "es-b009",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "5ced30bf661f76c064559a80e9e07515d6acea00db6e83c523634956ad2dc794",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "3adc026d1c18a6ce41740eb6c7b8a0c26419cd191d6c83f59674a7273e592de4",
+   "records": 50
+  },
+  {
+   "batch": "es-b010",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "7b7266713ae0f6a9b7dc4bbdc39ada4e1493b1722179ac72346710386524945c",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "36ed4aa6dcbc0cdb7b3de53f53393da62fc28457313a63992f27dd57e4b84f0d",
+   "records": 50
+  },
+  {
+   "batch": "de-b008",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "81ab7dbdb9194b9f47a46c0ceee0a61ef60b20bac63b4b9b81ea92a71035072b",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "b0e3fd17ed63162853bb8ad694618b548c0594df8fa0e54ed8110dbfa56d3322",
+   "records": 50
+  },
+  {
+   "batch": "de-b009",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "08c32faa4e6ae42bef62d2c3cc37b8fc30611ac581958e2bfad560f71ea23fd0",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "74c030585e62a396630c1eff6c37b2e0aec3575cec60d8d1eb923f2ab511ae44",
+   "records": 50
+  },
+  {
+   "batch": "de-b010",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "61f7325587dde152361c905f2ac1807f74eef27906db4ad95757f9be34c648b3",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "5b93ba209b63f1af901d1a0b861c803f93c43e05908e430fcf2d757baf1162a9",
+   "records": 50
+  },
+  {
+   "batch": "fr-b008",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "8a77652323ce3aff24168524343a22466fcc6fd13987fe27c574f024b2a6e1e3",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "7c90d9771737381c2a7c465a504f20bf96d1e9970d519a470fee554feab94a6f",
+   "records": 50
+  },
+  {
+   "batch": "fr-b009",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "cb6c0ff2a9be665b6501fb2e314f38a9350eb2bd392750542b00f60533421bac",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "5a28fe5ba724c00f3c5e7bfcb9be21753ed1abe34345796a0b68da92723281d2",
+   "records": 50
+  },
+  {
+   "batch": "fr-b010",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "d6fd6321855812e8a873eb56427daaf76615ca2afb74f42090a125739f17e684",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "20d9b597743ed7e7f38736cedcd4ae27dba2a812d5eeb188d86dcc35295cf719",
+   "records": 50
+  },
+  {
+   "batch": "it-b008",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "579e03b7b3c65cfd6a76032bee410259d073348b33f5bdac2ce4a412fe7cf2b1",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "a19da042fe1be7347ee50f009a235c17e6262aaa65e733cb4cd00ecbce2eeb82",
+   "records": 50
+  },
+  {
+   "batch": "it-b009",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "448efcbf1e2489c949de4e8cd6ee33061df7fda9fc6bb65c636fa720f4fe61b0",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "7627742a8e8663829a30d964b77749fe0c36f148d542f2fb6420a1cd98df15a1",
+   "records": 50
+  },
+  {
+   "batch": "it-b010",
+   "candidates": "candidates-v1.json",
+   "candidatesSha256": "980237840bbd67664a095771eb16b0e15c872d84b2b4e881b340eccba7d4a943",
+   "ui": "ui-en-ru-v1.json",
+   "uiSha256": "82fad7085da2b17ec982a15fd5b92519e82b843f71854a42e07fb30321fcd539",
+   "records": 50
+  }
+ ]
+}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhraseMan — сверка: было, макет, приложение</title>
+<style>
+  :root { --bg: #0e1014; --panel: #171a20; --ink: #f2f3f5; --ink2: #a6adba; --ok: #5fd08a; --warn: #f0b95a; --line: rgba(255,255,255,.08); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .page { max-width: 1240px; margin: 0 auto; padding: 32px 20px 80px; }
+  h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.4px; text-wrap: balance; }
+  .lead { color: var(--ink2); margin: 0 0 12px; max-width: 78ch; }
+  .sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 22px 0 8px; }
+  .sum div { background: var(--panel); border-radius: 16px; padding: 14px 16px; }
+  .sum b { display: block; font-size: 26px; line-height: 30px; font-variant-numeric: tabular-nums; }
+  .sum span { color: var(--ink2); font-size: 14px; }
+  section { margin-top: 44px; }
+  h2 { font-size: 22px; line-height: 28px; margin: 0 0 4px; }
+  .note { color: var(--ink2); margin: 0 0 16px; max-width: 80ch; }
+  .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
+  .col { background: var(--panel); border-radius: 20px; padding: 14px; }
+  .col h3 { margin: 0 0 10px; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink2); font-weight: 700; }
+  .col img { display: block; width: 100%; height: auto; border-radius: 14px; }
+  .none { display: flex; align-items: center; justify-content: center; text-align: center; aspect-ratio: 9 / 20; border-radius: 14px; background: rgba(255,255,255,.04); color: var(--ink2); padding: 16px; }
+  .row3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  ul.diff { margin: 14px 0 0; padding-left: 20px; color: var(--ink2); max-width: 86ch; }
+  ul.diff li { margin: 4px 0; }
+  ul.diff b { color: var(--ink); font-weight: 600; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 9px; margin-right: 6px; vertical-align: 1px; }
+  .tag.ok { background: rgba(95,208,138,.16); color: var(--ok); }
+  .tag.df { background: rgba(240,185,90,.16); color: var(--warn); }
+  @media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Сверка: было — одобренный макет — снято с приложения</h1>
+  <p class="lead">Первый запуск перенесённых экранов на телефоне, 11 ноября. Слева — приложение до переноса, по центру — макет, который вы одобрили, справа — настоящий кадр с эмулятора. Под каждым экраном перечислено, чем приложение сейчас отличается от макета. Тема на эмуляторе зелёная, на макете — светлая стандартная: цвета фона отличаются из-за темы, а не из-за переноса.</p>
+  <div class="sum">
+    <div><b>5</b><span>экранов снято с приложения</span></div>
+    <div><b>немецкий</b><span>язык аккаунта на эмуляторе — игры с английскими заданиями на нём закрыты</span></div>
+    <div><b>0</b><span>очков на кадрах: аккаунт до этого не играл</span></div>
+  </div>
+
+  <section>
+    <h2>Экран «Сегодня»: строка разминки</h2>
+    <p class="note">Разминка стоит отдельной строкой над тремя заданиями дня и в счёт «N из 3» не входит.</p>
+    <div class="cols">
+      <div class="col"><h3>Было</h3><img src="assets/elevate-was/today.jpg" alt="Экран «Сегодня» до переноса"></div>
+      <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_today.jpg" alt="Макет экрана «Сегодня» с разминкой"></div>
+      <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_today.jpg" alt="Экран «Сегодня» в приложении со строкой разминки"></div>
+    </div>
+    <ul class="diff">
+      <li><span class="tag ok">совпало</span>Строка над заданиями, кнопка-треугольник, деления, счётчик; три задания на месте.</li>
+      <li><span class="tag df">отличие</span><b>Строка внутри панели «Задания дня»</b>, а в макете — отдельным блоком «Разминка · не входит в три задания».</li>
+      <li><span class="tag df">отличие</span><b>Счётчик «0/1»</b>: для немецкого доступна одна игра. На английском будет «0/3».</li>
+      <li><span class="tag df">отличие</span>Нет подписи «Три игры из твоих ошибок»: разминка пока не собирается из ошибок.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>«Серия и результаты»: блок «Навыки»</h2>
+    <p class="note">Блок стоит после последних достижений и до блоков Plus; нажатие открывает экран «Навыки».</p>
+    <div class="cols">
+      <div class="col"><h3>Было</h3><img src="assets/elevate-was/stats.jpg" alt="Статистика до переноса"></div>
+      <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_stats.jpg" alt="Макет статистики с блоком навыков"></div>
+      <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_stats.jpg" alt="Статистика в приложении с блоком навыков"></div>
+    </div>
+    <ul class="diff">
+      <li><span class="tag ok">совпало</span>Звезда слева, шесть строк «название — полоска — уровень» справа, заголовок «Навыки».</li>
+      <li><span class="tag df">отличие</span><b>Блок стоит ниже, чем в макете</b>: в макете он сразу после «Твоей недели», в приложении — после достижений.</li>
+      <li><span class="tag df">отличие</span>Нет подписи «Нажатие открывает экран „Навыки“» — по запрету на подписи-расшифровки.</li>
+      <li><span class="tag df">отличие</span>На кадре «Социальный» обрезан на одну букву; колонка уже расширена, пересниму.</li>
+      <li><span class="tag df">отличие</span>Блоков «Рекорды игр» и «Быстрее, чем 72%» ещё нет.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Экран «Навыки»</h2>
+    <p class="note">Нового экрана раньше не существовало.</p>
+    <div class="cols">
+      <div class="col"><h3>Было</h3><div class="none">Экрана не было</div></div>
+      <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_sk-skills.jpg" alt="Макет экрана «Навыки»"></div>
+      <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_skills.jpg" alt="Экран «Навыки» в приложении"></div>
+    </div>
+    <ul class="diff">
+      <li><span class="tag ok">совпало</span>Шапка, «Индекс речи», звезда с шестью подписями, шесть строк с уровнем и приростом за неделю, кнопка «Подтянуть».</li>
+      <li><span class="tag df">отличие</span>Нет пилюли «Уверенный · A2»: не задано правило, по которому выбирается подпись.</li>
+      <li><span class="tag df">отличие</span>Все значения нулевые — на этом аккаунте ещё не играли; фигура звезды появится с первыми очками.</li>
+      <li><span class="tag df">отличие</span>«Подтянуть» предлагает «Слух», а не самый слабый по макету: при равных нулях берётся первый учебный навык.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Разминка на 4 минуты</h2>
+    <p class="note">Экран ведёт по играм дня одной кнопкой.</p>
+    <div class="cols">
+      <div class="col"><h3>Было</h3><div class="none">Экрана не было</div></div>
+      <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_workout.jpg" alt="Макет разминки"></div>
+      <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_warmup.jpg" alt="Разминка в приложении"></div>
+    </div>
+    <ul class="diff">
+      <li><span class="tag ok">совпало</span>Дата, заголовок «3 игры на 4 минуты», карта игры с навыком, названием и описанием, точки и полоса прогресса.</li>
+      <li><span class="tag df">отличие</span><b>Одна карта вместо трёх</b>: аккаунт учит немецкий. Заголовок при этом всё равно говорит «3 игры» — это ошибка, исправлю.</li>
+      <li><span class="tag df">отличие</span>На карте нет рисунка игры и нет веера из трёх карт.</li>
+      <li><span class="tag df">отличие</span>Нет плашки монет и подписи «Собраны из твоих ошибок за неделю».</li>
+      <li><span class="tag df">отличие</span>На кадре кнопку «Начать» закрывает служебное предупреждение разработчика; в сборке для людей его нет.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Игра «Поток»</h2>
+    <p class="note">Сыгран один раунд на немецкой фразе урока: отсчёт, слова по одному, три варианта, вердикт.</p>
+    <div class="cols">
+      <div class="col"><h3>Было</h3><div class="none">Игры не было</div></div>
+      <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_flow.jpg" alt="Макет игры «Поток»"></div>
+      <div class="col"><h3>Снято с приложения</h3>
+        <div class="row3">
+          <img src="assets/elevate-app/app_flow_words.jpg" alt="«Поток»: слова появляются">
+          <img src="assets/elevate-app/app_flow_answers.jpg" alt="«Поток»: варианты ответа">
+          <img src="assets/elevate-app/app_flow_verdict.jpg" alt="«Поток»: вердикт">
+        </div>
+      </div>
+    </div>
+    <ul class="diff">
+      <li><span class="tag ok">совпало</span>Шапка с темпом и счётчиком, полоса раундов, слова по одному, полоса под фразой, вопрос «Что было сказано?», три варианта, после ответа — фраза целиком и перевод.</li>
+      <li><span class="tag df">отличие</span>Слова проявляются без размытия.</li>
+      <li><span class="tag df">отличие</span>Неверные варианты — переводы других фраз урока, а в макете они отличаются от верного одним словом.</li>
+      <li><span class="tag df">отличие</span>После промаха нет слов «фраза уйдёт в „Ошибки“»: раздел ошибок ещё не подключён.</li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>

@@ -30,7 +30,9 @@
   .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 9px; margin-right: 6px; vertical-align: 1px; }
   .tag.ok { background: rgba(95,208,138,.16); color: var(--ok); }
   .tag.df { background: rgba(240,185,90,.16); color: var(--warn); }
-  @media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+  /* зачем (владелец 11.11: «тут ничего нет»): у нового экрана колонки «было» нет вовсе — пустая плашка ничего не сообщала */
+  .cols.two { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 820px; }
+  @media (max-width: 760px) { .cols, .cols.two { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -78,9 +80,9 @@
 
   <section>
     <h2>Экран «Навыки»</h2>
-    <p class="note">Нового экрана раньше не существовало.</p>
-    <div class="cols">
-      <div class="col"><h3>Было</h3><div class="none">Экрана не было</div></div>
+    <p class="note">Новый экран: раньше его в приложении не было, поэтому колонки «было» нет.</p>
+    <div class="cols two">
+      
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_sk-skills.jpg" alt="Макет экрана «Навыки»"></div>
       <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_skills.jpg" alt="Экран «Навыки» в приложении"></div>
     </div>
@@ -94,9 +96,9 @@
 
   <section>
     <h2>Разминка на 4 минуты</h2>
-    <p class="note">Экран ведёт по играм дня одной кнопкой.</p>
-    <div class="cols">
-      <div class="col"><h3>Было</h3><div class="none">Экрана не было</div></div>
+    <p class="note">Новый экран: ведёт по играм дня одной кнопкой.</p>
+    <div class="cols two">
+      
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_workout.jpg" alt="Макет разминки"></div>
       <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_warmup.jpg" alt="Разминка в приложении"></div>
     </div>
@@ -111,9 +113,9 @@
 
   <section>
     <h2>Игра «Поток»</h2>
-    <p class="note">Сыгран один раунд на немецкой фразе урока: отсчёт, слова по одному, три варианта, вердикт.</p>
-    <div class="cols">
-      <div class="col"><h3>Было</h3><div class="none">Игры не было</div></div>
+    <p class="note">Новая игра. Сыгран один раунд на немецкой фразе урока: отсчёт, слова по одному, три варианта, вердикт.</p>
+    <div class="cols two">
+      
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_flow.jpg" alt="Макет игры «Поток»"></div>
       <div class="col"><h3>Снято с приложения</h3>
         <div class="row3">

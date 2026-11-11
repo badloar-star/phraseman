@@ -5,10 +5,10 @@
 // кадр итога недели должен открываться мгновенно и без сети, поэтому 12 картинок лежат в бандле (~1,1 МБ), а не тянутся из облака.
 // Порядок строк = порядок лиг (tier 0 Гранит … 11 Алмаз, modules/spire/tier_names.ts) — менять его нельзя.
 // ═══════════════════════════════════════════════════════════════════════════
-import type { ImageSourcePropType } from 'react-native';
 import { clampSpireTierIndex, SPIRE_TIER_COUNT } from '../../../modules/spire/tier_names';
 
-const STATUES: readonly ImageSourcePropType[] = [
+// зачем: require картинки в React Native — число (номер ресурса бандла); его принимают и Image, и expo-image
+const STATUES: readonly number[] = [
   require('../../../assets/images/spire-achievements/spire_summit_granite.webp'),
   require('../../../assets/images/spire-achievements/spire_summit_basalt.webp'),
   require('../../../assets/images/spire-achievements/spire_summit_marble.webp'),
@@ -27,8 +27,9 @@ const STATUES: readonly ImageSourcePropType[] = [
 export const SPIRE_LEAGUE_STATUE_COUNT = STATUES.length;
 
 /** Статуэтка лиги по её номеру; битое число из кэша прижимается к 0…11 и кадр не падает. */
-export function spireLeagueStatue(tier: unknown): ImageSourcePropType {
-  return STATUES[clampSpireTierIndex(tier)] ?? STATUES[0];
+export function spireLeagueStatue(tier: unknown): number {
+  // индекс прижат к 0…11, а картинок ровно 12 — значение есть всегда
+  return STATUES[clampSpireTierIndex(tier)] as number;
 }
 
 /** true — картинок ровно столько, сколько лиг (проверка порядка и полноты списка). */

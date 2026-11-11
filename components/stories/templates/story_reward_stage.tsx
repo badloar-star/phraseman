@@ -8,9 +8,11 @@
 // Анимируются только сдвиг, масштаб и прозрачность — на UI-треде, без setState в кадрах.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useMemo } from 'react';
-import { Image, StyleSheet, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
+import { StyleSheet, View, useWindowDimensions } from 'react-native';
+// зачем: картинку рисует expo-image — тот же компонент, что у арта ачивок (кэш и быстрая отрисовка), и он уже есть в подменах сторожей просмотра
+import { Image } from 'expo-image';
 import MaskedView from '@react-native-masked-view/masked-view';
-import Svg, { Defs, Ellipse, LinearGradient as SvgLinearGradient, Polygon, RadialGradient, Stop } from 'react-native-svg';
+import Svg, { Defs, Ellipse, LinearGradient as SvgLinearGradient, Path, RadialGradient, Stop } from 'react-native-svg';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { LinearGradient } from '../../SafeLinearGradient';
 import { cubicBezier, EASE_CSS_IN_OUT, EASE_OUT, frameMs, loop, phase, useStoryFrameClock } from './story_frame_clock';
@@ -53,7 +55,7 @@ export const StageLight = memo(function StageLight({ variant }: Readonly<{ varia
     return CONE_STEPS.map((step) => {
       const t = width * step.top;
       const b = width * step.bottom;
-      return `${topX - t},0 ${topX + t},0 ${bottomX + b},${bottomY} ${bottomX - b},${bottomY}`;
+      return `M${topX - t},0 L${topX + t},0 L${bottomX + b},${bottomY} L${bottomX - b},${bottomY} Z`;
     });
   }, [variant, width, height]);
   return (
@@ -66,7 +68,7 @@ export const StageLight = memo(function StageLight({ variant }: Readonly<{ varia
             <Stop offset="1" stopColor={color} stopOpacity={0} />
           </SvgLinearGradient>
         </Defs>
-        {cones.map((points) => <Polygon key={points} points={points} fill="url(#rewardCone)" />)}
+        {cones.map((d) => <Path key={d} d={d} fill="url(#rewardCone)" />)}
       </Svg>
     </Enter>
   );
@@ -107,7 +109,7 @@ export const StageDust = memo(function StageDust() {
 
 // ── статуэтка: пятно света под ней, отражение в полу, блик строго по силуэту ────────────────────────────────────────────
 
-type StatueProps = Readonly<{ source: ImageSourcePropType; size: number; /** Когда по статуэтке проходит блик, мс; null — блика нет. */ glintAt: number | null; label?: string }>;
+type StatueProps = Readonly<{ source: number; size: number; /** Когда по статуэтке проходит блик, мс; null — блика нет. */ glintAt: number | null; label?: string }>;
 
 const Glint = memo(function Glint({ size, at }: Readonly<{ size: number; at: number }>) {
   const pal = useStoryTemplatePalette();
@@ -147,12 +149,12 @@ export const Statue = memo(function Statue({ source, size, glintAt, label }: Sta
       {/* отражение: та же картинка вверх ногами, маска гасит её книзу */}
       <MaskedView pointerEvents="none" style={[s.abs, { top: size * 0.92, width: size, height: size * 0.42 }]}
         maskElement={<LinearGradient colors={['black', 'transparent']} style={StyleSheet.absoluteFill} />}>
-        <Image source={source} resizeMode="contain" accessible={false} style={[box, s.reflection]} />
+        <Image source={source} contentFit="contain" accessible={false} style={[box, s.reflection]} />
       </MaskedView>
-      <Image source={source} resizeMode="contain" accessible={false} style={[s.abs, box]} />
+      <Image source={source} contentFit="contain" accessible={false} style={[s.abs, box]} />
       {/* блик: полоса света видна только там, где есть сама статуэтка */}
       {glintAt !== null && !final ? (
-        <MaskedView pointerEvents="none" style={[s.abs, box]} maskElement={<Image source={source} resizeMode="contain" accessible={false} style={box} />}>
+        <MaskedView pointerEvents="none" style={[s.abs, box]} maskElement={<Image source={source} contentFit="contain" accessible={false} style={box} />}>
           <Glint size={size} at={glintAt} />
         </MaskedView>
       ) : null}
@@ -164,8 +166,8 @@ export const Statue = memo(function Statue({ source, size, glintAt, label }: Sta
 
 type SwapProps = Readonly<{
   /** Статуэтка прежней лиги; null — лига не менялась, на сцене одна статуэтка. */
-  from: ImageSourcePropType | null;
-  to: ImageSourcePropType;
+  from: number | null;
+  to: number;
   size: number;
   /** +1 — лига выше, −1 — ниже, 0 — та же. */
   dir: 1 | 0 | -1;

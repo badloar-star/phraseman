@@ -384,15 +384,7 @@ export default function SettingsNotifications() {
     void persistPrefs({ ...cur, categories: { ...cur.categories, [cat]: v } }, v);
   };
 
-  // зачем (раунд 2, Настройки п.2: «Не щёлкать 8 тумблеров»): «Только главное» — остаются напоминание (расписание не трогаем) и «серия под угрозой», остальные категории выключаются одним тапом; запись и откат — общий persistPrefs
-  const onlyMainCategories: NotifCategory[] = ['phrase_of_day', 'energy', 'weekly_recap', 'monthly_recap', 'spire', 'friends', 'offers', 'gifts'];
-  const applyOnlyMain = () => {
-    const cur = prefsRef.current;
-    const categories = { ...cur.categories, streak: true };
-    for (const cat of onlyMainCategories) categories[cat] = false;
-    console.log(`[NOTIF-ONLY-MAIN] применено: выключено=${onlyMainCategories.filter((cat) => cur.categories[cat]).join(',') || 'ничего'}`); // guard-ok: значение, решившее запись
-    void persistPrefs({ ...cur, categories }, true);
-  };
+  // зачем (владелец 11.11: «удали кнопку "только главное" в разделе уведомления»): массового выключения нет — каждая категория меняется своим тумблером.
 
   const toggleDaily = (v: boolean) => {
     const cur = sRef.current;
@@ -439,7 +431,6 @@ export default function SettingsNotifications() {
   // зачем: паритет profile.html PRF-04 (13.10) — Шпиль в первом выпуске, его пуши можно выключить отдельно.
   const spireLabel = L({ ru:'События Пика', uk:'Події Піку', en:'Peak events', es:'Eventos del Pico', 'pt-BR':'Eventos do Pico', vi:'Sự kiện Đỉnh', id:'Acara Puncak', tr:'Zirve etkinlikleri', pl:'Wydarzenia Szczytu' });
   const friendsLabel = L({ ru:'Друзья', uk:'Друзі', en:'Friends', es:'Amigos', 'pt-BR':'Amigos', vi:'Bạn bè', id:'Teman', tr:'Arkadaşlar', pl:'Znajomi' });
-  const onlyMainLabel = L({ ru:'Только главное', uk:'Тільки головне', en:'Only the essentials', es:'Solo lo esencial', 'pt-BR':'Só o essencial', vi:'Chỉ điều quan trọng', id:'Hanya yang penting', tr:'Sadece önemliler', pl:'Tylko najważniejsze' });
   const offersLabel = L({ ru:'Скидки и предложения', uk:'Знижки та пропозиції', en:'Discounts and offers', es:'Descuentos y ofertas', 'pt-BR':'Descontos e ofertas', vi:'Giảm giá và ưu đãi', id:'Diskon dan penawaran', tr:'İndirimler ve teklifler', pl:'Zniżki i oferty' });
   const savedLabel = L({ ru:'Сохранено', uk:'Збережено', en:'Saved', es:'Guardado', 'pt-BR':'Salvo', vi:'Đã lưu', id:'Tersimpan', tr:'Kaydedildi', pl:'Zapisano' });
   const cancelLabel = L({ ru:'Отмена', uk:'Скасувати', en:'Cancel', es:'Cancelar', 'pt-BR':'Cancelar', vi:'Hủy', id:'Batal', tr:'İptal', pl:'Anuluj' });
@@ -610,17 +601,6 @@ export default function SettingsNotifications() {
                 <ToggleRow label={offersLabel} icon="pricetag-outline" value={master && prefs.categories.offers} onValueChange={toggleCategory('offers')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-offers" />
               </View>
             </View>
-            {master && onlyMainCategories.some((cat) => prefs.categories[cat]) ? (
-              <PressableHybrid
-                testID="notif-only-main"
-                accessibilityRole="button"
-                accessibilityLabel={onlyMainLabel}
-                onPress={applyOnlyMain}
-                style={{ marginTop: 16, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.buttonFill }}
-              >
-                <FlowText testID="notif-only-main-label" provenance="authored" style={{ color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{onlyMainLabel}</FlowText>
-              </PressableHybrid>
-            ) : null}
           </BouncyScrollView>
         </ContentWrap>
       <TimeModal

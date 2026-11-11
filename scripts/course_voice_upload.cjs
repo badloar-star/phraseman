@@ -1,4 +1,3 @@
-/* eslint-env node */
 /**
  * Выгрузка записей озвучки курса в хранилище: output/course-voice/publish/course-v1/<язык>/<ключ>.mp3
  * → phrase-audio/course-v1/<язык>/<ключ>.mp3 (папка phrase-audio открыта только на чтение, storage.rules).
@@ -13,7 +12,9 @@ const fs = require('fs');
 const path = require('path');
 
 const TAG = '[COURSE-VOICE-UPLOAD]';
-const ROOT = path.resolve(__dirname, '..');
+// зачем process.cwd(), а не __dirname: скрипт запускают из корня проекта (как и скрипты записи), а линтер проекта
+// не знает __dirname в .cjs. Запуск из другой папки ловится ниже — там нет ни папки записей, ни ключа администратора.
+const ROOT = process.cwd();
 const GENERATION = 'course-v1';
 const LOCAL_DIR = path.join(ROOT, 'output', 'course-voice', 'publish', GENERATION);
 const REMOTE_PREFIX = `phrase-audio/${GENERATION}/`;

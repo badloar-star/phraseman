@@ -48,8 +48,8 @@
    "en": "Closed is the word for shut. Open is the opposite, and shops are not doors."
   },
   "1:c5:en-classic-r1:01.30": {
-   "ru": "Lights значит «лампы», а off — «выключены». On — наоборот, «включены». Door — «дверь».",
-   "uk": "Lights означає «лампи», а off — «вимкнені». On — навпаки, «увімкнені». Door — «двері».",
+   "ru": "Lights значит «свет», а off — «выключен». On — наоборот, «включен». Door — «дверь».",
+   "uk": "Lights означає «світло», а off — «вимкнене». On — навпаки, «увімкнене». Door — «двері».",
    "en": "Lights are lamps, and off means switched off. On is the opposite."
   },
   "1:c6:en-classic-r1:01.33": {
@@ -808,9 +808,9 @@
    "en": "There will be means “there will be”, and fee means a payment. The others are about soup being ready and a busy train."
   },
   "13:c4:en-classic-r1:13.46": {
-   "ru": "Light здесь — «светофор», turn green — «загореться зелёным», in a moment — «через мгновение». Timetable — «расписание».",
-   "uk": "Light тут — «світлофор», turn green — «загорітися зеленим», in a moment — «за мить». Timetable — «розклад».",
-   "en": "Light here means the traffic light, and turn green is what it does. Timetable means a schedule; train is a vehicle on rails."
+   "ru": "Button — «кнопка», turn green — «стать зелёным», in a moment — «через мгновение». Timetable — «расписание».",
+   "uk": "Button — «кнопка», turn green — «стати зеленим», in a moment — «за мить». Timetable — «розклад».",
+   "en": "Button is a thing you press, and turn green is what it does. Timetable means a schedule; train is a vehicle on rails."
   },
   "13:c5:en-classic-r1:13.45": {
    "ru": "Will rain — «будет дождь», after lunch — «после обеда». Lock up — «закрыть», collect the keys — «забрать ключи».",
@@ -1823,8 +1823,8 @@
    "en": "Stop means “stop” and sign means “sign”. The others talk about a bus and a forecast."
   },
   "26:c3:en-classic-r1:26.29": {
-   "ru": "Printer jams — «принтер заклинит», lift the lid — «поднимите крышку». В других фразах речь о защёлке и об индикаторе.",
-   "uk": "Printer jams — «принтер заклинить», lift the lid — «підніміть кришку». В інших фразах мова про засувку й про індикатор.",
+   "ru": "Printer jams — «принтер заклинит», lift the lid — «поднимите крышку». В других фразах речь о защёлке и о мигающем свете.",
+   "uk": "Printer jams — «принтер заклинить», lift the lid — «підніміть кришку». В інших фразах мова про засувку й про світло, що блимає.",
    "en": "Printer jams means the printer is stuck, and lift the lid means “open the lid”. The others are about a latch and a light."
   },
   "26:c3:en-classic-r1:26.28": {

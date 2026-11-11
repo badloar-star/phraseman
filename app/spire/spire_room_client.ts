@@ -28,6 +28,7 @@ import { peekCoinRank } from '../coin_rank_state_v1';
 import { DebugLogger } from '../debug-logger';
 import { onAccountOwnerChanged } from '../account_owner_change';
 import type { SpireLiveGate } from './spire_live_gate';
+import { spireReadOwnWeekCoinsChangedAt } from './spire_room_dirty';
 import {
   spireCall,
   spireClassifyNetError,
@@ -189,7 +190,33 @@ async function readRoomDoc(gate: SpireLiveGate, groupId: string): Promise<Record
   return snap?.exists ? (snap.data() as Record<string, unknown>) : null;
 }
 
-export type SpireSyncRoomInput = Readonly<{ uid: string; stableId: string; lang: SpireLang; force?: boolean }>;
+/** Сколько ждём досылку монет уроков перед повторным входом в комнату: сеть есть — хватает; нет — не держим открытие Пика. */
+const OWN_COINS_FLUSH_TIMEOUT_MS = 4_000;
+
+/**
+ * Досылка монет уроков, ждущих сервер, перед обновлением своего снимка в комнате (U35). Не бросает; исход — строкой для журнала.
+ * зачем ленивый импорт: зачёт уроков тянет кошелёк — в первый кадр Пика он не нужен, и цикла импортов с комнатой нет.
+ */
+async function flushOwnPracticeCoins(stableId: string): Promise<string> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  try {
+    const { flushStalePracticeRuneSettlements } = await import('../practice_rune_settlement');
+    const timeout = new Promise<string>((resolve) => { timer = setTimeout(() => resolve('timeout'), OWN_COINS_FLUSH_TIMEOUT_MS); });
+    const outcome = await Promise.race([
+      flushStalePracticeRuneSettlements(stableId).then((r) => `synced=${r.synced},pending=${r.pending}`),
+      timeout,
+    ]);
+    DebugLogger.info(LOG, `[SPIRE-WEEK-COINS] flush_before_join ${outcome}`);
+    return outcome;
+  } catch (error) {
+    DebugLogger.warn(LOG, `[SPIRE-WEEK-COINS] flush_before_join упал (${spireErrorText(error)}) — входим в комнату без досылки`);
+    return 'failed';
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
+export type SpireSyncRoomInput =Readonly<{ uid: string; stableId: string; lang: SpireLang; force?: boolean }>;
 
 /**
  * Комната текущей недели: свежий кэш (<6 ч) → без сети; иначе вход (раз в неделю)
@@ -226,7 +253,14 @@ async function runSync(gate: SpireLiveGate, input: SpireSyncRoomInput): Promise<
   const age = cached ? nowMs - cached.fetchedAtMs : -1;
   DebugLogger.info(LOG, `room: вход lang=${input.lang} week=${weekId} force=${String(input.force === true)} кэш=${cached ? `есть (возраст ${age}мс)` : cachedAny ? `старой недели ${cachedAny.weekId}` : 'нет'}`);
   const ttlMs = cached ? spireRoomRefreshMsFor(cached.members.length) : SPIRE_ROOM_REFRESH_MS;
-  if (cached && age < ttlMs && !input.force) {
+  // зачем (U35, владелец 11.11: «был на 6 месте, заработал в уроках почти тысячу монет — в Пике не отобразилось, прошло 12 часов»):
+  // сервер обновляет мои монеты в комнате ТОЛЬКО в spireJoinRoom и при отчёте о ступени, а вход шёл раз в неделю (groupId из кэша).
+  // Если после последнего чтения комнаты я заработал монеты — кэш не считается свежим и вход повторяется (ниже).
+  const coinsChangedAtMs = await spireReadOwnWeekCoinsChangedAt(input.stableId);
+  const ownCoinsNewer = cached !== null && coinsChangedAtMs > cached.fetchedAtMs;
+  const cachedOwnCoins = cached?.members.find((m) => m.uid === input.stableId)?.weekCoins ?? null;
+  DebugLogger.info(LOG, `[SPIRE-WEEK-COINS] room_enter lang=${input.lang} week=${weekId} монетыМенялись=${coinsChangedAtMs} кэшПрочитан=${cached?.fetchedAtMs ?? 'нет'} → ownCoinsNewer=${String(ownCoinsNewer)} мойСнимокВКэше=${cachedOwnCoins ?? 'нет строки'}`);
+  if (cached && age < ttlMs && !input.force && !ownCoinsNewer) {
     console.log('[SPIRE-COST]', JSON.stringify({ call: 'room', result: 'skip', why: 'cache_fresh', ageMs: age, ttlMs, live: cached.members.length })); // guard-ok: 💸 пропуск сети с причиной
     return { status: 'cache', room: cached, reason: 'cache_fresh' };
   }
@@ -241,6 +275,18 @@ async function runSync(gate: SpireLiveGate, input: SpireSyncRoomInput): Promise<
   try {
     // зачем (💸 аудит 17.10): комната — ОДИН документ на всех (лидерборд агрегатом), чтение раз в SPIRE_ROOM_REFRESH_MS; join — только без копии недели
     console.log('[SPIRE-COST]', JSON.stringify({ call: 'room', result: 'request', why: cached ? `cache_stale ageMs=${age}` : 'no_cache_this_week', join: identity === null, force: input.force === true })); // guard-ok: 💸 причина запроса
+    if (ownCoinsNewer) {
+      // Сначала досылаем монеты уроков, застрявшие на телефоне (иначе сервер обновит снимок старой суммой), потом входим заново.
+      const flush = await flushOwnPracticeCoins(input.stableId);
+      console.log('[SPIRE-COST]', JSON.stringify({ call: 'join', result: 'request', why: 'own_week_coins_changed', flush })); // guard-ok: 💸 причина повторного входа
+      try {
+        identity = await joinRoomOnce(gate, { uid: input.uid, stableId: input.stableId, lang: input.lang, weekId });
+      } catch (error) {
+        // Повторный вход не удался — комнату всё равно перечитываем по известному groupId: чужие цифры обновятся, свои догонят позже.
+        DebugLogger.warn(LOG, `[SPIRE-WEEK-COINS] rejoin_failed (${spireErrorText(error)}) flush=${flush} — читаем комнату по groupId из кэша, мой снимок останется ${cachedOwnCoins ?? 'нет'}`);
+        if (!identity) throw error;
+      }
+    }
     if (!identity) identity = await joinRoomOnce(gate, { uid: input.uid, stableId: input.stableId, lang: input.lang, weekId });
     const data = await readRoomDoc(gate, identity.groupId);
     if (!data) {
@@ -261,6 +307,10 @@ async function runSync(gate: SpireLiveGate, input: SpireSyncRoomInput): Promise<
       fetchedAtMs: Date.now(),
     };
     DebugLogger.info(LOG, `room: сеть ok group=${room.groupId} tier=${room.tier} cohort=${room.cohortDay} живых=${room.members.length} лиц ботов=${room.roster.length} за ${Date.now() - nowMs}мс`);
+    if (ownCoinsNewer) {
+      const freshOwnCoins = room.members.find((m) => m.uid === input.stableId)?.weekCoins ?? null;
+      DebugLogger.info(LOG, `[SPIRE-WEEK-COINS] room_refreshed мойСнимок ${cachedOwnCoins ?? 'нет'} → ${freshOwnCoins ?? 'нет строки'} (${freshOwnCoins === cachedOwnCoins ? 'НЕ ИЗМЕНИЛСЯ: монеты ещё не дошли до сервера или не входят в счёт недели' : 'обновлён'})`);
+    }
     await writeCache(room);
     await markParticipation(input.uid, input.lang, weekId);
     return { status: 'network', room, reason: 'ok' };

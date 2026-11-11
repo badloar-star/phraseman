@@ -42,6 +42,7 @@ import {
   practiceRuneSettlementOperationId,
 } from './practice_rune_earnings';
 import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
+import { spireMarkOwnWeekCoinsChanged } from './spire/spire_room_dirty';
 
 const FUNCTIONS_REGION = 'us-central1';
 const PRACTICE_RUNE_ACTIVITIES: readonly PracticeRuneActivity[] = Object.freeze([
@@ -428,6 +429,9 @@ export async function settlePracticeRuneEarningsToServer(
     amount: operation.amount,
     visibleBalance: getAppSnapshot().progress?.stars ?? null,
   });
+  // зачем (U35, владелец 11.11: «заработал в уроках — в Пике не отобразилось, 12 часов на 6 месте»): монеты урока входят в
+  // счёт недели Пика. Отметка заставит комнату Пика при следующем открытии дослать их и обновить место (spire_room_client).
+  spireMarkOwnWeekCoinsChanged(ownerStableId, 'practice_local_commit');
 
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
     tracePracticeRuneSettlement('settlement_skip_runtime', {
@@ -451,6 +455,8 @@ export async function settlePracticeRuneEarningsToServer(
           serverBalance: ack.starsBalance,
           visibleBalance: getAppSnapshot().progress?.stars ?? null,
         });
+        // зачем (U35): сервер подтвердил монеты — отметка свежее любого чтения комнаты, сделанного до подтверждения.
+        spireMarkOwnWeekCoinsChanged(ownerStableId, 'practice_server_ack');
         return { locallyCommitted: true, settled: true };
       }
       tracePracticeRuneSettlement('grant_invalid_ack', {

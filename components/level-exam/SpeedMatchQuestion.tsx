@@ -8,14 +8,17 @@ import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ExamOption, type ExamOptionState } from './ExamGlassParts';
+import { createLevelExamRng } from '../../app/level_exam_rng';
+import { shuffleSpeedMatchPairs, speedMatchOrderSeed } from './speedMatchOrder';
 
 type Props = {
+  attemptId: string;
   task: LevelExamSpeedMatchTask;
   matches: Readonly<Record<string, string>>;
   onChange: (matches: Record<string, string>) => void;
 };
 
-export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
+export default function SpeedMatchQuestion({ attemptId, task, matches, onChange }: Props) {
   const { lang } = useLang();
   const { theme: t, ds, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -30,9 +33,10 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
       .filter(([sourceId, targetId]) => sourceId === targetId)
       .map(([, targetId]) => targetId),
   ), [matches]);
-  const sourcePairs = useMemo(() => (
-    task.pairs.length > 1 ? [...task.pairs.slice(1), task.pairs[0]] : [...task.pairs]
-  ), [task.pairs]);
+  const rightPairs = useMemo(() => shuffleSpeedMatchPairs(
+    task.pairs,
+    createLevelExamRng(speedMatchOrderSeed(attemptId, task.id, task.pairs)),
+  ), [attemptId, task.id, task.pairs]);
   const chooseTarget = (targetId: string) => {
     if (!activeSourceId) return;
     if (activeSourceId !== targetId) {
@@ -56,12 +60,12 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
   return (
     <View accessibilityLabel={triLang(lang, { ru: 'Найди пары на скорость', uk: 'Знайди пари на швидкість', en: 'Speed match', es: 'Parejas rápidas', 'pt-BR': 'Pares rápidos', vi: 'Nối cặp nhanh', id: 'Cocokkan cepat', tr: 'Hızlı eşleştir', pl: 'Szybkie pary' })} style={[styles.board, { gap: ds.spacing.md }]}> 
       <View style={[styles.column, { gap: ds.spacing.sm }]}> 
-        {sourcePairs.map((pair) => {
+        {task.pairs.map((pair, index) => {
           const active = activeSourceId === pair.scoreUnitId;
           const answered = Object.prototype.hasOwnProperty.call(matches, pair.scoreUnitId);
           const matched = matches[pair.scoreUnitId] === pair.scoreUnitId;
           return (
-            <Animated.View key={pair.scoreUnitId} entering={reduceMotion ? undefined : FadeInDown.delay(sourcePairs.indexOf(pair) * 40).duration(260)}>
+            <Animated.View key={pair.scoreUnitId} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)}>
               <ExamOption
                 glass={glass}
                 {...optionColors}
@@ -78,7 +82,7 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
         })}
       </View>
       <View style={[styles.column, { gap: ds.spacing.sm }]}> 
-        {task.pairs.map((pair, index) => {
+        {rightPairs.map((pair, index) => {
           const matched = matchedTargets.has(pair.scoreUnitId);
           return (
             <Animated.View key={pair.scoreUnitId} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)}>

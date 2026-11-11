@@ -548,7 +548,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
       return answer?.kind === 'speed_match' ? [[pair.scoreUnitId, answer.targetScoreUnitId]] : [];
     }));
     canContinue = Object.keys(matches).length === task.pairs.length;
-    content = <SpeedMatchQuestion task={task} matches={matches} onChange={(next) => updateSpeedMatches(task, next)} />;
+    content = <SpeedMatchQuestion attemptId={attempt.attemptId} task={task} matches={matches} onChange={(next) => updateSpeedMatches(task, next)} />;
   } else {
     content = null;
   }

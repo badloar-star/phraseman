@@ -2,6 +2,7 @@
 
 Governance-ID: TG-6A84BE492966
 Governance-ID: TG-81B619EF7680
+Governance-ID: TG-C1802C38BF9D
 Status: In progress (исправления по итогам прогона тестов: обращение в поддержку заменяет пейвол, а не открывается поверх; тексты вынесены в `components/paywall/duo/paywall_store_off_copy.ts`)
 Owner: сессия Claude «аудит мотивации к покупке Plus», 2026-11-11
 Related epic/enabler: макет `docs/work/mockups/paywall-store-unavailable-2026-11-11/index.html` (владелец 11.11: «Делать оба варианта», затем «Да, делай»)

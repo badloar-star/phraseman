@@ -83,7 +83,7 @@ describe('окно «магазин недоступен» — подключе�
 
   it('Telegram открывается ссылкой; не открылся — человек попадает в поддержку, а не остаётся ни с чем', () => {
     expect(screen).toContain('Linking.openURL(PREMIUM_TELEGRAM_BOT_URL).catch(');
-    expect(screen).toContain("openSupportFromStoreOff('telegram_не_открылся');");
+    expect(screen).toContain("openSupportFromStoreOff('telegram_failed');");
     expect(screen).toContain("router.replace('/support_report' as never);");
     // сторож «нет окна внутри окна»: обращение заменяет пейвол, поверх него ничего не открывается
     expect(screen).not.toMatch(/router\.push/u);

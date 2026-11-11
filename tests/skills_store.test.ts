@@ -72,12 +72,12 @@ it('сообщает о новом уровне по факту этого со�
 
 it('сбой записи не теряет очки: видны сразу и дописываются при следующем событии', async () => {
   const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-  const setItem = jest.spyOn(AsyncStorage, 'setItem').mockRejectedValueOnce(new Error('disk full'));
+  // зачем: не spyOn — восстановление шпиона на готовой подмене хранилища стирает её реализацию, и запись перестаёт работать
+  (AsyncStorage.setItem as jest.Mock).mockRejectedValueOnce(new Error('disk full'));
   const first = await recordSkillAction({ action: 'theory_task', itemKey: 't1' });
   expect(first).toMatchObject({ points: 2, saved: false });
   expect(peekSkills()?.totals.grammar).toBe(2);
   expect(warn).toHaveBeenCalled();
-  setItem.mockRestore();
   await refreshSkills();
   const raw = await AsyncStorage.getItem('skills_v1:owner-a');
   expect(JSON.parse(raw as string).totals.grammar).toBe(2);
@@ -92,7 +92,8 @@ it('другой владелец не видит чужие очки', async ()
 });
 
 it('отклонённое действие ничего не пишет', async () => {
-  const setItem = jest.spyOn(AsyncStorage, 'setItem');
+  const setItem = AsyncStorage.setItem as jest.Mock;
+  setItem.mockClear();
   jest.spyOn(console, 'log').mockImplementation(() => undefined);
   const r = await recordSkillAction({ action: 'flow_correct', itemKey: 'p1', answerMs: 5000 });
   expect(r).toMatchObject({ points: 0, skipped: 'too_slow' });

@@ -207,7 +207,8 @@ export function recordSkillAction(event: SkillActionEvent): Promise<SkillRecordR
   return serialized(async () => {
     const before = await ensureLoaded();
     const award = awardSkillPoints({ ...event, day: localDayKey(deps.now()) }, before.ledger);
-    if (award.skipped && award.skipped !== 'repeat_exhausted') {
+    // зачем: «медленный ответ» и «повтор за день» — штатные исходы на каждом шаге игры, журнал ими не засоряем
+    if (award.skipped && award.skipped !== 'repeat_exhausted' && award.skipped !== 'too_slow') {
       log('record:skipped', { action: event.action, reason: award.skipped });
     }
     const totals = addSkillPoints(before.totals, award.skill, award.points);
@@ -220,6 +221,16 @@ export function recordSkillAction(event: SkillActionEvent): Promise<SkillRecordR
     const saved = await persist(next);
     unsaved = !saved;
     return { skill: award.skill, points: award.points, skipped: award.skipped, levelUps: skillLevelUps(before.totals, totals), saved };
+  });
+}
+
+/**
+ * То же для экранов: ничего не ждёт и никогда не бросает — режим продолжает работать, даже если начисление не удалось.
+ * Причина сбоя остаётся в журнале.
+ */
+export function noteSkillAction(event: SkillActionEvent): void {
+  recordSkillAction(event).catch((error: unknown) => {
+    console.warn(`${LOG} note:failed ${JSON.stringify({ action: event.action, error: errText(error) })}`);
   });
 }
 

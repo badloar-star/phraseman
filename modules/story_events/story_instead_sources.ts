@@ -60,9 +60,12 @@ export function recordReferralEndedStory(input: Readonly<{ windowEndMs: number }
   return record('ref_ended', String(input.windowEndMs), { windowEndMs: input.windowEndMs });
 }
 
-/** «Тебя пригласили» (взамен реферального окна-приветствия, когда код вводить не нужно): один раз на аккаунт, как отметка «видел» у окна. */
-export function recordReferralWelcomeStory(): Promise<StoryRecordResult> {
-  return record('ref_welcome', 'once', { needsCodeEntry: false });
+/**
+ * «Тебя пригласили» (взамен реферального окна-приветствия): один раз на аккаунт, как отметка «видел» у окна.
+ * `needsCodeEntry` — код друга ещё не введён: у кадра появляется кнопка «У меня есть код приглашения».
+ */
+export function recordReferralWelcomeStory(needsCodeEntry: boolean = false): Promise<StoryRecordResult> {
+  return record('ref_welcome', 'once', { needsCodeEntry });
 }
 
 /** «Первый разговор» (взамен окна в конце первого диалога): один раз на изучаемый язык, как отметка показа у окна. */

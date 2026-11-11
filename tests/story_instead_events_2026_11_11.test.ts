@@ -96,6 +96,7 @@ describe('событие instead → данные кадра', () => {
 
   it('«Тебя пригласили» и «Первый разговор»: данные события → кадр; битые — нет кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'ref_welcome', key: 'once', needsCodeEntry: false })).toEqual({ id: 'instead_ref_welcome', needsCodeEntry: false });
+    expect(insteadTemplateFromPayload({ kind: 'ref_welcome', key: 'once', needsCodeEntry: true })).toEqual({ id: 'instead_ref_welcome', needsCodeEntry: true });
     expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', studyTarget: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 }))
       .toEqual({ id: 'instead_first_dialog', studyTarget: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 });
     expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', studyTarget: 'en', turns: 0, goalsDone: 0, goalsTotal: 5 })).toBeNull();
@@ -162,5 +163,7 @@ describe('окна при выключенных историях работаю
     const cta = read('components/stories/templates/use_story_cta_action.ts');
     expect(cta).toContain("router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'welcome_back' } } as never);");
     expect(cta).toContain("router.push('/coin_rank' as never);");
+    // «У меня есть код приглашения» — туда же, куда вела вторая кнопка реферального окна
+    expect(cta).toContain("router.push('/referrals?enter=1' as never);");
   });
 });

@@ -99,6 +99,14 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       router.push('/coin_rank' as never);
       return;
     }
+    if (cta.action === 'enter_referral_code') {
+      // зачем (истории вместо окон, 11.11): та же цель, что у кнопки «У меня есть код приглашения» реферального окна — экран рефералов сам
+      // выдвигает лист «Код от друга» по параметру enter=1; просмотр (Modal) закрываем, иначе экран открылся бы под ним
+      DebugLogger.info(LOG, `код приглашения: закрываем просмотр и открываем ввод кода (кадр=${ctx.source})`);
+      closeViewer('cta_enter_referral_code');
+      router.push('/referrals?enter=1' as never);
+      return;
+    }
     DebugLogger.info(LOG, `кнопка action=${cta.action}: события этого кадра в приложении ещё нет — переход не назначен`);
   }, [closeViewer, lang, liquidGlassThemeId, router, setLiquidGlassThemeId, studio]);
 }

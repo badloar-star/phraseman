@@ -1,4 +1,5 @@
 import { triLang, type Lang } from '../constants/i18n';
+import { pluralWord } from '../constants/plural';
 import type { LevelExamFormat } from './level_exam_types';
 
 type Args = {
@@ -30,7 +31,9 @@ export function getLevelExamResultCopy(
         vi: 'Đã vượt qua bài thi', id: 'Ujian lulus', tr: 'Sınavı geçtin', pl: 'Egzamin zaliczony',
       })
       : triLang(lang, {
-        ru: `Нужно ещё ${neededForPass} правильных ответа`, uk: `Потрібно ще ${neededForPass} правильні відповіді`,
+        // зачем (аудит текстов 11.11): «ещё 1 правильных ответа» / «ещё 5 правильных ответа» — слово склоняем по числу
+        ru: `Нужно ещё ${neededForPass} ${pluralWord('ru', neededForPass, { one: 'правильный ответ', few: 'правильных ответа', many: 'правильных ответов' })}`,
+        uk: `Потрібно ще ${neededForPass} ${pluralWord('uk', neededForPass, { one: 'правильна відповідь', few: 'правильні відповіді', many: 'правильних відповідей' })}`,
         en: `You need ${neededForPass} more correct answers`,
         es: `Te faltan ${neededForPass} respuestas correctas`, 'pt-BR': `Faltam ${neededForPass} respostas corretas`,
         vi: `Cần thêm ${neededForPass} câu đúng`, id: `Butuh ${neededForPass} jawaban benar lagi`,

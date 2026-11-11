@@ -170,7 +170,7 @@ function rememberPackCommentsMemory(packId: string, list: PackComment[]): void {
 function notifyPackCommentsIdentityPending(action: 'send' | 'retry' | 'reaction', packId: string): void {
   console.warn(`[PACK-COMMENTS-COMPOSER] ${action}: идентичность ещё не получена — действие не выполнено, тост «секунду» packId=${packId}`); // guard-ok: ранний выход называет причину
   emitAppEvent('action_toast', actionToastTri('info', {
-    ru: 'Секунду — загружаем комментарии. Попробуй ещё раз.', uk: 'Секунду — завантажуємо коментарі. Спробуй ще раз.', en: 'One moment — loading comments. Try again.', es: 'Un momento: cargando comentarios. Inténtalo de nuevo.',
+    ru: 'Комментарии ещё загружаются. Попробуй через пару секунд.', uk: 'Коментарі ще завантажуються. Спробуй за кілька секунд.', en: 'One moment — loading comments. Try again.', es: 'Un momento: cargando comentarios. Inténtalo de nuevo.',
     'pt-BR': 'Um momento: carregando comentários. Tente de novo.', vi: 'Chờ chút — đang tải bình luận. Hãy thử lại.', id: 'Sebentar — memuat komentar. Coba lagi.', tr: 'Bir saniye — yorumlar yükleniyor. Tekrar dene.', pl: 'Chwileczkę — ładujemy komentarze. Spróbuj ponownie.',
   }));
 }

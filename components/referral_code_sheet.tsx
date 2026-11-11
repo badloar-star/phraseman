@@ -35,7 +35,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'ok',
         text: L(
-          'Код принят. Когда оформишь Plus — другу откроется ключ к награде.',
+          'Код принят. Когда оформишь Plus — друг получит ключ к награде.',
           'Код прийнято. Коли оформиш Plus — друг отримає ключ до нагороди.',
           'Code accepted. Once you subscribe to Plus, your friend unlocks a key.',
           'Código aceptado. Cuando compres Plus, tu amigo recibirá una llave.',
@@ -287,7 +287,7 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
       {/* зачем (`.om-copy`): пояснение по центру под заголовком. */}
       <Text style={{ color: glass.secondary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '400', marginBottom: 2, textAlign: 'center' }}>
         {L(
-          'Введи код и оформи Plus — другу откроется ключ к награде.',
+          'Введи код и оформи Plus — друг получит ключ к награде.',
           'Введи код і оформи Plus — друг отримає ключ до нагороди.',
           'Enter the code and subscribe to Plus — your friend unlocks a key.',
           'Escribe el código y compra Plus para darle una llave a tu amigo.',

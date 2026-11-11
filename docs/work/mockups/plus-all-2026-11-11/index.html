@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plus — всё, что сделано и будет сделано</title>
+<!-- зачем: владелец 11.11 — «1 большой макет открой со всем что ты добавишь и сделаешь».
+     Макеты не копируются: три существующих файла встроены рамками, у каждого один источник. Открывать через сервер папки docs. -->
+<style>
+:root{--page:#050506;--fg:#fff;--sec:#a6a6a8;--line:rgba(255,255,255,.08);--tile:#161618;--ok:#7ef0c8;--wait:#ffd27a;--todo:#cfc7ff}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--page);color:var(--fg);font:400 15px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.top{position:sticky;top:0;z-index:2;background:rgba(5,5,6,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .in{max-width:1280px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.top b{font-size:16px;font-weight:700;margin-right:10px}
+.top a{color:var(--sec);text-decoration:none;font-size:14px;padding:7px 13px;border-radius:999px;background:var(--tile)}
+.top a:hover{color:var(--fg)}
+.head{max-width:1280px;margin:0 auto;padding:36px 24px 8px}
+h1{font-size:34px;line-height:1.12;font-weight:800;letter-spacing:-.025em;text-wrap:balance}
+.lead{color:var(--sec);margin-top:10px;max-width:70ch;text-wrap:pretty}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin-top:24px}
+.sum a{display:block;padding:14px 16px;border-radius:16px;background:var(--tile);color:var(--fg);text-decoration:none}
+.sum a span{display:block;color:var(--sec);font-size:14px;margin-top:2px}
+.st{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;margin-bottom:8px;background:rgba(255,255,255,.07)}
+.st.ok{color:var(--ok)}.st.wait{color:var(--wait)}.st.todo{color:var(--todo)}
+section{margin-top:48px;scroll-margin-top:64px}
+.sh{max-width:1280px;margin:0 auto;padding:0 24px 14px}
+.sh h2{font-size:24px;font-weight:700;letter-spacing:-.02em}
+.sh p{color:var(--sec);max-width:70ch;margin-top:4px}
+iframe{display:block;width:100%;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#050506;min-height:900px}
+.foot{max-width:1280px;margin:0 auto;padding:40px 24px 80px;color:var(--sec);font-size:14px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><b>Plus — сводный макет</b><a href="#scen">Сценарии</a><a href="#store">Магазин недоступен</a><a href="#soft">Карточки и пуши</a></div></div>
+
+<div class="head">
+  <h1>Всё, что сделано и будет сделано по Plus</h1>
+  <p class="lead">Три блока. У каждого метка: что уже в приложении, что вы одобрили и ждёт кода, а что ждёт вашего решения.</p>
+  <div class="sum">
+    <a href="#scen"><span class="st ok">Уже в приложении</span><b>Plus открывает все сценарии</b><span>Каталог диалогов у подписчика: было и стало.</span></a>
+    <a href="#store"><span class="st todo">Одобрено, в коде нет</span><b>Окно «магазин недоступен»</b><span>Android — бот в Telegram, iPhone — поддержка.</span></a>
+    <a href="#soft"><span class="st wait">Ждёт одобрения текстов</span><b>Карточки-предложения и пуши</b><span>Вехи серии, недельный итог, второй диалог, пуши 4/7/14.</span></a>
+  </div>
+</div>
+
+<section id="scen">
+  <div class="sh"><span class="st ok">Уже в приложении</span><h2>1. Plus открывает все сценарии диалогов</h2>
+    <p>Правка проверена тестами и сохранена. На телефоне не проверялась.</p></div>
+  <iframe title="Каталог диалогов у Plus" src="../../../design/v2-app/plus-opens-scenarios.html"></iframe>
+</section>
+
+<section id="store">
+  <div class="sh"><span class="st todo">Одобрено, в коде нет</span><h2>2. Окно Plus, когда магазин недоступен</h2>
+    <p>Вы выбрали оба варианта. Показывается только когда магазин сам ответил «недоступен».</p></div>
+  <iframe title="Окно Plus — магазин недоступен" src="../paywall-store-unavailable-2026-11-11/index.html"></iframe>
+</section>
+
+<section id="soft">
+  <div class="sh"><span class="st wait">Ждёт одобрения текстов</span><h2>3. Карточки-предложения и пуши</h2>
+    <p>Карточка уже есть в приложении после первого урока. Три новых места и их тексты — предложение.</p></div>
+  <iframe title="Мягкие предложения и пуши" src="../plus-soft-offers-2026-11-11/index.html"></iframe>
+</section>
+
+<div class="foot">Здесь нет: экранов вокруг карточки (итог серии, недельный обзор, итог диалога) и правок статистики показов — у них нет вида.</div>
+
+<script>
+// высота рамки = высота содержимого: одна прокрутка на всю страницу, а не четыре вложенных
+document.querySelectorAll('iframe').forEach((f) => {
+  const fit = () => {
+    try {
+      const d = f.contentDocument;
+      if (!d || !d.documentElement) { console.warn('[PLUS-ALL] рамка без документа', f.src); return; }
+      f.style.height = Math.max(d.documentElement.scrollHeight, d.body ? d.body.scrollHeight : 0) + 'px';
+    } catch (e) { console.warn('[PLUS-ALL] высота рамки не прочитана', f.src, e && e.message); }
+  };
+  f.addEventListener('load', () => { fit(); setTimeout(fit, 400); setTimeout(fit, 1500); });
+});
+</script>
+</body>
+</html>

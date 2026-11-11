@@ -479,7 +479,7 @@
         "en": "Early, late, warm, cold"
       },
       "text": {
-        "ru": "Скажем, когда человек пришёл и что тёплое или холодное.\nI am early. — Я пришел раньше.\nЧитается: ай эм э́рли.\nСлово early значит «рано, раньше».\nShe is late. — Она опаздывает.\nСлово late значит «поздно, с опозданием».\nThe room is warm. — Комната тёплая.\nСлово room значит «комната». Слово warm значит «тёплая».\nThe kitchen is warm. — На кухне тепло.\nСлово kitchen значит «кухня».\nThe coffee is cold. — Кофе холодный.\nСлово coffee значит «кофе». Слово cold значит «холодный».\nMy hands are cold. — У меня холодные руки.\nСлово hands значит «руки».\nПо-английски говорят «мои руки холодные»: слов «у меня» нет.",
+        "ru": "Скажем, когда человек пришёл и что тёплое или холодное.\nI am early. — Я пришёл рано.\nЧитается: ай эм э́рли.\nСлово early значит «рано, раньше».\nShe is late. — Она опаздывает.\nСлово late значит «поздно, с опозданием».\nThe room is warm. — Комната тёплая.\nСлово room значит «комната». Слово warm значит «тёплая».\nThe kitchen is warm. — На кухне тепло.\nСлово kitchen значит «кухня».\nThe coffee is cold. — Кофе холодный.\nСлово coffee значит «кофе». Слово cold значит «холодный».\nMy hands are cold. — У меня холодные руки.\nСлово hands значит «руки».\nПо-английски говорят «мои руки холодные»: слов «у меня» нет.",
         "uk": "Скажемо, коли людина прийшла і що тепле чи холодне.\nI am early. — Я прийшов рано.\nЧитається: ай ем е́рлі.\nСлово early означає «рано, раніше».\nShe is late. — Вона запізнюється.\nСлово late означає «пізно, із запізненням».\nThe room is warm. — Кімната тепла.\nСлово room означає «кімната». Слово warm означає «тепла».\nThe kitchen is warm. — На кухні тепло.\nСлово kitchen означає «кухня».\nThe coffee is cold. — Кава холодна.\nСлово coffee означає «кава». Слово cold означає «холодна».\nMy hands are cold. — Мої руки холодні.\nСлово hands означає «руки».\nПо-англійськи кажуть «мої руки холодні»: слова «у мене» тут немає.",
         "en": "Let us say when a person comes and what is warm or cold.\nI am early.\nThe word early means “before the usual time.”\nShe is late.\nThe word late means “after the usual time.”\nThe room is warm.\nThe word room means “a room.” The word warm means “a bit hot.”\nThe kitchen is warm.\nThe word kitchen means “kitchen.”\nThe coffee is cold.\nThe word coffee means “coffee.” The word cold means “not warm.”\nMy hands are cold.\nThe word hands means “hands.”\nIn English you say “my hands are cold.” There are no words for “I have” here."
       },
@@ -530,7 +530,7 @@
       "practice": [
         {
           "command": {
-            "ru": "Выберите, как сказать: «Я пришел раньше»",
+            "ru": "Выберите, как сказать: «Я пришёл рано»",
             "uk": "Виберіть, як сказати: «Я прийшов рано»",
             "en": "Choose how to say: “I am early.”"
           },

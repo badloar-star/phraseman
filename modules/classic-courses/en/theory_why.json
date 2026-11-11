@@ -233,7 +233,7 @@
    "en": "Usually means “most of the time”. Work late is what I do not do. The others use they or coffee."
   },
   "4:c6:en-classic-r1:04.43": {
-   "ru": "Receipt значит «квитанция, чек», show — «показывать», date — «дата». Price — «цена», rent — «арендная плата».",
+   "ru": "Receipt значит «чек», show — «показывать», date — «дата». Price — «цена», rent — «арендная плата».",
    "uk": "Receipt означає «чек», show — «показувати», date — «дата». Price — «ціна», rent — «орендна плата».",
    "en": "Receipt is the paper, and show the date is what it does not do. The others are about price or rent."
   },
@@ -1463,7 +1463,7 @@
    "en": "Except Tom means “except Tom” and is here means “here”. The others are seat and desk."
   },
   "21:c7:en-classic-r1:21.37": {
-   "ru": "Everywhere значит «везде», looked for — «искали», receipt — «квитанция». Everything — «всё».",
+   "ru": "Everywhere значит «везде», looked for — «искали», receipt — «чек». Everything — «всё».",
    "uk": "Everywhere означає «всюди», looked for — «шукали», receipt — «чек». Everything — «все».",
    "en": "Everywhere is for places and looked for is “looked for”. Everything is for things."
   },
@@ -2198,13 +2198,13 @@
    "en": "Watched means they saw it. Heard in the others means “heard”."
   },
   "31:c2:en-classic-r1:31.12": {
-   "ru": "We heard — «мы слышали», her pour water — «как она наливала воду». В других фразах речь о чайнике и о водителе.",
-   "uk": "We heard — «ми чули», her pour water — «як вона наливала воду». В інших фразах мова про чайник і про водія.",
+   "ru": "We heard — «мы слышали», her pour water — «как она налила воду». В других фразах речь о чайнике и о водителе.",
+   "uk": "We heard — «ми чули», her pour water — «як вона налила воду». В інших фразах мова про чайник і про водія.",
    "en": "We heard means “we heard”, and her pour water is what they heard. The others have a kettle and watched."
   },
   "31:c3:en-classic-r1:31.13": {
-   "ru": "She watched — «она видела», me sign the receipt — «как я подписал квитанцию». В других фразах речь о нём (him) и о вас (you).",
-   "uk": "She watched — «вона бачила», me sign the receipt — «як я підписав квитанцію». В інших фразах мова про нього (him) і про вас (you).",
+   "ru": "She watched — «она видела», me sign the receipt — «как я подписал чек». В других фразах речь о нём (him) и о вас (you).",
+   "uk": "She watched — «вона спостерігала», me sign the receipt — «як я підписав чек». В інших фразах мова про нього (him) і про вас (you).",
    "en": "She watched means “she saw”, and me sign the receipt is what she saw me do. The others have him and you."
   },
   "31:c3:en-classic-r1:31.16": {
@@ -2243,8 +2243,8 @@
    "en": "Smell means “smell”, and made her feel sick is what it caused. The others have a noise and smoke."
   },
   "31:c7:en-classic-r1:31.42": {
-   "ru": "Wanted me to — «хотела, чтобы я», check the receipt — «проверил квитанцию». В других фразах речь о просьбе (asked) и об ожидании (expected).",
-   "uk": "Wanted me to — «хотіла, щоб я», check the receipt — «перевірив квитанцію». В інших фразах мова про прохання (asked) і про очікування (expected).",
+   "ru": "Wanted me to — «хотела, чтобы я», check the receipt — «проверил чек». В других фразах речь о просьбе (asked) и об ожидании (expected).",
+   "uk": "Wanted me to — «хотіла, щоб я», check the receipt — «перевірив чек». В інших фразах мова про прохання (asked) і про очікування (expected).",
    "en": "Wanted me to means “she wished that I would”, and check the receipt is what she wished. The others have asked and expected."
   },
   "31:c7:en-classic-r1:31.45": {
@@ -2283,8 +2283,8 @@
    "en": "Has worked since April means she started in April and still works there. She goes with has."
   },
   "32:c3:en-classic-r1:32.17": {
-   "ru": "Was в начале делает вопрос: the deposit included in the total — «депозит включён в сумму». Остальные — не вопросы.",
-   "uk": "Was на початку робить питання: the deposit included in the total — «депозит включений у суму». Решта — не питання.",
+   "ru": "Was в начале делает вопрос: the deposit included in the total — «залог включён в сумму». Остальные — не вопросы.",
+   "uk": "Was на початку робить питання: the deposit included in the total — «застава включена в суму». Решта — не питання.",
    "en": "Was at the start makes a question about the deposit. The others are about a lift and a lobby."
   },
   "32:c3:en-classic-r1:32.20": {

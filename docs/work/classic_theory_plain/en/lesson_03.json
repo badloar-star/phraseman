@@ -15,8 +15,8 @@
         "en": "I work, I live"
       },
       "text": {
-        "ru": "Смотрите, как сказать, что вы делаете.\nI work nearby. — Я работаю неподалеку.\nЧитается: ай уо́рк ни́рбай.\nСлово work здесь значит «работать». В первом уроке оно значило «работа».\nСлово nearby значит «неподалёку, рядом».\nI live alone. — Я живу один.\nЧитается: ай ли́в эло́ун.\nСлово live значит «жить». Слово alone значит «один, без других».\nI walk home. — Я иду домой пешком.\nЧитается: ай уо́к хо́ум.\nСлово walk значит «идти пешком». Слово home здесь значит «домой».\nПо-английски «в» или «к» не говорят: walk home — «идти домой».\nСлов am, is, are здесь не нужно: хватает work, live, walk.\nWe walk to the shop. — Мы идём в магазин пешком.\nЧитается: уи уо́к ту зэ шо́п.\nСлово to перед местом значит «в, к»: walk to the shop. Слово shop значит «магазин».",
-        "uk": "Дивіться, як сказати, що ви робите.\nI work nearby. — Я працюю поруч.\nЧитається: ай уо́рк ні́рбай.\nСлово work тут означає «працювати». У першому уроці воно означало «робота».\nСлово nearby означає «поруч, неподалік».\nI live alone. — Я живу сам.\nЧитається: ай лі́в ело́ун.\nСлово live означає «жити». Слово alone означає «сам, без інших».\nI walk home. — Я йду додому пішки.\nЧитається: ай уо́к хо́ум.\nСлово walk означає «іти пішки». Слово home тут означає «додому».\nПо-англійськи «в» чи «до» не кажуть: walk home — «іти додому».\nСлів am, is, are тут не треба: вистачає work, live, walk.\nWe walk to the shop. — Ми йдемо до магазину пішки.\nЧитається: уі уо́к ту зе шо́п.\nСлово to перед місцем означає «в, до»: walk to the shop. Слово shop означає «магазин».",
+        "ru": "Смотрите, как сказать, что вы делаете.\nI work nearby. — Я работаю неподалеку.\nЧитается: ай уо́рк ни́рбай.\nСлово work здесь значит «работать». В первом уроке оно значило «работа».\nСлово nearby значит «неподалёку, рядом».\nI live alone. — Я живу один.\nЧитается: ай ли́в эло́ун.\nСлово live значит «жить». Слово alone значит «один, без других».\nI walk home. — Я хожу домой пешком.\nЧитается: ай уо́к хо́ум.\nСлово walk значит «идти пешком». Слово home здесь значит «домой».\nПо-английски «в» или «к» не говорят: walk home — «идти домой».\nСлов am, is, are здесь не нужно: хватает work, live, walk.\nWe walk to the shop. — Мы ходим в магазин пешком.\nЧитается: уи уо́к ту зэ шо́п.\nСлово to перед местом значит «в, к»: walk to the shop. Слово shop значит «магазин».",
+        "uk": "Дивіться, як сказати, що ви робите.\nI work nearby. — Я працюю поруч.\nЧитається: ай уо́рк ні́рбай.\nСлово work тут означає «працювати». У першому уроці воно означало «робота».\nСлово nearby означає «поруч, неподалік».\nI live alone. — Я живу сам.\nЧитається: ай лі́в ело́ун.\nСлово live означає «жити». Слово alone означає «сам, без інших».\nI walk home. — Я ходжу додому пішки.\nЧитається: ай уо́к хо́ум.\nСлово walk означає «іти пішки». Слово home тут означає «додому».\nПо-англійськи «в» чи «до» не кажуть: walk home — «іти додому».\nСлів am, is, are тут не треба: вистачає work, live, walk.\nWe walk to the shop. — Ми ходимо до магазину пішки.\nЧитається: уі уо́к ту зе шо́п.\nСлово to перед місцем означає «в, до»: walk to the shop. Слово shop означає «магазин».",
         "en": "Look at how to say what you do.\nI work nearby.\nThe word work means “to have a job.”\nIn lesson 1 it meant “a job.”\nThe word nearby means “close to here.”\nI live alone.\nThe word live means “to have a home somewhere.”\nThe word alone means “without others.”\nI walk home.\nThe word walk means “to go on foot.” The word home here means “to home.”\nIn English you do not say “to”: walk home means “go home.”\nYou do not need am, is or are here.\nThe words work, live and walk are enough.\nWe walk to the shop. — “We walk to the shop.”\nThe word to before a place means “to”: walk to the shop.\nThe word shop means “shop”."
       },
       "examples": [
@@ -82,8 +82,8 @@
         },
         {
           "command": {
-            "ru": "Выберите, как сказать: «Я иду домой пешком»",
-            "uk": "Виберіть, як сказати: «Я йду додому пішки»",
+            "ru": "Выберите, как сказать: «Я хожу домой пешком»",
+            "uk": "Виберіть, як сказати: «Я ходжу додому пішки»",
             "en": "Choose how to say: “I walk home.”"
           },
           "sample": false,

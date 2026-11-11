@@ -1258,6 +1258,15 @@ for (const lang of LANGS) {
     if (!CHECK_ONLY && !existsSync(sayFile)) { mkdirSync(dir, { recursive: true }); writeFileSync(sayFile, sayText); }
     fileInfo['say.json'] = { bytes: Buffer.byteLength(sayText), sha256: sha256(sayText) };
   }
+  // зачем (владелец 11.11, красный manifest-тест после 647226c09): theory_why.json — объяснения «почему?» к заданиям теории; их пишут руками и
+  // проверяют аудитом, сборщик их НЕ собирает. Файл лежит в папке курса → обязан быть в manifest.files. Берём готовый как есть; нет файла — кладём
+  // пустой (кнопка «почему?» тогда просто скрыта), чтобы пересборка не теряла запись.
+  {
+    const whyFile = join(dir, 'theory_why.json');
+    const whyText = existsSync(whyFile) ? readFileSync(whyFile, 'utf8') : JSON.stringify({ schema: 'phraseman.classic.theory_why/1', lang, data: {} }) + '\n';
+    if (!CHECK_ONLY && !existsSync(whyFile)) { mkdirSync(dir, { recursive: true }); writeFileSync(whyFile, whyText); }
+    fileInfo['theory_why.json'] = { bytes: Buffer.byteLength(whyText), sha256: sha256(whyText) };
+  }
   const index = { lang, lessons: 32, phrases: res.phrases, rev: lessonHash.digest('hex'), sourceZipSha256: res.sourceZipSha256 };
   const indexText = JSON.stringify(index) + '\n';
   fileInfo['index.json'] = { bytes: Buffer.byteLength(indexText), sha256: sha256(indexText) };

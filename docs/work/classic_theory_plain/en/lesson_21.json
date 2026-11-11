@@ -548,8 +548,8 @@
         "en": "Everything and everywhere"
       },
       "text": {
-        "ru": "А вот слова про все вещи и про все места.\nEverything is ready now. — Теперь всё готово.\nЧитается: э́врисин из рэ́ди на́у.\nСлово everything значит «всё».\nI checked everything twice. — Я всё проверил дважды.\nЧитается: ай чэ́кт э́врисин туа́йс.\nСлово checked значит «проверил» (check + ed).\nWe looked everywhere for the receipt. — Мы везде искали квитанцию.\nЧитается: уи лу́кт э́вриуэр фо́р зэ риси́т.\nСлово everywhere значит «везде».\nСлова looked for значат «искали».\nEverything fits in one bag. — Всё помещается в одну сумку.\nЧитается: э́врисин фи́тс ин уа́н бэ́г.\nСлово fits значит «помещается» (fit + s).\nОпять s: everything — как одна вещь, поэтому fits.",
-        "uk": "А ось слова про всі речі та про всі місця.\nEverything is ready now. — Тепер усе готове.\nЧитається: е́врісін із ре́ді на́у.\nСлово everything означає «усе».\nI checked everything twice. — Я все перевірив двічі.\nЧитається: ай че́кт е́врісін туа́йс.\nСлово checked означає «перевірив» (check + ed).\nWe looked everywhere for the receipt. — Ми всюди шукали квитанцію.\nЧитається: уі лу́кт е́вріуер фо́р зе рісі́т.\nСлово everywhere означає «всюди».\nСлова looked for означають «шукали».\nEverything fits in one bag. — Все поміщається в одну сумку.\nЧитається: е́врісін фі́тс ін уа́н бе́г.\nСлово fits означає «вміщається» (fit + s).\nЗнову s: everything — як одна річ, тому fits.",
+        "ru": "А вот слова про все вещи и про все места.\nEverything is ready now. — Теперь всё готово.\nЧитается: э́врисин из рэ́ди на́у.\nСлово everything значит «всё».\nI checked everything twice. — Я всё проверил дважды.\nЧитается: ай чэ́кт э́врисин туа́йс.\nСлово checked значит «проверил» (check + ed).\nWe looked everywhere for the receipt. — Мы везде искали чек.\nЧитается: уи лу́кт э́вриуэр фо́р зэ риси́т.\nСлово everywhere значит «везде».\nСлова looked for значат «искали».\nEverything fits in one bag. — Всё помещается в одну сумку.\nЧитается: э́врисин фи́тс ин уа́н бэ́г.\nСлово fits значит «помещается» (fit + s).\nОпять s: everything — как одна вещь, поэтому fits.",
+        "uk": "А ось слова про всі речі та про всі місця.\nEverything is ready now. — Тепер усе готове.\nЧитається: е́врісін із ре́ді на́у.\nСлово everything означає «усе».\nI checked everything twice. — Я все перевірив двічі.\nЧитається: ай че́кт е́врісін туа́йс.\nСлово checked означає «перевірив» (check + ed).\nWe looked everywhere for the receipt. — Ми всюди шукали чек.\nЧитається: уі лу́кт е́вріуер фо́р зе рісі́т.\nСлово everywhere означає «всюди».\nСлова looked for означають «шукали».\nEverything fits in one bag. — Все поміщається в одну сумку.\nЧитається: е́врісін фі́тс ін уа́н бе́г.\nСлово fits означає «вміщається» (fit + s).\nЗнову s: everything — як одна річ, тому fits.",
         "en": "Here are words for all things and all places.\nEverything is ready now.\nThe word everything means “all the things”.\nI checked everything twice.\nThe word checked means “looked to be sure” (check + ed).\nWe looked everywhere for the receipt.\nThe word everywhere means “in every place”.\nThe words looked for mean “tried to find”.\nEverything fits in one bag.\nThe word fits means “is the right size” (fit + s).\nAgain s: everything is like one thing, so fits."
       },
       "examples": [
@@ -600,8 +600,8 @@
         },
         {
           "command": {
-            "ru": "Выберите, как сказать: «Мы везде искали квитанцию»",
-            "uk": "Виберіть, як сказати: «Ми всюди шукали квитанцію»",
+            "ru": "Выберите, как сказать: «Мы везде искали чек»",
+            "uk": "Виберіть, як сказати: «Ми всюди шукали чек»",
             "en": "Choose how to say: “We looked everywhere for the receipt.”"
           },
           "sample": false,

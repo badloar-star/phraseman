@@ -112,7 +112,7 @@
         "en": "Where things are"
       },
       "text": {
-        "ru": "Добавьте место: upstairs — «наверху», downstairs — «внизу».\nThere is a toilet upstairs. — Наверху есть туалет.\nЧитается: зэ́р из э то́йлет апсте́рз.\nСлово toilet значит «туалет». Слово upstairs — «наверху».\nThere are toilets downstairs. — Внизу есть туалеты.\nЧитается: зэ́р а́р то́йлетс даунсте́рз.\nСлово downstairs значит «внизу».\nThere is a map outside. — Снаружи висит карта.\nЧитается: зэ́р из э мэ́п аутса́йд.\nСлово map значит «карта». Слово outside — «снаружи».\nСлова: inside — «внутри».",
+        "ru": "Добавьте место: upstairs — «наверху», downstairs — «внизу».\nThere is a toilet upstairs. — Наверху есть туалет.\nЧитается: зэ́р из э то́йлет апсте́рз.\nСлово toilet значит «туалет». Слово upstairs — «наверху».\nThere are toilets downstairs. — Внизу есть туалеты.\nЧитается: зэ́р а́р то́йлетс даунсте́рз.\nСлово downstairs значит «внизу».\nThere is a map outside. — Снаружи есть карта.\nЧитается: зэ́р из э мэ́п аутса́йд.\nСлово map значит «карта». Слово outside — «снаружи».\nСлова: inside — «внутри».",
         "uk": "Додайте місце: upstairs — «нагорі», downstairs — «внизу».\nThere is a toilet upstairs. — Є туалет нагорі.\nЧитається: зе́р із е то́йлет апсте́рз.\nСлово toilet означає «туалет». Слово upstairs — «нагорі».\nThere are toilets downstairs. — Є туалети внизу.\nЧитається: зе́р а́р то́йлетс даунсте́рз.\nСлово downstairs означає «внизу».\nThere is a map outside. — Надворі є карта.\nЧитається: зе́р із е ме́п аутса́йд.\nСлово map означає «карта». Слово outside — «зовні».\nСлова: inside — «всередині».",
         "en": "Add the place: upstairs, downstairs.\nThere is a toilet upstairs.\nThe word toilet means “a room to wash and go to the toilet”.\nThe word upstairs means “on a higher floor”.\nThere are toilets downstairs.\nThe word downstairs means “on a lower floor”.\nThere is a map outside.\nThe word map means “a drawing of a place”.\nThe word outside means “not in the building”.\nMore words: inside — “in the building”."
       },
@@ -179,7 +179,7 @@
         },
         {
           "command": {
-            "ru": "Выберите, как сказать: «Снаружи висит карта.»",
+            "ru": "Выберите, как сказать: «Снаружи есть карта.»",
             "uk": "Виберіть, як сказати: «Надворі є карта.»",
             "en": "Choose how to say: “There is a map outside.”"
           },

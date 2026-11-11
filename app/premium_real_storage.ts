@@ -49,6 +49,15 @@ const REAL_PREMIUM_EVIDENCE = new Set<RealPremiumEvidenceSource>([
 const REAL_PREMIUM_JOURNAL_VERSION = 1 as const;
 const MAX_REAL_PREMIUM_RAW_LENGTH = 4_096;
 let journalOperationSequence = 0;
+// зачем (владелец 11.11, ревью советника правки «общее чтение в полёте» в premium_guard): проверка статуса, пришедшая ПОСЛЕ записи
+// снимка, не должна присоединяться к чтению, начатому ДО неё, — даже если писавший ещё не сбросил кэш. Счётчик растёт в начале
+// каждой записи; premium_guard делит чтение только пока он не изменился.
+let snapshotWriteEpoch = 0;
+
+/** Растёт в начале каждой записи снимка подписки (в том числе незавершённой). */
+export function realPremiumSnapshotWriteEpoch(): number {
+  return snapshotWriteEpoch;
+}
 
 type RealPremiumPreparedJournalV1 = Readonly<{
   journalVersion: 1;
@@ -245,6 +254,7 @@ async function commitSnapshotForGeneration(
   lease: AccountTransitionLockLease,
 ): Promise<boolean> {
   if (!isCurrentAccountGeneration(token, ownerStableId)) return false;
+  snapshotWriteEpoch += 1;
   const candidateRaw = JSON.stringify(snapshot);
   const pendingKey = realPremiumPendingStorageKey(ownerStableId);
   const operationId = `${token.generation}:${Date.now()}:${journalOperationSequence += 1}`;

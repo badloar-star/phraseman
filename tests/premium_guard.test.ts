@@ -610,3 +610,137 @@ test('expires cloud-restored paid Premium when stored RC expiry is in the past',
   expect(result).toBe(false);
   expect(asyncStore.premium_active).toBe('false');
 });
+
+// зачем (владелец 11.11 «да, правь»; замер release: снимок подписки читался 23–26 раз за первые 15 с, каждое чтение — три обращения
+// к хранилищу; трассировка [COLD-START-IO] suspect показала пачку вызовов premium_guard.ts:457 за ~270 мс до первого ответа):
+// одновременные проверки статуса делят одно чтение, а сброс кэша и запрос «мимо кэша» по-прежнему читают заново.
+function realSnapshotReadCount(): number {
+  const storage = require('@react-native-async-storage/async-storage');
+  return (storage.getItem as jest.Mock).mock.calls
+    .filter(([key]) => typeof key === 'string' && key.startsWith('premium_real_snapshot_v1:') && !key.endsWith(':pending')).length;
+}
+
+test('concurrent real-premium checks share one snapshot read', async () => {
+  await writeRealPremiumForCurrentTestAccount();
+  const { getVerifiedRealPremiumStatus, __waitForPremiumBackgroundRefreshForTests } = require('../app/premium_guard');
+  const before = realSnapshotReadCount();
+  const results = await Promise.all([1, 2, 3, 4, 5].map(() => getVerifiedRealPremiumStatus()));
+  expect(results).toEqual([true, true, true, true, true]);
+  expect(realSnapshotReadCount() - before).toBe(1);
+  await __waitForPremiumBackgroundRefreshForTests();
+});
+
+test('a check started after invalidatePremiumCache does not join the earlier in-flight read', async () => {
+  await writeRealPremiumForCurrentTestAccount();
+  const guard = require('../app/premium_guard');
+  const storage = require('@react-native-async-storage/async-storage');
+  const getItem = storage.getItem as jest.Mock;
+  const plainGetItem = getItem.getMockImplementation() as (key: string) => Promise<string | null>;
+  // Первое чтение снимка держим открытым: сброс кэша должен прийтись точно на середину чтения «в полёте».
+  let releaseFirstRead: () => void = () => undefined;
+  const firstReadGate = new Promise<void>((resolve) => { releaseFirstRead = resolve; });
+  let gated = false;
+  getItem.mockImplementation(async (key: string) => {
+    if (!gated && key.startsWith('premium_real_snapshot_v1:') && !key.endsWith(':pending')) {
+      gated = true;
+      await firstReadGate;
+    }
+    return plainGetItem(key);
+  });
+  const flush = () => new Promise<void>((resolve) => setImmediate(resolve));
+  try {
+    const before = realSnapshotReadCount();
+    const first = guard.getVerifiedRealPremiumStatus();
+    await flush();
+    expect(realSnapshotReadCount() - before).toBe(1);
+    guard.invalidatePremiumCache();
+    const second = guard.getVerifiedRealPremiumStatus();
+    await flush();
+    // Вторая проверка не дождалась первой: она уже прочитала снимок сама, пока первая стоит.
+    expect(realSnapshotReadCount() - before).toBe(2);
+    await expect(second).resolves.toBe(true);
+    releaseFirstRead();
+    await expect(first).resolves.toBe(true);
+  } finally {
+    releaseFirstRead();
+    getItem.mockImplementation(plainGetItem);
+  }
+  await guard.__waitForPremiumBackgroundRefreshForTests();
+});
+
+test('bypassCache check reads on its own while another check is in flight', async () => {
+  await writeRealPremiumForCurrentTestAccount();
+  const guard = require('../app/premium_guard');
+  const before = realSnapshotReadCount();
+  await expect(Promise.all([
+    guard.getVerifiedRealPremiumStatus(),
+    guard.getVerifiedRealPremiumStatus({ bypassCache: true }),
+  ])).resolves.toEqual([true, true]);
+  expect(realSnapshotReadCount() - before).toBe(2);
+  await guard.__waitForPremiumBackgroundRefreshForTests();
+});
+
+// зачем (ревью советника 11.11): запись снимка (покупка, восстановление из облака) может прийти раньше сброса кэша. Проверка,
+// начатая после такой записи, обязана увидеть новый снимок, а не ответ чтения, начатого до неё.
+test('a check started after a snapshot write does not join a read that started before the write', async () => {
+  await writeRealPremiumForCurrentTestAccount({
+    plan: 'yearly',
+    rcExpiryMs: Date.now() - 24 * 60 * 60 * 1000,
+    rcLastSeenAtMs: 0,
+    evidenceSource: 'server_projection',
+  });
+  const guard = require('../app/premium_guard');
+  const storage = require('@react-native-async-storage/async-storage');
+  const getItem = storage.getItem as jest.Mock;
+  const plainGetItem = getItem.getMockImplementation() as (key: string) => Promise<string | null>;
+  let releaseFirstRead: () => void = () => undefined;
+  const firstReadGate = new Promise<void>((resolve) => { releaseFirstRead = resolve; });
+  let gated = false;
+  getItem.mockImplementation(async (key: string) => {
+    if (!gated && key.startsWith('premium_real_snapshot_v1:') && !key.endsWith(':pending')) {
+      gated = true;
+      // Старое значение прочитано ДО записи продления и отдаётся после неё — как у настоящего чтения, застрявшего в очереди.
+      const stale = await plainGetItem(key);
+      await firstReadGate;
+      return stale;
+    }
+    return plainGetItem(key);
+  });
+  const flush = () => new Promise<void>((resolve) => setImmediate(resolve));
+  try {
+    const first = guard.getVerifiedRealPremiumStatus({ bypassCache: false });
+    await flush();
+    // Продление записано, а invalidatePremiumCache ещё НЕ вызван.
+    await writeRealPremiumForCurrentTestAccount();
+    await expect(guard.getVerifiedRealPremiumStatus()).resolves.toBe(true);
+    releaseFirstRead();
+    await first;
+  } finally {
+    releaseFirstRead();
+    getItem.mockImplementation(plainGetItem);
+  }
+  await guard.__waitForPremiumBackgroundRefreshForTests();
+});
+
+test('a failed shared read is not handed to the next check', async () => {
+  await writeRealPremiumForCurrentTestAccount();
+  const guard = require('../app/premium_guard');
+  const storage = require('@react-native-async-storage/async-storage');
+  const getItem = storage.getItem as jest.Mock;
+  const plainGetItem = getItem.getMockImplementation() as (key: string) => Promise<string | null>;
+  let failed = false;
+  getItem.mockImplementation(async (key: string) => {
+    if (!failed && key.startsWith('premium_real_snapshot_v1:')) {
+      failed = true;
+      throw new Error('storage_unavailable');
+    }
+    return plainGetItem(key);
+  });
+  try {
+    await expect(guard.getVerifiedRealPremiumStatus()).rejects.toThrow('storage_unavailable');
+    await expect(guard.getVerifiedRealPremiumStatus()).resolves.toBe(true);
+  } finally {
+    getItem.mockImplementation(plainGetItem);
+  }
+  await guard.__waitForPremiumBackgroundRefreshForTests();
+});

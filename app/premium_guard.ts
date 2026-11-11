@@ -18,6 +18,7 @@ import {
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
 import {
   readRealPremiumSnapshotForGeneration,
+  realPremiumSnapshotWriteEpoch,
   updateRealPremiumSnapshotForGeneration,
   type RealPremiumSnapshotV1,
 } from './premium_real_storage';
@@ -49,6 +50,12 @@ const RC_LAST_SEEN_KEY = 'premium_rc_last_seen_at';
 let _cachedRealResult: boolean | null = null;
 let _realCacheTime = 0;
 let _realCacheGeneration = -1;
+// зачем (владелец 11.11 «да, правь»; замер release и трассировка [COLD-START-IO] suspect): кэш результата заполняется только после
+// первого ответа, поэтому проверки, пришедшие на старте за ~270 мс до него, читали снимок каждая сама (5 вызовов = 15 обращений
+// к хранилищу). Одновременные проверки одного поколения аккаунта делят одно вычисление. Присоединившийся получает ровно то, что
+// через мгновение отдал бы кэш результата, — новой устарелости нет. Не делятся: bypassCache (просят свежее) и lease (идут внутри записи).
+// writeEpoch: началась любая запись снимка — к чтению, начатому до неё, больше не присоединяются (ревью советника 11.11).
+let _realStatusInFlight: { readonly generation: number; readonly writeEpoch: number; readonly promise: Promise<boolean> } | null = null;
 let _cachedVipResult: boolean | null = null;
 let _vipCacheTime = 0;
 let _vipCacheGeneration = -1;
@@ -90,6 +97,8 @@ export function invalidatePremiumCache(): void {
   _cachedAccessResult = null;
   _accessCacheTime = 0;
   _accessCacheGeneration = -1;
+  // Сброс кэша отцепляет и общее чтение «в полёте»: проверка, начатая после сброса, читает хранилище заново.
+  _realStatusInFlight = null;
 }
 
 /** True only when the current account has a cache entry produced by a conclusive access decision. */
@@ -454,30 +463,54 @@ export async function getVerifiedRealPremiumStatus(
     return _cachedRealResult;
   }
 
-  const snapshot = await readRealPremiumSnapshotForGeneration(generation);
-  if (!accountGenerationIsCurrent(generation)) return false;
-  refreshRealPremiumInBackground(generation, snapshot);
-  if (!snapshot?.active || !snapshot.plan) return finish(false);
-
-  const now = Date.now();
-  const premiumExpiryExpired = snapshot.premiumExpiryMs > 0 && snapshot.premiumExpiryMs <= now;
-  const rcExpiryExpired = snapshot.rcExpiryMs > 0 && snapshot.rcExpiryMs <= now;
-  const lifetime = snapshot.plan === 'lifetime';
-  const lastSeenFresh = snapshot.rcLastSeenAtMs > 0
-    && now - snapshot.rcLastSeenAtMs <= RC_STALE_GRACE_MS;
-  const localAccess = !premiumExpiryExpired && !rcExpiryExpired && (
-    lifetime
-    || snapshot.premiumExpiryMs > now
-    || snapshot.rcExpiryMs > now
-    || lastSeenFresh
-  );
-
-  if (!localAccess) {
-    const persisted = await setRealPremiumActiveForGeneration(generation, false, options?.lease);
-    if (!persisted) return false;
+  const shareable = !options?.bypassCache && !options?.lease;
+  if (
+    shareable
+    && _realStatusInFlight !== null
+    && _realStatusInFlight.generation === generation.generation
+    && _realStatusInFlight.writeEpoch === realPremiumSnapshotWriteEpoch()
+  ) {
+    // Свою проверку поколения присоединившийся делает сам: чужой ответ не выдаётся после смены аккаунта.
+    return _realStatusInFlight.promise.then((result) => (accountGenerationIsCurrent(generation) ? result : false));
   }
-  if (!accountGenerationIsCurrent(generation)) return false;
-  return finish(localAccess);
+
+  const compute = async (): Promise<boolean> => {
+    const snapshot = await readRealPremiumSnapshotForGeneration(generation);
+    if (!accountGenerationIsCurrent(generation)) return false;
+    refreshRealPremiumInBackground(generation, snapshot);
+    if (!snapshot?.active || !snapshot.plan) return finish(false);
+
+    const now = Date.now();
+    const premiumExpiryExpired = snapshot.premiumExpiryMs > 0 && snapshot.premiumExpiryMs <= now;
+    const rcExpiryExpired = snapshot.rcExpiryMs > 0 && snapshot.rcExpiryMs <= now;
+    const lifetime = snapshot.plan === 'lifetime';
+    const lastSeenFresh = snapshot.rcLastSeenAtMs > 0
+      && now - snapshot.rcLastSeenAtMs <= RC_STALE_GRACE_MS;
+    const localAccess = !premiumExpiryExpired && !rcExpiryExpired && (
+      lifetime
+      || snapshot.premiumExpiryMs > now
+      || snapshot.rcExpiryMs > now
+      || lastSeenFresh
+    );
+
+    if (!localAccess) {
+      const persisted = await setRealPremiumActiveForGeneration(generation, false, options?.lease);
+      if (!persisted) return false;
+    }
+    if (!accountGenerationIsCurrent(generation)) return false;
+    return finish(localAccess);
+  };
+
+  if (!shareable) return compute();
+  // Эпоха записи берётся ДО старта чтения: запись, начавшаяся во время чтения, тоже закрывает присоединение.
+  const writeEpoch = realPremiumSnapshotWriteEpoch();
+  const promise = compute();
+  const entry = { generation: generation.generation, writeEpoch, promise };
+  _realStatusInFlight = entry;
+  // Запись снимается и при ошибке: упавшее чтение не должно раздаваться следующим вызовам.
+  const release = (): void => { if (_realStatusInFlight === entry) _realStatusInFlight = null; };
+  promise.then(release, release);
+  return promise;
 }
 
 export async function getVerifiedVipStatus(options?: PremiumLeaseReadOptions): Promise<boolean> {

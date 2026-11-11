@@ -5,6 +5,7 @@ Governance-ID: TG-FFA49413F845
 Governance-ID: TG-986ADFFAEDE9
 Governance-ID: TG-19258C81F89D
 Governance-ID: TG-C38E91EEBFCD
+Governance-ID: TG-2078DC1EB0F0
 Status: In progress
 Owner: сессия Claude «запуск» (передача от Codex, приоритет 2)
 
@@ -84,6 +85,20 @@ Out of scope: любые правки поведения старта и Гла�
 вызов после сброса читал заново. Новой устарелости не вносит: присоединившийся получает то же, что дал бы кэш результата.
 
 Тест `tests/cold_start_io_callers.test.ts` — 3 из 3 (20:10). Временную ветку метки убрать после правки.
+
+## Правка 11.11 (по слову владельца «да, правь»)
+
+Governance-ID: TG-E7FBE1905354
+
+`getVerifiedRealPremiumStatus` делит одно вычисление между одновременными проверками одного поколения аккаунта. Не делятся
+вызовы с `bypassCache` и `lease`. Общее чтение отцепляется при `invalidatePremiumCache()` и при начале любой записи снимка
+(`realPremiumSnapshotWriteEpoch` в `premium_real_storage.ts` — добавлено по ревью советника). Тест «до» показал 5 чтений на
+5 проверок, «после» — 1. Пять новых тестов в `tests/premium_guard.test.ts`; семь наборов подписки — 106 прошло, 1 пропущен.
+Не проверено: типы (ПК не хватило памяти), замер на устройстве после правки.
+
+Открыто (ревью советника, НЕ исправлено, было и до правки): проверка, начатая до продления подписки, решив «истекла»,
+пишет `active:false` поверх уже продлённого снимка и кэширует «нет» на 5 мин (`premium_guard.ts`, ветка `!localAccess` →
+`setRealPremiumActiveForGeneration`; `cacheReal` не знает о сбросе кэша). Нужна отдельная правка с тестом.
 
 ## Rollback
 `git revert cee5bb96e`; удалить AVD `Phraseman_ColdStart`; старый `app-release.apk` от 04.10 сохранён копией.

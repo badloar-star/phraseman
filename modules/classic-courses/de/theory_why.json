@@ -30,7 +30,7 @@
   "1:c3:de:01:20": {
    "ru": "Kinder значит «дети», а с ними говорят sind. Tom ist — это про одного Тома.",
    "uk": "Kinder означає «діти», а з ними кажуть sind. Tom ist — це про одного Тома.",
-   "en": "Kinder means “children”, and with it we say sind. Tom ist is about one person, Tom."
+   "en": "Kinder means “children”, and with them we say sind. Tom ist is about one person, Tom."
   },
   "1:c4:de:01:24": {
    "ru": "Draußen значит «на улице». Drinnen — это «внутри», а zu Hause — «дома».",
@@ -98,9 +98,9 @@
    "en": "One table is Tisch, and then we say ist. Several tables are Tische, with sind."
   },
   "2:c4:de:02:10": {
-   "ru": "Schlüssel — «ключ», и ключей несколько, поэтому sind. Tisch — «стол», это про вещь другую.",
-   "uk": "Schlüssel — «ключ», і ключів кілька, тому sind. Tisch — «стіл», це про іншу річ.",
-   "en": "Schlüssel means “key”, and there are several, so sind. Tisch means “table”, a different thing."
+   "ru": "Die Schlüssel — это несколько ключей, поэтому sind. Tisch — «стол», это совсем другая вещь.",
+   "uk": "Die Schlüssel — це кілька ключів, тому sind. Tisch — «стіл», це зовсім інша річ.",
+   "en": "Die Schlüssel means several keys, so sind. Tisch means “table”, a completely different thing."
   },
   "2:c5:de:02:11": {
    "ru": "Da значит «уже здесь, на месте». Hier — просто «здесь», а dort — «там».",
@@ -153,14 +153,14 @@
    "en": "Warten means “to wait”, and warte means “I wait”. Arbeite means “I work”, and wartest means “you wait”."
   },
   "3:c5:de:03:22": {
-   "ru": "Du suchst — «ты ищешь», а die Tasche — «сумка». Die не меняется, меняется только der.",
-   "uk": "Du suchst — «ти шукаєш», а die Tasche — «сумка». Die не змінюється, змінюється лише der.",
-   "en": "Du suchst means “you look for”, and die Tasche is “the bag”. Die stays the same; only der changes."
+   "ru": "Du suchst — «ты ищешь», а die Tasche — «сумка». Anna sucht — про Анну, а ich suche — про «я».",
+   "uk": "Du suchst — «ти шукаєш», а die Tasche — «сумка». Anna sucht — про Анну, а ich suche — про «я».",
+   "en": "Du suchst means “you look for”, and die Tasche is “the bag”. Anna sucht is about Anna, and ich suche is about “I”."
   },
   "3:c5:de:03:23": {
-   "ru": "Anna sucht — «Анна ищет», а das Handy — «телефон». Das не меняется, меняется только der.",
-   "uk": "Anna sucht — «Анна шукає», а das Handy — «телефон». Das не змінюється, змінюється лише der.",
-   "en": "Anna sucht means “Anna looks for”, and das Handy is “the phone”. Das stays the same; only der changes."
+   "ru": "Anna sucht — «Анна ищет», а das Handy — «телефон». Ich suche и du suchst — про «я» и «ты».",
+   "uk": "Anna sucht — «Анна шукає», а das Handy — «телефон». Ich suche і du suchst — про «я» і «ти».",
+   "en": "Anna sucht means “Anna looks for”, and das Handy is “the phone”. Ich suche and du suchst are about “I” and “you”."
   },
   "3:c6:de:03:17": {
    "ru": "Milch значит «молоко», а kaufst — «покупаешь» для du. Brot — это «хлеб».",
@@ -188,9 +188,9 @@
    "en": "Dienstag means “Tuesday”, and Montag means “Monday”. Am stands before the day: “on”."
   },
   "4:c2:de:04:08": {
-   "ru": "Samstag значит «суббота». Freitag — это «пятница», а kochen wir — про «мы».",
-   "uk": "Samstag означає «субота». Freitag — це «п'ятниця», а kochen wir — про «ми».",
-   "en": "Samstag means “Saturday”. Freitag means “Friday”, and kochen wir is about “we”."
+   "ru": "Samstag значит «суббота». Freitag — это «пятница», а Sonntag — «воскресенье».",
+   "uk": "Samstag означає «субота». Freitag — це «п'ятниця», а Sonntag — «неділя».",
+   "en": "Samstag means “Saturday”. Freitag means “Friday”, and Sonntag means “Sunday”."
   },
   "4:c3:de:04:22": {
    "ru": "Neun значит «девять», а Arbeit — «работа». Acht — это «восемь», Kurs — «занятие».",
@@ -264,13 +264,13 @@
   },
   "5:c4:de:05:42": {
    "ru": "Hat — для Анны, а die Karte — «карта». Hast — для du, habt — для ihr.",
-   "uk": "Hat — для Анни, а die Karte — «мапа». Hast — для du, habt — для ihr.",
+   "uk": "Hat — для Анни, а die Karte — «карта». Hast — для du, habt — для ihr.",
    "en": "Hat goes with Anna, and die Karte is “the card”. Hast goes with du, and habt goes with ihr."
   },
   "5:c4:de:05:44": {
-   "ru": "Kinder — это «дети», и слово для них haben. Durst значит «жажда», Haben Durst — «хотят пить».",
-   "uk": "Kinder — це «діти», і слово для них haben. Durst означає «спрага», Haben Durst — «хочуть пити».",
-   "en": "Kinder means “children”, and the word for them is haben. Durst means “thirst”, so Haben Durst is “are thirsty”."
+   "ru": "Kinder — это «дети», и слово для них haben. Durst значит «жажда», haben Durst — «хотят пить».",
+   "uk": "Kinder — це «діти», і слово для них haben. Durst означає «спрага», haben Durst — «хочуть пити».",
+   "en": "Kinder means “children”, and the word for them is haben. Durst means “thirst”, so haben Durst is “are thirsty”."
   },
   "5:c5:de:05:37": {
    "ru": "Bleiben значит «оставаться», а heute — «сегодня». Brauchen — «нуждаться», möchten — «хотеть».",
@@ -318,8 +318,8 @@
    "en": "Wie lange means “how long”, and bleibt means “stay”. Spät means “late”, which is about time."
   },
   "6:c4:de:06:30": {
-   "ru": "Spät значит «поздно», и Wie spät ist es так спрашивают время. Bezahle — «плачу».",
-   "uk": "Spät означає «пізно», і Wie spät ist es так питають час. Bezahle — «плачу».",
+   "ru": "Spät значит «поздно», и Wie spät ist es так спрашивают время. Bezahle — «оплачиваю».",
+   "uk": "Spät означає «пізно», і Wie spät ist es так питають час. Bezahle — «оплачую».",
    "en": "Spät means “late”, and Wie spät ist es is how we ask the time. Bezahle means “I pay”."
   },
   "6:c5:de:06:34": {
@@ -328,9 +328,9 @@
    "en": "Kostet means “costs”, and Ticket means “ticket”. Suppe means “soup”, and suchst means “you look for”."
   },
   "6:c5:de:06:36": {
-   "ru": "Brauchen значит «нуждаться», а Sie — вежливое «вы». Suchst — «ищешь», ist das — «это есть».",
-   "uk": "Brauchen означає «потребувати», а Sie — ввічливе «ви». Suchst — «шукаєш», ist das — «це є».",
-   "en": "Brauchen means “to need”, and Sie is the polite “you”. Suchst means “you look for”, and ist das means “is this”."
+   "ru": "Brauchen значит «нуждаться», а Sie — вежливое «вы». Suchst — «ищешь», а Was ist das — «что это».",
+   "uk": "Brauchen означає «потребувати», а Sie — ввічливе «ви». Suchst — «шукаєш», а Was ist das — «що це».",
+   "en": "Brauchen means “to need”, and Sie is the polite “you”. Suchst means “you look for”, and Was ist das means “what is this”."
   },
   "6:c6:de:06:43": {
    "ru": "Wer значит «кто», а bezahlt — «оплачивает». Wartet — «ждёт», kommt — «приходит».",
@@ -353,14 +353,14 @@
    "en": "Stift means “pen”, and hat is “has” for Tom. Termin means “appointment”, and habe goes with ich."
   },
   "7:c2:de:07:14": {
-   "ru": "Brauchen — «нужно нам», а Ticket — «билет». Braucht — для Анны.",
-   "uk": "Brauchen — «потрібно нам», а Ticket — «квиток». Braucht — для Анни.",
-   "en": "Brauchen means “we need”, and Ticket means “ticket”. Braucht goes with Anna."
+   "ru": "Wir brauchen — «нам нужно», а Ticket — «билет». Braucht — для Анны.",
+   "uk": "Wir brauchen — «нам потрібно», а Ticket — «квиток». Braucht — для Анни.",
+   "en": "Wir brauchen means “we need”, and Ticket means “ticket”. Braucht goes with Anna."
   },
   "7:c2:de:07:12": {
-   "ru": "Brauchst значит «нужно тебе», а Stift — «ручка». Braucht — для Анны, brauche — для ich.",
-   "uk": "Brauchst означає «потрібно тобі», а Stift — «ручка». Braucht — для Анни, brauche — для ich.",
-   "en": "Brauchst means “you need”, and Stift means “pen”. Braucht goes with Anna, and brauche goes with ich."
+   "ru": "Du brauchst — «тебе нужно», а Stift — «ручка». Braucht — для Анны, brauche — для ich.",
+   "uk": "Du brauchst — «тобі потрібно», а Stift — «ручка». Braucht — для Анни, brauche — для ich.",
+   "en": "Du brauchst means “you need”, and Stift means “pen”. Braucht goes with Anna, and brauche goes with ich."
   },
   "7:c3:de:07:17": {
    "ru": "Suchst значит «ищешь», а Apotheke — «аптека», и перед ней eine. Tom sucht — про Тома.",
@@ -438,19 +438,19 @@
    "en": "Beleg means “receipt”, and keinen means “none”. Brauche is “I need”, so keinen Beleg."
   },
   "8:c4:de:08:50": {
-   "ru": "Leider значит «к сожалению», а kein Kleingeld — «нет мелочи». Balkon и Salat здесь не нужны.",
-   "uk": "Leider означає «на жаль», а kein Kleingeld — «немає дрібних грошей». Balkon і Salat тут не потрібні.",
-   "en": "Leider means “unfortunately”, and kein Kleingeld means “no change”. Balkon and Salat do not fit here."
+   "ru": "Leider значит «к сожалению», а kein Kleingeld — «нет мелочи». Balkon — это «балкон», а Beleg — «чек».",
+   "uk": "Leider означає «на жаль», а kein Kleingeld — «немає дрібних грошей». Balkon — це «балкон», а Beleg — «чек».",
+   "en": "Leider means “unfortunately”, and kein Kleingeld means “no change”. Balkon means “balcony”, and Beleg means “receipt”."
   },
   "8:c5:de:08:36": {
-   "ru": "Mit Karte — «картой», а «не так» говорят nicht. Garten — «сад», mein Koffer — «мой чемодан».",
-   "uk": "Mit Karte — «карткою», а «не так» кажуть nicht. Garten — «сад», mein Koffer — «моя валіза».",
-   "en": "Mit Karte means “by card”, and “not like this” is nicht. Garten means “garden”, and mein Koffer means “my suitcase”."
+   "ru": "Nicht значит «не» и стоит перед mit Karte — «картой». Garten — «сад», mein Koffer — «мой чемодан».",
+   "uk": "Nicht означає «не» і стоїть перед mit Karte — «карткою». Garten — «сад», mein Koffer — «моя валіза».",
+   "en": "Nicht means “not” and stands before mit Karte, “by card”. Garten means “garden”, and mein Koffer means “my suitcase”."
   },
   "8:c5:de:08:41": {
-   "ru": "Eingang значит «вход». Вещи нет — значит kein: Das ist kein Eingang.",
-   "uk": "Eingang означає «вхід». Речі немає — отже kein: Das ist kein Eingang.",
-   "en": "Eingang means “entrance”. When the thing is not there, we say kein: Das ist kein Eingang."
+   "ru": "Eingang значит «вход», а перед ним стоит kein: «это не вход».",
+   "uk": "Eingang означає «вхід», а перед ним стоїть kein: «це не вхід».",
+   "en": "Eingang means “entrance”, and kein stands before it: “this is not an entrance”."
   },
   "9:c1:de:09:02": {
    "ru": "Dein значит «твой», а Pass — «паспорт». Mein — это «мой».",
@@ -523,14 +523,14 @@
    "en": "Gekauft means “bought”, and Brot means “bread”. Hat goes with Tom, and the action word comes last."
   },
   "16:c2:de:16:07": {
-   "ru": "Gelacht значит «смеялись», а с Kinder говорят haben. Gespielt — «играли», gewartet — «ждал».",
-   "uk": "Gelacht означає «сміялися», а з Kinder кажуть haben. Gespielt — «грали», gewartet — «чекав».",
-   "en": "Gelacht means “laughed”, and with Kinder we say haben. Gespielt means “played”, and gewartet means “waited”."
+   "ru": "Gelacht значит «смеялись», а с Kinder говорят haben. Gelernt — «занимались», gewartet — «ждал».",
+   "uk": "Gelacht означає «сміялися», а з Kinder кажуть haben. Gelernt — «вчилися», gewartet — «чекав».",
+   "en": "Gelacht means “laughed”, and with Kinder we say haben. Gelernt means “studied”, and gewartet means “waited”."
   },
   "16:c2:de:16:06": {
-   "ru": "Ihr habt — «вы имеете», gespielt — «играли», draußen — «на улице». Gelernt — «учились».",
-   "uk": "Ihr habt — «ви маєте», gespielt — «грали», draußen — «надворі». Gelernt — «вчилися».",
-   "en": "Ihr habt goes with “you”, gespielt means “played”, and draußen means “outside”. Gelernt means “studied”."
+   "ru": "Ihr habt ... gespielt — «вы играли», а draußen — «на улице». Gelernt — «занимались», gewartet — «ждал».",
+   "uk": "Ihr habt ... gespielt — «ви грали», а draußen — «надворі». Gelernt — «вчилися», gewartet — «чекав».",
+   "en": "Ihr habt ... gespielt means “you played”, and draußen means “outside”. Gelernt means “studied”, and gewartet means “waited”."
   },
   "16:c3:de:16:12": {
    "ru": "Gefunden значит «нашёл», а Karte — «карта». Gesucht — «искал», gegessen — «съели».",
@@ -663,14 +663,14 @@
    "en": "Hattest comes first and means “did you have”. Ausweis means “ID”. Warst means “were you”."
   },
   "19:c1:de:19:04": {
-   "ru": "Wir — «мы», и к нему uns. Waschen — «умываем». Euch — для ihr, sich — для Анны.",
-   "uk": "Wir — «ми», і до нього uns. Waschen — «вмиваємо». Euch — для ihr, sich — для Анни.",
-   "en": "Wir means “we”, and it goes with uns. Waschen means “wash”. Euch goes with ihr, and sich goes with Anna."
+   "ru": "Wir — «мы», и к нему uns. Waschen — «умываем». Euch — для ihr, mich — для ich.",
+   "uk": "Wir — «ми», і до нього uns. Waschen — «вмиваємо». Euch — для ihr, mich — для ich.",
+   "en": "Wir means “we”, and it goes with uns. Waschen means “wash”. Euch goes with ihr, and mich goes with ich."
   },
   "19:c1:de:19:05": {
-   "ru": "Ihr — «вы», и к нему euch. Wascht — «умываете». Uns — для «мы», dich — для du.",
-   "uk": "Ihr — «ви», і до нього euch. Wascht — «вмиваєте». Uns — для «ми», dich — для du.",
-   "en": "Ihr means “you”, and it goes with euch. Wascht means “wash”. Uns goes with “we”, and dich goes with du."
+   "ru": "Ihr — «вы», и к нему euch. Wascht — «умываете». Sich — для Анны, dich — для du.",
+   "uk": "Ihr — «ви», і до нього euch. Wascht — «вмиваєте». Sich — для Анни, dich — для du.",
+   "en": "Ihr means “you”, and it goes with euch. Wascht means “wash”. Sich goes with Anna, and dich goes with du."
   },
   "19:c2:de:19:08": {
    "ru": "Zieht ... aus значит «раздевается», а sich — «себя». Ziehe ... an — «одеваюсь».",
@@ -688,9 +688,9 @@
    "en": "Legt sich means “lies down”, and aufs Sofa means “onto the sofa”. Setzt sich means “sits down”."
   },
   "19:c3:de:19:19": {
-   "ru": "Erholst стоит первым, значит вопрос, и значит «отдыхаешь». Dich — «себя», gut — «хорошо».",
-   "uk": "Erholst стоїть першим, тож це питання, і означає «відпочиваєш». Dich — «себе», gut — «добре».",
-   "en": "Erholst comes first, so it is a question, and it means “rest”. Dich means “yourself”, and gut means “well”."
+   "ru": "Erholst значит «отдыхаешь» и стоит первым — это вопрос. Dich — «себя», gut — «хорошо».",
+   "uk": "Erholst означає «відпочиваєш» і стоїть першим — це питання. Dich — «себе», gut — «добре».",
+   "en": "Erholst means “you rest” and comes first, so it is a question. Dich means “yourself”, and gut means “well”."
   },
   "19:c4:de:19:26": {
    "ru": "Freue mich auf — «жду с радостью», а morgen — «завтра». Beeile mich — «тороплюсь».",
@@ -724,7 +724,7 @@
   },
   "20:c2:de:20:07": {
    "ru": "Kleiner значит «меньше», а Bad — «ванная». Größer — «больше», Zimmer — «комната».",
-   "uk": "Kleiner означає «менше», а Bad — «ванна». Größer — «більше», Zimmer — «кімната».",
+   "uk": "Kleiner означає «менше», а Bad — «ванна кімната». Größer — «більше», Zimmer — «кімната».",
    "en": "Kleiner means “smaller”, and Bad means “bathroom”. Größer means “bigger”, and Zimmer means “room”."
   },
   "20:c2:de:20:10": {
@@ -743,14 +743,14 @@
    "en": "Schöner means “nicer”, and Strand means “beach”. Wärmer means “warmer”, and stärker means “stronger”."
   },
   "20:c4:de:20:30": {
-   "ru": "Weniger значит «меньше», а Strom — «электричество». Mehr — «больше, дороже».",
-   "uk": "Weniger означає «менше», а Strom — «електрика». Mehr — «більше, дорожче».",
+   "ru": "Weniger значит «меньше», а Strom — «электричество». Mehr — «больше».",
+   "uk": "Weniger означає «менше», а Strom — «електрика». Mehr — «більше».",
    "en": "Weniger means “less”, and Strom means “electricity”. Mehr means “more”."
   },
   "20:c4:de:20:31": {
-   "ru": "Mehr значит «больше, дороже», а kosten — «стоят». Weniger — «меньше».",
-   "uk": "Mehr означає «більше, дорожче», а kosten — «коштують». Weniger — «менше».",
-   "en": "Mehr means “more”, and kosten means “cost”. Weniger means “less”."
+   "ru": "Mehr значит «больше», а kosten — «стоят». Вместе kosten mehr — «стоят дороже». Weniger — «меньше».",
+   "uk": "Mehr означає «більше», а kosten — «коштують». Разом kosten mehr — «коштують дорожче». Weniger — «менше».",
+   "en": "Mehr means “more”, and kosten means “cost”. Together kosten mehr is “cost more”. Weniger means “less”."
   },
   "20:c5:de:20:43": {
    "ru": "Genauso ... wie значит «так же ... как», а müde — «усталый». Du — «ты».",

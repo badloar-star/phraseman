@@ -28,9 +28,9 @@
    "en": "Elles means “they”, and with it we say sont. Léa est is about one person, and ils sont là means “they are there”."
   },
   "1:c3:fr:01:23": {
-   "ru": "Elle значит «она», а с elle говорят est. Prête — «готова»: в конце лишняя буква.",
-   "uk": "Elle означає «вона», а з elle кажуть est. Prête — «готова»: наприкінці зайва літера.",
-   "en": "Elle means “she”, and with elle we say est. Prête means “ready”, with an extra letter at the end."
+   "ru": "Elle значит «она», а с elle говорят est. Prête — «готова», про женщину; je suis prêt — «я готов».",
+   "uk": "Elle означає «вона», а з elle кажуть est. Prête — «готова», про жінку; je suis prêt — «я готовий».",
+   "en": "Elle means “she”, and with elle we say est. Prête means “ready” for a woman; je suis prêt means “I am ready”."
   },
   "1:c4:fr:01:14": {
    "ru": "À la gare — «на вокзале», а Léa est — про Леа. À la maison — «дома», au bureau — «в офисе».",
@@ -38,9 +38,9 @@
    "en": "À la gare means “at the station”, and Léa est is about Léa. À la maison means “at home”, au bureau means “at the office”."
   },
   "1:c4:fr:01:31": {
-   "ru": "Porte — «дверь», и к женскому слову добавляют букву: ouverte. Magasin — «магазин», fenêtre — «окно».",
-   "uk": "Porte — «двері», і до жіночого слова додають літеру: ouverte. Magasin — «магазин», fenêtre — «вікно».",
-   "en": "Porte means “door”, and a feminine word gets an extra letter: ouverte. Magasin means “shop”, fenêtre means “window”."
+   "ru": "Porte — «дверь», а ouverte — «открыта» (с буквой e на конце). Magasin — «магазин», fenêtre — «окно».",
+   "uk": "Porte — «двері», а ouverte — «відкриті» (з літерою e наприкінці). Magasin — «магазин», fenêtre — «вікно».",
+   "en": "Porte means “door”, and ouverte means “open” (with an e at the end). Magasin means “shop”, fenêtre means “window”."
   },
   "2:c1:fr:02:02": {
    "ru": "Tu — «ты», ici — «здесь», а ne и pas стоят по бокам от es. С je было бы suis, а là — «там».",
@@ -63,9 +63,9 @@
    "en": "Là means “there”, and ici means “here”. Tu means “you”, so es; est is for “she”."
   },
   "2:c3:fr:02:08": {
-   "ru": "Vous значит «вы», а с vous говорят êtes: ne сокращается до n’. Nous — «мы», tu — «ты».",
-   "uk": "Vous означає «ви», а з vous кажуть êtes: ne скорочується до n’. Nous — «ми», tu — «ти».",
-   "en": "Vous means “you” (formal), and with vous we say êtes: ne shortens to n’. Nous means “we”, tu means “you”."
+   "ru": "Vous значит «вы», с ним говорят êtes, а ne сокращается до n’. Nous — «мы», tu — «ты».",
+   "uk": "Vous означає «ви», з ним кажуть êtes, а ne скорочується до n’. Nous — «ми», tu — «ти».",
+   "en": "Vous means “you” (formal), with it we say êtes, and ne shortens to n’. Nous means “we”, tu means “you”."
   },
   "2:c3:fr:02:10": {
    "ru": "Elles — «они» (женщины), с ним sont, а ici — «здесь». Dehors — «на улице», n’est — про «она».",
@@ -185,7 +185,7 @@
   "4:c3:fr:04:08": {
    "ru": "Voisine — «соседка», и перед ним une. Voisin без лишней буквы — «сосед», amie — «подруга».",
    "uk": "Voisine — «сусідка», і перед ним une. Voisin без зайвої літери — «сусід», amie — «подруга».",
-   "en": "Voisine means a female neighbor, and une goes before it. Voisin without the extra letter is a male neighbor, amie means “girlfriend, friend”."
+   "en": "Voisine means a female neighbor, and une goes before it. Voisin without the extra e is a male neighbor, amie means “female friend”."
   },
   "4:c3:fr:04:07": {
    "ru": "Voisin — «сосед», и перед ним un. Voisine с лишней буквой — «соседка», ami — «друг».",
@@ -304,7 +304,7 @@
   },
   "6:c3:fr:06:26": {
    "ru": "Jardin значит «сад», а petit — «небольшой». Eau froide — «холодная вода», marché ouvert — «рынок открыт».",
-   "uk": "Jardin означає «сад», а petit — «невеликий». Eau froide — «холодна вода», marché ouvert — «ринок відкритий».",
+   "uk": "Jardin означає «сад», а petit — «маленький». Eau froide — «холодна вода», marché ouvert — «ринок відкритий».",
    "en": "Jardin means “garden”, and petit means “small”. Eau froide means “cold water”, marché ouvert means “market is open”."
   },
   "6:c3:fr:06:22": {
@@ -330,7 +330,7 @@
   "6:c5:fr:06:30": {
    "ru": "En bas значит «внизу», а réception — «стойка регистрации». À gauche — «слева», près de — «рядом с».",
    "uk": "En bas означає «внизу», а réception — «стійка реєстрації». À gauche — «ліворуч», près de — «поруч із».",
-   "en": "En bas means “downstairs”, and réception means “reception”. À gauche means “on the left”, près de means “near”."
+   "en": "En bas means “downstairs”, and réception means “front desk”. À gauche means “on the left”, près de means “near”."
   },
   "7:c1:fr:07:02": {
    "ru": "Tu значит «ты», а у слова «работать» с tu на конце добавляется s: travailles. Je и Léa — travaille.",
@@ -403,9 +403,9 @@
    "en": "Où means “where”, and vous goes at the end with a hyphen: travaillez-vous. Es-tu is “you”, est Paul is about Paul."
   },
   "8:c2:fr:08:16": {
-   "ru": "Qui значит «кто», а prépare — «готовит»; с qui слово как про «он». Dîner — «ужин», cherche — «ищет».",
-   "uk": "Qui означає «хто», а prépare — «готує»; з qui слово як про «він». Dîner — «вечеря», cherche — «шукає».",
-   "en": "Qui means “who”, and prépare means “prepares”; after qui the word is as for “he”. Dîner means “dinner”, cherche means “looks for”."
+   "ru": "Qui значит «кто», а prépare — «готовит»: с qui говорят так же, как про «он». Dîner — «ужин», cherche — «ищет».",
+   "uk": "Qui означає «хто», а prépare — «готує»: з qui кажуть так само, як про «він». Dîner — «вечеря», cherche — «шукає».",
+   "en": "Qui means “who”, and prépare means “prepares”; with qui we say it the same way as for “he”. Dîner means “dinner”, cherche means “looks for”."
   },
   "8:c2:fr:08:20": {
    "ru": "Qui значит «кто», а cherche — «ищет», appartement — «квартира». Qui est là — «кто здесь», prépare — «готовит».",
@@ -445,7 +445,7 @@
   "8:c6:fr:08:43": {
    "ru": "Comment значит «как», а allez-vous — «у вас дела». Pourquoi — «почему», comment s’appelle — «как называется».",
    "uk": "Comment означає «як», а allez-vous — «у вас справи». Pourquoi — «чому», comment s’appelle — «як називається».",
-   "en": "Comment means “how”, and allez-vous refers to “you”. Pourquoi means “why”, comment s’appelle means “what is it called”."
+   "en": "Comment means “how”, and allez-vous means “are you doing”. Pourquoi means “why”, comment s’appelle means “what is it called”."
   },
   "8:c6:fr:08:46": {
    "ru": "Qu’est-ce que значит «что», а tu cherches — «ты ищешь». Pourquoi — «почему», comment — «как».",
@@ -499,7 +499,7 @@
   },
   "9:c5:fr:09:21": {
    "ru": "По-французски «свой» зависит от того, о ком речь: с «я» говорят mon. Manteau — «пальто», cherche — «ищу».",
-   "uk": "Французькою «свій» залежить від того, про кого мова: з «я» кажуть mon. Manteau — «пальто», cherche — «шукаю».",
+   "uk": "У французькій «свій» залежить від того, про кого мова: з «я» кажуть mon. Manteau — «пальто», cherche — «шукаю».",
    "en": "In French “my own” depends on who is speaking: with “I” we say mon. Manteau means “coat”, cherche means “look for”."
   },
   "9:c6:fr:09:39": {

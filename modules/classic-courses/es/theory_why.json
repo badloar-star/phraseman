@@ -73,9 +73,9 @@
    "en": "Lejos means “far away”, and no before estoy makes it “not”. En clase is “in class”, en casa is “at home”."
   },
   "2:c2:es:02:07": {
-   "ru": "Luis — имя одного человека, поэтому no está. Ellos — «они», Ana — другое имя.",
-   "uk": "Luis — ім’я однієї людини, тому no está. Ellos — «вони», Ana — інше ім’я.",
-   "en": "Luis is one person, so no está. Ellos means “they”, and Ana is a different name."
+   "ru": "Luis — один человек, поэтому no está. En clase — «на занятии», а en casa — «дома». Ellos — «они».",
+   "uk": "Luis — одна людина, тому no está. En clase — «на занятті», а en casa — «вдома». Ellos — «вони».",
+   "en": "Luis is one person, so no está. En clase means “in class”, and en casa means “at home”. Ellos means “they”."
   },
   "2:c2:es:02:25": {
    "ru": "Ellos значит «они», поэтому están, а не está. Luis и Ana — по одному человеку.",
@@ -168,9 +168,9 @@
    "en": "Soy means “I am”, and Luis is the name. Ana is another name, and médico means “doctor”."
   },
   "4:c1:es:04:07": {
-   "ru": "Estudiante значит «студент». Luis — имя, médico — «врач», а нужно занятие.",
-   "uk": "Estudiante означає «студент». Luis — ім’я, médico — «лікар», а потрібне заняття.",
-   "en": "Estudiante means “student”. Luis is a name, and médico means “doctor”, which is not what you need."
+   "ru": "Estudiante значит «студент». Luis — это имя, а médico — «врач».",
+   "uk": "Estudiante означає «студент». Luis — це ім’я, а médico — «лікар».",
+   "en": "Estudiante means “student”. Luis is a name, and médico means “doctor”."
   },
   "4:c2:es:04:10": {
    "ru": "Конец -a показывает женщину: profesora — «преподавательница». Profesor — мужчина.",
@@ -203,9 +203,9 @@
    "en": "Guía means “guide”. Médico means “doctor”. Ana es guía is about Ana, but you need Luis."
   },
   "4:c5:es:04:28": {
-   "ru": "Ellos значит «они», поэтому son. Somos — «мы», а estudiantes — «студенты».",
-   "uk": "Ellos означає «вони», тому son. Somos — «ми», а estudiantes — «студенти».",
-   "en": "Ellos means “they”, so son. Somos means “we are”, and estudiantes means “students”."
+   "ru": "Ellos значит «они», поэтому son, а profesores — «преподаватели». Somos — «мы», estudiantes — «студенты».",
+   "uk": "Ellos означає «вони», тому son, а profesores — «викладачі». Somos — «ми», estudiantes — «студенти».",
+   "en": "Ellos means “they”, so son, and profesores means “teachers”. Somos means “we are”, estudiantes means “students”."
   },
   "4:c5:es:04:50": {
    "ru": "Somos значит «мы есть», и дальше названы имена Ana y Luis. Son — «они».",
@@ -273,9 +273,9 @@
    "en": "Enfermera means “nurse”, and la is for a woman. Médico means “doctor”, and cuesta means “costs”."
   },
   "6:c1:es:06:02": {
-   "ru": "Pasaportes — «паспорта»: los, -es на конце и están. Maletas — «чемоданы», el pasaporte — один.",
-   "uk": "Pasaportes — «паспорти»: los, -es наприкінці й están. Maletas — «валізи», el pasaporte — один.",
-   "en": "Pasaportes means “passports”: los, -es at the end and están. Maletas means “suitcases”, el pasaporte is one."
+   "ru": "Pasaportes — «паспорта»: los, -s на конце и están. Maletas — «чемоданы», el pasaporte — один.",
+   "uk": "Pasaportes — «паспорти»: los, -s наприкінці й están. Maletas — «валізи», el pasaporte — один.",
+   "en": "Pasaportes means “passports”: los, -s at the end and están. Maletas means “suitcases”, el pasaporte is one."
   },
   "6:c1:es:06:04": {
    "ru": "Maletas — «чемоданы»: las, -s на конце и están. La maleta — один чемодан, pasaportes — «паспорта».",
@@ -358,9 +358,9 @@
    "en": "Dos means “two”, and llaves has an extra -s: several keys. Libros means “books”."
   },
   "7:c3:es:07:16": {
-   "ru": "Dos значит «два», а у pasaportes на конце -es. Mochila — «рюкзак», llaves — «ключи».",
-   "uk": "Dos означає «два», а в pasaportes наприкінці -es. Mochila — «рюкзак», llaves — «ключі».",
-   "en": "Dos means “two”, and pasaportes ends in -es. Mochila means “backpack”, llaves means “keys”."
+   "ru": "Dos значит «два», а у pasaportes на конце -s. Mochila — «рюкзак», llaves — «ключи».",
+   "uk": "Dos означає «два», а в pasaportes наприкінці -s. Mochila — «рюкзак», llaves — «ключі».",
+   "en": "Dos means “two”, and pasaportes ends in -s. Mochila means “backpack”, llaves means “keys”."
   },
   "7:c4:es:07:23": {
    "ru": "Café значит «кофе», cocina — «кухня». Azúcar — «сахар», leche — «молоко».",
@@ -433,8 +433,8 @@
    "en": "Su means “his”, pasaporte means “passport”, bolso means “bag”. Mi means “my”, casa means “home”."
   },
   "8:c5:es:08:36": {
-   "ru": "Mi значит «моя», madre — «мама», es profesora — «преподавательница». Tu — «твоя», hermana — «сестра».",
-   "uk": "Mi означає «моя», madre — «мама», es profesora — «викладачка». Tu — «твоя», hermana — «сестра».",
+   "ru": "Mi значит «моя», madre — «мама», es profesora — «учительница». Tu — «твоя», hermana — «сестра».",
+   "uk": "Mi означає «моя», madre — «мама», es profesora — «вчителька». Tu — «твоя», hermana — «сестра».",
    "en": "Mi means “my”, madre means “mother”, and es profesora means “is a teacher”. Tu means “your”, hermana “sister”."
   },
   "8:c5:es:08:37": {
@@ -510,7 +510,7 @@
   "9:c6:es:09:34": {
    "ru": "Busca значит «ищет», su pasaporte — «свой паспорт». Busco — «я ищу», buscamos — «мы ищем».",
    "uk": "Busca означає «шукає», su pasaporte — «свій паспорт». Busco — «я шукаю», buscamos — «ми шукаємо».",
-   "en": "Busca means “looks for”, and su pasaporte means “her passport”. Busco is “I look for”, buscamos is “we”."
+   "en": "Busca means “looks for”, and su pasaporte means “her passport”. Busco is “I look for”, buscamos is “we look for”."
   }
  }
 }

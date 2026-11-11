@@ -1,0 +1,64 @@
+# Аудит объяснений «почему?» 11.11 — проблемы в ИСХОДНЫХ данных курсов (не исправлены)
+# Формат: [курс] урок:глава:фраза — что не так. Найдено проверяющими при аудите 1009 объяснений.
+
+- [en] 3:c1:en-classic-r1:03.10: Task says «Я иду домой пешком» but answerRu is «Я хожу домой пешком» (and answerUk «Я ходжу додому пішки»): иду vs хожу differ.
+- [en] 4:c6:en-classic-r1:04.43: Task says «На квитанции не указана дата», answerRu says «На чеке» (чек vs квитанция); uk answer uses «чек».
+- [en] 6:c3:en-classic-r1:06.48: Task «Какая сумка ваша?» but answerRu/answerUk is «Какая сумка принадлежит вам?» (task is looser than the English phrase).
+- [en] 7:c4:en-classic-r1:07.22: Task «У неё есть паспорт?» but answerRu is «Паспорт у неё с собой?» (adds "with her"); same in uk.
+- [en] 7:c6:en-classic-r1:07.32: Task «У нее нет очков.» but answerRu is «У неё нет с собой очков.» (adds "with her"); same in uk.
+- [en] 7:c3:en-classic-r1:07.15: Wrong option "We have an appointment" is translated «У нас назначена встреча», while the chapter text teaches appointment as «запись на приём».
+- [en] 8:c6:en-classic-r1:08.43: Wrong option "dentist's appointment" is translated «встреча с дантистом», while the course teaches appointment as «запись на приём».
+- [en] 9:c2:en-classic-r1:09.09: Task says «Снаружи висит карта» but answerRu says «Снаружи есть карта» (and uk «Надворі є карта»); "висит/hangs" is not in the English phrase.
+- [en] 10:c5:en-classic-r1:10.35: Task says «Ей следует позвонить в офис» but answerRu says «Ей нужно позвонить в офис» (нужно = must/have to, wrong meaning for should). The same «Ей нужно» is reused in the wrong option of 10.34.
+- [en] 10:c8:en-classic-r1:10.43: Task «принести свой паспорт» but answerUk is «Він має взяти з собою свій паспорт» (взяти з собою is not принести).
+- [en] 11:c2:en-classic-r1:11.15: Task says «чемоданы» but answerRu/answerUk say «сумки».
+- [en] 15:c8:en-classic-r1:15.44: Task says «Ботинки детей стоят у двери» but answerRu says «Детские ботинки лежат у двери» (different wording and stand vs lie).
+- [en] 16:c5:en-classic-r1:16.23: Task says «поискали адрес» but answerRu says «посмотрели адрес» and answerUk «подивилися адресу» (look up = поискать/пошукати).
+- [en] 17:c8:en-classic-r1:17.50: Ukrainian translation "Я щойно закінчую" is unnatural (щойно = just finished); should be "Я саме закінчую".
+- [en] 21:c7:en-classic-r1:21.37: Task says "квитанцию" but answerRu/answerUk say "чек"; RU explanation follows the task, UK follows the translation.
+- [en] 23:c4:en-classic-r1:23.20: Task says "Квитанцию отправили" but answerRu/answerUk say "Чек"; receipt meaning inconsistent.
+- [en] 23:c6:en-classic-r1:23.40: Task "Посылка не повреждена" (present) but answer is past "was not damaged" / "не была повреждена".
+- [en] 22:c4:en-classic-r1:22.19: Ukrainian translation "поїхати разом на таксі" differs from task "разделить такси"; not literal for "sharing a taxi".
+- [en] 25:c6:en-classic-r1:25.46: Task says «помахал нам рукой» (us) but answerRu/answerUk and the English phrase have no "us".
+- [en] 31:c2:en-classic-r1:31.12: Task says «наливала» (was pouring) but answerRu/answerUk say «налила» (poured).
+- [en] 31:c3:en-classic-r1:31.13: Task says «квитанцию» but answerRu/answerUk say «чек».
+- [en] 31:c7:en-classic-r1:31.42: Task says «квитанцию» but answerRu/answerUk say «чек».
+- [en] 32:c8:en-classic-r1:32.44: Task says «квитанцию» but answerRu/answerUk say «чек».
+- [en] 28:c4:en-classic-r1:28.19: Wrong option "I reminded myself to bring the receipt" is translated «чек» while the lesson text says «квитанцию».
+- [en] 28:c8:en-classic-r1:28.39: Task says «о сковороду» but answerRu says «на сковороде».
+- [en] 32:c3:en-classic-r1:32.17: Task says «депозит» but answerRu says «залог» and answerUk says «застава».
+- [en] 32:c8:en-classic-r1:32.50: Task says «попросил вернуть деньги» but answerRu says «потребовал возврата денег».
+- [en] 27:c6:en-classic-r1:27.37: Wrong option translation «номер обращения» differs from lesson text «номер заявки».
+- [en] 27:c6:en-classic-r1:27.38: answerUk uses «номер» (hotel room) while task and ru say «комната»/«кімната».
+- [en] 31:c4:en-classic-r1:31.30: answerUk «риється» means rummaging, not digging; should be «риє».
+- [es] 4:c3:es:04:46: Task says 'Вы врач' with no gender, but the answer is médica (woman) and wrong options differ by gender; answerRu 'Вы (вежл.) врач (жен.)' differs from the task and from answerUk 'Ви лікарка.'
+- [es] 6:c5:es:06:46: answerUk 'Гідеса в готелі.' uses a non-standard word; should be e.g. 'Жінка-гід у готелі.'
+- [es] 1:c4:es:01:24: Task 'Они рядом' does not say the people are women, but the answer Ellas is feminine-only; the explanation has to add '(женщины)'.
+- [es] 5:c4:es:05:24: answerRu/answerUk use capital 'Вы'/'Ви' while the task has lowercase 'вы'; inconsistent.
+- [es] 6:c5:es:06:42: answerEn 'The doctor is at the door' and answerUk lose the 'woman' meaning present in the task 'Женщина-врач'.
+- [fr] 5:c2:fr:05:07: answerUk "Вони мають квиток" is a calque of "У них есть билет"; natural: "У них є квиток"
+- [fr] 7:c5:fr:07:25: answerUk "Ти шукаєш готель?" uses ти, but task/answer is formal "Вы/Vous" -> "Ви шукаєте готель?"
+- [fr] 8:c1:fr:08:05: answerUk "Де ти працюєш?" uses ти, but task/answer is "Вы/vous" -> "Де ви працюєте?"
+- [fr] 7:c6:fr:07:33: answerUk "Пол варить каву": name Paul written "Пол" while everywhere else "Поль"
+- [fr] 6:c4:fr:06:19: answerUk "Ви любите суп?" does not match answerRu "Вам нравится суп?" (should be "Вам подобається суп?")
+- [fr] 6:c3:fr:06:26: answerRu "небольшой" vs answerUk "маленький" (minor wording mismatch)
+- [fr] 6:c2:fr:06:50: answerUk uses ASCII apostrophe in "Ім'я" (others use ’)
+- [fr] 9:c5:fr:09:27: answerUk uses ASCII apostrophe in "м'яч"
+- [de] 6:c4:de:06:29: Task says «Как долго вы остаётесь?» but answerRu/answerUk say «Надолго вы остаётесь?» / «Надовго ви залишаєтеся?» (different wording; ru 'Надолго' is also colloquial).
+- [de] 2:c5:de:02:39: answerUk «Он там ліфт» looks like a Russianism/dialect; natural Ukrainian is «Ген там ліфт» or «Он там» only colloquially; also explanation never explains 'dort'.
+- [de] 8:c4:de:08:50: answerEn «I don't have any change.» omits 'unfortunately' (leider); translation does not fully match the German/Russian.
+- [it] 2:c5:it:02:34: Task says 'Детей нет в комнате' but answerRu/answerUk say 'в зале' / 'в залі' (answerEn says room).
+- [it] 3:c4:it:03:14: Task says 'Зал свободен?' but answerRu is 'Комната свободна?' (sala = hall/room mismatch).
+- [it] 5:c2:it:05:06: Task says 'схема' but answerRu/answerUk say 'план' and answerEn 'map'; wrong-option translation also says 'план'.
+- [it] 6:c4:it:06:12: answerUk 'Я люблю чай.' does not match ru 'Мне нравится чай' (should be 'Мені подобається чай').
+- [it] 6:c4:it:06:15: answerRu 'Мы любим книги' vs answerUk 'Нам подобаються книги' and en 'We like books': piacciono means 'нравятся'; ru and uk translations are not equivalent.
+- [it] 8:c5:it:08:32: answerUk 'Скільки коштує це взуття?' (singular verb) does not match the plural 'queste scarpe / коштують / туфлі' used in the explanation.
+- [it] 9:c4:it:09:23: Task says 'свой бейдж' but answerRu/answerUk say 'свой значок' / 'свій значок'; explanation says 'бейдж'. Same inconsistency in wrong-option text of 9:c4:it:09:24.
+- [it] 9:c5:it:09:29: Task says 'Вы берёте свой шлем' but answerRu is 'Ты берёшь свой шлем.' and answerUk 'Ти береш' (state prendendo is plural 'you'). The same wrong 'Ты берёшь' translation appears in the wrong option of 9:c5:it:09:12.
+- [it] 9:c6:it:09:27: answerUk uses a straight apostrophe in 'м'яч' (everywhere else the typographic ’ is used).
+- [it] 10:c4:it:10:27: Task and answerRu say 'свободная комната' but answerUk is 'Чи є вільне місце?' (= free seat/place), not a room.
+- [it] 11:c6:it:11:44: answerUk 'на зустріч' while explanation uk says 'на збори' (riunione); the two Ukrainian wordings differ.
+- [it] 12:c5:it:12:33: Wrong-option translation 'Non bevo latte. = Я не беру молоко.' is wrong: bevo means 'пью' (chapter text says 'Я не пью молоко').
+- [it] 12:c5:it:12:35: Same wrong translation 'Non bevo latte. = Я не беру молоко.' in the wrong options.
+- [it] 19:c5:it:19:40: Task is a statement 'Медсёстры уже ушли' but answerRu/answerUk/answerEn are questions ('...ушли?'), and the Italian answer ends with '?'.
+- [it] 16:c5:it:16:35: Wrong-option translation 'Non aspetti vicino all’uscita! = Не ждите перед выходом!' - vicino means 'возле/рядом', not 'перед'.

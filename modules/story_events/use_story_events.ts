@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useSyncExternalStore } from 'react';
 import { DebugLogger } from '../../app/debug-logger';
 import { usePremium } from '../../components/PremiumContext';
 import { announcementsForViewer } from './announcement_plus_filter';
+import { plusOfferSourceId, plusOfferStories } from './plus_offer_stories';
 import { CONTEST_WIN_ID_PREFIX } from './contest_win_story';
 import { LADDER_STORY_ID_PREFIX } from './referral_ladder_story';
 import { storyPlaybackQueue, storyRecentQueue, type StoryEventList } from './story_events_core';
@@ -34,7 +35,7 @@ export function useStoryEvents(): UseStoryEventsResult {
   const markAnnouncementSeen = announcements.markSeen;
   // зачем (владелец 29.10, «Скрывать у Plus»): человеку с Plus реклама Plus (design=plus) не показывается совсем. Статус — из PremiumContext
   // (сначала снимок профиля, потом живой), новых чтений нет; купил Plus — объявление пропадает из кольца сразу.
-  const { hasPremiumAccess } = usePremium();
+  const { hasPremiumAccess, accessResolved } = usePremium();
   const forViewer = useMemo(() => announcementsForViewer(announcements.stories, hasPremiumAccess), [announcements.stories, hasPremiumAccess]);
   const hiddenLog = forViewer.hidden.map((item) => `${item.id} (design=${item.design})`).join(', ');
   const unreadableLog = forViewer.unreadable.join(', ');
@@ -48,16 +49,31 @@ export function useStoryEvents(): UseStoryEventsResult {
   // зачем (владелец 29.10 «автоматически, плюс история»): история лесенки приглашений — из той же проекции доступа (0 или 1 событие)
   const ladder = useReferralLadderStory(snapshot.enabled);
   const markLadderSeen = ladder.markSeen;
+  // зачем (владелец 11.11, истории-предложения Plus, шаг 2): бесплатному аккаунту следом за рубежом серии 7/14/30 идёт кадр
+  // «с Plus серия не сгорит». Кадр не хранится — выводится из события серии; подписчику и при неизвестном статусе не показывается.
+  const plusOffer = useMemo(
+    () => plusOfferStories(snapshot.stories, { accessResolved, hasPlus: hasPremiumAccess }),
+    [snapshot.stories, accessResolved, hasPremiumAccess],
+  );
+  const plusOfferLog = `${plusOffer.reason}:${plusOffer.offers.map((event) => `${event.id}(${String(event.payload.days)},seen=${String(event.seen)})`).join(',')}`;
+  useEffect(() => {
+    DebugLogger.info('[STORY-PLUS-OFFER]', `лента: решение=${plusOfferLog} статусИзвестен=${String(accessResolved)} plus=${String(hasPremiumAccess)}`);
+  }, [accessResolved, hasPremiumAccess, plusOfferLog]);
   const stories=useMemo(
-    ()=>[...snapshot.stories,...forViewer.visible,...contestWin.stories,...ladder.stories],
-    [snapshot.stories,forViewer.visible,contestWin.stories,ladder.stories],
+    ()=>[...snapshot.stories,...forViewer.visible,...contestWin.stories,...ladder.stories,...plusOffer.offers],
+    [snapshot.stories,forViewer.visible,contestWin.stories,ladder.stories,plusOffer.offers],
   );
   // зачем: кольцо гаснет мгновенно (память), запись на диск идёт фоном — без ожидания и без спиннера.
   const markSeen = useCallback((id: string) => {
     if (id.startsWith('announcement:')) markAnnouncementSeen(id);
     else if (id.startsWith(CONTEST_WIN_ID_PREFIX)) markContestWinSeen(id);
     else if (id.startsWith(LADDER_STORY_ID_PREFIX)) markLadderSeen(id);
-    else void markStorySeenInStore(id);
+    else {
+      // зачем: у кадра-предложения Plus своей записи нет — «просмотрено» уходит на событие серии, из которого он выведен
+      const plusOfferSource = plusOfferSourceId(id);
+      if (plusOfferSource !== null) DebugLogger.info('[STORY-PLUS-OFFER]', `просмотрен ${id} — отмечаем исходное событие ${plusOfferSource}`);
+      void markStorySeenInStore(plusOfferSource ?? id);
+    }
   }, [markAnnouncementSeen, markContestWinSeen, markLadderSeen]);
   const playback = useMemo(() => storyPlaybackQueue(stories), [stories]);
   const recent = useMemo(() => storyRecentQueue(stories), [stories]);

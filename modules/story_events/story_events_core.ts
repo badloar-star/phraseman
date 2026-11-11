@@ -11,7 +11,7 @@
 export const STORY_EVENT_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 export const STORY_EVENT_LIMIT = 20;
 
-export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock' | 'announcement' | 'contest_winner' | 'referral_ladder' | 'home_activity' | 'instead'; // Projection and Home activity stories stay out of the persistent journal.
+export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock' | 'announcement' | 'contest_winner' | 'referral_ladder' | 'home_activity' | 'instead' | 'dialog_done' | 'week_recap' | 'plus_offer'; // Projection and Home activity stories stay out of the persistent journal.
 
 export type StoryEventPayload = Readonly<Record<string, string | number | boolean>>;
 
@@ -34,6 +34,10 @@ const STORY_TYPES: ReadonlySet<string> = new Set<StoryEventType>([
   'spire_week', 'streak_milestone', 'coin_rank_up', 'achievement', 'theme_unlock', 'announcement',
   // instead — кадры «истории вместо окон» (владелец 11.11): факт, который раньше всплывал окном, лежит в журнале историй
   'instead',
+  // dialog_done — диалог с ИИ засчитан пройденным (владелец 11.11: «заводи события недели и диалога»); кадр «Диалог пройден» у него уже был
+  'dialog_done',
+  // week_recap — «Твоя неделя» участника Пика: активность с телефона + монеты недели Пика (владелец 11.11: «Монеты Пика»)
+  'week_recap',
 ]);
 
 function part(payload: StoryEventPayload, name: string): string {
@@ -54,6 +58,14 @@ export function storyEventKey(type: StoryEventType, payload: StoryEventPayload):
     case 'coin_rank_up': return `coin_rank_up:${part(payload, 'toRank')}`;
     case 'achievement': return `achievement:${part(payload, 'achievementId')}`;
     case 'theme_unlock': return `theme_unlock:${part(payload, 'themeId')}`;
+    // День в ключе: тот же сценарий, пройденный в другой день, — новый факт; повтор в тот же день второй истории не даёт.
+    // Понедельник недели в ключе: одна история на неделю, сколько бы раз ни пришёл итог Пика.
+    case 'week_recap': { const start = part(payload, 'startDayKey'); return start ? `week_recap:${start}` : ''; }
+    case 'dialog_done': {
+      const scenarioId = part(payload, 'scenarioId');
+      const dayKey = part(payload, 'dayKey');
+      return scenarioId && dayKey ? `dialog_done:${scenarioId}:${dayKey}` : '';
+    }
     // зачем (истории вместо окон, 11.11): вид и ключ повтора лежат в данных события — «С возвращением» раз в день, «Хватает на ранг» раз на ранг;
     // без вида или ключа событие негодно (пустой id → запись отклоняется)
     case 'instead': {

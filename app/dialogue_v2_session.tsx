@@ -30,7 +30,8 @@ import {
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
 import { dialogueV2SayHintsForPartnerReply, lastPartnerReplyForHints } from './dialogue_v2_say_hints_pick';
 import { rememberDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
-import { markDialogueV2Done } from './dialogue_v2_done_store';
+import { markDialogueV2Done, peekDialogueV2DoneIds } from './dialogue_v2_done_store';
+import { recordDialogDoneStory } from '../modules/story_events/story_event_sources';
 import { noteDialogDoneDecision } from './dialog_theme_progress_diagnostics';
 import { markDialogueV2DoneToday } from './dialogue_v2_day_mark';
 import { createDialogueEnergySettler, type DialogueEnergySettler } from './dialogue_v2_energy_settle';
@@ -817,6 +818,20 @@ function SessionContent() {
     // зачем: условие отметки остаётся дословным — его сверяет tests/dialogue_v2_done_status.test.ts; countedAsDone выше только для журнала.
     if (endedBy === 'bot' && learnerTurns > 0 && supportedTarget(studyTarget)) {
       markDialogueV2Done(studyTarget, scenarioId);
+      // зачем (владелец 11.11: «заводи события недели и диалога»): засчитанный диалог → история «Диалог пройден» у аватара. Одной строкой,
+      // ничего не ждём: запись идёт фоном в локальный журнал историй, переход на итог не задерживается.
+      {
+        const storyObjectives = model?.objectives ?? [];
+        const storyActive = coaching.activeObjectiveId ? storyObjectives.findIndex((objective) => objective.id === coaching.activeObjectiveId) : -1;
+        const storyGoalsDone = coaching.ended === true || coaching.allObjectivesComplete === true ? storyObjectives.length : Math.max(0, storyActive);
+        void recordDialogDoneStory({
+          scenarioId, title: model?.title ?? '', dayKey: getLocalDayKey(),
+          goalsDone: storyGoalsDone, goalsTotal: storyObjectives.length, turns: messages.length,
+          minutes: Math.round((Date.now() - firstFrameAtRef.current) / 60_000),
+          doneCount: peekDialogueV2DoneIds(studyTarget).size,
+          bubbles: messages.filter((message) => !('offLanguage' in message && message.offLanguage)).slice(-3).map((message) => ({ me: message.author === 'learner', text: message.text })),
+        });
+      }
       // зачем (координатор 22.10, «Сцена» Диалогов): день с засчитанным диалогом — состояние day_done; локальная дата, без сети
       markDialogueV2DoneToday();
     } else {

@@ -11,6 +11,7 @@ import { ALL_ACHIEVEMENTS } from '../../../app/achievements';
 import { coinRankPaidPriceFromStoryPayload, coinRankRowForDisplay, isValidCoinRank } from '../../../app/coin_rank_table_v1';
 import { isPremiumThemeId } from '../../../app/premium_theme_catalog';
 import { insteadTemplateFromPayload } from './story_instead_from_event';
+import { plusOfferTemplateFromPayload } from './story_plus_offer_from_event';
 import { nextStreakMilestone } from '../../streak/moments/streak_milestones';
 import { DAY_MS, dayKeyToMs } from './story_template_dates';
 import {
@@ -76,6 +77,8 @@ export function storyTemplateFromEvent(event: StoryEventLike, studio = false): S
   switch (event.type) {
     // зачем (истории вместо окон, 11.11): факт, который раньше всплывал окном; разбор и строгая проверка данных — story_instead_from_event
     case 'instead': return insteadTemplateFromPayload(p);
+    // зачем (истории-предложения Plus, 11.11, шаг 2): кадр выведен из рубежа серии (modules/story_events/plus_offer_stories); разбор — story_plus_offer_from_event
+    case 'plus_offer': return plusOfferTemplateFromPayload(p, event.atMs);
     case 'streak_milestone': {
       const days = int(p.days);
       if (days < 1) return null;

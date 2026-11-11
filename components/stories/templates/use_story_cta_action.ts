@@ -51,9 +51,12 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       // зачем: экран Plus — маршрут; просмотр (Modal) закрываем, иначе экран открылся бы под ним.
       // source 'story_announcement' обязан быть в PAYWALL_SOURCE_VALUES (Ревизор 28.10: без записи окно Plus в стор-сборке закрывалось сразу);
       // context 'generic' — объявление Plus продаёт Plus целиком, а не упёрлось в лимит (как заставка Plus при запуске).
-      DebugLogger.info(LOG, 'Plus: закрываем просмотр и открываем окно Plus context=generic source=story_announcement');
+      // зачем (истории-предложения Plus, 11.11): кадр про защиту серии открывает окно с заголовком про серию, а не общее —
+      // человек пришёл за конкретной выгодой. Остальные кадры и объявление Plus — общий вход, как раньше.
+      const plusContext = ctx.source === 'plus_streak' ? 'streak' : 'generic';
+      DebugLogger.info(LOG, `Plus: закрываем просмотр и открываем окно Plus context=${plusContext} source=story_announcement кадр=${ctx.source}`);
       closeViewer('cta_open_plus');
-      openPremiumPaywall(router, { context: 'generic', source: 'story_announcement' });
+      openPremiumPaywall(router, { context: plusContext, source: 'story_announcement' });
       return;
     }
     if (cta.action === 'open_packs') {

@@ -3,6 +3,7 @@
 import { isStreakMilestone } from '../../components/streak/moments/streak_milestones';
 import { DebugLogger } from '../../app/debug-logger';
 import { recordStoryEvent, type StoryRecordResult } from './story_events_store';
+import { recordWeekRecapStory } from './week_recap_story';
 import { isPremiumThemeId, type PremiumThemeId } from '../../app/premium_theme_catalog';
 import { notePremiumThemeProgress } from '../../app/premium_theme_progress';
 import { isCurrentAccountGeneration, type AccountGenerationToken } from '../../app/account_generation';
@@ -33,6 +34,9 @@ export function recordSpireWeekStory(result: SpireWeekFact | null, accountToken:
   if (!result) return undefined;
   if (!isCurrentAccountGeneration(accountToken)) return Promise.resolve({ recorded: false, reason: 'account_changed' });
   notePremiumThemeProgress('final_spire', result.newTier, accountToken);
+  // зачем (владелец 11.11: «заводи события недели и диалога», «Монеты Пика»): итог недели Пика пришёл — рядом ложится личная история
+  // «Твоя неделя» (активность с телефона + монеты этой недели). Не ждём: запись идёт фоном и сама пишет причину отказа в [STORY-WEEK].
+  void recordWeekRecapStory(result, accountToken);
   return recordStoryEvent('spire_week', spireWeekPayload(result), undefined, { accountToken });
 }
 
@@ -50,6 +54,49 @@ export function recordStreakMilestoneStory(days: number, dayKey: string): Promis
   notePremiumThemeProgress('streak_365', days);
   if (!isStreakMilestone(days)) return undefined;
   return recordStoryEvent('streak_milestone', { days, dayKey });
+}
+
+/** Сколько реплик диалога кладём в историю и какой длины: кадр показывает до трёх коротких пузырей. */
+export const DIALOG_STORY_BUBBLES_MAX = 3;
+export const DIALOG_STORY_BUBBLE_CHARS = 80;
+
+export type DialogDoneFact = Readonly<{
+  scenarioId: string; title: string; dayKey: string;
+  goalsDone: number; goalsTotal: number; turns: number; minutes: number;
+  /** Какой по счёту пройденный диалог у человека (после этой отметки) — по нему решается кадр-предложение Plus. */
+  doneCount: number;
+  bubbles: readonly Readonly<{ me: boolean; text: string }>[];
+}>;
+
+/** «me:текст|them:текст» — формат, который читает кадр «Диалог пройден» (story_template_from_event → bubblesOf). */
+export function dialogStoryBubbles(bubbles: DialogDoneFact['bubbles']): string {
+  return bubbles
+    // разделитель реплик — «|»: в самой реплике он заменяется пробелом, иначе пузырь разрезало бы пополам
+    .map((b) => ({ me: b.me, text: b.text.replace(/[|\r\n]+/g, ' ').replace(/\s+/g, ' ').trim() }))
+    .filter((b) => b.text !== '')
+    .slice(0, DIALOG_STORY_BUBBLES_MAX)
+    .map((b) => `${b.me ? 'me' : 'them'}:${b.text.length > DIALOG_STORY_BUBBLE_CHARS ? `${b.text.slice(0, DIALOG_STORY_BUBBLE_CHARS - 1).trimEnd()}…` : b.text}`)
+    .join('|');
+}
+
+/**
+ * Диалог с ИИ засчитан пройденным → история «Диалог пройден».
+ * зачем (владелец 11.11: «заводи события недели и диалога»): шаблон кадра был, а события никто не создавал. Зовётся одной строкой
+ * рядом с отметкой «пройден» в app/dialogue_v2_session.tsx. Реплики остаются на телефоне (локальный журнал историй), на сервер не уходят.
+ * Без названия сцены кадр не рисуется — такое событие не пишем и говорим почему.
+ */
+export function recordDialogDoneStory(fact: DialogDoneFact): Promise<StoryRecordResult> | undefined {
+  if (!fact.scenarioId || !fact.title.trim() || !fact.dayKey) {
+    DebugLogger.info('[STORY-EVENTS]', `dialog_done: не пишем — нет сценария, названия или дня (scenarioId=${fact.scenarioId || '—'} названиеДлина=${fact.title.trim().length} день=${fact.dayKey || '—'})`);
+    return undefined;
+  }
+  const whole = (n: number): number => (Number.isFinite(n) ? Math.max(0, Math.trunc(n)) : 0);
+  return recordStoryEvent('dialog_done', {
+    scenarioId: fact.scenarioId, title: fact.title.trim(), dayKey: fact.dayKey,
+    goalsDone: whole(fact.goalsDone), goalsTotal: whole(fact.goalsTotal), turns: whole(fact.turns), minutes: Math.max(1, whole(fact.minutes)),
+    // «без подсказок» не утверждаем: надёжного признака подсказок у сессии пока нет
+    noHints: false, doneCount: whole(fact.doneCount), bubbles: dialogStoryBubbles(fact.bubbles),
+  });
 }
 
 /** Повышение ранга монеты — после состоявшейся покупки (трата и ранг уже на диске). */

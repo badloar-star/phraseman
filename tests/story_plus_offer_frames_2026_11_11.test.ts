@@ -103,9 +103,11 @@ describe('кадры-предложения Plus — разметка по ма�
     expect(read('components/stories/templates/story_plus_offer_registry.ts')).toContain("export const STORY_PLUS_OFFER_TEMPLATE_IDS = ['plus_streak', 'plus_week', 'plus_dialog'] as const;");
   });
 
-  it('шаг 2 ещё не сделан: событий-источников нет, к игроку кадры не попадают', () => {
-    // зачем: когда появится показ игроку, этот тест обязан уступить место проверке «только бесплатному аккаунту»
-    const fromEvent = read('components/stories/templates/story_template_from_event.ts');
-    expect(fromEvent).not.toMatch(/plus_streak|plus_week|plus_dialog/u);
+  it('шаг 2: к игроку попадают все три кадра — каждый из своего события', () => {
+    // зачем: показ «только бесплатному аккаунту» проверяет tests/story_plus_offer_stories_2026_11_11.test.ts; здесь — что у каждого кадра есть разбор события
+    const own = read('components/stories/templates/story_plus_offer_from_event.ts');
+    expect(own).toContain("return { id: 'plus_streak', days, endMs: dayKeyToMs(payload.dayKey) ?? atMs };");
+    expect(own).toContain("return { id: 'plus_dialog', repliesLimit: REVENUE_MONTHLY_LIMITS.ai_dialog_replies, bubbles };");
+    expect(own).toContain("return { id: 'plus_week', startMs, endMs: startMs + 6 * DAY_MS, dailyMinutes };");
   });
 });

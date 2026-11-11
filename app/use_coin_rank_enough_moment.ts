@@ -17,6 +17,7 @@ import { peekCoinRank, readCoinRank, subscribeCoinRank } from './coin_rank_state
 import { DebugLogger } from './debug-logger';
 import { runAfterHomeFirstFrame } from './first_frame_deferred_warmups';
 import { peekRunes, subscribeRunesBalance } from './runes_system';
+import { insteadStoryLanded, recordRankEnoughStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
 
 const LOG = '[RANK-ENOUGH]';
 
@@ -57,6 +58,16 @@ export function useCoinRankEnoughMoment(input: Readonly<{ active: boolean }>): R
       }
       if (captureAccountGeneration().generation !== token.generation) { DebugLogger.info(LOG, `нет (${reason}): аккаунт сменился во время проверки`); return; }
       DebugLogger.info(LOG, `ПОКАЗЫВАЕМ (${reason}): ранг ${decision.rank}→${decision.nextRank} цена=${decision.price} монеты=${decision.balance}`);
+      // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях факт пишется кадром —
+      // слот очереди окон не просим (окно всплывало посреди Главной по росту баланса). Истории выключены (флаг stories_v1) — окно как раньше.
+      if (storiesReplaceWindows()) {
+        const record = await recordRankEnoughStory({ rank: decision.rank, nextRank: decision.nextRank, balance: decision.balance, price: decision.price }, token);
+        // «Предложено» — только после записи: если история не легла, следующая проверка решит заново
+        if (!insteadStoryLanded(record)) { DebugLogger.warn(LOG, `история не записана (${record.recorded ? 'ok' : record.reason}) — «предложено» не ставим`); return; }
+        DebugLogger.info(LOG, `история вместо окна: ранг ${decision.rank}→${decision.nextRank}`);
+        await markRankOffered(owner, decision.nextRank);
+        return;
+      }
       setOffer({ owner, rank: decision.rank, nextRank: decision.nextRank, price: decision.price, balance: decision.balance });
     } catch (error) {
       DebugLogger.warn(LOG, `сбой проверки (${reason}): ${String(error).slice(0, 120)}`);

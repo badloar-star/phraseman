@@ -59,7 +59,8 @@ const S = {
     'Rangkaianmu mulai lagi dari sesi hari ini.', 'Serin bugünkü çalışmayla yeniden başlar.', 'Seria zacznie się od nowa od dzisiejszej sesji.',
   ],
   backCardsLabel: ['{cards_w} на повтор', '{cards_w} на повтор', '{cards_w} to review', '{cards_w} por repasar', '{cards_w} para revisar', '{cards_w} cần ôn', '{cards_w} untuk diulang', '{cards_w} tekrar bekliyor', '{cards_w} do powtórki'],
-  backLessonsLabel: ['{lessons_w} позади', '{lessons_w} позаду', '{lessons_w} done', '{lessons_w} hasta hoy', '{lessons_w} até hoje', '{lessons_w} đã học', '{lessons_w} selesai', '{lessons_w} tamam', '{lessons_w} za tobą'],
+  // подпись под числом выученных фраз — то, что окно «С возвращением» знает о человеке (welcome_back_model: phrasesLearned)
+  backPhrasesLabel: ['фраз выучено', 'фраз вивчено', 'phrases learned', 'frases aprendidas', 'frases aprendidas', 'cụm từ đã học', 'frasa dipelajari', 'ifade öğrenildi', 'poznanych zwrotów'],
 
   // ── 3 · бонусы стали монетами ──
   legacyOverline: same('PhraseMan 2.0'),

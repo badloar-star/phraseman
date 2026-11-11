@@ -425,10 +425,10 @@ const TPL = [
     cta: { label: 'Начать первый урок', icon: 'play' },
     render: () => `<div class="art"><div class="pop" style="--d:120ms">${coin(0, 124, 'breathe')}</div></div><div class="ov a" style="--d:380ms">Первый день</div><div class="h1 s">${words('Добро пожаловать в PhraseMan', 460)}</div><div class="p a" style="--d:760ms">Это твоя монета. За каждое занятие приходят монеты, они открывают новые ранги.</div>` },
 
-  { id: 'welcome_back', name: 'С возвращением', group: 'Запуск', kind: 'new', ev: 'welcome_back (есть сигнал, кадра нет)', when: 'взамен окна «С возвращением» · перерыв 7 дней и больше', data: 'daysAway, dueCards, lessonsDone', motion: 'монета появляется, числа досчитываются',
+  { id: 'welcome_back', name: 'С возвращением', group: 'Запуск', kind: 'new', ev: 'welcome_back (есть сигнал, кадра нет)', when: 'взамен окна «С возвращением» · перерыв 7 дней и больше', data: 'daysAway, dueCards, phrasesLearned', motion: 'монета появляется, числа досчитываются',
     cta: { label: 'Повторить карточки', icon: 'layers' },
     render: () => `<div class="art"><div class="pop" style="--d:120ms">${coin(6, 112, 'breathe')}</div></div><div class="ov a" style="--d:380ms">9 дней перерыва</div><div class="h1">${words('С возвращением', 460)}</div><div class="p a" style="--d:640ms">Серия начнётся заново с сегодняшнего занятия.</div>
-      <div class="stats"><div class="stt a" style="--d:800ms">${cnt(24, 900, 800)}<span>карточки на повтор</span></div><div class="stt a" style="--d:880ms">${cnt(12, 980, 800)}<span>уроков позади</span></div></div>` },
+      <div class="stats"><div class="stt a" style="--d:800ms">${cnt(24, 900, 800)}<span>карточки на повтор</span></div><div class="stt a" style="--d:880ms">${cnt(186, 980, 800)}<span>фраз выучено</span></div></div>` },
 
   { id: 'legacy_coins', name: 'Бонусы стали монетами', group: 'Запуск', kind: 'new', ev: 'legacy_bonus_converted (новое)', when: 'взамен окна «Встречайте PhraseMan 2.0» · один раз после пересчёта старых бонусов', data: 'coins, shardsBefore, pearlsBefore', motion: 'монеты падают сверху, сумма досчитывается',
     render: () => `${coinRain(9)}<div class="big m a" style="--d:300ms">${cnt(1240, 500, 1100)}</div><div class="ov a" style="--d:700ms">PhraseMan 2.0</div><div class="h1 s">${words('Бонусы стали монетами', 780)}</div><div class="p a" style="--d:1100ms">Осколки и жемчуг пересчитаны. Ничего не потеряно.</div>

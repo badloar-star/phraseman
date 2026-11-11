@@ -17,6 +17,8 @@ import { runAfterHomeFirstFrame } from '../app/first_frame_deferred_warmups';
 import type { WelcomeBackDecision } from '../modules/welcome_back/welcome_back_model';
 import { markWelcomeBackShown, resolveWelcomeBack } from '../modules/welcome_back/welcome_back_gate';
 import { clearWelcomeBackReturnGap, subscribeWelcomeBackReturnGap } from '../modules/welcome_back/welcome_back_signal';
+import { getLocalDayKey } from '../app/local_date';
+import { insteadStoryLanded, recordWelcomeBackStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
 
 export type WelcomeBackShow = Extract<WelcomeBackDecision, { show: true }>;
 
@@ -57,6 +59,27 @@ export function useWelcomeBackMoment(input: UseWelcomeBackMomentInput): UseWelco
     }).then((result) => {
       if (cancelled) { console.log('[WELCOME-BACK] решение пришло после ухода с Главной — не показываем'); return; } // guard-ok: ранний выход
       if (result.show) {
+        // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях факт возвращения
+        // пишется кадром — слот очереди окон не просим, Главную ничто не перекрывает. Истории выключены (флаг stories_v1) — окно как раньше.
+        if (storiesReplaceWindows()) {
+          const shown = result.decision;
+          void recordWelcomeBackStory({
+            dayKey: getLocalDayKey(),
+            daysAway: shown.stats.awayDays,
+            dueCards: shown.primary.kind === 'cards' ? shown.primary.count : 0,
+            phrasesLearned: shown.stats.phrasesLearned,
+            coinRank: shown.stats.coinRank > 0 ? shown.stats.coinRank : null,
+          }).then((record) => {
+            // «Показано» — только после записи: если история не легла, в следующий заход решим заново и факт не потеряется
+            if (!insteadStoryLanded(record)) { console.warn(`[WELCOME-BACK] история не записана (${record.recorded ? 'ok' : record.reason}) — «показано» не ставим`); return; } // guard-ok: ранний выход с причиной
+            console.log(`[WELCOME-BACK] история вместо окна: дней=${shown.stats.awayDays} кнопка=${shown.primary.kind}`); // guard-ok: одна строка на запись
+            void markWelcomeBackShown();
+            clearWelcomeBackReturnGap('shown');
+          }).catch((error: unknown) => {
+            console.warn('[WELCOME-BACK] запись истории упала — «показано» не ставим', String(error)); // guard-ok: catch пишет причину
+          });
+          return;
+        }
         markedRef.current = false;
         setDecision(result.decision);
       }

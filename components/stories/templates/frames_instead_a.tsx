@@ -27,7 +27,7 @@ import { insteadText } from './story_instead_strings';
 
 /** Данные кадров — только то, что событие уже знает. При подключении переезжают в story_template_registry. */
 export type HelloNewStory = Readonly<{ coinRank: number }>;
-export type WelcomeBackStory = Readonly<{ coinRank: number | null; daysAway: number; dueCards: number; lessonsDone: number }>;
+export type WelcomeBackStory = Readonly<{ coinRank: number | null; daysAway: number; dueCards: number; phrasesLearned: number }>;
 export type LegacyCoinsStory = Readonly<{ coins: number; shardsBefore: number; pearlsBefore: number }>;
 export type RankEnoughStory = Readonly<{ rank: number; nextRank: number; balance: number; price: number }>;
 export type AppUpdateStory = Readonly<{ version: string; changes: readonly string[] }>;
@@ -72,7 +72,7 @@ export const WelcomeBackFrame = memo(function WelcomeBackFrame({ tpl, lang }: Fr
       <P text={insteadText(lang, 'backText')} d={640} />
       <Stats>
         <Stat d={800} value={<CountUp to={tpl.dueCards} d={900} dur={800} style={statNumberStyle(pal)} />} label={insteadText(lang, 'backCardsLabel', { cards: tpl.dueCards })} />
-        <Stat d={880} value={<CountUp to={tpl.lessonsDone} d={980} dur={800} style={statNumberStyle(pal)} />} label={insteadText(lang, 'backLessonsLabel', { lessons: tpl.lessonsDone })} />
+        <Stat d={880} value={<CountUp to={tpl.phrasesLearned} d={980} dur={800} style={statNumberStyle(pal)} />} label={insteadText(lang, 'backPhrasesLabel')} />
       </Stats>
     </FrameRoot>
   );

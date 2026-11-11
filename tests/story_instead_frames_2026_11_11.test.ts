@@ -21,7 +21,7 @@ describe('тексты кадров «истории вместо окон»', (
     expect(ru('helloTitle')).toBe('Добро пожаловать в PhraseMan');
     expect(ru('backOverline')).toBe('9 дней перерыва');
     expect(ru('backCardsLabel')).toBe('карточки на повтор');
-    expect(ru('backLessonsLabel')).toBe('уроков позади');
+    expect(ru('backPhrasesLabel')).toBe('фраз выучено');
     expect(ru('legacyTitle')).toBe('Бонусы стали монетами');
     expect(ru('rankTitle')).toBe('Хватает на ранг 5');
     expect(ru('rankText')).toBe('На счёте 2 400 монет. Ранг 5 стоит 2 000.');
@@ -96,7 +96,7 @@ describe('кадры «истории вместо окон» — разметк
     expect(a).toContain("<P text={insteadText(lang, 'helloText')} d={760} />");
     // с возвращением: плитки 800 и 880, счёт 900 и 980 за 800 мс
     expect(a).toContain('<CountUp to={tpl.dueCards} d={900} dur={800}');
-    expect(a).toContain('<CountUp to={tpl.lessonsDone} d={980} dur={800}');
+    expect(a).toContain('<CountUp to={tpl.phrasesLearned} d={980} dur={800}');
     // бонусы: сумма 500 за 1100 мс, плитки 1250 и 1330
     expect(a).toContain('<CountUp to={tpl.coins} d={500} dur={1100}');
     // хватает на ранг: обзор 500, заголовок 580, текст 800, плашка 950
@@ -129,14 +129,17 @@ describe('кадры «истории вместо окон» — разметк
     expect(unique).toHaveLength(17);
     for (const id of unique) expect(slide).toContain(`case '${id}':`);
     // новые кадры — строго в конце общего списка: номера прежних 31 в фотостудии не сдвигаются
-    expect(registry).toContain('...STORY_LADDER_TEMPLATE_IDS, ...STORY_INSTEAD_TEMPLATE_IDS] as const;');
+    // зачем (11.11, правка разрешена автором сторожа): после кадров «вместо окон» в тот же массив дописаны три кадра-предложения Plus —
+    // проверяем порядок (лесенка → «вместо окон»), а не конец массива
+    expect(registry).toContain('...STORY_LADDER_TEMPLATE_IDS, ...STORY_INSTEAD_TEMPLATE_IDS, ');
     expect(registry).toContain('...STORY_INSTEAD_TEMPLATE_SAMPLES,');
   });
 
-  it('шаг 2 ещё не сделан: событий-источников у кадров нет, игрок их не видит', () => {
-    // зачем: когда появятся события и снимутся окна, этот тест обязан уступить место проверке показа и действий кнопок
+  it('шаг 2а: у двух кадров есть источник — событие instead; остальные 15 ждут своих партий', () => {
     const fromEvent = read('components/stories/templates/story_template_from_event.ts');
-    expect(fromEvent).not.toContain('instead_');
+    expect(fromEvent).toContain("case 'instead': return insteadTemplateFromPayload(p);");
+    const own = read('components/stories/templates/story_instead_from_event.ts');
+    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough'] as const;");
   });
 });
 
@@ -145,7 +148,7 @@ describe('макет и код говорят одно и то же', () => {
 
   it('в макете 17 кадров и тексты, приведённые к коду', () => {
     expect((mock.match(/\{ id: '/g) ?? [])).toHaveLength(17);
-    for (const text of ['карточки на повтор', 'уроков позади', 'Анна приглашает', 'Подарочный Plus закончился', 'Набор месяца за октябрь', 'сохранений: 214', 'Марк обходит тебя']) {
+    for (const text of ['карточки на повтор', 'фраз выучено', 'уроков позади', 'Анна приглашает', 'Подарочный Plus закончился', 'Набор месяца за октябрь', 'сохранений: 214', 'Марк обходит тебя']) {
       expect(mock).toContain(text);
     }
   });

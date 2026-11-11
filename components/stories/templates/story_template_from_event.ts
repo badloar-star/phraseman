@@ -10,6 +10,7 @@
 import { ALL_ACHIEVEMENTS } from '../../../app/achievements';
 import { coinRankPaidPriceFromStoryPayload, coinRankRowForDisplay, isValidCoinRank } from '../../../app/coin_rank_table_v1';
 import { isPremiumThemeId } from '../../../app/premium_theme_catalog';
+import { insteadTemplateFromPayload } from './story_instead_from_event';
 import { nextStreakMilestone } from '../../streak/moments/streak_milestones';
 import { DAY_MS, dayKeyToMs } from './story_template_dates';
 import {
@@ -73,6 +74,8 @@ export function storyTemplateFromEvent(event: StoryEventLike, studio = false): S
   const p = event.payload;
   if (studio && isStoryTemplateId(p.studioTemplate)) return STORY_TEMPLATE_SAMPLES[p.studioTemplate];
   switch (event.type) {
+    // зачем (истории вместо окон, 11.11): факт, который раньше всплывал окном; разбор и строгая проверка данных — story_instead_from_event
+    case 'instead': return insteadTemplateFromPayload(p);
     case 'streak_milestone': {
       const days = int(p.days);
       if (days < 1) return null;

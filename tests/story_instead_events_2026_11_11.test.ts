@@ -1,0 +1,112 @@
+// story_instead_events_2026_11_11.test.ts — шаг 2а «истории вместо окон»: «С возвращением» и «Хватает на ранг» приходят событием истории.
+// зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях», на шаг 2 — «Да, шаг 2»): сторож держит
+// правила события `instead` (ключ повтора, строгая проверка данных) и то, что оба окна при выключенных историях работают как раньше.
+import fs from 'node:fs';
+import path from 'node:path';
+import { addStoryEvent, parseStoryEvents, serializeStoryEvents, storyEventKey } from '../modules/story_events/story_events_core';
+import { insteadTemplateFromPayload, STORY_INSTEAD_EVENT_KINDS } from '../components/stories/templates/story_instead_from_event';
+
+jest.mock('../app/coin_rank_table_v1', () => ({ isValidCoinRank: (r: unknown) => typeof r === 'number' && Number.isInteger(r) && r >= 0 && r <= 19 }));
+
+const ROOT = path.join(__dirname, '..');
+const read = (rel: string): string => fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
+const NOW = Date.UTC(2026, 10, 11, 12);
+
+describe('событие instead — ключ повтора и журнал', () => {
+  it('один факт даёт один ключ: возвращение — раз в день, ранг — раз на ранг', () => {
+    expect(storyEventKey('instead', { kind: 'back', key: '2026-11-11', daysAway: 9 })).toBe('instead:back:2026-11-11');
+    expect(storyEventKey('instead', { kind: 'rank_enough', key: '5', nextRank: 5 })).toBe('instead:rank_enough:5');
+  });
+
+  it('без вида или ключа событие негодно — в журнал не попадает', () => {
+    expect(storyEventKey('instead', { kind: 'back' })).toBe('');
+    expect(storyEventKey('instead', { key: '5' })).toBe('');
+    const decision = addStoryEvent([], { type: 'instead', payload: { kind: 'back' }, atMs: NOW }, NOW);
+    expect(decision).toMatchObject({ added: false, reason: 'invalid' });
+  });
+
+  it('повтор того же факта не создаёт вторую историю, а новый день — создаёт', () => {
+    const first = addStoryEvent([], { type: 'instead', payload: { kind: 'back', key: '2026-11-11', daysAway: 9 }, atMs: NOW }, NOW);
+    expect(first.added).toBe(true);
+    const again = addStoryEvent(first.list, { type: 'instead', payload: { kind: 'back', key: '2026-11-11', daysAway: 9 }, atMs: NOW + 1000 }, NOW + 1000);
+    expect(again).toMatchObject({ added: false, reason: 'duplicate' });
+    const nextDay = addStoryEvent(first.list, { type: 'instead', payload: { kind: 'back', key: '2026-11-12', daysAway: 8 }, atMs: NOW + 1000 }, NOW + 1000);
+    expect(nextDay.added).toBe(true);
+  });
+
+  it('событие переживает сохранение и чтение журнала', () => {
+    const added = addStoryEvent([], { type: 'instead', payload: { kind: 'rank_enough', key: '5', rank: 4, nextRank: 5, balance: 2400, price: 2000 }, atMs: NOW }, NOW);
+    const restored = parseStoryEvents(serializeStoryEvents(added.list));
+    expect(restored).toHaveLength(1);
+    expect(restored[0]).toMatchObject({ id: 'instead:rank_enough:5', type: 'instead', seen: false });
+  });
+});
+
+describe('событие instead → данные кадра', () => {
+  it('«С возвращением»: числа события ложатся в кадр как есть', () => {
+    expect(insteadTemplateFromPayload({ kind: 'back', key: 'd', daysAway: 9, dueCards: 24, phrasesLearned: 186, coinRank: 6 }))
+      .toEqual({ id: 'instead_back', coinRank: 6, daysAway: 9, dueCards: 24, phrasesLearned: 186 });
+    // ранг неизвестен (−1) — кадр с монетой без ранга, а не отказ
+    expect(insteadTemplateFromPayload({ kind: 'back', key: 'd', daysAway: 9, dueCards: 0, phrasesLearned: 0, coinRank: -1 }))
+      .toEqual({ id: 'instead_back', coinRank: null, daysAway: 9, dueCards: 0, phrasesLearned: 0 });
+  });
+
+  it('«Хватает на ранг»: только настоящий следующий ранг и баланс не меньше цены', () => {
+    expect(insteadTemplateFromPayload({ kind: 'rank_enough', key: '5', rank: 4, nextRank: 5, balance: 2400, price: 2000 }))
+      .toEqual({ id: 'instead_rank', rank: 4, nextRank: 5, balance: 2400, price: 2000 });
+    expect(insteadTemplateFromPayload({ kind: 'rank_enough', key: '5', rank: 4, nextRank: 5, balance: 1900, price: 2000 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'rank_enough', key: '6', rank: 4, nextRank: 6, balance: 9000, price: 2000 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'rank_enough', key: '5', rank: 4, nextRank: 5, balance: 2400, price: 0 })).toBeNull();
+  });
+
+  it('битые данные кадра не дают: строки вместо чисел, дроби, отрицательные, ноль дней', () => {
+    for (const bad of [
+      { kind: 'back', key: 'd', daysAway: '9', dueCards: 24, phrasesLearned: 186, coinRank: 6 },
+      { kind: 'back', key: 'd', daysAway: 9.5, dueCards: 24, phrasesLearned: 186, coinRank: 6 },
+      { kind: 'back', key: 'd', daysAway: 0, dueCards: 24, phrasesLearned: 186, coinRank: 6 },
+      { kind: 'back', key: 'd', daysAway: 9, dueCards: -1, phrasesLearned: 186, coinRank: 6 },
+      { kind: 'back', key: 'd', daysAway: 9, dueCards: 24, coinRank: 6 },
+      { kind: 'rank_enough', key: '5', rank: '4', nextRank: 5, balance: 2400, price: 2000 },
+      { kind: 'unknown_kind', key: 'x' },
+      { key: 'x' },
+    ]) {
+      expect({ bad, tpl: insteadTemplateFromPayload(bad as Record<string, string | number | boolean>) }).toEqual({ bad, tpl: null });
+    }
+  });
+
+  it('список видов с источником — ровно два; остальные 15 кадров ждут своих партий', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough']);
+  });
+});
+
+describe('окна при выключенных историях работают как раньше', () => {
+  const back = read('hooks/use_welcome_back_moment.ts');
+  const rank = read('app/use_coin_rank_enough_moment.ts');
+  const sources = read('modules/story_events/story_instead_sources.ts');
+
+  it('замена действует только при включённом флаге историй', () => {
+    expect(sources).toContain('return isStoriesEnabled();');
+    expect(back).toContain('if (storiesReplaceWindows()) {');
+    expect(rank).toContain('if (storiesReplaceWindows()) {');
+  });
+
+  it('прежний путь окна сохранён: слот очереди и отметка «показано» при получении слота', () => {
+    expect(back).toContain("const visible = useOverlayVisible('welcomeBack', decision !== null);");
+    expect(back).toContain('setDecision(result.decision);');
+    expect(rank).toContain("const visible = useOverlayVisible('coinRankEnough', offer !== null);");
+    expect(rank).toContain('setOffer({ owner, rank: decision.rank, nextRank: decision.nextRank, price: decision.price, balance: decision.balance });');
+  });
+
+  it('«показано» ставится только после записи истории — факт не теряется при сбое', () => {
+    expect(back).toContain('if (!insteadStoryLanded(record)) {');
+    expect(rank).toContain('if (!insteadStoryLanded(record)) {');
+    expect(back.indexOf('if (!insteadStoryLanded(record))')).toBeLessThan(back.indexOf('void markWelcomeBackShown();\n            clearWelcomeBackReturnGap'));
+    expect(rank.indexOf('if (!insteadStoryLanded(record))')).toBeLessThan(rank.indexOf('await markRankOffered(owner, decision.nextRank);\n        return;'));
+  });
+
+  it('кнопки двух кадров ведут туда же, куда вели кнопки окон', () => {
+    const cta = read('components/stories/templates/use_story_cta_action.ts');
+    expect(cta).toContain("router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'welcome_back' } } as never);");
+    expect(cta).toContain("router.push('/coin_rank' as never);");
+  });
+});

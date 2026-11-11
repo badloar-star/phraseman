@@ -81,6 +81,21 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
         .finally(() => { sharingRef.current = false; });
       return;
     }
+    if (cta.action === 'review_cards') {
+      // зачем (истории вместо окон, 11.11): та же цель, что у кнопки «К карточкам» окна «С возвращением» — сохранённые карточки; просмотр (Modal)
+      // закрываем, иначе экран открылся бы под ним
+      DebugLogger.info(LOG, `карточки: закрываем просмотр и открываем сохранённые (кадр=${ctx.source})`);
+      closeViewer('cta_review_cards');
+      router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'welcome_back' } } as never);
+      return;
+    }
+    if (cta.action === 'upgrade_coin') {
+      // зачем (истории вместо окон, 11.11): покупка ранга — на своём экране (церемония чеканки там), как у кнопки «Улучшить» окна «Хватает на ранг»
+      DebugLogger.info(LOG, `ранг монеты: закрываем просмотр и открываем экран ранга (кадр=${ctx.source})`);
+      closeViewer('cta_upgrade_coin');
+      router.push('/coin_rank' as never);
+      return;
+    }
     DebugLogger.info(LOG, `кнопка action=${cta.action}: события этого кадра в приложении ещё нет — переход не назначен`);
   }, [closeViewer, lang, liquidGlassThemeId, router, setLiquidGlassThemeId, studio]);
 }

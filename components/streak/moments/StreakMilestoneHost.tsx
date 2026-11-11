@@ -9,7 +9,8 @@
 // Журнал: [STREAK-MILESTONE] — решение (рубеж, день, сегодня, флаг, диск, причина), показ, закрытие.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { useOverlayVisible } from '../../OverlayArbiter';
+import { useOverlayActiveKey, useOverlayVisible } from '../../OverlayArbiter';
+import { decideStreakMilestoneShow, shouldRequestStreakMilestoneSlot } from './streak_milestone_slot';
 import { useMemMomentsTrack } from '../../moments/mem_moments_probe';
 import { Modal, StyleSheet, View } from 'react-native';
 import type { Lang } from '../../../constants/i18n';
@@ -101,9 +102,27 @@ function StreakMilestoneHost({ lang, onOpenChange }: StreakMilestoneHostProps) {
   useMemMomentsTrack('host:streak-milestone', open && milestone !== null, String(milestone));
   // зачем (владелец 05.11: два полноэкранных окна на одном кадре — «такое нельзя допускать»): рубеж серии (сцены в <Modal>) ждёт слот арбитра (ключ streakMilestone); малый рубеж-тост — наложение без блокировки касаний, слота не берёт.
   const isToast = milestone !== null && streakMomentKind(milestone) === 'toast';
-  const slot = useOverlayVisible('streakMilestone', open && milestone !== null && !isToast);
+  // зачем (владелец 11.11, аудит окон — «Итог урока»): на итоге урока слот очереди держит сам экран (lessonResultsSequence) и не отпускает,
+  // пока рубеж не закрыт, — а рубеж ждал этот же слот: взаимное ожидание, окно не показывалось никогда. Слот экрана-родителя и есть
+  // слот для его рубежа; решение и причина — streak_milestone_slot. На остальных экранах окно ждёт свой слот, как раньше.
+  const holder = useOverlayActiveKey();
+  const shownLatchRef = useRef(false);
+  if (!open) shownLatchRef.current = false;
+  const slotInput = { wants: open && milestone !== null, isToast, holder, shownBefore: shownLatchRef.current };
+  const slot = useOverlayVisible('streakMilestone', shouldRequestStreakMilestoneSlot(slotInput));
+  const slotDecision = decideStreakMilestoneShow(slotInput, slot);
+  if (slotDecision.show && !isToast) shownLatchRef.current = true;
+  // Журнал решения о слоте — одна строка на смену причины; остаётся навсегда (по ней видно «ждёт» и кого именно).
+  const slotReasonLoggedRef = useRef('');
+  useEffect(() => {
+    if (!open || milestone === null) { slotReasonLoggedRef.current = ''; return; }
+    const signature = `${slotDecision.reason}|${String(holder)}`;
+    if (slotReasonLoggedRef.current === signature) return;
+    slotReasonLoggedRef.current = signature;
+    console.log('[STREAK-MILESTONE] slot', JSON.stringify({ milestone, show: slotDecision.show, reason: slotDecision.reason, holder, ownSlot: slot, covered: slotDecision.reason === 'parent_slot' })); // guard-ok: решение о слоте, одна строка на смену
+  }, [open, milestone, slotDecision.show, slotDecision.reason, holder, slot]);
   if (!open || milestone === null) return null;
-  if (!isToast && !slot) return null;
+  if (!slotDecision.show) return null;
   const moment = <StreakMilestoneMoment lang={lang} milestone={milestone} coinRank={coinRank} onDone={done} />;
   if (streakMomentKind(milestone) === 'toast') {
     return <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>{moment}</View>;

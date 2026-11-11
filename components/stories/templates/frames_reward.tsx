@@ -9,11 +9,12 @@
 // не подтвердил выплату, — поэтому кадр показывает сумму только когда монеты дошли. Причины под суммой — прежние строки окна итога
 // («+N за K место», «+N за повышение», 9 языков), новых переводов нет.
 // Энергия (шаг 5, владелец 11.11): строка «+1 / −1 к запасу энергии» — тем же правилом, что в окне итога недели (spireWeekEnergyLine).
-// Чего на кадре пока нет: «в пути» и «сколько не хватило до пятёрки». «В пути» требует обновлять уже записанную историю после
-// выплаты, иначе надпись останется навсегда; файлы, где это делается, 11.11 были заняты другой сессией.
+// «В пути» (шаг 6, владелец 11.11): пока монеты не дошли до кошелька, вместо суммы — монета и подпись «в пути»; после выплаты
+// хранилище историй обновляет событие (refreshSpireWeekReward), и та же история показывает сумму.
+// Чего на кадре пока нет: «сколько не хватило до пятёрки».
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useMemo } from 'react';
-import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { achievementConditionForLang, achievementDescForLang, achievementNameForLang, ALL_ACHIEVEMENTS } from '../../../app/achievements';
 import { DebugLogger } from '../../../app/debug-logger';
@@ -84,6 +85,17 @@ const RewardSum = memo(function RewardSum({ total, rank }: Readonly<{ total: num
   );
 });
 
+/** Награда ещё идёт в кошелёк: та же строка, что у суммы, но вместо числа — подпись «в пути». Монеты не падают. */
+const RewardPending = memo(function RewardPending({ text, rank }: Readonly<{ text: string; rank: number | null }>) {
+  const pal = useStoryTemplatePalette();
+  return (
+    <Enter d={REWARD_LAND_MS + 420} style={f.sum}>
+      <SpireRankCoin rank={rank} size={SUM_COIN} />
+      <Text testID="story-tpl-peakweek-pending" style={[f.pending, { color: pal.sec }]}>{text}</Text>
+    </Enter>
+  );
+});
+
 // ── 8 · Пик · итог недели — статуэтка лиги ───────────────────────────────────────────────────────────────────────────
 
 export const PeakWeekRewardFrame = memo(function PeakWeekRewardFrame({ tpl, lang, myRank }: StoryFrameProps<'peakweek'>) {
@@ -101,6 +113,8 @@ export const PeakWeekRewardFrame = memo(function PeakWeekRewardFrame({ tpl, lang
   // старое событие без поля → 0; оба числа уже нулевые, пока сервер не подтвердил выплату
   const placeCoins = Math.max(0, tpl.placeCoins ?? 0);
   const total = placeCoins + promotionCoins;
+  // «в пути» — только когда суммы ещё нет: пришли числа — показываем их, даже если признак остался от старой записи
+  const pending = total === 0 && tpl.rewardPending === true;
   // зачем (владелец 11.11: «добавь энергию на кадр»): то же правило и тот же источник запаса, что у окон повышения и карточки итога —
   // «+1» при подъёме, пока запас не на потолке; «−1» при спуске, только если было что снимать; лига не менялась — строки нет.
   const energyBonus = getSpireEnergyBonus();
@@ -109,8 +123,8 @@ export const PeakWeekRewardFrame = memo(function PeakWeekRewardFrame({ tpl, lang
   useEffect(() => {
     DebugLogger.info(LOG, `итог недели: вид=${variant} исход=${tpl.outcome} лига=${tpl.tier} прежняя=${prevTier} смена=${changed} место=${tpl.place}/${tpl.total} `
       + `монетНедели=${tpl.weekCoins} заМесто=${placeCoins}(в событии ${tpl.placeCoins === undefined ? 'нет поля' : tpl.placeCoins}) заПовышение=${promotionCoins} `
-      + `сумма=${total}${total > 0 ? '' : ' → строки суммы нет'} запасЭнергии=${energyBonus} строкаЭнергии=${energy === null ? 'нет' : `«${energy}»`} статуэтка=${size}dp`);
-  }, [variant, tpl, prevTier, changed, size, placeCoins, promotionCoins, total, energyBonus, energy]);
+      + `сумма=${total}${total > 0 ? '' : pending ? ' → «в пути»' : ' → строки суммы нет'} вПутиВСобытии=${String(tpl.rewardPending ?? 'нет поля')} запасЭнергии=${energyBonus} строкаЭнергии=${energy === null ? 'нет' : `«${energy}»`} статуэтка=${size}dp`);
+  }, [variant, tpl, prevTier, changed, size, placeCoins, promotionCoins, total, pending, energyBonus, energy]);
 
   const outcome = tpl.outcome === 'up' ? storyText(lang, 'weekUp', { league })
     : tpl.outcome === 'down' ? storyText(lang, 'weekDown', { league })
@@ -142,7 +156,7 @@ export const PeakWeekRewardFrame = memo(function PeakWeekRewardFrame({ tpl, lang
       <Ov text={storyText(lang, 'weekResult')} d={REWARD_LAND_MS - 350} />
       <H1 text={league} d0={REWARD_LAND_MS - 250} />
       {tpl.place > 0 && tpl.total > 0 ? <P text={storyText(lang, 'weekPlace', { place: tpl.place, total: tpl.total })} d={REWARD_LAND_MS + 150} /> : null}
-      {total > 0 ? <RewardSum total={total} rank={myRank} /> : null}
+      {total > 0 ? <RewardSum total={total} rank={myRank} /> : pending ? <RewardPending text={tplText(lang, 'rewardOnTheWay')} rank={myRank} /> : null}
       <P text={reason} d={REWARD_LAND_MS + (total > 0 ? 1550 : 600)} />
       {energy !== null ? <P text={energy} d={REWARD_LAND_MS + (total > 0 ? 1800 : 850)} /> : null}
     </FrameRoot>
@@ -198,6 +212,8 @@ const f = StyleSheet.create({
   // строка суммы: монета и число в ряд по центру; падающие монеты лежат поверх монеты и не занимают места в вёрстке
   sum: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 14 },
   sumCoin: { width: SUM_COIN, height: SUM_COIN },
+  // подпись «в пути» у монеты: спокойнее числа суммы, вторичным цветом темы
+  pending: { fontSize: 24, lineHeight: 30, fontWeight: '700' },
   fall: { position: 'absolute', left: (SUM_COIN - FALL_COIN) / 2, top: (SUM_COIN - FALL_COIN) / 2, width: FALL_COIN, height: FALL_COIN },
   ach: { width: ACH_SIZE, height: ACH_SIZE, borderRadius: ACH_RADIUS },
   achClip: { width: ACH_SIZE, height: ACH_SIZE, borderRadius: ACH_RADIUS, overflow: 'hidden' },

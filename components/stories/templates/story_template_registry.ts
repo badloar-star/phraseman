@@ -98,7 +98,9 @@ export type StoryTemplate =
   | T<'summit', { tier: number; floor: number; floors: number; weekCoins: number }>
   | T<'peakweek', { tier: number; outcome: 'up' | 'stay' | 'down'; place: number; total: number; weekCoins: number; promotionCoins: number; podium: readonly StoryPodiumEntry[] | null;
     /** U36: награда за место (0 — нет или ещё не выплачена). Необязательное: старые события и прежние места сборки кадра его не знают. */
-    placeCoins?: number }>
+    placeCoins?: number;
+    /** U36: награда есть, но ещё не дошла до кошелька — кадр показывает «в пути» вместо суммы. */
+    rewardPending?: boolean }>
   | T<'duel', { friend: StoryPerson; myScore: number; theirScore: number; rounds: number; seconds: number }>
   | T<'overtaken', { friend: StoryPerson; friendCoins: number; myCoins: number; daysLeft: number }>
   | T<'friend', { friend: StoryPerson }>

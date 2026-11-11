@@ -17,6 +17,7 @@ import { readRemoteConfigCacheRaw } from '../../app/remote_config_client';
 import {
   addStoryEvent,
   markStorySeen,
+  refreshSpireWeekReward,
   parseStoryEvents,
   pruneStoryEvents,
   serializeStoryEvents,
@@ -292,6 +293,20 @@ export async function recordStoryEvent(
         return savedSeen ? { recorded: true, id } : { recorded: false, reason: 'storage_failed' };
       }
       if (!decision.added) {
+        // зачем (владелец 11.11, U36): итог недели пришёл повторно уже с выплатой — история, записанная «в пути», получает сумму.
+        // Обычный повтор без изменений идёт дальше прежним путём и ничего не пишет.
+        if (decision.reason === 'duplicate' && type === 'spire_week') {
+          const fresh = refreshSpireWeekReward(decision.list, payload);
+          if (fresh.changed) {
+            const id = storyEventKey(type, payload);
+            lists.set(owner, fresh.list);
+            recompute('record_refresh_spire_week');
+            const savedFresh = await persist(owner, fresh.list, `refresh reward ${id}`);
+            info(`record: duplicate id=${id} → выплата обновлена placeCoins=${String(payload.placeCoins)} promotionCoins=${String(payload.promotionCoins)} `
+              + `rewardPending=${String(payload.rewardPending)} saved=${String(savedFresh)}`);
+            return savedFresh ? { recorded: true, id } : { recorded: false, reason: 'storage_failed' };
+          }
+        }
         if (decision.reason === 'duplicate' && dirtyOwners.has(owner)) {
           const saved = await persist(owner, list, 'retry duplicate after storage failure');
           return saved ? { recorded: true, id: storyEventKey(type, payload) } : { recorded: false, reason: 'storage_failed' };

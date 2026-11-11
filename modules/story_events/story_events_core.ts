@@ -111,6 +111,32 @@ export function addStoryEvent(
   return { added: true, list: next, event, evicted: live.length + 1 - next.length };
 }
 
+/** Поля выплаты итога недели, которые история вправе обновить после записи. */
+const SPIRE_WEEK_REWARD_KEYS = ['placeCoins', 'promotionCoins', 'rewardPending'] as const;
+
+/**
+ * Итог недели пришёл повторно, а выплата изменилась: обновляем три поля выплаты у уже записанной истории.
+ * зачем (владелец 11.11, U36: «добавь „в пути“ на кадр»): история недели одна на неделю и повтор отбрасывается, поэтому история,
+ * записанная до выплаты, осталась бы «в пути» навсегда. Правило узкое: трогаем только историю с признаком rewardPending = 1;
+ * время и отметка «просмотрено» не меняются — кольцо у аватара заново не загорается, порядок историй прежний.
+ */
+export function refreshSpireWeekReward(list: StoryEventList, payload: StoryEventPayload): Readonly<{ changed: boolean; list: StoryEventList }> {
+  const id = storyEventKey('spire_week', payload);
+  let changed = false;
+  const next = list.map((event) => {
+    if (event.id !== id || event.type !== 'spire_week' || Number(event.payload.rewardPending) !== 1) return event;
+    if (SPIRE_WEEK_REWARD_KEYS.every((key) => payload[key] === undefined || event.payload[key] === payload[key])) return event;
+    const fresh: Record<string, string | number | boolean> = { ...event.payload };
+    for (const key of SPIRE_WEEK_REWARD_KEYS) {
+      const value = payload[key];
+      if (value !== undefined) fresh[key] = value;
+    }
+    changed = true;
+    return Object.freeze({ ...event, payload: Object.freeze(fresh) });
+  });
+  return { changed, list: changed ? Object.freeze(next) : list };
+}
+
 export function markStorySeen(list: StoryEventList, id: string): Readonly<{ changed: boolean; list: StoryEventList }> {
   let changed = false;
   const next = list.map((event) => {

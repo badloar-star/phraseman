@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { peakWeekSeed, prevTierOf, storyRewardHash, storyRewardVariant, type PeakWeekOutcome } from '../components/stories/templates/story_reward_variant';
 import { SPIRE_TIER_COUNT } from '../modules/spire/tier_names';
+import { addStoryEvent, refreshSpireWeekReward, type StoryEventList } from '../modules/story_events/story_events_core';
 
 const ROOT = path.join(__dirname, '..');
 const read = (rel: string): string => fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
@@ -51,6 +52,48 @@ describe('истории наград U36 — прежняя лига', () => {
   });
 });
 
+describe('истории наград U36 — «в пути» не остаётся навсегда', () => {
+  // зачем (владелец 11.11, шаг 6): история недели одна на неделю; записанная до выплаты, она обязана получить сумму после выплаты
+  const NOW = 1_800_000_000_000;
+  const week = (extra: Record<string, string | number>) => ({ weekId: '2026-W46', lang: 'en', outcome: 'up', floor: 1, place: 2, total: 30, ...extra });
+  const record = (payload: Record<string, string | number>): StoryEventList => {
+    const added = addStoryEvent([], { type: 'spire_week', payload, atMs: NOW }, NOW);
+    if (!added.added) throw new Error(`история не записалась: ${added.reason}`);
+    return added.list;
+  };
+
+  it('выплата пришла — у истории «в пути» появляются суммы, время и «просмотрено» прежние', () => {
+    const list = record(week({ placeCoins: 0, promotionCoins: 0, rewardPending: 1 }));
+    const fresh = refreshSpireWeekReward(list, week({ placeCoins: 200, promotionCoins: 100, rewardPending: 0 }));
+    expect(fresh.changed).toBe(true);
+    expect(fresh.list).toHaveLength(1);
+    expect(fresh.list[0].payload).toMatchObject({ placeCoins: 200, promotionCoins: 100, rewardPending: 0, place: 2, outcome: 'up' });
+    expect(fresh.list[0].atMs).toBe(list[0].atMs);
+    expect(fresh.list[0].seen).toBe(list[0].seen);
+    expect(fresh.list[0].id).toBe(list[0].id);
+  });
+
+  it('повтор без изменений ничего не пишет', () => {
+    const list = record(week({ placeCoins: 0, promotionCoins: 0, rewardPending: 1 }));
+    const same = refreshSpireWeekReward(list, week({ placeCoins: 0, promotionCoins: 0, rewardPending: 1 }));
+    expect(same.changed).toBe(false);
+    expect(same.list).toBe(list);
+  });
+
+  it('выплаченную историю и историю другой недели не трогает', () => {
+    const paid = record(week({ placeCoins: 200, promotionCoins: 100, rewardPending: 0 }));
+    expect(refreshSpireWeekReward(paid, week({ placeCoins: 0, promotionCoins: 0, rewardPending: 1 })).changed).toBe(false);
+    const pending = record(week({ placeCoins: 0, promotionCoins: 0, rewardPending: 1 }));
+    expect(refreshSpireWeekReward(pending, { ...week({ placeCoins: 300, promotionCoins: 0, rewardPending: 0 }), weekId: '2026-W47' }).changed).toBe(false);
+  });
+
+  it('признак и обновление подключены: событие пишет rewardPending, хранилище зовёт обновление при повторе', () => {
+    expect(read('modules/story_events/story_event_sources.ts')).toContain("rewardPending: result.rewardStatus === 'pending_wallet' ? 1 : 0,");
+    expect(read('components/stories/templates/story_template_from_event.ts')).toContain('rewardPending: int(p.rewardPending) === 1');
+    expect(read('modules/story_events/story_events_store.ts')).toContain('const fresh = refreshSpireWeekReward(decision.list, payload);');
+  });
+});
+
 describe('истории наград U36 — статуэтки и стиль', () => {
   const art = read('components/stories/templates/story_reward_art.ts');
   const ORDER = ['granite', 'basalt', 'marble', 'jade', 'quartz', 'agate', 'onyx', 'amethyst', 'opal', 'topaz', 'obsidian', 'diamond'];
@@ -76,7 +119,8 @@ describe('истории наград U36 — статуэтки и стиль',
     expect(read('modules/story_events/story_event_sources.ts')).toContain('placeCoins: result.placeCoins ?? 0');
     expect(read('components/stories/templates/story_template_from_event.ts')).toContain('placeCoins: int(p.placeCoins)');
     const frame = read('components/stories/templates/frames_reward.tsx');
-    expect(frame).toContain('{total > 0 ? <RewardSum total={total} rank={myRank} /> : null}');
+    expect(frame).toContain("{total > 0 ? <RewardSum total={total} rank={myRank} /> : pending ? <RewardPending text={tplText(lang, 'rewardOnTheWay')} rank={myRank} /> : null}");
+    expect(frame).toContain('const pending = total === 0 && tpl.rewardPending === true;');
     expect(frame).toContain("const promotionCoins = tpl.outcome === 'up' ? Math.max(0, tpl.promotionCoins) : 0;");
   });
 

@@ -14,12 +14,16 @@
      экраны «Моменты» и «Сериал». Плейлисты стали одним из фильтров ленты; занятие после ролика одно — «Проверить себя»;
    — фраза, награда и отметки собраны в то, что уже есть на экране: фразы — один список (текущая раскрыта), награда — кольцо на плеере,
      «Избранное» — звезда в шапке, длительность — в строке под названием.
-   Шрифты и значки берутся из соседнего макета home-luxe-2026-11-11. Цвета заданы числами — при переносе берутся токены темы. */
-@font-face { font-family: Inter; src: url(../home-luxe-2026-11-11/fonts/Inter-Regular.ttf); font-weight: 400 500; }
-@font-face { font-family: Inter; src: url(../home-luxe-2026-11-11/fonts/Inter-SemiBold.ttf); font-weight: 600; }
-@font-face { font-family: Inter; src: url(../home-luxe-2026-11-11/fonts/Inter-Bold.ttf); font-weight: 700; }
-@font-face { font-family: Inter; src: url(../home-luxe-2026-11-11/fonts/Inter-Black.ttf); font-weight: 800 900; }
-@font-face { font-family: IoniconsApp; src: url(../home-luxe-2026-11-11/Ionicons.ttf); }
+   Шрифты и значки — общие для эталонов (fonts/, assets/). Цвета заданы числами — в приложении берутся токены темы.
+   УТВЕРЖДЕНО ВЛАДЕЛЬЦЕМ 11.11 как эталон раздела. При утверждении макет приведён к сделанному в приложении:
+   — лента и плейлисты — сетка в две колонки (решение владельца 10.11 в силе; ответ 11.11 «оставить сетку»), а не строки;
+   — «Проверить себя» — кнопка под названием ролика, над фразами (не прибита к низу экрана);
+   — тест кончается кнопкой «Готово» (возврат к ролику), «Следующего ролика» нет. */
+@font-face { font-family: Inter; src: url(fonts/Inter-Regular.ttf); font-weight: 400 500; }
+@font-face { font-family: Inter; src: url(fonts/Inter-SemiBold.ttf); font-weight: 600; }
+@font-face { font-family: Inter; src: url(fonts/Inter-Bold.ttf); font-weight: 700; }
+@font-face { font-family: Inter; src: url(fonts/Inter-Black.ttf); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
 :root {
   --ease-out: cubic-bezier(.23, 1, .32, 1);
   --pg: #08090B; --pgx: #EEF1F6; --pgs: #A4ABB8;
@@ -87,15 +91,16 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
 .chip { flex: none; height: 38px; padding: 0 16px; border-radius: 19px; background: var(--ctl); font-size: 15px; font-weight: 700; color: var(--sec); transition: background-color 180ms ease, color 180ms ease, transform 160ms var(--ease-out); }
 .chip:active { transform: scale(.96); }
 .chip[aria-pressed="true"] { background: #F2F1F6; color: #111216; }
-.list { margin-top: 8px; }
-.vr { display: flex; align-items: center; gap: 14px; width: 100%; padding: 10px 0; }
+/* зачем (владелец 11.11: «оставить сетку»): две колонки, обложка 16:9 сверху, название и строка состояния под ней */
+.list { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 12px; align-items: start; }
+.vr { display: flex; flex-direction: column; gap: 8px; width: 100%; min-width: 0; }
 .vr[hidden] { display: none; }
-.vr .th { position: relative; flex: none; width: 136px; height: 76px; border-radius: 14px; overflow: hidden; }
+.vr .th { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; }
 .vr .th .d { position: absolute; right: 6px; bottom: 6px; height: 20px; padding: 0 6px; border-radius: 6px; background: rgba(8, 10, 14, .7); font-size: 12px; line-height: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .vr .th .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255, 255, 255, .25); }
 .vr .th .bar i { display: block; height: 100%; background: #fff; }
 .vr.pl .th { box-shadow: 0 -6px 0 -3px rgba(255, 255, 255, .16), 0 -11px 0 -6px rgba(255, 255, 255, .08); margin-top: 8px; }
-.vr .x { flex: 1; min-width: 0; }
+.vr .x { min-width: 0; }
 .vr .x b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 16px; line-height: 21px; font-weight: 700; }
 .vr .x i { display: flex; align-items: center; gap: 5px; font-style: normal; font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 4px; font-variant-numeric: tabular-nums; }
 .vr .x i.done { color: var(--ok); }
@@ -104,7 +109,7 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
 .vr .x i .io { font-size: 15px; }
 
 /* ═════ 2. Просмотр ═════ */
-.watch { padding: 36px 16px 112px; }
+.watch { padding: 36px 16px 44px; }
 .wtop { display: flex; justify-content: space-between; padding-bottom: 10px; }
 .wtop .ib.on { color: var(--gold); }
 .player { position: relative; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; box-shadow: 0 24px 36px -22px rgba(0, 0, 0, .9); }
@@ -139,8 +144,8 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
 .pl .sv { flex: none; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--dim); transition: transform 160ms var(--ease-out), color 160ms ease; }
 .pl .sv:active { transform: scale(.86); }
 .pl .sv.on { color: var(--gold); }
-.dock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 28px 16px 26px; background: linear-gradient(180deg, rgba(12, 13, 16, 0), var(--bg) 46%); pointer-events: none; }
-.dock .cta { pointer-events: auto; }
+/* зачем: как в приложении — вторичная кнопка в потоке экрана, между строкой под названием и списком фраз */
+.qz { width: 100%; min-height: 54px; margin-top: 16px; border-radius: 27px; background: var(--ctl); font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 
 /* ═════ 3. Проверь себя ═════ */
 .quiz { position: absolute; inset: 0; padding: 40px 16px 26px; display: flex; flex-direction: column; background: radial-gradient(120% 34% at 50% -8%, oklch(.36 .06 280 / .5), transparent 70%), var(--bg); }
@@ -191,9 +196,9 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
   <p class="lead">Всё лишнее убрано. Человек открывает раздел, продолжает или выбирает ролик, во время просмотра ловит фразы закладкой, а после ролика отвечает на три вопроса. Экраны живые: нажимайте, содержимое телефонов прокручивается.</p>
   <div class="wrap">
     <div class="cell"><div class="cap">1. Лента</div><div class="zw"><div class="ph" id="phFeed"></div></div>
-      <p class="why">Сверху — то, что не досмотрел. Ниже один список. Плейлисты — просто ещё один фильтр.</p></div>
+      <p class="why">Сверху — то, что не досмотрел. Ниже сетка в две колонки. Плейлисты — просто ещё один фильтр.</p></div>
     <div class="cell"><div class="cap">2. Просмотр</div><div class="zw"><div class="ph" id="phWatch"></div></div>
-      <p class="why">Один список фраз: та, что звучит, раскрыта и переведена. Касание по фразе — перейти к ней, закладка — в карточки. Награда — кольцо на плеере.</p></div>
+      <p class="why">Один список фраз: та, что звучит, раскрыта и переведена. Касание по фразе — перейти к ней, закладка — в карточки. Награда — кольцо на плеере. «Проверить себя» — под названием.</p></div>
     <div class="cell"><div class="cap">3. Проверь себя</div><div class="zw"><div class="ph" id="phQuiz"></div></div>
       <p class="why">Три вопроса по фразам ролика. Неверные варианты — другие фразы этого же ролика. Ошибка сама отправляет фразу в карточки.</p></div>
   </div>
@@ -212,13 +217,13 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
   </div>
 </div>
 
-<script src="../home-luxe-2026-11-11/ionicons_map.js"></script>
+<script src="assets/ionicons_map.js"></script>
 <script>
-/* зачем: значки берутся по тем же именам, что и в коде приложения (@expo/vector-icons), из общей карты макета home-luxe */
+/* зачем: значки берутся по тем же именам, что и в коде приложения (@expo/vector-icons), из общей карты эталонов assets/ionicons_map.js */
 const MAP = window.IONMAP || {};
 const glyph = (n) => { if (!MAP[n]) console.warn('[VIDEO-HUB] нет значка в карте:', n); return MAP[n] ? String.fromCharCode(MAP[n]) : ''; };
 const io = (n) => `<i class="io">${glyph(n)}</i>`;
-const COIN = '<img src="../home-luxe-2026-11-11/art/coin.webp" alt="">';
+const COIN = '<img src="assets/coin.webp" alt="">';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const sbar = '<div class="sbar"><span>9:41</span><span class="bat"></span></div>';
@@ -273,9 +278,10 @@ function watchHTML() {
       <button class="pp" id="pp" aria-label="Пауза">${io('play')}</button>
       <span class="tm" id="tm"></span><div class="ln"><i id="ln"></i></div></div>
     <h3 class="wt">Small talk без пауз</h3><div class="wm">Professor Lingman · ${fmt(DUR)}</div>
+    <button class="qz press">Проверить себя</button>
     <div class="phr">${PHRASES.map(([, e, r]) => `<div class="pl" role="button" tabindex="0"><span class="x"><b>${e.split(' ').map((w) => `<span>${w}</span>`).join(' ')}</b><i>${r}</i></span><button class="sv" aria-pressed="false" aria-label="Сохранить фразу в карточки">${io('bookmark-outline')}</button></div>`).join('')}</div>
   </div></div>
-  <div class="dock"><button class="cta press">Проверить себя</button></div><div class="gest"></div>`;
+  <div class="gest"></div>`;
 }
 function watchInit(ph) {
   const st = { t: 339, play: true, watched: 46, cur: -1, done: false, saved: new Set() };
@@ -358,7 +364,7 @@ function quizInit(ph) {
     const title = miss === 0 ? 'Всё верно' : st.right === 0 ? 'Стоит пересмотреть' : 'Хорошо';
     const note = miss === 0 ? 'Все фразы ролика с тобой.' : `${miss === 1 ? 'Одна фраза ждёт' : `${miss} фразы ждут`} в карточках на повтор.`;
     swap(`${top()}<div class="res"><div class="n">${st.right}<small> из ${QUIZ.length}</small></div><h3>${title}</h3><p>${note}</p>
-      <div class="acts"><button class="cta press">Следующий ролик</button><button class="ghost" id="again">Пройти ещё раз</button></div></div>`, () => {
+      <div class="acts"><button class="cta press">Готово</button><button class="ghost" id="again">Пройти ещё раз</button></div></div>`, () => {
       $$('.segs i', root).forEach((s) => s.classList.add('on'));
       $('#again', root).addEventListener('click', () => { st.i = 0; st.right = 0; ask(); });
     });

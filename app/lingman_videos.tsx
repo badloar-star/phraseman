@@ -49,6 +49,9 @@ import { useTopFadeScroll } from '../components/TopFadeScrollContext';
 import { V2 } from '../constants/v2Style';
 import { DebugLogger } from './debug-logger';
 import { useVideoFavorites } from '../hooks/use_video_favorites';
+import { useVideoFullRewarded } from '../hooks/use_video_full_rewarded';
+import { VideoFeedFilter, VideoFeedFilterEmpty } from '../components/video/VideoFeedFilter';
+import { filterVideoFeed, type VideoFeedFilter as VideoFeedFilterKey } from './video_feed_filter'; // зачем (владелец 11.11): фильтры ленты «Все · Не смотрел · Избранное»
 import { actionToastTri, emitAppEvent } from './events';
 import { quietEmptyDetail, quietEmptyTitle } from '../components/cards-grid/quiet_empty_copy';
 import {
@@ -505,6 +508,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     return base.filter((playlist) => (counts.get(playlist.id) ?? 0) > 0).map((playlist) => ({ ...playlist, itemCount: counts.get(playlist.id) ?? 0 }));
   }, [allChannel.items, allChannel.playlists, allChannel.status, catalog?.playlists]);
   const favorites = useVideoFavorites();
+  // зачем (владелец 11.11, макет video-hub-2026-11-11, экран 1): фильтр ленты считается на телефоне — избранное и список досмотренных роликов уже лежат локально, сети нет.
+  const [feedFilter, setFeedFilter] = useState<VideoFeedFilterKey>('all');
+  const watchedVideoIds = useVideoFullRewarded();
   // зачем (координатор 15.10, консистентность): вкладка «Видео» не сообщала прокрутку таб-оболочке — капсула таббара не сжималась, а на остальных четырёх вкладках сжимается (макет tabbar-variants, 24.09).
   // Теперь прокрутка списков во вкладке идёт в TopFadeScrollContext, как у Главной/Обучения/Сообщества/Настроек (верхняя маска и сжатие капсулы).
   const topFadeScroll = useTopFadeScroll();
@@ -660,7 +666,14 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     console.log('[VIDEO-TAB] hero', trace); // guard-ok: журнал решения о премьере при смене значений (не на каждый рендер)
   }, [catalog, hero, inTab, studyTarget]);
   // Данные виртуального списка «Главной» вкладки: сохранённые или все ролики без премьеры (она в шапке).
-  const homeListAll = useMemo(() => allVideos.filter((video) => video.id !== hero?.id), [allVideos, hero?.id]);
+  const homeListUnfiltered = useMemo(() => allVideos.filter((video) => video.id !== hero?.id), [allVideos, hero?.id]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- favorites.savedIds меняется вместе с isSaved: по нему список пересобирается сразу после касания звезды
+  const homeListAll = useMemo(() => filterVideoFeed(homeListUnfiltered, feedFilter, { isSaved: favorites.isSaved, watchedIds: watchedVideoIds }), [homeListUnfiltered, feedFilter, favorites.savedIds, watchedVideoIds]);
+  const changeFeedFilter = useCallback((next: VideoFeedFilterKey) => {
+    console.log('[VIDEO-TAB] filter', JSON.stringify({ from: feedFilter, to: next, total: homeListUnfiltered.length, watched: watchedVideoIds.size, saved: favorites.savedIds.length })); // guard-ok: смена фильтра и значения, которые решают состав списка
+    setFeedFilter(next);
+    setPages(1); // новый состав списка читается с первой страницы
+  }, [favorites.savedIds.length, feedFilter, homeListUnfiltered.length, watchedVideoIds.size]);
   // Страницы по 20 (allVideosPage у Ядра = page × 20): список растёт по onEndReached; снимок (20) и «Сохранённые» — целиком.
   const paged = !!fullVideos;
   const homeListVideos = useMemo(() => (paged ? homeListAll.slice(0, pages * ALL_VIDEOS_PAGE_SIZE) : homeListAll), [homeListAll, pages, paged]);
@@ -852,8 +865,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
               onToggle={() => setExpandedPhraseVideoId((current) => current === hero.id ? null : hero.id)}
               testID={`video-phrases-${hero.id}`}
             /> : null}
+            {homeListUnfiltered.length > 0 ? <View style={styles.feedFilter}><VideoFeedFilter value={feedFilter} onChange={changeFeedFilter} /></View> : null}
             </>}
-            ListEmptyComponent={!hero ? <View testID="lingman-videos-empty" /> : null}
+            ListEmptyComponent={feedFilter !== 'all' ? <VideoFeedFilterEmpty filter={feedFilter} /> : !hero ? <View testID="lingman-videos-empty" /> : null}
           />
         )}
 
@@ -885,6 +899,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, paddingHorizontal: V2.screenPad, paddingTop: 12, backgroundColor: 'transparent' },
   // зачем (video-redesign #c1, `.g2`): сетка в две колонки, ряды через 20; верхний отступ 16 под вкладками.
   gridList: { paddingTop: 16, paddingBottom: 32 },
+  feedFilter: { marginBottom: 16 },
   gridCellLeft: { paddingRight: 6, marginBottom: 20 },
   gridCellRight: { paddingLeft: 6, marginBottom: 20 },
   gridSkeleton: { marginTop: 16 },

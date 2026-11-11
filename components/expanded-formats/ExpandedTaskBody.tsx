@@ -283,6 +283,8 @@ function ExpandedTaskBody(props: ExpandedBodyProps) {
       return (
         <View>
           <Text style={[s.gapLabel, s.gapLabelFirst, { color: p.text }]}>{label}</Text>
+          {/* зачем: плашка поля (фон, тень, скругление) — на обёртке; у TextInput только текстовые стили, тень вида ему не подходит по типу */}
+          <View style={[s.inputPlate, { backgroundColor: p.card }, sh.nested]}>
           <TextInput
             value={value}
             onChangeText={(text) => dispatch({ type: 'text', value: text })}
@@ -295,9 +297,10 @@ function ExpandedTaskBody(props: ExpandedBodyProps) {
             returnKeyType="done"
             accessibilityLabel={label}
             selectionColor={p.accentGraphic}
-            style={[s.input, { backgroundColor: p.card, color: ink }, sh.nested]}
+            style={[s.input, { color: ink }]}
             testID="expanded-input"
           />
+          </View>
         </View>
       );
     }

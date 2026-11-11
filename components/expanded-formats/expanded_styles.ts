@@ -35,7 +35,9 @@ export const expandedStyles = StyleSheet.create({
   gapLabel: { marginTop: 18, marginBottom: 10, fontSize: 16, lineHeight: 22, fontWeight: '700' },
   gapLabelFirst: { marginTop: 0 },
 
-  input: { minHeight: 58, borderRadius: 16, paddingHorizontal: 22, paddingVertical: 12, fontSize: 20, lineHeight: 28 },
+  // .word-input макета: плашка 58 / радиус 16 — на обёртке, текст 20/28 — на самом поле
+  inputPlate: { minHeight: 58, borderRadius: 16, justifyContent: 'center' },
+  input: { paddingHorizontal: 22, paddingVertical: 12, fontSize: 20, lineHeight: 28 },
 
   classifyCard: { paddingHorizontal: 18, paddingVertical: 12, borderRadius: 16 },
   classifyText: { marginBottom: 12, fontSize: 19, lineHeight: 24, fontWeight: '700' },

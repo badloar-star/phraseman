@@ -13,7 +13,7 @@
    — убрано: сцена с сиянием, ряд игр, «Момент дня», цель недели, отдельный блок «Сейчас звучит», полоса награды, ряд кнопок плеера,
      экраны «Моменты» и «Сериал». Плейлисты стали одним из фильтров ленты; занятие после ролика одно — «Проверить себя»;
    — фраза, награда и отметки собраны в то, что уже есть на экране: фразы — один список (текущая раскрыта), награда — кольцо на плеере,
-     «Нравится» — звезда в шапке, длительность — в строке под названием.
+     «Избранное» — звезда в шапке, длительность — в строке под названием.
    Шрифты и значки берутся из соседнего макета home-luxe-2026-11-11. Цвета заданы числами — при переносе берутся токены темы. */
 @font-face { font-family: Inter; src: url(../home-luxe-2026-11-11/fonts/Inter-Regular.ttf); font-weight: 400 500; }
 @font-face { font-family: Inter; src: url(../home-luxe-2026-11-11/fonts/Inter-SemiBold.ttf); font-weight: 600; }
@@ -99,6 +99,7 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
 .vr .x b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 16px; line-height: 21px; font-weight: 700; }
 .vr .x i { display: flex; align-items: center; gap: 5px; font-style: normal; font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 4px; font-variant-numeric: tabular-nums; }
 .vr .x i.done { color: var(--ok); }
+.vr .x b .fv { display: inline-block; margin: 0 6px 0 0; font-size: 14px; color: var(--gold); vertical-align: 1px; }
 .vr .x i img { width: 15px; height: 15px; }
 .vr .x i .io { font-size: 15px; }
 
@@ -152,7 +153,7 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
 .qbody.out, .res.out { opacity: 0; transform: translateY(8px); filter: blur(2px); }
 .qk { font-size: 15px; line-height: 20px; font-weight: 600; color: var(--sec); padding: 0 4px; }
 .qq { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.5px; margin: 6px 4px 0; text-wrap: balance; }
-.qq u { text-decoration: none; display: inline-block; min-width: 92px; text-align: center; border-bottom: 2px solid rgba(255, 255, 255, .4); }
+
 .listen { margin-top: 18px; height: 64px; border-radius: 20px; background: var(--card); display: flex; align-items: center; gap: 14px; padding: 0 16px 0 10px; width: 100%; font-size: 16px; font-weight: 700; }
 .listen .pb { width: 44px; height: 44px; border-radius: 22px; background: #F2F1F6; color: #111216; display: flex; align-items: center; justify-content: center; font-size: 18px; padding-left: 2px; flex: none; }
 .listen .wv { flex: 1; height: 22px; display: flex; align-items: center; gap: 3px; }
@@ -200,7 +201,7 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
     <div class="cell"><div class="cap">2. Просмотр</div><div class="zw"><div class="ph" id="phWatch"></div></div>
       <p class="why">Один список фраз: та, что звучит, раскрыта и переведена. Касание по фразе — перейти к ней, закладка — в карточки. Награда — кольцо на плеере.</p></div>
     <div class="cell"><div class="cap">3. Проверь себя</div><div class="zw"><div class="ph" id="phQuiz"></div></div>
-      <p class="why">Три вопроса по фразам ролика. Ошибка сама отправляет фразу в карточки.</p></div>
+      <p class="why">Три вопроса по фразам ролика. Неверные варианты — другие фразы этого же ролика. Ошибка сама отправляет фразу в карточки.</p></div>
   </div>
   <div class="notes">
     <h2>Что убрано</h2>
@@ -211,7 +212,7 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
     </ul>
     <h2>Что нужно сделать в приложении</h2>
     <ul>
-      <li><b>Данные уже есть для всего, что на макете:</b> место остановки, длительность, отметки просмотра и «Нравится», фразы с временем и переводом, награда за 70% ролика.</li>
+      <li><b>Данные уже есть для всего, что на макете:</b> место остановки, длительность, отметки просмотра и избранное, фразы с временем и переводом, награда за 70% ролика.</li>
       <li><b>Новое только поведение:</b> подсветка текущей фразы по времени плеера и экран из трёх вопросов, который собирается на телефоне из фраз ролика.</li>
     </ul>
   </div>
@@ -238,10 +239,11 @@ const VIDEOS = [
   { t: 'Разговор у врача', d: '10:48', p: 5, ph: 11, st: 'done' },
 ];
 const LISTS = [{ t: 'Английский в путешествии', p: 4, n: '3 из 8 роликов' }, { t: 'Вежливый английский', p: 6, n: '6 роликов' }, { t: 'Первые разговоры', p: 5, n: '5 из 5 роликов', done: true }];
-const FILTERS = [['Все', (v) => !v.list], ['Не смотрел', (v) => !v.list && v.st !== 'done'], ['Нравится', (v) => !v.list && v.fav], ['Плейлисты', (v) => v.list]];
+/* зачем (решение владельца 11.11: «нравится/не нравится не надо, раздел избранное (звёздочка) можно»): звезда = «Избранное», оценок роликов нет */
+const FILTERS = [['Все', (v) => !v.list], ['Не смотрел', (v) => !v.list && v.st !== 'done'], ['Избранное', (v) => !v.list && v.fav], ['Плейлисты', (v) => v.list]];
 function feedHTML() {
   const row = (v) => `<button class="vr press"><span class="th"><span class="poster p${v.p}"></span><span class="d">${v.d}</span></span>
-    <span class="x"><b>${v.t}</b>${v.st === 'done' ? `<i class="done">${io('checkmark-circle')}Просмотрено</i>` : `<i class="coin">${COIN}500 за просмотр</i>`}</span></button>`;
+    <span class="x"><b>${v.fav ? `<i class="io fv">${glyph('star')}</i>` : ''}${v.t}</b>${v.st === 'done' ? `<i class="done">${io('checkmark-circle')}Просмотрено</i>` : `<i class="coin">${COIN}500 за просмотр</i>`}</span></button>`;
   const list = (l) => `<button class="vr pl press" hidden><span class="th"><span class="poster p${l.p}"></span></span>
     <span class="x"><b>${l.t}</b><i class="${l.done ? 'done' : ''}">${l.done ? io('checkmark-circle') : ''}${l.n}</i></span></button>`;
   return `${sbar}<div class="scr"><div class="feed">
@@ -271,7 +273,7 @@ const PHRASES = [
 const DUR = 725;
 function watchHTML() {
   return `${sbar}<div class="scr"><div class="watch">
-    <div class="wtop"><button class="ib" aria-label="Назад">${io('chevron-back')}</button><button class="ib on" id="like" aria-pressed="true" aria-label="Нравится">${io('star')}</button></div>
+    <div class="wtop"><button class="ib" aria-label="Назад">${io('chevron-back')}</button><button class="ib on" id="like" aria-pressed="true" aria-label="В избранное">${io('star')}</button></div>
     <div class="player" id="player" data-play="1"><div class="poster p3"></div>
       <div class="rw" id="rw" style="--p:66"><span class="ring">${COIN}</span><span id="rwt">500</span></div>
       <button class="pp" id="pp" aria-label="Пауза">${io('play')}</button>
@@ -325,10 +327,12 @@ function watchInit(ph) {
 }
 
 /* ───── 3. Проверь себя ───── */
+/* зачем (решение владельца 11.11: «варианты из фраз того же ролика… можно»): неверные варианты — это другие фразы ЭТОГО ЖЕ ролика
+   и их переводы, взятые из списка PHRASES. Придуманных «ловушек» нет: ничего готовить заранее не нужно, вопрос собирается на телефоне. */
 const QUIZ = [
-  { k: 'Как это по-английски?', q: 'Давно не виделись!', opts: ['Long time no see!', 'Long ago not seen!', 'Much time no look!'], ok: 0 },
-  { k: 'Вставь слово', gap: ['I’d better get ', '.'], opts: ['going', 'gone', 'went'], ok: 0 },
-  { k: 'Что сказал профессор?', listen: true, opts: ['Same old, same old.', 'Some gold, some gold.', 'Same hold, same hold.'], ok: 0 },
+  { k: 'Как это по-английски?', q: 'Давно не виделись!', opts: ['Not too bad.', 'Long time no see!', 'That sounds great.'], ok: 1 },
+  { k: 'Что это значит?', q: 'Same old, same old.', opts: ['Всё по-старому.', 'Мне пора идти.', 'Как дела?'], ok: 0 },
+  { k: 'Что сказал профессор?', listen: true, opts: ['How’s it going?', 'What have you been up to?', 'I’d better get going.'], ok: 2 },
 ];
 function quizHTML() { return `${sbar}<div class="quiz" id="quiz"></div><div class="gest"></div>`; }
 function quizInit(ph) {
@@ -341,7 +345,7 @@ function quizInit(ph) {
   };
   const ask = () => {
     const q = QUIZ[st.i];
-    const head = q.gap ? `<h3 class="qq">${q.gap[0]}<u id="slot">&nbsp;</u>${q.gap[1]}</h3>` : q.listen
+    const head = q.listen
       ? `<button class="listen press" id="listen"><span class="pb">${io('play')}</span><span class="wv">${Array.from({ length: 30 }, (_, n) => `<i style="animation-delay:${-(n * 53) % 600}ms"></i>`).join('')}</span></button>`
       : `<h3 class="qq">${q.q}</h3>`;
     swap(`${top()}<div class="qbody"><div class="qk">${q.k}</div>${head}
@@ -352,7 +356,6 @@ function quizInit(ph) {
         if (root.classList.contains('locked')) return; // защита от двойного касания
         const good = n === q.ok; root.classList.add('locked'); $$('.opt', root)[q.ok].classList.add('ok');
         if (!good) { b.classList.add('no'); $('.io', b).textContent = glyph('close-circle') || glyph('close'); } else st.right += 1;
-        const slot = $('#slot', root); if (slot) slot.textContent = q.opts[q.ok];
         $$('.segs i', root)[st.i].classList.add('on');
         $('#fbt', root).textContent = good ? 'Верно' : 'Фраза добавлена в карточки на повтор';
       }));

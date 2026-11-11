@@ -13,6 +13,7 @@ import { captureAccountGeneration } from './account_generation';
 import { parseAiDialogQuotaObservation, type AiDialogQuotaObservation } from './ai_dialog_daily_quota';
 import { DialogueV2TextTurnUnavailableError, type DialogueV2TextTurnStudyTarget } from './dialogue_v2_turn_client';
 import { isAiDailyCapError } from './ai_daily_cap_signal';
+import { sanitizeDialogSayHints, type DialogSayHint } from '../components/dialogs/hints/dialog_say_hints_model';
 
 // зачем (владелец 2026-09-30, D112): клиент 2.0 шлёт ход V2 с языком интерфейса и получает
 // вместе с репликой разбор: перевод, «Почему так», «Лучше так», подсказку, настроение
@@ -35,6 +36,9 @@ export const DEV_DIALOG_REPLY_EXPLANATION = '«Tell me a bit more» — мягк
 const OBJECTIVE_ID_RE = /^(?=.{1,64}$)[a-z0-9]+(?:[_:-][a-z0-9]+)*$/;
 const CONTROL_RE = /[\u0000-\u001f\u007f]/u;
 const MOODS = new Set(['happy', 'smile', 'neutral', 'sad', 'angry']);
+const REQUEST_INVALID_MESSAGE = 'dialogue_v2_turn_request_invalid';
+/** Сервер этой сессии приложения не знает coachingVersion 3 (выяснено отказом) — до перезапуска шлём версию 2. */
+let serverLacksSayHints = false;
 
 export type DialogueV2CoachingMood = 'happy' | 'smile' | 'neutral' | 'sad' | 'angry';
 
@@ -48,6 +52,12 @@ export type DialogueV2TurnCoaching = Readonly<{
   dialogueEnded: boolean;
   /** Все цели сценария пройдены (сервер шлёт при coachingVersion 2; в старом ответе поля нет — false). */
   allObjectivesComplete: boolean;
+  /**
+   * Готовые ответы «Можно сказать…» на реплику собеседника этого хода (сервер шлёт при coachingVersion 3; нет поля — пусто).
+   * зачем (жалоба владельца 11.11: «подсказки чаще всего невпопад, не в ответ на реплику собеседника»): их пишет модель вместе
+   * с репликой — она знает, что спросил собеседник; заготовленный набор на телефоне остаётся запасным.
+   */
+  sayHints: readonly DialogSayHint[];
 }>;
 
 export type DialogueV2CoachedTurnRequest = Readonly<{
@@ -98,6 +108,7 @@ export class DialogueV2TurnFailureError extends DialogueV2TextTurnUnavailableErr
 }
 
 type PlainRecord = Record<string, unknown>;
+const NO_SAY_HINTS: readonly DialogSayHint[] = Object.freeze([]);
 
 function plainRecord(value: unknown): PlainRecord | null {
   try {
@@ -152,7 +163,9 @@ export function parseDialogueV2TurnCoaching(value: unknown, replyCount: number):
   const required = ['replyTranslations', 'replyExplanations', 'betterPhrasing', 'hint', 'mood', 'activeObjectiveId', 'dialogueEnded'];
   // зачем (28.10): allObjectivesComplete необязателен — ответ старого сервера/повтор хода без него остаётся валидным; не булево — отклоняем разбор
   const hasComplete = raw !== null && Object.prototype.hasOwnProperty.call(raw, 'allObjectivesComplete');
-  if (!raw || !hasExactKeys(raw, hasComplete ? [...required, 'allObjectivesComplete'] : required)) {
+  // зачем (11.11): sayHints тоже необязателен — сервер до выкладки и повтор хода его не несут
+  const hasSayHints = raw !== null && Object.prototype.hasOwnProperty.call(raw, 'sayHints');
+  if (!raw || !hasExactKeys(raw, [...required, ...(hasComplete ? ['allObjectivesComplete'] : []), ...(hasSayHints ? ['sayHints'] : [])])) {
     console.warn('[DIALOGUE-V2] coached:parse → coaching keys rejected', JSON.stringify({ keys: raw ? Object.keys(raw) : null })); // guard-ok: ранний выход пишет причину
     return null;
   }
@@ -171,7 +184,23 @@ export function parseDialogueV2TurnCoaching(value: unknown, replyCount: number):
       : null,
     dialogueEnded: raw.dialogueEnded === true,
     allObjectivesComplete: raw.allObjectivesComplete === true,
+    sayHints: parseSayHints(raw.sayHints),
   });
+}
+
+/** Готовые ответы из разбора: негодный элемент выбрасывается, остальные остаются; не массив — пусто, разбор хода при этом цел. */
+function parseSayHints(value: unknown): readonly DialogSayHint[] {
+  if (value === undefined) return NO_SAY_HINTS;
+  if (!Array.isArray(value)) {
+    console.warn('[DIALOG-HINTS] coached:parse → sayHints is not an array', JSON.stringify({ type: value === null ? 'null' : typeof value })); // guard-ok: ранний выход пишет причину
+    return NO_SAY_HINTS;
+  }
+  const items = value.map((item) => plainRecord(item)).filter((item): item is PlainRecord => item !== null);
+  const hints = sanitizeDialogSayHints(items.map((item) => ({ text: item.text, meaning: item.meaning })));
+  if (hints.length !== value.length) {
+    console.warn('[DIALOG-HINTS] coached:parse → some sayHints dropped', JSON.stringify({ received: value.length, kept: hints.length })); // guard-ok: причина потери
+  }
+  return hints;
 }
 
 function safeReply(value: unknown): Readonly<{ personaId: string; text: string }> | null {
@@ -329,19 +358,30 @@ export async function sendDialogueV2CoachedTextTurn(
         betterPhrasing: devBetter ? 'I would like a table for two, please.' : null, hint: DEV_DIALOG_HINT_TEXT,
         // зачем (Макеты dialogs-019, разбор 13.10): у настоящего ответа сервера настроение собеседника есть всегда и в шапке стоит «😊 Доволен», а подставной ход
         // оставлял mood пустым — шапка рисовала запасное «Диалог». Без явного dev_dialog_mood подставной ход отдаёт 'smile' («Доволен»), как в образце.
-        mood: devMood ?? 'smile', activeObjectiveId: null, dialogueEnded: devEnd, allObjectivesComplete: false,
+        mood: devMood ?? 'smile', activeObjectiveId: null, dialogueEnded: devEnd, allObjectivesComplete: false, sayHints: NO_SAY_HINTS,
       },
     };
   }
   const startedAt = Date.now();
   let data: unknown;
   try {
-    const callable = httpsCallable<DialogueV2CoachedTurnRequest & Readonly<{ coachingVersion: 2 }>, unknown>(
+    const callable = httpsCallable<DialogueV2CoachedTurnRequest & Readonly<{ coachingVersion: 2 | 3 }>, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2TextTurn',
     );
     // зачем (координатор 28.10): coachingVersion 2 — клиент понимает coaching.allObjectivesComplete; сервер выложен 28.10 18:29
-    data = (await callable({ ...request, coachingVersion: 2 })).data;
+    // зачем (11.11): coachingVersion 3 — ещё и coaching.sayHints (готовые ответы на реплику собеседника).
+    try {
+      data = (await callable({ ...request, coachingVersion: serverLacksSayHints ? 2 : 3 })).data;
+    } catch (error: unknown) {
+      // зачем: сервер до выкладки версию 3 не знает и отклоняет запрос ЕЩЁ ДО лимитов, журнала хода и модели (ничего не
+      // списано) — повторяем этот же ход версией 2, чтобы Диалоги не зависели от порядка «сервер → приложение». Запоминаем
+      // до перезапуска только если версия 2 прошла: значит, дело было именно в версии, а не в самом запросе.
+      if (serverLacksSayHints || !errorText(error).message.includes(REQUEST_INVALID_MESSAGE)) throw error;
+      console.warn('[DIALOG-HINTS] coached:send → server rejected coachingVersion 3, retrying with 2', JSON.stringify({ scenarioId: request.scenarioId, ms: Date.now() - startedAt })); // guard-ok: причина повтора
+      data = (await callable({ ...request, coachingVersion: 2 })).data;
+      serverLacksSayHints = true;
+    }
   } catch (error: unknown) {
     const reason = classifyDialogueV2TurnFailure(error);
     const { code, message } = errorText(error);

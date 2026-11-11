@@ -241,6 +241,98 @@ describe('Dialogue V2 turn coaching (D112)', () => {
   });
 });
 
+// зачем (жалоба владельца 11.11: «подсказки показывают чаще всего фразы невпопад, не в ответ на реплику собеседника»):
+// готовые ответы пишет модель вместе с репликой; сервер проверяет каждый и отдаёт их только клиенту с coachingVersion 3.
+describe('готовые ответы sayHints на реплику собеседника', () => {
+  const context = {
+    replyCount: 1, userMessage: 'Hi', studyTarget: 'en' as const, objectiveIds: ['goal_1', 'goal_2'],
+    replyTexts: ['What size would you like?'],
+    assertStudyLanguage: (text: string) => { if (/[а-я]/iu.test(text)) throw new Error('wrong_language'); },
+  };
+  const raw = (sayHints: unknown, extra: Record<string, unknown> = {}) => ({
+    replyTranslations: ['a'], replyExplanations: ['b'], betterPhrasing: null, hint: null, mood: 'smile',
+    activeObjectiveId: 'goal_1', dialogueEnded: false, sayHints, ...extra,
+  });
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockAuthorizePacket.mockReturnValue(packet());
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+  });
+  afterEach(() => { jest.restoreAllMocks(); });
+
+  it('принимает ответы на языке изучения с переводом', () => {
+    const result = parseDialogueV2TurnCoaching(raw([
+      { text: 'A small one, please.', meaning: 'Маленький, пожалуйста.' },
+      { text: 'Medium, please.', meaning: 'Средний, пожалуйста.' },
+    ]), context);
+    expect(result.sayHints).toEqual([
+      { text: 'A small one, please.', meaning: 'Маленький, пожалуйста.' },
+      { text: 'Medium, please.', meaning: 'Средний, пожалуйста.' },
+    ]);
+    expect(result.droppedFields).toEqual([]);
+  });
+
+  it('выбрасывает не тот язык, повтор реплики собеседника, дубли и мусор — остальные остаются; не больше трёх', () => {
+    const result = parseDialogueV2TurnCoaching(raw([
+      { text: 'Маленький, пожалуйста.', meaning: 'x' },
+      { text: 'what size would you like', meaning: 'эхо реплики' },
+      { text: 'A small one, please.', meaning: '' },
+      { text: 'a small one, please!', meaning: 'дубль' },
+      'not an object',
+      { text: 'x'.repeat(121), meaning: 'длинно' },
+      { text: 'Medium, please.', meaning: 'Средний, пожалуйста.' },
+      { text: 'A large one.', meaning: 'Большой.' },
+      { text: 'The biggest.', meaning: 'четвёртый лишний' },
+    ]), context);
+    expect(result.sayHints).toEqual([
+      { text: 'A small one, please.', meaning: null },
+      { text: 'Medium, please.', meaning: 'Средний, пожалуйста.' },
+      { text: 'A large one.', meaning: 'Большой.' },
+    ]);
+    expect(result.droppedFields).toEqual(['sayHints']);
+  });
+
+  it('после конца диалога и без поля от модели — пусто, разбор цел', () => {
+    const ended = parseDialogueV2TurnCoaching(raw([{ text: 'Bye!', meaning: 'Пока!' }], { activeObjectiveId: 'goal_2', dialogueEnded: true }), context);
+    expect(ended.coaching.dialogueEnded).toBe(true);
+    expect(ended.sayHints).toEqual([]);
+    const { sayHints: _omitted, ...legacy } = raw(null);
+    const absent = parseDialogueV2TurnCoaching(legacy, context);
+    expect(absent.sayHints).toEqual([]);
+    expect(absent.droppedFields).toEqual([]);
+  });
+
+  it('клиент с coachingVersion 3 получает sayHints; версия 2 и клиент без версии — прежний набор ключей', async () => {
+    const reply = JSON.stringify({
+      replies: [{ personaId: 'mia', text: 'What size would you like?' }],
+      coaching: raw([{ text: 'A small one, please.', meaning: 'Маленький, пожалуйста.' }], { activeObjectiveId: 'goal_2' }),
+    });
+    const run = (extra: Record<string, unknown>) => executeDialogueV2TextTurn(
+      request(data({ interfaceLang: 'ru', ...extra })),
+      dependencies({ generateReply: jest.fn(async () => reply) }),
+    );
+    const v3 = await run({ coachingVersion: 3 });
+    expect(v3).toMatchObject({ coaching: { allObjectivesComplete: false, sayHints: [{ text: 'A small one, please.', meaning: 'Маленький, пожалуйста.' }] } });
+    const v2 = await run({ coachingVersion: 2 }) as { coaching: Record<string, unknown> };
+    expect(Object.keys(v2.coaching)).not.toContain('sayHints');
+    expect(Object.keys(v2.coaching)).toContain('allObjectivesComplete');
+    const legacy = await run({}) as { coaching: Record<string, unknown> };
+    expect(Object.keys(legacy.coaching).sort()).toEqual([
+      'activeObjectiveId', 'betterPhrasing', 'dialogueEnded', 'hint', 'mood', 'replyExplanations', 'replyTranslations',
+    ]);
+  });
+
+  it('промпт просит ответы именно на последнюю реплику собеседника', async () => {
+    const deps = dependencies();
+    await executeDialogueV2TextTurn(request(data({ interfaceLang: 'ru', coachingVersion: 3 })), deps);
+    const prompt = (deps.generateReply as jest.Mock).mock.calls[0][0].systemPrompt as string;
+    expect(prompt).toContain('"sayHints": exactly 2 different ready-to-send learner messages that directly answer the LAST reply you wrote');
+    expect(prompt).toContain('Never repeat the persona\'s own words back.');
+  });
+});
+
 // зачем (Сверка 11.10, dialogs-038): модель закрыла сцену после 2-й реплики при невыполненных целях — конец снимается.
 describe('acceptDialogueEnded — преждевременный конец диалога', () => {
   const objectives = ['goal_1', 'goal_2', 'goal_3', 'goal_4', 'goal_5', 'goal_6'];

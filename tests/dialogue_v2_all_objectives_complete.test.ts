@@ -58,7 +58,9 @@ describe('dialogue v2: allObjectivesComplete', () => {
     expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('coaching keys rejected'), expect.any(String));
   });
 
-  it('запрос хода несёт coachingVersion: 2 вместе с interfaceLang', async () => {
+  // зачем (11.11): версия выросла до 3 — она включает всё из версии 2 (allObjectivesComplete) и добавляет готовые ответы sayHints;
+  // сервер, который версию 3 ещё не знает, получает тот же ход версией 2 (сторож — dialog_hints_by_partner_reply.test.ts).
+  it('запрос хода несёт версию разбора (не ниже 2) вместе с interfaceLang', async () => {
     mockCallableRun.mockResolvedValue({ data: { ok: true, kind: 'silence', replies: [], replayed: false } });
     await sendDialogueV2CoachedTextTurn({
       sessionId: `d2s_${'a'.repeat(32)}`,
@@ -69,7 +71,7 @@ describe('dialogue v2: allObjectivesComplete', () => {
       interfaceLang: 'ru',
     });
     expect(mockCallableRun).toHaveBeenCalledTimes(1);
-    expect(mockCallableRun.mock.calls[0]![0]).toMatchObject({ coachingVersion: 2, interfaceLang: 'ru', scenarioId: 'cafe_order' });
+    expect(mockCallableRun.mock.calls[0]![0]).toMatchObject({ coachingVersion: 3, interfaceLang: 'ru', scenarioId: 'cafe_order' });
   });
 
   it('хук хранит признак и не сбрасывает его; пустое поле в разборе = нет признака', () => {

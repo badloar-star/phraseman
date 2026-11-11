@@ -28,7 +28,7 @@ import {
   type DialogueV2TurnFailureReason,
 } from './dialogue_v2_turn_coaching_client';
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
-import { dialogueV2SayHintsForPartnerReply, lastPartnerReplyForHints } from './dialogue_v2_say_hints_pick';
+import { dialogueV2SayHintsForPartnerReply, lastPartnerReplyForHints, type ServerSayHintsForReply } from './dialogue_v2_say_hints_pick';
 import { rememberDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import { markDialogueV2Done, peekDialogueV2DoneIds } from './dialogue_v2_done_store';
 import { recordDialogDoneStory } from '../modules/story_events/story_event_sources';
@@ -459,6 +459,8 @@ function SessionContent() {
     return () => clearTimeout(timer);
   }, [rateLimitCooling]);
 
+  // Готовые ответы «Можно сказать…» от сервера на последнюю реплику собеседника (см. appendReplies).
+  const [serverSayHints, setServerSayHints] = useState<ServerSayHintsForReply | null>(null);
   const appendReplies = async (
     result: Extract<DialogueV2CoachedTurnResponse, { kind: 'reply' }>,
     pending: Readonly<{ turnId: string; learnerId: string }>,
@@ -507,6 +509,13 @@ function SessionContent() {
           : {}),
       })),
     ]));
+    // зачем (жалоба владельца 11.11: «подсказки невпопад, не в ответ на реплику собеседника»): готовые ответы сервер прислал
+    // именно на последнюю реплику этого хода — привязываем их к её тексту; у другой реплики (или при повторе хода без разбора)
+    // они не покажутся, сработает запасной локальный набор.
+    const lastReply = result.replies[result.replies.length - 1];
+    setServerSayHints(lastReply && coached && coached.sayHints.length > 0
+      ? Object.freeze({ replyText: lastReply.text, hints: coached.sayHints })
+      : null);
     coaching.applyCoaching(coached);
     coaching.applyQuota(result.quota, pending.turnId, result.replayed);
     if (typeof __DEV__ !== 'undefined' && __DEV__) {
@@ -917,6 +926,7 @@ function SessionContent() {
   const hintsReply = lastPartnerReplyForHints(messages, (message) => message.author === 'persona');
   const sayHints = dialogueV2SayHintsForPartnerReply({
     screen: 'scenario', studyTarget: String(studyTarget), interfaceLang: lang, reply: hintsReply.reply, skippedNudge: hintsReply.skippedNudge,
+    serverHints: serverSayHints,
   });
   // зачем (координатор 12.10, dialogs-030/014): сырой и показанный текст цели — одна строка на смену цели, а не на каждый кадр
   if (currentObjective && typeof __DEV__ !== 'undefined' && __DEV__) {

@@ -299,10 +299,15 @@ describe('allObjectivesComplete — только по запросу клиен�
     ]);
   });
 
-  it('coachingVersion без interfaceLang или не 2 — неверный запрос', async () => {
+  // зачем (11.11): версия 3 стала известной (готовые ответы sayHints) — неизвестной остаётся всё, кроме 2 и 3.
+  it('coachingVersion без interfaceLang или неизвестная версия — неверный запрос', async () => {
     await expect(executeDialogueV2TextTurn(coachedTurn({ coachingVersion: 2 }), dependencies()))
       .rejects.toEqual(new DialogueV2TextTurnError('request_invalid'));
-    await expect(executeDialogueV2TextTurn(coachedTurn({ interfaceLang: 'ru', coachingVersion: 3 }), dependencies()))
+    await expect(executeDialogueV2TextTurn(coachedTurn({ coachingVersion: 3 }), dependencies()))
+      .rejects.toEqual(new DialogueV2TextTurnError('request_invalid'));
+    await expect(executeDialogueV2TextTurn(coachedTurn({ interfaceLang: 'ru', coachingVersion: 4 }), dependencies()))
+      .rejects.toEqual(new DialogueV2TextTurnError('request_invalid'));
+    await expect(executeDialogueV2TextTurn(coachedTurn({ interfaceLang: 'ru', coachingVersion: '3' }), dependencies()))
       .rejects.toEqual(new DialogueV2TextTurnError('request_invalid'));
   });
 });

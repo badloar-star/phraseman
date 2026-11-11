@@ -24,6 +24,7 @@ import {
   isDialogueV2CoachingInterfaceLang,
   parseDialogueV2TurnCoaching,
   type DialogueV2CoachingInterfaceLang,
+  type DialogueV2SayHint,
   type DialogueV2TurnCoaching,
 } from './dialogue_v2_turn_coaching';
 import type { DialogueV2SessionGroupState } from './dialogue_v2_session_ledger';
@@ -58,8 +59,9 @@ export type DialogueV2TextTurnInput = Readonly<{
   /**
    * Версия разбора: 2 — клиент понимает `coaching.allObjectivesComplete` (координатор 28.10). Только вместе с interfaceLang.
    * Клиенты 2.0.x разбирают ключи разбора по точному списку — без версии поле не добавляется, ответ прежний байт в байт.
+   * 3 — клиент понимает ещё и `coaching.sayHints`: готовые ответы на реплику собеседника (жалоба владельца 11.11).
    */
-  coachingVersion?: 2;
+  coachingVersion?: 2 | 3;
 }>;
 
 export type DialogueV2QuotaReservation = Readonly<{
@@ -132,7 +134,7 @@ export type DialogueV2TextTurnResponse =
       quotaVersion?: number;
     }>;
     /** Только в расширенном режиме (запрос с `interfaceLang`); allObjectivesComplete — только при coachingVersion 2. */
-    coaching?: DialogueV2TurnCoaching & Readonly<{ allObjectivesComplete?: boolean }>;
+    coaching?: DialogueV2TurnCoaching & Readonly<{ allObjectivesComplete?: boolean; sayHints?: readonly DialogueV2SayHint[] }>;
   }>;
 
 export type DialogueV2TextTurnErrorCode =
@@ -184,7 +186,7 @@ export function parseDialogueV2TextTurnInput(value: unknown): DialogueV2TextTurn
     ...(hasCoachingVersion ? ['coachingVersion'] : [])];
   if (keys.length !== expected.length || keys.some((key) => !expected.includes(key))) return null;
   if (hasInterfaceLang && !isDialogueV2CoachingInterfaceLang(input.interfaceLang)) return null;
-  if (hasCoachingVersion && (!hasInterfaceLang || input.coachingVersion !== 2)) return null;
+  if (hasCoachingVersion && (!hasInterfaceLang || (input.coachingVersion !== 2 && input.coachingVersion !== 3))) return null;
   if (typeof input.sessionId !== 'string'
     || !SESSION_ID_RE.test(input.sessionId)
     || typeof input.turnId !== 'string'
@@ -205,7 +207,7 @@ export function parseDialogueV2TextTurnInput(value: unknown): DialogueV2TextTurn
     scenarioId: input.scenarioId,
     userMessage: input.userMessage,
     ...(hasInterfaceLang ? { interfaceLang: input.interfaceLang as DialogueV2CoachingInterfaceLang } : {}),
-    ...(hasCoachingVersion ? { coachingVersion: 2 as const } : {}),
+    ...(hasCoachingVersion ? { coachingVersion: input.coachingVersion as 2 | 3 } : {}),
   });
 }
 
@@ -700,6 +702,7 @@ export async function executeDialogueV2TextTurn(
   }
   let coaching: DialogueV2TurnCoaching = DIALOGUE_V2_EMPTY_COACHING;
   let allObjectivesComplete = false;
+  let sayHints: readonly DialogueV2SayHint[] = Object.freeze([]);
   if (!envelope.hasCoaching) {
     console.warn('[DIALOGUE-V2] turn:coaching → provider omitted coaching block', {
       scenarioId: input.scenarioId,
@@ -723,9 +726,12 @@ export async function executeDialogueV2TextTurn(
       objectives: packet.scenario.objectives.map((objective) => ({ id: objective.id, label: objective.label })),
       // зачем (dialogs-038): страховка конца диалога по числу ходов — сервер знает номер хода в сессии.
       sessionTurnCount: groupState.turnCount,
+      replyTexts: replies.map((reply) => reply.text),
       assertStudyLanguage: dependencies.assertStudyLanguage,
     });
     coaching = parsedCoaching.coaching;
+    // зачем (жалоба владельца 11.11): готовые ответы на реплику этого хода; фраза со служебными метками промпта не уходит.
+    sayHints = Object.freeze(parsedCoaching.sayHints.filter((hint) => !leaksPrivatePrompt(hint.text) && !leaksPrivatePrompt(hint.meaning ?? '')));
     // зачем (координатор 28.10): разбор (перевод, «почему так», подсказка) тоже не должен выдать служебные данные промпта.
     const coachingTexts = [
       ...(coaching.replyTranslations ?? []),
@@ -736,6 +742,7 @@ export async function executeDialogueV2TextTurn(
     if (coachingTexts.some((text) => leaksPrivatePrompt(text))) {
       console.warn('[DIALOG-INJECTION]', JSON.stringify({ surface: 'scenario_turn', event: 'coaching_leak_blocked', scenarioId: input.scenarioId }));
       coaching = DIALOGUE_V2_EMPTY_COACHING;
+      sayHints = Object.freeze([]);
     }
     // зачем (координатор 28.10, «сперва логи»: «Задать один вопрос» не засчитывался): что решило цель на этом ходе —
     // что назвала модель, что стало после серверной проверки и почему. Текст ученика не пишем: только длина, есть ли «?»
@@ -764,6 +771,17 @@ export async function executeDialogueV2TextTurn(
       allObjectivesComplete: parsedCoaching.allObjectivesComplete,
       coachingVersion: input.coachingVersion ?? 1,
     }));
+    // зачем (правило «сперва логи»): сколько готовых ответов дала модель и сколько прошло проверку — без текстов.
+    console.log('[DIALOG-HINTS]', JSON.stringify({
+      scenarioId: input.scenarioId,
+      sessionTurnCount: groupState.turnCount,
+      fromModel: Array.isArray((envelope.rawCoaching as { sayHints?: unknown } | null)?.sayHints)
+        ? ((envelope.rawCoaching as { sayHints: unknown[] }).sayHints).length
+        : null,
+      accepted: sayHints.length,
+      dialogueEnded: coaching.dialogueEnded,
+      sentToClient: input.coachingVersion === 3,
+    }));
     allObjectivesComplete = parsedCoaching.allObjectivesComplete && coaching !== DIALOGUE_V2_EMPTY_COACHING;
     if (parsedCoaching.droppedFields.length > 0) {
       // Только имена полей: текст ученика и модели в логи не пишем.
@@ -779,6 +797,9 @@ export async function executeDialogueV2TextTurn(
     replies,
     quota: Object.freeze({ ...quotaView, quotaVersion: quota.quotaVersion }),
     // зачем (координатор 28.10): поле — только клиенту, который его понимает (coachingVersion 2); 2.0.x получают прежний разбор.
-    coaching: input.coachingVersion === 2 ? Object.freeze({ ...coaching, allObjectivesComplete }) : coaching,
+    // зачем (11.11): sayHints — только клиенту с coachingVersion 3, по той же причине.
+    coaching: input.coachingVersion === 3
+      ? Object.freeze({ ...coaching, allObjectivesComplete, sayHints })
+      : input.coachingVersion === 2 ? Object.freeze({ ...coaching, allObjectivesComplete }) : coaching,
   });
 }

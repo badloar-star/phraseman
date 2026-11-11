@@ -48,7 +48,8 @@ describe('ход диалога V2: разбор обязателен на ка�
 import { dialogueV2CoachingResponseFormat } from './dialogue_v2_turn_coaching';
 
 describe('ход диалога V2: строгая схема ответа с обязательным разбором', () => {
-  it('схема требует replies и coaching со всеми семью полями', () => {
+  // зачем (11.11): восьмое поле — готовые ответы «Можно сказать…» на реплику собеседника; оно последнее, чтобы не задерживать реплику.
+  it('схема требует replies и coaching со всеми полями, sayHints — последним', () => {
     const format = dialogueV2CoachingResponseFormat() as {
       type: string;
       json_schema: { strict: boolean; schema: { required: string[]; properties: { coaching: { required: string[] } } } };
@@ -57,8 +58,10 @@ describe('ход диалога V2: строгая схема ответа с о
     expect(format.json_schema.strict).toBe(true);
     expect(format.json_schema.schema.required).toEqual(['replies', 'coaching']);
     expect(format.json_schema.schema.properties.coaching.required).toEqual([
-      'replyTranslations', 'replyExplanations', 'betterPhrasing', 'hint', 'mood', 'activeObjectiveId', 'dialogueEnded',
+      'replyTranslations', 'replyExplanations', 'betterPhrasing', 'hint', 'mood', 'activeObjectiveId', 'dialogueEnded', 'sayHints',
     ]);
+    const coachingProperties = (format.json_schema.schema.properties.coaching as unknown as { properties: Record<string, unknown> }).properties;
+    expect(Object.keys(coachingProperties).pop()).toBe('sayHints');
   });
 
   it('продовый генератор включает схему для хода с разбором', () => {

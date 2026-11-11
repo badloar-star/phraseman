@@ -5,64 +5,117 @@
 // приветствие, «как дела», «как тебя зовут / о себе», заказ, предложение, прощание, вопрос «да/нет». Не распознали — подсказок нет
 // (решение координатора 25.10: лучше не показывать, чем нерелевантные). Источник фраз — локальный набор Ядра (ноль сетевых вызовов);
 // когда сервер начнёт присылать фразы в ответе хода, меняется только этот модуль. Список кэшируется по ключу — экран получает тот же объект.
+// зачем (жалоба владельца 11.11: «подсказки показывают чаще всего фразы невпопад, не в ответ на реплику собеседника, а рандом»;
+// журнал: на «…How are you today?» первой подсказкой шло «How are you?»): прежние наборы были собраны по цели шага, а правила
+// смотрели на всю реплику и срабатывали по первому слову («Hi! … Do you have a reservation?» → приветствия; любой вопрос о
+// заказе → «мне кофе»). Теперь: (1) в сценариях подсказки — готовые ответы, которые сервер прислал вместе с этой репликой
+// (их пишет модель, она знает вопрос); (2) запасной локальный набор — только ответы, которые точно подходят: смотрим на
+// ПОСЛЕДНИЙ вопрос реплики («как дела», предложение, вопрос «да/нет» без «или»), а приветствие и прощание — лишь когда вопроса
+// в реплике нет. Вопросы «как тебя зовут», «что будете заказывать» и любые другие без готового ответа — без локальных подсказок.
 import { sanitizeDialogSayHints, type DialogSayHint } from '../components/dialogs/hints/dialog_say_hints_model';
-import { localSayHints, type SayHintGoalKind } from './dialogue_v2_say_hints_local';
+import { localSayHints } from './dialogue_v2_say_hints_local';
+import { answerSayHints } from './dialogue_v2_say_hints_answers';
 import { isDialogueSoftNudgeReply } from './dialogue_v2_off_language';
 
 const LOG = '[DIALOG-HINTS]';
 const NO_HINTS: readonly DialogSayHint[] = Object.freeze([]);
+/** Приветствие без вопроса длиннее — уже не «привет», а рассказ: на него «Hello!» не ответ. */
+const GREETING_MAX_LENGTH = 40;
 
-type ReplyKind = Extract<SayHintGoalKind, 'greet' | 'howAreYou' | 'introduce' | 'order' | 'confirm' | 'goodbye' | 'generic'>;
+type ReplyKind = 'howAreYou' | 'confirm' | 'generic' | 'greet' | 'goodbye';
 type Rule = readonly [ReplyKind, string, RegExp];
+type TargetRules = Readonly<{
+  /** Проверяются по ПОСЛЕДНЕМУ вопросу реплики, по порядку: «как дела» → предложение → «да/нет». */
+  question: readonly Rule[];
+  /** Вопрос с выбором («here or to go?») — «да/нет» на него не ответ. */
+  choice: RegExp;
+  /** Проверяются по всей реплике, только когда вопроса в ней нет. */
+  statement: readonly Rule[];
+}>;
 
-// Порядок важен: «Hello! How are you?» — это «как дела», а не приветствие; «Nice to meet you, what's your name?» — «о себе».
 // Ключ (второе поле) пишется в журнал — по нему видно, какое правило сработало.
-const RULES: Readonly<Record<'en' | 'es' | 'fr' | 'de', readonly Rule[]>> = {
-  en: [
-    ['howAreYou', 'how_are_you', /\bhow are you\b|\bhow's it going\b|\bhow are things\b|\bhow have you been\b|\bhow do you do\b/i],
-    ['introduce', 'your_name', /\bwhat(?:'s| is) your name\b|\bwho are you\b|\btell me (?:a bit )?about yourself\b|\bwhere are you from\b|\bintroduce yourself\b/i],
-    ['order', 'order', /\bwhat (?:would you like|can i get you)\b|\bready to order\b|\banything (?:else|to drink|to eat)\b|\bwhat(?:'ll| will) you have\b|\btake your order\b/i],
-    ['confirm', 'proposal', /\bshall we\b|\bhow about\b|\bwhat about\b|\blet's\b|\bdo you want to\b|\bwould you like to\b|\bwhy don't we\b/i],
-    ['goodbye', 'goodbye', /\bgood ?bye\b|\bbye\b|\bsee you\b|\btake care\b|\bhave a (?:nice|good|great) day\b/i],
-    ['greet', 'greeting', /^\s*(?:hi|hello|hey|good (?:morning|afternoon|evening))\b/i],
-    ['generic', 'yes_no', /(?:^|[.!?]\s+)(?:do|does|did|are|is|was|were|can|could|will|would|have|has|should)\b[^?]*\?/i],
-  ],
-  es: [
-    ['howAreYou', 'como_estas', /c[oó]mo est[aá]s|c[oó]mo est[aá] usted|qu[eé] tal(?! si)|c[oó]mo te va/i],
-    ['introduce', 'como_te_llamas', /c[oó]mo te llamas|c[oó]mo se llama usted|cu[aá]l es tu nombre|de d[oó]nde eres|h[aá]blame de ti/i],
-    ['order', 'pedido', /qu[eé] (?:te|le) (?:pongo|sirvo|gustar[ií]a)|qu[eé] (?:vas|va) a (?:tomar|pedir)|algo (?:m[aá]s|de beber|para beber)|desea[s]? (?:algo|pedir)/i],
-    ['confirm', 'propuesta', /qu[eé] tal si|te parece|quieres (?:ir|venir|quedar)|te gustar[ií]a|podemos|vamos a/i],
-    ['goodbye', 'adios', /adi[oó]s|hasta (?:luego|pronto|ma[nñ]ana)|que tengas (?:un )?buen d[ií]a/i],
-    ['greet', 'saludo', /^\s*¡?\s*(?:hola|buen(?:os|as) (?:d[ií]as|tardes|noches))/i],
-    ['generic', 'si_no', /¿(?!\s*(?:qu[eé]|c[oó]mo|d[oó]nde|cu[aá]ndo|qui[eé]n|cu[aá]l|cu[aá]nt|por qu[eé]))[^?]*\?/i],
-  ],
-  fr: [
-    ['howAreYou', 'comment_ca_va', /comment (?:[cç]a va|vas-tu|allez-vous)|[cç]a va\s*\?/i],
-    ['introduce', 'comment_tu_t_appelles', /comment (?:tu t'appelles|vous vous appelez|t'appelles-tu)|quel est ton nom|d'o[uù] (?:viens-tu|venez-vous|tu viens)|pr[ée]sente-toi/i],
-    ['order', 'commande', /qu'est-ce que (?:je vous sers|vous (?:d[ée]sirez|prenez)|tu prends)|vous d[ée]sirez|autre chose|que (?:puis-je|je peux) vous servir/i],
-    ['confirm', 'proposition', /on pourrait|[cç]a te dit|[cç]a vous dit|tu veux (?:aller|venir)|voulez-vous|et si on/i],
-    ['goodbye', 'au_revoir', /au revoir|[aà] bient[oô]t|[aà] plus|bonne journ[ée]e/i],
-    ['greet', 'salutation', /^\s*(?:bonjour|salut|bonsoir)\b/i],
-    ['generic', 'oui_non', /(?:^|[.!?]\s+)(?:est-ce que|as-tu|avez-vous|es-tu|[eê]tes-vous|peux-tu|pouvez-vous|veux-tu|tu (?:as|es|veux|peux|aimes))\b[^?]*\?/i],
-  ],
-  de: [
-    ['howAreYou', 'wie_gehts', /wie geht'?s|wie geht es (?:dir|ihnen)/i],
-    ['introduce', 'wie_heisst_du', /wie hei(?:ß|ss)t du|wie hei(?:ß|ss)en sie|wie ist dein name|woher kommst du|erz[äa]hl.* von dir/i],
-    ['order', 'bestellung', /was (?:m[öo]chtest|m[öo]chten|darf es sein|h[äa]tten|nimmst|nehmen)|sonst noch|schon gew[äa]hlt/i],
-    ['confirm', 'vorschlag', /wollen wir|sollen wir|wie w[äa]re es|hast du lust|lass uns/i],
-    ['goodbye', 'abschied', /tsch[üu]ss|auf wiedersehen|bis (?:bald|sp[äa]ter|morgen)|sch[öo]nen tag/i],
-    ['greet', 'gruss', /^\s*(?:hallo|hi|guten (?:morgen|tag|abend)|servus|moin)\b/i],
-    ['generic', 'ja_nein', /(?:^|[.!?]\s+)(?:hast|haben|bist|sind|ist|kannst|k[öo]nnen|willst|wollen|m[öo]chtest|magst|gehst|kommst)\b[^?]*\?/i],
-  ],
+const RULES: Readonly<Record<'en' | 'es' | 'fr' | 'de', TargetRules>> = {
+  en: {
+    question: [
+      ['howAreYou', 'how_are_you', /\bhow are you\b|\bhow's it going\b|\bhow are things\b|\bhow have you been\b|\bhow do you do\b/i],
+      ['confirm', 'proposal', /\bshall we\b|\bhow about\b(?! you\b)|\bwhy don't we\b|\bwhat do you say\b/i],
+      ['generic', 'yes_no', /^(?:(?:and|so|but|well),? )?(?:do|does|did|are|is|was|were|can|could|will|would|have|has|should|may)\b/i],
+    ],
+    choice: /\bor\b/i,
+    statement: [
+      ['goodbye', 'goodbye', /\bgood ?bye\b|\bbye\b|\bsee you\b|\btake care\b|\bhave a (?:nice|good|great) day\b/i],
+      ['greet', 'greeting', /^\s*(?:hi|hello|hey|good (?:morning|afternoon|evening))\b/i],
+    ],
+  },
+  es: {
+    question: [
+      ['howAreYou', 'como_estas', /c[oó]mo est[aá]s|c[oó]mo est[aá] usted|qu[eé] tal(?! si)|c[oó]mo te va/i],
+      ['confirm', 'propuesta', /qu[eé] tal si|te parece|quedamos/i],
+      // «да/нет» — вопрос из трёх и более слов без вопросительного слова (в вопросе они пишутся с ударением: qué, cómo, dónde…)
+      ['generic', 'si_no', /^(?!.*(?:^|[\s¿])(?:qué|cómo|dónde|cuándo|quién|cuál|cuánt))¿?\s*\S+\s+\S+\s+\S+/i],
+    ],
+    choice: /\so\s/i,
+    statement: [
+      ['goodbye', 'adios', /adi[oó]s|hasta (?:luego|pronto|ma[nñ]ana)|que tengas (?:un )?buen d[ií]a/i],
+      ['greet', 'saludo', /^\s*¡?\s*(?:hola|buen(?:os|as) (?:d[ií]as|tardes|noches))/i],
+    ],
+  },
+  fr: {
+    question: [
+      ['howAreYou', 'comment_ca_va', /comment (?:[cç]a va|vas-tu|allez-vous)|^(?:et toi, )?[cç]a va\s*\?/i],
+      ['confirm', 'proposition', /on pourrait|[cç]a te dit|[cç]a vous dit|et si on/i],
+      ['generic', 'oui_non', /^(?:est-ce que|as-tu|avez-vous|es-tu|[eê]tes-vous|peux-tu|pouvez-vous|veux-tu|voulez-vous|aimes-tu|aimez-vous|tu (?:as|es|veux|peux|aimes|viens)|vous (?:avez|[eê]tes|voulez|pouvez|aimez))(?![a-zà-ÿ])/i],
+    ],
+    choice: /\sou\s/i,
+    statement: [
+      ['goodbye', 'au_revoir', /au revoir|[aà] bient[oô]t|[aà] plus|bonne journ[ée]e/i],
+      ['greet', 'salutation', /^\s*(?:bonjour|salut|bonsoir)\b/i],
+    ],
+  },
+  de: {
+    question: [
+      ['howAreYou', 'wie_gehts', /wie geht'?s|wie geht es (?:dir|ihnen)/i],
+      ['confirm', 'vorschlag', /wollen wir|sollen wir|wie w[äa]re es|lass uns/i],
+      ['generic', 'ja_nein', /^(?:hast|haben|habt|bist|sind|seid|ist|kannst|k[öo]nnen|k[öo]nnt|willst|wollen|m[öo]chtest|m[öo]chten|magst|gehst|kommst|darf|gibt)(?![a-zäöüß])/i],
+    ],
+    choice: /\soder\s/i,
+    statement: [
+      ['goodbye', 'abschied', /tsch[üu]ss|auf wiedersehen|bis (?:bald|sp[äa]ter|morgen)|sch[öo]nen tag/i],
+      ['greet', 'gruss', /^\s*(?:hallo|hi|guten (?:morgen|tag|abend)|servus|moin)\b/i],
+    ],
+  },
 };
 
 export type PartnerReplyKind = Readonly<{ kind: ReplyKind; key: string }>;
 
-/** Каким ответом подсказывать на реплику собеседника. null — не распознали (подсказок нет). */
+/** Последнее предложение реплики с вопросительным знаком — на него ученик и отвечает; null — вопроса в реплике нет. */
+export function lastQuestionOfReply(text: string): string | null {
+  const sentences = text.match(/[^.!?…]+[.!?…]*/gu) ?? [];
+  for (let index = sentences.length - 1; index >= 0; index -= 1) {
+    const sentence = sentences[index]!.trim();
+    if (sentence.includes('?')) return sentence;
+  }
+  return null;
+}
+
+/** Каким ответом подсказывать на реплику собеседника. null — готового точного ответа нет (локальных подсказок нет). */
 export function sayHintKindForPartnerReply(text: string, studyTarget: string): PartnerReplyKind | null {
   const rules = RULES[studyTarget as keyof typeof RULES];
   if (!rules || typeof text !== 'string' || !text.trim()) return null;
-  for (const [kind, key, re] of rules) if (re.test(text)) return { kind, key };
+  const question = lastQuestionOfReply(text);
+  if (question) {
+    for (const [kind, key, re] of rules.question) {
+      if (!re.test(question)) continue;
+      if (kind === 'generic' && rules.choice.test(question)) return null;
+      return { kind, key };
+    }
+    return null;
+  }
+  for (const [kind, key, re] of rules.statement) {
+    if (!re.test(text)) continue;
+    if (kind === 'greet' && text.trim().length > GREETING_MAX_LENGTH) return null;
+    return { kind, key };
+  }
   return null;
 }
 
@@ -89,9 +142,13 @@ export function lastPartnerReplyForHints<M extends Readonly<{ id: string; author
 const cache = new Map<string, readonly DialogSayHint[]>();
 let lastLoggedKey = '';
 
+/** Готовые ответы, которые сервер прислал вместе с репликой собеседника (сценарии); replyText — текст той самой реплики. */
+export type ServerSayHintsForReply = Readonly<{ replyText: string; hints: readonly DialogSayHint[] }>;
+
 /**
  * Подсказки на последнюю реплику собеседника. reply — последняя реплика собеседника, которая не мягкий ответ «скажи на изучаемом языке»
- * (её выбирает маршрут); skippedNudge — сколько мягких ответов пропущено (для журнала).
+ * (её выбирает маршрут); skippedNudge — сколько мягких ответов пропущено (для журнала). serverHints — ответы сервера на эту реплику:
+ * есть и относятся именно к ней — показываем их, иначе запасной локальный набор.
  */
 export function dialogueV2SayHintsForPartnerReply(input: Readonly<{
   screen: 'scenario' | 'freeform';
@@ -99,28 +156,38 @@ export function dialogueV2SayHintsForPartnerReply(input: Readonly<{
   interfaceLang: string;
   reply: PartnerReplyForHints | null;
   skippedNudge?: number;
+  serverHints?: ServerSayHintsForReply | null;
 }>): readonly DialogSayHint[] {
   const { screen, studyTarget, interfaceLang, reply } = input;
-  const match = reply ? sayHintKindForPartnerReply(reply.text, studyTarget) : null;
-  const logKey = `${screen}|${studyTarget}|${interfaceLang}|${reply?.id ?? '-'}|${match?.key ?? '-'}`;
-  const hints = match ? cachedHints(studyTarget, match.kind, interfaceLang) : NO_HINTS;
+  const server = input.serverHints ?? null;
+  const serverForThisReply = reply !== null && server !== null && server.replyText === reply.text;
+  const fromServer = server !== null && serverForThisReply && server.hints.length > 0 ? server.hints : null;
+  const match = reply && !fromServer ? sayHintKindForPartnerReply(reply.text, studyTarget) : null;
+  const hints = fromServer ?? (match ? cachedHints(studyTarget, match.kind, interfaceLang) : NO_HINTS);
+  const logKey = `${screen}|${studyTarget}|${interfaceLang}|${reply?.id ?? '-'}|${fromServer ? `server:${fromServer.length}` : match?.key ?? '-'}`;
   if (logKey !== lastLoggedKey) {
     lastLoggedKey = logKey;
     console.log(LOG, JSON.stringify({
       screen, replyId: reply?.id ?? null, replyText: reply ? reply.text.slice(0, 60) : null, skippedNudge: input.skippedNudge ?? 0,
-      source: match ? 'local_by_reply' : 'none', kind: match?.kind ?? null, key: match?.key ?? null,
-      reason: !reply ? 'no_partner_reply' : match ? 'matched' : 'reply_not_recognized_hidden',
+      question: reply ? (lastQuestionOfReply(reply.text) ?? '').slice(0, 60) || null : null,
+      source: fromServer ? 'server' : match ? 'local_by_reply' : 'none', kind: match?.kind ?? null, key: match?.key ?? null,
+      server: !server ? 'absent' : !serverForThisReply ? 'for_other_reply' : server.hints.length > 0 ? 'used' : 'empty',
+      reason: !reply ? 'no_partner_reply' : fromServer ? 'server_answers' : match ? 'matched' : 'reply_not_recognized_hidden',
       shown: hints.map((hint) => hint.text), studyTarget, interfaceLang,
     })); // guard-ok: одна строка на смену реплики/решения
   }
   return hints;
 }
 
-function cachedHints(studyTarget: string, kind: SayHintGoalKind, interfaceLang: string): readonly DialogSayHint[] {
+function cachedHints(studyTarget: string, kind: ReplyKind, interfaceLang: string): readonly DialogSayHint[] {
   const key = `${studyTarget}|${kind}|${interfaceLang}`;
   let hints = cache.get(key);
   if (!hints) {
-    hints = sanitizeDialogSayHints(localSayHints({ studyTarget, goalKind: kind, interfaceLang }));
+    hints = sanitizeDialogSayHints(
+      kind === 'greet' || kind === 'goodbye'
+        ? localSayHints({ studyTarget, goalKind: kind, interfaceLang })
+        : answerSayHints({ studyTarget, kind: kind === 'howAreYou' ? 'howAreYou' : kind === 'confirm' ? 'proposal' : 'yesNo', interfaceLang }),
+    );
     cache.set(key, hints);
   }
   return hints;

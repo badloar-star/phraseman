@@ -54,6 +54,26 @@ export const DIALOGUE_V2_EMPTY_COACHING: DialogueV2TurnCoaching = Object.freeze(
   dialogueEnded: false,
 });
 
+/**
+ * Готовый ответ ученика «Можно сказать…» на реплику собеседника этого хода.
+ * зачем (жалоба владельца 11.11: «подсказки показывают чаще всего фразы невпопад, не в ответ на реплику собеседника, а рандом»):
+ * заготовленные наборы на телефоне не могут ответить на произвольную реплику ИИ («How are you today?» → подсказка «How are you?»).
+ * Ответы пишет та же модель тем же вызовом, что и реплику, — она знает, что спросил собеседник. Отдельно от `coaching`:
+ * клиенты до coachingVersion 3 разбирают ключи разбора по точному списку.
+ */
+export type DialogueV2SayHint = Readonly<{
+  /** Фраза на языке изучения — её ученик отправит как свою реплику. */
+  text: string;
+  /** Перевод на язык интерфейса; null — модель его не дала или он не прошёл проверку. */
+  meaning: string | null;
+}>;
+
+/** Сколько готовых ответов просим и принимаем: 2 — выбор есть, а ход не замедляется заметно (≈40 токенов выдачи). */
+export const DIALOGUE_V2_SAY_HINTS_REQUESTED = 2 as const;
+export const DIALOGUE_V2_SAY_HINTS_MAX = 3 as const;
+const MAX_SAY_HINT_LENGTH = 120;
+const MAX_SAY_HINT_MEANING_LENGTH = 200;
+
 /** Запас токенов на разбор: реплики + переводы + пояснения + подсказка. */
 export const DIALOGUE_V2_COACHING_MAX_OUTPUT_TOKENS = 1_100 as const;
 
@@ -117,7 +137,7 @@ export function dialogueV2CoachingResponseFormat(): Readonly<Record<string, unkn
             additionalProperties: false,
             required: [
               'replyTranslations', 'replyExplanations', 'betterPhrasing', 'hint',
-              'mood', 'activeObjectiveId', 'dialogueEnded',
+              'mood', 'activeObjectiveId', 'dialogueEnded', 'sayHints',
             ],
             properties: {
               replyTranslations: { type: 'array', items: { type: 'string' } },
@@ -127,6 +147,16 @@ export function dialogueV2CoachingResponseFormat(): Readonly<Record<string, unkn
               mood: { type: 'string', enum: [...DIALOGUE_V2_COACHING_MOODS] },
               activeObjectiveId: nullableString,
               dialogueEnded: { type: 'boolean' },
+              // зачем: последним полем — модель пишет поля по порядку схемы, реплика и разбор не ждут готовых ответов.
+              sayHints: {
+                type: 'array',
+                items: {
+                  type: 'object',
+                  additionalProperties: false,
+                  required: ['text', 'meaning'],
+                  properties: { text: { type: 'string' }, meaning: { type: 'string' } },
+                },
+              },
             },
           },
         },
@@ -175,6 +205,8 @@ export function dialogueV2CoachingPromptLines(interfaceLang: DialogueV2CoachingI
     // и вопрос в середине реплики; сервер страхует это сам (dialogue_v2_goal_progress.ts), а строка помогает модели.
     'Any learner message that asks something completes an objective that asks the learner to ask a question — with or without a question mark, at the start or in the middle of the message. Then point activeObjectiveId to the next objective.',
     '- "dialogueEnded": true only when the persona has closed the scene with this reply, otherwise false.',
+    // зачем (жалоба владельца 11.11): готовые ответы — именно на реплику, которую модель только что написала, а не общие фразы.
+    `- "sayHints": exactly ${DIALOGUE_V2_SAY_HINTS_REQUESTED} different ready-to-send learner messages that directly answer the LAST reply you wrote in "replies" (if it asks a question, they answer that question) and fit this scenario. Each has "text": one short study-language sentence (max 10 words) at the scenario CEFR level, with concrete words instead of placeholders or brackets and without forms that depend on the speaker's gender; and "meaning": its faithful ${language} translation. When natural, one of them also moves toward the current objective. Never repeat the persona's own words back. Empty array when "dialogueEnded" is true.`,
   ]);
 }
 
@@ -216,6 +248,8 @@ export type DialogueV2CoachingParseContext = Readonly<{
   objectives?: readonly DialogueV2GoalObjective[];
   /** Номер хода в сессии (для страховки конца диалога); нет — страховка по числу ходов не применяется. */
   sessionTurnCount?: number;
+  /** Реплики собеседника этого хода: готовый ответ, повторяющий реплику, выбрасывается. */
+  replyTexts?: readonly string[];
   assertStudyLanguage(text: string, studyTarget: DialogueV2StudyTarget): void;
 }>;
 
@@ -254,7 +288,51 @@ export type DialogueV2CoachingParseResult = Readonly<{
    * зачем (координатор 28.10): null в activeObjectiveId неоднозначен — «все выполнены» и «поле отброшено» выглядели одинаково.
    */
   allObjectivesComplete: boolean;
+  /** Готовые ответы на реплику этого хода; пусто — модель не дала, все отброшены или диалог окончен. Уходит клиенту с coachingVersion 3. */
+  sayHints: readonly DialogueV2SayHint[];
 }>;
+
+const NO_SAY_HINTS: readonly DialogueV2SayHint[] = Object.freeze([]);
+
+/**
+ * Готовые ответы: каждый проверяется отдельно, негодный выбрасывается — остальные остаются. Фраза обязана быть на языке
+ * изучения (иначе ученик отправит её и получит «скажи на изучаемом языке»), не повторять реплику собеседника и не дублироваться.
+ */
+function parseSayHints(
+  value: unknown,
+  context: DialogueV2CoachingParseContext,
+  replyTexts: readonly string[],
+): Readonly<{ hints: readonly DialogueV2SayHint[]; rejected: number }> {
+  if (!Array.isArray(value)) return { hints: NO_SAY_HINTS, rejected: 0 };
+  const seen = new Set(replyTexts.map(normalizedComparable));
+  const hints: DialogueV2SayHint[] = [];
+  let rejected = 0;
+  for (const item of value) {
+    if (hints.length >= DIALOGUE_V2_SAY_HINTS_MAX) break;
+    const record = plainRecord(item);
+    const text = record ? learnerText(record.text, MAX_SAY_HINT_LENGTH) : null;
+    const key = text ? normalizedComparable(text) : '';
+    let studyLanguageOk = false;
+    if (text && key && !seen.has(key)) {
+      try {
+        context.assertStudyLanguage(text, context.studyTarget);
+        studyLanguageOk = true;
+      } catch (error: unknown) {
+        studyLanguageOk = false;
+        // Текст модели в журнал не пишем — только причину и длину.
+        console.warn('[DIALOG-HINTS] say hint rejected: not in study language', JSON.stringify({
+          studyTarget: context.studyTarget,
+          length: text.length,
+          reason: error instanceof Error ? error.message.slice(0, 80) : 'unknown',
+        }));
+      }
+    }
+    if (!text || !studyLanguageOk) { rejected += 1; continue; }
+    seen.add(key);
+    hints.push(Object.freeze({ text, meaning: learnerText(record?.meaning, MAX_SAY_HINT_MEANING_LENGTH) }));
+  }
+  return { hints: Object.freeze(hints), rejected };
+}
 
 /**
  * Поле за полем: битое поле обнуляется, остальные остаются. Разбор — подсказка
@@ -266,7 +344,7 @@ export function parseDialogueV2TurnCoaching(
 ): DialogueV2CoachingParseResult {
   const raw = plainRecord(value);
   if (!raw) {
-    return Object.freeze({ coaching: DIALOGUE_V2_EMPTY_COACHING, droppedFields: Object.freeze(['coaching']), allObjectivesComplete: false });
+    return Object.freeze({ coaching: DIALOGUE_V2_EMPTY_COACHING, droppedFields: Object.freeze(['coaching']), allObjectivesComplete: false, sayHints: NO_SAY_HINTS });
   }
   const dropped: string[] = [];
   const replyTranslations = alignedTexts(raw.replyTranslations, context.replyCount, MAX_TRANSLATION_LENGTH);
@@ -338,6 +416,12 @@ export function parseDialogueV2TurnCoaching(
   // Преждевременный конец снимаем и называем причину (только имя поля — без текстов, их пишет вызывающий лог).
   if (endDecision.reason === 'premature') dropped.push('dialogueEnded_premature');
 
+  // Готовые ответы: после конца диалога отвечать нечего; старый формат без поля — не ошибка, а пусто.
+  const parsedSayHints = dialogueEnded
+    ? { hints: NO_SAY_HINTS, rejected: 0 }
+    : parseSayHints(raw.sayHints, context, context.replyTexts ?? []);
+  if (parsedSayHints.rejected > 0 || (raw.sayHints !== undefined && !Array.isArray(raw.sayHints))) dropped.push('sayHints');
+
   return Object.freeze({
     coaching: Object.freeze({
       replyTranslations,
@@ -351,5 +435,6 @@ export function parseDialogueV2TurnCoaching(
     droppedFields: Object.freeze(dropped),
     ...(goal ? { goal: Object.freeze({ ...goal, modelActiveObjectiveId }) } : {}),
     allObjectivesComplete: raw.activeObjectiveId === null && context.objectiveIds.length > 0,
+    sayHints: parsedSayHints.hints,
   });
 }

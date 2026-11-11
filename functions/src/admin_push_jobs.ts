@@ -370,6 +370,9 @@ export async function sendExpoPushMessages(
   messages: ExpoPushMessage[],
   uids: string[],
   fetchImpl: typeof fetch = fetch,
+  // зачем (F08): вызывается ПЕРЕД сетевой отправкой каждой пачки. Если бросает — пачка не уходит
+  // (считается неотправленной). Админская рассылка записывает здесь «этим уже отправляем».
+  beforeChunk?: (chunkUids: string[]) => Promise<void>,
 ): Promise<AdminPushSendSummary> {
   const summary: AdminPushSendSummary = {
     sentCount: 0,
@@ -385,6 +388,7 @@ export async function sendExpoPushMessages(
   for (let chunkIndex = 0; chunkIndex < messageChunks.length; chunkIndex++) {
     const chunk = messageChunks[chunkIndex];
     try {
+      if (beforeChunk) await beforeChunk(uidChunks[chunkIndex] ?? []);
       const res = await fetchImpl(EXPO_PUSH_ENDPOINT, {
         method: 'POST',
         headers: {
@@ -432,6 +436,40 @@ export async function sendExpoPushMessages(
   summary.errors = Array.from(new Set(summary.errors)).slice(0, 12);
   summary.expiredTokenUids = Array.from(new Set(summary.expiredTokenUids));
   return summary;
+}
+
+// ── Журнал «кому уже отправляли» (F08 «Два push») ───────────────────────────
+// зачем (владелец 11.11: «по одному событию — одно уведомление»): задача, чей прогон умер посередине
+// (таймаут 540 с, падение процесса), через PROCESSING_STALE_MS берётся заново и раньше рассылалась
+// ВСЕМ с начала — те, кто уже получил, получали второй раз. Теперь перед отправкой каждой пачки (≤100)
+// её получатели пишутся в admin_push_jobs/{id}/sent_chunks, а повторный прогон их пропускает.
+// Запись ДО сети: если процесс умрёт между записью и отправкой, эта пачка не уйдёт вовсе —
+// осознанно, лучше ноль пушей, чем два.
+// Firebase-экономия: +1 запись на 100 получателей; чтение журнала — только при повторном взятии
+// задачи (обычный первый прогон читает пустую подколлекцию = 1 тарифицируемое чтение).
+const ADMIN_PUSH_LOG = '[ADMIN-PUSH]';
+const SENT_CHUNKS_SUBCOLLECTION = 'sent_chunks';
+const SENT_CHUNKS_READ_LIMIT = 2000; // 2000 пачек × 100 = 200 000 получателей — выше потолка рассылки
+
+export async function readAdminPushAttemptedUids(
+  jobRef: FirebaseFirestore.DocumentReference,
+): Promise<Set<string>> {
+  const snap = await jobRef.collection(SENT_CHUNKS_SUBCOLLECTION).limit(SENT_CHUNKS_READ_LIMIT).get();
+  const attempted = new Set<string>();
+  for (const doc of snap.docs) {
+    const uids = doc.get('uids');
+    if (Array.isArray(uids)) for (const uid of uids) if (typeof uid === 'string' && uid) attempted.add(uid);
+  }
+  return attempted;
+}
+
+export async function recordAdminPushAttempt(
+  jobRef: FirebaseFirestore.DocumentReference,
+  uids: readonly string[],
+  nowMs: number,
+): Promise<void> {
+  if (uids.length === 0) return;
+  await jobRef.collection(SENT_CHUNKS_SUBCOLLECTION).doc().set({ uids: [...uids], atMs: nowMs });
 }
 
 interface ClaimResult {
@@ -503,7 +541,30 @@ export async function processAdminPushJob(jobId: string, nowMs = Date.now()): Pr
   if (!claim.claimed || !claim.job) return { status: 'skipped', reason: claim.reason };
 
   try {
-    const targets = await readTargetUsers(db, claim.job, nowMs);
+    const allTargets = await readTargetUsers(db, claim.job, nowMs);
+    // зачем (F08): пропускаем тех, кому эту же задачу уже отправлял оборвавшийся прогон.
+    const attempted = await readAdminPushAttemptedUids(ref);
+    const targets = attempted.size > 0 ? allTargets.filter((user) => !attempted.has(user.uid)) : allTargets;
+    const resumedSkippedCount = allTargets.length - targets.length;
+    if (attempted.size > 0) {
+      console.warn(ADMIN_PUSH_LOG, JSON.stringify({
+        event: 'resumed_after_interrupted_run', jobId, attempted: attempted.size,
+        targetsNow: allTargets.length, alreadySentSkipped: resumedSkippedCount, remaining: targets.length,
+      }));
+    }
+    if (targets.length === 0 && resumedSkippedCount > 0) {
+      // Прошлый прогон успел отправить всем и умер до отметки «готово» — досылать некому.
+      await ref.set({
+        status: 'done',
+        targetCount: allTargets.length,
+        resumedSkippedCount,
+        finishedAtMs: Date.now(),
+        updatedAtMs: Date.now(),
+        error: admin.firestore.FieldValue.delete(),
+      }, { merge: true });
+      console.log(ADMIN_PUSH_LOG, JSON.stringify({ event: 'done_nothing_left', jobId, resumedSkippedCount }));
+      return { status: 'done', targetCount: allTargets.length, sentCount: 0, failedCount: 0, reason: 'already_sent_by_interrupted_run' };
+    }
     if (targets.length === 0) {
       await ref.set({
         status: 'error',
@@ -518,13 +579,20 @@ export async function processAdminPushJob(jobId: string, nowMs = Date.now()): Pr
     }
 
     const messages = targets.map((user) => buildAdminPushMessage(claim.job as AdminPushJob, user));
-    const summary = await sendExpoPushMessages(messages, targets.map((user) => user.uid));
+    const summary = await sendExpoPushMessages(
+      messages,
+      targets.map((user) => user.uid),
+      fetch,
+      (chunkUids) => recordAdminPushAttempt(ref, chunkUids, Date.now()),
+    );
     await pruneExpiredTokens(db, summary.expiredTokenUids);
 
-    const status = summary.sentCount > 0 ? 'done' : 'error';
+    // Досылка после обрыва: даже если сейчас не ушло ничего, прошлый прогон людям уже отправил — это «готово».
+    const status = summary.sentCount > 0 || resumedSkippedCount > 0 ? 'done' : 'error';
     await ref.set({
       status,
       targetCount: targets.length,
+      resumedSkippedCount,
       sentCount: summary.sentCount,
       failedCount: summary.failedCount,
       failedChunks: summary.failedChunks,

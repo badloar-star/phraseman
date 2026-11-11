@@ -9,6 +9,8 @@ import {
   parseAdminPushUser,
   selectAdminPushUsers,
   sendExpoPushMessages,
+  readAdminPushAttemptedUids,
+  recordAdminPushAttempt,
   type AdminPushUser,
 } from './admin_push_jobs';
 
@@ -173,5 +175,80 @@ describe('admin push jobs', () => {
   it('matches admin Plus logic for expired and active plans', () => {
     expect(isPremiumActive({ progress: { premium_plan: 'yearly', premium_expiry: String(NOW + 1) } }, NOW)).toBe(true);
     expect(isPremiumActive({ progress: { premium_plan: 'yearly', premium_expiry: String(NOW - 1) } }, NOW)).toBe(false);
+  });
+
+  // зачем (F08 «Два push»): прогон умер посередине → повторный не должен слать уже получившим.
+  describe('журнал «кому уже отправляли» (досылка после обрыва)', () => {
+    const msg = (to: string) => ({ to, title: 'A', body: 'B', sound: 'default' as const, data: { type: 'admin_push' } });
+    const okFetch = () => jest.fn(async (_url: string, init: { body: string }) => ({
+      ok: true,
+      json: async () => ({ data: (JSON.parse(init.body) as unknown[]).map((_, i) => ({ status: 'ok', id: `t${i}` })) }),
+      text: async () => '',
+    }));
+    function fakeJobRef() {
+      const chunks: Array<Record<string, unknown>> = [];
+      return {
+        chunks,
+        collection: () => ({
+          doc: () => ({ set: async (data: Record<string, unknown>) => { chunks.push(data); } }),
+          limit: () => ({ get: async () => ({ docs: chunks.map((c) => ({ get: (f: string) => c[f] })) }) }),
+        }),
+      };
+    }
+
+    it('получатели пачки записываются ДО сетевой отправки', async () => {
+      const order: string[] = [];
+      const fetchMock = jest.fn(async () => {
+        order.push('fetch');
+        return { ok: true, json: async () => ({ data: [{ status: 'ok', id: 't' }] }), text: async () => '' };
+      });
+      await sendExpoPushMessages([msg(TOKEN)], ['u1'], fetchMock as unknown as typeof fetch, async (uids) => {
+        order.push(`record:${uids.join(',')}`);
+      });
+      expect(order).toEqual(['record:u1', 'fetch']);
+    });
+
+    it('запись в журнал не удалась — пачка не уходит', async () => {
+      const fetchMock = okFetch();
+      const summary = await sendExpoPushMessages([msg(TOKEN)], ['u1'], fetchMock as unknown as typeof fetch, async () => {
+        throw new Error('journal_unavailable');
+      });
+      expect(fetchMock).not.toHaveBeenCalled();
+      expect(summary).toMatchObject({ sentCount: 0, failedCount: 1, failedChunks: 1 });
+      expect(summary.errors).toContain('journal_unavailable');
+    });
+
+    it('повторный прогон после обрыва шлёт только тем, кому ещё не отправляли', async () => {
+      const ref = fakeJobRef();
+      const uids = Array.from({ length: 150 }, (_, i) => `u${i}`);
+      const sentTo: string[] = [];
+      // Прогон 1: первая пачка (100) уходит, на второй процесс «умирает» — журнал не пишется, сеть не зовётся.
+      let chunkNo = 0;
+      const dyingFetch = jest.fn(async (_url: string, init: { body: string }) => {
+        for (const m of JSON.parse(init.body) as Array<{ to: string }>) sentTo.push(m.to);
+        return { ok: true, json: async () => ({ data: [] }), text: async () => '' };
+      });
+      await sendExpoPushMessages(uids.map(msg), uids, dyingFetch as unknown as typeof fetch, async (chunkUids) => {
+        chunkNo += 1;
+        if (chunkNo === 2) throw new Error('process_died');
+        await recordAdminPushAttempt(ref as never, chunkUids, NOW);
+      });
+      expect(sentTo).toHaveLength(100);
+
+      // Прогон 2 (задачу взяли заново): читаем журнал, отсекаем уже получивших.
+      const attempted = await readAdminPushAttemptedUids(ref as never);
+      expect(attempted.size).toBe(100);
+      const remaining = uids.filter((uid) => !attempted.has(uid));
+      const fetch2 = jest.fn(async (_url: string, init: { body: string }) => {
+        for (const m of JSON.parse(init.body) as Array<{ to: string }>) sentTo.push(m.to);
+        return { ok: true, json: async () => ({ data: [] }), text: async () => '' };
+      });
+      await sendExpoPushMessages(remaining.map(msg), remaining, fetch2 as unknown as typeof fetch,
+        (chunkUids) => recordAdminPushAttempt(ref as never, chunkUids, NOW));
+
+      expect(sentTo).toHaveLength(150);
+      expect(new Set(sentTo).size).toBe(150); // никто не получил дважды
+      expect((await readAdminPushAttemptedUids(ref as never)).size).toBe(150);
+    });
   });
 });

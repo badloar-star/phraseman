@@ -192,7 +192,9 @@ function buildDrill(spec: DrillSpec, phrase: RawClassicPhrase, locale: string, b
       const options = shuffled(Array.from(new Set(pool.filter((x) => x && (x === correct || unknownWords(x, introduced).length === 0)))).slice(0, 3), spec.id);
       if (!options.includes(correct)) options[0] = correct;
       if (options.length < 2) return null;
-      return { type: 'choice', instruction: instruction('choose', translation, locale, sample), before: words.slice(0, slot).join(' '), after: words.slice(slot + 1).join(' '), options, answer: correct, why: whyText };
+      // зачем (владелец 11.11): кнопка «почему?» открывала ту же фразу без объяснения. Объяснений простыми словами для уроков старого формата нет →
+      // кнопку не рисуем (нет поля why). Верную фразу ученик и так видит: слово встаёт в пропуск.
+      return { type: 'choice', instruction: instruction('choose', translation, locale, sample), before: words.slice(0, slot).join(' '), after: words.slice(slot + 1).join(' '), options, answer: correct };
     }
     case 'binary': {
       // es `match`: пара фраз — варианты = обе фразы; fr/it/de: верная фраза и та же с типичной ошибкой на месте slot

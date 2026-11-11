@@ -1,0 +1,2346 @@
+{
+ "schema": "phraseman.classic.theory_why/1",
+ "lang": "en",
+ "data": {
+  "1:c1:en-classic-r1:01.03": {
+   "ru": "Busy значит «занят». Ready — это «готов», а free — «свободен».",
+   "uk": "Busy означає «зайнятий». Ready — це «готовий», а free — «вільний».",
+   "en": "The task asks for busy. The other phrases say ready and free."
+  },
+  "1:c1:en-classic-r1:01.08": {
+   "ru": "Free значит «свободен». Busy — это «занят», а ready — «готов».",
+   "uk": "Free означає «вільний». Busy — це «зайнятий», а ready — «готовий».",
+   "en": "The task asks for free. The other phrases say busy and ready."
+  },
+  "1:c2:en-classic-r1:01.07": {
+   "ru": "They значит «они», а после they ставят are. I и she — это «я» и «она».",
+   "uk": "They означає «вони», а після they ставлять are. I і she — це «я» і «вона».",
+   "en": "They means a group, and it goes with are. I and she are other people."
+  },
+  "1:c2:en-classic-r1:01.02": {
+   "ru": "You значит «ты» и «вы», а после you ставят are. He — «он», we — «мы».",
+   "uk": "You означає «ти» і «ви», а після you ставлять are. He — «він», we — «ми».",
+   "en": "You is the person you talk to. He and we are other people."
+  },
+  "1:c3:en-classic-r1:01.15": {
+   "ru": "At home значит «дома», а I — «я». He is here — про него, she is at work — про неё.",
+   "uk": "At home означає «вдома», а I — «я». He is here — про нього, she is at work — про неї.",
+   "en": "I is me, and at home is the place. The others are about he and she, or about work."
+  },
+  "1:c3:en-classic-r1:01.17": {
+   "ru": "She значит «она», а at work — «на работе». Busy — «занята», а I am at home — «я дома».",
+   "uk": "She означає «вона», а at work — «на роботі». Busy — «зайнята», а I am at home — «я вдома».",
+   "en": "She is the woman and at work is the place. Busy says how she feels, not where."
+  },
+  "1:c4:en-classic-r1:01.43": {
+   "ru": "My значит «мой», phone — «телефон», on — «включён». Bag, seats и keys — другие вещи.",
+   "uk": "My означає «мій», phone — «телефон», on — «увімкнений». Bag, seats і keys — інші речі.",
+   "en": "My phone is the thing, and on says it is switched on. The others name other things."
+  },
+  "1:c4:en-classic-r1:01.48": {
+   "ru": "Bus значит «автобус», а here — «здесь». He is here — про человека, keys — про ключи.",
+   "uk": "Bus означає «автобус», а here — «тут». He is here — про людину, keys — про ключі.",
+   "en": "The bus is the thing that is here. He is a person, and keys are different things."
+  },
+  "1:c5:en-classic-r1:01.24": {
+   "ru": "Closed значит «закрыта», open — «открыта». Слово door значит «дверь», а shops — «магазины».",
+   "uk": "Closed означає «зачинені», open — «відчинені». Слово door означає «двері», а shops — «магазини».",
+   "en": "Closed is the word for shut. Open is the opposite, and shops are not doors."
+  },
+  "1:c5:en-classic-r1:01.30": {
+   "ru": "Lights значит «лампы», а off — «выключены». On — наоборот, «включены». Door — «дверь».",
+   "uk": "Lights означає «лампи», а off — «вимкнені». On — навпаки, «увімкнені». Door — «двері».",
+   "en": "Lights are lamps, and off means switched off. On is the opposite."
+  },
+  "1:c6:en-classic-r1:01.33": {
+   "ru": "Late значит «поздно, с опозданием». Early — «рано», а cold — «холодный».",
+   "uk": "Late означає «пізно, із запізненням». Early — «рано», а cold — «холодний».",
+   "en": "Late means not on time. Early is the opposite, and cold is about the coffee."
+  },
+  "1:c6:en-classic-r1:01.40": {
+   "ru": "Coffee значит «кофе», cold — «холодный». Warm — «тёплый», hands — «руки».",
+   "uk": "Coffee означає «кава», cold — «холодна». Warm — «тепла», hands — «руки».",
+   "en": "Coffee is the drink and cold says its temperature. Warm is the opposite."
+  },
+  "2:c1:en-classic-r1:02.04": {
+   "ru": "Not значит «не», а he — «он». She — «она», I — «я», ready и late — другие слова.",
+   "uk": "Not означає «не», а he — «він». She — «вона», I — «я», ready і late — інші слова.",
+   "en": "He is the man, and not makes it a “no”. The others are she or I, or say ready or late."
+  },
+  "2:c1:en-classic-r1:02.02": {
+   "ru": "You значит «вы», а not late — «не опоздали». I — «я», she — «она».",
+   "uk": "You означає «ви», а not late — «не запізнилися». I — «я», she — «вона».",
+   "en": "You is the person you talk to, and not late says “on time”. I and she are others."
+  },
+  "2:c2:en-classic-r1:02.10": {
+   "ru": "Your значит «ваш», keys — «ключи», not here — «не здесь». My phone и the door — другое.",
+   "uk": "Your означає «ваш», keys — «ключі», not here — «не тут». My phone і the door — інше.",
+   "en": "Your means “yours”, keys are the things, and not here says they are missing."
+  },
+  "2:c2:en-classic-r1:02.08": {
+   "ru": "Door значит «дверь», а not open — «не открыта». Phone — «телефон», keys — «ключи».",
+   "uk": "Door означає «двері», а not open — «не відчинені». Phone — «телефон», keys — «ключі».",
+   "en": "Door is the thing, and not open says it is shut. Phone and keys are other things."
+  },
+  "2:c3:en-classic-r1:02.11": {
+   "ru": "В вопросе are идёт перед you: Are you. Is she — про неё, are they — про них.",
+   "uk": "У питанні are стоїть перед you: Are you. Is she — про неї, are they — про них.",
+   "en": "In a question are comes first, then you. Is she and are they ask about others."
+  },
+  "2:c3:en-classic-r1:02.13": {
+   "ru": "Is he — «он», а at work — «на работе». Are they — «они», is she — «она», а ready — «готов».",
+   "uk": "Is he — «він», а at work — «на роботі». Are they — «вони», is she — «вона», а ready — «готовий».",
+   "en": "He is the man and at work is the place. The others ask about they or she."
+  },
+  "2:c4:en-classic-r1:02.22": {
+   "ru": "No значит «нет», а I am not — «я не». Yes — «да», they — «они».",
+   "uk": "No означає «ні», а I am not — «я не». Yes — «так», they — «вони».",
+   "en": "No says no, and I am not answers about me. Yes says yes, and they is other people."
+  },
+  "2:c4:en-classic-r1:02.25": {
+   "ru": "Yes значит «да», а they are — «они». I am — про себя, No — «нет».",
+   "uk": "Yes означає «так», а they are — «вони». I am — про себе, No — «ні».",
+   "en": "Yes says yes, and they are answers about them. I am is about me, and no says no."
+  },
+  "2:c5:en-classic-r1:02.33": {
+   "ru": "Stairs значит «лестница», а safe — «безопасна». Ticket — «билет», lift — «лифт».",
+   "uk": "Stairs означає «сходи», а safe — «безпечні». Ticket — «квиток», lift — «ліфт».",
+   "en": "Stairs are the steps, and safe asks about danger. Ticket and lift are other things."
+  },
+  "2:c5:en-classic-r1:02.34": {
+   "ru": "Ticket значит «билет», а valid — «действителен». Stairs — «лестница», lift — «лифт».",
+   "uk": "Ticket означає «квиток», а valid — «дійсний». Stairs — «сходи», lift — «ліфт».",
+   "en": "Ticket is the paper, and valid asks if it still works. Stairs and lift are other things."
+  },
+  "2:c6:en-classic-r1:02.41": {
+   "ru": "Station значит «вокзал», at the station — «на вокзале». Ready — «готовы», train — «поезд».",
+   "uk": "Station означає «станція, вокзал», at the station — «на станції». Ready — «готові», train — «поїзд».",
+   "en": "At the station is the place. Ready asks about being prepared, and train is a different thing."
+  },
+  "2:c6:en-classic-r1:02.50": {
+   "ru": "Train значит «поезд», а on time — «вовремя». Ticket — «билет», bus — «автобус».",
+   "uk": "Train означає «поїзд», а on time — «вчасно». Ticket — «квиток», bus — «автобус».",
+   "en": "Train is the thing, and on time asks if it is not late. Ticket and bus are different."
+  },
+  "3:c1:en-classic-r1:03.04": {
+   "ru": "Live значит «жить», а alone — «один». Work — «работать», walk — «ходить пешком».",
+   "uk": "Live означає «жити», а alone — «сам». Work — «працювати», walk — «ходити пішки».",
+   "en": "Live is where you stay, and alone means by yourself. Work and walk say other things."
+  },
+  "3:c1:en-classic-r1:03.10": {
+   "ru": "Walk значит «идти пешком», а home — «домой». Work — «работать», live — «жить».",
+   "uk": "Walk означає «йти пішки», а home — «додому». Work — «працювати», live — «жити».",
+   "en": "Walk is going on foot, and home is where to. Work and live say other things."
+  },
+  "3:c2:en-classic-r1:03.08": {
+   "ru": "They значит «они», и слово finish остаётся без s. Не путайте с he: там нужно finishes.",
+   "uk": "They означає «вони», і слово finish лишається без s. Не плутайте з he: там потрібно finishes.",
+   "en": "They is a group, so finish has no s. The s comes only after he or she."
+  },
+  "3:c2:en-classic-r1:03.09": {
+   "ru": "После he слово получает окончание: finishes. После they окончания нет: finish.",
+   "uk": "Після he слово отримує закінчення: finishes. Після they закінчення немає: finish.",
+   "en": "He is one person, so the word gets an ending: finishes. They keeps finish."
+  },
+  "3:c3:en-classic-r1:03.13": {
+   "ru": "We значит «мы», want — «хотеть», coffee — «кофе». После we окончания s нет.",
+   "uk": "We означає «ми», want — «хотіти», coffee — «кава». Після we закінчення s немає.",
+   "en": "We means “we”, want means wish, and coffee is the drink. The others say tea or need help."
+  },
+  "3:c3:en-classic-r1:03.14": {
+   "ru": "He значит «он», и к want добавляют s: wants. Tea — это «чай», а не кофе.",
+   "uk": "He означає «він», і до want додають s: wants. Tea — це «чай», а не кава.",
+   "en": "He is one person, so want gets an s: wants. Tea is the drink he wants."
+  },
+  "3:c4:en-classic-r1:03.19": {
+   "ru": "Speak значит «говорить», English — «по-английски». Check — «проверять», use — «пользоваться».",
+   "uk": "Speak означає «говорити», English — «англійською». Check — «перевіряти», use — «користуватися».",
+   "en": "Speak is talking, and English is the language. Check and use say other things."
+  },
+  "3:c4:en-classic-r1:03.37": {
+   "ru": "They значит «они», take — «брать, принимать», cash — «наличные». Share и use — другие слова.",
+   "uk": "They означає «вони», take — «брати, приймати», cash — «готівка». Share і use — інші слова.",
+   "en": "They take cash means they accept it. Share and use are other words."
+  },
+  "3:c5:en-classic-r1:03.22": {
+   "ru": "Shop значит «магазин», opens — «открывается», nine — «девять». Bus и class — другое.",
+   "uk": "Shop означає «магазин», opens — «відкривається», nine — «дев'ять». Bus і class — інше.",
+   "en": "Shop is the place, opens is what it does, and nine is the hour. Bus and class differ."
+  },
+  "3:c5:en-classic-r1:03.24": {
+   "ru": "Class значит «занятие», starts — «начинается», ten — «десять». Shop — «магазин», shift — «смена».",
+   "uk": "Class означає «заняття», starts — «починається», ten — «десять». Shop — «магазин», shift — «зміна».",
+   "en": "Class is the lesson, starts says when, and ten is the hour. Shop and shift differ."
+  },
+  "3:c6:en-classic-r1:03.41": {
+   "ru": "My sister значит «моя сестра», а works nights — «работает по ночам». Одна сестра — поэтому works.",
+   "uk": "My sister означає «моя сестра», а works nights — «працює вночі». Одна сестра — тому works.",
+   "en": "My sister is one person, so work gets an s: works. Nights means at night."
+  },
+  "3:c6:en-classic-r1:03.49": {
+   "ru": "Driver значит «водитель», knows — «знает», the way — «дорогу». Key и sister — другие слова.",
+   "uk": "Driver означає «водій», knows — «знає», the way — «дорогу». Key і sister — інші слова.",
+   "en": "Driver is the person, and knows the way is what he knows. Key and sister are different."
+  },
+  "4:c1:en-classic-r1:04.10": {
+   "ru": "I do not значит «я не». Eat — «есть», meat — «мясо». Остальные фразы про «мы» или другое.",
+   "uk": "I do not означає «я не». Eat — «їсти», meat — «м'ясо». Решта фраз про «ми» чи інше.",
+   "en": "I do not says “I don't”. Eat is the action, and meat is what I do not eat."
+  },
+  "4:c1:en-classic-r1:04.17": {
+   "ru": "Know значит «знать», code — «код». I do not — это «я не». We и drive — другое.",
+   "uk": "Know означає «знати», code — «код». I do not — це «я не». We і drive — інше.",
+   "en": "Know means to know, and code is the thing. The others are about desks or driving."
+  },
+  "4:c2:en-classic-r1:04.05": {
+   "ru": "She значит «она», does not — «не», smoke — «курить». Не путайте с I do not eat meat — там «я».",
+   "uk": "She означає «вона», does not — «не», smoke — «курити». Не плутайте з I do not eat meat — там «я».",
+   "en": "She goes with does not. Smoke is the action. The others are about a purse or about me."
+  },
+  "4:c2:en-classic-r1:04.20": {
+   "ru": "Carry значит «носить с собой», purse — «кошелёк». She does not — «она не».",
+   "uk": "Carry означає «носити з собою», purse — «гаманець». She does not — «вона не».",
+   "en": "Carry means to take with you, and purse is the thing. The others use we or other words."
+  },
+  "4:c3:en-classic-r1:04.21": {
+   "ru": "Door значит «дверь», lock — «запираться». Дверь — одна вещь, поэтому does not. Tap — «кран».",
+   "uk": "Door означає «двері», lock — «замикатися». Двері — одна річ, тому does not. Tap — «кран».",
+   "en": "Door is one thing, so it uses does not. Lock is what it does not do."
+  },
+  "4:c3:en-classic-r1:04.24": {
+   "ru": "Phone значит «телефон», charge — «заряжаться». Телефон — одна вещь, поэтому does not.",
+   "uk": "Phone означає «телефон», charge — «заряджатися». Телефон — одна річ, тому does not.",
+   "en": "Phone is one thing, so it uses does not. Charge is what it does not do."
+  },
+  "4:c4:en-classic-r1:04.29": {
+   "ru": "Headphones значит «наушники», их много, поэтому do not. Tap и shoes — другие вещи.",
+   "uk": "Headphones означає «навушники», їх багато, тому do not. Tap і shoes — інші речі.",
+   "en": "Headphones are many things, so it uses do not. Work is what they do not do."
+  },
+  "4:c4:en-classic-r1:04.30": {
+   "ru": "Buses значит «автобусы», их много, поэтому do not. Run — «ходить», today — «сегодня».",
+   "uk": "Buses означає «автобуси», їх багато, тому do not. Run — «курсувати», today — «сьогодні».",
+   "en": "Buses are many, so it uses do not. Run is what they do not do today."
+  },
+  "4:c5:en-classic-r1:04.33": {
+   "ru": "We do not — «мы не», cook — «готовить», on Fridays — «по пятницам». Buy и eat — другое.",
+   "uk": "We do not — «ми не», cook — «готувати», on Fridays — «по п'ятницях». Buy і eat — інше.",
+   "en": "On Fridays tells when. Cook is what we do not do. The others say buy or eat."
+  },
+  "4:c5:en-classic-r1:04.36": {
+   "ru": "Usually значит «обычно» и стоит после do not. Late — «допоздна». Другие фразы про they и coffee.",
+   "uk": "Usually означає «зазвичай» і стоїть після do not. Late — «допізна». Інші фрази про they і coffee.",
+   "en": "Usually means “most of the time”. Work late is what I do not do. The others use they or coffee."
+  },
+  "4:c6:en-classic-r1:04.43": {
+   "ru": "Receipt значит «квитанция, чек», show — «показывать», date — «дата». Price и rent — другое.",
+   "uk": "Receipt означає «чек», show — «показувати», date — «дата». Price і rent — інше.",
+   "en": "Receipt is the paper, and show the date is what it does not do. The others are about price or rent."
+  },
+  "4:c6:en-classic-r1:04.49": {
+   "ru": "Understand значит «понимать», word — «слово». I do not — «я не». Bus и son — другое.",
+   "uk": "Understand означає «розуміти», word — «слово». I do not — «я не». Bus і son — інше.",
+   "en": "Understand means to get the meaning, and word is the thing. The others are about a bus or a son."
+  },
+  "5:c1:en-classic-r1:05.16": {
+   "ru": "В вопросе do стоит первым: Do you. Sell значит «продавать», stamps — «марки». Live и drive — другое.",
+   "uk": "У питанні do стоїть першим: Do you. Sell означає «продавати», stamps — «марки». Live і drive — інше.",
+   "en": "Do comes first in the question. Sell is the action, and stamps are what you sell."
+  },
+  "5:c1:en-classic-r1:05.21": {
+   "ru": "Do you — «вы», live — «жить», on this street — «на этой улице». They и drive — другое.",
+   "uk": "Do you — «ви», live — «жити», on this street — «на цій вулиці». They і drive — інше.",
+   "en": "Do you asks about you. Live on this street asks where. The others are about they or driving."
+  },
+  "5:c2:en-classic-r1:05.26": {
+   "ru": "Oven значит «духовка», work — «работать». Духовка — одна вещь, поэтому does. Office и flat — другое.",
+   "uk": "Oven означає «духовка», work — «працювати». Духовка — одна річ, тому does. Office і flat — інше.",
+   "en": "Oven is one thing, so the question starts with does. Work asks if it works."
+  },
+  "5:c2:en-classic-r1:05.22": {
+   "ru": "Flat значит «квартира», have — «иметь», balcony — «балкон». Одна квартира — поэтому does.",
+   "uk": "Flat означає «квартира», have — «мати», balcony — «балкон». Одна квартира — тому does.",
+   "en": "Your flat is one place, so it starts with does. Have a balcony asks what it has."
+  },
+  "5:c3:en-classic-r1:05.27": {
+   "ru": "Do you — «вы», hear — «слышать», that noise — «этот шум». Gate и permit — другое.",
+   "uk": "Do you — «ви», hear — «чути», that noise — «цей шум». Gate і permit — інше.",
+   "en": "Do you asks about you. Hear is the action, and that noise is what you hear."
+  },
+  "5:c3:en-classic-r1:05.29": {
+   "ru": "Do we — «мы», need — «нуждаться», parking permit — «парковочный пропуск». Train и buses — другое.",
+   "uk": "Do we — «ми», need — «потребувати», parking permit — «дозвіл на паркування». Train і buses — інше.",
+   "en": "Do we asks about us. Need is the action, and parking permit is the thing."
+  },
+  "5:c4:en-classic-r1:05.36": {
+   "ru": "Printer значит «принтер», paper — «бумага». Один принтер — поэтому does. Need — «нужен».",
+   "uk": "Printer означає «принтер», paper — «папір». Один принтер — тому does. Need — «потрібен».",
+   "en": "Printer is one thing, so it starts with does. Need paper asks what it needs."
+  },
+  "5:c4:en-classic-r1:05.40": {
+   "ru": "Colleague значит «коллега», weekends — «выходные». Один коллега — поэтому does. Lunch и team — другое.",
+   "uk": "Colleague означає «колега», weekends — «вихідні». Один колега — тому does. Lunch і team — інше.",
+   "en": "Colleague is one person, so it starts with does. Work weekends asks when."
+  },
+  "5:c5:en-classic-r1:05.42": {
+   "ru": "Do you — «вы», need — «нуждаться», my address — «мой адрес». Send и keep — другое.",
+   "uk": "Do you — «ви», need — «потребувати», my address — «моя адреса». Send і keep — інше.",
+   "en": "Do you asks about you. Need is the action, and my address is what you need."
+  },
+  "5:c5:en-classic-r1:05.46": {
+   "ru": "Do I — «я», collect — «забирать», it here — «это здесь». Anyone и you — другие слова.",
+   "uk": "Do I — «я», collect — «забирати», it here — «це тут». Anyone і you — інші слова.",
+   "en": "Do I asks about me. Collect is the action, and here is the place."
+  },
+  "6:c1:en-classic-r1:06.25": {
+   "ru": "When значит «когда». Does стоит после when, потому что sale — одна вещь. Where — «где».",
+   "uk": "When означає «коли». Does стоїть після when, бо sale — одна річ. Where — «де».",
+   "en": "When asks about time. Where asks about a place, so it is the wrong word."
+  },
+  "6:c1:en-classic-r1:06.42": {
+   "ru": "Where значит «где», we meet — «мы встретимся», after class — «после занятий». Когда — это when.",
+   "uk": "Where означає «де», we meet — «ми зустрінемося», after class — «після занять». Коли — це when.",
+   "en": "Where asks about a place. We meet is the action, and after class tells when."
+  },
+  "6:c2:en-classic-r1:06.36": {
+   "ru": "What значит «что», button — «кнопка», do — «делать». Mean, wear и say — другие слова.",
+   "uk": "What означає «що», button — «кнопка», do — «робити». Mean, wear і say — інші слова.",
+   "en": "What asks “what?”. This button does something, so the question ends in do."
+  },
+  "6:c2:en-classic-r1:06.44": {
+   "ru": "What значит «что», а mean — «означать». Word — «слово». Wear и say — другие слова.",
+   "uk": "What означає «що», а mean — «означати». Word — «слово». Wear і say — інші слова.",
+   "en": "What asks “what?”. Mean is the action, and this word is what we ask about."
+  },
+  "6:c3:en-classic-r1:06.18": {
+   "ru": "Which значит «какой» из нескольких. Bus — «автобус», goes — «едет», centre — «центр». Colour и door — другое.",
+   "uk": "Which означає «який» з кількох. Bus — «автобус», goes — «їде», centre — «центр». Colour і door — інше.",
+   "en": "Which asks about one of a few. Bus goes to the centre is the thing we ask about."
+  },
+  "6:c3:en-classic-r1:06.48": {
+   "ru": "Which значит «какая» из нескольких. Bag — «сумка», belongs to you — «принадлежит вам». Door и colour — другое.",
+   "uk": "Which означає «яка» з кількох. Bag — «сумка», belongs to you — «належить вам». Door і colour — інше.",
+   "en": "Which asks about one of a few. Bag is the thing, and belongs to you says whose."
+  },
+  "6:c4:en-classic-r1:06.37": {
+   "ru": "Why значит «почему», screen — «экран», go dark — «гаснуть». Alarm и one — другие слова.",
+   "uk": "Why означає «чому», screen — «екран», go dark — «темніти». Alarm і one — інші слова.",
+   "en": "Why asks for the reason. The screen goes dark is what we ask about."
+  },
+  "6:c4:en-classic-r1:06.43": {
+   "ru": "How значит «как», spell — «писать по буквам», surname — «фамилия». Why — «почему», restart — «перезапустить».",
+   "uk": "How означає «як», spell — «писати по літерах», surname — «прізвище». Why — «чому», restart — «перезапустити».",
+   "en": "How asks about the way. Spell your surname is what we ask about. Why asks the reason."
+  },
+  "6:c5:en-classic-r1:06.20": {
+   "ru": "How often значит «как часто», trains — «поезда», run — «ходить». Far и long — другое.",
+   "uk": "How often означає «як часто», trains — «поїзди», run — «курсувати». Far і long — інше.",
+   "en": "How often asks how many times. Far asks the distance, and long asks the time."
+  },
+  "6:c5:en-classic-r1:06.45": {
+   "ru": "How many значит «сколько» (о людях), people — «люди», live — «жить». Long и much — другое.",
+   "uk": "How many означає «скільки» (про людей), people — «люди», live — «жити». Long і much — інше.",
+   "en": "How many asks about a count of people. How long and how much ask about time and price."
+  },
+  "6:c6:en-classic-r1:06.39": {
+   "ru": "Who значит «кто» или «кому», do I call — «мне позвонить». Teaches и checks — другие слова.",
+   "uk": "Who означає «хто» або «кому», do I call — «мені подзвонити». Teaches і checks — інші слова.",
+   "en": "Who asks about a person. Do I call is the action, and I is the one who calls."
+  },
+  "6:c6:en-classic-r1:06.47": {
+   "ru": "Who значит «кто», teaches — «ведёт занятия», evening class — «вечерние занятия». Call и checks — другое.",
+   "uk": "Who означає «хто», teaches — «веде заняття», evening class — «вечірні заняття». Call і checks — інше.",
+   "en": "Who asks about a person. Teaches the evening class says what the person does."
+  },
+  "7:c1:en-classic-r1:07.02": {
+   "ru": "She значит «она», has — «имеет, есть», ticket — «билет». С she говорят has, а с I — have.",
+   "uk": "She означає «вона», has — «має, є», ticket — «квиток». З she кажуть has, а з I — have.",
+   "en": "She is one person, so it is has. I and they use have."
+  },
+  "7:c1:en-classic-r1:07.08": {
+   "ru": "He значит «он», has — «есть у», bicycle — «велосипед». Question и car — другие слова.",
+   "uk": "He означає «він», has — «є в», bicycle — «велосипед». Question і car — інші слова.",
+   "en": "He is one person, so it is has. Bicycle is what he has."
+  },
+  "7:c2:en-classic-r1:07.12": {
+   "ru": "Cough значит «кашель». He has — «у него». Sore throat — «болит горло», fever — «температура».",
+   "uk": "Cough означає «кашель». He has — «у нього». Sore throat — «болить горло», fever — «температура».",
+   "en": "Cough is the word for the cough. Sore throat and fever are other things."
+  },
+  "7:c2:en-classic-r1:07.17": {
+   "ru": "Fever значит «температура», he has — «у него». Headache — «головная боль», blocked nose — «заложен нос».",
+   "uk": "Fever означає «температура», he has — «у нього». Headache — «головний біль», blocked nose — «закладений ніс».",
+   "en": "Fever is a high temperature. Headache and blocked nose are other things."
+  },
+  "7:c3:en-classic-r1:07.15": {
+   "ru": "Daughter значит «дочь», cold — «простуда». Одна дочь — поэтому has. They и we — другие слова.",
+   "uk": "Daughter означає «донька», cold — «застуда». Одна донька — тому has. They і we — інші слова.",
+   "en": "My daughter is one person, so it is has. Cold is the illness."
+  },
+  "7:c3:en-classic-r1:07.20": {
+   "ru": "I have — «у меня есть», doctor's number — «номер врача». Insurance и prescription — другое.",
+   "uk": "I have — «у мене є», doctor's number — «номер лікаря». Insurance і prescription — інше.",
+   "en": "I have is about me. Doctor's number is what I have. The others are insurance or a prescription."
+  },
+  "7:c4:en-classic-r1:07.22": {
+   "ru": "Does she have — «у неё есть?», passport — «паспорт». Do you — про вас, does he — про него.",
+   "uk": "Does she have — «чи є в неї?», passport — «паспорт». Do you — про вас, does he — про нього.",
+   "en": "Does she asks about her. Passport is the thing. The others ask about he or you."
+  },
+  "7:c4:en-classic-r1:07.24": {
+   "ru": "Does he have — «у него есть?», change — «сдача». Pen и moment — другие слова.",
+   "uk": "Does he have — «чи є в нього?», change — «решта». Pen і moment — інші слова.",
+   "en": "Does he asks about him. Change is the small money. Pen and moment are other things."
+  },
+  "7:c5:en-classic-r1:07.28": {
+   "ru": "Does the bag have — «есть ли у сумки?», zip — «молния». Room и shower — другие слова.",
+   "uk": "Does the bag have — «чи є в сумки?», zip — «блискавка». Room і shower — інші слова.",
+   "en": "The bag is one thing, so the question starts with does. Zip is what we ask about."
+  },
+  "7:c5:en-classic-r1:07.48": {
+   "ru": "Hotel значит «отель», has — «есть», luggage room — «камера хранения». Form и table — другие слова.",
+   "uk": "Hotel означає «готель», has — «є», luggage room — «камера схову». Form і table — інші слова.",
+   "en": "Hotel is one place, so it is has. Luggage room is what it has."
+  },
+  "7:c6:en-classic-r1:07.32": {
+   "ru": "She does not have — «у неё нет», glasses — «очки». Booking и licence — другие слова.",
+   "uk": "She does not have — «у неї немає», glasses — «окуляри». Booking і licence — інші слова.",
+   "en": "She does not have means “she has none”. Glasses are what she lacks."
+  },
+  "7:c6:en-classic-r1:07.34": {
+   "ru": "He does not have — «у него нет», driving licence — «водительские права». Receipt и glasses — другое.",
+   "uk": "He does not have — «у нього немає», driving licence — «водійські права». Receipt і glasses — інше.",
+   "en": "He does not have means “he has none”. Driving licence is what he lacks."
+  },
+  "8:c1:en-classic-r1:08.02": {
+   "ru": "She starts — «она начинает», at noon — «в полдень». Lunchtime и seven — другие слова.",
+   "uk": "She starts — «вона починає», at noon — «опівдні». Lunchtime і seven — інші слова.",
+   "en": "At noon is twelve o'clock in the day. She starts is the action."
+  },
+  "8:c1:en-classic-r1:08.07": {
+   "ru": "Midnight значит «полночь», at — «в». Midday — «полдень», dawn — «рассвет».",
+   "uk": "Midnight означає «північ», at — «о». Midday — «полудень», dawn — «світанок».",
+   "en": "Midnight is twelve at night. Midday and dawn are other times."
+  },
+  "8:c2:en-classic-r1:08.12": {
+   "ru": "A quarter past eight значит «четверть девятого», то есть 8:15. Half past — «половина», eleven — «одиннадцать».",
+   "uk": "A quarter past eight означає «чверть на дев'яту», тобто 8:15. Half past — «пів», eleven — «одинадцять».",
+   "en": "A quarter past eight is 8:15. Half past is thirty minutes, and eleven is the hour."
+  },
+  "8:c2:en-classic-r1:08.16": {
+   "ru": "Eight fifteen значит «восемь пятнадцать», то есть 8:15. Six thirty — 6:30, eleven — 11.",
+   "uk": "Eight fifteen означає «вісім п'ятнадцять», тобто 8:15. Six thirty — 6:30, eleven — 11.",
+   "en": "Eight fifteen is the time said in numbers. Six thirty and eleven are other times."
+  },
+  "8:c3:en-classic-r1:08.08": {
+   "ru": "Перед днём недели ставят on: on Monday. Arrive — «приезжать», Tuesday — «вторник».",
+   "uk": "Перед днем тижня ставлять on: on Monday. Arrive — «приїжджати», Tuesday — «вівторок».",
+   "en": "On goes before a day: on Monday. Tuesday and Sundays are other days."
+  },
+  "8:c3:en-classic-r1:08.25": {
+   "ru": "On Saturdays значит «по субботам», market — «рынок». Tuesday — «вторник», Sundays — «воскресенье».",
+   "uk": "On Saturdays означає «по суботах», market — «ринок». Tuesday — «вівторок», Sundays — «неділя».",
+   "en": "On Saturdays means every Saturday. Tuesday and Sundays are other days."
+  },
+  "8:c4:en-classic-r1:08.21": {
+   "ru": "Public holidays значит «праздничные дни», closes — «закрывается». Birthday и bill — другое.",
+   "uk": "Public holidays означає «святкові дні», closes — «зачиняється». Birthday і bill — інше.",
+   "en": "Public holidays are days off for everyone. The office closes is the action."
+  },
+  "8:c4:en-classic-r1:08.27": {
+   "ru": "Rent значит «арендная плата», due — «нужно заплатить», the first of May — «первого мая». Bill — «счёт».",
+   "uk": "Rent означає «орендна плата», due — «потрібно сплатити», the first of May — «першого травня». Bill — «рахунок».",
+   "en": "Rent is the money for a home. The first of May is the day. The others are birthday or bill."
+  },
+  "8:c5:en-classic-r1:08.31": {
+   "ru": "Winter значит «зима», in — «в» (о сезоне). Days — «дни», short — «короткие». Autumn и summer — другое.",
+   "uk": "Winter означає «зима», in — «в» (про сезон). Days — «дні», short — «короткі». Autumn і summer — інше.",
+   "en": "In winter is the season. Days are short is what we say. Autumn and summer are other seasons."
+  },
+  "8:c5:en-classic-r1:08.38": {
+   "ru": "April значит «апрель», in — «в» (о месяце). Timetable — «расписание». Autumn и July — другое.",
+   "uk": "April означає «квітень», in — «в» (про місяць). Timetable — «розклад». Autumn і July — інше.",
+   "en": "In April is the month. The new timetable is what starts. July and autumn are other times."
+  },
+  "8:c6:en-classic-r1:08.43": {
+   "ru": "Tonight значит «сегодня вечером», film — «фильм», starts — «начинается». Every morning и Tuesday — другое.",
+   "uk": "Tonight означає «сьогодні ввечері», film — «фільм», starts — «починається». Every morning і Tuesday — інше.",
+   "en": "Tonight means this evening. The film starts is the action. The others say Tuesday or every morning."
+  },
+  "8:c6:en-classic-r1:08.44": {
+   "ru": "Every morning значит «каждое утро», see him — «вижу его». Every Monday — «каждый понедельник».",
+   "uk": "Every morning означає «щоранку», see him — «бачу його». Every Monday — «щопонеділка».",
+   "en": "Every morning means each morning. Every Monday means each Monday, and on Tuesday is a day."
+  },
+  "9:c1:en-classic-r1:09.02": {
+   "ru": "На конце stairs стоит s: вещей много, поэтому There are. Lift — «лифт», он один, для него there is.",
+   "uk": "Наприкінці stairs стоїть s: речей багато, тому There are. Lift — «ліфт», він один, для нього there is.",
+   "en": "Stairs ends in s, so there are many, and we say There are. A lift is one thing, so it needs There is."
+  },
+  "9:c1:en-classic-r1:09.03": {
+   "ru": "Queue — «очередь», она одна, поэтому There is. В two queues есть s и two: это уже «две очереди».",
+   "uk": "Queue — «черга», вона одна, тому There is. У two queues є s і two: це вже «дві черги».",
+   "en": "One queue needs There is. Two queues has s and two, so it means more than one."
+  },
+  "9:c2:en-classic-r1:09.08": {
+   "ru": "Toilets с s на конце — туалетов много, поэтому There are. Downstairs — «внизу», а upstairs — «наверху».",
+   "uk": "Toilets з s наприкінці — туалетів багато, тому There are. Downstairs — «внизу», а upstairs — «нагорі».",
+   "en": "Toilets ends in s, so we say There are. Downstairs means “below”; upstairs means “above”."
+  },
+  "9:c2:en-classic-r1:09.09": {
+   "ru": "Map — одна карта, поэтому There is. Outside — «снаружи», а inside — «внутри», upstairs — «наверху».",
+   "uk": "Map — одна карта, тому There is. Outside — «ззовні», а inside — «всередині», upstairs — «нагорі».",
+   "en": "One map needs There is. Outside is the place word; inside and upstairs mean other places."
+  },
+  "9:c3:en-classic-r1:09.14": {
+   "ru": "Eggs с s — яиц много, поэтому There are. Fridge — «холодильник», cupboard — «шкаф», stove — «плита».",
+   "uk": "Eggs з s — яєць багато, тому There are. Fridge — «холодильник», cupboard — «шафа», stove — «плита».",
+   "en": "Eggs ends in s, so we say There are. Fridge is the place; cupboard and stove are other places."
+  },
+  "9:c3:en-classic-r1:09.15": {
+   "ru": "Cups с s — чашек много, поэтому There are, а shelf — «полка». Spoons — «ложки», sink — «раковина».",
+   "uk": "Cups з s — чашок багато, тому There are, а shelf — «полиця». Spoons — «ложки», sink — «раковина».",
+   "en": "Cups ends in s, so we say There are, and shelf is where they stand. Spoons and sink are other things."
+  },
+  "9:c4:en-classic-r1:09.28": {
+   "ru": "Steps — «ступеньки», их много, поэтому вопрос с Are there. Entrance — «вход», а station — «станция».",
+   "uk": "Steps — «сходинки», їх багато, тому питання з Are there. Entrance — «вхід», а station — «станція».",
+   "en": "Steps means many, so the question starts with Are there. Entrance is the place; station is a different place."
+  },
+  "9:c4:en-classic-r1:09.30": {
+   "ru": "Train один, поэтому вопрос с Is there. Direct значит «прямой». В других фразах вещей много — Are there.",
+   "uk": "Train один, тому питання з Is there. Direct означає «прямий». В інших фразах речей багато — Are there.",
+   "en": "One train needs Is there. Direct means “without a change”. The other phrases ask about many things."
+  },
+  "9:c5:en-classic-r1:09.33": {
+   "ru": "Not much значит «не много»: места мало. No sugar — «нет сахара», а no forks — «нет вилок».",
+   "uk": "Not much означає «не багато»: місця мало. No sugar — «немає цукру», а no forks — «немає виделок».",
+   "en": "Not much means “a small amount”. No sugar and no forks say “none” instead."
+  },
+  "9:c5:en-classic-r1:09.37": {
+   "ru": "No signal — «нет сигнала», here — «здесь». Forks — «вилки», а floor — «пол, этаж».",
+   "uk": "No signal — «немає сигналу», here — «тут». Forks — «виделки», а floor — «підлога, поверх».",
+   "en": "No signal means there is none, and here is the place. Forks and floor are different things."
+  },
+  "9:c6:en-classic-r1:09.43": {
+   "ru": "Mistake — «ошибка», bill — «счёт». Crack — «трещина», а coffee — «кофе».",
+   "uk": "Mistake — «помилка», bill — «рахунок». Crack — «тріщина», а coffee — «кава».",
+   "en": "Mistake is the thing in the task, and bill is where it is. Crack and coffee are other words."
+  },
+  "9:c6:en-classic-r1:09.50": {
+   "ru": "Still time — «ещё есть время», coffee — «кофе». Names — «имена», crack — «трещина».",
+   "uk": "Still time — «ще є час», coffee — «кава». Names — «імена», crack — «тріщина».",
+   "en": "Still time means “there is time left”. Names and crack are about other things."
+  },
+  "10:c1:en-classic-r1:10.04": {
+   "ru": "Can значит «может», come — «приехать», he — «он». Cannot — «не может», а swim — «плавать».",
+   "uk": "Can означає «може», come — «приїхати», he — «він». Cannot — «не може», а swim — «плавати».",
+   "en": "Can means “is able to”, and come means “arrive”. Cannot says “not able”, and swim is a different action."
+  },
+  "10:c1:en-classic-r1:10.09": {
+   "ru": "Cannot — «не может», find his ticket — «найти свой билет». I can swim — про умение плавать.",
+   "uk": "Cannot — «не може», find his ticket — «знайти свій квиток». I can swim — про вміння плавати.",
+   "en": "Cannot means “is not able to”, and he is one man. They cannot is about other people; I can swim is about swimming."
+  },
+  "10:c2:en-classic-r1:10.17": {
+   "ru": "Can I — «можно мне», borrow — «взять на время», pen — «ручка». Can we — «можно нам».",
+   "uk": "Can I — «можна мені», borrow — «взяти на час», pen — «ручка». Can we — «можна нам».",
+   "en": "Can I asks for yourself, and borrow means “take for a while”. Can we is for “us”."
+  },
+  "10:c2:en-classic-r1:10.20": {
+   "ru": "Can I — «можно мне», bring a friend — «привести друга». Can we book — «можно нам забронировать».",
+   "uk": "Can I — «можна мені», bring a friend — «привести друга». Can we book — «можна нам забронювати».",
+   "en": "Can I asks for yourself, and bring means “take along”. Can we book is a request for “us”."
+  },
+  "10:c3:en-classic-r1:10.23": {
+   "ru": "Write it down вместе значит «записать». Say that again — «повторить», show me the way — «показать дорогу».",
+   "uk": "Write it down разом означає «записати». Say that again — «повторити», show me the way — «показати дорогу».",
+   "en": "Write it down together means “put on paper”. Say that again and show me the way are other requests."
+  },
+  "10:c3:en-classic-r1:10.25": {
+   "ru": "Show me the way — «покажите мне дорогу», Can you — «можете». Hold the door — «придержать дверь».",
+   "uk": "Show me the way — «покажіть мені дорогу», Can you — «можете». Hold the door — «притримати двері».",
+   "en": "Show me the way means “point out the road”. Hold the door and say again are other requests."
+  },
+  "10:c4:en-classic-r1:10.29": {
+   "ru": "Pass — «передать», salt — «соль». Help me — «помочь мне», send the link — «прислать ссылку».",
+   "uk": "Pass — «передати», salt — «сіль». Help me — «допомогти мені», send the link — «надіслати посилання».",
+   "en": "Pass means “hand over”, and salt is the thing. Help and send are different actions."
+  },
+  "10:c4:en-classic-r1:10.30": {
+   "ru": "Help — «помочь», form — «форма, анкета». Pass the salt — «передать соль», move your bag — «передвинуть сумку».",
+   "uk": "Help — «допомогти», form — «форма, анкета». Pass the salt — «передати сіль», move your bag — «пересунути сумку».",
+   "en": "Help me means “assist me”, and form is the paper. Pass and move are different actions."
+  },
+  "10:c5:en-classic-r1:10.34": {
+   "ru": "Should — «стоит», оно не меняется. Get some rest — «отдохнуть». Leave soon — «скоро уйти», call the office — «позвонить в офис».",
+   "uk": "Should — «варто», воно не змінюється. Get some rest — «відпочити». Leave soon — «скоро піти», call the office — «зателефонувати в офіс».",
+   "en": "Should means “it is a good idea”. Get some rest means “relax”; leave soon and call the office are other advice."
+  },
+  "10:c5:en-classic-r1:10.35": {
+   "ru": "Call the office — «позвонить в офис», she — «она». Leave soon — «скоро уйти», get some rest — «отдохнуть».",
+   "uk": "Call the office — «зателефонувати в офіс», she — «вона». Leave soon — «скоро піти», get some rest — «відпочити».",
+   "en": "Call the office means “phone the office”, and she means a woman. Leave soon and get some rest are other advice."
+  },
+  "10:c6:en-classic-r1:10.40": {
+   "ru": "Should в начале делает вопрос «стоит ли». We — «нам», tell the driver — «сказать водителю». Should I — «мне».",
+   "uk": "Should на початку робить питання «чи варто». We — «нам», tell the driver — «сказати водієві». Should I — «мені».",
+   "en": "Should first makes a question. We means “us”, and tell the driver is the advice."
+  },
+  "10:c6:en-classic-r1:10.36": {
+   "ru": "Should not — «не стоит», block the exit — «загораживать выход». You should not share — про пароль, а Should we — вопрос.",
+   "uk": "Should not — «не варто», block the exit — «загороджувати вихід». You should not share — про пароль, а Should we — питання.",
+   "en": "Should not means “it is better not to”, and block the exit is the action. The others are about a password or ask a question."
+  },
+  "10:c7:en-classic-r1:10.44": {
+   "ru": "Must not — «нельзя», touch — «прикасаться», cable — «кабель». Park by the exit — «парковаться у выхода».",
+   "uk": "Must not — «не можна», touch — «торкатися», cable — «кабель». Park by the exit — «паркуватися біля виходу».",
+   "en": "Must not means “forbidden”, and touch the cable is what is forbidden. Park and wear are other words."
+  },
+  "10:c7:en-classic-r1:10.50": {
+   "ru": "Must not — «нельзя», park — «парковаться», exit — «выход». Touch the cable — «прикасаться к кабелю».",
+   "uk": "Must not — «не можна», park — «паркуватися», exit — «вихід». Touch the cable — «торкатися кабелю».",
+   "en": "Must not means “forbidden”, and park by the exit says where. Touch the cable and wear a helmet are other rules."
+  },
+  "10:c8:en-classic-r1:10.43": {
+   "ru": "Про него говорят has to, не have to: he — «он». Bring — «принести», passport — «паспорт».",
+   "uk": "Про нього кажуть has to, не have to: he — «він». Bring — «принести», passport — «паспорт».",
+   "en": "With he we say has to, not have to. Bring his passport is what he must do."
+  },
+  "10:c8:en-classic-r1:10.47": {
+   "ru": "Do в начале делает вопрос, have to значит «нужно». Sign both pages — «подписать обе страницы».",
+   "uk": "Do на початку робить питання, have to означає «потрібно». Sign both pages — «підписати обидві сторінки».",
+   "en": "Do first makes it a question, and have to means “need to”. Sign both pages is the thing to do."
+  },
+  "11:c1:en-classic-r1:11.04": {
+   "ru": "Worked — work и ed: «работал», from home — «из дома». Opened — «открыл», walked — «шёл пешком».",
+   "uk": "Worked — work і ed: «працював», from home — «з дому». Opened — «відкрив», walked — «ішов пішки».",
+   "en": "Worked is work with ed, so it was before. From home says where he worked. Opened and walked are other actions."
+  },
+  "11:c1:en-classic-r1:11.11": {
+   "ru": "Opened — open и ed: «открыл», envelope — «конверт». Walked — «шёл пешком», called — «вызвала».",
+   "uk": "Opened — open і ed: «відкрив», envelope — «конверт». Walked — «ішов пішки», called — «викликала».",
+   "en": "Opened is open with ed, so it was before. Envelope is the thing. Walked and called are other actions."
+  },
+  "11:c2:en-classic-r1:11.15": {
+   "ru": "Packed — pack и ed: «собрали (вещи)», bags — «сумки, чемоданы». Posted — «отправили», washed — «вымыл».",
+   "uk": "Packed — pack і ed: «зібрали (речі)», bags — «сумки, валізи». Posted — «відправили», washed — «вимив».",
+   "en": "Packed is pack with ed, so it was before. Bags are the things. Posted and washed are other actions."
+  },
+  "11:c2:en-classic-r1:11.18": {
+   "ru": "Posted — post и ed: «отправили», letter — «письмо». Washed — «вымыл», packed — «собрали».",
+   "uk": "Posted — post і ed: «відправили», letter — «лист». Washed — «вимив», packed — «зібрали».",
+   "en": "Posted is post with ed, and letter is the thing. Washed and packed are other actions."
+  },
+  "11:c3:en-classic-r1:11.49": {
+   "ru": "Returned — return и ed: «вернули», broken lamp — «сломанная лампа». Restarted — «перезагрузил», cancelled — «отменила».",
+   "uk": "Returned — return і ed: «повернули», broken lamp — «зламана лампа». Restarted — «перезавантажив», cancelled — «скасувала».",
+   "en": "Returned is return with ed, and broken lamp is the thing. Restarted and cancelled are other actions."
+  },
+  "11:c3:en-classic-r1:11.43": {
+   "ru": "Restarted — restart и ed: «перезагрузил», laptop — «ноутбук». Cancelled — «отменила», returned — «вернули».",
+   "uk": "Restarted — restart і ed: «перезавантажив», laptop — «ноутбук». Cancelled — «скасувала», returned — «повернули».",
+   "en": "Restarted is restart with ed, and laptop is the thing. Cancelled and returned are other actions."
+  },
+  "11:c4:en-classic-r1:11.30": {
+   "ru": "Arrive кончается на e, поэтому добавили только d: arrived, «прибыл». Late — «поздно». Worked — «работали».",
+   "uk": "Arrive закінчується на e, тому додали тільки d: arrived, «прибув». Late — «пізно». Worked — «працювали».",
+   "en": "Arrive ends in e, so only d is added: arrived. Late says the train was not on time."
+  },
+  "11:c4:en-classic-r1:11.03": {
+   "ru": "Worked — work и ed: «работали», late — «допоздна», yesterday — «вчера». Reached — «добрался», arrived — «прибыл».",
+   "uk": "Worked — work і ed: «працювали», late — «допізна», yesterday — «вчора». Reached — «дістався», arrived — «прибув».",
+   "en": "Worked is work with ed, and yesterday says when. Reached and arrived are about trains and platforms."
+  },
+  "11:c5:en-classic-r1:11.28": {
+   "ru": "Parked — park и ed: «припарковалась», she — «она». Crossed — «перешли», stopped — «остановился».",
+   "uk": "Parked — park і ed: «припаркувалась», she — «вона». Crossed — «перейшли», stopped — «зупинився».",
+   "en": "Parked is park with ed, and she means a woman. Crossed and stopped are other actions."
+  },
+  "11:c5:en-classic-r1:11.29": {
+   "ru": "Stopped — stop, p пишем два раза и добавляем ed: «остановился». Gate — «ворота». Parked — «припарковалась».",
+   "uk": "Stopped — stop, p пишемо двічі й додаємо ed: «зупинився». Gate — «ворота». Parked — «припаркувалась».",
+   "en": "Stopped is stop with a double p and ed. Driver and gate show who and where. Crossed and parked are other actions."
+  },
+  "11:c6:en-classic-r1:11.38": {
+   "ru": "They did not miss — «они не опоздали»: после did not слово простое, miss. Miss the flight — «опоздать на рейс».",
+   "uk": "They did not miss — «вони не запізнилися»: після did not слово просте, miss. Miss the flight — «запізнитися на рейс».",
+   "en": "Did not makes it “not” in the past, and miss stays simple. The others are about a door or a bus."
+  },
+  "11:c6:en-classic-r1:11.50": {
+   "ru": "Did в начале делает вопрос о прошлом, а refund остаётся простым. Shop — «магазин», delivery charge — «стоимость доставки».",
+   "uk": "Did на початку робить питання про минуле, а refund лишається простим. Shop — «магазин», delivery charge — «вартість доставки».",
+   "en": "Did first makes a question about the past, and refund stays simple. Shop and delivery charge are the topic."
+  },
+  "11:c7:en-classic-r1:11.44": {
+   "ru": "Try кончается на y: y стало i и добавили ed, получилось tried. Different cable — «другой кабель».",
+   "uk": "Try закінчується на y: y стало i й додали ed, вийшло tried. Different cable — «інший кабель».",
+   "en": "Try ends in y, so y becomes i and ed is added: tried. Different cable is the thing. Copied and flashed are other actions."
+  },
+  "11:c7:en-classic-r1:11.45": {
+   "ru": "Copy кончается на y: y стало i и ed, получилось copied. File — «файл». Flashed — «мигнул», tried — «попробовали».",
+   "uk": "Copy закінчується на y: y стало i й ed, вийшло copied. File — «файл». Flashed — «блимнув», tried — «спробували».",
+   "en": "Copy ends in y, so y becomes i and ed is added: copied. File is the thing. Flashed and tried are other actions."
+  },
+  "11:c8:en-classic-r1:11.47": {
+   "ru": "Noticed — notice кончается на e, поэтому только d: «заметил». Missing page — «не хватает страницы». Saved — «сохранил».",
+   "uk": "Noticed — notice закінчується на e, тому тільки d: «помітив». Missing page — «бракує сторінки». Saved — «зберіг».",
+   "en": "Notice ends in e, so only d is added: noticed. Missing page is what he saw. Saved and fixed are other actions."
+  },
+  "11:c8:en-classic-r1:11.48": {
+   "ru": "Fixed — fix и ed: «починили», last week — «на прошлой неделе». Saved — «сохранил», noticed — «заметил».",
+   "uk": "Fixed — fix і ed: «полагодили», last week — «минулого тижня». Saved — «зберіг», noticed — «помітив».",
+   "en": "Fixed is fix with ed, and last week says when. Saved and noticed are other actions."
+  },
+  "12:c1:en-classic-r1:12.03": {
+   "ru": "Took — «взяли», оно меняется само, без ed. Bus — «автобус», we — «мы». Bought — «купил», coat — «пальто».",
+   "uk": "Took — «взяли», воно змінюється саме, без ed. Bus — «автобус», we — «ми». Bought — «купив», coat — «пальто».",
+   "en": "Took is take in the past, and it changes by itself. Bus and we match the task; coat is another story."
+  },
+  "12:c1:en-classic-r1:12.05": {
+   "ru": "Bought — buy в прошлом, меняется само: «купил». Fresh bread — «свежий хлеб». Went — «пошла», took — «взял».",
+   "uk": "Bought — buy в минулому, змінюється саме: «купив». Fresh bread — «свіжий хліб». Went — «пішла», took — «взяв».",
+   "en": "Bought is buy in the past, and it changes by itself. Fresh bread is the thing. Went and took are other actions."
+  },
+  "12:c2:en-classic-r1:12.10": {
+   "ru": "Found — find в прошлом, меняется само: «нашёл». Wallet — «кошелёк», downstairs — «внизу». Gave — «дал».",
+   "uk": "Found — find у минулому, змінюється саме: «знайшов». Wallet — «гаманець», downstairs — «внизу». Gave — «дав».",
+   "en": "Found is find in the past, and it changes by itself. Wallet and downstairs are the details. Gave and brought are other actions."
+  },
+  "12:c2:en-classic-r1:12.15": {
+   "ru": "Gave — give в прошлом, меняется само: «дал». Gave me a lift вместе — «подвёз меня». Brought — «принесла», found — «нашёл».",
+   "uk": "Gave — give у минулому, змінюється саме: «дав». Gave me a lift разом — «підвіз мене». Brought — «принесла», found — «знайшов».",
+   "en": "Gave is give in the past, and it changes by itself. Gave me a lift means “drove me”. Brought and found are other actions."
+  },
+  "12:c3:en-classic-r1:12.12": {
+   "ru": "Lost — lose в прошлом, меняется само: «потеряла». Bus pass — «проездной». Left — «оставил», caught — «сели на».",
+   "uk": "Lost — lose у минулому, змінюється саме: «втратила». Bus pass — «проїзний». Left — «залишив», caught — «сіли на».",
+   "en": "Lost is lose in the past, and it changes by itself. Bus pass is the thing. Left and caught are other actions."
+  },
+  "12:c3:en-classic-r1:12.20": {
+   "ru": "Sent — send в прошлом, меняется само: «прислал». Address — «адрес», clinic — «клиника». Caught — «сели на», lost — «потеряла».",
+   "uk": "Sent — send у минулому, змінюється саме: «надіслав». Address — «адреса», clinic — «клініка». Caught — «сіли на», lost — «втратила».",
+   "en": "Sent is send in the past, and it changes by itself. Address and clinic match the task. Caught and lost are other actions."
+  },
+  "12:c4:en-classic-r1:12.18": {
+   "ru": "Heard — hear в прошлом, меняется само: «услышали». Alarm — «сигнал тревоги». Paid — «оплатил», saw — «увидела».",
+   "uk": "Heard — hear у минулому, змінюється саме: «почули». Alarm — «сигнал тривоги». Paid — «оплатив», saw — «побачила».",
+   "en": "Heard is hear in the past, and it changes by itself. Alarm is what they heard. Paid and saw are other actions."
+  },
+  "12:c4:en-classic-r1:12.19": {
+   "ru": "Paid — pay в прошлом, меняется само: «оплатил». Bill — «счёт», online — «онлайн». Saw — «увидела», heard — «услышали».",
+   "uk": "Paid — pay у минулому, змінюється саме: «оплатив». Bill — «рахунок», online — «онлайн». Saw — «побачила», heard — «почули».",
+   "en": "Paid is pay in the past, and it changes by itself. Bill and online match the task. Saw and heard are other actions."
+  },
+  "12:c5:en-classic-r1:12.22": {
+   "ru": "Read в прошлом пишется так же, как и сейчас: «прочитал». Sign — «надпись», twice — «дважды». Put — «положила», made — «испекли».",
+   "uk": "Read у минулому пишеться так само, як і зараз: «прочитав». Sign — «напис», twice — «двічі». Put — «поклала», made — «спекли».",
+   "en": "Read in the past is written the same way. Sign and twice match the task. Put and made are other actions."
+  },
+  "12:c5:en-classic-r1:12.25": {
+   "ru": "Made — make в прошлом, меняется само: «испекли». Cake — «торт», together — «вместе». Put — «положила», read — «прочитал».",
+   "uk": "Made — make у минулому, змінюється саме: «спекли». Cake — «торт», together — «разом». Put — «поклала», read — «прочитав».",
+   "en": "Made is make in the past, and it changes by itself. Cake and together match the task. Put and read are other actions."
+  },
+  "12:c6:en-classic-r1:12.28": {
+   "ru": "Chose — choose в прошлом, меняется само: «выбрали». Cheaper room — «более дешёвый номер». Forgot — «забыл», fell — «упал».",
+   "uk": "Chose — choose у минулому, змінюється саме: «обрали». Cheaper room — «дешевший номер». Forgot — «забув», fell — «впав».",
+   "en": "Chose is choose in the past, and it changes by itself. Cheaper room is what they picked. Forgot and fell are other actions."
+  },
+  "12:c6:en-classic-r1:12.30": {
+   "ru": "Fell — fall в прошлом, меняется само: «упал». Glass — «стакан», shelf — «полка». Chose — «выбрали», forgot — «забыл».",
+   "uk": "Fell — fall у минулому, змінюється саме: «впав». Glass — «склянка», shelf — «полиця». Chose — «обрали», forgot — «забув».",
+   "en": "Fell is fall in the past, and it changes by itself. Glass and shelf match the task. Chose and forgot are other actions."
+  },
+  "12:c7:en-classic-r1:12.34": {
+   "ru": "Did в начале делает вопрос о прошлом, и после него catch, а не caught. They — «они», catch the bus — «успеть на автобус».",
+   "uk": "Did на початку робить питання про минуле, і після нього catch, а не caught. They — «вони», catch the bus — «встигнути на автобус».",
+   "en": "Did first makes a question about the past, so catch stays simple, not caught. They means “they”."
+  },
+  "12:c7:en-classic-r1:12.36": {
+   "ru": "Did not — «не» в прошлом, после него find, а не found. Parking space — «парковочное место», we — «мы».",
+   "uk": "Did not — «не» у минулому, після нього find, а не found. Parking space — «місце для паркування», we — «ми».",
+   "en": "Did not means “not” in the past, so find stays simple, not found. Parking space is what they could not find."
+  },
+  "12:c8:en-classic-r1:12.48": {
+   "ru": "Stood — stand в прошлом, меняется само: «стояли». Outside — «снаружи», for ten minutes — «десять минут». Held — «подержал».",
+   "uk": "Stood — stand у минулому, змінюється саме: «стояли». Outside — «надворі», for ten minutes — «десять хвилин». Held — «потримав».",
+   "en": "Stood is stand in the past, and it changes by itself. Outside and ten minutes match the task. Held and thought are other actions."
+  },
+  "12:c8:en-classic-r1:12.49": {
+   "ru": "Held — hold в прошлом, меняется само: «подержал». Ladder — «лестница». Stood — «стояли», thought — «думал».",
+   "uk": "Held — hold у минулому, змінюється саме: «потримав». Ladder — «драбина». Stood — «стояли», thought — «думав».",
+   "en": "Held is hold in the past, and it changes by itself. Ladder is the thing. Stood and thought are other actions."
+  },
+  "13:c1:en-classic-r1:13.02": {
+   "ru": "Will call — «позвонит», she — «она», later — «позже». I will wait — «я подожду», we will bring — «мы принесём».",
+   "uk": "Will call — «зателефонує», she — «вона», later — «пізніше». I will wait — «я зачекаю», we will bring — «ми принесемо».",
+   "en": "Will call means “will phone later”, and she means a woman. I will wait and we will bring are other plans."
+  },
+  "13:c1:en-classic-r1:13.03": {
+   "ru": "Will bring — «принесём», we — «мы», cups — «чашки». Wait outside — «подождать снаружи», call later — «позвонить позже».",
+   "uk": "Will bring — «принесемо», we — «ми», cups — «чашки». Wait outside — «зачекати надворі», call later — «зателефонувати пізніше».",
+   "en": "Will bring means “will bring later”, and we means “us”. Wait outside and call later are other plans."
+  },
+  "13:c2:en-classic-r1:13.06": {
+   "ru": "Will take — «возьму», I — «я», bag — «сумка». She will send — «она пришлёт», he will open — «он откроет».",
+   "uk": "Will take — «візьму», I — «я», bag — «сумка». She will send — «вона надішле», he will open — «він відкриє».",
+   "en": "Will take means “will take”, and I means “me”. She will send and he will open are other people’s plans."
+  },
+  "13:c2:en-classic-r1:13.08": {
+   "ru": "Will send — «пришлёт», после will слово остаётся простым. She — «она», photo — «фото». Call later и open the gate — другое.",
+   "uk": "Will send — «надішле», після will слово лишається простим. She — «вона», photo — «фото». Call later і open the gate — інше.",
+   "en": "Will send means “will send”, and send stays simple after will. Call later and open the gate are other plans."
+  },
+  "13:c3:en-classic-r1:13.17": {
+   "ru": "Split the bill — «разделить счёт», we — «мы». Put the kettle on — «поставить чайник», carry the box — «понести коробку».",
+   "uk": "Split the bill — «розділити рахунок», we — «ми». Put the kettle on — «поставити чайник», carry the box — «понести коробку».",
+   "en": "Split the bill means “share the cost”, and we means “us”. Put the kettle on and carry are other jobs."
+  },
+  "13:c3:en-classic-r1:13.18": {
+   "ru": "Ask about — «спросить о», luggage storage — «хранение багажа». Put the kettle on — «поставить чайник», split the bill — «разделить счёт».",
+   "uk": "Ask about — «запитати про», luggage storage — «зберігання багажу». Put the kettle on — «поставити чайник», split the bill — «розділити рахунок».",
+   "en": "Ask about means “ask”, and luggage storage is the topic. Put the kettle on and split the bill are other jobs."
+  },
+  "13:c4:en-classic-r1:13.19": {
+   "ru": "There will be — «будет», small fee — «небольшая плата», delivery — «доставка». Другие фразы про суп и поезд.",
+   "uk": "There will be — «буде», small fee — «невелика плата», delivery — «доставка». Інші фрази про суп і потяг.",
+   "en": "There will be means “there will be”, and small fee for delivery is the thing. The others talk about soup and a train."
+  },
+  "13:c4:en-classic-r1:13.46": {
+   "ru": "Light здесь — «светофор», turn green — «загореться зелёным», in a moment — «через мгновение». Timetable — «расписание».",
+   "uk": "Light тут — «світлофор», turn green — «загорітися зеленим», in a moment — «за мить». Timetable — «розклад».",
+   "en": "Light here means the traffic light, and turn green is what it does. Timetable and train are other topics."
+  },
+  "13:c5:en-classic-r1:13.45": {
+   "ru": "Will rain — «будет дождь», after lunch — «после обеда». Lock up — «закрыть», collect the keys — «забрать ключи».",
+   "uk": "Will rain — «буде дощ», after lunch — «після обіду». Lock up — «замкнути», collect the keys — «забрати ключі».",
+   "en": "Will rain means “it will rain”, and after lunch says when. Lock up and collect the keys are other things."
+  },
+  "13:c5:en-classic-r1:13.49": {
+   "ru": "Do not worry — «не волнуйся», I will lock up — «я всё закрою». Rain after lunch — про дождь, collect the keys — про брата.",
+   "uk": "Do not worry — «не хвилюйся», I will lock up — «я все замкну». Rain after lunch — про дощ, collect the keys — про брата.",
+   "en": "Do not worry means “do not be afraid”, and I will lock up is the promise. The others talk about rain or keys."
+  },
+  "13:c6:en-classic-r1:13.24": {
+   "ru": "Will not stay — «не останется», he — «он», overnight — «на ночь». We will not leave — «мы не уйдём».",
+   "uk": "Will not stay — «не залишиться», he — «він», overnight — «на ніч». We will not leave — «ми не підемо».",
+   "en": "Will not stay means “will not stay”, and he means one man. We will not leave and she will not forget are other people."
+  },
+  "13:c6:en-classic-r1:13.27": {
+   "ru": "Will not leave — «не уйдём», we — «мы», without you — «без вас». Will carry — «понесу» без not, will not be late — «не опоздаю».",
+   "uk": "Will not leave — «не підемо», we — «ми», without you — «без вас». Will carry — «понесу» без not, will not be late — «не запізнюся».",
+   "en": "Will not leave means “will not go”, and without you says who stays. The others are about carrying or being late."
+  },
+  "13:c7:en-classic-r1:13.30": {
+   "ru": "Will not last — «не продержится», all day — «весь день». Fit in the locker — «поместиться в шкафчик», open — «открыться».",
+   "uk": "Will not last — «не протримається», all day — «увесь день». Fit in the locker — «поміститися в шафку», open — «відкритися».",
+   "en": "Will not last means “will not stay powered”, and battery is the thing. Fit and open are about other things."
+  },
+  "13:c7:en-classic-r1:13.28": {
+   "ru": "Will not open — «не откроется», shop — «магазин», tomorrow — «завтра». Will not last — «не продержится», stay — «останется».",
+   "uk": "Will not open — «не відкриється», shop — «магазин», tomorrow — «завтра». Will not last — «не протримається», stay — «залишиться».",
+   "en": "Will not open means “will stay closed”, and shop and tomorrow match the task. Last and stay are other things."
+  },
+  "13:c8:en-classic-r1:13.34": {
+   "ru": "Will в начале делает вопрос. It rain — «будет дождь», tomorrow — «завтра». Where will you meet и will you be home — другое.",
+   "uk": "Will на початку робить питання. It rain — «буде дощ», tomorrow — «завтра». Where will you meet і will you be home — інше.",
+   "en": "Will first makes a question. Will it rain means “is it going to rain”; the others ask where or about home."
+  },
+  "13:c8:en-classic-r1:13.38": {
+   "ru": "When — «когда» стоит первым, потом will. Parcel — «посылка», arrive — «прийти». Where — «где», how much — «сколько».",
+   "uk": "When — «коли» стоїть першим, потім will. Parcel — «посилка», arrive — «прибути». Where — «де», how much — «скільки».",
+   "en": "When comes first and means “at what time”. Where means “place” and how much means “price”."
+  },
+  "13:c8:en-classic-r1:13.40": {
+   "ru": "How much — «сколько», потом will it cost — «будет стоить». When — «когда», where — «где».",
+   "uk": "How much — «скільки», потім will it cost — «коштуватиме». When — «коли», where — «де».",
+   "en": "How much means “what price”, and will it cost follows. When and where ask about time and place."
+  },
+  "14:c1:en-classic-r1:14.05": {
+   "ru": "Wider — wide и r: «шире». Seat — «сиденье». Warmer — «теплее», faster — «быстрее».",
+   "uk": "Wider — wide і r: «ширше». Seat — «сидіння». Warmer — «тепліше», faster — «швидше».",
+   "en": "Wider means “more wide”. Warmer and faster are about other things."
+  },
+  "14:c1:en-classic-r1:14.08": {
+   "ru": "Faster — fast и er: «быстрее». Lift — «лифт». Warmer — «теплее», shorter — «короче».",
+   "uk": "Faster — fast і er: «швидше». Lift — «ліфт». Warmer — «тепліше», shorter — «коротше».",
+   "en": "Faster means “more fast”, and lift is the thing. Warmer and shorter are different words."
+  },
+  "14:c2:en-classic-r1:14.12": {
+   "ru": "Quicker than — «быстрее, чем»: er и than. Stairs — «лестница», lift — «лифт». Lighter и cheaper — другое.",
+   "uk": "Quicker than — «швидше, ніж»: er і than. Stairs — «сходи», lift — «ліфт». Lighter і cheaper — інше.",
+   "en": "Quicker than means “faster than”. Lighter and cheaper are about other things."
+  },
+  "14:c2:en-classic-r1:14.13": {
+   "ru": "Lighter than mine — «легче моей»: than — «чем», mine — «мой». Her bag — «её сумка». Warmer и cheaper — другое.",
+   "uk": "Lighter than mine — «легша за мою»: than — «ніж», mine — «мій». Her bag — «її сумка». Warmer і cheaper — інше.",
+   "en": "Lighter than mine means “less heavy than mine”. Than means “compared with”."
+  },
+  "14:c3:en-classic-r1:14.24": {
+   "ru": "Reliable — длинное слово, поэтому перед ним more: «надёжнее». Screen — «экран». Useful — «полезный», quicker — «быстрее».",
+   "uk": "Reliable — довге слово, тому перед ним more: «надійніший». Screen — «екран». Useful — «корисний», quicker — «швидше».",
+   "en": "Reliable is a long word, so we put more before it. Useful and quicker are other words."
+  },
+  "14:c3:en-classic-r1:14.43": {
+   "ru": "More comfortable — «удобнее»: слово длинное, поэтому more. Than my old ones — «чем старые». Shoes — «туфли».",
+   "uk": "More comfortable — «зручніші»: слово довге, тому more. Than my old ones — «ніж старі». Shoes — «туфлі».",
+   "en": "Comfortable is long, so more goes before it. Than my old ones compares with old shoes."
+  },
+  "14:c4:en-classic-r1:14.27": {
+   "ru": "Less — «менее», stressful — «напряжённый»; morning shift — «утренняя смена». Crowded — про дорогу, clearer — «понятнее».",
+   "uk": "Less — «менш», stressful — «напружений»; morning shift — «ранкова зміна». Crowded — про дорогу, clearer — «зрозуміліше».",
+   "en": "Less means “not so much”, and stressful is what is less. Clearer and crowded are other words."
+  },
+  "14:c4:en-classic-r1:14.25": {
+   "ru": "Clearer — clear и er: «понятнее». Written instructions — «письменные инструкции». More reliable — «надёжнее», less stressful — «менее напряжённая».",
+   "uk": "Clearer — clear і er: «зрозуміліше». Written instructions — «письмові інструкції». More reliable — «надійніший», less stressful — «менш напружена».",
+   "en": "Clearer means “more clear”, and written instructions is the subject. More and less are used in the other phrases."
+  },
+  "14:c5:en-classic-r1:14.29": {
+   "ru": "Worse — «хуже», слово меняется само, без er. Weather — «погода». Better — «лучше», less crowded — «менее людный».",
+   "uk": "Worse — «гірше», слово змінюється саме, без er. Weather — «погода». Better — «краще», less crowded — «менш людний».",
+   "en": "Worse means “more bad”, and it changes by itself. Better means the opposite."
+  },
+  "14:c5:en-classic-r1:14.30": {
+   "ru": "Better — «лучше», слово меняется само. Return ticket — «билет туда и обратно», value — «выгода». Better for children — про детей.",
+   "uk": "Better — «краще», слово змінюється саме. Return ticket — «квиток туди й назад», value — «вигода». Better for children — про дітей.",
+   "en": "Better means “more good”, and return ticket is the subject. Less crowded and better for children are other ideas."
+  },
+  "14:c6:en-classic-r1:14.20": {
+   "ru": "Busy кончается на y: y стало i и добавили er — busier. Than yesterday — «чем вчера». Easier и quieter — другие слова.",
+   "uk": "Busy закінчується на y: y стало i й додали er — busier. Than yesterday — «ніж учора». Easier і quieter — інші слова.",
+   "en": "Busy ends in y, so y becomes i and er is added: busier. Than yesterday compares days."
+  },
+  "14:c6:en-classic-r1:14.17": {
+   "ru": "Warmer than yours — «теплее твоего»: than — «чем», yours — «твой». This room is warmer — без than, her bag — про сумку.",
+   "uk": "Warmer than yours — «тепліше за твоє»: than — «ніж», yours — «твій». This room is warmer — без than, her bag — про сумку.",
+   "en": "Warmer than yours compares two coats. Than means “compared with”."
+  },
+  "14:c7:en-classic-r1:14.35": {
+   "ru": "Safe кончается на e, поэтому добавили только st: safest, «самый безопасный». Crossing — «переход». Safer — «безопаснее».",
+   "uk": "Safe закінчується на e, тому додали тільки st: safest, «найбезпечніший». Crossing — «перехід». Safer — «безпечніше».",
+   "en": "Safe ends in e, so only st is added: safest. Safer compares two things; most useful and best are other words."
+  },
+  "14:c7:en-classic-r1:14.40": {
+   "ru": "Useful — длинное слово, поэтому the most useful — «самая полезная». Page — «страница». Safest и best — другое.",
+   "uk": "Useful — довге слово, тому the most useful — «найкорисніша». Page — «сторінка». Safest і best — інше.",
+   "en": "Useful is long, so we say the most useful. Safest and best are different words."
+  },
+  "14:c8:en-classic-r1:14.47": {
+   "ru": "Easy кончается на y: y стало i и добавили est — easiest, «проще всего». Side entrance — «боковой вход». Later и smallest — другое.",
+   "uk": "Easy закінчується на y: y стало i й додали est — easiest, «найпростіше». Side entrance — «бічний вхід». Later і smallest — інше.",
+   "en": "Easy ends in y, so y becomes i and est is added: easiest. Later and smallest are other words."
+  },
+  "14:c8:en-classic-r1:14.50": {
+   "ru": "Later than — «позже, чем»; even — «ещё». Second bus — «второй автобус». Larger — про номер, smallest — про шкафчик.",
+   "uk": "Later than — «пізніше, ніж»; even — «ще». Second bus — «другий автобус». Larger — про номер, smallest — про шафку.",
+   "en": "Later than compares two buses, and even adds “still more”. Larger and smallest are about rooms and lockers."
+  },
+  "14:c8:en-classic-r1:14.48": {
+   "ru": "Smallest — small и est: «самый маленький». Locker — «шкафчик», big enough — «достаточно большой». Easiest — «проще всего».",
+   "uk": "Smallest — small і est: «найменший». Locker — «шафка», big enough — «достатньо великий». Easiest — «найпростіше».",
+   "en": "Smallest is small with est, meaning “the least”. Easiest and larger are other words."
+  },
+  "15:c1:en-classic-r1:15.02": {
+   "ru": "Mine значит «моё», вещь после него не называют: coat уже назван. My coat — вещь идёт после my. Yours — «твоя».",
+   "uk": "Mine означає «моє», річ після нього не називають: coat уже названо. My coat — річ іде після my. Yours — «твоя».",
+   "en": "Mine stands without the thing after it, because coat is already named. My needs the thing right after it."
+  },
+  "15:c1:en-classic-r1:15.04": {
+   "ru": "Yours — «твоя», без вещи после; bag уже назван. That — «вон та». My coat и mine — про «моё».",
+   "uk": "Yours — «твоя», без речі після; bag уже названо. That — «он та». My coat і mine — про «моє».",
+   "en": "Yours means “belonging to you”, with no thing after it. My coat and mine are about “my”."
+  },
+  "15:c2:en-classic-r1:15.08": {
+   "ru": "Ours — «наши», без вещи после. These seats — «эти места». Our seats — вещь после our; theirs — «их».",
+   "uk": "Ours — «наші», без речі після. These seats — «ці місця». Our seats — річ після our; theirs — «їхні».",
+   "en": "Ours stands without the thing after it. Our needs seats right after it; theirs means “them”."
+  },
+  "15:c2:en-classic-r1:15.10": {
+   "ru": "Theirs — «им принадлежат», без вещи после. Tickets — «билеты». Hers — «её», ours — «наши».",
+   "uk": "Theirs — «належать їм», без речі після. Tickets — «квитки». Hers — «її», ours — «наші».",
+   "en": "Theirs means “belonging to them”, with no thing after it. Hers and ours mean other people."
+  },
+  "15:c3:en-classic-r1:15.14": {
+   "ru": "His — «его», перед вещью; jacket — «куртка», hall — «прихожая». Our — «наши», their — «их».",
+   "uk": "His — «його», перед річчю; jacket — «куртка», hall — «передпокій». Our — «наші», their — «їхні».",
+   "en": "His means “belonging to him”, and the thing comes right after it. Our and their are other people."
+  },
+  "15:c3:en-classic-r1:15.15": {
+   "ru": "Our — «наши», towels — «полотенца», damp — «влажные». Your — «твой», my — «мои».",
+   "uk": "Our — «наші», towels — «рушники», damp — «вологі». Your — «твій», my — «мої».",
+   "en": "Our means “belonging to us”, and towels comes right after it. Your and my are other people."
+  },
+  "15:c4:en-classic-r1:15.18": {
+   "ru": "She — «она», поэтому her: «свой». Badge — «бейдж». He left his — про него, I found my — про себя.",
+   "uk": "She — «вона», тому her: «свій». Badge — «бейдж». He left his — про нього, I found my — про себе.",
+   "en": "She goes with her, since she is a woman. His and my belong to he and I."
+  },
+  "15:c4:en-classic-r1:15.19": {
+   "ru": "He — «он», поэтому his: «свой». Notebook — «блокнот». Found my — про «я», her — про «она».",
+   "uk": "He — «він», тому his: «свій». Notebook — «блокнот». Found my — про «я», her — про «вона».",
+   "en": "He goes with his, since he is a man. My and her belong to I and she."
+  },
+  "15:c5:en-classic-r1:15.22": {
+   "ru": "Whose — «чьи», keys — «ключи»; keys с s, поэтому are these. Whose coat — «чьё пальто», Is the bike his — без whose.",
+   "uk": "Whose — «чиї», keys — «ключі»; keys з s, тому are these. Whose coat — «чиє пальто», Is the bike his — без whose.",
+   "en": "Whose means “belonging to whom”, and keys needs are these. The others ask about a coat or a bike."
+  },
+  "15:c5:en-classic-r1:15.25": {
+   "ru": "Is в начале, his — «его»: «велосипед его?». Hers — «её» про перчатки, whose — «чьи».",
+   "uk": "Is на початку, his — «його»: «велосипед його?». Hers — «її» про рукавички, whose — «чиї».",
+   "en": "Is first makes the question, and his means “belonging to him”. Hers and whose are in the other phrases."
+  },
+  "15:c6:en-classic-r1:15.37": {
+   "ru": "Your — «ваше», mine — «моё», без вещи после. Dry — «сухой», wet — «мокрый». Theirs и his — другие слова.",
+   "uk": "Your — «ваш», mine — «моє», без речі після. Dry — «сухий», wet — «мокрий». Theirs і his — інші слова.",
+   "en": "Your goes before towel, and mine stands alone. Dry and wet say which is which."
+  },
+  "15:c6:en-classic-r1:15.36": {
+   "ru": "Her bike — «её велосипед», than his — «чем его»; his стоит без вещи. Ours и theirs — «наша», «их».",
+   "uk": "Her bike — «її велосипед», than his — «ніж його»; his стоїть без речі. Ours і theirs — «наша», «їхня».",
+   "en": "Her goes before bike, and his stands alone after than. Ours and theirs mean other people."
+  },
+  "15:c7:en-classic-r1:15.40": {
+   "ru": "Own стоит между her и desk: «свой собственный». She — «она», поэтому her. Our own — «мы», your own — «вы».",
+   "uk": "Own стоїть між her і desk: «власний». She — «вона», тому her. Our own — «ми», your own — «ви».",
+   "en": "Own goes between her and desk. She goes with her; our and your belong to we and you."
+  },
+  "15:c7:en-classic-r1:15.41": {
+   "ru": "Your own — «своё»; charger — «зарядка». Please — «пожалуйста». Our own cups, her own desk — про «мы» и «она».",
+   "uk": "Your own — «своє»; charger — «зарядка». Please — «будь ласка». Our own cups, her own desk — про «ми» і «вона».",
+   "en": "Your own means “yours, not someone else’s”, and charger is the thing. Our and her are about other people."
+  },
+  "15:c8:en-classic-r1:15.44": {
+   "ru": "Children’s — children и ’s: «детей». Boots — «ботинки», by the door — «у двери». Neighbour’s и brother’s — другие.",
+   "uk": "Children’s — children і ’s: «дітей». Boots — «черевики», by the door — «біля дверей». Neighbour’s і brother’s — інші.",
+   "en": "Children’s means “belonging to the children”. Neighbour’s and brother’s are other people."
+  },
+  "15:c8:en-classic-r1:15.45": {
+   "ru": "Neighbour’s — neighbour и ’s: «соседа». Gate — «ворота», open — «открыты». Brother’s helmet и children’s boots — другое.",
+   "uk": "Neighbour’s — neighbour і ’s: «сусіда». Gate — «ворота», open — «відчинені». Brother’s helmet і children’s boots — інше.",
+   "en": "Neighbour’s means “belonging to the neighbour”. Brother’s helmet and children’s boots are other things."
+  },
+  "16:c1:en-classic-r1:16.05": {
+   "ru": "Set off вместе — «отправиться». Harbour — «порт», before lunch — «до обеда». Come back — «вернуться», pulls in — «прибывает».",
+   "uk": "Set off разом — «вирушити». Harbour — «порт», before lunch — «до обіду». Come back — «повернутися», pulls in — «прибуває».",
+   "en": "Set off together means “start a trip”. Come back and pull in mean other things."
+  },
+  "16:c1:en-classic-r1:16.08": {
+   "ru": "Come back вместе — «вернуться»: back — «назад». Rehearsal — «репетиция». Wake up — «проснуться», set off — «отправиться».",
+   "uk": "Come back разом — «повернутися»: back — «назад». Rehearsal — «репетиція». Wake up — «прокинутися», set off — «вирушити».",
+   "en": "Come back together means “return”. Wake up and set off mean other things."
+  },
+  "16:c2:en-classic-r1:16.09": {
+   "ru": "Get on — «сесть в транспорт», station — «станция». Get up — «вставать», gets off — «выходить из транспорта».",
+   "uk": "Get on — «сісти в транспорт», station — «станція». Get up — «вставати», gets off — «виходити з транспорту».",
+   "en": "Get on means “board a bus or train”. Get up and get off mean other things."
+  },
+  "16:c2:en-classic-r1:16.10": {
+   "ru": "Gets off — «выйти из транспорта»; про неё get с s. Next stop — «следующая остановка». Get on — «сесть», get up — «встать».",
+   "uk": "Gets off — «вийти з транспорту»; про неї get з s. Next stop — «наступна зупинка». Get on — «сісти», get up — «встати».",
+   "en": "Gets off means “leave a bus or train”, and she needs the s. Get on and get up mean other things."
+  },
+  "16:c3:en-classic-r1:16.14": {
+   "ru": "Turn off — «выключить», fan — «вентилятор». Turn on the lamp — «включить лампу», turn the heater off — про обогреватель.",
+   "uk": "Turn off — «вимкнути», fan — «вентилятор». Turn on the lamp — «увімкнути лампу», turn the heater off — про обігрівач.",
+   "en": "Turn off means “switch off”, and fan is the thing. Turn on is the opposite; heater is another thing."
+  },
+  "16:c3:en-classic-r1:16.15": {
+   "ru": "Turn off — «выключить», off можно ставить и после вещи. Heater — «обогреватель». Turn the oven on — «включить духовку».",
+   "uk": "Turn off — «вимкнути», off можна ставити й після речі. Heater — «обігрівач». Turn the oven on — «увімкнути духовку».",
+   "en": "Off means “switch off”, and it can come after the thing. Turn the oven on is the opposite."
+  },
+  "16:c4:en-classic-r1:16.18": {
+   "ru": "Pick up — «взять, поднять»; it ставят в середину: pick it up. Turn it on — «включить», pick up the phone — вещь названа.",
+   "uk": "Pick up — «взяти, підняти»; it ставлять усередину: pick it up. Turn it on — «увімкнути», pick up the phone — річ названа.",
+   "en": "Pick it up has it in the middle. Turn it on is about switching, and pick up the phone names the thing."
+  },
+  "16:c4:en-classic-r1:16.17": {
+   "ru": "Pick up — «поднять»; phone — «трубка». Turn on the lamp — «включить», pick it up — вместо названия it.",
+   "uk": "Pick up — «підняти»; phone — «слухавка». Turn on the lamp — «увімкнути», pick it up — замість назви it.",
+   "en": "Pick up the phone names the thing. Turn on the lamp is about switching; pick it up uses it."
+  },
+  "16:c5:en-classic-r1:16.23": {
+   "ru": "Look up — «поискать»; looked — look и ed. Address — «адрес». Wrote down — «записал», filled in — «заполнил».",
+   "uk": "Look up — «пошукати»; looked — look і ed. Address — «адреса». Wrote down — «записав», filled in — «заповнив».",
+   "en": "Look up means “search for”, and looked is look with ed. Wrote down and filled in are other actions."
+  },
+  "16:c5:en-classic-r1:16.26": {
+   "ru": "Fill in — «заполнить»; it в середине: filled it in. Pick it up — «возьмите», wrote down — «записал».",
+   "uk": "Fill in — «заповнити»; it посередині: filled it in. Pick it up — «візьміть», wrote down — «записав».",
+   "en": "Fill in means “complete a form”, and it goes in the middle. Pick it up and wrote down mean other things."
+  },
+  "16:c6:en-classic-r1:16.28": {
+   "ru": "Hand in — «сдать»; them — «их», в середине: handed them in. Try on — «примерить», handed in the keys — про ключи.",
+   "uk": "Hand in — «здати»; them — «їх», посередині: handed them in. Try on — «приміряти», handed in the keys — про ключі.",
+   "en": "Hand in means “give over”, and them goes in the middle. Try on and the keys are in other phrases."
+  },
+  "16:c6:en-classic-r1:16.29": {
+   "ru": "Try on — «примерить»; tried — y стало i и ed. Jacket — «куртка». Hand in — «сдать».",
+   "uk": "Try on — «приміряти»; tried — y стало i й ed. Jacket — «куртка». Hand in — «здати».",
+   "en": "Try on means “put on to check”. Hand in means “give over”."
+  },
+  "16:c7:en-classic-r1:16.50": {
+   "ru": "Put away — «убрать на место»; milk — «молоко». Gave back — «вернула», drop off — «высадить».",
+   "uk": "Put away — «прибрати на місце»; milk — «молоко». Gave back — «повернула», drop off — «висадити».",
+   "en": "Put away means “tidy up”, and milk is the thing. Gave back and drop off mean other things."
+  },
+  "16:c7:en-classic-r1:16.45": {
+   "ru": "Find out — «узнать»; fare — «стоимость проезда». Give back — «вернуть», drop off — «высадить».",
+   "uk": "Find out — «дізнатися»; fare — «вартість проїзду». Give back — «повернути», drop off — «висадити».",
+   "en": "Find out means “learn”, and fare is the price of the trip. Give back and drop off mean other things."
+  },
+  "16:c8:en-classic-r1:16.39": {
+   "ru": "Came across — «наткнуться» (come — came). Old photo — «старая фотография». Look after — «присматривать», get over — «оправиться».",
+   "uk": "Came across — «натрапити» (come — came). Old photo — «стара світлина». Look after — «доглядати», get over — «оговтатися».",
+   "en": "Came across means “find by chance”. Look after and get over mean other things."
+  },
+  "16:c8:en-classic-r1:16.49": {
+   "ru": "Went off — «зазвонить» (go — went). Alarm — «будильник». Ran out — «закончиться», went on — «продолжаться».",
+   "uk": "Went off — «задзвонити» (go — went). Alarm — «будильник». Ran out — «закінчитися», went on — «тривати».",
+   "en": "Went off means “start to ring”, and alarm is what rings. Ran out and went on mean other things."
+  },
+  "17:c1:en-classic-r1:17.02": {
+   "ru": "She значит «она», а с she ставят is. Waiting — «ждёт». We и I — это «мы» и «я».",
+   "uk": "She означає «вона», а з she ставлять is. Waiting — «чекає». We та I — це «ми» та «я».",
+   "en": "She means “she” and goes with is. The others start with We and I."
+  },
+  "17:c1:en-classic-r1:17.03": {
+   "ru": "Leaving значит «уходим», а с we ставят are. Другие фразы — про ожидание.",
+   "uk": "Leaving означає «йдемо», а з we ставлять are. Інші фрази — про очікування.",
+   "en": "Leaving means “leaving”, and We goes with are. The others are about waiting."
+  },
+  "17:c2:en-classic-r1:17.07": {
+   "ru": "Ringing значит «звонит». Телефон один, поэтому is, а двери — это уже are.",
+   "uk": "Ringing означає «дзвонить». Телефон один, тому is, а двері — це вже are.",
+   "en": "Ringing is “ringing”. One phone goes with is; the doors phrase has are."
+  },
+  "17:c2:en-classic-r1:17.08": {
+   "ru": "Doors — это несколько дверей, поэтому are. Closing значит «закрываются».",
+   "uk": "Doors — це кілька дверей, тому are. Closing означає «зачиняються».",
+   "en": "Doors are many, so it is are. Closing is “closing”."
+  },
+  "17:c3:en-classic-r1:17.13": {
+   "ru": "Washing значит «моет», а hands — «руки». В других фразах — запись адреса и пальто.",
+   "uk": "Washing означає «миє», а hands — «руки». В інших фразах — запис адреси й пальто.",
+   "en": "Washing means “washing” and hands means “hands”. The others are about an address and a coat."
+  },
+  "17:c3:en-classic-r1:17.17": {
+   "ru": "Write down значит «записывать», address — «адрес». Остальные фразы про чемоданы и руки.",
+   "uk": "Write down означає «записувати», address — «адреса». Інші фрази — про валізи й руки.",
+   "en": "Writing down is “writing down”; address is the word for it. The others are suitcases and hands."
+  },
+  "17:c4:en-classic-r1:17.19": {
+   "ru": "Neighbour — «сосед», fixing — «чинит», bike — «велосипед». Остальное — про ребёнка и матрас.",
+   "uk": "Neighbour — «сусід», fixing — «ремонтує», bike — «велосипед». Решта — про дитину й матрац.",
+   "en": "Neighbour, fixing and bike are the key words. The others talk about a baby and a mattress."
+  },
+  "17:c4:en-classic-r1:17.20": {
+   "ru": "Sleeping значит «спит», baby — «малыш», cot — «кроватка». Про соседа здесь ничего нет.",
+   "uk": "Sleeping означає «спить», baby — «малюк», cot — «ліжечко». Про сусіда тут нічого немає.",
+   "en": "Sleeping is “sleeping”, baby is “baby”, cot is “cot”. Nothing here about a neighbour."
+  },
+  "17:c5:en-classic-r1:17.28": {
+   "ru": "Is стоит в начале — это вопрос. Kettle — «чайник», boiling — «кипит».",
+   "uk": "Is стоїть на початку — це питання. Kettle — «чайник», boiling — «кипить».",
+   "en": "Is comes first, so it is a question. Kettle and boiling are the key words."
+  },
+  "17:c5:en-classic-r1:17.26": {
+   "ru": "Where значит «куда» и стоит первым, потом are we. Going — «идём».",
+   "uk": "Where означає «куди» й стоїть першим, потім are we. Going — «йдемо».",
+   "en": "Where means “where” and goes first, then are we. Going is “going”."
+  },
+  "17:c6:en-classic-r1:17.38": {
+   "ru": "Not после is даёт «не», raining — «идёт дождь», now — «сейчас». Принтер и автобус — другое.",
+   "uk": "Not після is дає «не», raining — «йде дощ», now — «зараз». Принтер і автобус — інше.",
+   "en": "Not after is gives “not”; raining and now mean rain and “now”. Printer and bus are other phrases."
+  },
+  "17:c6:en-classic-r1:17.40": {
+   "ru": "Bus — «автобус», not после is даёт «не», moving — «едет». Принтер и дождь — другое.",
+   "uk": "Bus — «автобус», not після is дає «не», moving — «їде». Принтер і дощ — інше.",
+   "en": "Bus is “bus”, not gives “not”, moving is “moving”. Printer and rain are different."
+  },
+  "17:c7:en-classic-r1:17.42": {
+   "ru": "Normally — «обычно» (works без ing), а today she is helping — «сегодня помогает» (с ing).",
+   "uk": "Normally — «зазвичай» (works без ing), а today she is helping — «сьогодні допомагає» (з ing).",
+   "en": "Normally and works are the usual routine; today she is helping is what happens now."
+  },
+  "17:c7:en-classic-r1:17.44": {
+   "ru": "Learning значит «учусь», swim — «плавать», summer — «лето». Остальные фразы про езду и работу.",
+   "uk": "Learning означає «вчуся», swim — «плавати», summer — «літо». Інші фрази — про їзду й роботу.",
+   "en": "Learning, swim and summer are the key words. The others are about driving and working."
+  },
+  "17:c8:en-classic-r1:17.47": {
+   "ru": "English — «английский», getting better — «становится лучше». Остальное про дверь и отчёт.",
+   "uk": "English — «англійська», getting better — «стає кращою». Решта — про двері й звіт.",
+   "en": "English plus getting better means it is improving. The others are door and report."
+  },
+  "17:c8:en-classic-r1:17.50": {
+   "ru": "Just — «как раз», finishing — «заканчиваю», report — «отчёт», tablet — «планшет».",
+   "uk": "Just — «саме», finishing — «закінчую», report — «звіт», tablet — «планшет».",
+   "en": "Just, finishing, report and tablet fit the task. The other phrases are about English and a door."
+  },
+  "18:c1:en-classic-r1:18.03": {
+   "ru": "Close значит «закройте», window — «окно», please — «пожалуйста». Другие фразы — про линию и «сюда».",
+   "uk": "Close означає «зачиніть», window — «вікно», please — «будь ласка». Інші фрази — про лінію й «сюди».",
+   "en": "Close is “close”, window is “window”, please is “please”. The others are line and this way."
+  },
+  "18:c1:en-classic-r1:18.05": {
+   "ru": "Stand значит «стоять, встать», line — «линия, черта». Close — «закрыть», come — «приходить».",
+   "uk": "Stand означає «стояти, стати», line — «лінія, межа». Close — «зачинити», come — «приходити».",
+   "en": "Stand is “stand” and line is “line”. Close and come mean something else."
+  },
+  "18:c2:en-classic-r1:18.07": {
+   "ru": "Watch значит «следить, смотреть», step — «ступенька». Здесь watch — не «часы». Leave и hold — другое.",
+   "uk": "Watch означає «стежити, дивитися», step — «сходинка». Тут watch — не «годинник». Leave і hold — інше.",
+   "en": "Watch means “watch out” here, and step is “step”. Leave and hold are other actions."
+  },
+  "18:c2:en-classic-r1:18.10": {
+   "ru": "Put значит «положите», under — «под», seat — «сиденье». В других фразах hold и leave — «держитесь», «оставьте».",
+   "uk": "Put означає «покладіть», under — «під», seat — «сидіння». В інших фразах hold і leave — «тримайтеся», «залиште».",
+   "en": "Put is “put” and under is “under”. Hold and leave in the others mean other things."
+  },
+  "18:c3:en-classic-r1:18.14": {
+   "ru": "Press значит «нажимать», red — «красный». Feed — «кормить», touch — «прикасаться».",
+   "uk": "Press означає «натискати», red — «червоний». Feed — «годувати», touch — «торкатися».",
+   "en": "Press is “press” and red is “red”. Feed and touch are different actions."
+  },
+  "18:c3:en-classic-r1:18.18": {
+   "ru": "Feed значит «кормить», dog — «собака». Block — «загораживать», press — «нажимать».",
+   "uk": "Feed означає «годувати», dog — «собака». Block — «загороджувати», press — «натискати».",
+   "en": "Feed is “feed” and dog is “dog”. Block and press do not fit."
+  },
+  "18:c4:en-classic-r1:18.19": {
+   "ru": "Open — «открыть», parcel — «посылка», yet здесь «пока». Другие фразы — про собаку и кран.",
+   "uk": "Open — «відкрити», parcel — «посилка», yet тут «поки що». Інші фрази — про собаку й кран.",
+   "en": "Open and parcel match the task, and yet means “yet”. The others are dog and tap."
+  },
+  "18:c4:en-classic-r1:18.20": {
+   "ru": "Park значит «парковаться», in front of — «перед». Остальные фразы про лестницу и кран.",
+   "uk": "Park означає «паркуватися», in front of — «перед». Інші фрази — про сходи й кран.",
+   "en": "Park is “park” and in front of is “in front of”. The others are stairs and tap."
+  },
+  "18:c5:en-classic-r1:18.23": {
+   "ru": "Return значит «вернуть», key — «ключ», reception — «стойка регистрации». Switch и sign — другое.",
+   "uk": "Return означає «повернути», key — «ключ», reception — «рецепція». Switch і sign — інше.",
+   "en": "Return is “return”, key is “key”, reception is “reception”. Switch and sign are different."
+  },
+  "18:c5:en-classic-r1:18.24": {
+   "ru": "Switch off значит «выключить», phone — «телефон». Return — «вернуть», sign — «подписать».",
+   "uk": "Switch off означає «вимкнути», phone — «телефон». Return — «повернути», sign — «підписати».",
+   "en": "Switch off means “turn off” and phone is “phone”. Return and sign are other actions."
+  },
+  "18:c6:en-classic-r1:18.29": {
+   "ru": "Save значит «придержать», seat — «место». Speak louder — «громче», bring — «взять с собой».",
+   "uk": "Save означає «притримати», seat — «місце». Speak louder — «голосніше», bring — «принести».",
+   "en": "Save me a seat means keep a place for me. Speak and bring are different."
+  },
+  "18:c6:en-classic-r1:18.30": {
+   "ru": "Bring значит «возьмите с собой», copy — «копия», receipt — «чек». Save и speak — другое.",
+   "uk": "Bring означає «візьміть із собою», copy — «копія», receipt — «чек». Save і speak — інше.",
+   "en": "Bring is “bring”, copy is “copy”, receipt is “receipt”. Save and speak do not fit."
+  },
+  "18:c7:en-classic-r1:18.38": {
+   "ru": "Push значит «толкать», gently — «осторожно, мягко». Pull — «тянуть на себя».",
+   "uk": "Push означає «штовхати», gently — «обережно, м'яко». Pull — «тягнути на себе».",
+   "en": "Push is “push” and gently is “gently”. Pull is the opposite."
+  },
+  "18:c7:en-classic-r1:18.40": {
+   "ru": "Ring значит «звонить», bell — «звонок», once — «один раз». Use и push — другое.",
+   "uk": "Ring означає «дзвонити», bell — «дзвінок», once — «один раз». Use і push — інше.",
+   "en": "Ring is “ring”, bell is “bell”, once is “one time”. Use and push do not fit."
+  },
+  "18:c8:en-classic-r1:18.42": {
+   "ru": "Let's значит «давайте», wait — «ждать», others — «остальные». Check и take — другое.",
+   "uk": "Let's означає «давайте», wait — «чекати», others — «інші». Check і take — інше.",
+   "en": "Let's means “let's”, wait is “wait”, others is “the others”. Check and take do not fit."
+  },
+  "18:c8:en-classic-r1:18.46": {
+   "ru": "Not после Let's даёт «давайте не», rush — «спешить». В других фразах not нет.",
+   "uk": "Not після Let's дає «не будемо», rush — «поспішати». В інших фразах not немає.",
+   "en": "Not after Let's means “let's not”, and rush is “hurry”. The others have no not."
+  },
+  "19:c1:en-classic-r1:19.02": {
+   "ru": "In значит «в, внутри», drawer — «ящик». Keys — несколько, поэтому are. On — «на», under — «под».",
+   "uk": "In означає «в, всередині», drawer — «шухляда». Keys — кілька, тому are. On — «на», under — «під».",
+   "en": "In means “inside” and drawer is “drawer”. On and under put the keys elsewhere."
+  },
+  "19:c1:en-classic-r1:19.07": {
+   "ru": "Under значит «под», bill — «счёт». В другой фразе on — «на» и in — «в».",
+   "uk": "Under означає «під», bill — «рахунок». В іншій фразі on — «на» та in — «в».",
+   "en": "Under means “under” and bill is “bill”. On and in are different places."
+  },
+  "19:c2:en-classic-r1:19.10": {
+   "ru": "Above значит «над», clock — «часы». Beside — «рядом с», behind — «за».",
+   "uk": "Above означає «над», clock — «годинник». Beside — «поруч із», behind — «за».",
+   "en": "Above means “above” and clock is “clock”. Beside and behind are other places."
+  },
+  "19:c2:en-classic-r1:19.08": {
+   "ru": "Behind значит «за, позади», coat — «пальто». Beside — «рядом с», above — «над».",
+   "uk": "Behind означає «за, позаду», coat — «пальто». Beside — «поруч із», above — «над».",
+   "en": "Behind means “behind” and coat is “coat”. Beside and above are other places."
+  },
+  "19:c3:en-classic-r1:19.22": {
+   "ru": "Next to значит «рядом с», bakery — «пекарня», library — «библиотека». Opposite — «напротив», near — «рядом».",
+   "uk": "Next to означає «поруч із», bakery — «пекарня», library — «бібліотека». Opposite — «навпроти», near — «поруч».",
+   "en": "Next to means “next to”, bakery and library are the places. Near and opposite are other words."
+  },
+  "19:c3:en-classic-r1:19.24": {
+   "ru": "In front of значит «перед», taxi rank — «стоянка такси». Behind — «за», opposite — «напротив».",
+   "uk": "In front of означає «перед», taxi rank — «стоянка таксі». Behind — «за», opposite — «навпроти».",
+   "en": "In front of means “in front of” and taxi rank is “taxi rank”. Behind and opposite differ."
+  },
+  "19:c4:en-classic-r1:19.40": {
+   "ru": "Sit — «сядьте», between — «между», me and Anna — «мной и Анной». В другой фразе скамейка под деревом.",
+   "uk": "Sit — «сядьте», between — «між», me and Anna — «мною та Анною». В іншій фразі лавка під деревом.",
+   "en": "Sit between me and Anna uses between for two people. The others are bike and bench."
+  },
+  "19:c4:en-classic-r1:19.27": {
+   "ru": "Under значит «под», bench — «скамейка», tree — «дерево». Between — «между».",
+   "uk": "Under означає «під», bench — «лавка», tree — «дерево». Between — «між».",
+   "en": "Under means “under”, bench is “bench”, tree is “tree”. Between means something else."
+  },
+  "19:c5:en-classic-r1:19.15": {
+   "ru": "In the taxi — «в такси». На автобусе говорят on, а lobby — «вестибюль», это другая фраза.",
+   "uk": "In the taxi — «у таксі». Про автобус кажуть on, а lobby — «вестибюль», це інша фраза.",
+   "en": "He is “he” and in the taxi is “in the taxi”. On the bus is for the bus; lobby is another place."
+  },
+  "19:c5:en-classic-r1:19.17": {
+   "ru": "At the airport — «в аэропорту»; at — место как точка на карте. Aisle — «проход», lobby — «вестибюль».",
+   "uk": "At the airport — «в аеропорту»; at — місце як точка на карті. Aisle — «прохід», lobby — «вестибюль».",
+   "en": "At the airport is “at the airport”. Aisle and lobby are other places."
+  },
+  "19:c6:en-classic-r1:19.34": {
+   "ru": "Hang значит «повесьте», towel — «полотенце», hook — «крючок». Slide — «подсуньте», put — «положите».",
+   "uk": "Hang означає «повісьте», towel — «рушник», hook — «гачок». Slide — «підсуньте», put — «покладіть».",
+   "en": "Hang is “hang”, towel is “towel”, hook is “hook”. Slide and put are other actions."
+  },
+  "19:c6:en-classic-r1:19.35": {
+   "ru": "Slide значит «подсуньте», note — «записка», under — «под». Put и leave — другое.",
+   "uk": "Slide означає «підсуньте», note — «записка», under — «під». Put і leave — інше.",
+   "en": "Slide is “slide”, note is “note”, under is “under”. Put and leave are other actions."
+  },
+  "19:c7:en-classic-r1:19.42": {
+   "ru": "Hole — «дыра», in my pocket — «в моём кармане». Stain — «пятно», а полотенце — про полку.",
+   "uk": "Hole — «дірка», in my pocket — «в моїй кишені». Stain — «пляма», а рушник — про полицю.",
+   "en": "Hole is “hole” and in my pocket is “in my pocket”. Stain and towel are different."
+  },
+  "19:c7:en-classic-r1:19.45": {
+   "ru": "Towel — «полотенце», bottom shelf — «нижняя полка». Top drawer — верхний ящик, ground floor — первый этаж.",
+   "uk": "Towel — «рушник», bottom shelf — «нижня полиця». Top drawer — верхня шухляда, ground floor — перший поверх.",
+   "en": "Towel plus bottom shelf fits. Top drawer and ground floor are other places."
+  },
+  "20:c1:en-classic-r1:20.02": {
+   "ru": "Envelope — «конверт», и перед ним an: слово начинается со звука «э». Pen — «ручка», idea — «идея».",
+   "uk": "Envelope — «конверт», і перед ним an: слово починається зі звуку «е». Pen — «ручка», idea — «ідея».",
+   "en": "Envelope is “envelope” and starts with a vowel sound, so an. The others are pen and idea."
+  },
+  "20:c1:en-classic-r1:20.06": {
+   "ru": "Have значит «есть», idea — «идея», и перед ней an. Pen — «ручка», appointment — «встреча».",
+   "uk": "Have означає «є», idea — «ідея», і перед нею an. Pen — «ручка», appointment — «зустріч».",
+   "en": "I have an idea: idea is “idea” and takes an. Pen and appointment are other things."
+  },
+  "20:c2:en-classic-r1:20.08": {
+   "ru": "Omelette — «омлет», и начинается со звука «о», поэтому an. Flat и sandwich начинаются с другого звука — там a.",
+   "uk": "Omelette — «омлет», і починається зі звуку «о», тому an. Flat і sandwich — з іншого звуку, там a.",
+   "en": "Omelette starts with an “o” sound, so an. Flat and sandwich start with other sounds."
+  },
+  "20:c2:en-classic-r1:20.09": {
+   "ru": "Flat — «квартира», и начинается со звука «ф», поэтому a. Omelette — «омлет», там an.",
+   "uk": "Flat — «квартира», і починається зі звуку «ф», тому a. Omelette — «омлет», там an.",
+   "en": "Flat is “flat” and starts with an “f” sound, so a. Omelette is the one with an."
+  },
+  "20:c3:en-classic-r1:20.12": {
+   "ru": "Сначала a key — «какой-то ключ», потом the key — «тот самый». Rusty значит «ржавый».",
+   "uk": "Спочатку a key — «якийсь ключ», потім the key — «той самий». Rusty означає «іржавий».",
+   "en": "First a key, then the key for the same one. Rusty means “rusty”."
+  },
+  "20:c3:en-classic-r1:20.20": {
+   "ru": "Сначала an envelope, потом the envelope — «тот самый». Sealed значит «запечатанный».",
+   "uk": "Спочатку an envelope, потім the envelope — «той самий». Sealed означає «запечатаний».",
+   "en": "First an envelope, then the envelope for the same one. Sealed is “sealed”."
+  },
+  "20:c4:en-classic-r1:20.24": {
+   "ru": "Слова in this bottle говорят, какая вода, поэтому the. Bottle — «бутылка», cold — «холодный».",
+   "uk": "Слова in this bottle кажуть, яка вода, тому the. Bottle — «пляшка», cold — «холодний».",
+   "en": "In this bottle tells which water, so the. Bottle is “bottle”."
+  },
+  "20:c4:en-classic-r1:20.48": {
+   "ru": "Last — «последний», поэтому the: ясно, какой кусок. Slice — «кусок», want — «хотеть».",
+   "uk": "Last — «останній», тому the: ясно, який шматок. Slice — «шматок», want — «хотіти».",
+   "en": "Last tells which slice, so the. Slice is “slice”."
+  },
+  "20:c5:en-classic-r1:20.33": {
+   "ru": "Sleep — это сон вообще, поэтому без a и the. Остальные фразы про воду и собак.",
+   "uk": "Sleep — це сон загалом, тому без a та the. Інші фрази — про воду й собак.",
+   "en": "Sleep here means sleep in general, so no a or the. The others are water and dogs."
+  },
+  "20:c5:en-classic-r1:20.40": {
+   "ru": "Fruit — фрукты вообще, без слов. Market — известный рынок, поэтому the. Coffee и dogs — другое.",
+   "uk": "Fruit — фрукти загалом, без слів. Market — відомий ринок, тому the. Coffee та dogs — інше.",
+   "en": "Fruit is fruit in general, so no a or the. Market is a known place, so the market."
+  },
+  "20:c6:en-classic-r1:20.39": {
+   "ru": "Music — музыка вообще, поэтому без a и the. Listens to — «слушает». Train и English — другое.",
+   "uk": "Music — музика загалом, тому без a та the. Listens to — «слухає». Train та English — інше.",
+   "en": "Music is music in general, so no a or the. Train and English are other phrases."
+  },
+  "20:c6:en-classic-r1:20.49": {
+   "ru": "Слова by card значат «картой», перед card ничего не ставят. Meal — «еда». Work и English — другое.",
+   "uk": "Слова by card означають «карткою», перед card нічого не ставлять. Meal — «їжа». Work та English — інше.",
+   "en": "By card means “by card”, with nothing before card. Meal is “meal”."
+  },
+  "20:c7:en-classic-r1:20.46": {
+   "ru": "Hour — «час»: буква h не читается, слово начинается со звука «а», поэтому an. Uniform и egg — другое.",
+   "uk": "Hour — «година»: літера h не читається, слово починається зі звуку «а», тому an. Uniform та egg — інше.",
+   "en": "Hour sounds like “our”, a vowel sound, so an. Uniform and egg are in other phrases."
+  },
+  "20:c7:en-classic-r1:20.43": {
+   "ru": "Egg — «яйцо», начинается со звука «э», поэтому an. Uniform начинается со звука «ю», там a.",
+   "uk": "Egg — «яйце», починається зі звуку «е», тому an. Uniform починається зі звуку «ю», там a.",
+   "en": "Egg starts with a vowel sound, so an. Uniform starts with a “yoo” sound, so a."
+  },
+  "21:c1:en-classic-r1:21.02": {
+   "ru": "Something говорит про вещь, а burning значит «горит». Someone — это человек.",
+   "uk": "Something каже про річ, а burning означає «горить». Someone — це людина.",
+   "en": "Something is for a thing and burning means “burning”. Someone is for a person."
+  },
+  "21:c1:en-classic-r1:21.04": {
+   "ru": "Something — «что-то», off the shelf — «с полки». Someone — про человека, не подходит.",
+   "uk": "Something — «щось», off the shelf — «з полиці». Someone — про людину, не підходить.",
+   "en": "Something is for a thing, off the shelf is “off the shelf”. Someone is for a person."
+  },
+  "21:c2:en-classic-r1:21.08": {
+   "ru": "Something — вещь, «что-то»; in my shoe — «в моей туфле». Someone — человек, somewhere — место.",
+   "uk": "Something — річ, «щось»; in my shoe — «в моєму черевику». Someone — людина, somewhere — місце.",
+   "en": "Something is for a thing and in my shoe is the place. Someone is a person, somewhere a place."
+  },
+  "21:c2:en-classic-r1:21.10": {
+   "ru": "Somewhere значит «где-нибудь, место», to sit — «сесть». Someone — человек, something — вещь.",
+   "uk": "Somewhere означає «десь, місце», to sit — «сісти». Someone — людина, something — річ.",
+   "en": "Somewhere is for a place and to sit is “to sit”. Someone and something are a person and a thing."
+  },
+  "21:c3:en-classic-r1:21.13": {
+   "ru": "Anything — «что-нибудь», else — «ещё». Anyone — человек, anywhere — место.",
+   "uk": "Anything — «щось», else — «ще». Anyone — людина, anywhere — місце.",
+   "en": "Anything is for a thing and else is “else”. Anyone is a person, anywhere a place."
+  },
+  "21:c3:en-classic-r1:21.17": {
+   "ru": "Anywhere значит «где-нибудь», to park — «припарковаться». Anyone — человек, anything — вещь.",
+   "uk": "Anywhere означає «десь», to park — «припаркуватися». Anyone — людина, anything — річ.",
+   "en": "Anywhere is for a place and to park is “to park”. Anyone and anything are a person and a thing."
+  },
+  "21:c4:en-classic-r1:21.22": {
+   "ru": "Nothing значит «ничего», yet — «пока». Nowhere — «нигде», а в другой фразе речь о том, что было после обеда.",
+   "uk": "Nothing означає «нічого», yet — «поки що». Nowhere — «ніде», а в іншій фразі мова про те, що було після обіду.",
+   "en": "Nothing means “nothing” and yet means “yet”. Nowhere is about a place."
+  },
+  "21:c4:en-classic-r1:21.25": {
+   "ru": "Nothing — «ничего», happened — «произошло», after lunch — «после обеда». Nobody — «никто», nowhere — «нигде».",
+   "uk": "Nothing — «нічого», happened — «сталося», after lunch — «після обіду». Nobody — «ніхто», nowhere — «ніде».",
+   "en": "Nothing and after lunch fit. Nobody is a person, nowhere is a place."
+  },
+  "21:c5:en-classic-r1:21.42": {
+   "ru": "Did not уже даёт «не», поэтому дальше anything, а не nothing. Anywhere — место, anyone — человек.",
+   "uk": "Did not уже дає «не», тому далі anything, а не nothing. Anywhere — місце, anyone — людина.",
+   "en": "Did not already says “not”, so anything follows. Anywhere is a place, anyone a person."
+  },
+  "21:c5:en-classic-r1:21.43": {
+   "ru": "Did not уже даёт «не», поэтому после него anywhere — «никуда». Anything — вещь, anyone — человек.",
+   "uk": "Did not уже дає «не», тому після нього anywhere — «нікуди». Anything — річ, anyone — людина.",
+   "en": "Did not already says “not”, so anywhere follows, for a place. Anything and anyone differ."
+  },
+  "21:c6:en-classic-r1:21.33": {
+   "ru": "Everyone значит «каждый», поэтому has. Остальные фразы — про Тома и билет.",
+   "uk": "Everyone означає «кожен», тому has. Інші фрази — про Тома й квиток.",
+   "en": "Everyone means “everyone” and takes has, a seat for each. The others are Tom and a ticket."
+  },
+  "21:c6:en-classic-r1:21.47": {
+   "ru": "Except значит «кроме», Tom — «Том». Everyone — «все», is here — «здесь».",
+   "uk": "Except означає «крім», Tom — «Том». Everyone — «усі», is here — «тут».",
+   "en": "Except Tom means “except Tom” and is here means “here”. The others are seat and desk."
+  },
+  "21:c7:en-classic-r1:21.37": {
+   "ru": "Everywhere значит «везде», looked for — «искали», receipt — «квитанция». Everything — «всё».",
+   "uk": "Everywhere означає «всюди», looked for — «шукали», receipt — «чек». Everything — «все».",
+   "en": "Everywhere is for places and looked for is “looked for”. Everything is for things."
+  },
+  "21:c7:en-classic-r1:21.36": {
+   "ru": "Everything — «всё», fits — «помещается», in one bag — «в одну сумку». Остальные фразы про проверку и готовность.",
+   "uk": "Everything — «все», fits — «поміщається», in one bag — «в одну сумку». Інші фрази — про перевірку й готовність.",
+   "en": "Everything fits in one bag: fits means “fits”. The others are about checking and ready."
+  },
+  "21:c8:en-classic-r1:21.46": {
+   "ru": "Someone — «кто-то», nobody — «никто», but — «но». В другой фразе anyone и anything.",
+   "uk": "Someone — «хтось», nobody — «ніхто», but — «але». В іншій фразі anyone та anything.",
+   "en": "Someone is “someone”, nobody is “nobody”, and but joins them. The others use any words."
+  },
+  "21:c8:en-classic-r1:21.45": {
+   "ru": "Anything — «что-нибудь», I should bring — «что мне взять с собой». Someone и nobody — другая фраза.",
+   "uk": "Anything — «щось», I should bring — «що мені принести». Someone та nobody — інша фраза.",
+   "en": "Anything is for a thing and I should bring is what to bring. Someone and nobody are elsewhere."
+  },
+  "22:c1:en-classic-r1:22.03": {
+   "ru": "Cooking значит «готовка», practice — «практика». Swimming — «плавание», waiting — «ожидание».",
+   "uk": "Cooking означає «приготування», practice — «практика». Swimming — «плавання», waiting — «очікування».",
+   "en": "Cooking means “cooking”, practice is “practice”. Swimming and waiting are other words."
+  },
+  "22:c1:en-classic-r1:22.06": {
+   "ru": "Waiting здесь значит «ожидание», not much fun — «не очень приятно». Swimming и walking — другое.",
+   "uk": "Waiting тут означає «очікування», not much fun — «не дуже весело». Swimming та walking — інше.",
+   "en": "Waiting means “waiting” and not much fun means “not very pleasant”. Swimming and walking differ."
+  },
+  "22:c2:en-classic-r1:22.05": {
+   "ru": "Driving — «езда за рулём», fog — «туман», difficult — «сложный». Working и reading — другое.",
+   "uk": "Driving — «їзда за кермом», fog — «туман», difficult — «важкий». Working та reading — інше.",
+   "en": "Driving is “driving”, fog is “fog”, difficult is “hard”. Working and reading differ."
+  },
+  "22:c2:en-classic-r1:22.10": {
+   "ru": "Working nights — «работа в ночную смену», suits — «подходит». Reading и driving — другое.",
+   "uk": "Working nights — «робота вночі», suits — «підходить». Reading та driving — інше.",
+   "en": "Working nights means night shifts and suits means “suits”. Reading and driving differ."
+  },
+  "22:c3:en-classic-r1:22.13": {
+   "ru": "Avoids значит «избегает», driving — «ездить за рулём». Admitted и imagine — другие слова.",
+   "uk": "Avoids означає «уникає», driving — «їздити за кермом». Admitted та imagine — інші слова.",
+   "en": "Avoids means “avoids” and driving is “driving”. Admitted and imagine do not fit."
+  },
+  "22:c3:en-classic-r1:22.44": {
+   "ru": "Admitted — «призналась», taking the wrong bag — «взяла не ту сумку». Enjoys и imagine — другое.",
+   "uk": "Admitted — «зізналася», taking the wrong bag — «взяла не ту сумку». Enjoys та imagine — інше.",
+   "en": "Admitted is “admitted” and taking the wrong bag says what she took. Enjoys and imagine differ."
+  },
+  "22:c4:en-classic-r1:22.19": {
+   "ru": "Suggested — «предложил», sharing — «делить», taxi — «такси». Considered и practise — другое.",
+   "uk": "Suggested — «запропонував», sharing — «ділити», taxi — «таксі». Considered та practise — інше.",
+   "en": "Suggested is “suggested” and sharing is “sharing”. Considered and practise differ."
+  },
+  "22:c4:en-classic-r1:22.20": {
+   "ru": "Practise значит «тренироваться», speaking — «говорить», after class — «после занятий».",
+   "uk": "Practise означає «тренуватися», speaking — «говорити», after class — «після заняття».",
+   "en": "Practise is “practise”, speaking is “speaking”, after class is “after class”."
+  },
+  "22:c5:en-classic-r1:22.49": {
+   "ru": "Remember — «помнить», locking — «запирать», front door — «входная дверь». Stopped и try — другое.",
+   "uk": "Remember — «пам'ятати», locking — «замикати», front door — «вхідні двері». Stopped та try — інше.",
+   "en": "Remember is “remember”, locking is “locking”, front door is “front door”. Stopped and try differ."
+  },
+  "22:c5:en-classic-r1:22.50": {
+   "ru": "Stopped to buy — «остановились, чтобы купить», carried on walking — «продолжили идти». Это не «перестали».",
+   "uk": "Stopped to buy — «зупинилися, щоб купити», carried on walking — «продовжили йти». Це не «перестали».",
+   "en": "Stopped to buy means “stopped in order to buy”, then carried on walking."
+  },
+  "22:c6:en-classic-r1:22.37": {
+   "ru": "Thinking about — «думает о», changing jobs — «менять работу». Interested in — «интересуется».",
+   "uk": "Thinking about — «думає про», changing jobs — «змінювати роботу». Interested in — «цікавиться».",
+   "en": "Thinking about is “thinking about” and changing jobs is “changing jobs”. Interested in differs."
+  },
+  "22:c6:en-classic-r1:22.38": {
+   "ru": "Complained about — «жаловались на», waiting in the rain — «ждать под дождём». Moving и interested — другое.",
+   "uk": "Complained about — «скаржилися на», waiting in the rain — «чекати під дощем». Moving та interested — інше.",
+   "en": "Complained about is “complained about”, waiting in the rain says what. Moving and interested differ."
+  },
+  "22:c7:en-classic-r1:22.32": {
+   "ru": "Afraid of — «боится», waking — «будить». Tired of carrying и left without saying — другие фразы.",
+   "uk": "Afraid of — «боїться», waking — «будити». Tired of carrying та left without saying — інші фрази.",
+   "en": "Afraid of means “afraid of” and waking is “waking”. Tired of and without are other phrases."
+  },
+  "22:c7:en-classic-r1:22.26": {
+   "ru": "Without — «без», saying goodbye — «попрощаться», left — «ушла». Tired и afraid — другое.",
+   "uk": "Without — «без», saying goodbye — «попрощатися», left — «пішла». Tired та afraid — інше.",
+   "en": "Without is “without” and saying goodbye is “saying goodbye”. Tired and afraid differ."
+  },
+  "22:c8:en-classic-r1:22.40": {
+   "ru": "Thanked me for — «поблагодарила за то, что», lending — «давать на время». Look forward to и insisted on — другое.",
+   "uk": "Thanked me for — «подякувала за те, що», lending — «позичати». Look forward to та insisted on — інше.",
+   "en": "Thanked me for is “thanked me for” and lending is “lending”. Look forward to and insisted on differ."
+  },
+  "22:c8:en-classic-r1:22.35": {
+   "ru": "Insisted on — «настояла на том, чтобы», paying her share — «заплатить свою долю». Look forward to и apologised — другое.",
+   "uk": "Insisted on — «наполягала на тому, щоб», paying her share — «заплатити свою частку». Look forward to та apologised — інше.",
+   "en": "Insisted on is “insisted on” and paying her share is “paying her share”. The others differ."
+  },
+  "23:c1:en-classic-r1:23.02": {
+   "ru": "Rooms — несколько, поэтому are. Cleaned (clean + ed) — «убираются», daily — «каждый день».",
+   "uk": "Rooms — кілька, тому are. Cleaned (clean + ed) — «прибираються», daily — «щодня».",
+   "en": "Rooms are many, so are. Cleaned and daily fit the task."
+  },
+  "23:c1:en-classic-r1:23.03": {
+   "ru": "Letters — несколько, поэтому are. Collected — «забирают», at noon — «в полдень». Uniforms и gate — другое.",
+   "uk": "Letters — кілька, тому are. Collected — «забирають», at noon — «опівдні». Uniforms та gate — інше.",
+   "en": "Letters are many, so are. Collected and at noon fit. Uniforms and gate differ."
+  },
+  "23:c2:en-classic-r1:23.07": {
+   "ru": "Sold — особое слово от sell, «продаются». Tickets — несколько, поэтому are. Shown и kept — другое.",
+   "uk": "Sold — особливе слово від sell, «продаються». Tickets — кілька, тому are. Shown та kept — інше.",
+   "en": "Sold is the special word for sell. Tickets are many, so are."
+  },
+  "23:c2:en-classic-r1:23.06": {
+   "ru": "Kept — особое слово от keep, «хранится». Key один, поэтому is. Spare — «запасной».",
+   "uk": "Kept — особливе слово від keep, «зберігається». Key один, тому is. Spare — «запасний».",
+   "en": "Kept is the special word for keep. One key, so is. Spare is “spare”."
+  },
+  "23:c3:en-classic-r1:23.12": {
+   "ru": "Seats — несколько, поэтому were. Reserved — «зарезервированы», for us — «для нас». Booked и found — другое.",
+   "uk": "Seats — кілька, тому were. Reserved — «зарезервовані», for us — «для нас». Booked та found — інше.",
+   "en": "Seats are many, so were. Reserved is “reserved” and for us is “for us”."
+  },
+  "23:c3:en-classic-r1:23.13": {
+   "ru": "Door одна, поэтому was. Repaired — «отремонтирована», on Friday — «в пятницу». Booked и found — другое.",
+   "uk": "Door одна, тому was. Repaired — «відремонтовано», on Friday — «в п'ятницю». Booked та found — інше.",
+   "en": "One door, so was. Repaired is “repaired” and on Friday is “on Friday”."
+  },
+  "23:c4:en-classic-r1:23.17": {
+   "ru": "Delayed — «задержан», because of — «из-за», fog — «туман». Parcel и receipt — другое.",
+   "uk": "Delayed — «затримано», because of — «через», fog — «туман». Parcel та receipt — інше.",
+   "en": "Delayed is “delayed”, because of is “because of”, fog is “fog”. Parcel and receipt differ."
+  },
+  "23:c4:en-classic-r1:23.20": {
+   "ru": "Sent — особое слово от send, «отправили». Wrong email address — «неверный адрес». Parcel и flight — другое.",
+   "uk": "Sent — особливе слово від send, «надіслали». Wrong email address — «неправильна адреса». Parcel та flight — інше.",
+   "en": "Sent is the special word for send. Wrong email address says where. Parcel and flight differ."
+  },
+  "23:c5:en-classic-r1:23.24": {
+   "ru": "Was стоит первым — это вопрос. Checked значит «проверили», bag — «сумка».",
+   "uk": "Was стоїть першим — це питання. Checked означає «перевірили», bag — «сумка».",
+   "en": "Was comes first, so it is a question. Checked is “checked” and bag is “bag”."
+  },
+  "23:c5:en-classic-r1:23.28": {
+   "ru": "How значит «как» и стоит первым, потом is. Deposit — «залог», returned — «возвращается».",
+   "uk": "How означає «як» й стоїть першим, потім is. Deposit — «застава», returned — «повертається».",
+   "en": "How means “how” and comes first, then is. Deposit and returned are the key words."
+  },
+  "23:c6:en-classic-r1:23.37": {
+   "ru": "Not после is даёт «не». Served — «подаётся», after nine — «после девяти». Garage и parking — другое.",
+   "uk": "Not після is дає «не». Served — «подається», after nine — «після дев'ятої». Garage та parking — інше.",
+   "en": "Not after is means “not”. Served is “served” and after nine is “after nine”."
+  },
+  "23:c6:en-classic-r1:23.40": {
+   "ru": "Was not — «не было», а parcel — одна посылка. Damaged — «повреждена». Garage и shoes — другое.",
+   "uk": "Was not — «не було», а parcel — одна посилка. Damaged — «пошкоджено». Garage та shoes — інше.",
+   "en": "Was not says it was not, for one parcel. Damaged is “damaged”."
+  },
+  "23:c7:en-classic-r1:23.42": {
+   "ru": "Will be значит «будет». Processed — «обработан», tomorrow — «завтра». Can be — «можно», в другой фразе.",
+   "uk": "Will be означає «буде». Processed — «оброблено», tomorrow — «завтра». Can be — «можна», в іншій фразі.",
+   "en": "Will be means “will be”. Processed and tomorrow fit. Can be means something else."
+  },
+  "23:c7:en-classic-r1:23.45": {
+   "ru": "Can be значит «можно». Replaced — «заменён», screen — «экран». Will be — «будет».",
+   "uk": "Can be означає «можна». Replaced — «замінено», screen — «екран». Will be — «буде».",
+   "en": "Can be means “can be”. Replaced is “replaced” and screen is “screen”. Will be differs."
+  },
+  "23:c8:en-classic-r1:23.49": {
+   "ru": "Bags — несколько, поэтому have been. Moved — «перенесены». Is being — «сейчас делают», has been — про одну вещь.",
+   "uk": "Bags — кілька, тому have been. Moved — «перенесено». Is being — «зараз роблять», has been — про одну річ.",
+   "en": "Bags are many, so have been. Moved is “moved”. Is being and has been fit other phrases."
+  },
+  "23:c8:en-classic-r1:23.50": {
+   "ru": "Message одно, поэтому has been. Forwarded — «перенаправлено». Bags — have been, street — is being.",
+   "uk": "Message одне, тому has been. Forwarded — «переслано». Bags — have been, street — is being.",
+   "en": "One message, so has been. Forwarded is “forwarded”. Bags and street are other phrases."
+  },
+  "24:c1:en-classic-r1:24.02": {
+   "ru": "Has — потому что речь о she. Found значит «нашла». Have lost и have finished — другие фразы.",
+   "uk": "Has — бо мова про she. Found означає «знайшла». Have lost та have finished — інші фрази.",
+   "en": "Has goes with she. Found is “found”. Have lost and have finished fit other tasks."
+  },
+  "24:c1:en-classic-r1:24.03": {
+   "ru": "Have — потому что we. Finished значит «закончили», lunch — «обед». Lost — «потерял», found — «нашла».",
+   "uk": "Have — бо we. Finished означає «закінчили», lunch — «обід». Lost — «втратив», found — «знайшла».",
+   "en": "Have goes with we. Finished is “finished” and lunch is “lunch”. Lost and found differ."
+  },
+  "24:c2:en-classic-r1:24.09": {
+   "ru": "Kettle один, поэтому has. Boiled значит «закипел». Parcel и passport — другое.",
+   "uk": "Kettle один, тому has. Boiled означає «закипів». Parcel та passport — інше.",
+   "en": "One kettle, so has. Boiled is “boiled”. Parcel and passport are in other phrases."
+  },
+  "24:c2:en-classic-r1:24.10": {
+   "ru": "Parcel одна, поэтому has. Arrived значит «прибыла». Kettle и passport — другое.",
+   "uk": "Parcel одна, тому has. Arrived означає «прибула». Kettle та passport — інше.",
+   "en": "One parcel, so has. Arrived is “arrived”. Kettle and passport differ."
+  },
+  "24:c3:en-classic-r1:24.14": {
+   "ru": "Already значит «уже», paid — «заплатил», has — потому что he. Unpacked и parked — другое.",
+   "uk": "Already означає «вже», paid — «заплатив», has — бо he. Unpacked та parked — інше.",
+   "en": "Already is “already”, paid is “paid”, and has goes with he. Unpacked and parked differ."
+  },
+  "24:c3:en-classic-r1:24.15": {
+   "ru": "Already — «уже», unpacked — «распаковали», have — потому что they. Paid и parked — другое.",
+   "uk": "Already — «вже», unpacked — «розпакували», have — бо they. Paid та parked — інше.",
+   "en": "Already is “already”, unpacked is “unpacked”, have goes with they. Paid and parked differ."
+  },
+  "24:c4:en-classic-r1:24.19": {
+   "ru": "Has not … yet значит «ещё не». Left — «уехал», bus — «автобус». Вопрос с Have — другая фраза.",
+   "uk": "Has not … yet означає «ще не». Left — «поїхав», bus — «автобус». Питання з Have — інша фраза.",
+   "en": "Has not … yet means “not yet”. Left is “left” and bus is “bus”. The question starts with Have."
+  },
+  "24:c4:en-classic-r1:24.20": {
+   "ru": "Have стоит первым — это вопрос. Yet в конце значит «уже?». Finished — «закончили».",
+   "uk": "Have стоїть першим — це питання. Yet наприкінці означає «вже?». Finished — «закінчили».",
+   "en": "Have comes first, so it is a question. Yet at the end means “already?”."
+  },
+  "24:c5:en-classic-r1:24.25": {
+   "ru": "Never значит «никогда», driven — особое слово от drive. Ever бывает в вопросах — это другие фразы.",
+   "uk": "Never означає «ніколи», driven — особливе слово від drive. Ever буває в питаннях — це інші фрази.",
+   "en": "Never means “never” and driven is the special word for drive. Ever is in the questions."
+  },
+  "24:c5:en-classic-r1:24.30": {
+   "ru": "Have you met значит «вы знакомы», met — особое слово от meet. Ever worked и ever lived — другое.",
+   "uk": "Have you met означає «ви знайомі», met — особливе слово від meet. Ever worked та ever lived — інше.",
+   "en": "Have you met asks if you know him. Met is the special word for meet."
+  },
+  "24:c6:en-classic-r1:24.32": {
+   "ru": "Since March — «с марта», has — потому что she. Worked — «работает до сих пор». For a year — про срок.",
+   "uk": "Since March — «з березня», has — бо she. Worked — «працює досі». For a year — про термін.",
+   "en": "Since March says when it began, and has goes with she. For a year gives a length."
+  },
+  "24:c6:en-classic-r1:24.34": {
+   "ru": "Has had — «имеет», since school — «со школы». I have lived here for a year — другая фраза.",
+   "uk": "Has had — «має», since school — «зі школи». I have lived here for a year — інша фраза.",
+   "en": "Since school says when it began, and has goes with he. The others are other phrases."
+  },
+  "24:c7:en-classic-r1:24.37": {
+   "ru": "How long — «как давно» и стоит первым, потом have you. Had значит «иметь». Away и worked — другое.",
+   "uk": "How long — «як давно» й стоїть першим, потім have you. Had означає «мати». Away та worked — інше.",
+   "en": "How long comes first, then have you. Had is the special word for have."
+  },
+  "24:c7:en-classic-r1:24.38": {
+   "ru": "How long — «как долго» и стоит первым, потом has she. Have you had — это про «вас».",
+   "uk": "How long — «як довго» й стоїть першим, потім has she. Have you had — це про «вас».",
+   "en": "How long comes first, then has she. The other question is about you."
+  },
+  "24:c8:en-classic-r1:24.44": {
+   "ru": "Today ещё не закончился, поэтому has called. Ten minutes ago и yesterday называют другое время — там без has.",
+   "uk": "Today ще не закінчився, тому has called. Ten minutes ago та yesterday — інший час, там без has.",
+   "en": "Today is not over, so has called. Ten minutes ago and yesterday name a past time."
+  },
+  "24:c8:en-classic-r1:24.50": {
+   "ru": "Ten minutes ago говорит, когда именно, поэтому просто left, без has. Has called — другая фраза.",
+   "uk": "Ten minutes ago каже, коли саме, тому просто left, без has. Has called — інша фраза.",
+   "en": "Ten minutes ago says exactly when, so just left, with no has."
+  },
+  "25:c1:en-classic-r1:25.02": {
+   "ru": "She значит «она», а was driving — «ехала за рулём». He и We в других вариантах — «он» и «мы».",
+   "uk": "She означає «вона», а was driving — «їхала за кермом». He і We в інших варіантах — «він» і «ми».",
+   "en": "She means “she”, and was driving means “was driving”. The others start with He and We."
+  },
+  "25:c1:en-classic-r1:25.05": {
+   "ru": "He значит «он», а was cooking — «готовил». I was reading — это про себя, We were — про нас.",
+   "uk": "He означає «він», а was cooking — «готував». I was reading — про себе, We were — про нас.",
+   "en": "He means “he”, and was cooking means “was cooking”. The others are about I and we."
+  },
+  "25:c2:en-classic-r1:25.07": {
+   "ru": "Carrying значит «несла», а she — «она». Дети и «я проверял адрес» — другие фразы.",
+   "uk": "Carrying означає «несла», а she — «вона». Діти й «я перевіряв адресу» — інші фрази.",
+   "en": "Carrying means “carrying”, and she means “she”. The others are about children and about checking an address."
+  },
+  "25:c2:en-classic-r1:25.10": {
+   "ru": "Children — «дети», это несколько человек, поэтому were, а не was. Sleeping значит «спали».",
+   "uk": "Children — «діти», це кілька людей, тому were, а не was. Sleeping означає «спали».",
+   "en": "Children are many people, so it is were, not was. Sleeping means “sleeping”."
+  },
+  "25:c3:en-classic-r1:25.13": {
+   "ru": "At seven значит «в семь», а were having breakfast — «завтракали». Куртка и барьер — другие фразы.",
+   "uk": "At seven означає «о сьомій», а were having breakfast — «снідали». Куртка й шлагбаум — інші фрази.",
+   "en": "At seven means “at seven”, and having breakfast means eating breakfast. The others are about a jacket and a barrier."
+  },
+  "25:c3:en-classic-r1:25.16": {
+   "ru": "Слова that day значат «в тот день», а wearing a waterproof jacket — «на мне была водонепроницаемая куртка».",
+   "uk": "Слова that day означають «того дня», а wearing a waterproof jacket — «на мені була водонепроникна куртка».",
+   "en": "That day means “that day”, and wearing a waterproof jacket is what the task describes. Walking and breakfast are other things."
+  },
+  "25:c4:en-classic-r1:25.18": {
+   "ru": "Dog — «собака», barking — «лаяла», by the handrail — «у поручня». Дождь и водитель — другие слова.",
+   "uk": "Dog — «собака», barking — «гавкала», by the handrail — «біля поручня». Дощ і водій — інші слова.",
+   "en": "Dog means “dog” and barking means “barking”. Rain and driver are different words."
+  },
+  "25:c4:en-classic-r1:25.19": {
+   "ru": "Driver значит «водитель», а checking the brakes — «проверял тормоза». Dog и rain — «собака» и «дождь».",
+   "uk": "Driver означає «водій», а checking the brakes — «перевіряв гальма». Dog і rain — «собака» і «дощ».",
+   "en": "Driver means “driver”, and checking the brakes is what he did. Dog and rain are other subjects."
+  },
+  "25:c5:en-classic-r1:25.24": {
+   "ru": "Started to rain — «начался дождь», а when соединяет это с walking home — «шёл домой».",
+   "uk": "Started to rain — «почався дощ», а when поєднує це з walking home — «йшов додому».",
+   "en": "When joins walking home with it started to rain. The other phrases have eating and a closing shop."
+  },
+  "25:c5:en-classic-r1:25.50": {
+   "ru": "Looking for shelter — «искали укрытие», the rain stopped — «дождь прекратился», а when их соединяет.",
+   "uk": "Looking for shelter — «шукали укриття», the rain stopped — «дощ припинився», а when їх поєднує.",
+   "en": "Looking for shelter means they searched for a place to hide, and when joins it with the rain stopped."
+  },
+  "25:c6:en-classic-r1:25.28": {
+   "ru": "Heard a bang — «услышали хлопок», а while we were packing — «пока собирали вещи».",
+   "uk": "Heard a bang — «почули хлопок», а while we were packing — «поки збирали речі».",
+   "en": "Heard a bang means they heard a loud noise, and while we were packing says what was going on. The others have a ferry and a wave."
+  },
+  "25:c6:en-classic-r1:25.46": {
+   "ru": "Waved — «помахал», а while we were crossing — «когда мы переходили». Ключи и паром — другое.",
+   "uk": "Waved — «помахав», а while we were crossing — «коли ми переходили». Ключі й пором — інше.",
+   "en": "Waved means “waved”, and while we were crossing says when. Keys and the ferry are in other phrases."
+  },
+  "25:c7:en-classic-r1:25.32": {
+   "ru": "Was в начале делает вопрос, she — «она», waiting for the driver — «ждала водителя». Where и What — другие вопросы.",
+   "uk": "Was на початку робить питання, she — «вона», waiting for the driver — «чекала водія». Where і What — інші питання.",
+   "en": "Was at the start makes a question, and she means “she”. Where and What ask about a place and a thing."
+  },
+  "25:c7:en-classic-r1:25.34": {
+   "ru": "Where значит «где», а were you sitting — «вы сидели». Остальные вопросы про работу и про ожидание.",
+   "uk": "Where означає «де», а were you sitting — «ви сиділи». Решта питань — про роботу й очікування.",
+   "en": "Where means “where”, and sitting means “sitting”. The others ask about working and waiting."
+  },
+  "25:c8:en-classic-r1:25.38": {
+   "ru": "После was стоит not — «не». Listening to the announcement — «слушал объявление», а he — «он».",
+   "uk": "Після was стоїть not — «не». Listening to the announcement — «слухав оголошення», а he — «він».",
+   "en": "Not after was means “not”. He is “he”, and listening to the announcement is what he did not do."
+  },
+  "25:c8:en-classic-r1:25.39": {
+   "ru": "Were not blocking — «не загораживали», the entrance — «вход». We — «мы», поэтому were.",
+   "uk": "Were not blocking — «не загороджували», the entrance — «вхід». We — «ми», тому were.",
+   "en": "We is many people, so it is were. Not blocking the entrance is the thing they did not do."
+  },
+  "26:c1:en-classic-r1:26.03": {
+   "ru": "If she asks — «если она попросит», а после запятой I will help — «я помогу».",
+   "uk": "If she asks — «якщо вона попросить», а після коми I will help — «я допоможу».",
+   "en": "If she asks means “if she asks”, and I will help comes after the comma. The others are about waiting and calling."
+  },
+  "26:c1:en-classic-r1:26.09": {
+   "ru": "In the shade — «в тени», а I will get the key — «я принесу ключ». Звонок и дождь — другие фразы.",
+   "uk": "In the shade — «в тіні», а I will get the key — «я принесу ключ». Дзвінок і дощ — інші фрази.",
+   "en": "In the shade means “in the shade”, and get the key is what you will do. Calling and rain are other phrases."
+  },
+  "26:c2:en-classic-r1:26.13": {
+   "ru": "Walk — «пойдём пешком», if the bus is full — «если автобус полон». Цена и знак — другие фразы.",
+   "uk": "Walk — «підемо пішки», if the bus is full — «якщо автобус повний». Ціна й знак — інші фрази.",
+   "en": "Walk means going on foot, and if the bus is full is the reason. The others are about a price and a sign."
+  },
+  "26:c2:en-classic-r1:26.14": {
+   "ru": "Stop — «остановится», sign — «знак». Автобус и прогноз — в других фразах.",
+   "uk": "Stop — «зупиниться», sign — «знак». Автобус і прогноз — в інших фразах.",
+   "en": "Stop means “stop” and sign means “sign”. The others talk about a bus and a forecast."
+  },
+  "26:c3:en-classic-r1:26.29": {
+   "ru": "Printer jams — «принтер заклинит», lift the lid — «поднимите крышку». Latch — защёлка, light — индикатор.",
+   "uk": "Printer jams — «принтер заклинить», lift the lid — «підніміть кришку». Latch — засувка, light — індикатор.",
+   "en": "Printer jams and lid are the printer words. Latch and light are other things."
+  },
+  "26:c3:en-classic-r1:26.28": {
+   "ru": "Слова there is a leak значат «есть протечка», а call reception — «позвоните на ресепшн».",
+   "uk": "Слова there is a leak означають «є протікання», а call reception — «зателефонуйте на рецепцію».",
+   "en": "There is a leak means “there is a leak”, and call reception says what to do. Printer and light are other problems."
+  },
+  "26:c4:en-classic-r1:26.33": {
+   "ru": "What will we do — «что мы будем делать», if the office is closed — «если офис закрыт». Will you wait и Where — другие вопросы.",
+   "uk": "What will we do — «що ми будемо робити», if the office is closed — «якщо офіс зачинений». Will you wait і Where — інші питання.",
+   "en": "What asks “what”, and if the office is closed is the reason. The others ask about waiting and a place."
+  },
+  "26:c4:en-classic-r1:26.40": {
+   "ru": "Where значит «куда», will you go — «вы пойдёте», а if it starts to rain — «если начнётся дождь».",
+   "uk": "Where означає «куди», will you go — «ви підете», а if it starts to rain — «якщо почнеться дощ».",
+   "en": "Where asks “where to”, and if it starts to rain is the reason. What and Will you wait ask other things."
+  },
+  "26:c5:en-classic-r1:26.50": {
+   "ru": "Let you know — «сообщу вам», if anything changes — «если что-то изменится». Холод и пропуск — другие фразы.",
+   "uk": "Let you know — «повідомлю вам», if anything changes — «якщо щось зміниться». Холод і перепустка — інші фрази.",
+   "en": "Let you know means to tell you, and if anything changes is the reason. Cold and a pass are other phrases."
+  },
+  "26:c5:en-classic-r1:26.25": {
+   "ru": "Feel cold — «вам холодно», take my coat — «возьмите моё пальто». Let me know — «сообщите мне», это другая фраза.",
+   "uk": "Feel cold — «вам холодно», take my coat — «візьміть моє пальто». Let me know — «повідомте мені», це інша фраза.",
+   "en": "Feel cold means you are cold, and take my coat is the request. Let me know is about passing on news."
+  },
+  "26:c6:en-classic-r1:26.44": {
+   "ru": "Would значит «бы», а if the hours were better — «если бы график был лучше». Машина и жильё — другое.",
+   "uk": "Would означає «б», а if the hours were better — «якби графік був кращий». Машина й житло — інше.",
+   "en": "Would means “would”, and if the hours were better means “if the hours were better”. The others are about a car and living nearby."
+  },
+  "26:c6:en-classic-r1:26.45": {
+   "ru": "If I were you — «на вашем месте», а I would ask the landlord — «я бы спросил арендодателя».",
+   "uk": "If I were you — «на вашому місці», а I would ask the landlord — «я б запитав орендодавця».",
+   "en": "If I were you means “if I were in your place”, and I would ask the landlord is the advice. The others have a ladder and a walk."
+  },
+  "26:c7:en-classic-r1:26.48": {
+   "ru": "As soon as — «как только», I get home — «вернусь домой». Слова will нет сразу после as soon as.",
+   "uk": "As soon as — «щойно», I get home — «повернуся додому». Слова will одразу після as soon as немає.",
+   "en": "As soon as means “as soon as”. Will comes after the comma, not right after as soon as."
+  },
+  "26:c7:en-classic-r1:26.46": {
+   "ru": "Until значит «пока не», the driver arrives — «приедет водитель», а will not leave — «не уедет».",
+   "uk": "Until означає «поки не», the driver arrives — «приїде водій», а will not leave — «не поїде».",
+   "en": "Until means “until”, and the driver arrives is what she waits for. The others use as soon as and when."
+  },
+  "27:c1:en-classic-r1:27.02": {
+   "ru": "Said he was ready — «сказал, что готов»: Том сказал «I am», а в пересказе стало he was. Магазин и усталость — другое.",
+   "uk": "Said he was ready — «сказав, що готовий»: Том сказав «I am», а в переказі стало he was. Магазин і втома — інше.",
+   "en": "Ready means “ready”, and Tom is the one who said it. The others talk about a shop and being tired."
+  },
+  "27:c1:en-classic-r1:27.04": {
+   "ru": "Shop — «магазин», closed — «закрыт», а was — шаг назад от is. Усталость и «готов» — другие фразы.",
+   "uk": "Shop — «магазин», closed — «зачинений», а was — крок назад від is. Втома й «готовий» — інші фрази.",
+   "en": "Shop means “shop” and closed means “closed”. The others are about being tired and ready."
+  },
+  "27:c2:en-classic-r1:27.07": {
+   "ru": "Wanted — это want с ed, шаг назад, а two seats — «два места». Чек и адрес — другие слова.",
+   "uk": "Wanted — це want з ed, крок назад, а two seats — «два місця». Чек і адреса — інші слова.",
+   "en": "Wanted is want with ed, and two seats is the thing they wanted. Receipt and address are in other phrases."
+  },
+  "27:c2:en-classic-r1:27.09": {
+   "ru": "Had a spare key — «есть запасной ключ»: had — шаг назад от has. Другие фразы про хотели и знала.",
+   "uk": "Had a spare key — «є запасний ключ»: had — крок назад від has. Інші фрази про хотіли й знала.",
+   "en": "Had a spare key means he has a spare key. The others are about wanting seats and knowing an address."
+  },
+  "27:c3:en-classic-r1:27.12": {
+   "ru": "Told us — «сказал нам»: после told сначала идёт, кому. The bus was full — «автобус полон».",
+   "uk": "Told us — «сказав нам»: після told спочатку йде, кому. The bus was full — «автобус повний».",
+   "en": "Told us means “told us”: after told comes who was told. The bus was full is what he said."
+  },
+  "27:c3:en-classic-r1:27.19": {
+   "ru": "Told the driver — «сказал водителю», а he felt sick — «ему плохо». Автобус и «внизу» — другое.",
+   "uk": "Told the driver — «сказав водієві», а he felt sick — «йому погано». Автобус і «внизу» — інше.",
+   "en": "Told the driver means he told the driver, and felt sick is what he said. The others have a bus and downstairs."
+  },
+  "27:c4:en-classic-r1:27.21": {
+   "ru": "Could — это can шагом назад, «может». She said she could wait — «может подождать».",
+   "uk": "Could — це can кроком назад, «може». She said she could wait — «може почекати».",
+   "en": "Could is can one step back, and wait is what she can do. Would send and might are other words."
+  },
+  "27:c4:en-classic-r1:27.23": {
+   "ru": "Might be late — «могут опоздать», а they — «они». Would send — «пришлёт», could wait — «может подождать».",
+   "uk": "Might be late — «можуть запізнитися», а they — «вони». Would send — «надішле», could wait — «може почекати».",
+   "en": "Might be late means “maybe late”. The others have would send and could wait."
+  },
+  "27:c5:en-classic-r1:27.33": {
+   "ru": "Asked when — «спросили, когда», а closed — это close с d, шаг назад. Who и what — другие слова.",
+   "uk": "Asked when — «запитали, коли», а closed — це close з d, крок назад. Who і what — інші слова.",
+   "en": "When asks about time, and closed is close with d. The others ask who and what."
+  },
+  "27:c5:en-classic-r1:27.40": {
+   "ru": "Who значит «кто», а dealt with complaints — «занимается жалобами». When и what — другие слова.",
+   "uk": "Who означає «хто», а dealt with complaints — «займається скаргами». When і what — інші слова.",
+   "en": "Who asks “who”, and dealt with complaints says what they do. The others ask when and what."
+  },
+  "27:c6:en-classic-r1:27.37": {
+   "ru": "Whether значит «ли», а wanted a replacement — «хотим замену». Номер и комната — другие фразы.",
+   "uk": "Whether означає «чи», а wanted a replacement — «хочемо заміну». Номер і кімната — інші фрази.",
+   "en": "Whether means “whether”, and wanted a replacement is what they asked about. The others have a number and a room."
+  },
+  "27:c6:en-classic-r1:27.38": {
+   "ru": "If здесь значит «ли», а the room was free — «комната свободна». Whether — про замену, а не про комнату.",
+   "uk": "If тут означає «чи», а the room was free — «кімната вільна». Whether — про заміну, а не про кімнату.",
+   "en": "If here means “whether”, and the room was free is what they asked about. The others are about a number and a replacement."
+  },
+  "27:c7:en-classic-r1:27.42": {
+   "ru": "Told me not to — «сказал мне не», а lift the lid — «поднимать крышку». В других фразах нет not.",
+   "uk": "Told me not to — «сказав мені не», а lift the lid — «піднімати кришку». В інших фразах немає not.",
+   "en": "Not to means “not to”, and lift the lid is what he told me not to do. The others have no not."
+  },
+  "27:c7:en-classic-r1:27.44": {
+   "ru": "Told us to use — «сказали нам воспользоваться», side entrance — «боковой вход». Not to здесь нет.",
+   "uk": "Told us to use — «сказали нам скористатися», side entrance — «бічний вхід». Not to тут немає.",
+   "en": "Told us to use means “told us to use”, and side entrance is what to use. The others use me, not us."
+  },
+  "27:c8:en-classic-r1:27.15": {
+   "ru": "Had blown — «перегорел», это случилось раньше. Told him — «сказала ему», fuse — «предохранитель».",
+   "uk": "Had blown — «перегорів», це сталося раніше. Told him — «сказала йому», fuse — «запобіжник».",
+   "en": "Had blown shows it happened before she spoke. Told him means “told him”, and fuse is the fuse."
+  },
+  "27:c8:en-classic-r1:27.50": {
+   "ru": "Asked if — «спросил, ли», had received — «получил» раньше, чем спросил. Message — «сообщение».",
+   "uk": "Asked if — «запитав, чи», had received — «отримав» раніше, ніж запитав. Message — «повідомлення».",
+   "en": "Asked if means “asked whether”, and had received shows it happened earlier. Message means “message”."
+  },
+  "28:c1:en-classic-r1:28.02": {
+   "ru": "She — «она», поэтому herself. Himself — про него, myself — про меня.",
+   "uk": "She — «вона», тому herself. Himself — про нього, myself — про мене.",
+   "en": "She goes with herself. Himself is for him and myself is for me."
+  },
+  "28:c1:en-classic-r1:28.03": {
+   "ru": "He — «он», поэтому himself. Herself — про неё, myself — про меня.",
+   "uk": "He — «він», тому himself. Herself — про неї, myself — про мене.",
+   "en": "He goes with himself. Herself is for her and myself is for me."
+  },
+  "28:c2:en-classic-r1:28.05": {
+   "ru": "They — «они», поэтому themselves. Ourselves — про нас, yourselves — про вас.",
+   "uk": "They — «вони», тому themselves. Ourselves — про нас, yourselves — про вас.",
+   "en": "They goes with themselves. Ourselves is for us and yourselves is for you."
+  },
+  "28:c2:en-classic-r1:28.38": {
+   "ru": "Yourselves — когда обращаются к нескольким людям (selves), а yourself — к одному. Fruit — «фрукты».",
+   "uk": "Yourselves — коли звертаються до кількох людей (selves), а yourself — до одного. Fruit — «фрукти».",
+   "en": "Yourselves is for several people (selves), and yourself is for one. Fruit means “fruit”."
+  },
+  "28:c3:en-classic-r1:28.10": {
+   "ru": "Looked at himself — «посмотрел на себя», he — «он». Herself — про неё, myself — про меня.",
+   "uk": "Looked at himself — «подивився на себе», he — «він». Herself — про неї, myself — про мене.",
+   "en": "He goes with himself. Herself is for her and myself is for me."
+  },
+  "28:c3:en-classic-r1:28.09": {
+   "ru": "Taught herself — «выучила сама», she — «она». Himself — про него, itself — про кошку.",
+   "uk": "Taught herself — «вивчила сама», she — «вона». Himself — про нього, itself — про кішку.",
+   "en": "She goes with herself. Himself is for him and itself is for a cat."
+  },
+  "28:c4:en-classic-r1:28.12": {
+   "ru": "Poured — «налила», herself — «себе» про неё. Myself — про меня, himself — про него.",
+   "uk": "Poured — «налила», herself — «собі» про неї. Myself — про мене, himself — про нього.",
+   "en": "Poured herself means she poured for herself. Myself is for me and himself is for him."
+  },
+  "28:c4:en-classic-r1:28.19": {
+   "ru": "We — «мы», поэтому ourselves; gave ourselves extra time — «выделили себе время». Himself и myself — другие.",
+   "uk": "We — «ми», тому ourselves; gave ourselves extra time — «виділили собі час». Himself і myself — інші.",
+   "en": "We goes with ourselves. Himself is for him and myself is for me."
+  },
+  "28:c5:en-classic-r1:28.24": {
+   "ru": "Ourselves в конце значит «сами», а we — «мы». Themselves — про них, myself — про меня.",
+   "uk": "Ourselves наприкінці означає «самі», а we — «ми». Themselves — про них, myself — про мене.",
+   "en": "Ourselves at the end means “by ourselves”, and we goes with it. Themselves is for them."
+  },
+  "28:c5:en-classic-r1:28.25": {
+   "ru": "They — «они», а themselves в конце значит «сами». Ourselves — про нас, herself — про неё.",
+   "uk": "They — «вони», а themselves наприкінці означає «самі». Ourselves — про нас, herself — про неї.",
+   "en": "They goes with themselves at the end. Ourselves is for us and herself is for her."
+  },
+  "28:c6:en-classic-r1:28.32": {
+   "ru": "By herself — «одна», she — «она». Himself — про него, myself — про меня.",
+   "uk": "By herself — «сама», she — «вона». Himself — про нього, myself — про мене.",
+   "en": "By herself means “alone”, and she goes with herself. Himself is for him and myself is for me."
+  },
+  "28:c6:en-classic-r1:28.33": {
+   "ru": "By himself — «один», he — «он». Herself — про неё, myself — про меня.",
+   "uk": "By himself — «сам», he — «він». Herself — про неї, myself — про мене.",
+   "en": "By himself means “alone”, and he goes with himself. Herself is for her and myself is for me."
+  },
+  "28:c7:en-classic-r1:28.43": {
+   "ru": "Each other — «друг другу», это не self. They helped each other — «они помогали друг другу».",
+   "uk": "Each other — «одне одному», це не self. They helped each other — «вони допомагали одне одному».",
+   "en": "Each other means “each other”, not self. They helped each other is about two or more people helping one another."
+  },
+  "28:c7:en-classic-r1:28.46": {
+   "ru": "But he tested himself — «а он проверил себя»: he, поэтому himself. Each other — «друг друга».",
+   "uk": "But he tested himself — «а він перевірив себе»: he, тому himself. Each other — «одне одного».",
+   "en": "He goes with himself, so he tested himself. Each other would mean “one another”."
+  },
+  "28:c8:en-classic-r1:28.39": {
+   "ru": "Do not burn — «не обожгитесь», yourself — вы. Dress himself — про сына, enjoyed myself — про меня.",
+   "uk": "Do not burn — «не обпечіться», yourself — ви. Dress himself — про сина, enjoyed myself — про мене.",
+   "en": "Yourself is for you. Himself is for the son and myself is for me."
+  },
+  "28:c8:en-classic-r1:28.50": {
+   "ru": "Take care of yourself — «береги себя»: yourself, когда говорят вам. Burn — «обжечься», enjoyed myself — про меня.",
+   "uk": "Take care of yourself — «бережи себе»: yourself, коли кажуть вам. Burn — «обпектися», enjoyed myself — про мене.",
+   "en": "Yourself is for you. Burn is another phrase, and myself is for me."
+  },
+  "29:c1:en-classic-r1:29.06": {
+   "ru": "I used to work — «раньше я работал», warehouse — «склад». They и She — другие люди, drive и meet — другое.",
+   "uk": "I used to work — «раніше я працював», warehouse — «склад». They і She — інші люди, drive і meet — інше.",
+   "en": "Used to work means “used to work”. Warehouse is the place. The others have They and She."
+  },
+  "29:c1:en-classic-r1:29.10": {
+   "ru": "They — «они», used to meet — «раньше встречались», playground — «детская площадка».",
+   "uk": "They — «вони», used to meet — «раніше зустрічалися», playground — «дитячий майданчик».",
+   "en": "They means “they”, used to meet means “used to meet”, and playground is the place."
+  },
+  "29:c2:en-classic-r1:29.12": {
+   "ru": "There used to be — «раньше был», cinema — «кинотеатр», corner — «угол». Трамвай и завод — другое.",
+   "uk": "There used to be — «раніше був», cinema — «кінотеатр», corner — «ріг». Трамвай і завод — інше.",
+   "en": "There used to be means something was there before. Cinema and corner say what and where."
+  },
+  "29:c2:en-classic-r1:29.20": {
+   "ru": "Tram — «трамвай», used to stop here — «раньше останавливался здесь». Кинотеатр и входы — другое.",
+   "uk": "Tram — «трамвай», used to stop here — «раніше зупинявся тут». Кінотеатр і входи — інше.",
+   "en": "Tram means “tram”, and used to stop here means it stopped here before."
+  },
+  "29:c3:en-classic-r1:29.17": {
+   "ru": "Tickets — «билеты», cheaper — «дешевле», а used to be — «раньше были». Улица и тише — другая фраза.",
+   "uk": "Tickets — «квитки», cheaper — «дешевше», а used to be — «раніше були». Вулиця й тихіше — інша фраза.",
+   "en": "Tickets means “tickets” and cheaper means “cheaper”. Street and quieter are in another phrase."
+  },
+  "29:c3:en-classic-r1:29.41": {
+   "ru": "But now — «а теперь»: раньше водил машину, теперь езжу на велосипеде. Билеты и смены — другое.",
+   "uk": "But now — «а тепер»: раніше водив машину, тепер їжджу на велосипеді. Квитки й зміни — інше.",
+   "en": "But now shows the change, from driving to cycling. The others are about nights and tickets."
+  },
+  "29:c4:en-classic-r1:29.22": {
+   "ru": "Did not use to — «раньше не», she — «она», work weekends — «работать по выходным». Здесь use без d.",
+   "uk": "Did not use to — «раніше не», she — «вона», work weekends — «працювати на вихідних». Тут use без d.",
+   "en": "Did not use to means “did not use to”, and she is the person. Use has no d here."
+  },
+  "29:c4:en-classic-r1:29.25": {
+   "ru": "They — «они», did not use to — «раньше не», take bookings — «принимать бронирования». Use без d.",
+   "uk": "They — «вони», did not use to — «раніше не», take bookings — «приймати бронювання». Use без d.",
+   "en": "Did not use to means “did not use to”, and take bookings is what they did not do. Use has no d."
+  },
+  "29:c5:en-classic-r1:29.34": {
+   "ru": "Did в начале делает вопрос, they — «они», deliver on Saturdays — «доставляли по субботам».",
+   "uk": "Did на початку робить питання, they — «вони», deliver on Saturdays — «доставляли по суботах».",
+   "en": "Did at the start makes a question, and they is who is asked about. The others ask where and about living nearby."
+  },
+  "29:c5:en-classic-r1:29.39": {
+   "ru": "Was this the shop — «это был магазин», you used to visit — «куда вы раньше ходили». Остальные — другие вопросы.",
+   "uk": "Was this the shop — «це був магазин», you used to visit — «куди ви раніше ходили». Решта — інші питання.",
+   "en": "Was this the shop asks about the shop, and you used to visit says you went there before."
+  },
+  "29:c6:en-classic-r1:29.46": {
+   "ru": "Is not used to — «не привыкла», а driving on the left — «ездить по левой стороне». Здесь она, не «раньше».",
+   "uk": "Is not used to — «не звикла», а driving on the left — «їздити лівою стороною». Тут вона, не «раніше».",
+   "en": "Is not used to means “is not used to”, and driving on the left is the thing she is not used to."
+  },
+  "29:c6:en-classic-r1:29.48": {
+   "ru": "Used to hate — «раньше ненавидел», а am used to it now — «теперь привык». Здесь оба смысла вместе.",
+   "uk": "Used to hate — «раніше ненавидів», а am used to it now — «тепер звик». Тут обидва змісти разом.",
+   "en": "Used to hate means he hated it before, and am used to it now means he is fine with it now."
+  },
+  "29:c7:en-classic-r1:29.49": {
+   "ru": "Get used to — «привыкнуть», a week — «неделя», noise — «шум». It took me — «мне потребовалось».",
+   "uk": "Get used to — «звикнути», a week — «тиждень», noise — «шум». It took me — «мені знадобилося».",
+   "en": "Get used to means to get used to something, and it took me a week says how long. The others are a question and are getting."
+  },
+  "29:c7:en-classic-r1:29.50": {
+   "ru": "Did в начале делает вопрос, get used to — «привыкнуть», working from home — «работать из дома».",
+   "uk": "Did на початку робить питання, get used to — «звикнути», working from home — «працювати вдома».",
+   "en": "Did at the start makes a question, and get used to working from home is what is asked about."
+  },
+  "30:c1:en-classic-r1:30.02": {
+   "ru": "Who repaired the roof — «который ремонтировал крышу», man — «мужчина». Женщина и человек — другие.",
+   "uk": "Who repaired the roof — «який ремонтував дах», man — «чоловік». Жінка й людина — інші.",
+   "en": "Man means “man” and who repaired the roof says which man. Woman and person are other words."
+  },
+  "30:c1:en-classic-r1:30.03": {
+   "ru": "Woman — «женщина», who found my phone — «нашедшая мой телефон». Man и person — другие слова.",
+   "uk": "Woman — «жінка», who found my phone — «яка знайшла мій телефон». Man і person — інші слова.",
+   "en": "Woman means “woman” and who found my phone says which woman. Man and person are other words."
+  },
+  "30:c2:en-classic-r1:30.05": {
+   "ru": "Child — «ребёнок», who won the race — «выигравший гонку», niece — «племянница». Man — «мужчина».",
+   "uk": "Child — «дитина», who won the race — «яка виграла гонку», niece — «племінниця». Man — «чоловік».",
+   "en": "Child means “child” and who won the race says which child. The other phrases have a man and a neighbour."
+  },
+  "30:c2:en-classic-r1:30.06": {
+   "ru": "Who fixed the tap — «который починил кран», lives nearby — «живёт неподалёку». Ребёнок и сосед — другие.",
+   "uk": "Who fixed the tap — «який полагодив кран», lives nearby — «живе неподалік». Дитина й сусід — інші.",
+   "en": "Who fixed the tap says which man, and lives nearby says where. Child and neighbour are other words."
+  },
+  "30:c3:en-classic-r1:30.08": {
+   "ru": "Bus — вещь, поэтому that. Stops here — «останавливается здесь», airport — «аэропорт».",
+   "uk": "Bus — річ, тому that. Stops here — «зупиняється тут», airport — «аеропорт».",
+   "en": "Bus is a thing, so it is that. Stops here says which bus. The others have a key and a shop."
+  },
+  "30:c3:en-classic-r1:30.09": {
+   "ru": "That opens the barrier — «который открывает шлагбаум», missing — «пропал». Магазин и автобус — другое.",
+   "uk": "That opens the barrier — «який відчиняє шлагбаум», missing — «зник». Магазин і автобус — інше.",
+   "en": "That opens the barrier says which key, and missing means “missing”. The others are a shop and a bus."
+  },
+  "30:c4:en-classic-r1:30.16": {
+   "ru": "Film that we watched — «фильм, который мы смотрели», funny — «смешной». Велосипед и номер — другое.",
+   "uk": "Film that we watched — «фільм, який ми дивилися», funny — «смішний». Велосипед і номер — інше.",
+   "en": "That we watched says which film, and funny means “funny”. The others are about a bike and a number."
+  },
+  "30:c4:en-classic-r1:30.20": {
+   "ru": "That she gave me — «который она мне дала», а incorrect — «неверный». Пальто и книга — другое.",
+   "uk": "That she gave me — «який вона мені дала», а incorrect — «неправильний». Пальто й книжка — інше.",
+   "en": "That she gave me says which number, and incorrect means “wrong”. The others are a coat and a book."
+  },
+  "30:c5:en-classic-r1:30.23": {
+   "ru": "Place — «место», where you left the bag — «где вы оставили сумку». Day when — про день.",
+   "uk": "Place — «місце», where you left the bag — «де ви залишили сумку». Day when — про день.",
+   "en": "Where goes with a place. When goes with a day, as in the other phrases."
+  },
+  "30:c5:en-classic-r1:30.27": {
+   "ru": "Day when — «день, когда», Friday — «пятница», check the rota — «проверяем график». Where — для места.",
+   "uk": "Day when — «день, коли», Friday — «п'ятниця», check the rota — «перевіряємо графік». Where — для місця.",
+   "en": "When goes with a day. Where goes with a place, as in the other phrases."
+  },
+  "30:c6:en-classic-r1:30.32": {
+   "ru": "Whose keys — «чьи ключи», woman — «женщина». Neighbour whose dog и man whose bike — другие.",
+   "uk": "Whose keys — «чиї ключі», woman — «жінка». Neighbour whose dog і man whose bike — інші.",
+   "en": "Whose keys means “whose keys”, and woman is the person. The others have a neighbour and a man."
+  },
+  "30:c6:en-classic-r1:30.34": {
+   "ru": "Whose dog escaped — «у которого убежала собака», neighbour — «сосед». Ключи и велосипед — другое.",
+   "uk": "Whose dog escaped — «у якого втекла собака», neighbour — «сусід». Ключі й велосипед — інше.",
+   "en": "Whose dog escaped says whose dog, and neighbour is the person. Keys and a bike are other things."
+  },
+  "30:c7:en-classic-r1:30.37": {
+   "ru": "Owner — «владелец», whose flat we rented — «квартиру которого мы снимали». Медсестра и студент — другие.",
+   "uk": "Owner — «власник», whose flat we rented — «квартиру якого ми винаймали». Медсестра й студент — інші.",
+   "en": "Owner is the person, and whose flat we rented says whose flat. Nurse and student are other people."
+  },
+  "30:c7:en-classic-r1:30.39": {
+   "ru": "Nurse — «медсестра», whose daughter studies here — «чья дочь здесь учится». Владелец и студент — другое.",
+   "uk": "Nurse — «медсестра», whose daughter studies here — «чия дочка тут навчається». Власник і студент — інше.",
+   "en": "Nurse is the person, and whose daughter studies here says whose daughter. Owner and student are other people."
+  },
+  "30:c8:en-classic-r1:30.42": {
+   "ru": "The woman I spoke to — «женщина, с которой я разговаривала»: слово that убрали, смысл остался. Helpful — «любезна».",
+   "uk": "The woman I spoke to — «жінка, з якою я розмовляла»: слово that прибрали, зміст лишився. Helpful — «люб'язна».",
+   "en": "The woman I spoke to has no that, but the meaning stays. Helpful means “helpful”. The others are a part and a phone."
+  },
+  "30:c8:en-classic-r1:30.48": {
+   "ru": "The replacement part you ordered — «заказанная вами запасная часть», слово that убрано. Женщина и телефон — другое.",
+   "uk": "The replacement part you ordered — «замовлена вами запасна частина», слово that прибрано. Жінка й телефон — інше.",
+   "en": "The replacement part you ordered has no that, but the meaning stays. The others are about a woman and a phone."
+  },
+  "31:c1:en-classic-r1:31.02": {
+   "ru": "Heard — «слышал», Anna laugh — «Анна засмеялась»: слово после имени простое. Ворота и Том — другое.",
+   "uk": "Heard — «чув», Anna laugh — «Анна засміялася»: слово після імені просте. Ворота й Том — інше.",
+   "en": "Heard means “heard”, and Anna laugh is what he heard. The others have a gate and Tom."
+  },
+  "31:c1:en-classic-r1:31.04": {
+   "ru": "She heard — «она слышала», the gate slam — «захлопнулись ворота». Saw Tom leave — «видел, как Том ушёл».",
+   "uk": "She heard — «вона чула», the gate slam — «грюкнули ворота». Saw Tom leave — «бачив, як Том пішов».",
+   "en": "She heard means “she heard”, and the gate slam is the sound. The others are about Tom and Anna."
+  },
+  "31:c2:en-classic-r1:31.10": {
+   "ru": "Watched the driver reverse — «видели, как водитель сдавал назад», they — «они». Heard — «слышали».",
+   "uk": "Watched the driver reverse — «бачили, як водій їхав заднім ходом», they — «вони». Heard — «чули».",
+   "en": "Watched means they saw it. Heard in the others means “heard”."
+  },
+  "31:c2:en-classic-r1:31.12": {
+   "ru": "We heard — «мы слышали», her pour water — «как она наливала воду». Чайник и watched — другое.",
+   "uk": "We heard — «ми чули», her pour water — «як вона наливала воду». Чайник і watched — інше.",
+   "en": "We heard means “we heard”, and her pour water is what they heard. The others have a kettle and watched."
+  },
+  "31:c3:en-classic-r1:31.13": {
+   "ru": "Me — «я», sign the receipt — «подписал квитанцию», she watched — «она видела». Him и you — другие.",
+   "uk": "Me — «я», sign the receipt — «підписав квитанцію», she watched — «вона бачила». Him і you — інші.",
+   "en": "Me means “me”, and sign the receipt is what I did. The others have him and you."
+  },
+  "31:c3:en-classic-r1:31.16": {
+   "ru": "You — «вы», wave — «махали рукой», outside the clinic — «возле клиники». Him drop и me sign — другое.",
+   "uk": "You — «ви», wave — «махали рукою», outside the clinic — «біля клініки». Him drop і me sign — інше.",
+   "en": "You means “you”, and wave is what you did. The others have him and me."
+  },
+  "31:c4:en-classic-r1:31.23": {
+   "ru": "Dripping с ing — видели, как капает: paint — «краска», floor — «пол». Собака и телефон — другое.",
+   "uk": "Dripping з ing — бачили, як капає: paint — «фарба», floor — «підлога». Собака й телефон — інше.",
+   "en": "Dripping with ing shows it was going on. Paint and floor say what and where. The others are a dog and a phone."
+  },
+  "31:c4:en-classic-r1:31.30": {
+   "ru": "Dog digging under the fence — «собака копает под забором», она наблюдала. Водитель и дети — другое.",
+   "uk": "Dog digging under the fence — «собака риє під парканом», вона спостерігала. Водій і діти — інше.",
+   "en": "Dog digging under the fence is what she watched. The others have a driver and children."
+  },
+  "31:c5:en-classic-r1:31.32": {
+   "ru": "Let us leave — «разрешила нам оставить», she — «она». Дети и принтер — другие фразы.",
+   "uk": "Let us leave — «дозволила нам залишити», she — «вона». Діти й принтер — інші фрази.",
+   "en": "Let us leave means “allowed us to leave”, and she is who allowed it. The others have children and a printer."
+  },
+  "31:c5:en-classic-r1:31.33": {
+   "ru": "Let the children choose — «разрешил детям выбрать», book — «книга». Нам и мне — другие.",
+   "uk": "Let the children choose — «дозволив дітям вибрати», book — «книжка». Нам і мені — інші.",
+   "en": "Let the children choose means he allowed the children to choose. The others have us and me."
+  },
+  "31:c6:en-classic-r1:31.37": {
+   "ru": "Smoke — «дым», made my eyes water — «заставил слезиться глаза». Запах и задержка — другое.",
+   "uk": "Smoke — «дим», made my eyes water — «змусив сльозитися очі». Запах і затримка — інше.",
+   "en": "Smoke means “smoke”, and made my eyes water is what it caused. The others have a smell and a delay."
+  },
+  "31:c6:en-classic-r1:31.39": {
+   "ru": "Smell — «запах», made her feel sick — «ей стало плохо». Задержка и шум — другое.",
+   "uk": "Smell — «запах», made her feel sick — «їй стало зле». Затримка й шум — інше.",
+   "en": "Smell means “smell”, and made her feel sick is what it caused. The others have a delay and a noise."
+  },
+  "31:c7:en-classic-r1:31.42": {
+   "ru": "Wanted me to — «хотела, чтобы я», check the receipt — «проверил квитанцию». Попросил и ожидал — другое.",
+   "uk": "Wanted me to — «хотіла, щоб я», check the receipt — «перевірив квитанцію». Попросив і очікував — інше.",
+   "en": "Wanted me to means “wanted me to”, and check the receipt is what she wanted. The others have asked and expected."
+  },
+  "31:c7:en-classic-r1:31.45": {
+   "ru": "Expected — «ожидал», the house to be empty — «дом опустеет», before six — «до шести». Хотела и попросил — другое.",
+   "uk": "Expected — «очікував», the house to be empty — «будинок спорожніє», before six — «до шостої». Хотіла й попросив — інше.",
+   "en": "Expected means “expected”, and the house to be empty is what he expected. The others have wanted and asked."
+  },
+  "31:c8:en-classic-r1:31.47": {
+   "ru": "Saw the driver stop and open — «видели, как водитель остановился и открыл». Разрешили и заставили — другое.",
+   "uk": "Saw the driver stop and open — «бачили, як водій зупинився й відчинив». Дозволили й змусили — інше.",
+   "en": "Saw means they watched it happen, and the driver stop and open is what happened. The others have let and made."
+  },
+  "31:c8:en-classic-r1:31.50": {
+   "ru": "Made him pay — «заставили его заплатить», let us go — «разрешили нам уйти». Звонок и водитель — другое.",
+   "uk": "Made him pay — «змусили його заплатити», let us go — «дозволили нам піти». Дзвінок і водій — інше.",
+   "en": "Made him pay means they forced him, and let us go means they allowed us. The others have a doorbell and a driver."
+  },
+  "32:c1:en-classic-r1:32.02": {
+   "ru": "How much — «сколько», cost — «стоит», return ticket — «билет туда и обратно». Просьба и комната — другое.",
+   "uk": "How much — «скільки», cost — «коштує», return ticket — «квиток туди й назад». Прохання й кімната — інше.",
+   "en": "How much asks “how much”, and cost means “costs”. The others are a room and a request."
+  },
+  "32:c1:en-classic-r1:32.08": {
+   "ru": "Please — вежливая просьба, keep the fire exit clear — «не закрывайте пожарный выход». Остальные — вопросы.",
+   "uk": "Please — ввічливе прохання, keep the fire exit clear — «не закривайте пожежний вихід». Решта — питання.",
+   "en": "Please makes it a polite request, and keep the fire exit clear says what to do. The others are questions."
+  },
+  "32:c2:en-classic-r1:32.13": {
+   "ru": "Have you ever — «вы когда-нибудь», stayed in this part of town — «останавливались в этой части города».",
+   "uk": "Have you ever — «ви коли-небудь», stayed in this part of town — «зупинялися в цій частині міста».",
+   "en": "Have you ever means “have you ever”, and stayed in this part of town is the thing asked about. The others are not questions."
+  },
+  "32:c2:en-classic-r1:32.14": {
+   "ru": "Has worked — «работает» и сейчас, since April — «с апреля». She — «она», поэтому has.",
+   "uk": "Has worked — «працює» і зараз, since April — «з квітня». She — «вона», тому has.",
+   "en": "Has worked since April means she started in April and still works there. She goes with has."
+  },
+  "32:c3:en-classic-r1:32.17": {
+   "ru": "Was в начале делает вопрос: the deposit included in the total — «депозит включён в сумму». Остальные — не вопросы.",
+   "uk": "Was на початку робить питання: the deposit included in the total — «депозит включений у суму». Решта — не питання.",
+   "en": "Was at the start makes a question about the deposit. The others are about a lift and a lobby."
+  },
+  "32:c3:en-classic-r1:32.20": {
+   "ru": "Because — «потому что», the lift was being repaired — «лифт ремонтировали» тогда. Is being painted — сейчас.",
+   "uk": "Because — «бо», the lift was being repaired — «ліфт ремонтували» тоді. Is being painted — зараз.",
+   "en": "Because gives the reason, and the lift was being repaired says what was going on then. Is being painted is going on now."
+  },
+  "32:c4:en-classic-r1:32.22": {
+   "ru": "As soon as I find it — «как только найду его», will send — «пришлю». If и unless — в других фразах.",
+   "uk": "As soon as I find it — «щойно знайду його», will send — «надішлю». If і unless — в інших фразах.",
+   "en": "As soon as I find it means “as soon as I find it”, and will send is what I will do. The others use if and unless."
+  },
+  "32:c4:en-classic-r1:32.23": {
+   "ru": "Unless значит «если нет»: you have a pass — «у вас есть пропуск». Use the main entrance — «воспользуйтесь главным входом».",
+   "uk": "Unless означає «якщо немає»: you have a pass — «у вас є перепустка». Use the main entrance — «скористайтеся головним входом».",
+   "en": "Unless means “if not”. You have a pass is the condition, and use the main entrance is what to do. The others use if."
+  },
+  "32:c5:en-classic-r1:32.25": {
+   "ru": "Asked where — «спросил, где», we had left the keys — «мы оставили ключи»: had left — это было раньше.",
+   "uk": "Asked where — «запитав, де», we had left the keys — «ми залишили ключі»: had left — це було раніше.",
+   "en": "Asked where means “asked where”, and had left shows it happened earlier. The others are about a room and a driver."
+  },
+  "32:c5:en-classic-r1:32.27": {
+   "ru": "Asked if — «спросил, ли», a cheaper room — «номер подешевле». Ключи и «могу встретиться» — другое.",
+   "uk": "Asked if — «запитав, чи», a cheaper room — «номер дешевший». Ключі й «можу зустрітися» — інше.",
+   "en": "Asked if means “asked whether”, and a cheaper room is what was asked about. The others have keys and meeting."
+  },
+  "32:c6:en-classic-r1:32.29": {
+   "ru": "Hotel where — «отель, где»: where для места. Left my charger — «оставил зарядку». Who — про человека.",
+   "uk": "Hotel where — «готель, де»: where для місця. Left my charger — «залишив зарядку». Who — про людину.",
+   "en": "Where goes with a place, so hotel where. Left my charger says what happened there. Who is for people."
+  },
+  "32:c6:en-classic-r1:32.39": {
+   "ru": "Quietest room — «самая тихая комната», that faces the factory — «что выходит на завод». Who и where — другое.",
+   "uk": "Quietest room — «найтихіша кімната», that faces the factory — «що виходить на завод». Who і where — інше.",
+   "en": "Quietest room says which room, and that faces the factory says more. Who and where are in other phrases."
+  },
+  "32:c7:en-classic-r1:32.32": {
+   "ru": "Still — «всё ещё», getting used to — «привыкаю», early start — «ранний подъём». Другие фразы без «привыкаю».",
+   "uk": "Still — «все ще», getting used to — «звикаю», early start — «ранній підйом». Інші фрази без «звикаю».",
+   "en": "Still means “still”, and getting used to means getting used to something new. The others have no “getting used”."
+  },
+  "32:c7:en-classic-r1:32.40": {
+   "ru": "Avoid the queue — «избежать очереди», by booking online — «забронировав онлайн». Used to — «раньше».",
+   "uk": "Avoid the queue — «уникнути черги», by booking online — «забронювавши онлайн». Used to — «раніше».",
+   "en": "Avoid the queue means “skip the queue”, and by booking online says how. Used to is about before."
+  },
+  "32:c8:en-classic-r1:32.44": {
+   "ru": "If I were you — «на вашем месте», would keep — «я бы сохранил». Остальные про тариф и возврат.",
+   "uk": "If I were you — «на вашому місці», would keep — «я б зберіг». Решта про тариф і повернення.",
+   "en": "If I were you means “in your place”, and would keep the receipt is the advice. The others are about a fare and a refund."
+  },
+  "32:c8:en-classic-r1:32.50": {
+   "ru": "Would ask for a refund — «я бы попросил вернуть деньги», if the charge appeared twice — «если бы списание было дважды».",
+   "uk": "Would ask for a refund — «я б попросив повернути гроші», if the charge appeared twice — «якби списали двічі».",
+   "en": "Would ask for a refund means “would ask for money back”, and if the charge appeared twice is the reason. The others are about having a number and about advice."
+  }
+ }
+}

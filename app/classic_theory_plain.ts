@@ -10,6 +10,7 @@ import type { ClassicCourseLang } from './classic_course_registry.gen';
 import { getRawClassicPhrases, rawPhraseTranslation, type RawClassicPhrase } from './classic_raw_phrases';
 import type { TheoryBlock, TheoryDrill, TheoryExample, TheorySection } from '../components/theory/TheoryLessonView';
 import type { ClassicTheoryView } from './classic_theory_view';
+import { classicTheoryWhy } from './classic_theory_why';
 
 type RawFile = { data?: Record<string, unknown> };
 
@@ -105,13 +106,16 @@ export function getClassicPlainView(target: unknown, lessonId: number, locale: s
         blocks.push({ kind: 'note', text: `${command}\n→ ${answer.target}` });
         continue;
       }
+      // зачем (владелец 11.11): «почему?» — настоящее объяснение из theory_why.json, а не повтор правильной фразы.
+      // Объяснения нет → у выбора из списка кнопки «почему?» нет вовсе; у выбора из двух после ответа остаётся верная фраза (это отклик, не кнопка).
+      const why = classicTheoryWhy(t, lessonId, str(ch.id), str(pr.answerId));
       let drill: TheoryDrill;
       if (options.length === 2) {
         const answerIsA = options[0] === answer;
-        drill = { type: 'binary', question: plain(command), optionA: options[0]!.target, optionB: options[1]!.target, correct: answerIsA ? 'A' : 'B', explain: plain(answer.target) };
+        drill = { type: 'binary', question: plain(command), optionA: options[0]!.target, optionB: options[1]!.target, correct: answerIsA ? 'A' : 'B', explain: why ?? plain(answer.target) };
       } else {
         // 3 и более фраз: выбор из списка, фразы столбиком (в строку длинные фразы не помещаются)
-        drill = { type: 'choice', instruction: plain(command), before: '', after: '', options: options.slice(0, 4).map((p) => p.target), answer: answer.target, stacked: true, hideSentence: true, why: plain(answer.target) };
+        drill = { type: 'choice', instruction: plain(command), before: '', after: '', options: options.slice(0, 4).map((p) => p.target), answer: answer.target, stacked: true, hideSentence: true, ...(why ? { why } : {}) };
       }
       blocks.push({ kind: 'drill', drill });
       drillTotal += 1;

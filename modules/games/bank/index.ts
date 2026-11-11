@@ -6,7 +6,7 @@
  * Игра, для которой у языка нет заданий, в разминку этого языка не попадает (человек не получает чужой язык).
  * Ключ записи — номер урока; для уроков старше берётся ближайший предыдущий.
  */
-import { ORDER_SEED_TASKS, type HuntTask, type OrderTask } from '../dialogue_core';
+import type { HuntTask, OrderTask } from '../dialogue_core';
 import type { OddWordTask } from '../odd_word_core';
 import type { QuizRound } from '../quiz_core';
 import type { SortDeck } from '../sort_core';
@@ -73,9 +73,9 @@ export const GAME_BANKS: Readonly<Record<string, GameBank>> = {
     listen: LISTEN_BANK_EN,
     memory: MEMORY_BANK_EN,
     hunt: HUNT_BANK_EN,
-    // зачем: в уроке 1 одни утверждения — диалог с однозначным порядком из его слов собрать нельзя, поэтому на уроке 1
-    // остаётся утверждённый владельцем пример из макета; с урока 2 идут диалоги банка (решение по уроку 1 — за владельцем)
-    order: { 1: ORDER_SEED_TASKS, ...ORDER_BANK_EN },
+    // зачем (владелец 11.11, «Скрыть на уроке 1»): в уроке 1 одни утверждения — диалог с однозначным порядком из его слов
+    // не собрать, а в примере из макета были слова, которых ученик ещё не видел; «Собери диалог» идёт с урока 2
+    order: ORDER_BANK_EN,
   },
   es: {
     oddWord: ODD_WORD_BANK_ES,

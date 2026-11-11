@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мои ошибки 3.0 — предложение</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 11.11): «самый продуманный раздел приложения — понимает, из какого раздела ошибка пришла, находит объяснение для каждой,
+     не даёт ошибок и странностей». Это ПРЕДЛОЖЕНИЕ поверх утверждённого языка «Панель» (mistakes-panel.html): кольцо, ленты, одна панель-список,
+     «стакан» ответов внизу. Эталон и его замок не тронуты. */
+  .scr > .in { min-height: 100%; }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 20px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.92) 40%); }
+  .center { text-align: center; }
+  .sec2 { color: var(--sec); } .rd { color: #FF9C93; } .gr { color: #8DEBB0; }
+  .cta2 { display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 26px; flex: 1; font-size: 17px; font-weight: 700; background: rgba(255,255,255,.1); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+  .row2 { display: flex; gap: 12px; } .ac-cta.f1 { flex: 1; width: auto; }
+  .ringw { position: relative; width: 236px; height: 236px; margin: 14px auto 0; }
+  .ringw svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ringw .c { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .legend { display: flex; justify-content: center; gap: 22px; margin-top: 14px; font-size: 15px; color: var(--sec); }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+  .fchips { display: flex; gap: 8px; margin: 22px 0 8px; overflow: hidden; }
+  .fchips span { flex: none; height: 38px; padding: 0 16px; border-radius: 19px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; background: rgba(255,255,255,.07); color: var(--sec); }
+  .fchips span.on { background: var(--acc); color: var(--on); }
+  .panel { border-radius: 24px; padding: 4px 18px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 14%, rgba(24,24,30,.7)), rgba(14,14,18,.7)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.07); }
+  .pr { display: flex; align-items: center; gap: 14px; min-height: 64px; } .pr + .pr { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+  .pr .w { font-size: 18px; font-weight: 700; } .pr .s { font-size: 14px; color: var(--sec); margin-top: 2px; }
+  .pr .lab { color: var(--sec); width: 92px; flex: none; font-size: 15px; }
+  .mini { display: flex; gap: 4px; margin-left: auto; flex: none; } .mini i { width: 12px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.14); } .mini i.on { background: var(--acc); }
+  .grp { font-size: 15px; color: var(--sec); font-weight: 600; margin: 20px 2px 8px; display: flex; justify-content: space-between; }
+  .hero2 { margin: -8px -20px 0; padding: 70px 24px 26px; background: linear-gradient(170deg, color-mix(in srgb, var(--g1) 55%, #0b0b0f), color-mix(in srgb, var(--g2) 38%, #0a0a0d)); border-radius: 0 0 36px 36px; }
+  .stat3 { display: flex; margin-top: 20px; } .stat3 > div { flex: 1; } .stat3 > div + div { box-shadow: inset 1px 0 0 rgba(255,255,255,.1); padding-left: 16px; }
+  .stat3 b { display: block; font-size: 26px; } .stat3 span { font-size: 13px; color: var(--sec); }
+  .tray { position: absolute; left: 0; right: 0; bottom: 0; z-index: 25; padding: 18px 16px 34px; border-radius: 30px 30px 0 0; background: linear-gradient(170deg, color-mix(in srgb, var(--g1) 16%, rgba(26,26,32,.96)), rgba(14,14,18,.97)); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+  .tray .g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tray .g > div { height: 62px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600; background: rgba(255,255,255,.08); }
+  .tray .g > div.ok { background: rgba(111,208,140,.2); box-shadow: inset 0 0 0 1.5px rgba(111,208,140,.7); } .tray .g > div.no { background: rgba(242,118,107,.18); box-shadow: inset 0 0 0 1.5px rgba(242,118,107,.7); }
+  .tray .res { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 700; margin-bottom: 14px; } .tray .res .sp { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none; }
+  .tray .why { font-size: 16px; line-height: 23px; color: #E2E2E6; padding: 0 2px 16px; }
+  .q { text-align: center; margin-top: 30px; } .q .k { font-size: 17px; color: var(--sec); } .q .v { font-size: 44px; line-height: 50px; font-weight: 700; letter-spacing: -1px; margin-top: 10px; }
+  .q .v.m { font-size: 32px; line-height: 38px; letter-spacing: -.5px; }
+  .slot { min-height: 70px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 12px; border-radius: 20px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .tok { display: inline-flex; align-items: center; height: 46px; padding: 0 17px; border-radius: 14px; font-size: 17px; font-weight: 600; background: rgba(255,255,255,.1); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.22); } .tok.used { opacity: .22; }
+  .tok.lg { height: 58px; padding: 0 20px; font-size: 22px; border-radius: 18px; }
+  .tok.sel { background: var(--acc); color: var(--on); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+  .toks { display: flex; flex-wrap: wrap; gap: 10px; }
+  .fld { border-radius: 18px; min-height: 60px; display: flex; align-items: center; padding: 0 18px; font-size: 20px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .mic { position: relative; width: 92px; height: 92px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--on); box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 18px 34px -12px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .mic .vbdg { position: absolute; top: -4px; right: -6px; min-width: 30px; height: 30px; padding: 0 9px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: #0B0C0E; color: #fff; font-size: 15px; font-weight: 800; box-shadow: 0 0 0 2px #0C0D10; }
+  .mopt { display: flex; align-items: center; gap: 14px; padding: 10px 16px 10px 10px; margin-top: 10px; min-height: 62px; } .mopt .tx { flex: 1; font-size: 17px; font-weight: 700; text-align: left; }
+  .mopt .n { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+  .mopt.on { box-shadow: inset 0 0 0 1.5px var(--acc); }
+  .stp { display: flex; align-items: center; gap: 8px; } .stp i { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 13px; font-weight: 700; color: var(--sec); flex: none; } .stp i.on { background: var(--acc); color: var(--on); }
+  .stp b { flex: 1; height: 2px; background: rgba(255,255,255,.12); min-width: 8px; } .stp b.on { background: var(--acc); }
+  .hist { display: flex; justify-content: space-between; align-items: center; min-height: 48px; font-size: 16px; gap: 12px; } .hist + .hist { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .tabs { display: flex; gap: 8px; margin-top: 18px; } .tabs span { height: 38px; padding: 0 14px; border-radius: 19px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; color: var(--sec); background: rgba(255,255,255,.07); white-space: nowrap; } .tabs span.on { background: var(--acc); color: var(--on); }
+  .df { font-size: 20px; line-height: 27px; font-weight: 700; } .df .x { color: #FF9C93; text-decoration: line-through; text-decoration-thickness: 1.5px; } .df .y { color: #8DEBB0; }
+  .pairs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 26px; }
+  .pairs > div { height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; background: rgba(255,255,255,.08); padding: 0 10px; text-align: center; }
+  .pairs > div.ok { background: rgba(111,208,140,.16); color: #8DEBB0; opacity: .6; } .pairs > div.sel { background: color-mix(in srgb, var(--acc) 22%, rgba(255,255,255,.06)); box-shadow: inset 0 0 0 1.5px var(--acc); }
+  .newtag { display: inline-flex; align-items: center; height: 30px; padding: 0 13px; border-radius: 15px; font-size: 14px; font-weight: 700; background: color-mix(in srgb, var(--acc) 20%, rgba(255,255,255,.06)); color: var(--acc); }
+  .vs3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .vs3 > div { border-radius: 16px; background: rgba(255,255,255,.07); padding: 14px 8px; text-align: center; font-size: 19px; font-weight: 700; }
+  .vs3 > div.em { background: color-mix(in srgb, var(--acc) 18%, rgba(255,255,255,.05)); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .vs3 u { text-decoration: none; color: var(--acc); }
+  .toastx { position: absolute; left: 16px; right: 16px; top: 62px; z-index: 60; border-radius: 20px; padding: 16px 18px; display: flex; align-items: center; gap: 14px; font-size: 15px; line-height: 20px; font-weight: 600; background: #26262B; box-shadow: 0 18px 40px -14px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.1); }
+  .toastx b { margin-left: auto; height: 34px; padding: 0 14px; border-radius: 17px; background: #3A3B42; display: inline-flex; align-items: center; font-size: 14px; flex: none; }
+  .chip.on { background: #222224; }
+
+  /* ---------- текстовая часть страницы (не телефон) ---------- */
+  .doc { max-width: 1040px; }
+  .doc h2 { font-size: 21px; font-weight: 700; margin: 52px 0 6px; text-wrap: balance; }
+  .doc > p { color: #C9C9CC; font-size: 15px; line-height: 1.6; margin: 8px 0 0; max-width: 820px; }
+  .doc ul { margin: 12px 0 0; padding-left: 20px; color: #D2D2D5; font-size: 15px; line-height: 1.6; max-width: 860px; }
+  .doc li + li { margin-top: 6px; } .doc li b { color: #fff; }
+  .doc .src { color: var(--muted); font-size: 13px; }
+  .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 18px; }
+  .flow > div { border-radius: 18px; background: #131315; padding: 16px 16px 18px; min-width: 0; }
+  .flow .n { font-size: 13px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+  .flow .h { font-size: 17px; font-weight: 700; margin-top: 6px; }
+  .flow .d { font-size: 14px; line-height: 1.5; color: #BDBDC1; margin-top: 8px; }
+  .tblw { overflow-x: auto; margin-top: 16px; }
+  table.tb { border-collapse: collapse; font-size: 14px; line-height: 1.45; min-width: 760px; width: 100%; }
+  .tb th { text-align: left; color: var(--sec); font-weight: 600; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--line-2); white-space: nowrap; }
+  .tb td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--line); color: #D6D6D9; vertical-align: top; }
+  .tb td:first-child { color: #fff; font-weight: 600; white-space: nowrap; }
+  .tb .no { color: #FF9C93; } .tb .ok { color: #8DEBB0; } .tb .mid { color: #D9C7FF; }
+  .ask { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 16px; }
+  .ask > div { border-radius: 18px; background: #131315; padding: 16px 18px 18px; }
+  .ask .h { font-size: 16px; font-weight: 700; } .ask .d { font-size: 14px; line-height: 1.5; color: #BDBDC1; margin-top: 8px; }
+  .ask .r { font-size: 14px; line-height: 1.5; color: #fff; margin-top: 10px; }
+  @media (max-width: 900px) { .flow { grid-template-columns: 1fr 1fr; } .ask { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .rise > * { animation: none !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Мои ошибки 3.0 — предложение</h1>
+  <p class="page-lead">Аудит раздела по коду, принцип «пути ошибки», решение по ИИ-объяснениям и макеты всех режимов отработки. Язык экранов — утверждённая «Панель»: кольцо, ленты, одна панель-список, ответы в «стакане» внизу. Эталон и замок не тронуты; это предложение на одобрение.</p>
+  <div class="page-nav"><a href="#audit">Что не так сейчас</a><a href="#way">Путь ошибки</a><a href="#src">Откуда ошибки</a><a href="#ai">Объяснения и ИИ</a><a href="#safe">Защита от странностей</a><a href="#ask">Решения за владельцем</a><a href="#hub">Макеты</a></div>
+
+  <div class="doc">
+    <h2 id="audit">Что не так сейчас</h2>
+    <p>Проверено по коду приложения 11.11. Раздел записывает ошибки надёжно и открывается мгновенно, но «умной» части в нём нет.</p>
+    <ul>
+      <li><b>Часть разделов не пишет ошибки.</b> Раздел питают уроки, карточки, экзамены, диалоги и Шпиль. Тренажёр предлогов, дуэли друзей и свободный диалог с ИИ ошибок не записывают.</li>
+      <li><b>«Твой ответ» почти всегда пустой.</b> Что именно человек ответил, сохраняют только диалоги и Шпиль. Для уроков, слов, глаголов, карточек и экзаменов ответ не записывается — значит, нельзя показать, где именно промах, и нельзя объяснить его.</li>
+      <li><b>Раздел не помнит, из какого режима ошибка.</b> Все четыре режима карточек пишут одну и ту же метку; у фраз урока и экзамена не сохраняется текст задания.</li>
+      <li><b>Объяснение одно на тип ошибки.</b> Шесть заготовок («значение», «форма», «порядок слов»…) на все случаи. Готовые разборы из уроков (файл с разбором каждого ответа) лежат в приложении, но с ошибкой не связаны.</li>
+      <li><b>Лестница заданий не работает.</b> После решения 06.11 первый верный ответ сразу закрывает ошибку, поэтому человеку всегда достаётся самое лёгкое задание — выбор из вариантов. Сборка и ввод включаются только когда вариантов нет.</li>
+      <li><b>Повторений по времени нет.</b> Срок возврата ошибки всегда равен «сейчас». Экран «На сегодня всё, остальные вернутся завтра» недостижим, а обещание «вернёмся завтра» после трёх промахов ничем не подкреплено.</li>
+      <li><b>Журнал растёт без ограничений.</b> Каждое открытие хаба читает его целиком; в коде отмечено 417 случаев упора в потолок загрузки за неделю.</li>
+      <li><b>Запись ошибки не повторяется при сбое.</b> Сбой пишется в журнал, но ошибка тихо теряется.</li>
+    </ul>
+
+    <h2 id="way">Путь ошибки</h2>
+    <p>Каждая ошибка проходит пять шагов. Ни один шаг не ждёт сеть: всё решается на телефоне, сервер догоняет фоном.</p>
+    <div class="flow">
+      <div><div class="n">1</div><div class="h">Поймали</div><div class="d">Паспорт ошибки: раздел, режим, урок, задание как было на экране, ответ человека, верный ответ.</div></div>
+      <div><div class="n">2</div><div class="h">Поняли</div><div class="d">Сравнение двух ответов по словам даёт диагноз: не то слово, не та форма, порядок, пропуск, лишнее, на слух, произношение. Опечатки и допустимые варианты ошибкой не считаются.</div></div>
+      <div><div class="n">3</div><div class="h">Объяснили</div><div class="d">Три слоя: разбор из урока → разбор по диагнозу → ИИ для редких случаев. Объяснение есть всегда и сразу.</div></div>
+      <div><div class="n">4</div><div class="h">Отработали</div><div class="d">Лестница из 3–4 шагов под диагноз: найти промах, выбрать из пары, собрать самому, новая фраза на то же правило.</div></div>
+      <div><div class="n">5</div><div class="h">Проверили</div><div class="d">Ошибка уходит из списка сразу. Через несколько дней — одна новая фраза на проверку. Промах возвращает ошибку.</div></div>
+    </div>
+    <ul>
+      <li><b>Почему лестница, а не один вопрос.</b> Узнать верный вариант среди четырёх легче, чем сказать самому. В исследованиях обучения три верных ответа за одно занятие дали 26 % удержания через неделю, а по одному верному в трёх занятиях — 68 % <span class="src">(Rawson и др., 2018)</span>.</li>
+      <li><b>Почему последняя ступень — новая фраза.</b> Иначе человек запоминает конкретный ответ, а не правило. Правило повторяется, слова меняются.</li>
+      <li><b>Почему сначала намёк, потом ответ.</b> Подсказка, после которой человек исправляет сам, работает лучше готового ответа <span class="src">(обзор 15 исследований, Lyster и Saito, 2010)</span>. Поэтому первый шаг — «найди слово с ошибкой» в собственном ответе.</li>
+      <li><b>Упрямая ошибка.</b> Три промаха по одной ошибке — задания прекращаются, открывается короткий разбор с примерами рядом. В общую очередь она не возвращается, пока разбор не пройден.</li>
+      <li><b>Размер занятия.</b> До 10 ошибок, около 4 минут. Очередь не растёт бесконечно: давно не встречавшиеся ошибки уходят в «Проверку» сами.</li>
+    </ul>
+    <div class="tblw"><table class="tb">
+      <tr><th>Диагноз</th><th>Шаг 1</th><th>Шаг 2</th><th>Шаг 3</th><th>Шаг 4</th></tr>
+      <tr><td>Не та форма слова</td><td>Найди ошибку</td><td>Выбери из пары</td><td>Собери фразу</td><td>Новая фраза</td></tr>
+      <tr><td>Порядок слов</td><td>Найди ошибку</td><td>Расставь слова</td><td>Напиши</td><td>Новая фраза</td></tr>
+      <tr><td>Пропущено или лишнее слово</td><td>Вставь слово</td><td>Собери фразу</td><td>Напиши</td><td>Новая фраза</td></tr>
+      <tr><td>Значение слова</td><td>Выбери перевод</td><td>Пары</td><td>Напиши</td><td>—</td></tr>
+      <tr><td>На слух</td><td>Послушай и выбери</td><td>Послушай и собери</td><td>Новая фраза на слух</td><td>—</td></tr>
+      <tr><td>Произношение</td><td>Послушай</td><td>Скажи вслух</td><td>Скажи новую фразу</td><td>—</td></tr>
+    </table></div>
+
+    <h2 id="src">Откуда ошибки</h2>
+    <p>Что каждый раздел сохраняет сейчас и чего не хватает, чтобы ошибку можно было понять и объяснить.</p>
+    <div class="tblw"><table class="tb">
+      <tr><th>Раздел</th><th>Пишет ошибки</th><th>Ответ человека</th><th>Текст задания</th><th>Что сделать</th></tr>
+      <tr><td>Уроки: фразы</td><td class="ok">да</td><td class="no">нет</td><td class="no">нет</td><td>Сохранять ответ и задание; связать с разбором ответа из урока</td></tr>
+      <tr><td>Уроки: слова, глаголы</td><td class="ok">да</td><td class="no">нет</td><td class="mid">частично</td><td>Сохранять выбранный вариант</td></tr>
+      <tr><td>Карточки, 4 режима</td><td class="ok">да</td><td class="no">нет</td><td class="mid">частично</td><td>Различать режим; сохранять ответ</td></tr>
+      <tr><td>Экзамены и тест уровня</td><td class="ok">да</td><td class="no">нет</td><td class="mid">частично</td><td>Сохранять вопрос как был и выбранный вариант</td></tr>
+      <tr><td>Диалоги</td><td class="ok">да</td><td class="ok">да</td><td class="ok">да</td><td>Образец для остальных</td></tr>
+      <tr><td>Шпиль</td><td class="mid">3 из 5 заданий</td><td class="ok">да</td><td class="ok">да</td><td>Оставить как есть</td></tr>
+      <tr><td>Тренажёр предлогов</td><td class="no">нет</td><td class="no">нет</td><td class="no">нет</td><td>Подключить; свой список промахов убрать</td></tr>
+    </table></div>
+
+    <h2 id="ai">Объяснения и ИИ</h2>
+    <p>ИИ в приложении уже есть: готовая облачная функция разбора ошибки с общим кэшем и суточным лимитом. Она выключена 17.10 одним флагом. Предложение — вернуть её не кнопкой, а третьим слоем.</p>
+    <ul>
+      <li><b>Слой 1 — разбор из урока.</b> Бесплатно, мгновенно, написано по Библии текстов. Нужна только связь «ошибка → ответ в уроке», которой сейчас нет.</li>
+      <li><b>Слой 2 — разбор по диагнозу.</b> Собирается на телефоне из сравнения ответов: «Нужно works, у тебя work» плюс короткое правило темы. Закрывает случаи, когда слоя 1 нет.</li>
+      <li><b>Слой 3 — ИИ.</b> Только когда ответ свободный (ввод, диалог) и слои 1–2 не объясняют. Пишется в фоне, кладётся в общий кэш: одну и ту же ошибку в одном задании ИИ разбирает один раз на всех учеников. Человек ничего не ждёт — он уже видит слой 2.</li>
+      <li><b>Как не дать ИИ соврать.</b> В запрос идут правило из урока и все допустимые ответы; ИИ запрещено называть ошибкой то, что есть среди допустимых; ответ — строго по форме из четырёх полей; у разбора есть флажок «неточный разбор», после жалоб он уходит на проверку. В исследованиях ИИ верно объясняет ошибки не всегда (в одном — около 60 % с первого раза), поэтому без этих ограничений включать нельзя.</li>
+      <li><b>Деньги.</b> Сейчас в функции стоит дорогая модель. Для разбора из 3–4 предложений хватает дешёвой: порядок цены — десятки долларов за 100 000 разборов, а с общим кэшем платных разборов в разы меньше. Точные цены я не сверял с прайсами провайдеров — перед включением сверить.</li>
+      <li><b>Данные.</b> ИИ получает текст задания и ответ человека, без имени и почты. Перед включением — сверить политику конфиденциальности и экран согласия; у Apple с ноября 2025 отдельное требование о передаче данных стороннему ИИ.</li>
+    </ul>
+
+    <h2 id="safe">Защита от странностей</h2>
+    <ul>
+      <li><b>Ложная ошибка.</b> Опечатка в одну букву в длинном слове засчитывается с пометкой «Опечатка» и в ошибки не попадает. В меню задания — «Мой ответ тоже верный»: ошибка убирается сразу, задание уходит на проверку.</li>
+      <li><b>Дубли.</b> Одна ошибка — одна строка со счётчиком «×3» и историей, сколько бы раз и в каких разделах она ни повторилась.</li>
+      <li><b>Одно и то же задание по кругу.</b> В одном занятии ошибка не встречается подряд; после промаха возвращается через 2–4 задания ступенью ниже.</li>
+      <li><b>Пустые обещания.</b> Экран не говорит «вернётся завтра», если возврат не запланирован.</li>
+      <li><b>Изменился урок.</b> Если задание отредактировано или удалено, ошибка тихо уходит из списка, а не ломает занятие.</li>
+      <li><b>Нет вариантов для задания.</b> Если для ступени не хватает материала (нет неправильных вариантов, слишком длинная фраза), ступень заменяется соседней, а не показывается пустой.</li>
+      <li><b>Нет сети.</b> Раздел целиком работает с телефона. Нужен интернет только для разбора ИИ — без него остаётся слой 2.</li>
+      <li><b>Запись не удалась.</b> Ошибка кладётся в очередь и дописывается при следующем открытии, а не теряется.</li>
+      <li><b>Смена языка обучения.</b> У каждого языка свой список; кольцо и счётчики не смешиваются.</li>
+      <li><b>Скрытие и удаление.</b> Отменяются одной кнопкой в течение нескольких секунд.</li>
+    </ul>
+
+    <h2 id="ask">Решения за владельцем</h2>
+    <div class="ask">
+      <div><div class="h">Проверка после исправления</div><div class="d">06.11 решено: верный ответ сразу убирает ошибку навсегда. Предлагаю оставить «сразу убирает», но через несколько дней тихо добавлять одну новую фразу на проверку.</div><div class="r">Мой совет: включить проверку. Без неё раздел не отличает «угадал» от «понял».</div></div>
+      <div><div class="h">Сколько шагов на ошибку</div><div class="d">Сейчас один лёгкий вопрос. Предлагаю 3–4 шага за одно занятие, последний — новая фраза.</div><div class="r">Мой совет: 3 шага по умолчанию, 4 — для формы и порядка слов.</div></div>
+      <div><div class="h">ИИ-разбор</div><div class="d">17.10 кнопка «Объяснить» убрана. Предлагаю не возвращать кнопку, а включить ИИ фоном как третий слой, только для свободных ответов.</div><div class="r">Мой совет: включить после связки слоёв 1–2 и сверки политики.</div></div>
+      <div><div class="h">С чего начать</div><div class="d">Без ответа человека в паспорте ошибки не работают ни диагноз, ни разбор, ни шаг «найди ошибку».</div><div class="r">Мой совет: первым делом научить уроки, карточки и экзамены сохранять ответ и задание.</div></div>
+    </div>
+  </div>
+
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block, sheet } = K;
+const cta = (t, x = '') => `<div class="ac-cta t"${x}>${t}</div>`;
+const bot = (i) => `<div class="bot2">${i}</div>`;
+const back = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
+const barX = (r = '') => `<div class="flex" style="gap:14px;margin-top:6px"><span class="rb t">${icon('close', 's20')}</span><div class="grow">${r}</div></div>`;
+const ring = (p) => { const r = 100, S = 236, c = 2 * Math.PI * r; return `<svg viewBox="0 0 ${S} ${S}"><circle cx="118" cy="118" r="${r}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="16"/><circle cx="118" cy="118" r="${r}" fill="none" stroke="var(--acc)" stroke-width="16" stroke-linecap="round" stroke-dasharray="${c * p} ${c}" transform="rotate(-90 118 118)"/></svg>`; };
+const mini = (n, of = 4) => `<div class="mini">${Array.from({ length: of }, (_, i) => `<i class="${i < n ? 'on' : ''}"></i>`).join('')}</div>`;
+const prow = (w, s, n, of) => `<div class="pr"><div class="grow"><div class="w">${w}</div><div class="s">${s}</div></div>${mini(n, of)}</div>`;
+const chips = (arr, on = 0) => `<div class="fchips">${arr.map((t, i) => `<span class="${i === on ? 'on' : ''}">${t}</span>`).join('')}</div>`;
+const TYPES = ['Все 12', 'Значение 5', 'Грамматика 4', 'Произношение 3'];
+const FROM = ['Все 12', 'Уроки 5', 'Карточки 4', 'Шпиль 2', 'Диалоги 1'];
+const legend = `<div class="legend"><span><i style="background:var(--acc)"></i>38 исправлено</span><span><i style="background:rgba(255,255,255,.25)"></i>12 ждут</span></div>`;
+const viewBtn = `<span class="rb t">${icon('layers', 's20')}</span>`;
+const hubHead = back(viewBtn) + `<div class="lt"><div class="ti">Мои ошибки</div></div>`;
+const runTop = (n, of = 10) => barX(`<div class="flex" style="justify-content:flex-end;gap:12px"><div class="sec2" style="font-weight:600;font-variant-numeric:tabular-nums">${n} / ${of}</div><span class="rb t">${icon('dotsH', 's20')}</span></div>`);
+const trayG = (opts, marks = {}) => `<div class="g">${opts.map((o) => `<div class="${marks[o] || ''}">${o}</div>`).join('')}</div>`;
+const menuRow = (ic, t, red, n, on) => `<div class="gl mopt t${on ? ' on' : ''}"><div class="gtile" style="width:42px;height:42px;border-radius:13px${red ? ';color:#F2766B' : ''}">${icon(ic, 's20')}</div><div class="tx"${red ? ' style="color:#F2766B"' : ''}>${t}</div>${n != null ? `<span class="n">${n}</span>` : ''}${on ? `<span style="color:var(--acc);flex:none">${icon('check', 's20')}</span>` : ''}</div>`;
+const stp = (done, of = 4) => `<div class="stp">${Array.from({ length: of }, (_, i) => `${i ? `<b class="${i < done ? 'on' : ''}"></b>` : ''}<i class="${i < done ? 'on' : ''}">${i < done ? icon('check', 's16') : i + 1}</i>`).join('')}</div>`;
+const res = (ok, t, right = '') => `<div class="res"><span class="sp" style="background:${ok ? 'rgba(111,208,140,.22)' : 'rgba(242,118,107,.22)'};color:${ok ? '#6FD08C' : '#F2766B'}">${icon(ok ? 'check' : 'close', 's20')}</span><span>${t}</span>${right}</div>`;
+const WHY = 'Про него и про неё действие получает <b>-s</b>: I work, she work<b>s</b>.';
+const MINE = 'She <span class="x">work</span> at home';
+const RIGHT = 'She <span class="y">works</span> at home';
+
+// ---------- хаб и список ----------
+const hub = () => phone(`${hubHead}<div class="ringw">${ring(0.76)}<div class="c"><div style="font-size:60px;line-height:62px;font-weight:800;letter-spacing:-1.5px">76%</div><div class="sec2" style="font-size:15px;margin-top:2px">исправлено</div></div></div>${legend}${chips(TYPES)}<div class="panel">${prow('She works at home', 'Урок 4', 1)}${prow('Grandchildren', 'Карточки', 0, 3)}${prow('I always drink coffee', 'Шпиль', 2)}</div>`, { fixed: bot(cta('Отработать 10')) });
+const hubFrom = () => phone(`${hubHead}<div class="ringw">${ring(0.76)}<div class="c"><div style="font-size:60px;line-height:62px;font-weight:800;letter-spacing:-1.5px">76%</div><div class="sec2" style="font-size:15px;margin-top:2px">исправлено</div></div></div>${legend}${chips(FROM, 1)}<div class="panel">${prow('She works at home', 'Урок 4 · собери фразу', 1)}${prow('He lives here', 'Урок 4 · собери фразу', 0)}${prow('At home', 'Урок 6 · слова', 0, 3)}</div>`, { fixed: bot(cta('Отработать 5')) });
+const viewSheet = () => phone(`<div style="opacity:.3">${hubHead}</div>`, { overlay: sheet('vw', `<div class="center" style="font-size:24px;font-weight:700">Показать</div><div style="margin-top:12px">${menuRow('edit', 'По типу ошибки', false, null, false)}${menuRow('layers', 'По разделу', false, null, true)}${menuRow('bookmark', 'По теме', false, null, false)}</div>`, true) });
+const list = () => phone(`${back(`<span class="rb t">${icon('search', 's20')}</span>`)}<div class="lt"><div class="ti">Все ошибки</div></div><div class="tabs"><span class="on">Ждут 12</span><span>Проверка 4</span><span>Исправлены 34</span></div>
+  <div class="grp"><span>Урок 4</span><span>3</span></div><div class="panel">${prow('She works at home', 'Собери фразу', 1)}${prow('He lives here', 'Собери фразу', 0)}${prow('Does she work?', 'Напиши', 0)}</div>
+  <div class="grp"><span>Карточки</span><span>4</span></div><div class="panel">${prow('Grandchildren', 'Блиц', 0, 3)}${prow('Although', 'Свайп', 1, 3)}</div>
+  <div class="grp"><span>Шпиль</span><span>2</span></div><div class="panel">${prow('I always drink coffee', 'Вставь слово', 2)}</div>`, { fixed: bot(cta('Отработать 10')) });
+
+// ---------- паспорт ошибки ----------
+const heroErr = (steps) => `<div class="hero2"><div class="topbar" style="margin:-46px 0 14px"><span class="rb t">${icon('back', 's20')}</span><span class="rb t">${icon('dotsH', 's20')}</span></div><div style="font-size:36px;line-height:42px;font-weight:700;letter-spacing:-.8px">She works at home</div><div style="font-size:20px;margin-top:6px;opacity:.8">Она работает дома</div><div class="stat3"><div><b>×3</b><span>ошибки</span></div><div><b>${steps}/4</b><span>шаги</span></div><div><b>4 окт.</b><span>последняя</span></div></div></div>`;
+const detail = () => phone(`${heroErr(1)}
+  <div class="panel" style="margin-top:20px"><div class="pr t"><div class="gtile" style="width:42px;height:42px;border-radius:13px">${icon('bookmark', 's20')}</div><div class="grow"><div class="w" style="font-size:17px">Урок 4</div><div class="s">Собери фразу</div></div><span class="sec2">${icon('fwd', 's18')}</span></div></div>
+  <div class="panel" style="margin-top:12px"><div class="pr"><span class="lab">Твой ответ</span><span class="df">${MINE}</span></div><div class="pr"><span class="lab">Правильно</span><span class="df grow">${RIGHT}</span><span style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex:none">${icon('vol', 's18')}</span></div></div>
+  <div class="panel" style="margin-top:12px;padding:16px 18px"><div style="font-size:15px;color:var(--sec);font-weight:600">Почему</div><div style="font-size:16px;line-height:23px;margin-top:6px;color:#E2E2E6">${WHY}</div></div>`, { fixed: bot(cta('Отработать')) });
+const detail2 = () => phone(`${heroErr(2)}
+  <div class="panel" style="margin-top:20px;padding:16px 18px"><div class="flex" style="justify-content:space-between;margin-bottom:14px"><b style="font-size:16px">Исправление</b><span class="sec2">2 из 4</span></div>${stp(2)}</div>
+  <div class="grp"><span>Где ошибался</span></div>
+  <div class="panel"><div class="hist"><span>Урок 4 · собери фразу</span><span class="sec2">4 окт.</span></div><div class="hist"><span>Шпиль · вставь слово</span><span class="sec2">3 окт.</span></div><div class="hist"><span>Экзамен главы</span><span class="sec2">1 окт.</span></div></div>
+  <div class="grp"><span>Та же тема</span><span>2</span></div>
+  <div class="panel">${prow('He lives here', 'Урок 4', 0)}${prow('Does she work?', 'Урок 4', 0)}</div>`, { fixed: bot(cta('Отработать тему · 3')) });
+const errMenu = () => phone(`<div style="opacity:.3">${heroErr(1)}</div>`, { overlay: sheet('m', menuRow('check', 'Я это знаю') + menuRow('flag', 'Мой ответ был верным') + menuRow('eyeOff', 'Скрыть ошибку') + menuRow('trash', 'Удалить из ошибок', true), true) });
+
+// ---------- режимы ----------
+const start = () => phone(`<div style="opacity:.3">${hubHead}</div>`, { overlay: sheet('st', `<div class="center"><div style="font-size:24px;font-weight:700">Отработка</div><div class="sec2" style="font-size:16px;margin-top:6px">10 ошибок · около 4 минут</div></div>
+  <div style="margin-top:12px">${menuRow('layers', 'Все по порядку', false, 10, true)}${menuRow('bookmark', 'Только урок 4', false, 3)}${menuRow('flame', 'Упрямые', false, 2)}${menuRow('check', 'Проверка исправленных', false, 4)}</div>
+  <div style="margin-top:20px">${cta(`Начать ${icon('boltF', 's18')} 1`)}</div>`, true) });
+
+// ---------- задания ----------
+const runFind = () => phone(`${runTop(1)}<div class="q"><div class="k">Найди слово с ошибкой</div><div class="v m">Она работает дома</div></div><div class="toks" style="justify-content:center;margin-top:34px"><span class="tok lg t">She</span><span class="tok lg t sel">work</span><span class="tok lg t">at</span><span class="tok lg t">home</span></div>`, { fixed: `<div class="tray">${cta('Проверить')}</div>` });
+const runPair = () => phone(`${runTop(4)}<div class="q"><div class="k">Выбери слово</div><div class="v m">She ____ at home</div></div>`, { fixed: `<div class="tray">${trayG(['works', 'work'])}</div>` });
+const runGap = () => phone(`${runTop(2)}<div class="q"><div class="k">Вставь слово</div><div class="v m">She works ____ home</div></div>`, { fixed: `<div class="tray">${trayG(['at', 'in', 'on', 'to'])}</div>` });
+const runChoose = () => phone(`${runTop(3)}<div class="q"><div class="k">Выбери перевод</div><div class="v">Grandchildren</div></div>`, { fixed: `<div class="tray">${trayG(['Внуки', 'Дети', 'Родители', 'Племянники'])}</div>` });
+const runBuild = () => phone(`${runTop(6)}<div class="q"><div class="k">Собери фразу</div><div class="v m">Она работает дома</div></div><div class="slot" style="margin-top:26px"><span class="tok">She</span><span class="tok">works</span></div>`, { fixed: `<div class="tray"><div class="toks" style="margin-bottom:16px"><span class="tok used">She</span><span class="tok t">home</span><span class="tok t">work</span><span class="tok used">works</span><span class="tok t">at</span></div><div class="ac-cta" style="opacity:.4;box-shadow:none">Проверить</div></div>` });
+const runOrder = () => phone(`${runTop(5)}<div class="q"><div class="k">Расставь слова</div><div class="v m">Я всегда пью кофе</div></div><div class="slot" style="margin-top:26px"><span class="tok">I</span><span class="tok">always</span></div>`, { fixed: `<div class="tray"><div class="toks" style="margin-bottom:16px"><span class="tok t">coffee</span><span class="tok used">I</span><span class="tok t">drink</span><span class="tok used">always</span></div><div class="ac-cta" style="opacity:.4;box-shadow:none">Проверить</div></div>` });
+const runType = () => phone(`${runTop(8)}<div class="q"><div class="k">Напиши по-английски</div><div class="v m">Она работает дома</div></div><div class="fld" style="margin-top:26px">She works at h<span style="width:2px;height:26px;background:var(--acc);margin-left:1px"></span></div>`, { fixed: `<div class="tray">${cta('Проверить')}</div>` });
+const runListen = () => phone(`${runTop(7)}<div class="q"><div class="k">Послушай и собери</div></div><div class="center" style="margin-top:26px"><span class="mic t">${icon('vol', 's28')}</span></div><div class="slot" style="margin-top:30px"><span class="tok">She</span></div>`, { fixed: `<div class="tray"><div class="toks" style="margin-bottom:16px"><span class="tok t">works</span><span class="tok t">walks</span><span class="tok used">She</span><span class="tok t">home</span><span class="tok t">at</span></div><div class="ac-cta" style="opacity:.4;box-shadow:none">Проверить</div></div>` });
+const runSay = () => phone(`${runTop(9)}<div class="q"><div class="k">Скажи по-английски</div><div class="v m">Она работает дома</div></div><div class="center" style="margin-top:44px"><span class="mic">${icon('mic', 's28')}<span class="vbdg">3</span></span><div class="sec2" style="margin-top:16px;font-size:15px">Зажми и говори</div></div>`, { fixed: `<div class="tray"><div class="cta2 t">Не могу сейчас говорить</div></div>` });
+const runPairs = () => phone(`${runTop(3)}<div class="q"><div class="k">Соедини пары</div></div><div class="pairs"><div class="ok">Grandchildren</div><div class="ok">Внуки</div><div class="sel t">Although</div><div class="t">Готов</div><div class="t">Ready</div><div class="t">Через</div><div class="t">Through</div><div class="t">Хотя</div></div>`);
+const runNew = () => phone(`${runTop(10)}<div class="q"><span class="newtag">Новая фраза</span><div class="k" style="margin-top:16px">Собери фразу</div><div class="v m">Он живёт здесь</div></div><div class="slot" style="margin-top:26px"><span class="tok">He</span></div>`, { fixed: `<div class="tray"><div class="toks" style="margin-bottom:16px"><span class="tok t">here</span><span class="tok t">live</span><span class="tok used">He</span><span class="tok t">lives</span></div><div class="ac-cta" style="opacity:.4;box-shadow:none">Проверить</div></div>` });
+const runMenu = () => phone(`${runTop(4)}<div class="q"><div class="k">Выбери слово</div><div class="v m">She ____ at home</div></div>`, { fixed: `<div class="tray">${trayG(['works', 'work'])}</div>`, overlay: sheet('rm', menuRow('flag', 'Мой ответ тоже верный') + menuRow('eyeOff', 'Скрыть ошибку') + menuRow('chat', 'Сообщить об ошибке в задании'), true) });
+
+// ---------- ответ и разбор ----------
+const QP = `<div class="q"><div class="k">Выбери слово</div><div class="v m">She ____ at home</div></div>`;
+const fbOk = () => phone(`${runTop(4)}${QP}`, { fixed: `<div class="tray">${res(true, 'Верно', `<div style="margin-left:auto;width:184px">${stp(2)}</div>`)}${trayG(['works', 'work'], { works: 'ok' })}<div style="margin-top:16px">${cta('Дальше')}</div></div>` });
+const fbNo = () => phone(`${runTop(4)}${QP}`, { fixed: `<div class="tray">${res(false, 'Почти')}${trayG(['works', 'work'], { works: 'ok', work: 'no' })}<div class="why" style="margin-top:14px">${WHY}</div><div class="row2"><div class="cta2 t">Почему</div>${cta('Дальше', ' style="flex:1;width:auto"')}</div></div>` });
+const fbBuild = () => phone(`${runTop(6)}<div class="q"><div class="k">Собери фразу</div><div class="v m">Она работает дома</div></div>`, { fixed: `<div class="tray">${res(false, 'Почти')}<div class="panel"><div class="pr"><span class="lab">Твой ответ</span><span class="df">${MINE}</span></div><div class="pr"><span class="lab">Правильно</span><span class="df">${RIGHT}</span></div></div><div class="why" style="margin-top:14px">${WHY}</div><div class="row2"><div class="cta2 t">Почему</div>${cta('Дальше', ' style="flex:1;width:auto"')}</div></div>` });
+const fbTypo = () => phone(`${runTop(8)}<div class="q"><div class="k">Напиши по-английски</div><div class="v m">Она работает дома</div></div><div class="fld" style="margin-top:26px">She wokrs at home</div>`, { fixed: `<div class="tray">${res(true, 'Верно, с опечаткой')}<div class="panel"><div class="pr"><span class="lab">Пишется</span><span class="df">She <span class="y">works</span> at home</span></div></div><div style="margin-top:16px">${cta('Дальше')}</div></div>` });
+const why = () => phone(`${runTop(4)}${QP}`, { fixed: `<div class="tray" style="padding-top:22px"><div class="flex" style="margin-bottom:14px"><div class="grow" style="font-size:22px;font-weight:700">Почему works</div><span class="rb fill t">${icon('flag', 's18')}</span><span class="rb fill t">${icon('close', 's18')}</span></div>
+  <div class="panel"><div class="pr"><span class="lab">Твой ответ</span><span class="df">${MINE}</span></div><div class="pr" style="padding:12px 0"><span style="font-size:16px;line-height:23px;color:#E2E2E6">${WHY}</span></div><div class="pr"><span class="lab">Правильно</span><span class="df">${RIGHT}</span></div></div>
+  <div class="vs3" style="margin-top:12px"><div>I work</div><div>You work</div><div class="em">She work<u>s</u></div></div>
+  <div class="row2" style="margin-top:16px"><div class="cta2 t">Объясни проще</div>${cta('Понятно', ' style="flex:1;width:auto"')}</div></div>` });
+const appeal = () => phone(`${runTop(5)}<div class="q"><div class="k">Расставь слова</div><div class="v m">Я всегда пью кофе</div></div><div class="slot" style="margin-top:26px"></div>`, { fixed: `<div class="tray"><div class="toks" style="margin-bottom:16px"><span class="tok t">coffee</span><span class="tok t">I</span><span class="tok t">drink</span><span class="tok t">always</span></div><div class="ac-cta" style="opacity:.4;box-shadow:none">Проверить</div></div>`, overlay: `<div class="toastx">${icon('check', 's24')}<span>Ошибку убрали, задание проверим</span><b class="t">Вернуть</b></div>` });
+const stubborn = () => phone(`${barX('')}<div style="margin-top:26px"><div class="sec2" style="font-size:17px">Разберём спокойно</div><div style="font-size:36px;line-height:42px;font-weight:700;letter-spacing:-.8px;margin-top:8px">She works at home</div></div>
+  <div class="vs3" style="margin-top:26px"><div>I work</div><div>You work</div><div>We work</div><div class="em">He work<u>s</u></div><div class="em">She work<u>s</u></div><div class="em">It work<u>s</u></div></div>
+  <div class="panel" style="margin-top:14px;padding:16px 18px"><div style="font-size:16px;line-height:23px;color:#E2E2E6">Один он, одна она, одно оно — и у действия появляется <b>-s</b>. Всем остальным хвостик не положен.</div></div>
+  <div class="panel" style="margin-top:12px"><div class="pr"><span class="lab">Твой ответ</span><span class="df">${MINE}</span></div><div class="pr"><span class="lab">Правильно</span><span class="df">${RIGHT}</span></div></div>`, { fixed: bot(cta('Попробовать')) });
+
+// ---------- итог и проверка ----------
+const result = () => phone(`${barX('')}<div class="ringw">${ring(0.7)}<div class="c"><div style="font-size:58px;line-height:60px;font-weight:800;letter-spacing:-1.5px">7/10</div><div class="sec2" style="font-size:15px;margin-top:2px">исправлено</div></div></div>
+  <div class="panel" style="margin-top:22px"><div class="pr"><span>Исправлено</span><b style="margin-left:auto;font-size:22px">7</b></div><div class="pr"><span>Ещё повторить</span><b style="margin-left:auto;font-size:22px">2</b></div><div class="pr"><span>Упрямая</span><b style="margin-left:auto;font-size:22px">1</b></div></div>
+  <div class="grp"><span>Чаще всего</span></div><div class="panel"><div class="pr t"><div class="grow"><div class="w" style="font-size:17px">Урок 4</div><div class="s">3 ошибки</div></div><span class="sec2">${icon('fwd', 's18')}</span></div></div>`, { fixed: bot(`<div class="row2"><div class="cta2 t">Ещё 3</div>${cta('Готово', ' style="flex:1;width:auto"')}</div>`) });
+const checkHub = () => phone(`${hubHead}<div class="ringw" style="margin-top:20px"><svg viewBox="0 0 236 236"><circle cx="118" cy="118" r="100" fill="none" stroke="var(--acc)" stroke-width="16"/></svg><div class="c"><svg viewBox="0 0 24 24" style="position:static;width:84px;height:84px" fill="none" stroke="#6FD08C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div></div><div class="center"><div style="font-size:26px;font-weight:700;margin-top:24px">Ошибок нет</div></div>
+  <div class="panel" style="margin-top:26px"><div class="pr"><span>На проверке</span><b style="margin-left:auto;font-size:22px">4</b></div></div>`, { fixed: bot(cta('Проверить 4')) });
+const checkBack = () => phone(`${runTop(2, 4)}<div class="q"><span class="newtag">Проверка</span><div class="k" style="margin-top:16px">Собери фразу</div><div class="v m">Он живёт здесь</div></div>`, { fixed: `<div class="tray">${res(false, 'Вернули в ошибки')}<div class="panel"><div class="pr"><span class="lab">Твой ответ</span><span class="df">He <span class="x">live</span> here</span></div><div class="pr"><span class="lab">Правильно</span><span class="df">He <span class="y">lives</span> here</span></div></div><div class="why" style="margin-top:14px">${WHY}</div>${cta('Дальше')}</div>` });
+
+document.getElementById('root').innerHTML =
+  block('hub', 'Хаб и список', 'Кольцо и ленты — как в эталоне. Новое: у каждой ошибки подписан раздел, кнопка в шапке переключает ленты между типом, разделом и темой, а список сгруппирован по разделам и получил вкладку «Проверка».', [col('Хаб — по типу', hub()), col('Хаб — по разделу', hubFrom()), col('Показать — выбор лент', viewSheet()), col('Все ошибки — по разделам', list())]) +
+  block('card', 'Паспорт ошибки', 'Откуда ошибка, что ответил человек и где именно промах, разбор без нажатий. Ниже — шаги исправления, все места, где ошибка повторялась, и соседние ошибки той же темы.', [col('Ошибка', detail()), col('Ошибка — шаги, история, тема', detail2()), col('Меню ошибки', errMenu())]) +
+  block('modes', 'Режимы отработки', 'Один экран выбора перед стартом. «Упрямые» и «Проверка» появляются в списке, только когда в них что-то есть.', [col('Перед отработкой', start())]) +
+  block('run', 'Задания', 'Одиннадцать видов заданий. Какие достанутся ошибке, решает её диагноз; порядок — от лёгкого к самостоятельному.', [col('Найди ошибку', runFind()), col('Выбери из пары', runPair()), col('Вставь слово', runGap()), col('Выбери перевод', runChoose()), col('Собери фразу', runBuild()), col('Расставь слова', runOrder()), col('Напиши', runType()), col('Послушай и собери', runListen()), col('Скажи вслух', runSay()), col('Пары', runPairs()), col('Новая фраза', runNew()), col('Меню задания', runMenu())]) +
+  block('fb', 'Ответ и разбор', 'Разбор виден сразу в «стакане». Опечатка не становится ошибкой. Флажок в разборе — «неточный разбор».', [col('Верно — шаг пройден', fbOk()), col('Неверно — выбор', fbNo()), col('Неверно — сборка', fbBuild()), col('Опечатка', fbTypo()), col('Почему', why()), col('«Мой ответ тоже верный»', appeal()), col('Упрямая ошибка — разбор', stubborn())]) +
+  block('end', 'Итог и проверка', '', [col('Итог отработки', result()), col('Ошибок нет, есть проверка', checkHub()), col('Проверка не пройдена', checkBack())]);
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

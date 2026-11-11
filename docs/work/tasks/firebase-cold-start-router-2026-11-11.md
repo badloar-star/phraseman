@@ -163,6 +163,27 @@
   `shardsApplyDelta`, `adminGrantVoiceMinutes`, `aiDialogBuyExtraReplies`, `flashcardPackGift*` — их зовут старые сборки, удалять вслепую нельзя;
   нужен отдельный разбор безопасности.
 
+### Попутно 11.11: разбор функций «на бою, но не в коде» (слово владельца «проверь остальные… на дыры», затем «Да, удалить 28», «Да, удалить 12»)
+
+- Было 51. Метод: число вызовов за 42 суток (Cloud Monitoring) + исходник на дату выкладки каждого сервиса
+  (`git rev-list -1 --before=<updateTime>`; для `collectiblesClaimDrop` сверено с архивом исходников в `gcf-v2-sources`).
+- **Удалено 39** (`firebase functions:delete`, адреса отвечают 404): 25 `admin*` удалённых разделов админки (фабрика контента,
+  Learning V2, квесты, голосовые минуты) — у проверенных стояли `token.admin` + роль или root-owner; фоновый обработчик Learning V2;
+  крон `recalcCoinExchangeRate` (работал ежедневно для удалённого кода); `questGetActive` (100 % 5xx); 11 пользовательских без
+  вызовов (покупка/разблокировка/чеки/завершения Learning V2, `grantMistakeCorrectionReward`, `aiDialogBuyExtraReplies`,
+  `aiDialogSyncPurchase`, `friendsLessonTogetherMark`). Код последних 11 глубоко не разбирался — удаление закрывает вопрос.
+- **Оставлено 12:**
+  - зовут старые сборки: `videoWatchRunesClaim` (25 604 вызова; вход обязателен, потолок 600 рун в сутки, чек на операцию),
+    `getLearningV2AccountBinding` (6 211), `collectiblesClaimDrop` (3 156; на бою заглушка-отказ), `cosmeticAssetCatalogGet` (2 164),
+    `submitLearningV2CourseSessionCompletedV1` (1 429), `flashcardPackGiftSyncState` (234), `shardsApplyDelta` (35; заглушка-отказ),
+    `leagueActivateGroupBoost` (6), `friendsLessonInvite` (2);
+  - подарки, 0 вызовов, оставлены по решению владельца: `flashcardPackGiftRedeem`, `communityRedeemPackGiftVoucher`,
+    `flashcardPackGiftGrantGlobalBroadcast` — вход и владелец ваучера проверяются, ваучер одноразовый и со сроком, одна выдача на
+    рассылку/событие; дыр в прочитанной части не найдено.
+- Не разобраны построчно: `getLearningV2AccountBinding`, `cosmeticAssetCatalogGet`, `submitLearningV2CourseSessionCompletedV1`,
+  `flashcardPackGiftSyncState`, `leagueActivateGroupBoost` (только вход и личность), `friendsLessonInvite`.
+- Админка выложена 11.11 (`hosting:admin` из HEAD e16bcd748+): рубильники 9 закреплённых функций спрятаны, запись в них отклоняется.
+
 ## 7. Что осталось вне плана (мелкие, из аудита)
 
 - Проверка личности `resolveStableUidForAuth`: до 19 чтений и 2 безусловные записи в `account_id_index` на вызов

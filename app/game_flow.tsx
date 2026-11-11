@@ -30,6 +30,7 @@ import {
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { getClassicLessonPhrases, isClassicCourseLang } from './classic_course_phrases';
+import { useSkillSession } from '../modules/skills/use_skill_session';
 import { safeRouterBack } from './navigation_back';
 
 const LOG = '[GAME-FLOW]';
@@ -102,6 +103,7 @@ function translationOf(phrase: { russian: string; ukrainian: string; sourceLocal
 
 export default function GameFlowScreen() {
   const router = useRouter();
+  useSkillSession(); // занятие объявляет сам режим — только его прирост попадёт в «Навыки растут»
   const p = useV2Palette();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();

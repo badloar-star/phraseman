@@ -5,7 +5,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
-  __skillStoreTestHooks as hooks, parseSkillsState, peekSkills, recordSkillAction, refreshSkills, skillWeekGains, subscribeSkills, takeSkillSessionBase,
+  __skillStoreTestHooks as hooks, parseSkillsState, peekSkills, recordSkillAction, refreshSkills, beginSkillSession, endSkillSession, skillWeekGains, subscribeSkills, takeSkillSessionBase,
 } from '../modules/skills/skill_store';
 
 const NOON = new Date(2026, 10, 11, 12, 0, 0).getTime();
@@ -116,8 +116,27 @@ it('прирост за неделю считается с понедельни�
   expect(rolled.totals.vocab).toBe(42);
 });
 
+it('очки вне объявленного занятия на чужом итоге не всплывают', async () => {
+  // игра без блока на итоге дала очки, занятие никто не объявлял
+  await recordSkillAction({ action: 'theory_task', itemKey: 'x1' });
+  expect(peekSkills()?.totals.grammar).toBe(2);
+  expect(takeSkillSessionBase()).toBeNull();
+  // режим объявил занятие, набрал очки и закрылся без итога — следующий итог его прирост не покажет
+  const token = beginSkillSession();
+  await recordSkillAction({ action: 'theory_task', itemKey: 'x2' });
+  endSkillSession(token);
+  expect(takeSkillSessionBase()).toBeNull();
+  // поздний уход старого экрана не гасит занятие нового
+  const next = beginSkillSession();
+  endSkillSession(token);
+  await recordSkillAction({ action: 'theory_task', itemKey: 'x3' });
+  expect(takeSkillSessionBase()?.grammar).toBe(4);
+  endSkillSession(next);
+});
+
 it('итог занятия: снимок «до» берётся перед первым начислением, отдаётся один раз и устаревает', async () => {
   expect(takeSkillSessionBase()).toBeNull();
+  beginSkillSession();
   await recordSkillAction({ action: 'theory_task', itemKey: 't1' });
   await recordSkillAction({ action: 'theory_task', itemKey: 't2' });
   expect(takeSkillSessionBase()?.grammar).toBe(0);

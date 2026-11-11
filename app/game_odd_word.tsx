@@ -34,6 +34,7 @@ import {
 import { currentGameLesson, dailyPortion, oddWordTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
+import { useSkillSession } from '../modules/skills/use_skill_session';
 import { safeRouterBack } from './navigation_back';
 
 const REVEAL_MS = 480;
@@ -72,6 +73,7 @@ const OddWord = memo(function OddWord({ text, index, shakeKey, color, chip, onPr
 
 export default function GameOddWordScreen() {
   const router = useRouter();
+  useSkillSession(); // занятие объявляет сам режим — только его прирост попадёт в «Навыки растут»
   const p = useV2Palette();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();

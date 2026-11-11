@@ -71,6 +71,25 @@ let unsaved = false;
 // (празднование не durable) и устаревают без начислений, чтобы брошенное занятие не приписалось следующему.
 const SESSION_BASE_TTL_MS = 20 * 60 * 1000;
 let sessionBase: { totals: SkillTotals; touchedAt: number } | null = null;
+// зачем (владелец 11.11: «составь пары — при чём тут навыки растут?»): снимок ведётся только внутри занятия, которое
+// режим объявил сам; иначе очки одной игры всплывали на итоге другого, постороннего режима.
+let sessionToken = 0;
+let sessionActive = false;
+
+/** Режим открылся: начать занятие с чистого снимка. Возвращает метку для закрытия. */
+export function beginSkillSession(): number {
+  sessionToken += 1;
+  sessionActive = true;
+  sessionBase = null;
+  return sessionToken;
+}
+
+/** Режим закрылся. Закрывает только своё занятие: поздний уход старого экрана не гасит занятие нового. */
+export function endSkillSession(token: number): void {
+  if (token !== sessionToken) return;
+  sessionActive = false;
+  sessionBase = null;
+}
 let queue: Promise<unknown> = Promise.resolve();
 const listeners = new Set<(state: SkillsState | null) => void>();
 
@@ -221,7 +240,7 @@ export function recordSkillAction(event: SkillActionEvent): Promise<SkillRecordR
     if (!changed && !unsaved) {
       return { skill: award.skill, points: 0, skipped: award.skipped, levelUps: [], saved: true };
     }
-    if (award.points > 0) {
+    if (award.points > 0 && sessionActive) {
       const nowMs = deps.now();
       const fresh = sessionBase !== null && nowMs - sessionBase.touchedAt <= SESSION_BASE_TTL_MS;
       sessionBase = { totals: fresh && sessionBase ? sessionBase.totals : before.totals, touchedAt: nowMs };
@@ -282,6 +301,7 @@ export const __skillStoreTestHooks = Object.freeze({
     current = null;
     unsaved = false;
     sessionBase = null;
+    sessionActive = false;
     queue = Promise.resolve();
     listeners.clear();
   },

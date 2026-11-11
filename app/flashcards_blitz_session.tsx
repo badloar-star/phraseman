@@ -38,6 +38,7 @@ import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { noteSkillAction } from '../modules/skills/skill_store';
+import { useSkillSession } from '../modules/skills/use_skill_session';
 import { practiceCoinsAllowedForDeckKeys } from './flashcards/dictionary_training_deck';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
@@ -259,6 +260,8 @@ export default function FlashcardsBlitzSession() {
   // строка ниже уже делает для sessionId попыток.
   // зачем (координатор 22.10): колода слов словаря Learning V2 — монеты только по флагу (вопрос владельцу на утро).
   const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeys(deckRefs.map(deckRefKey)), [deckRefs]);
+  // зачем (D207, владелец 11.11): занятие объявляет сам режим — «Навыки растут» на итоге покажет только его прирост
+  useSkillSession();
   const practiceRunes = usePracticeRunes({
     activity: 'flashcards_blitz',
     sessionKey: `${feedbackAttemptId}_${roundId}`,

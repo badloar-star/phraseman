@@ -47,6 +47,7 @@ import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../compone
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { noteSkillAction } from '../modules/skills/skill_store';
+import { useSkillSession } from '../modules/skills/use_skill_session';
 import { practiceCoinsAllowedForDeckKeys } from './flashcards/dictionary_training_deck';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -268,6 +269,8 @@ export default function FlashcardsRecallSession() {
   );
   // зачем (координатор 22.10): колода слов словаря Learning V2 — монеты только по флагу (вопрос владельцу на утро).
   const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeys(deckRefs.map(deckRefKey)), [deckRefs]);
+  // зачем (D207, владелец 11.11): занятие объявляет сам режим — «Навыки растут» на итоге покажет только его прирост
+  useSkillSession();
   const practiceRunes = usePracticeRunes({
     activity: 'flashcards_training',
     sessionKey: `recall_${deckKey}_${attemptSessionId}`,

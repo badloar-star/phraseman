@@ -30,6 +30,7 @@ import {
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { currentGameLesson, dailyPortion, quizDeckFor } from '../modules/games/task_source';
 import { noteSkillAction } from '../modules/skills/skill_store';
+import { useSkillSession } from '../modules/skills/use_skill_session';
 import { safeRouterBack } from './navigation_back';
 
 const AFTER_OK_MS = 1500;
@@ -112,6 +113,7 @@ function Prompt({ round, phase, picked, onReplay }: Readonly<{ round: QuizRound;
 
 export default function GameQuizScreen() {
   const router = useRouter();
+  useSkillSession(); // занятие объявляет сам режим — только его прирост попадёт в «Навыки растут»
   const p = useV2Palette();
   const { lang } = useLang();
   const params = useLocalSearchParams<{ kind?: string }>();

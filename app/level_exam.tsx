@@ -62,8 +62,12 @@ export default function LevelExam() {
       }
 
       if (!accessResolved) {
+        // зачем (найдено на эмуляторе 11.11.2026): статус Plus не подтвердился (нет связи, протух вход) — раньше здесь был
+        // немой return: проверка «завершалась», предел 12 с не срабатывал, и кнопка «Начать» оставалась серой навсегда.
+        // Теперь ждём подтверждения: придёт — эффект перезапустится с готовым статусом; не придёт — решает предел ниже.
+        console.warn('[LEVEL-EXAM-ACCESS] plus_unresolved: жду подтверждения Plus не дольше предела', JSON.stringify({ level: lvl, studyTarget, deadlineMs: LEVEL_EXAM_ACCESS_TIMEOUT_MS })); // guard-ok: ранний выход, раз за открытие
         void reloadPremiumAccess();
-        return;
+        await new Promise<never>(() => undefined);
       }
 
       const examLevel = lvl as CourseLevel;
@@ -135,7 +139,9 @@ export default function LevelExam() {
         LEVEL_EXAM_ACCESS_TIMEOUT_MS,
       );
     });
-    void Promise.race([accessCheck, accessDeadline]).catch(() => {
+    void Promise.race([accessCheck, accessDeadline]).catch((error: unknown) => {
+      // зачем: этот выход был немым — по журналу не отличить «нет связи» от сбоя самой проверки
+      console.warn('[LEVEL-EXAM-ACCESS] check_failed', JSON.stringify({ level: lvl, studyTarget, cancelled, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch, раз за открытие
       if (!cancelled) {
         setAccessBlockKind('error');
         setBlockedText(triLang(lang, {

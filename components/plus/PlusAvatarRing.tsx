@@ -7,7 +7,7 @@
 // Производительность: компоненты в React.memo с примитивными пропсами; без Plus не рисуется и не добавляется в дерево ничего.
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo } from 'react';
-import { PixelRatio, Platform, StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from 'react-native';
+import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Path, Polygon, Stop } from 'react-native-svg';
 
 import { LinearGradient } from '../SafeLinearGradient';
@@ -30,19 +30,6 @@ import {
 const ULTRA_STAR_PATH = 'M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z';
 const hexPoints = (box: number, offset: number): string => [[0.5, 0], [0.93, 0.25], [0.93, 0.75], [0.5, 1], [0.07, 0.75], [0.07, 0.25]]
   .map(([x, y]) => `${(offset + x * box).toFixed(2)},${(offset + y * box).toFixed(2)}`).join(' ');
-
-// ВРЕМЕННАЯ ТРАССИРОВКА [PLUS-RING] (владелец 11.11: «кольцо у аватара поломано везде» — видны только верхняя и левая дуги).
-// зачем: код кольца не менялся с 05.11, причина по истории не находится — нужны факты с устройства: что посчитали (размер аватара, холст,
-// толщина, дуги) и что реально получил холст после раскладки (ширина/высота/смещение). Если холст меньше посчитанного или содержимое
-// растянуто — правый и нижний край кольца уходят за край, как на снимках. Одна строка на уникальное сочетание, чтобы списки не шумели.
-// УБРАТЬ после починки.
-const ringTraceSeen = new Set<string>();
-function traceRing(stage: 'calc' | 'layout', key: string, payload: Record<string, unknown>): void {
-  const id = `${stage}:${key}`;
-  if (ringTraceSeen.has(id)) return;
-  ringTraceSeen.add(id);
-  console.warn('[PLUS-RING]', stage, JSON.stringify({ ...payload, os: Platform.OS, osVersion: Platform.Version, pixelRatio: PixelRatio.get(), fontScale: PixelRatio.getFontScale() })); // guard-ok: временная трассировка, одна строка на размер
-}
 
 type OverlayProps = Readonly<{
   /** Размер аватара (dp), вокруг которого рисуется кольцо. */
@@ -68,18 +55,11 @@ const RingGraphic = memo(function RingGraphic({ size, kind, tier }: { size: numb
   const center = outer / 2;
   const arcs = spec.flatColor ? [] : plusRingArcs(outer, ring, 0.9, ringColorsForTier(tier, isLight));
   const idBase = `plr${tier === 'ultra' ? 'u' : ''}${Math.round(outer * 10)}${isLight ? 'l' : 'd'}`;
-  const traceKey = `${kind}:${tier}:${size}:${isLight ? 'light' : 'dark'}`;
-  traceRing('calc', traceKey, { size, kind, tier, isLight, outer, ring, inset, center, flat: spec.flatColor, arcs: arcs.length, firstArc: arcs[0]?.d ?? null, lastArc: arcs[arcs.length - 1]?.d ?? null, idBase });
-  const onRingLayout = (event: LayoutChangeEvent) => {
-    const { x, y, width, height } = event.nativeEvent.layout;
-    // ожидаем: width = height = outer, x = y = −inset; расхождение = причина обрезанного кольца
-    traceRing('layout', traceKey, { size, outerExpected: outer, insetExpected: -inset, x, y, width, height, matches: Math.abs(width - outer) < 0.6 && Math.abs(height - outer) < 0.6 });
-  };
   return (
     // зачем (владелец 11.11: «кольцо поломано» — видны только левая и верхняя дуги): замер по снимку эмулятора показал, что кольцо рисовалось
     // в ~1,4 раза крупнее своей области и обрезалось её правым и нижним краем. viewBox заставляет рисунок вписываться ровно в область,
     // какой бы масштаб ни взяла нативная часть; при верном масштабе это тождественное преобразование — вид не меняется.
-    <Svg width={outer} height={outer} viewBox={`0 0 ${outer} ${outer}`} onLayout={onRingLayout} style={{ position: 'absolute', left: -inset, top: -inset }}>
+    <Svg width={outer} height={outer} viewBox={`0 0 ${outer} ${outer}`} style={{ position: 'absolute', left: -inset, top: -inset }}>
       {spec.flatColor ? (
         <Circle cx={center} cy={center} r={outer / 2 - ring / 2} stroke={spec.flatColor} strokeWidth={ring} fill="none" />
       ) : (

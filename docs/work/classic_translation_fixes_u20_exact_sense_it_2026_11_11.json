@@ -1,0 +1,1107 @@
+{
+ "_note": "it: U20 «Точный смысл» (владелец 11.11) — подсказка ведёт к той же конструкции, что и цель: время, лицо и число, отрицание, тип предложения, слово. Полный проход 1600 фраз × 8 языков подсказок; внесены находки высокой и средней уверенности. Запись ключа заменяет прежние слои целиком, поэтому поля прежних слоёв для того же ключа перенесены сюда. Накладывает сборщик classic_course_pack.mjs (слой TRANSLATION_FIXES).",
+ "it:01.08": {
+  "pl": "Wy jesteście tutaj.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:01.11": {
+  "vi": "Tôi ở nhà.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:01.12": {
+  "vi": "Bạn ở nhà.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:01.13": {
+  "vi": "Paolo ở nhà.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:01.16": {
+  "pt-BR": "Vocês estão na estação de trem.",
+  "pl": "Jesteście na dworcu kolejowym.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:01.27": {
+  "pt-BR": "Vocês estão prontos.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:01.30": {
+  "es": "Estoy libre.",
+  "tr": "Müsaitim.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:01.48": {
+  "pt-BR": "Vocês estão perto da estação de trem.",
+  "pl": "Jesteście blisko dworca kolejowego.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.05": {
+  "pl": "Paola nie ma w biurze.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.08": {
+  "pt-BR": "Vocês não estão em casa.",
+  "pl": "Nie ma was w domu.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.14": {
+  "vi": "Bạn không ở một mình.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.19": {
+  "ru": "Вы не опаздываете.",
+  "uk": "Ви не запізнюєтеся.",
+  "pt-BR": "Vocês não estão atrasados.",
+  "tr": "Geç değilsiniz.",
+  "pl": "Nie jesteście spóźnieni.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.20": {
+  "ru": "Мы не рано.",
+  "uk": "Ми не рано.",
+  "vi": "Chúng tôi không đến sớm.",
+  "tr": "Erken değiliz.",
+  "pl": "Nie jesteśmy przed czasem.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.21": {
+  "pl": "Drzwi nie są otwarte.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.23": {
+  "pl": "Sklepy nie są otwarte.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.30": {
+  "pl": "Szklanka nie jest brudna.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.32": {
+  "pt-BR": "Os banheiros não ficam no fundo.",
+  "vi": "Nhà vệ sinh không ở phía cuối.",
+  "id": "Toilet tidak ada di bagian belakang.",
+  "tr": "Tuvaletler arkada değil.",
+  "pl": "Toalety nie są z tyłu.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.37": {
+  "pl": "Muzeum nie jest otwarte.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.40": {
+  "tr": "Tren rötarlı değil.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:02.48": {
+  "pt-BR": "Vocês não estão sozinhos aqui.",
+  "pl": "Nie jesteście tu sami.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:03.07": {
+  "pt-BR": "Vocês estão em casa?",
+  "pl": "Jesteście w domu?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:03.17": {
+  "ru": "Вы рано?",
+  "uk": "Ви рано?",
+  "pt-BR": "Vocês estão adiantados?",
+  "tr": "Erken misiniz?",
+  "pl": "Czy jesteście przed czasem?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:03.30": {
+  "pl": "Czy apteka jest dziś wieczorem otwarta?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:03.35": {
+  "pt-BR": "Os bilhetes estão no seu bolso?",
+  "vi": "Vé có trong túi của bạn không?",
+  "id": "Apakah tiketnya ada di saku Anda?",
+  "tr": "Biletler cebinde mi?",
+  "pl": "Czy bilety są w twojej kieszeni?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:03.40": {
+  "pt-BR": "Vocês estão perto da entrada?",
+  "pl": "Czy jesteście blisko wejścia?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:03.42": {
+  "pl": "Czy oboje drzwi są zamknięte?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:03.46": {
+  "pl": "Jesteś dziś wieczorem sam?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:03.47": {
+  "pt-BR": "Vocês estão aqui para o concerto?",
+  "pl": "Czy jesteście tu z powodu koncertu?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:03.49": {
+  "pt-BR": "As crianças estão com vocês?",
+  "pl": "Czy dzieci są z wami?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:04.01": {
+  "vi": "Đây là Paolo.",
+  "tr": "Bu Paolo.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:04.02": {
+  "vi": "Đây là Lea.",
+  "tr": "Bu Lea.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:04.07": {
+  "pt-BR": "Este é um vizinho.",
+  "vi": "Đây là một người hàng xóm.",
+  "id": "Ini seorang tetangga.",
+  "tr": "Bu bir komşu.",
+  "pl": "To sąsiad.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:04.08": {
+  "pt-BR": "Esta é uma vizinha.",
+  "vi": "Đây là một người hàng xóm.",
+  "id": "Ini seorang tetangga.",
+  "tr": "Bu bir komşu.",
+  "pl": "To sąsiadka.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:04.14": {
+  "uk": "Це картка.",
+  "pt-BR": "Este é um cartão.",
+  "vi": "Đây là một tấm thẻ.",
+  "id": "Ini kartu.",
+  "tr": "Bu bir kart.",
+  "pl": "To jest karta.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:04.15": {
+  "pt-BR": "Este é um mapa.",
+  "vi": "Đây là một tấm bản đồ.",
+  "id": "Ini peta.",
+  "tr": "Bu bir harita.",
+  "pl": "To jest mapa.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:04.19": {
+  "pt-BR": "Este é um recibo.",
+  "vi": "Đây là một tấm biên lai.",
+  "id": "Ini adalah tanda terima.",
+  "tr": "Bu bir makbuz.",
+  "pl": "To jest paragon.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:04.24": {
+  "tr": "Bunlar komşular.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:04.28": {
+  "pl": "To są wasze paragony.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:04.40": {
+  "vi": "Đó là số của văn phòng.",
+  "pl": "To numer biura.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:05.05": {
+  "pt-BR": "Nós temos um mapa.",
+  "vi": "Chúng tôi có một tấm bản đồ.",
+  "id": "Kami punya peta.",
+  "tr": "Bizim bir haritamız var.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:05.06": {
+  "pt-BR": "Você tem um mapa.",
+  "vi": "Bạn có một tấm bản đồ.",
+  "id": "Kamu punya peta.",
+  "tr": "Bir haritan var.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:05.07": {
+  "tr": "Onların bir bileti var.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:05.16": {
+  "pt-BR": "Você está com calor.",
+  "vi": "Bạn thấy nóng.",
+  "id": "Kamu kepanasan.",
+  "tr": "Sıcaklıyorsun.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:06.09": {
+  "vi": "Những chiếc ly sạch.",
+  "id": "Gelas-gelas itu bersih.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:06.36": {
+  "pt-BR": "O troco está no bolso.",
+  "vi": "Tiền lẻ ở trong túi.",
+  "id": "Uang receh ada di saku.",
+  "tr": "Bozuk paralar cepte.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:07.22": {
+  "pt-BR": "Você está procurando sua bolsa.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:07.26": {
+  "pl": "Szukają miejsca.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:07.31": {
+  "pl": "Przygotowuję kolację.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:08.12": {
+  "pl": "Kto jest przy drzwiach?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:08.16": {
+  "pl": "Kto przygotowuje kolację?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:08.36": {
+  "uk": "Скільки людей приїде?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:08.48": {
+  "id": "Apa yang sedang dilakukan Paolo?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:09.12": {
+  "pl": "Wasz pociąg jest na peronie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:09.14": {
+  "pl": "Wasze bilety są gotowe.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:09.26": {
+  "pt-BR": "Vocês estão procurando suas bagagens.",
+  "pl": "Szukacie swojego bagażu.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:09.29": {
+  "pt-BR": "Vocês estão pegando seu capacete.",
+  "pl": "Bierzecie swój kask.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:09.42": {
+  "id": "Di mana koper kalian?",
+  "pl": "Gdzie są wasze walizki?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:09.47": {
+  "vi": "Chúng tôi giữ lại biên lai của mình.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:09.50": {
+  "uk": "Наша донька збирає свої речі.",
+  "pt-BR": "Nossa filha está arrumando as coisas dela.",
+  "id": "Putri kami sedang menyiapkan barang-barangnya.",
+  "tr": "Kızımız eşyalarını topluyor.",
+  "pl": "Nasza córka pakuje swoje rzeczy.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:10.13": {
+  "tr": "Cepte bir bilet var.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:10.37": {
+  "pt-BR": "Ainda há dois assentos livres.",
+  "vi": "Vẫn còn hai chỗ ngồi trống.",
+  "id": "Masih ada dua kursi kosong.",
+  "tr": "Hala iki boş koltuk var.",
+  "pl": "Nadal są dwa wolne miejsca.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:10.50": {
+  "pl": "Tuż naprzeciwko jest przystanek autobusowy.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:11.06": {
+  "pt-BR": "Vocês vão para a escola.",
+  "id": "Kalian pergi ke sekolah.",
+  "tr": "Okula gidiyorsunuz.",
+  "pl": "Idziecie do szkoły.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:11.20": {
+  "pt-BR": "Ele vai para a oficina mecânica.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:11.26": {
+  "pt-BR": "Vocês vão para Portugal.",
+  "pl": "Jedziecie do Portugalii.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:11.37": {
+  "pl": "Dzieci idą do szkoły pieszo.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:11.47": {
+  "pt-BR": "Vou à seção de calçados.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:12.06": {
+  "pt-BR": "Vocês pegam leite.",
+  "vi": "Các bạn lấy sữa.",
+  "id": "Kalian mengambil susu.",
+  "pl": "Bierzecie mleko.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:12.18": {
+  "ru": "Ты ешь яблочное пюре.",
+  "uk": "Ти їси яблучне пюре.",
+  "pt-BR": "Você está comendo compota de maçã.",
+  "vi": "Bạn đang ăn táo hầm.",
+  "id": "Kamu sedang makan kompot apel.",
+  "tr": "Elma kompostosu yiyorsunuz.",
+  "pl": "Jesz mus jabłkowy.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:12.27": {
+  "pt-BR": "Você adiciona mostarda.",
+  "vi": "Bạn cho thêm mù tạt.",
+  "id": "Anda menambahkan mustard.",
+  "tr": "Hardal ekliyorsun.",
+  "pl": "Dodajesz musztardę.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:12.31": {
+  "pt-BR": "Eu não bebo leite.",
+  "vi": "Tôi không uống sữa.",
+  "id": "Saya tidak minum susu.",
+  "tr": "Süt içmiyorum.",
+  "pl": "Nie piję mleka.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:12.34": {
+  "pt-BR": "Ela não compra manteiga.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:12.40": {
+  "ru": "Она ест много овощей.",
+  "uk": "Вона їсть багато овочів.",
+  "pt-BR": "Ela come muitos vegetais.",
+  "vi": "Cô ấy ăn rất nhiều rau.",
+  "tr": "Çok miktarda sebze yiyor.",
+  "pl": "Ona je dużo warzyw.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:12.45": {
+  "pl": "Dodaje łyżkę miodu.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:12.49": {
+  "pt-BR": "Nós dividimos um prato de batatas fritas.",
+  "vi": "Chúng tôi chia nhau một đĩa khoai tây chiên.",
+  "id": "Kami berbagi satu piring kentang goreng.",
+  "tr": "Bir tabak patates kızartmasını paylaşıyoruz.",
+  "pl": "Dzielimy jeden talerz frytek.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:13.23": {
+  "ru": "На нём синие брюки.",
+  "uk": "Він у синіх штанях.",
+  "pt-BR": "Ele está usando calças azuis.",
+  "vi": "Anh ấy đang mặc quần màu xanh dương.",
+  "pl": "On ma na sobie niebieskie spodnie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:13.24": {
+  "ru": "На ней синяя рубашка.",
+  "uk": "Вона в синій сорочці.",
+  "pt-BR": "Ela está usando uma camisa azul.",
+  "vi": "Cô ấy đang mặc một chiếc áo sơ mi màu xanh dương.",
+  "pl": "Ona ma na sobie niebieską koszulę.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:14.03": {
+  "pl": "Ona może przyjść.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:14.05": {
+  "uk": "Ви можете пройти.",
+  "pt-BR": "Vocês podem passar.",
+  "id": "Kalian bisa lewat.",
+  "tr": "Geçebilirsiniz.",
+  "pl": "Możecie przejść.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:14.43": {
+  "pt-BR": "Pode me emprestar seu carregador?",
+  "vi": "Bạn có thể cho tôi mượn sạc điện thoại của bạn được không?",
+  "id": "Bisakah Anda meminjamkan saya pengisi daya Anda?",
+  "tr": "Şarj cihazınızı bana ödünç verebilir misiniz?",
+  "pl": "Czy możesz pożyczyć mi swoją ładowarkę?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:15.02": {
+  "pt-BR": "Você está lendo o livro agora.",
+  "vi": "Bạn đang đọc sách.",
+  "id": "Anda sedang membaca buku.",
+  "tr": "Şu anda kitap okuyorsunuz.",
+  "pl": "Czytasz książkę.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:15.04": {
+  "pt-BR": "Você está lendo a mensagem.",
+  "vi": "Bạn đang đọc tin nhắn.",
+  "id": "Anda sedang membaca pesan.",
+  "tr": "Şu anda mesaj okuyorsunuz.",
+  "pl": "Czytasz wiadomość.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:15.09": {
+  "pl": "Luis je teraz w domu.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:15.13": {
+  "pt-BR": "Você está preparando o jantar agora.",
+  "vi": "Bạn đang nấu bữa tối.",
+  "id": "Kamu sedang memasak makan malam sekarang.",
+  "tr": "Şu anda akşam yemeği pişiriyorsun.",
+  "pl": "Teraz gotujesz obiad.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:15.18": {
+  "pt-BR": "Ana está secando a louça agora.",
+  "vi": "Ana đang lau khô bát đĩa.",
+  "id": "Ana sedang mengeringkan piring sekarang.",
+  "tr": "Ana şu anda bulaşıkları kuruluyor.",
+  "pl": "Ana wyciera teraz naczynia.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:15.20": {
+  "pt-BR": "Você está pagando com o cartão.",
+  "vi": "Bạn đang thanh toán bằng thẻ.",
+  "id": "Anda sedang membayar dengan kartu.",
+  "tr": "Şu anda kartla ödeme yapıyorsunuz.",
+  "pl": "Płacisz kartą.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:15.22": {
+  "pt-BR": "Vocês estão lendo a mensagem neste momento.",
+  "pl": "Czytacie wiadomość.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:15.27": {
+  "pt-BR": "Você está cortando os legumes.",
+  "vi": "Bạn đang thái rau.",
+  "id": "Anda sedang memotong sayuran.",
+  "tr": "Şu anda sebze doğruyorsunuz.",
+  "pl": "Kroisz warzywa.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:15.30": {
+  "pt-BR": "Vocês estão comendo na cozinha neste momento.",
+  "pl": "Jecie w kuchni.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:16.15": {
+  "vi": "Lấy áo khoác của bạn!",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:16.21": {
+  "pt-BR": "Por favor, assine abaixo.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:16.31": {
+  "pl": "Nie biegnij!",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:16.34": {
+  "pl": "Nie zamykaj drzwi na klucz!",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:16.39": {
+  "pt-BR": "Não espere perto da saída!",
+  "vi": "Đừng đợi gần lối ra!",
+  "id": "Jangan menunggu dekat pintu keluar!",
+  "tr": "Çıkışın yakınında beklemeyin!",
+  "pl": "Nie czekaj blisko wyjścia!",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:16.46": {
+  "pl": "Zapnij pas!",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:17.05": {
+  "pt-BR": "Vocês se levantam.",
+  "tr": "Siz kalkıyorsunuz.",
+  "pl": "Wy wstajecie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:17.08": {
+  "pt-BR": "Você se prepara.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:17.24": {
+  "pt-BR": "Vocês se vestem para sair.",
+  "vi": "Các bạn mặc quần áo để ra ngoài.",
+  "id": "Kalian berpakaian untuk pergi keluar.",
+  "tr": "Dışarı çıkmak için giyiniyorsunuz.",
+  "pl": "Wy ubieracie się, żeby wyjść.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:17.34": {
+  "vi": "Bạn không bao giờ nghỉ ngơi sao?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:17.37": {
+  "pt-BR": "Você se prepara aqui.",
+  "vi": "Bạn chuẩn bị ở đây.",
+  "id": "Kamu bersiap-siap di sini.",
+  "tr": "Burada hazırlanıyorsun.",
+  "pl": "Przygotowujesz się tutaj.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:17.45": {
+  "ru": "Как зовут твоего соседа?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:17.49": {
+  "uk": "Паоло помічає, що стоїть не на тій платформі.",
+  "pt-BR": "Paolo percebe que está na plataforma errada.",
+  "vi": "Paolo nhận ra mình đang ở nhầm sân ga.",
+  "id": "Paolo menyadari dia berada di peron yang salah.",
+  "tr": "Paolo yanlış perondan olduğunu fark ediyor.",
+  "pl": "Paolo zauważa, że stoi na złym peronie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:18.05": {
+  "pt-BR": "Vocês fecharam a garagem.",
+  "pl": "Zamknęliście garaż.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:18.06": {
+  "pl": "Zamknęli salę.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:18.33": {
+  "tr": "Giriş kartını bulamadı.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:18.39": {
+  "pt-BR": "Quem quebrou o copo?",
+  "vi": "Ai đã làm vỡ cái ly?",
+  "pl": "Kto stłukł szklankę?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:18.46": {
+  "ru": "Ты забыл попросить счёт.",
+  "uk": "Ти забув попросити рахунок.",
+  "pt-BR": "Você esqueceu de pedir a conta.",
+  "vi": "Bạn quên xin hóa đơn.",
+  "id": "Kamu lupa meminta tagihan.",
+  "tr": "Hesabı istemeyi unuttun.",
+  "pl": "Zapomniałeś/aś poprosić o rachunek.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:18.48": {
+  "pt-BR": "Vocês escolheram o quarto azul.",
+  "pl": "Wybraliście niebieski pokój.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:19.15": {
+  "pl": "Moja mama wróciła do domu wcześnie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:19.17": {
+  "ru": "Гости остались здесь на ночь.",
+  "uk": "Гості залишилися тут на ніч.",
+  "pt-BR": "Os hóspedes ficaram aqui para passar a noite.",
+  "vi": "Khách ở lại đây qua đêm.",
+  "tr": "Misafirler geceyi burada geçirdi.",
+  "pl": "Goście zostali tutaj na noc.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:19.18": {
+  "vi": "Những người hàng xóm ở lại bên ngoài.",
+  "id": "Para tetangga tetap berada di luar.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:19.34": {
+  "vi": "Khách hàng không vào.",
+  "id": "Para pelanggan tidak masuk.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:19.43": {
+  "pt-BR": "Os dois amigos vieram a pé.",
+  "vi": "Hai người bạn đi bộ đến.",
+  "id": "Dua teman datang dengan berjalan kaki.",
+  "tr": "İki arkadaş yürüyerek geldi.",
+  "pl": "Dwóch przyjaciół przyszło pieszo.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:19.44": {
+  "pl": "Jej ojciec przybył wcześnie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:20.05": {
+  "pt-BR": "Vocês moravam na cidade.",
+  "pl": "Mieszkaliście w mieście.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:20.35": {
+  "ru": "Магазины были закрыты по понедельникам.",
+  "uk": "Магазини були зачинені по понеділках.",
+  "en": "The shops were closed on Mondays.",
+  "es": "Las tiendas estaban cerradas los lunes.",
+  "pt-BR": "As lojas estavam fechadas às segundas-feiras.",
+  "vi": "Các cửa hàng đóng cửa vào thứ Hai.",
+  "id": "Toko-toko tutup pada hari Senin.",
+  "tr": "Pazartesi günleri dükkanlar kapalıydı.",
+  "pl": "Sklepy były zamknięte w poniedziałki.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:20.39": {
+  "ru": "Вы часто были свободны?",
+  "uk": "Ви часто були вільні?",
+  "pt-BR": "Você estava frequentemente livre?",
+  "vi": "Bạn có thường rảnh không?",
+  "id": "Apakah Anda sering senggang?",
+  "tr": "Sık sık boş muydunuz?",
+  "pl": "Czy często byłeś/aś wolny/a?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:20.47": {
+  "vi": "Chúng tôi thường gặp nhau trước đài phun nước.",
+  "id": "Dulu kami bertemu di depan air mancur.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:21.18": {
+  "tr": "Çorba geldiğinde açtık.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:21.19": {
+  "pt-BR": "Os alunos estavam esperando quando anunciaram a partida.",
+  "vi": "Các học sinh đang đợi khi họ thông báo khởi hành.",
+  "id": "Para siswa sedang menunggu ketika mereka mengumumkan keberangkatan.",
+  "tr": "Kalkışı duyurduklarında öğrenciler bekliyordu.",
+  "pl": "Uczniowie czekali, kiedy ogłosili odjazd.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:21.26": {
+  "vi": "Trong lúc súp đang được hâm nóng, tôi đã dọn bàn.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:21.27": {
+  "pl": "Podczas gdy dzieci się bawiły, piłka pękła.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:21.30": {
+  "pt-BR": "Enquanto ele dormia, o carteiro chegou.",
+  "vi": "Trong khi anh ấy đang ngủ, người đưa thư đến.",
+  "id": "Saat dia sedang tidur, tukang pos datang.",
+  "tr": "O uyurken postacı geldi.",
+  "pl": "Kiedy spał, przyszedł listonosz.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:21.45": {
+  "pl": "Radio grało piosenkę, kiedy zabrakło prądu.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:21.49": {
+  "pt-BR": "Os passageiros estavam esperando quando as informações na tela mudaram.",
+  "vi": "Hành khách đang đợi khi thông tin trên màn hình thay đổi.",
+  "id": "Para penumpang sedang menunggu ketika informasi di layar berubah.",
+  "tr": "Ekrandaki bilgiler değiştiğinde yolcular bekliyordu.",
+  "pl": "Pasażerowie czekali, kiedy zmieniły się informacje na ekranie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:22.15": {
+  "tr": "Ekmeği ben kesiyorum.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:22.16": {
+  "tr": "Bardakları ben yıkıyorum.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:22.17": {
+  "tr": "Biletleri ben yazdırıyorum.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:22.20": {
+  "tr": "Bu şarkıyı ben dinliyorum.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:22.25": {
+  "pt-BR": "Eles não o pegam.",
+  "vi": "Họ không lấy nó.",
+  "id": "Mereka tidak mengambilnya.",
+  "tr": "Onu almıyorlar.",
+  "pl": "Oni go nie biorą.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:22.34": {
+  "pt-BR": "Você pode deixá-la aqui.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:22.40": {
+  "pl": "Ona chce trzymać to w chłodzie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:22.47": {
+  "ru": "Пирог мы делим после ужина.",
+  "uk": "Пиріг ми ділимо після вечері.",
+  "en": "We share the shortcrust pastry pie after dinner.",
+  "es": "Compartimos la tarta de masa quebrada después de cenar.",
+  "pt-BR": "Dividimos a torta de massa quebrada depois do jantar.",
+  "tr": "Akşam yemeğinden sonra tart hamurlu turtayı paylaşıyoruz.",
+  "pl": "Dzielimy się ciastem kruchym po obiedzie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:23.06": {
+  "pt-BR": "Vocês falam com eles.",
+  "vi": "Các bạn nói chuyện với họ.",
+  "id": "Kalian bicara dengan mereka.",
+  "tr": "Onlarla konuşuyorsunuz.",
+  "pl": "Rozmawiacie z nimi.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:23.18": {
+  "uk": "Ви показуєте їм вихід.",
+  "pt-BR": "Vocês lhes mostram a saída.",
+  "vi": "Các bạn chỉ đường cho họ ra ngoài.",
+  "id": "Kalian menunjukkan jalan keluar kepada mereka.",
+  "pl": "Wy pokazujecie im wyjście.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:23.26": {
+  "id": "Saya mengembalikan kartunya setelah pembayaran.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:23.42": {
+  "uk": "Ми запропонували їм іншу дату.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:24.05": {
+  "pt-BR": "Nós vamos para o escritório, e vocês também vão.",
+  "vi": "Chúng tôi sẽ đến văn phòng, và các bạn cũng sẽ đến đó.",
+  "id": "Kami akan ke kantor, dan kalian juga akan ke sana.",
+  "pl": "Idziemy do biura, a wy też tam idziecie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:24.42": {
+  "pt-BR": "O mercado é longe, mas iremos a pé.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:24.45": {
+  "pt-BR": "Este parque está aberto e podemos entrar.",
+  "vi": "Công viên này đang mở cửa và chúng ta có thể vào.",
+  "id": "Taman ini buka dan kita bisa masuk.",
+  "tr": "Bu park açık ve içeri girebiliriz.",
+  "pl": "Ten park jest otwarty i możemy wejść.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:24.48": {
+  "pl": "Warsztat zamyka się wcześnie i muszę tam teraz iść.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:25.03": {
+  "uk": "Ти береш один.",
+  "tr": "Sen bir tane alırsın.",
+  "pl": "Ty bierzesz jednego.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:25.04": {
+  "uk": "Ти береш два.",
+  "tr": "Sen iki tane alırsın.",
+  "pl": "Ty bierzesz dwa.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:25.07": {
+  "pt-BR": "Você quer cinco?",
+  "vi": "Anh muốn năm cái không?",
+  "id": "Apakah kamu mau lima?",
+  "tr": "Beş tane ister misiniz?",
+  "pl": "Chcesz pięć?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:25.08": {
+  "tr": "Onların altı tane var.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:25.17": {
+  "uk": "Меду я додаю ложку.",
+  "pl": "Miodu dodam łyżkę.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:25.25": {
+  "pt-BR": "Você nunca leva?",
+  "vi": "Anh không bao giờ lấy chúng à?",
+  "id": "Kamu tidak pernah mengambilnya?",
+  "pl": "Nigdy ich nie bierzesz?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:25.26": {
+  "tr": "Rafa iki şişe koyuyoruz.",
+  "pl": "Stawiamy dwie butelki na półce.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:25.27": {
+  "vi": "Ở đây họ không tìm thấy chúng.",
+  "pl": "Tutaj ich nie znajdują.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:25.33": {
+  "tr": "Üç tane ayırttık.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:25.44": {
+  "es": "Estas peras están maduras, quisiera tres.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:26.10": {
+  "id": "Formulir baru lebih jelas daripada yang lama.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:26.28": {
+  "pl": "To ciasto jest lepsze niż to drugie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:26.40": {
+  "vi": "Gần cửa sổ bạn có nhiều chỗ hơn.",
+  "id": "Di dekat jendela kamu punya lebih banyak ruang.",
+  "tr": "Pencerenin yanında senin daha fazla yerin var.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:27.08": {
+  "pt-BR": "Você irá à oficina depois da exposição.",
+  "vi": "Bạn sẽ đi đến xưởng sau triển lãm.",
+  "id": "Kamu akan pergi ke bengkel setelah pameran.",
+  "tr": "Sergiden sonra atölyeye gideceksin.",
+  "pl": "Pójdziesz do warsztatu po wystawie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:27.11": {
+  "vi": "Tôi sẽ ở nhà lúc sáu giờ.",
+  "id": "Saya akan ada di rumah pukul enam.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:27.15": {
+  "ru": "Вы сможете оплатить на месте.",
+  "uk": "Ви зможете заплатити на місці.",
+  "pt-BR": "Você poderá pagar no local.",
+  "tr": "Orada ödeme yapabileceksiniz.",
+  "pl": "Będziesz mógł tam zapłacić.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:27.25": {
+  "en": "The plumber will come tomorrow morning.",
+  "es": "El fontanero vendrá mañana por la mañana.",
+  "pt-BR": "O encanador virá amanhã de manhã.",
+  "vi": "Thợ sửa ống nước sẽ đến vào sáng mai.",
+  "id": "Tukang ledeng akan datang besok pagi.",
+  "tr": "Tesisatçı yarın sabah gelecek.",
+  "pl": "Hydraulik przyjdzie jutro rano.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:27.27": {
+  "pl": "Bank zamknie się dziś wieczorem wcześniej.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:27.37": {
+  "pt-BR": "Quando vou receber a conta?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:27.45": {
+  "uk": "Файл буде надіслано поштою.",
+  "pt-BR": "O arquivo será enviado pelo correio.",
+  "vi": "Tập tin sẽ được gửi qua đường bưu điện.",
+  "id": "Berkas akan dikirim melalui pos.",
+  "tr": "Dosya posta yoluyla gönderilecek.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:27.48": {
+  "pt-BR": "Você encontrará a chave embaixo do vaso.",
+  "id": "Kamu akan menemukan kuncinya di bawah pot bunga.",
+  "tr": "Anahtarı saksının altında bulacaksın.",
+  "pl": "Klucz znajdziesz pod donicą.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:28.20": {
+  "pt-BR": "Posso pegar um copo d’água?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:28.24": {
+  "uk": "Ти б волів піти пішки?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:28.31": {
+  "pt-BR": "Você deveria guardar o recibo.",
+  "id": "Sebaiknya Anda menyimpan struknya.",
+  "pl": "Powinien pan zachować paragon.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:28.44": {
+  "pt-BR": "Gostaria de remarcar meu compromisso.",
+  "vi": "Tôi muốn dời lịch hẹn của tôi.",
+  "id": "Saya ingin menjadwal ulang janji temu saya.",
+  "tr": "Randevumu yeniden planlamak istiyorum.",
+  "pl": "Chciałbym/Chciałabym przełożyć moje spotkanie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:28.49": {
+  "es": "Quisiéramos agradecer a todo el equipo.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:29.03": {
+  "pl": "Oto klucz, który otwiera piwnicę.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:29.22": {
+  "tr": "Beklediğimiz tren rötarlı.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:29.32": {
+  "ru": "Билет, который он держит в руке, действителен завтра.",
+  "uk": "Квиток, який він тримає в руці, дійсний завтра.",
+  "pt-BR": "O ingresso que ele está segurando é válido para amanhã.",
+  "id": "Tiket yang dia pegang berlaku besok.",
+  "tr": "Elindeki bilet yarın geçerli.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:29.40": {
+  "pl": "Autobus, który jedzie za nami, jest prawie pusty.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:29.44": {
+  "pl": "Pociąg, którym powinniśmy jechać, odjeżdża w południe.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:29.45": {
+  "ru": "Я потерял листок, на котором я написал код.",
+  "uk": "Я загубив аркуш, на якому я записав код.",
+  "pt-BR": "Perdi a folha em que eu tinha escrito o código.",
+  "id": "Saya kehilangan kertas tempat saya menulis kode.",
+  "pl": "Zgubiłem kartkę, na której zapisałem kod.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:29.46": {
+  "vi": "Chiếc chậu bạn đang tìm ở phía sau cây bạc hà.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:30.05": {
+  "pt-BR": "Vocês precisam ir embora.",
+  "pl": "Musicie wyjść.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:30.19": {
+  "uk": "Вам потрібно зробити вибір.",
+  "pt-BR": "Vocês precisam fazer uma escolha.",
+  "pl": "Musicie podjąć decyzję.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:30.27": {
+  "tr": "Küçük bir porsiyon almam gerekiyor.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:31.03": {
+  "pt-BR": "Leah já tinha secado o chão.",
+  "id": "Leah sudah mengeringkan lantai.",
+  "pl": "Leah już wysuszyła podłogę.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:31.05": {
+  "ru": "Вы уже прочитали сообщение?",
+  "uk": "Ви вже прочитали повідомлення?",
+  "pt-BR": "Você já tinha lido a mensagem?",
+  "vi": "Bạn đã đọc tin nhắn chưa?",
+  "id": "Apakah Anda sudah membaca pesan itu?",
+  "tr": "Mesajı zaten okumuş muydunuz?",
+  "pl": "Czy już przeczytałeś wiadomość?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:31.45": {
+  "pt-BR": "A reparação tinha exigido muito esforço.",
+  "tr": "Onarım çok çaba gerektirmişti.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.09": {
+  "pt-BR": "Se você concordasse, nós começaríamos.",
+  "vi": "Nếu bạn đồng ý, chúng ta sẽ bắt đầu.",
+  "id": "Jika Anda setuju, kami akan mulai.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.17": {
+  "pt-BR": "Se você soubesse o endereço, poderia nos mostrar o caminho.",
+  "vi": "Nếu bạn biết địa chỉ, bạn có thể chỉ đường cho chúng tôi.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.22": {
+  "ru": "Я бы взял куртку, если бы она была теплее.",
+  "uk": "Я б взяв куртку, якби вона була тепліша.",
+  "vi": "Tôi sẽ mang áo khoác nếu nó ấm hơn.",
+  "id": "Saya akan membawa jaket jika jaket itu lebih hangat.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.23": {
+  "pt-BR": "Eu guardaria aquele ingresso se fosse a minha lembrança mais preciosa da viagem.",
+  "vi": "Tôi sẽ giữ lại tấm vé đó nếu nó là kỷ vật quý giá nhất của chuyến đi.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.33": {
+  "pt-BR": "Se tivéssemos uma escada, consertaríamos a lâmpada.",
+  "vi": "Nếu chúng tôi có thang, chúng tôi sẽ sửa cái đèn.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.36": {
+  "pl": "Gdyby piekarnik działał, upiekłaby ciasto.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.41": {
+  "pt-BR": "Se você me avisasse um dia antes, eu arrumaria a cama.",
+  "vi": "Nếu bạn báo trước cho tôi một ngày, tôi sẽ dọn giường.",
+  "id": "Jika Anda memperingatkan saya sehari sebelumnya, saya akan merapikan tempat tidur.",
+  "pl": "Gdybyś mnie ostrzegł dzień wcześniej, pościeliłbym łóżko.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.42": {
+  "ru": "На твоем месте я бы написал ему.",
+  "uk": "Якби я був на твоєму місці, я б написав йому.",
+  "pt-BR": "Se eu fosse você, escreveria para ele.",
+  "vi": "Nếu tôi là bạn, tôi sẽ viết thư cho anh ấy.",
+  "pl": "Na twoim miejscu napisałbym do niego.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.44": {
+  "pt-BR": "Se você propusesse uma solução, eu te escutaria.",
+  "vi": "Nếu bạn đưa ra giải pháp, tôi sẽ lắng nghe bạn.",
+  "id": "Jika Anda menawarkan solusi, saya akan mendengarkan Anda.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.45": {
+  "pt-BR": "Se a chave desaparecesse, eu avisaria o guarda.",
+  "vi": "Nếu chìa khóa bị mất, tôi sẽ báo cho người bảo vệ.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.46": {
+  "pt-BR": "Se você prometesse voltar, eu guardaria o seu lugar.",
+  "vi": "Nếu bạn hứa sẽ quay lại, tôi sẽ giữ chỗ cho bạn.",
+  "id": "Jika Anda berjanji untuk kembali, saya akan menjaga tempat Anda.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.47": {
+  "pt-BR": "Se tivéssemos sorte, encontraríamos dois assentos um ao lado do outro.",
+  "vi": "Nếu may mắn, chúng tôi sẽ tìm được hai chỗ ngồi cạnh nhau.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.48": {
+  "pt-BR": "Se o frete fosse mais barato, eu encomendaria aquela árvore.",
+  "vi": "Nếu phí vận chuyển rẻ hơn, tôi sẽ đặt mua cây đó.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "it:32.50": {
+  "pt-BR": "Se o cronograma mudasse, nós avisaríamos você.",
+  "reason": "U20 точный смысл (11.11)"
+ }
+}

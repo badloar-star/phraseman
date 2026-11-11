@@ -45,6 +45,7 @@ import { safeRouterBack } from './navigation_back';
 import { useTabNav } from './TabContext';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import { useTopFadeScroll } from '../components/TopFadeScrollContext';
+import { TopFadeScrollProvider } from '../components/TopFadeScrollContext';
 import ScrollTopEdgeFade from '../components/ScrollTopEdgeFade';
 import { V2 } from '../constants/v2Style';
 import { DebugLogger } from './debug-logger';
@@ -123,11 +124,14 @@ export type LingmanVideosScreenProps = {
 };
 
 export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVideosScreenProps = {}) {
-  return (
+  const content = (
     <VideoSectionGate inTab={presentation === 'tab'}>
       <LingmanVideosContent presentation={presentation} />
     </VideoSectionGate>
   );
+  // зачем (владелец 11.11: мягкий край нужен и на отдельном экране «Видео»): общий признак прокрутки живёт в оболочке вкладок, у экрана,
+  // открытого ссылкой или с Главной, его нет — экран держит свой, чтобы лента растворялась под рядом положений так же, как во вкладке.
+  return presentation === 'tab' ? content : <TopFadeScrollProvider>{content}</TopFadeScrollProvider>;
 }
 
 function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
@@ -539,6 +543,8 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
   const topFadeScroll = useTopFadeScroll();
   const reportTabScroll = useCallback((e: { nativeEvent: { contentOffset: { y: number } } }) => {
     if (inTab && screenRuntimeActiveRef.current) topFadeScroll?.onScroll?.(e);
+    // отдельный экран: свой признак прокрутки, только для мягкого края ленты (нижнего меню здесь нет)
+    if (!inTab) topFadeScroll?.onScrollMaskOnly(e);
   }, [inTab, topFadeScroll]);
   // Optimistic: вид меняется сразу (стор публикует локально), отказ сети — стор откатывает, тут тост.
   const toggleSave = useCallback((videoId: string) => {

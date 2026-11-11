@@ -58,6 +58,9 @@ describe('Soft top edge on scroll: Friends, Packs, Peak', () => {
     expect(videos.split('<ScrollTopEdgeFade>').length).toBe(2);
     // растворение включает прокрутка, которую вкладка уже сообщает в общий признак
     expect(videos).toContain('topFadeScroll?.onScroll?.(e);');
+    // отдельный экран (не вкладка) держит свой признак прокрутки — край мягкий и там
+    expect(videos).toContain("return presentation === 'tab' ? content : <TopFadeScrollProvider>{content}</TopFadeScrollProvider>;");
+    expect(videos).toContain('if (!inTab) topFadeScroll?.onScrollMaskOnly(e);');
   });
 
   it('draws the scene-colored band under the Community tabs only when the header lies over a scene', () => {
